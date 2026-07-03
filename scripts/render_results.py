@@ -270,6 +270,11 @@ def median_or_only(values: Iterable[float]) -> float:
     return statistics.median(xs)
 
 
+def debug_flag(samples: Iterable[Sample]) -> str:
+    """Fairness-rules #7: numbers from Debug builds are flagged, not hidden."""
+    return " ⚠️" if any(s.build == "Debug" for s in samples) else ""
+
+
 def fmt_int(x: float) -> str:
     return f"{int(round(x))}"
 
@@ -304,7 +309,7 @@ def render_per_run_row(key: RunKey, sample: Sample) -> str:
         f"{fmt_load(sample.load_s)} | {fmt_int(sample.ttft_ms)} | "
         f"{fmt_one(sample.prefill_tok_s)} | {fmt_one(sample.decode_tok_s)} | "
         f"{fmt_one(sample.peak_mem_mb, places=0)} | "
-        f"`{sample.path.name}` |"
+        f"`{sample.path.name}`{debug_flag([sample])} |"
     )
 
 
@@ -363,7 +368,7 @@ def render_per_model_pivot(groups: dict[RunKey, list[Sample]]) -> str:
             # actually we want the model.id from JSON — stash it in Sample
             model_id_display = _model_id_for_display(s0)
             row = (
-                f"| {runtime_display(runtime)} "
+                f"| {runtime_display(runtime)}{debug_flag(samples)} "
                 f"| `{model_id_display}` "
                 f"| {s0.quantization} "
                 f"| {n} "
@@ -417,7 +422,7 @@ def render_per_runtime_pivot(groups: dict[RunKey, list[Sample]]) -> str:
             n = len(samples)
             s0 = samples[0]
             row = (
-                f"| {s0.model_display} "
+                f"| {s0.model_display}{debug_flag(samples)} "
                 f"| {s0.params_b if s0.params_b else '—'} "
                 f"| {s0.quantization} "
                 f"| {n} "
@@ -459,7 +464,7 @@ def render_at_a_glance(groups: dict[RunKey, list[Sample]]) -> str:
     for runtime, samples in runtime_entries:
         n = len(samples)
         row = (
-            f"| {runtime_display(runtime)} "
+            f"| {runtime_display(runtime)}{debug_flag(samples)} "
             f"| {samples[0].quantization} "
             f"| {n} "
             f"| {fmt_int(median_or_only(s.ttft_ms for s in samples))} "
@@ -532,7 +537,7 @@ def render_latency_profile(groups: dict[RunKey, list[Sample]]) -> str:
         out.append(
             f"| {device_display(key.device)} "
             f"| {runtime_display(key.runtime)} "
-            f"| {s0.model_display} "
+            f"| {s0.model_display}{debug_flag(samples)} "
             f"| {n} "
             f"| {fmt_int(median_or_only(s.ttft_ms for s in samples))} "
             f"| {fmt_one(median_or_only((s.itl_p50_ms or 0) for s in samples if s.itl_p50_ms is not None))} "
@@ -596,7 +601,7 @@ def render_energy_profile(groups: dict[RunKey, list[Sample]]) -> str:
         out.append(
             f"| {device_display(key.device)} "
             f"| {runtime_display(key.runtime)} "
-            f"| {s0.model_display} "
+            f"| {s0.model_display}{debug_flag(samples)} "
             f"| {len(energy_samples)} "
             f"| {source} "
             f"| {fmt_one(median_or_only((s.avg_package_w or 0) for s in samples if s.avg_package_w is not None))} "
@@ -607,8 +612,22 @@ def render_energy_profile(groups: dict[RunKey, list[Sample]]) -> str:
     return "\n".join(out)
 
 
+def render_debug_note(groups: dict[RunKey, list[Sample]]) -> str:
+    n = sum(1 for samples in groups.values() for s in samples if s.build == "Debug")
+    if not n:
+        return ""
+    return (
+        f"> ⚠️ = **Debug-build capture** ({n} runs, `device.buildConfiguration` in the JSONL). "
+        "Flagged per [fairness-rules #7](methodology/fairness-rules.md) — Debug and Release "
+        "builds give different numbers; a Release re-capture is pending for these rows. "
+        "The inference cores are prebuilt Release binaries, so the expected skew is the "
+        "Swift driver layer only."
+    )
+
+
 def render_block(groups: dict[RunKey, list[Sample]]) -> str:
     sections = [
+        render_debug_note(groups),
         render_coverage(groups),
         render_at_a_glance(groups),
         render_per_model_pivot(groups),

@@ -19,9 +19,11 @@ A neutral, reproducible benchmark for running local LLMs (and, in time, ASR / TT
 | Engine | Compute | Decode tok/s | Peak RAM |
 |---|---|---:|---:|
 | **Core AI** (pipelined) | GPU | **181** 🏆 _(1st run 71)_ | 524 MB |
-| MLX | GPU | 112 | 539 MB |
+| MLX | GPU | 112 ⚠️ | 539 MB |
 | **Core AI** (static-shape) | ANE | 49 | 1,166 MB |
 | **CoreML-LLM** | ANE | 39 | **184** 🏆 |
+
+> ⚠️ **MLX row: Debug-build capture** ([fairness-rules #7](methodology/fairness-rules.md)). The warm 112 tok/s is the median of the two warm **Debug** runs (`iphone17pro-mlx-qwen3-0.6b-4bit-short-chat-run3/4.jsonl`); **Release**-build cold captures of the same model read **126–133 tok/s**, so warm MLX on Release is likely ~130 and Core AI's warm lead nearer **~1.4×** than 1.6×. A Release warm re-capture is pending. All other rows are Release builds.
 
 - **Core AI's GPU "pipelined" engine is the fastest on-device path here — ~1.6× MLX — once warm.** It pays a one-time first-run cost (kernel compilation + filling a 3-deep pipeline): ~71 tok/s on the very first generation, then ~181 steady-state. MLX is flat cold-to-warm.
 - **Core AI's compute unit is fixed by the *export shape*, not a runtime flag:** `coreai.llm.export … --platform iOS` (static) is detected as chunked-static → the **ANE**; a dynamic export → the **GPU** pipelined engine. And iOS can't JIT the exported IR — it must be `coreai-build compile`-d to a per-GPU-arch `.aimodelc` first (`No such file or directory` otherwise).
@@ -88,15 +90,17 @@ Real LLM inference on a phone — on-device, no server. iPhone 17 Pro, 4-bit, sh
 
 | Model (4-bit, n=3) | 🔴 LiteRT-LM | 🟣 MLX-Swift | 🔵 llama.cpp | 🟠 CoreML/ANE |
 |---|---:|---:|---:|---:|
-| Gemma 4 E2B | **55.4** 🏆 | 47.5 | 37.8 | 33.4 |
-| Qwen 3.5 2B | — | **61.2** 🏆 | 39.1 | 27.9 |
+| Gemma 4 E2B | **55.4** 🏆 | 47.5 | 37.8 | 33.4 ⚠️ |
+| Qwen 3.5 2B ⚠️ | — | **61.2** 🏆 | 39.1 | 27.9 |
 
 **Peak memory** — MB, lower is better (🏆 = winner):
 
 | Model (4-bit, n=3) | 🔴 LiteRT-LM | 🟣 MLX-Swift | 🔵 llama.cpp | 🟠 CoreML/ANE |
 |---|---:|---:|---:|---:|
-| Gemma 4 E2B | **641** 🏆 | 2,900 | 3,156 | 1,187 |
-| Qwen 3.5 2B | — | 1,279 | 1,479 | **241** 🏆 |
+| Gemma 4 E2B | **641** 🏆 | 2,900 | 3,156 | 1,187 ⚠️ |
+| Qwen 3.5 2B ⚠️ | — | 1,279 | 1,479 | **241** 🏆 |
+
+> ⚠️ **Debug-build captures** (iOS 26.4.2, 2026-05-28; [fairness-rules #7](methodology/fairness-rules.md)): every Qwen 3.5 2B cell and the CoreML/ANE Gemma cells were measured with a Debug app build — a Release re-capture is pending. The Gemma LiteRT-LM / MLX-Swift / llama.cpp cells are Release builds.
 
 - **The upset — Gemma 4 E2B:** Google's **LiteRT-LM** (INT4-QAT, GPU, its native `.litertlm`) beats MLX-Swift on decode **and** uses ~4.5× less memory (641 MB vs 2,900). The purpose-built runtime wins on its own format.
 - **MLX-Swift wins Qwen 3.5 2B decode** — 61 vs 39 tok/s. (No LiteRT-LM row at this 2B size — its `.litertlm` catalog ships **Qwen3** at 0.6B/4B and Gemma, just not a 2B; a **Qwen3-0.6B** LiteRT row is coming as a direct cross-runtime match against MLX / CoreML / Core AI.)
@@ -235,13 +239,15 @@ The ANE path draws **~half** the GPU path's package power at full decode (12.7 W
 
 ### Per-runtime model scaling
 
+<sub>⚠️ = Debug-build capture ([fairness-rules #7](methodology/fairness-rules.md)) — Release re-capture pending.</sub>
+
 <sub>**llama.cpp** (Q4_K_M GGUF, M4 Max, short-chat)</sub>
 
 | Model | Params | n | TTFT (ms) | Decode tok/s | Peak Mem (MB) |
 |---|---:|---:|---:|---:|---:|
 | Qwen 2.5 0.5B | 0.5 B | 3 | 22  | 297.1 | 538 |
 | Qwen 3.5 0.8B | 0.8 B | 3 | 22  | 201.1 | 752 |
-| Llama 3.2 1B  | 1.0 B | 3 | 25  | **285.9** | 1022 |
+| Llama 3.2 1B ⚠️ | 1.0 B | 3 | 25  | **285.9** | 1022 |
 | Qwen 3.5 2B   | 2 B   | 3 | 29  | 149.7 | 1443 |
 | Gemma 4 E2B   | 2 B   | 3 | 41  | 119.2 | 3212 |
 | Gemma 4 E4B   | 4 B   | 3 | 62  | 80.5  | 5150 |
@@ -260,7 +266,7 @@ The ANE path draws **~half** the GPU path's package power at full decode (12.7 W
 
 | Model | Params | n | TTFT (ms) | Decode tok/s | Peak Mem (MB) |
 |---|---:|---:|---:|---:|---:|
-| LFM 2.5 350M  | 0.35 B | 1 | 383 | 58.9  | **98**  |
+| LFM 2.5 350M ⚠️ | 0.35 B | 1 | 383 | 58.9  | **98**  |
 | Qwen 2.5 0.5B | 0.5 B  | 3 | 171 | 181.2 | 962     |
 | Qwen 3.5 0.8B | 0.8 B  | 3 | 405 | 58.2  | **221** |
 | Qwen 3.5 2B   | 2 B    | 3 | 665 | 35.0  | **230** |
