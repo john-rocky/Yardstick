@@ -1,0 +1,32 @@
+{
+  "averages" : {
+    "generation_tps" : 24.766948572002242,
+    "prompt_tps" : 23.197215763159996
+  },
+  "generation_tokens" : 512,
+  "model" : "gemma4_12b_qat_decode_int8lin_msdpa_g8",
+  "num_trials" : 5,
+  "prompt_tokens" : 1,
+  "trials" : [
+    {
+      "gen_tps" : 24.754032036614102,
+      "prompt_tps" : 22.106735163943437
+    },
+    {
+      "gen_tps" : 24.792915073574253,
+      "prompt_tps" : 25.095730172315317
+    },
+    {
+      "gen_tps" : 24.78778004929146,
+      "prompt_tps" : 23.30300742088932
+    },
+    {
+      "gen_tps" : 24.76312437940254,
+      "prompt_tps" : 23.18186595753648
+    },
+    {
+      "gen_tps" : 24.73689132112887,
+      "prompt_tps" : 22.29874010111542
+    }
+  ]
+}

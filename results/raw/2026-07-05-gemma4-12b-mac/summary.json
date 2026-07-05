@@ -1,0 +1,52 @@
+{
+  "model": "google/gemma-4-12B-it (unified, encoder-free multimodal)",
+  "hardware": "Mac Studio \u00b7 Apple M4 Max \u00b7 40-core GPU \u00b7 546 GB/s \u00b7 128 GB",
+  "protocol": "greedy, n=5 cold; steady-state decode (512/445/640 gen tok for CoreAI/MLX/LiteRT)",
+  "date": "2026-07-05",
+  "runtimes": {
+    "MLX": {
+      "quant": "int4",
+      "weight_gb": 6.74,
+      "decode_tps_mean": 55.13,
+      "decode_tps_sd": 0.174,
+      "prefill_tps": 466.7,
+      "achieved_gbps": 371.6,
+      "roofline_tps": 81.0,
+      "pct_of_roofline": 68.1,
+      "note": "coherent"
+    },
+    "LiteRT-LM": {
+      "quant": "int4",
+      "weight_gb": 6.1,
+      "decode_tps_mean": 48.5,
+      "decode_tps_sd": 0.089,
+      "prefill_tps": null,
+      "achieved_gbps": 295.8,
+      "roofline_tps": 89.5,
+      "pct_of_roofline": 54.2,
+      "note": "DEGENERATE output on Mac build (throughput valid, quality broken)"
+    },
+    "Core AI int4-q40": {
+      "quant": "int4-q4_0",
+      "weight_gb": 8.2,
+      "decode_tps_mean": 37.88,
+      "decode_tps_sd": 0.04,
+      "prefill_tps": null,
+      "achieved_gbps": 310.6,
+      "roofline_tps": 66.6,
+      "pct_of_roofline": 56.9,
+      "note": "coherent (q4_0-snap == fp16 gen); 1.53x the int8 path; 8.2GB"
+    },
+    "Core AI int8": {
+      "quant": "int8lin",
+      "weight_gb": 14.67,
+      "decode_tps_mean": 24.77,
+      "decode_tps_sd": 0.021,
+      "prefill_tps": null,
+      "achieved_gbps": 363.3,
+      "roofline_tps": 37.2,
+      "pct_of_roofline": 66.5,
+      "note": "coherent; shipped; prefill N/A (decode-only export)"
+    }
+  }
+}

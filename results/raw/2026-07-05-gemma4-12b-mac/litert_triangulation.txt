@@ -1,0 +1,11 @@
+### gemma4-E2B (same family, smaller) on Mac GPU ###
+  ParallelF
+loaded in 2.1s
+OUTPUT: [Memory bandwidth is the rate at which data can be transferred between the CPU/GPU]
+decode 118.6 tok/s · prefill 269.5 tok/s
+
+### Qwen3-4B (non-gemma) on Mac GPU ###
+}
+loaded in 5.2s
+OUTPUT: [<think>⏎Okay, the user wants a one-sentence explanation of memory bandwidth]
+decode 106.0 tok/s · prefill 91.5 tok/s

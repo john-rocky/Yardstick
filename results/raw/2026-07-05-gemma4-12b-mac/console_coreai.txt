@@ -1,0 +1,33 @@
+
+⏳ Preparing AI asset...
+
+⚙️  Warming up engine...
+
+🔄 Benchmarking with 1 prompt tokens, 512 generation tokens
+
+🧪 Trial 1
+⚡ Prompt:     22.107 tokens/sec
+🏃 Generation: 24.754 tokens/sec
+
+🧪 Trial 2
+⚡ Prompt:     25.096 tokens/sec
+🏃 Generation: 24.793 tokens/sec
+
+🧪 Trial 3
+⚡ Prompt:     23.303 tokens/sec
+🏃 Generation: 24.788 tokens/sec
+
+🧪 Trial 4
+⚡ Prompt:     23.182 tokens/sec
+🏃 Generation: 24.763 tokens/sec
+
+🧪 Trial 5
+⚡ Prompt:     22.299 tokens/sec
+🏃 Generation: 24.737 tokens/sec
+
+📊 Benchmark Summary:
+==================================================
+Prompt:     23.197 tokens/sec
+Generation: 24.767 tokens/sec
+==================================================
+Wrote: /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/46e8f40d-08fa-44e4-ab69-84aa18a534f3/scratchpad/coreai_gemma4_12b.json

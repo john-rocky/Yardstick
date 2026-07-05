@@ -1,0 +1,9 @@
+Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.9.0).
+W0706 00:30:39.077000 61890 torch/distributed/elastic/multiprocessing/redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+device=mps
+prompt tokens: 21
+loading fp16 12B ...
+=== fp16 (reference) ===
+'thought\nThe capital of France is Paris.'
+=== q4_0-snapped 329 linears (int4 bundle behaviour) ===
+'thought\nThe capital of France is Paris.'
