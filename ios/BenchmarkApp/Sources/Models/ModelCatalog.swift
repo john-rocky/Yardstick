@@ -157,6 +157,15 @@ public enum ModelCatalog {
             onDiskSizeMB: 3000,
             hfRepoId: "mlx-community/gemma-4-e4b-it-4bit"
         ),
+        // QAT-int4 variant — matches Core AI (q4_0 QAT) + LiteRT (INT4 QAT) for a QAT-iso 3-way.
+        ModelInfo(
+            id: "mlx-community/gemma-4-e4b-it-qat-OptiQ-4bit",
+            displayName: "Gemma 4 E4B (QAT 4-bit)",
+            quantization: "INT4 (QAT, OptiQ)",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 3000,
+            hfRepoId: "mlx-community/gemma-4-e4b-it-qat-OptiQ-4bit"
+        ),
 
         // --- Medium — Mac-class (M-series with ≥16 GB) ---
         ModelInfo(
@@ -938,6 +947,8 @@ public enum ModelCatalog {
         ModelInfo(id: "core-ai/olmo2-1b-static-gpu", displayName: "OLMo-2-1B (Core AI, static-GPU)", quantization: "4-bit palettized (uniform g32, static→GPU)", parameterCountB: 1.0, onDiskSizeMB: 828, hfRepoId: ""),
         ModelInfo(id: "core-ai/smollm3-3b-static-gpu", displayName: "SmolLM3-3B (Core AI, static-GPU)", quantization: "4-bit palettized (uniform g32, static→GPU)", parameterCountB: 3.0, onDiskSizeMB: 1600, hfRepoId: ""),
         ModelInfo(id: "core-ai/llama-3.2-3b-static-gpu", displayName: "Llama-3.2-3B (Core AI, static-GPU)", quantization: "4-bit palettized (uniform g32, static→GPU)", parameterCountB: 3.0, onDiskSizeMB: 1700, hfRepoId: ""),
+        // Gemma-4 E4B (Per-Layer-Embeddings): `_tbl` GPU-pipelined decode + mmap'd PLE table (in-graph gather).
+        ModelInfo(id: "core-ai/gemma4-e4b-gpu", displayName: "Gemma 4 E4B (Core AI, GPU)", quantization: "int4 q4_0 (QAT)", parameterCountB: 4.0, onDiskSizeMB: 5300, hfRepoId: "mlboydaisuke/gemma-4-E4B-CoreAI"),
     ]
 
     /// Default model picked when the app first launches.

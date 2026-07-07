@@ -1,6 +1,7 @@
 import Foundation
 #if canImport(CoreAILanguageModels)
 import CoreAILanguageModels
+import Metal
 #endif
 #if canImport(Tokenizers)
 import Tokenizers
@@ -85,6 +86,10 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         // 2026-06-25 export pass — GPU for all 6, ANE for llama/olmo2/smollm3 (ministral/gemma3/phi ANE pending)
         case "core-ai/ministral-3b-gpu":  return ("ministral3_3b_gpu", "coreai-pipelined")
         case "core-ai/gemma3-1b-gpu":     return ("gemma3_1b_gpu", "coreai-pipelined")
+        // Gemma 4 E4B (Per-Layer-Embeddings). The `_tbl` decode graph gathers the PLE in-graph
+        // from a mmap'd static table — the bundle folder also carries `ple/embed_per_layer.i8`
+        // + `.scale.f32`, wired as EngineOptions.staticInputBuffers (see loadModel / GemmaPLEBench).
+        case "core-ai/gemma4-e4b-gpu":    return ("gemma4_e4b_gpu", "coreai-pipelined")
         case "core-ai/phi-4-mini-gpu":    return ("phi4_mini_gpu", "coreai-pipelined")
         case "core-ai/llama-3.2-3b-ane":  return ("llama32_3b_ane", "static-shape")
         case "core-ai/llama-3.2-3b-gpu":  return ("llama32_3b_gpu", "coreai-pipelined")
@@ -133,6 +138,45 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         return nil
     }
 
+    #if canImport(CoreAILanguageModels)
+    /// Gemma-4 E-series (E2B/E4B) carry Per-Layer-Embeddings whose table is too large to live
+    /// in the graph. The `_tbl` decode graph gathers it in-graph from two static inputs
+    /// (`ple_table` = int8 rows, `ple_scale` = per-row f32), mmap'd no-copy and bound on every
+    /// encode. We side-load them next to the bundle under `ple/`. Returns [:] for non-PLE models.
+    /// Adapted from `~/code/coreai/ondevice/GemmaPLEBench` (the reference that benched E4B on device).
+    private static func staticPLEBuffers(bundleURL: URL) -> [String: StaticInputBuffer] {
+        let pleDir = bundleURL.appendingPathComponent("ple", isDirectory: true)
+        let files = ["ple_table": "embed_per_layer.i8", "ple_scale": "embed_per_layer.scale.f32"]
+        let fm = FileManager.default
+        guard fm.fileExists(atPath: pleDir.appendingPathComponent(files["ple_table"]!).path),
+              let device = MTLCreateSystemDefaultDevice() else { return [:] }
+        var out: [String: StaticInputBuffer] = [:]
+        for (name, file) in files {
+            guard let buf = Self.mapTableBuffer(url: pleDir.appendingPathComponent(file), device: device)
+            else { return [:] }
+            out[name] = StaticInputBuffer(buf)
+        }
+        return out
+    }
+
+    /// mmap a table file read-only and wrap it as a no-copy, page-aligned MTLBuffer. The engine
+    /// binds it unchanged on every encode and never writes it; COW pages stay clean/evictable so
+    /// the multi-GB table doesn't count as dirty-resident (this is what lets E4B fit on device).
+    private static func mapTableBuffer(url: URL, device: any MTLDevice) -> (any MTLBuffer)? {
+        let fd = open(url.path, O_RDONLY)
+        guard fd >= 0 else { return nil }
+        defer { close(fd) }
+        let size = Int(lseek(fd, 0, SEEK_END))
+        guard size > 0 else { return nil }
+        let page = Int(getpagesize())
+        let mapLen = (size + page - 1) / page * page
+        guard let p = mmap(nil, mapLen, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0),
+              p != MAP_FAILED else { return nil }
+        return device.makeBuffer(bytesNoCopy: UnsafeMutableRawPointer(mutating: p),
+                                 length: mapLen, options: .storageModeShared, deallocator: nil)
+    }
+    #endif
+
     // MARK: - Load
 
     public func loadModel(
@@ -175,8 +219,14 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             let configData = try JSONEncoder().encode(engineConfig)
             progress(0.35)
 
-            step = "EngineFactory(variant=\(spec.variant ?? "auto"), model=\(modelURL.lastPathComponent))"
-            let options = EngineOptions(variant: spec.variant, kvCacheStrategy: .auto)
+            // Per-Layer-Embedding models (Gemma-4 E-series) bind the PLE table as static inputs;
+            // the in-graph gather needs S=1 prefill steps (COREAI_CHUNK_THRESHOLD=1), set before
+            // engine creation. Empty for non-PLE models (no behaviour change).
+            let pleBuffers = Self.staticPLEBuffers(bundleURL: bundleURL)
+            if !pleBuffers.isEmpty { setenv("COREAI_CHUNK_THRESHOLD", "1", 1) }
+            step = "EngineFactory(variant=\(spec.variant ?? "auto"), model=\(modelURL.lastPathComponent), ple=\(pleBuffers.count))"
+            let options = EngineOptions(
+                variant: spec.variant, kvCacheStrategy: .auto, staticInputBuffers: pleBuffers)
             let engine = try await EngineFactory.createEngine(
                 config: configData,
                 modelURL: modelURL,
