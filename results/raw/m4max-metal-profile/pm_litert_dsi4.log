@@ -1,0 +1,404 @@
+I0000 00:00:1783411574.651962 18475397 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783411574.652023 18475397 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783411574.652861 18475397 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783411574.652879 18475397 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783411574.652886 18475397 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1783411574.652889 18475397 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783411574.652902 18475397 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783411574.652906 18475397 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783411574.652911 18475397 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783411574.652914 18475397 litert_lm_loader.cc:265] section_end_offset: 16950
+I0000 00:00:1783411574.652917 18475397 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783411574.652920 18475397 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783411574.652923 18475397 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783411574.652925 18475397 litert_lm_loader.cc:265] section_end_offset: 2174935
+I0000 00:00:1783411574.652930 18475397 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1783411574.652936 18475397 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783411574.652940 18475397 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783411574.652943 18475397 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1783411574.652946 18475397 litert_lm_loader.cc:265] section_end_offset: 1110537568
+I0000 00:00:1783411574.652985 18475397 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783411574.652994 18475397 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783411574.652999 18475397 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783411574.653002 18475397 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783411574.653004 18475397 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1783411574.653007 18475397 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783411574.653010 18475397 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783411574.653013 18475397 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783411574.653015 18475397 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783411574.653018 18475397 litert_lm_loader.cc:265] section_end_offset: 16950
+I0000 00:00:1783411574.653021 18475397 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783411574.653023 18475397 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783411574.653026 18475397 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783411574.653028 18475397 litert_lm_loader.cc:265] section_end_offset: 2174935
+I0000 00:00:1783411574.653031 18475397 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1783411574.653034 18475397 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783411574.653036 18475397 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783411574.653039 18475397 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1783411574.653041 18475397 litert_lm_loader.cc:265] section_end_offset: 1110537568
+I0000 00:00:1783411574.653217 18475397 engine_advanced_impl.cc:252] New model files have LlmModelType, loading tokenizer asynchronously
+W0000 00:00:1783411574.653243 18475397 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783411574.653250 18475397 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783411574.653251 18475398 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411574.653255 18475397 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783411574.653279 18475397 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1783411574.653291 18475397 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783411574.653296 18475397 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 1200
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--mlboydaisuke--DeepSeek-R1-Distill-Qwen-1.5B-LiteRT/snapshots/3c8f42f9415b899c43a5211d6a42e2d342f238ea/model.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: start_token {
+  token_str: "<\357\275\234begin\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "?<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "\"<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "!<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: ")<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "]<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "*<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: ":<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "\'<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: ";<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: ",<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: " <\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_str: ".<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+stop_tokens {
+  token_str: "}<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+}
+prompt_templates {
+  user {
+    prefix: "<\357\275\234User\357\275\234>"
+  }
+  model {
+    prefix: "<\357\275\234Assistant\357\275\234>"
+    suffix: "<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+  }
+  system {
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 1
+  p: 0.95
+  temperature: 1
+  seed: 0
+}
+max_num_tokens: 4096
+llm_model_type {
+  qwen2p5 {
+  }
+}
+jinja_prompt_template: "{%- for message in messages -%}{%- if message.content is string -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{{ message.content }}{% endif -%}{%- if message.role == \'model\' %}<\357\275\234Assistant\357\275\234>{{ message.content }}<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>{% endif -%}{%- if message.role == \'system\' %}{{ message.content }}{% endif -%}{%- else -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{% elif message.role == \'model\' %}<\357\275\234Assistant\357\275\234>{% elif message.role == \'system\' %}{% endif -%}{%- for item in message.content %}{%- if item.type == \'text\' %}{{ item.text }}{% elif item.type == \'image\' -%}{{ \'<start_of_image>\' }}{%- elif item.type == \'audio\' -%}{{ \'<start_of_audio>\' }}{%- endif -%}{%- endfor -%}{%- if message.role == \'user\' %}{% elif message.role == \'model\' %}<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>{% elif message.role == \'system\' %}{% endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt %}<\357\275\234Assistant\357\275\234>{% endif -%}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783411574.654187 18475397 model_resources_litert_lm.cc:67] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1783411574.654191 18475397 model_resources_litert_lm.cc:68] litert model size: 1108358496
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x751b030190, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x751b030230, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x751b030280, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x751b030370, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1783411574.680508 18475397 executor_settings_base.cc:351] Deleted 1 stale cache files.
+I0000 00:00:1783411574.680521 18475397 litert_compiled_model_executor_utils.cc:518] Setting serialization dir: /Users/majimadaisuke/.cache/huggingface/hub/models--mlboydaisuke--DeepSeek-R1-Distill-Qwen-1.5B-LiteRT/snapshots/3c8f42f9415b899c43a5211d6a42e2d342f238ea
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1783411574.685500 18475397 delegate_webgpu.cc:219] Create WebGPU environment with device substr: 
+I0000 00:00:1783411574.692143 18475397 environment.cc:526] Found 1 adapters
+I0000 00:00:1783411574.692167 18475397 environment.cc:539] adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783411574.692178 18475397 environment.cc:561] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783411574.692776 18475397 delegate_webgpu.cc:247] Created a WebGPU environment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1783411574.692820 18475397 delegate_webgpu.cc:675] # of threads to upload weights = 2
+I0000 00:00:1783411574.692843 18475397 delegate_webgpu.cc:683] # of threads to compile kernels = 1
+I0000 00:00:1783411575.064609 18475397 delegate_kernel.cc:297] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411575.064631 18475397 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783411575.251202 18475397 delegate_kernel.cc:297] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411575.251226 18475397 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x751d850140, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x751d850190, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+W0000 00:00:1783411575.293782 18475397 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411575.293803 18475397 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+I0000 00:00:1783411575.293807 18475397 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1783411575.293810 18475397 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411575.293813 18475397 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411575.293816 18475397 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+I0000 00:00:1783411575.293818 18475397 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1783411575.293821 18475397 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411575.293823 18475397 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411575.293825 18475397 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+I0000 00:00:1783411575.293827 18475397 model_resources_litert_lm.cc:67] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1783411575.293829 18475397 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411575.293832 18475397 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411575.293834 18475397 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+I0000 00:00:1783411575.293836 18475397 model_resources_litert_lm.cc:67] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1783411575.293838 18475397 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411575.293854 18475397 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783411575.293857 18475397 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783411575.293860 18475397 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783411575.293862 18475397 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1783411575.293879 18475397 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783411575.293882 18475397 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 1200
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--mlboydaisuke--DeepSeek-R1-Distill-Qwen-1.5B-LiteRT/snapshots/3c8f42f9415b899c43a5211d6a42e2d342f238ea/model.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151646
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: -1
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<\357\275\234User\357\275\234>"
+  }
+  model {
+    prefix: "<\357\275\234Assistant\357\275\234>"
+    suffix: "<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>"
+  }
+  system {
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 1
+  p: 0.95
+  temperature: 1
+  seed: 0
+}
+max_num_tokens: 4096
+llm_model_type {
+  qwen2p5 {
+  }
+}
+jinja_prompt_template: "{%- for message in messages -%}{%- if message.content is string -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{{ message.content }}{% endif -%}{%- if message.role == \'model\' %}<\357\275\234Assistant\357\275\234>{{ message.content }}<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>{% endif -%}{%- if message.role == \'system\' %}{{ message.content }}{% endif -%}{%- else -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{% elif message.role == \'model\' %}<\357\275\234Assistant\357\275\234>{% elif message.role == \'system\' %}{% endif -%}{%- for item in message.content %}{%- if item.type == \'text\' %}{{ item.text }}{% elif item.type == \'image\' -%}{{ \'<start_of_image>\' }}{%- elif item.type == \'audio\' -%}{{ \'<start_of_audio>\' }}{%- endif -%}{%- endfor -%}{%- if message.role == \'user\' %}{% elif message.role == \'model\' %}<\357\275\234end\342\226\201of\342\226\201sentence\357\275\234>{% elif message.role == \'system\' %}{% endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt %}<\357\275\234Assistant\357\275\234>{% endif -%}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783411575.293926 18475397 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1783411575.293929 18475397 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1783411575.294409 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294416 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294418 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294420 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294422 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294424 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294426 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294433 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294435 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294437 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294439 18475397 stop_token_detector.cc:64] Stop token sequence {151643} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294441 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294443 18475397 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1783411575.294451 18475397 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783411575.295387 18475397 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1783411575.606430 18475443 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1783411575.608056 18475443 sampler_factory.cc:450] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.dylib: dlopen(libLiteRtTopKWebGpuSampler.dylib, 0x0005): tried: 'libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/code/litert-mac-verify/.build/out/Products/Release/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.NWmXYx/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.NWmXYx/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKWebGpuSampler.dylib' (no such file).
+=== Source Location Trace: === 
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1783411575.608071 18475443 sampler_factory.cc:458] Statically linked LiteRtTopKWebGpuSampler C API.
+engine[gpu] init 0.6s
+OUTPUT: [<think>⏎Okay, so I need to write a detailed essay about the history of computing, focusing on mainframes, personal computers, and mobile devices. Hmm, where do I start? I guess I should think about the timeline and key events in each era.⏎⏎First, I remember that the first computers were developed in the 50s. I think it was the Bell Labs in the US. They made the mainframe, which was a big deal. I think they used vacuum tubes, which were different from the integrated circuits I've heard about before. So, the mainframe was a big step forward in computing.⏎⏎Then, the 60s and 70s came. I think the first personal computers were introduced around there. I'm not exactly sure when, but I think it was around 1967. I believe Apple's Macintosh was a big success, so that's probably a key point. Also, the first personal computers were probably the first to use microprocessors, which were a big deal because they made computers more efficient and easier to use.⏎⏎Moving on to the 80s, I think Apple started making Macs again, maybe around 1984. Then, the first mobile devices came, like the iPhone. I think that was in the mid-80s. I'm not sure about the exact year, but I think it was around 1987 or 1988. The iPhone was a big deal because it was the first mobile computer, and it started the mobile computing revolution.⏎⏎Then, the 90s and 2000s saw the rise of IBM's mainframes again, maybe around 1990. I think they started making more mainframes, which were more powerful. Also, the rise of personal computers continued, with companies like HP and Dell making more devices. Mobile devices started to get even more popular, with the iPhone being a big part of that.⏎⏎I should also think about the impact of these technologies. The mainframes were foundational, setting the stage for the personal computer revolution. The personal computers were transformative, enabling new industries and applications. Mobile devices were a game-changer, making computing more accessible and accessible to everyone.⏎⏎I wonder if I should include some of the challenges or limitations of these technologies. For example, mainframes were expensive and had issues with reliability, while mobile devices were also subject to competition from other companies. Understanding these limitations can help in appreciating the evolution of computing.⏎⏎I should structure the essay with an introduction, sections on the development of mainframes, the rise of personal computers, and the evolution of mobile devices. Each section can delve into the key events, technologies, and impacts. I should also highlight the transition from mainframes to personal computers and then to mobile devices, showing how each era built upon the previous one.⏎⏎I need to make sure I cover the timeline accurately. For example, the introduction of the first personal computer in the 60s, the Macintosh release in 1967, and the iPhone release in 1987. Also, the mainframe developments, like the Bell Labs mainframes, and IBM's resurgence of mainframes in the 90s.⏎⏎I should also touch on the social and economic impacts. How the personal computer revolution changed industries, and how mobile computing made computing more accessible. Maybe also mention the ethical issues, like privacy concerns with mobile devices.⏎⏎I think I have a good outline. Now, I'll need to flesh out each section with detailed points, making sure to explain the technologies, their impacts, and the historical context. I should also conclude by summarizing the evolution of computing from mainframes to mobile devices, highlighting the key milestones and their significance.⏎⏎I should also check for any gaps in my knowledge. For example, I'm not entirely sure about the exact year the first personal computer was introduced, but I think it was around 1967. Also, the timeline for the iPhone, I think it was in the mid-80s, but I'm not 100% certain. I might need to verify that.⏎⏎Overall, I need to present a clear, well-structured essay that covers each era, explains the technologieI0000 00:00:1783411584.244000 18475397 threadpool.cc:46] ThreadPool 'callback_thread_pool': Shutting down...
+I0000 00:00:1783411584.244017 18475449 threadpool.cc:171] ThreadPool 'callback_thread_pool': Worker thread stopped.
+I0000 00:00:1783411584.244039 18475397 threadpool.cc:75] ThreadPool 'callback_thread_pool': Shutdown complete.
+I0000 00:00:1783411584.244044 18475397 threadpool.cc:46] ThreadPool 'execution_thread_pool': Shutting down...
+I0000 00:00:1783411584.244051 18475443 threadpool.cc:171] ThreadPool 'execution_thread_pool': Worker thread stopped.
+I0000 00:00:1783411584.244202 18475397 threadpool.cc:75] ThreadPool 'execution_thread_pool': Shutdown complete.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x751d850190, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x751d850140, name=GPU WebGPU
+s, their impacts, and the social implications. I'll make sure to use historical context and key events to make each section engaging and informative.⏎</think>⏎⏎**The Evolution of Computing: From Mainframes to Mobile Devices**⏎⏎**Introduction**⏎⏎The history of computing is a fascinating journey that spans several key eras, each revolutionizing technology and society. This essay explores the development of mainframes, personal computers, and mobile devices, highlighting their historical context, technological advancements, and societal impacts.⏎⏎**The Rise of Mainframes**⏎⏎The foundation of computing was established in the 50s with the Bell Labs in the United States. Here, the first mainframe computer was introduced, using vacuum tubes. This era set the stage for the personal computer revolution, laying the groundwork for digital computing.⏎⏎**The Emergence of Personal Computers**⏎⏎The 60s and 70s saw the introduction of personal computers, with Apple's Macintosh being a pivotal success. The first personal computer, released in 1967, used microprocessors, revolutionizing computing. This marked the beginning of the personal computer revolution, enabling new industries and applications.⏎⏎**The Mobile Revolution**⏎⏎The 80s and 90s brought about the rise of mobile devices, with the iPhone being a game-changer. Introduced in the mid-80s, the iPhone made computing accessible to everyone, setting the mobile computing revolution. This era saw the rise of companies like HP, Dell, and IBM, solidifying computing's role in modern life.⏎⏎**The]
+OK[gpu] decode_tokens=1176 stream_yields=1176
+decode 136.2 tok/s · prefill 77.2 tok/s

@@ -1,0 +1,93 @@
+# Where the Apple-GPU decode gap lives — Metal-level decomposition (M4 Max)
+
+**A kernel-level answer to the question the headline tables raise: when LiteRT-LM decodes at
+~0.6–0.67× of MLX on the same Apple GPU at the same weight size, where does the time go?**
+Instruments `Metal System Trace` attached mid-decode + a `powermetrics` cross-check, decomposing
+each cell into GPU-idle / in-kernel-bandwidth / extra-bytes, and isolating the int4-vs-int8
+anomaly inside one runtime.
+
+**Hardware:** Mac Studio · Apple M4 Max · 40-core GPU (**546 GB/s**) · 128 GB · macOS 27.0 (26A5353q).
+**Runtimes:** LiteRT-LM v0.13.1 release xcframework (GPU = WebGPU/Dawn→Metal; accelerator log
+`GPU WebGPU`) via `litert-mac-verify --backend gpu`; MLX-LM 0.31.3 (`--temp 0.0`).
+**Protocol:** steady-state greedy decode (512–1800 tok), long essay prompt; trace analysis on the
+`metal-gpu-intervals` table; "weight GB" = artifact file size (same convention as the
+[main report](litert-community-vs-mlx-coreai.md)). Decode rates reproduced within 3–10% of the
+published Mac numbers before profiling. Date: 2026-07-07. Author: john-rocky.
+
+## Headline — per-token decomposition (steady decode, measured on GPU hardware channels)
+
+| cell | tok/s | token ms | GPU-busy ms | GPU-idle ms | busy % | in-kernel GB/s | %-roof |
+|---|--:|--:|--:|--:|--:|--:|--:|
+| LiteRT Qwen3-4B mixed-int4 (2.66 GB) | 102.5 | 9.76 | 9.08 | 0.68 | 93.0% | 293 | 54% |
+| MLX Qwen3-4B 4-bit (2.26 GB) | 153.3 | 6.52 | 6.50 | 0.02 | 99.7% | 348 | 64% |
+| LiteRT DeepSeek-R1-1.5B **q8** (1.83 GB) | 111.4 | 8.97 | 8.33 | 0.64 | 92.8% | 220 | 40% |
+| LiteRT DeepSeek-R1-1.5B **int4** (1.11 GB) | 128.0 | 7.81 | 7.09 | 0.73 | 90.7% | 157 | 29% |
+| MLX DeepSeek-R1-1.5B 4-bit (1.00 GB) | 292.0 | 3.42 | 3.31 | 0.11 | 96.7% | 302 | 55% |
+
+`in-kernel GB/s` = weight bytes / GPU-busy time per token (weights-only lower bound on achieved
+DRAM read bandwidth inside kernels). `%-roof` = against the 546 GB/s ceiling, busy-time basis.
+
+**Qwen3-4B iso-int4: the 0.67× vs MLX = 3.24 ms/token deficit, split three ways:**
+
+| bucket | ms/token | share | how measured |
+|---|--:|--:|---|
+| in-kernel bandwidth deficit (293 vs 348 GB/s) | 1.44 | **44%** | GPU-busy time vs bytes |
+| extra bytes in the artifact (2.66 vs 2.26 GB) | 1.14 | **35%** | file sizes, at MLX's 348 GB/s |
+| GPU idle (submit/sample bubbles) | 0.66 | **20%** | gap analysis |
+
+## Findings
+
+1. **The delegate keeps the GPU 91–93% busy.** Dawn's many-small-command-buffer pattern is not
+   the story: MLX submits *more* command buffers per token (16 vs LiteRT's 9–12) and idles less.
+   The gap is first kernel efficiency, then bytes, then scheduling.
+2. **GPU idle = exactly two bubbles per token, ~250–450 µs each** (99% of all idle): (a) after
+   the logits-readback blit, while the CPU samples/detokenizes/streams the token; (b) after the
+   last compute encoder, while the CPU re-encodes the next token's command buffers. The cost is
+   a near-fixed 0.64–0.91 ms/token across models, so its share grows as kernels get faster
+   (7% at 9-ms tokens → 13% on gemma-4-E2B's 6-ms tokens). MLX pipelines both (gap p99 ≈ 1 µs).
+3. **The int4 anomaly is a kernel story** (q8 vs int4, same runtime, same model): int4 reads 39%
+   fewer weight bytes but is only 15% faster. The dequant *is* fused — encoder count per token
+   does not grow (11 vs 12), blits identical (3/token), no extra passes — but per-byte kernel
+   time rises **1.40×** (dominant GEMV encoders get *longer*: p50 1598 → 1912 µs on fewer
+   bytes). KV re-reads (~14 MB/token ≈ 1%) can't explain it. The int4×int8 blockwise-gs32 GEMV
+   is dequant/ALU-limited, not DRAM-bound; MLX runs gs32 affine-4-bit dequant on the same model
+   at 302 GB/s, so blockwise dequant per se is not the limiter. At its own q8 kernel's per-byte
+   efficiency the int4 build would decode ~173 tok/s (+35%); at MLX's, ~230 tok/s (+80%). The
+   same anomaly shows in the published iPhone cells (q8 65% vs int4 56% of ceiling).
+4. **powermetrics cross-check (idle-machine baseline 0.01 W / 666 MHz):** the GPU sits at its
+   top frequency state (**1578 MHz**) in every cell, both runtimes — the in-kernel deficit is
+   iso-clock, not power management. And the power signature agrees with (3): the int4 build
+   draws **2.8 W more** than q8 (20.2 vs 17.4 W) while reading 39% fewer bytes ⇒ **energy per
+   token is identical (148 vs 147 mJ)** — today int4 buys capacity, not efficiency. Per-token
+   energy: LiteRT Qwen3-4B 262 mJ vs MLX 164; LiteRT DeepSeek 147–148 vs MLX 71.
+5. **gemma-4-E2B control:** identical dispatch structure (14 encoders + 3 blits + the same two
+   bubbles per token; idle 0.91 ms). Gemma's speed comes from reading fewer bytes per token
+   (PLE row-lookup + QAT mixed 4/8-bit), not from a privileged dispatch path on macOS.
+6. Roofline % is device-relative: even MLX reaches only 53–64% of the 546 GB/s part (vs 86% on
+   iPhone's ~80 GB/s). Compare relative gaps across devices, not absolute %. (Consistent with
+   the [Gemma-4-12B study](gemma4-12b-mac.md): MLX 68%, LiteRT 54%-roof at 12B.)
+
+Caveat: without DRAM-byte counters (see methodology), "kernel reads extra bytes" vs "kernel
+achieves lower GB/s" cannot be separated inside the 44% bucket; the idle and per-byte-time
+measurements do not depend on it.
+
+## Reproduce
+
+```bash
+# decode run (LiteRT; greedy, Engine API, GPU backend)
+litert-mac-verify <model>.litertlm "<long prompt>" --max-tokens 900 --backend gpu
+# attach Metal System Trace DURING decode (--launch deadlocks the WebGPU runtime; see methodology)
+xcrun xctrace record --template 'Metal System Trace' --time-limit 6s \
+  --output cell.trace --attach <pid>
+# export + analyze the GPU intervals table
+xcrun xctrace export --input cell.trace \
+  --xpath '/trace-toc/run[@number="1"]/data/table[@schema="metal-gpu-intervals"]' \
+  --output cell_gpu.xml
+python3 scripts/metal-profile/analyze_cell.py cell_gpu.xml <tok_per_s> <weight_gb>
+```
+
+Full method, tooling gotchas (xctrace `--launch` deadlock, headless-counter limitation,
+contamination gate): [`methodology/metal-profiling.md`](../methodology/metal-profiling.md).
+Analysis scripts: [`scripts/metal-profile/`](../scripts/metal-profile/). Raw evidence
+(powermetrics log, run timelines/logs): `results/raw/m4max-metal-profile/`. The `.trace`
+bundles (~1.5 GB) are kept offline; regenerate with the commands above.

@@ -1,0 +1,295 @@
+I0000 00:00:1783411518.232209 18469497 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783411518.232358 18469497 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783411518.232644 18469497 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783411518.232774 18469497 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783411518.232779 18469497 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1783411518.232782 18469497 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783411518.232937 18469497 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783411518.232942 18469497 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783411518.232954 18469497 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783411518.232957 18469497 litert_lm_loader.cc:265] section_end_offset: 20716
+I0000 00:00:1783411518.232963 18469497 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783411518.232966 18469497 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783411518.232969 18469497 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783411518.232971 18469497 litert_lm_loader.cc:265] section_end_offset: 2167136
+I0000 00:00:1783411518.233003 18469497 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1783411518.233116 18469497 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783411518.233122 18469497 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783411518.233125 18469497 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1783411518.233128 18469497 litert_lm_loader.cc:265] section_end_offset: 2659053760
+I0000 00:00:1783411518.233717 18469497 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783411518.233737 18469497 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783411518.233744 18469497 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783411518.233748 18469497 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783411518.233752 18469497 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1783411518.233755 18469497 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783411518.233758 18469497 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783411518.233761 18469497 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783411518.233764 18469497 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783411518.233767 18469497 litert_lm_loader.cc:265] section_end_offset: 20716
+I0000 00:00:1783411518.233769 18469497 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783411518.233772 18469497 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783411518.233774 18469497 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783411518.233777 18469497 litert_lm_loader.cc:265] section_end_offset: 2167136
+I0000 00:00:1783411518.233780 18469497 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1783411518.233783 18469497 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783411518.233785 18469497 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783411518.233788 18469497 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1783411518.233790 18469497 litert_lm_loader.cc:265] section_end_offset: 2659053760
+I0000 00:00:1783411518.233979 18469497 engine_advanced_impl.cc:252] New model files have LlmModelType, loading tokenizer asynchronously
+W0000 00:00:1783411518.234005 18469498 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411518.234131 18469497 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783411518.234136 18469497 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783411518.234139 18469497 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783411518.234159 18469497 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1783411518.234176 18469497 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783411518.234348 18469497 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 900
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-4B/snapshots/84cc5a35c9c65cd18fcd65bb1f3a7d77a4acfe6e/qwen3_4b_mixed_int4.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151645
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<|im_start|>user\n"
+    suffix: "<|im_end|>\n"
+  }
+  model {
+    prefix: "<|im_start|>assistant\n"
+    suffix: "<|im_end|>\n"
+  }
+  system {
+    prefix: "<|im_start|>system\n"
+    suffix: "<|im_end|>\n"
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 20
+  p: 0.95
+  temperature: 0.6
+}
+max_num_tokens: 2048
+llm_model_type {
+  qwen3 {
+  }
+}
+jinja_prompt_template: "{%- if tools %}\n    {{- \'<|im_start|>system\\n\' }}\n    {%- if messages[0].role == \'system\' %}\n        {{- messages[0].content + \'\\n\\n\' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == \'system\' %}\n        {{- \'<|im_start|>system\\n\' + messages[0].content + \'<|im_end|>\\n\' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith(\'<tool_response>\') and message.content.endswith(\'</tool_response>\')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = \'\' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- \'<|im_start|>\' + message.role + \'\\n\' + content + \'<|im_end|>\' + \'\\n\' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = \'\' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if \'</think>\' in content %}\n                {%- set reasoning_content = content.split(\'</think>\')[0].rstrip(\'\\n\').split(\'<think>\')[-1].lstrip(\'\\n\') %}\n                {%- set content = content.split(\'</think>\')[-1].lstrip(\'\\n\') %}\n            {%- endif %}\n        {%- endif %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- \'<|im_start|>\' + message.role + \'\\n<think>\\n\' + reasoning_content.strip(\'\\n\') + \'\\n</think>\\n\\n\' + content.lstrip(\'\\n\') }}\n            {%- else %}\n                {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n            {%- endif %}\n        {%- else %}\n            {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- \'\\n\' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- \'<tool_call>\\n{\"name\": \"\' }}\n                {{- tool_call.name }}\n                {{- \'\", \"arguments\": \' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- \'}\\n</tool_call>\' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- \'<|im_end|>\\n\' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- \'<|im_start|>user\' }}\n        {%- endif %}\n        {{- \'\\n<tool_response>\\n\' }}\n        {{- content }}\n        {{- \'\\n</tool_response>\' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- \'<|im_end|>\\n\' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- \'<|im_start|>assistant\\n\' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- \'<think>\\n\\n</think>\\n\\n\' }}\n    {%- endif %}\n{%- endif %}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783411518.244048 18469497 model_resources_litert_lm.cc:67] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1783411518.244070 18469497 model_resources_litert_lm.cc:68] litert model size: 2656874688
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7b0d0cc000, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7b0d0cc050, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7b0d0cd4a0, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7b0d0cd450, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1783411518.320648 18469497 executor_settings_base.cc:351] Deleted 1 stale cache files.
+I0000 00:00:1783411518.320885 18469497 litert_compiled_model_executor_utils.cc:518] Setting serialization dir: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-4B/snapshots/84cc5a35c9c65cd18fcd65bb1f3a7d77a4acfe6e
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1783411518.331046 18469497 delegate_webgpu.cc:219] Create WebGPU environment with device substr: 
+I0000 00:00:1783411518.345000 18469497 environment.cc:526] Found 1 adapters
+I0000 00:00:1783411518.345040 18469497 environment.cc:539] adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783411518.345058 18469497 environment.cc:561] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783411518.347158 18469497 delegate_webgpu.cc:247] Created a WebGPU environment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1783411518.347208 18469497 delegate_webgpu.cc:675] # of threads to upload weights = 2
+I0000 00:00:1783411518.347229 18469497 delegate_webgpu.cc:683] # of threads to compile kernels = 1
+I0000 00:00:1783411519.404599 18469497 delegate_kernel.cc:297] Total 73 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411519.404631 18469497 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783411519.747063 18469497 delegate_kernel.cc:297] Total 74 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411519.747091 18469497 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7b0d0cd130, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7b0d0cd2c0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+W0000 00:00:1783411519.821123 18469497 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411519.821142 18469497 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+I0000 00:00:1783411519.821148 18469497 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1783411519.821151 18469497 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411519.821156 18469497 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411519.821159 18469497 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+I0000 00:00:1783411519.821162 18469497 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1783411519.821165 18469497 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411519.821169 18469497 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411519.821172 18469497 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+I0000 00:00:1783411519.821175 18469497 model_resources_litert_lm.cc:67] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1783411519.821177 18469497 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411519.821179 18469497 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411519.821181 18469497 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+I0000 00:00:1783411519.821183 18469497 model_resources_litert_lm.cc:67] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1783411519.821185 18469497 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411519.821675 18469497 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783411519.821692 18469497 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783411519.821697 18469497 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783411519.821700 18469497 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1783411519.821709 18469497 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783411519.821713 18469497 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 900
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-4B/snapshots/84cc5a35c9c65cd18fcd65bb1f3a7d77a4acfe6e/qwen3_4b_mixed_int4.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151645
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<|im_start|>user\n"
+    suffix: "<|im_end|>\n"
+  }
+  model {
+    prefix: "<|im_start|>assistant\n"
+    suffix: "<|im_end|>\n"
+  }
+  system {
+    prefix: "<|im_start|>system\n"
+    suffix: "<|im_end|>\n"
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 20
+  p: 0.95
+  temperature: 0.6
+}
+max_num_tokens: 2048
+llm_model_type {
+  qwen3 {
+  }
+}
+jinja_prompt_template: "{%- if tools %}\n    {{- \'<|im_start|>system\\n\' }}\n    {%- if messages[0].role == \'system\' %}\n        {{- messages[0].content + \'\\n\\n\' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == \'system\' %}\n        {{- \'<|im_start|>system\\n\' + messages[0].content + \'<|im_end|>\\n\' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith(\'<tool_response>\') and message.content.endswith(\'</tool_response>\')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = \'\' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- \'<|im_start|>\' + message.role + \'\\n\' + content + \'<|im_end|>\' + \'\\n\' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = \'\' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if \'</think>\' in content %}\n                {%- set reasoning_content = content.split(\'</think>\')[0].rstrip(\'\\n\').split(\'<think>\')[-1].lstrip(\'\\n\') %}\n                {%- set content = content.split(\'</think>\')[-1].lstrip(\'\\n\') %}\n            {%- endif %}\n        {%- endif %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- \'<|im_start|>\' + message.role + \'\\n<think>\\n\' + reasoning_content.strip(\'\\n\') + \'\\n</think>\\n\\n\' + content.lstrip(\'\\n\') }}\n            {%- else %}\n                {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n            {%- endif %}\n        {%- else %}\n            {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- \'\\n\' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- \'<tool_call>\\n{\"name\": \"\' }}\n                {{- tool_call.name }}\n                {{- \'\", \"arguments\": \' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- \'}\\n</tool_call>\' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- \'<|im_end|>\\n\' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- \'<|im_start|>user\' }}\n        {%- endif %}\n        {{- \'\\n<tool_response>\\n\' }}\n        {{- content }}\n        {{- \'\\n</tool_response>\' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- \'<|im_end|>\\n\' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- \'<|im_start|>assistant\\n\' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- \'<think>\\n\\n</think>\\n\\n\' }}\n    {%- endif %}\n{%- endif %}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783411519.823074 18469497 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1783411519.823090 18469497 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1783411519.843110 18469497 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783411519.848056 18469497 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1783411520.684129 18469912 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1783411520.686164 18469912 sampler_factory.cc:450] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.dylib: dlopen(libLiteRtTopKWebGpuSampler.dylib, 0x0005): tried: 'libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/code/litert-mac-verify/.build/out/Products/Release/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.NWmXYx/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.NWmXYx/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKWebGpuSampler.dylib' (no such file).
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1783411520.686199 18469912 sampler_factory.cc:458] Statically linked LiteRtTopKWebGpuSampler C API.
+engine[gpu] init 1.6s
+OUTPUT: [<think>⏎Okay, the user wants a detailed essay on the history of computing, focusing on mainframes, personal computers, and mobile devices. Let me start by breaking down each section.⏎⏎First, mainframes. I need to explain what they are, their origins, and their role in the early days of computing. Maybe start with the 1940s, ENIAC, Colossus, and how they were used for military and scientific calculations. Then mention the transition to mainframes in the 1950s and 60s, companies like IBM, and their use in businesses. Also, the limitations like high cost and limited accessibility.⏎⏎Next, personal computers. The 1970s and 80s were the big time. Early models like the Altair 8800, Apple II, Commodore 64, and IBM PC. The impact of companies like Microsoft and Apple. The rise of operating systems, software, and how PCs became more accessible. Maybe touch on the shift from mainframes to PCs in businesses.⏎⏎Then mobile devices. The 1990s with early PDAs, then the 2000s with smartphones. Apple's iPhone as a turning point. The evolution from basic phones to smartphones, the role of Android and iOS, and how mobile devices changed communication and access to information. Also, the integration with the internet and apps.⏎⏎I should also include the transition between these eras. How mainframes gave way to PCs, and then PCs to mobiles. Maybe mention the internet's role in each phase. Also, the current state of computing, with the interplay between these devices.⏎⏎Need to make sure the essay flows chronologically, but also connects the dots between each era. Highlight key events, inventors, companies, and societal impacts. Avoid too much technical jargon, keep it accessible. Maybe start with an introduction about the evolution of computing, then each section, and a conclusion on the future.⏎⏎Wait, the user specified mainframes, PCs, and mobiles. Need to make sure each section is thorough. For mainframes, mention their size, central processing, and how they were the backbone of early computing. For PCs, the democratization of computing. For mobiles, portability and always-on connectivity.⏎⏎Also, think about the user's possible deeper needs. They might be a student needing a comprehensive overview, or someone interested in the progression of technology. The essay should be informative, structured, and cover the key points without being too shallow.⏎⏎Check for key milestones: ENIAC, IBM 701, Apple I, IBM PC, iPhone. Also, the impact on society, like how mainframes were used in government and businesses, PCs enabling home users, and mobiles changing how people interact with technology.⏎⏎Make sure to mention the shift from centralized to decentralized computing, and the role of software in each era. Maybe touch on the rise of the internet in each phase.⏎⏎Alright, structure the essay with an intro, three main sections, and a conclusion. Each section should have a clear focus, with dates, key players, and societal impacts. Keep paragraphs focused, avoid redundancy. Use examples to illustrate points. Alright, time to put it all together.⏎</think>⏎⏎**The History of Computing: From Mainframes to Mobile Devices**⏎⏎The history of computing is a story of human ingenuity, driven by the need to solve complex problems, communicate more efficiently, and connect people across the globe. From the earliest mechanical calculators to the sleek smartphones in our pockets, computing has evolved through distinct phases, each marked by transformative technologies and societal shifts. This essay explores the evolution of computing through three key eras: the dominance of mainframes, the rise of personal computers (PCs), and the revolution of mobile devices.⏎⏎---⏎⏎### **1. Mainframes: The Birth of Modern Computing (1940s–1970s)**⏎⏎The journey of computing began in the 1940s with the development of electronic computers, which marked the transition from mechanical devices to digital systems. The **ENIAC** (Electronic Numerical Integrator and Computer), built in 1946, was oI0000 00:00:1783411528.889942 18469539 threadpool.cc:46] ThreadPool 'callback_thread_pool': Shutting down...
+I0000 00:00:1783411528.889956 18470197 threadpool.cc:171] ThreadPool 'callback_thread_pool': Worker thread stopped.
+I0000 00:00:1783411528.889979 18469539 threadpool.cc:75] ThreadPool 'callback_thread_pool': Shutdown complete.
+I0000 00:00:1783411528.889990 18469539 threadpool.cc:46] ThreadPool 'execution_thread_pool': Shutting down...
+I0000 00:00:1783411528.889999 18469912 threadpool.cc:171] ThreadPool 'execution_thread_pool': Worker thread stopped.
+I0000 00:00:1783411528.890114 18469539 threadpool.cc:75] ThreadPool 'execution_thread_pool': Shutdown complete.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7b0d0cd2c0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7b0d0cd130, name=GPU WebGPU
+ne of the first general-purpose electronic computers. It was]
+OK[gpu] decode_tokens=870 stream_yields=870
+decode 106.0 tok/s · prefill 35.9 tok/s

@@ -1,0 +1,200 @@
+I0000 00:00:1783411555.460137 18473324 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783411555.460195 18473324 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783411555.460399 18473324 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783411555.460407 18473324 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783411555.460413 18473324 litert_lm_loader.cc:227] minor_version: 3
+I0000 00:00:1783411555.460416 18473324 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783411555.460422 18473324 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783411555.460426 18473324 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783411555.460430 18473324 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783411555.460433 18473324 litert_lm_loader.cc:265] section_end_offset: 16509
+I0000 00:00:1783411555.460438 18473324 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783411555.460441 18473324 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783411555.460444 18473324 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783411555.460447 18473324 litert_lm_loader.cc:265] section_end_offset: 2000870
+I0000 00:00:1783411555.460451 18473324 litert_lm_loader.cc:105] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1783411555.460456 18473324 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783411555.460458 18473324 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783411555.460461 18473324 litert_lm_loader.cc:264] section_begin_offset: 2015232
+I0000 00:00:1783411555.460464 18473324 litert_lm_loader.cc:265] section_end_offset: 1833444800
+I0000 00:00:1783411555.460499 18473324 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783411555.460508 18473324 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783411555.460513 18473324 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783411555.460516 18473324 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783411555.460518 18473324 litert_lm_loader.cc:227] minor_version: 3
+I0000 00:00:1783411555.460521 18473324 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783411555.460524 18473324 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783411555.460527 18473324 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783411555.460529 18473324 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783411555.460532 18473324 litert_lm_loader.cc:265] section_end_offset: 16509
+I0000 00:00:1783411555.460535 18473324 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783411555.460537 18473324 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783411555.460540 18473324 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783411555.460542 18473324 litert_lm_loader.cc:265] section_end_offset: 2000870
+I0000 00:00:1783411555.460545 18473324 litert_lm_loader.cc:105] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1783411555.460548 18473324 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783411555.460550 18473324 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783411555.460553 18473324 litert_lm_loader.cc:264] section_begin_offset: 2015232
+I0000 00:00:1783411555.460555 18473324 litert_lm_loader.cc:265] section_end_offset: 1833444800
+I0000 00:00:1783411555.460750 18473324 engine_advanced_impl.cc:230] Legacy model files don't have LlmModelType, loading tokenizer now
+W0000 00:00:1783411555.460755 18473324 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411555.524471 18473324 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783411555.524509 18473324 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783411555.524515 18473324 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783411555.524525 18473324 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1783411555.524557 18473324 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783411555.524564 18473324 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 1200
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--DeepSeek-R1-Distill-Qwen-1.5B/snapshots/2f8b8ee90d8f93b15305b699e8772b277d074a9a/DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: false
+hint_waiting_for_completion: true
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: 4
+
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151646
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<\357\275\234User\357\275\234>"
+  }
+  model {
+    prefix: "<\357\275\234Assistant\357\275\234><think>\n"
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 64
+  p: 0.95
+  temperature: 1
+}
+llm_model_type {
+  generic_model {
+  }
+}
+jinja_prompt_template: "{%- for message in messages -%}{%- if message.content is string -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{{ message.content }}{% endif -%}{%- if message.role == \'model\' %}<\357\275\234Assistant\357\275\234><think>\n{{ message.content }}{% endif -%}{%- if message.role == \'system\' %}{{ message.content }}{% endif -%}{%- else -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{% elif message.role == \'model\' %}<\357\275\234Assistant\357\275\234><think>\n{% elif message.role == \'system\' %}{% endif -%}{%- for item in message.content %}{%- if item.type == \'text\' %}{{ item.text }}{% elif item.type == \'image\' -%}{{ \'<start_of_image>\' }}{%- elif item.type == \'audio\' -%}{{ \'<start_of_audio>\' }}{%- endif -%}{%- endfor -%}{%- if message.role == \'user\' %}{% elif message.role == \'model\' %}{% elif message.role == \'system\' %}{% endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt %}<\357\275\234Assistant\357\275\234><think>\n{% endif -%}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783411555.528213 18473324 model_resources_litert_lm.cc:67] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1783411555.528227 18473324 model_resources_litert_lm.cc:68] litert model size: 1831429568
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7ae505ff70, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7ae505fed0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7ae505fe80, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7ae505fe30, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1783411555.641088 18473324 executor_settings_base.cc:351] Deleted 1 stale cache files.
+I0000 00:00:1783411555.641102 18473324 litert_compiled_model_executor_utils.cc:518] Setting serialization dir: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--DeepSeek-R1-Distill-Qwen-1.5B/snapshots/2f8b8ee90d8f93b15305b699e8772b277d074a9a
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1783411555.671002 18473324 delegate_webgpu.cc:219] Create WebGPU environment with device substr: 
+I0000 00:00:1783411555.677974 18473324 environment.cc:526] Found 1 adapters
+I0000 00:00:1783411555.677994 18473324 environment.cc:539] adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783411555.678002 18473324 environment.cc:561] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783411555.678504 18473324 delegate_webgpu.cc:247] Created a WebGPU environment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1783411555.678540 18473324 delegate_webgpu.cc:675] # of threads to upload weights = 2
+I0000 00:00:1783411555.678561 18473324 delegate_webgpu.cc:683] # of threads to compile kernels = 1
+I0000 00:00:1783411555.705923 18473324 delegate_kernel.cc:297] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411555.705943 18473324 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783411555.767489 18473324 delegate_kernel.cc:297] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411555.767505 18473324 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783411555.852020 18473324 delegate_kernel.cc:297] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411555.852040 18473324 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783411555.950687 18473324 delegate_kernel.cc:297] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411555.950711 18473324 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783411556.026463 18473324 delegate_kernel.cc:297] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783411556.026476 18473324 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7ae52b8000, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7ae52b8050, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+W0000 00:00:1783411556.103424 18473324 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411556.103446 18473324 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+I0000 00:00:1783411556.103449 18473324 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1783411556.103458 18473324 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411556.103462 18473324 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411556.103464 18473324 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+I0000 00:00:1783411556.103466 18473324 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1783411556.103468 18473324 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411556.103470 18473324 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411556.103472 18473324 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+I0000 00:00:1783411556.103474 18473324 model_resources_litert_lm.cc:67] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1783411556.103476 18473324 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783411556.103478 18473324 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783411556.103479 18473324 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+I0000 00:00:1783411556.103481 18473324 model_resources_litert_lm.cc:67] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1783411556.103483 18473324 model_resources_litert_lm.cc:68] litert model size: 0
+I0000 00:00:1783411556.103504 18473324 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1783411556.103510 18473324 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1783411556.103992 18473324 model_data_processor_factory.cc:412] Creating GenericDataProcessor
+I0000 00:00:1783411556.105008 18473324 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1783411556.627078 18473362 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1783411556.628949 18473362 sampler_factory.cc:450] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.dylib: dlopen(libLiteRtTopKWebGpuSampler.dylib, 0x0005): tried: 'libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/code/litert-mac-verify/.build/out/Products/Release/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.NWmXYx/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.NWmXYx/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKWebGpuSampler.dylib' (no such file).
+=== Source Location Trace: === 
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1783411556.628983 18473362 sampler_factory.cc:458] Statically linked LiteRtTopKWebGpuSampler C API.
+engine[gpu] init 0.6s
+OUTPUT: [Okay, so I need to write a detailed essay about the history of computing, focusing on mainframes, personal computers, and mobile devices. Hmm, where do I start? I remember that computing has a long history, but I'm not exactly sure about the key milestones or the main figures involved. Let me try to break this down.⏎⏎First, I think I should start with the origins of computing. I know that computers were used in the 1940s for early computing tasks, but I'm not sure about the exact time or the specific technology. Maybe the first computers were vacuum tubes? I think that's right, but I'm not 100% certain. I should look that up to confirm.⏎⏎Next, the mainframes. I remember hearing about the mainframe in the 1950s. It was a big shift from vacuum tubes to integrated circuits. I think the first mainframe was the IBM 704. That must have been a big deal because it allowed for more complex tasks. I should explain how the mainframe was different from the vacuum tube computers and what made it significant.⏎⏎Then there's the personal computer. I think the first personal computer was the Apple II in the 1980s. It was a big leap forward because it made computers more accessible to the general public. I should talk about the history of personal computers, maybe mentioning the development of the first personal computer in the US and how it changed the way people used computers.⏎⏎Mobile devices are another part of this. I know that mobile phones came out in the 1970s, like the Apple II, and then the first personal computer mobile phone in the 1980s. I think the first mobile phone was the Apple II, and then the first personal computer mobile phone was the Apple II as well. I should explain how mobile devices integrated computing with communication and entertainment.⏎⏎I also need to consider the impact of computing on society. The development of mainframes and personal computers changed the way businesses and individuals worked, led to the rise of the internet, and had a huge impact on the economy. Mobile devices probably helped with communication, entertainment, and even transportation.⏎⏎Wait, I should make sure I'm not mixing up the timelines. The mainframe was around the 1950s, personal computers came later, and mobile devices came in the 1970s. I think the first personal computer was the Apple II in 1980, and mobile devices started with the Apple II in 1977. That seems right.⏎⏎I should also think about the key milestones and the people involved. For example, the development of the first mainframe by IBM, the creation of the first personal computer by Apple, and the first mobile phone by Apple. Each of these had a significant impact on the evolution of computing.⏎⏎I need to structure the essay in a logical way. Maybe start with the origins of computing, then move on to mainframes, personal computers, and mobile devices, discussing their timelines, key features, and impacts. I should also touch on how each technology built upon the previous ones, leading to the current state of computing.⏎⏎I should also consider the audience. If this is for a school essay, I need to make sure it's clear and well-structured. I should define terms where necessary, like what a mainframe is, and explain any technical jargon if I use it.⏎⏎I might also want to include some historical context, like how the shift from vacuum tubes to integrated circuits changed the computing landscape. That could provide a better understanding of why mainframes were developed and what made them significant.⏎⏎I should also think about the future of computing. As technology advances, I can mention how mainframes, personal computers, and mobile devices are evolving, and what the future holds for computing.⏎⏎Wait, I should make sure I'm not conflating mainframes with other types of computers. Mainframes were a specific type of computer that used integrated circuits, while other computers used vacuum tubes. I should clarify that in my essay to avoid confusion.⏎⏎Also, I should discuss the role of companI0000 00:00:1783411566.529526 18473328 threadpool.cc:46] ThreadPool 'callback_thread_pool': Shutting down...
+I0000 00:00:1783411566.529548 18473383 threadpool.cc:171] ThreadPool 'callback_thread_pool': Worker thread stopped.
+I0000 00:00:1783411566.529580 18473328 threadpool.cc:75] ThreadPool 'callback_thread_pool': Shutdown complete.
+I0000 00:00:1783411566.529588 18473328 threadpool.cc:46] ThreadPool 'execution_thread_pool': Shutting down...
+I0000 00:00:1783411566.529596 18473362 threadpool.cc:171] ThreadPool 'execution_thread_pool': Worker thread stopped.
+I0000 00:00:1783411566.529744 18473328 threadpool.cc:75] ThreadPool 'execution_thread_pool': Shutdown complete.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7ae52b8050, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7ae52b8000, name=GPU WebGPU
+ies in the development of these technologies. IBM was a big player in mainframe development, Apple in personal computers, and Apple in mobile devices. Each company's contributions were crucial to the advancement of computing.⏎⏎I should also consider the social impact of these technologies. How did mainframes and personal computers change the way people worked and interacted? How did mobile devices impact communication, entertainment, and transportation?⏎⏎I think I have a good outline now. I'll start by introducing the origins of computing, then delve into mainframes, followed by personal computers, and finally mobile devices. I'll make sure to explain each technology's significance, how it evolved, and its impact on society.⏎⏎I should also include some interesting facts or statistics to make the essay more engaging. For example, how many mainframes were produced, or how many personal computers were sold. These details can add credibility and depth to the essay.⏎⏎I need to be careful with the timeline. I should double-check the years for each key development to ensure accuracy. For example, the first mainframe was the IBM 704 in 1954, the first personal computer was the Apple II in 1980, and the first mobile phone was the Apple II in 1977.⏎⏎I should also think about the audience's perspective. If this is for a general audience, I can make the essay more accessible by explaining the concepts in simple terms. If it's for a technical audience, I can delve deeper into the history and the technical details.⏎⏎I might also want to include some anecdotes or examples of how these technologies have changed the world. For instance,]
+OK[gpu] decode_tokens=1174 stream_yields=1174
+decode 118.6 tok/s · prefill 49.8 tok/s
