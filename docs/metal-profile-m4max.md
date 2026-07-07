@@ -71,6 +71,36 @@ Caveat: without DRAM-byte counters (see methodology), "kernel reads extra bytes"
 achieves lower GB/s" cannot be separated inside the 44% bucket; the idle and per-byte-time
 measurements do not depend on it.
 
+## Follow-up (same day): three falsification experiments
+
+1. **The GPU top-k sampler was already active** in every LiteRT cell above: the release build
+   statically links `LiteRtTopKWebGpuSampler` and uses it when the dlopen'd dylib is absent
+   (the "GPU sampler unavailable" warning is followed by a static-C-API fallback, not CPU
+   sampling). This refines bubble (a)'s content: the readback blit carries the *sampled id*,
+   not the logits vector; the CPU-side work in the bubble is detokenize/stream/stop-check plus
+   the next step's encode. The two-bubble structure and its fixed ~0.7 ms/token cost stand.
+2. **Runtime v0.14.0-alpha.0 does not change the loop:** DeepSeek q8 decodes 112.5–114.5 tok/s
+   (v0.13.1: 111.4); the trace shows a leaner dispatch (2 blits, 7 cmdbufs/token vs 3 and 9–12)
+   but the same two bubbles (idle 0.98 ms/token). Separately, all int4-blockwise artifacts fail
+   WebGPU delegate preparation on that alpha (`Read selector with single argument can be used
+   only with linear storage types`, ml_drift merge_nodes) — including the official
+   litert-community Qwen3-4B artifact — so the int4 comparison cannot be repeated on it.
+3. **Bigger quant blocks make the int4 kernel *worse*, not better.** If the kernel were limited
+   by per-group dequant overhead, gs128 (4× fewer groups) should approach q8's per-byte
+   efficiency. Measured on a same-model pair (SmolLM2-1.7B, OCTAV int4, identical dispatch:
+   10 encoders / 3 blits / 8 cmdbufs / same idle):
+
+   | | block32 | block128 |
+   |---|--:|--:|
+   | artifact | 1.168 GB | 1.088 GB (−6.9%) |
+   | decode tok/s (2 runs) | 99.2 / 99.0 | 93.7 / 93.5 |
+   | GPU-busy ms/token | 9.69 | 10.30 |
+   | in-kernel GB/s | 121 | 106 (−12%) |
+
+   Per-byte kernel time is 13% worse at gs128 ⇒ the int4×int8 GEMV is *specialized for gs32*
+   rather than dequant-group-count-limited, and no converter-side block-size choice mitigates
+   the in-kernel bucket. This narrows finding (3): the fix is inside the kernel itself.
+
 ## Reproduce
 
 ```bash
