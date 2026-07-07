@@ -100,6 +100,20 @@ measurements do not depend on it.
    Per-byte kernel time is 13% worse at gs128 ⇒ the int4×int8 GEMV is *specialized for gs32*
    rather than dequant-group-count-limited, and no converter-side block-size choice mitigates
    the in-kernel bucket. This narrows finding (3): the fix is inside the kernel itself.
+4. **Streamed bytes ≠ stored bytes — the "extra artifact bytes" bucket dissolves.** Inspecting
+   the Qwen3-4B artifact's flatbuffer: 2.652 GB of buffers = 1.817 GB int4 block weights +
+   0.227 GB f16 scales + 0.219 GB int4 output head + **0.389 GB int8 embedding table**. The
+   embedding feeds an `EMBEDDING_LOOKUP` (gather) — decode reads ~2.5 KB of it per token, not
+   the full table. The tied-vocab MLX artifact stores that matrix once at 4-bit and streams it
+   through the lm_head matmul. Net: **per-token streamed weights are 2.263 GB for LiteRT vs
+   2.26 GB for MLX — parity.** The headline decomposition must be restated: the 3.24 ms/token
+   gap is **~80% in-kernel efficiency + ~20% idle, ~0% extra bytes** (the 0.40 GB file-size
+   delta is a download/RAM cost, not a decode-time cost). On a streamed-bytes basis the
+   in-kernel numbers become: LiteRT Qwen3-4B int4 **249 GB/s**, DeepSeek q8 **192**, DeepSeek
+   int4 **124** (MLX cells unchanged — their vocab matrix is streamed). The int4-vs-q8
+   per-byte penalty rises from 1.40× to **1.55×**, and the kernel-fix sizing from +35/+80% to
+   **+47% (at q8 efficiency) / +115% (at MLX efficiency)**. When reproducing with
+   `analyze_cell.py`, pass streamed GB (file size minus gather-only tables), not file GB.
 
 ## Reproduce
 
