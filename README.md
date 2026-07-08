@@ -387,23 +387,20 @@ Yardstick/
 
 ## Running on Mac (CLI)
 
-> **Current status (May 2026)**: SPM build is clean. Runtime is blocked by [`ml-explore/mlx-swift#349`](https://github.com/ml-explore/mlx-swift/issues/349) — the MLX Metal kernel bundle isn't emitted by `swift build` from a downstream package, so `swift run yardstick run …` exits with `Failed to load the default metallib`. The same workaround applies to `mlx-swift-examples/llm-tool` (its README says "Build the llm-tool scheme in Xcode"). A macOS app target that wraps the CLI through Xcode's Metal toolchain is queued as Phase 2.
-
-When the Phase-2 macOS target lands, this is the intended shape:
+> **Status (July 2026)**: the SPM CLI runs end-to-end — no Xcode target required. mlx-swift#349 (the MLX Metal bundle not being emitted by `swift build` from a downstream package) is resolved on the pinned **mlx-swift 0.31.3** with current Swift: `swift build` now emits `mlx-swift_Cmlx.bundle` (carrying `default.metallib`) next to the `yardstick` binary, so `swift run yardstick run …` loads MLX and runs. Build **Release** for real numbers — a Debug build adds large per-token host overhead and understates decode ([fairness-rules #7](methodology/fairness-rules.md)).
 
 ```sh
-$ yardstick list
-$ yardstick run --task short-chat \
+$ swift run yardstick list
+
+# Real numbers need a Release build:
+$ swift run -c release yardstick run \
+                --task short-chat \
                 --runtime mlx-swift \
                 --model mlx-community/Qwen3-0.6B-4bit \
-                --output results/raw/m4max-mlx-qwen3-0.6b.jsonl
+                --output results/raw/<device>-mlx-qwen3-0.6b.jsonl
 ```
 
-For now, build verification only:
-
-```sh
-$ swift build       # Build complete!
-```
+> If a Release build ever fails with `unable to spawn … Metal.xctoolchain/usr/bin/metal (No such file or directory)`, the on-demand Metal toolchain mount went stale — re-download it (`xcodebuild -downloadComponent MetalToolchain`) or update Xcode, then rebuild. Unrelated to the harness.
 
 ## Running on iPhone (app)
 
@@ -454,7 +451,7 @@ Devices we'd love numbers for:
 
 | Backend | Build on Mac | Run on Mac | Notes |
 |---|:---:|:---:|---|
-| MLX Swift LM | ✅ | ✅ | Native SPM macOS. The Xcode-built tool target sidesteps mlx-swift#349. |
+| MLX Swift LM | ✅ | ✅ | Native SPM macOS — `swift run yardstick` runs end-to-end. mlx-swift 0.31.3 emits the Metal bundle next to the CLI binary, so the old #349 Xcode-target workaround is no longer needed. |
 | llama.cpp | ✅ | ✅ | `macos-arm64_x86_64` slice in `Vendored/llama.xcframework`. CLI uses `LD_RUNPATH_SEARCH_PATHS` to resolve the framework at runtime. |
 | CoreML (CoreMLLLM) | ✅ | ✅ (some models) | macOS 15+. Models with the single-top-level `.mlpackage` layout (e.g. LFM 2.5 350M) auto-download from HF and run; the chunked / multi-`.mlpackage` repos (e.g. `mlboydaisuke/qwen3.5-0.8B-CoreML`) need upstream `CoreMLLLM` work to load. |
 | ExecuTorch | ✅ | ⏸ | Build path is clean; current ET-community models ship SentencePiece `tokenizer.model` but ET's `hf_tokenizer.cpp` expects HF-format `tokenizer.json`. Needs a model with HF tokenizer or an ET-side SentencePiece adapter. |
@@ -464,7 +461,7 @@ Devices we'd love numbers for:
 ## Roadmap
 
 - **Phase 1** — repo rename, top-level SPM (`YardstickKit` + `yardstick` CLI), Mac CLI builds clean, README + device pages, methodology docs, iOS app intact.
-- **Phase 2** — Mac CLI runs end-to-end (via Xcode-built target to sidestep mlx-swift #349), first M4 Max numbers committed to `RESULTS.md`.
+- **Phase 2** — Mac CLI runs end-to-end via plain SPM (`swift run yardstick`; mlx-swift #349 resolved on 0.31.3 — no Xcode-target workaround), first M4 Max numbers committed to `RESULTS.md`.
 - **Phase 2.5** — All 5 buildable backends (MLX, llama.cpp, CoreML, ExecuTorch, ANEMLL) wired into the Mac tool target; first cross-backend row (Gemma 4 E2B: MLX vs llama.cpp).
 - **Phase 3** *(in progress)* — fill remaining adapter row gaps (downloader + model-format work, mostly upstream), MacBook Air M3 + iPhone 17 Pro numbers via `[Yardstick_USER_RUNS.md](../Yardstick_USER_RUNS.md)`.
 - **Phase 4** — quality / accuracy tasks: WER + CER (reusing `swift-transformers` Whisper normalizer), perplexity, MMLU subset. ASR + TTS adapters (WhisperKit, Apple Speech, system TTS).
