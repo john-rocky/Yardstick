@@ -400,7 +400,7 @@ $ swift run -c release yardstick run \
                 --output results/raw/<device>-mlx-qwen3-0.6b.jsonl
 ```
 
-> If a Release build ever fails with `unable to spawn … Metal.xctoolchain/usr/bin/metal (No such file or directory)`, the on-demand Metal toolchain mount went stale — re-download it (`xcodebuild -downloadComponent MetalToolchain`) or update Xcode, then rebuild. Unrelated to the harness.
+> If a Release build ever fails with `unable to spawn … Metal.xctoolchain/usr/bin/metal (No such file or directory)`, the on-demand Metal toolchain mount changed (a reboot or Xcode update remounts it under a new path) and SwiftPM's cached build manifest still points at the old one. Clear the manifest and rebuild — `rm -rf .build/out/Intermediates.noindex/XCBuildData` — which re-derives the current toolchain path (a full `swift package clean` also works, but recompiles everything). Only re-download the toolchain (`xcodebuild -downloadComponent MetalToolchain`) if the asset itself is gone. Unrelated to the harness.
 
 ## Running on iPhone (app)
 
