@@ -114,6 +114,23 @@ measurements do not depend on it.
    per-byte penalty rises from 1.40× to **1.55×**, and the kernel-fix sizing from +35/+80% to
    **+47% (at q8 efficiency) / +115% (at MLX efficiency)**. When reproducing with
    `analyze_cell.py`, pass streamed GB (file size minus gather-only tables), not file GB.
+5. **iPhone A19 confirms the int4 penalty — but milder, and it is implementation-specific.**
+   Same DeepSeek-R1-1.5B q8/int4 pair on an iPhone 17 Pro (A19 GPU, LiteRT-LM v0.13.1 iOS
+   xcframework = **native Metal**, not WebGPU/Dawn), decode-level (per-encoder Metal traces do not
+   finalize for headless export on iOS 27β — see methodology; at 25–40 tok/s the idle bubble is
+   <3%, so decode GB/s is a tight in-kernel proxy):
+
+   | model (A19) | decode tok/s | streamed GB/s | %-of-q8 per-byte |
+   |---|--:|--:|--:|
+   | int4 | 40.3 | 35.5 | 85% |
+   | q8 | 26.1 | 41.8 | 100% |
+
+   int4 is only **1.54×** faster than q8 while reading 55% of the bytes (byte-ideal 1.54→1.82×) ⇒
+   an int4 per-byte penalty of **1.18× on A19, versus 1.55× on the Mac WebGPU path**. The penalty
+   is real on both, but the native Metal int4 GEMV closes most of it — evidence the deficit lives
+   in the *kernel implementation* (WebGPU/Dawn) more than in the int4×int8 blockwise scheme itself,
+   and that a reworked Mac kernel has an existence proof to aim at. (Consistent with the published
+   iPhone ceiling figures: q8 65% vs int4 56%, ratio 0.86 ≈ the 0.85 measured here.)
 
 ## Reproduce
 
