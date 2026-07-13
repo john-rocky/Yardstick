@@ -809,6 +809,22 @@ public enum ModelCatalog {
             hfRepoId: ""
         ),
         ModelInfo(
+            id: "core-ai/qwen3-0.6b-ane-june",
+            displayName: "Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage)",
+            quantization: "mixed 4/8-bit (June static export)",
+            parameterCountB: 0.6,
+            onDiskSizeMB: 732,
+            hfRepoId: ""
+        ),
+        ModelInfo(
+            id: "core-ai/qwen3-1.7b-gpu-june",
+            displayName: "Qwen3-1.7B (Core AI, GPU, June lineage)",
+            quantization: "INT4 (dynamic, June export)",
+            parameterCountB: 1.7,
+            onDiskSizeMB: 940,
+            hfRepoId: ""
+        ),
+        ModelInfo(
             id: "core-ai/qwen3-0.6b-gpu",
             displayName: "Qwen3-0.6B (Core AI, GPU)",
             quantization: "INT4 (dynamic)",

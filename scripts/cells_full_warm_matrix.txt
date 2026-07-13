@@ -60,3 +60,8 @@ litert-lm litert-community/Phi-4-mini-instruct 300
 # - Phi-4-mini Core AI: both compute units are a documented architectural wall (partial rotary).
 # - VibeThinker/OLMo-2: no mlx-community repo (June finding) — no MLX cell.
 # - litert cells stall ~10 min between runs (teardown); CELL_TIMEOUT=3600 required.
+
+# --- artifact-lineage control cells (June-compiled bundles; cold values are the
+# --- direct consistency check against the June sessions) ---
+core-ai core-ai/qwen3-0.6b-ane-june
+core-ai core-ai/qwen3-1.7b-gpu-june

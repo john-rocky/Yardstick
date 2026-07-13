@@ -70,6 +70,10 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
     private static func bundleSpec(for id: String) -> (folder: String, variant: String?)? {
         switch id {
         case "core-ai/qwen3-0.6b-ane": return ("qwen3_0_6b_ane", "static-shape")
+        // June-lineage bundles (0.4.0-era compiles) kept as separate cells so cold numbers
+        // can be compared 1:1 against the June sessions (artifact-lineage control).
+        case "core-ai/qwen3-0.6b-ane-june": return ("qwen3_0_6b_ane_june", "static-shape")
+        case "core-ai/qwen3-1.7b-gpu-june": return ("qwen3_1_7b_gpu_june", "coreai-pipelined")
         case "core-ai/qwen3-0.6b-gpu": return ("qwen3_0_6b_gpu", "coreai-pipelined")
         case "core-ai/qwen3-1.7b-ane": return ("qwen3_1_7b_ane", "static-shape")
         case "core-ai/qwen3-1.7b-gpu": return ("qwen3_1_7b_gpu", "coreai-pipelined")
