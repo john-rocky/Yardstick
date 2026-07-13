@@ -117,11 +117,19 @@ cmd_run(){
   # Stamp once per campaign (kept across re-invocations, so an interrupted campaign
   # resumed later still picks up every cell captured since the campaign began).
   [ -f "$(STAMP)" ] || touch "$(STAMP)"
+  # Session provenance: iOS build number is NOT recorded in the app's jsonl
+  # (systemVersion stays "27.0" across betas) — capture it per session here.
+  xcrun devicectl device info details --device "$DEV" 2>/dev/null \
+    | grep -E "OS Build Update|OS Version" >> "$OUT/session_provenance.txt"
+  date "+session start %F %T" >> "$OUT/session_provenance.txt"
   export TASK
+  # CELLS lines: "<runtime> <model-id> [cooldown-s]" — the optional third column
+  # overrides BASE_COOLDOWN for the cooldown BEFORE this cell (>=3B models heat the
+  # SoC beyond what the 4-level nominal gate can see; use 300 for those).
   local cells; cells="$(grep -vE '^\s*(#|$)' <<<"${CELLS:-$(cat "${CELLS_FILE:-/dev/null}" 2>/dev/null || echo "$TIER1_CELLS")}")"
   local first=1
-  while read -r rt mid; do
-    [ "$first" = 1 ] && first=0 || { log "cooldown ${BASE_COOLDOWN}s"; sleep "$BASE_COOLDOWN"; }
+  while read -r rt mid cd_s; do
+    [ "$first" = 1 ] && first=0 || { log "cooldown ${cd_s:-$BASE_COOLDOWN}s"; sleep "${cd_s:-$BASE_COOLDOWN}"; }
     run_cell "$rt" "$mid"
     local pulled verdict
     pulled="$(pull_new)"; verdict="$(cell_verdict "$rt" "$mid")"

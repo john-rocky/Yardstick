@@ -1,0 +1,62 @@
+# Full warm-matrix cells — iPhone 17 Pro (device-return campaign)
+# Format: <runtime> <model-id> [cooldown-s before this cell]  (default BASE_COOLDOWN=180)
+# Ordering: light -> heavy within each block; >=3B cells get 300 s cooldown.
+# PRECONDITIONS (methodology/warm-full-matrix-prep.md): plugged, <=90% batt, Auto-Lock Never,
+# stage script run (Core AI ct041 bundles + litert files + mlx caches incl. E2B old revision),
+# session_provenance.txt will capture the iOS build automatically.
+
+# --- Qwen3 ladder (re-verify vs 2026-07-13 campaign; ct041 Core AI = NEW artifact lineage) ---
+mlx-swift mlx-community/Qwen3-0.6B-4bit
+litert-lm litert-community/Qwen3-0.6B
+core-ai core-ai/qwen3-0.6b-ane
+core-ai core-ai/qwen3-0.6b-gpu
+mlx-swift mlx-community/Qwen3-1.7B-4bit
+litert-lm litert-local/qwen3-1.7b-int4
+core-ai core-ai/qwen3-1.7b-ane
+core-ai core-ai/qwen3-1.7b-gpu
+mlx-swift mlx-community/Qwen3-4B-4bit 300
+litert-lm litert-community/Qwen3-4B 300
+core-ai core-ai/qwen3-4b-ane 300
+core-ai core-ai/qwen3-4b-gpu 300
+
+# --- Gemma-4-E2B (litert warm currently n=2; mlx needs OLD-revision cache staged) ---
+litert-lm litert-community/gemma-4-E2B-it-litert-lm 300
+mlx-swift mlx-community/gemma-4-e2b-it-4bit 300
+
+# --- cross-framework fleet (June cold rows; Core AI = ct041 lineage bundles) ---
+mlx-swift mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit
+litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B
+core-ai core-ai/deepseek-r1-1.5b-ane
+core-ai core-ai/deepseek-r1-1.5b-gpu
+mlx-swift mlx-community/gemma-3-1b-it-4bit
+litert-lm litert-community/Gemma3-1B-IT
+core-ai core-ai/gemma3-1b-gpu
+mlx-swift mlx-community/TinySwallow-1.5B-Instruct-4bit
+litert-lm litert-community/TinySwallow-1.5B-Instruct
+core-ai core-ai/tinyswallow-1.5b-ane
+core-ai core-ai/tinyswallow-1.5b-gpu
+litert-lm litert-community/VibeThinker-1.5B
+core-ai core-ai/vibethinker-1.5b-ane
+core-ai core-ai/vibethinker-1.5b-gpu
+litert-lm litert-local/olmo2-1b
+core-ai core-ai/olmo2-1b-ane
+core-ai core-ai/olmo2-1b-gpu
+mlx-swift mlx-community/Llama-3.2-3B-Instruct-4bit 300
+litert-lm litert-local/llama-3.2-3b 300
+core-ai core-ai/llama-3.2-3b-ane 300
+core-ai core-ai/llama-3.2-3b-gpu 300
+mlx-swift mlx-community/SmolLM3-3B-4bit 300
+litert-lm litert-local/smollm3-3b 300
+core-ai core-ai/smollm3-3b-ane 300
+core-ai core-ai/smollm3-3b-gpu 300
+litert-lm litert-local/ministral-3b 300
+core-ai core-ai/ministral-3b-gpu 300
+mlx-swift mlx-community/Phi-4-mini-instruct-4bit 300
+litert-lm litert-community/Phi-4-mini-instruct 300
+
+# NOTES:
+# - litert-local/* ids must match ModelCatalog; verify catalog wiring for fleet side-loads
+#   (some fleet .litertlm cells may need new catalog entries before this campaign).
+# - Phi-4-mini Core AI: both compute units are a documented architectural wall (partial rotary).
+# - VibeThinker/OLMo-2: no mlx-community repo (June finding) — no MLX cell.
+# - litert cells stall ~10 min between runs (teardown); CELL_TIMEOUT=3600 required.

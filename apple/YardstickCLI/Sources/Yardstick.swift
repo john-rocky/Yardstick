@@ -67,6 +67,7 @@ struct YardstickApp {
         var modelID: String? = nil
         var outputPath: String? = nil
         var coldRun = true
+        var runs = 1
 
         var i = 0
         while i < argv.count {
@@ -83,6 +84,8 @@ struct YardstickApp {
             case "--warm":
                 coldRun = false
                 i += 1
+            case "--runs":
+                runs = max(1, Int(argv.value(after: &i)) ?? 1)
             default:
                 FileHandle.standardError.write(Data("unknown flag: \(arg)\n".utf8))
                 exit(2)
@@ -94,39 +97,46 @@ struct YardstickApp {
         let model = try resolveModel(idOrHF: modelID, runtime: runtime)
 
         let runner = BenchmarkRunner()
-        let config = BenchmarkRunner.Configuration(
-            runtime: runtime,
-            model: model,
-            task: task,
-            coldRun: coldRun
-        )
-
-        FileHandle.standardError.write(Data(
-            "yardstick: running task=\(taskID) runtime=\(runtimeID) model=\(model.id)\n".utf8
-        ))
-
-        let result = try await runner.run(config)
-
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
-        let json = try encoder.encode(result)
 
-        // Always print the result to stdout.
-        FileHandle.standardOutput.write(json)
-        FileHandle.standardOutput.write(Data("\n".utf8))
+        // `--runs N` mirrors the iOS app's fairness-rules §2 warm protocol: one
+        // process, the model stays loaded across runs — run 1 is cold (fresh
+        // process, weights on disk), runs 2..N are warm; report the median of
+        // runs 2..N as warm. Each run gets its own JSONL record (coldRun flags
+        // the split), identical to what the iPhone campaign driver imports.
+        for runIndex in 1...runs {
+            let config = BenchmarkRunner.Configuration(
+                runtime: runtime,
+                model: model,
+                task: task,
+                coldRun: runs > 1 ? (runIndex == 1) : coldRun
+            )
 
-        // Optionally append to a JSONL file.
-        if let outputPath {
-            try appendJSONL(result: result, path: outputPath)
-            FileHandle.standardError.write(Data("yardstick: appended to \(outputPath)\n".utf8))
+            FileHandle.standardError.write(Data(
+                "yardstick: run \(runIndex)/\(runs) task=\(taskID) runtime=\(runtimeID) model=\(model.id)\n".utf8
+            ))
+
+            let result = try await runner.run(config)
+            let json = try encoder.encode(result)
+
+            // Always print the result to stdout.
+            FileHandle.standardOutput.write(json)
+            FileHandle.standardOutput.write(Data("\n".utf8))
+
+            // Optionally append to a JSONL file.
+            if let outputPath {
+                try appendJSONL(result: result, path: outputPath)
+                FileHandle.standardError.write(Data("yardstick: appended to \(outputPath)\n".utf8))
+            }
+
+            // Friendly one-line summary on stderr.
+            let m = result.metrics
+            FileHandle.standardError.write(Data(
+                "yardstick: run=\(runIndex) cold=\(runIndex == 1 && (runs > 1 || coldRun) ? 1 : 0) TTFT=\(m.firstTokenLatencyMS)ms decode=\(String(format: "%.2f", m.decodeTokensPerSecond))tok/s peakMB=\(Int(m.memoryPeakDuringDecodeMB))\n".utf8
+            ))
         }
-
-        // Friendly one-line summary on stderr.
-        let m = result.metrics
-        FileHandle.standardError.write(Data(
-            "yardstick: TTFT=\(m.firstTokenLatencyMS)ms decode=\(String(format: "%.2f", m.decodeTokensPerSecond))tok/s peakMB=\(Int(m.memoryPeakDuringDecodeMB))\n".utf8
-        ))
     }
 
     // MARK: - `yardstick list`
@@ -144,6 +154,7 @@ struct YardstickApp {
         print("Available tasks:")
         print("  short-chat   — 128-token reply, measures TTFT + decode tok/s")
         print("  long-context — 2K-token prefill + short reply, measures prefill")
+        print("  cactus-parity— 1K-token prefill + 100-token reply, matches `cactus benchmark`")
         print("  sustained    — 512-token generation, watches thermal drift")
         print("  lifecycle    — short generation x N, mimics chat session reuse")
         print("")
@@ -266,7 +277,7 @@ struct YardstickApp {
             Yardstick — Apple Silicon AI benchmark CLI
 
             Usage:
-              yardstick run --task <id> --runtime <id> --model <id|hf-repo> [--output <path>] [--warm]
+              yardstick run --task <id> --runtime <id> --model <id|hf-repo> [--output <path>] [--warm] [--runs N]
               yardstick list
               yardstick help
 

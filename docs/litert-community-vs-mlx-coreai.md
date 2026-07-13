@@ -155,14 +155,19 @@ run 1; thermal-gated, Release, one session window; raw device JSON:
 | Qwen3-0.6B | LiteRT-LM (mixed int4) | 121.0 | **120.4** | 247.2 | **267.1** |
 | Qwen3-1.7B | MLX | 62.4 | **60.4** | — | — |
 | Qwen3-1.7B | LiteRT-LM (int4-mixed, ours) | 47.6 | **48.2** | 166.8 | **172.6** |
-| Qwen3-4B | Core AI ANE | 30.2 | **29.3** | — | — |
+| Qwen3-4B | Core AI ANE | withheld† | withheld† | — | — |
 | Qwen3-4B | MLX | 28.1 | **27.9** | — | — |
-| Qwen3-4B | Core AI GPU | 27.2 | **26.2** | — | — |
+| Qwen3-4B | Core AI GPU | withheld† | withheld† | — | — |
 | Qwen3-4B | LiteRT-LM (mixed int4) | 24.6 | **23.8** | 106.6 | **109.2** |
 | Gemma-4-E2B | LiteRT-LM | 55.1-55.9 | **59.7**‡ | 151.0 | **152.4**§ |
 | Gemma-4-E2B | MLX | 47.5 (June cold) | blocked¶ | — | — |
 
-† Mac MLX from the June steady-state `mlx_lm` protocol (already warm-equivalent).
+† **Core AI 4B rows withheld**: every run of both 2026-07-13 sessions (including the
+thermal-gate re-runs) reported `initialThermalState=fair`, and the driver logged
+THERMAL_FAIL for both cells — protocol requires nominal, so these numbers are not published
+(raw data kept in the campaign dir's EXCLUDED.txt for audit; values were internally flat and
+the cold matched June's 29.7/28.3, but a clean-nominal re-capture is required first).
+Mac MLX from the June steady-state `mlx_lm` protocol (already warm-equivalent).
 ‡ n=2 warm runs (morning session; the evening re-run was interrupted at run 1 = the 55.9 cold).
 § 1,029-token-prompt protocol vs the official card — `results/raw/2026-07-13-e2b-mac-webgpu/`.
 ¶ `mlx-community/gemma-4-e2b-it-4bit` updated upstream 2026-07-06; no longer loads with the

@@ -188,6 +188,14 @@ targets:
 # bench scripts and Core AI capture drive it via -scheme). Without this block
 # xcodegen emits no scheme and every `-scheme BenchmarkApp` invocation fails.
 schemes:
+  # Shared scheme so `xcodebuild -scheme yardstick` works headlessly (the Mac warm
+  # campaign builds the CLI this way; without it -derivedDataPath is rejected).
+  yardstick:
+    build:
+      targets:
+        yardstick: all
+    run:
+      config: Release
   BenchmarkApp:
     build:
       targets:

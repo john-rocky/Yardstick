@@ -1,5 +1,23 @@
 # coreai-build regression on macOS 27 beta 26A5378j — Core AI iOS bundles unassemblable (2026-07-13)
 
+> **RESOLVED same evening — root cause found and verified.** The updated beta's odiec only
+> accepts IR carrying "AICode versioned locations", which **coreai-torch 0.4.1** emits and
+> 0.4.0 (the June pin) does not. With a genuine 0.4.1 export
+> (`.venv/bin/coreai.llm.export …` — NOT `uv run`, which silently resyncs the venv back to
+> the 0.4.0 pin and invalidated the first probe), BOTH paths work again on 26A5378j:
+> in-process JIT (`llm-benchmark` on qwen3-0.6b ct041: 578 tok/s gen probe) and the
+> `coreai-build` iOS AOT CLI (h18p `.aimodelc` produced). Discovery credit: the leaderboard
+> project's eval-driver compiled a coreai-torch-0.4.1 gemma-4-e2b export successfully at
+> 13:06 on this build (`~/Library/Caches/coreai-cache/26A5378j/`), proving a working path
+> existed. Two residual consequences: (1) every 0.4.0-era IR — including the archived
+> "irreplaceable" macOS-26 artifacts — is now uncompilable on this OS; (2) 0.4.1 IRs are a
+> NEW artifact generation whose lowering may differ from the June bundles, so re-measured
+> Core AI numbers must be labelled with their artifact lineage (coreai-export-lowering.md
+> discipline). Also note: the June-built `llm-benchmark` binary is ABI-broken against the
+> updated FoundationModels.framework — rebuild with
+> `DEVELOPER_DIR=/Applications/Xcode-27.0.0-Beta.3.app swift build -c release`.
+> The original (superseded) analysis follows for the record.
+
 **Impact**: the Core AI Qwen3-0.6B (`qwen3_0_6b_{ane,gpu}`) and 1.7B (`qwen3_1_7b_gpu`) iPhone
 bundles cannot be (re)assembled on this Mac, so their **warm** rows cannot be captured in the
 2026-07 warm re-capture campaign. The June-compiled Qwen3-4B bundles already side-loaded on the

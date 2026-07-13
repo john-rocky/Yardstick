@@ -34,3 +34,16 @@ litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T08-36-41Z.json
 litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T08-46-57Z.json
 litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T08-57-12Z.json
 litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T09-07-27Z.json
+
+# core-ai 4B — BOTH sessions (incl. the thermal-gate re-runs T08-26/T08-33): every run
+# reports initialThermalState=fair, and the driver logged THERMAL_FAIL ("exclude from warm
+# table") for both cells. Protocol requires nominal; these numbers are withheld until a
+# clean-nominal re-capture. (Values were flat and cold matched June — but rules are rules.)
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-26-39Z.json
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-26-44Z.json
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-26-49Z.json
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-26-53Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-33-23Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-33-28Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-33-33Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-33-39Z.json

@@ -88,6 +88,51 @@ public actor MediaPipeRuntime: LLMRuntime {
         loadedModelId = nil
     }
 
+    /// LiteRT-LM's own benchmark entry point (`LiteRTLM.benchmark`), which prefills
+    /// `prefillTokens` and decodes `decodeTokens` and reports the engine's internal
+    /// counters. This is the direct analogue of Cactus's `cactus_benchmark_tokens`,
+    /// so the two engines can be compared on their own instruments rather than
+    /// through this app's streaming path — which cannot report a prompt token count
+    /// when generation is capped before EOS (see `runGenerate`).
+    ///
+    /// Stands apart from `loadModel`: `benchmark` builds its own `Engine`, so call it
+    /// on a runtime with no model loaded.
+    ///
+    /// LiteRT-LM's own `BenchmarkInfo` is not `Sendable`, so its fields are copied out
+    /// here rather than crossing the actor boundary.
+    public struct NativeBenchmarkInfo: Sendable {
+        public let prefillTokenCount: Int
+        public let decodeTokenCount: Int
+        public let prefillTokensPerSecond: Double
+        public let decodeTokensPerSecond: Double
+        public let timeToFirstTokenSeconds: Double
+        public let initTimeSeconds: Double
+    }
+
+    public func nativeBenchmark(
+        _ model: ModelInfo,
+        prefillTokens: Int,
+        decodeTokens: Int
+    ) async throws -> NativeBenchmarkInfo {
+        let snapshot = try await HFDownloader.snapshot(for: model, runtime: kind, progress: { _ in })
+        let modelFile = try locateModelFile(in: snapshot, expected: model.primaryFile)
+        let info = try await LiteRTLM.benchmark(
+            modelPath: modelFile.path,
+            backend: .gpu,
+            prefillTokens: prefillTokens,
+            decodeTokens: decodeTokens,
+            cacheDir: NSTemporaryDirectory()
+        )
+        return NativeBenchmarkInfo(
+            prefillTokenCount: info.lastPrefillTokenCount,
+            decodeTokenCount: info.lastDecodeTokenCount,
+            prefillTokensPerSecond: info.lastPrefillTokensPerSecond,
+            decodeTokensPerSecond: info.lastDecodeTokensPerSecond,
+            timeToFirstTokenSeconds: info.timeToFirstTokenInSecond,
+            initTimeSeconds: info.initTimeInSecond
+        )
+    }
+
     public nonisolated func generate(
         prompt: String,
         parameters: GenerationParameters
@@ -130,9 +175,20 @@ public actor MediaPipeRuntime: LLMRuntime {
         var firstTokenAt: CFAbsoluteTime?
         var tokenCount = 0
         var capped = false
+        var cappedAt: CFAbsoluteTime? = nil
 
         for try await chunk in conversation.sendMessageStream(Message(prompt)) {
             try Task.checkCancellation()
+            if capped {
+                // Cap reached: DRAIN the stream silently instead of breaking out.
+                // Abandoning the stream leaves its callback task queued and the NEXT
+                // in-process run blocks ~10 min on `callback_thread_pool
+                // DEADLINE_EXCEEDED` (observed on iPhone and Mac; `conversation
+                // .cancel()` does not release it either). The engine stops at its
+                // context bound (~maxNumTokens) within a few seconds; nothing drained
+                // here is yielded or timed — measurement ended at `cappedAt`.
+                continue
+            }
             if firstTokenAt == nil { firstTokenAt = CFAbsoluteTimeGetCurrent() }
             let text = chunk.toString
             if !text.isEmpty {
@@ -142,13 +198,19 @@ public actor MediaPipeRuntime: LLMRuntime {
             // Cap output at the task's token budget so LiteRT-LM is measured over the
             // SAME number of generated tokens as every other runtime (fairness rule 1:
             // same maxTokens). 0.12/0.13's streaming API has no per-call cap and its
-            // `getBenchmarkInfo` finalizes only on a natural EOS finish, so when we break
-            // early we fall back to chunk-count + wall-clock (the CoreML-style measure) —
+            // `getBenchmarkInfo` finalizes only on a natural EOS finish, so at the cap
+            // we fall back to chunk-count + wall-clock (the CoreML-style measure) —
             // see the `capped` branch below.
-            if tokenCount >= parameters.maxTokens { capped = true; break }
+            // (`conversation.cancel()` is NOT used here: it surfaces as a thrown
+            // `CANCELLED` stream error and fails the run. Pure draining is enough —
+            // the engine stops at its context bound within a few seconds.)
+            if tokenCount >= parameters.maxTokens {
+                capped = true
+                cappedAt = CFAbsoluteTimeGetCurrent()
+            }
         }
 
-        let end = CFAbsoluteTimeGetCurrent()
+        let end = cappedAt ?? CFAbsoluteTimeGetCurrent()
         let wallPrefill = (firstTokenAt ?? end) - prefillStart
         let wallGenerate = max(end - (firstTokenAt ?? prefillStart), 0.001)
 
