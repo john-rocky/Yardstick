@@ -1,0 +1,7 @@
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-litert-local_qwen3-1_7b-int4.stderr.log
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-litert-community_Phi-4-mini-instruct.stderr.log
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-litert-community_Gemma3-1B-IT.stderr.log
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-mlboydaisuke_OLMo-2-1B-Instruct-LiteRT.stderr.log
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-mlboydaisuke_SmolLM3-3B-LiteRT.stderr.log
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-mlboydaisuke_Llama-3_2-3B-Instruct-LiteRT.stderr.log
+   FAILED — see /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/litert-lm-mlboydaisuke_Ministral-3-3B-Instruct-2512-LiteRT.stderr.log

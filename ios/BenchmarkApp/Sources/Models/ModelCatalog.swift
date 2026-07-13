@@ -567,6 +567,26 @@ public enum ModelCatalog {
         // --- Cross-runtime comparison set (vs MLX on iPhone 17 Pro) ---
         // litert-community DOWNLOAD entries (fetched on-device).
         ModelInfo(
+            id: "litert-community/Gemma3-1B-IT",
+            displayName: "Gemma3-1B (.litertlm, official int4)",
+            quantization: "INT4",
+            parameterCountB: 1.0,
+            onDiskSizeMB: 700,
+            hfRepoId: "litert-community/Gemma3-1B-IT",
+            hfFilePatterns: ["gemma3-1b-it-int4.litertlm"],
+            primaryFile: "gemma3-1b-it-int4.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-community/Phi-4-mini-instruct",
+            displayName: "Phi-4-mini (.litertlm)",
+            quantization: "INT8",
+            parameterCountB: 3.8,
+            onDiskSizeMB: 3600,
+            hfRepoId: "litert-community/Phi-4-mini-instruct",
+            hfFilePatterns: ["Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm"],
+            primaryFile: "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm"
+        ),
+        ModelInfo(
             id: "litert-community/DeepSeek-R1-Distill-Qwen-1.5B",
             displayName: "DeepSeek-R1-Distill-Qwen-1.5B (.litertlm)",
             quantization: "INT8",

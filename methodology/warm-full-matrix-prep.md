@@ -65,6 +65,15 @@ re-made regardless (0.4.0-era IRs don't compile on 26A5378j).
 (not deleted after exports) — needed if a conversion turns out broken or an iPhone/Mac
 variant has to be regenerated.
 
+**Measured-artifact retention (user, 2026-07-13):** any artifact that produced a measurement
+is NEVER deleted — it is the provenance of the number, and where a version break made the old
+generation unusable (Core AI 0.4.0 → 0.4.1), the NEW-generation artifacts (ct041 IRs +
+assembled bundles in `~/code/coreai/coreai-models/exports/*_ct041*`) are upload candidates
+for HF (replacing the now-uncompilable June IRs on the `-CoreAI-official` repos). Any HF
+upload is an external action → user GO required first. Deletions are limited to: never-measured
+intermediates that are provably regenerable AND unusable (e.g., the 0.4.0 re-exports removed
+earlier today — the June-measured originals remain in `_artifact_archive/` and on HF).
+
 **Local sweep finds (2026-07-13 late):**
 - `~/code/coreai-kit/Examples/SiriAsk/App/Model/qwen_ane/` = complete June-lineage 0.6B ANE
   bundle (mixed-4/8 static, compiled h18p, metadata+tokenizer included, 732M) — stage as-is.
