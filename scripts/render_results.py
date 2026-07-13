@@ -185,6 +185,10 @@ class Sample:
     params_b: float | None
     os_label: str
     build: str
+    # fairness-rules §2: cold = fresh process first generation; warm = in-process
+    # steady state (runs 2-4 of a --runs 4 session). Historical rows predate the
+    # flag, and every pre-campaign protocol was cold, so a missing flag = cold.
+    cold: bool = True
 
 
 def parse_sample(path: Path) -> tuple[RunKey, Sample] | None:
@@ -241,6 +245,7 @@ def parse_sample(path: Path) -> tuple[RunKey, Sample] | None:
             )
         ).strip(),
         build=device.get("buildConfiguration", "?"),
+        cold=metrics.get("coldRun") is not False,
     )
     return key, sample
 
@@ -273,6 +278,22 @@ def median_or_only(values: Iterable[float]) -> float:
 def debug_flag(samples: Iterable[Sample]) -> str:
     """Fairness-rules #7: numbers from Debug builds are flagged, not hidden."""
     return " ⚠️" if any(s.build == "Debug" for s in samples) else ""
+
+
+def decode_cold_warm(samples: list[Sample]) -> tuple[float, float]:
+    """Fairness-rules §2 split: (cold median, warm median). Warm exists only for
+    cells re-captured with the --runs 4 in-process protocol (2026-07 campaign+)."""
+    cold = median_or_only(s.decode_tok_s for s in samples if s.cold)
+    warm = median_or_only(s.decode_tok_s for s in samples if not s.cold)
+    return cold, warm
+
+
+def cold_only(samples: list[Sample]) -> list[Sample]:
+    """TTFT / load are cold-start metrics: in-process warm runs report load=0 and,
+    for LiteRT-LM, a TTFT inflated by the engine's inter-run teardown stall — so
+    those medians come from the cold samples (fall back to all if none)."""
+    cs = [s for s in samples if s.cold]
+    return cs or list(samples)
 
 
 def fmt_int(x: float) -> str:
@@ -352,10 +373,10 @@ def render_per_model_pivot(groups: dict[RunKey, list[Sample]]) -> str:
         out.append(f"### {logical_name}  ({device_lbl}, {task})")
         out.append("")
         out.append(
-            "| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode tok/s (median) | Peak Mem (MB, median) |"
+            "| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |"
         )
         out.append(
-            "|---|---|---|---:|---:|---:|---:|---:|---:|"
+            "|---|---|---|---:|---:|---:|---:|---:|---:|---:|"
         )
         # sort by runtime name for stability
         runtime_entries.sort(key=lambda x: x[0])
@@ -367,15 +388,17 @@ def render_per_model_pivot(groups: dict[RunKey, list[Sample]]) -> str:
             model_id = s0.path.name  # fallback won't be used because we have id
             # actually we want the model.id from JSON — stash it in Sample
             model_id_display = _model_id_for_display(s0)
+            cold_dec, warm_dec = decode_cold_warm(samples)
             row = (
                 f"| {runtime_display(runtime)}{debug_flag(samples)} "
                 f"| `{model_id_display}` "
                 f"| {s0.quantization} "
                 f"| {n} "
-                f"| {fmt_load(median_or_only(s.load_s for s in samples))} "
-                f"| {fmt_int(median_or_only(s.ttft_ms for s in samples))} "
-                f"| {fmt_one(median_or_only(s.prefill_tok_s for s in samples))} "
-                f"| {fmt_one(median_or_only(s.decode_tok_s for s in samples))} "
+                f"| {fmt_load(median_or_only(s.load_s for s in cold_only(samples)))} "
+                f"| {fmt_int(median_or_only(s.ttft_ms for s in cold_only(samples)))} "
+                f"| {fmt_one(median_or_only(s.prefill_tok_s for s in cold_only(samples)))} "
+                f"| {fmt_one(cold_dec)} "
+                f"| {fmt_one(warm_dec)} "
                 f"| {fmt_one(median_or_only(s.peak_mem_mb for s in samples), places=0)} |"
             )
             out.append(row)
@@ -410,9 +433,9 @@ def render_per_runtime_pivot(groups: dict[RunKey, list[Sample]]) -> str:
         out.append(f"### `{runtime_display(runtime)}`  ({device_lbl}, {task})")
         out.append("")
         out.append(
-            "| Model | Params (B) | Quant | n | TTFT (ms, median) | Decode tok/s (median) | Peak Mem (MB, median) |"
+            "| Model | Params (B) | Quant | n | TTFT (ms, median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |"
         )
-        out.append("|---|---:|---|---:|---:|---:|---:|")
+        out.append("|---|---:|---|---:|---:|---:|---:|---:|")
         # sort by parameter count if available else model id
         def sort_key(entry: tuple[str, list[Sample]]) -> tuple[float, str]:
             params = entry[1][0].params_b or 1e9
@@ -421,13 +444,15 @@ def render_per_runtime_pivot(groups: dict[RunKey, list[Sample]]) -> str:
         for model_id, samples in sorted(model_entries, key=sort_key):
             n = len(samples)
             s0 = samples[0]
+            cold_dec, warm_dec = decode_cold_warm(samples)
             row = (
                 f"| {s0.model_display}{debug_flag(samples)} "
                 f"| {s0.params_b if s0.params_b else '—'} "
                 f"| {s0.quantization} "
                 f"| {n} "
-                f"| {fmt_int(median_or_only(s.ttft_ms for s in samples))} "
-                f"| {fmt_one(median_or_only(s.decode_tok_s for s in samples))} "
+                f"| {fmt_int(median_or_only(s.ttft_ms for s in cold_only(samples)))} "
+                f"| {fmt_one(cold_dec)} "
+                f"| {fmt_one(warm_dec)} "
                 f"| {fmt_one(median_or_only(s.peak_mem_mb for s in samples), places=0)} |"
             )
             out.append(row)
@@ -458,18 +483,20 @@ def render_at_a_glance(groups: dict[RunKey, list[Sample]]) -> str:
         "",
         f"The cross-runtime cell with the broadest coverage today — **{logical_name}** on **{device_display(device)}**, task **{task}**.",
         "",
-        "| Runtime | Quant | n | TTFT (ms) | Decode tok/s | Prefill tok/s | Peak Mem (MB) |",
-        "|---|---|---:|---:|---:|---:|---:|",
+        "| Runtime | Quant | n | TTFT (ms) | Decode cold | Decode warm | Prefill tok/s | Peak Mem (MB) |",
+        "|---|---|---:|---:|---:|---:|---:|---:|",
     ]
     for runtime, samples in runtime_entries:
         n = len(samples)
+        cold_dec, warm_dec = decode_cold_warm(samples)
         row = (
             f"| {runtime_display(runtime)}{debug_flag(samples)} "
             f"| {samples[0].quantization} "
             f"| {n} "
-            f"| {fmt_int(median_or_only(s.ttft_ms for s in samples))} "
-            f"| {fmt_one(median_or_only(s.decode_tok_s for s in samples))} "
-            f"| {fmt_one(median_or_only(s.prefill_tok_s for s in samples))} "
+            f"| {fmt_int(median_or_only(s.ttft_ms for s in cold_only(samples)))} "
+            f"| {fmt_one(cold_dec)} "
+            f"| {fmt_one(warm_dec)} "
+            f"| {fmt_one(median_or_only(s.prefill_tok_s for s in cold_only(samples)))} "
             f"| {fmt_one(median_or_only(s.peak_mem_mb for s in samples), places=0)} |"
         )
         out.append(row)
@@ -614,9 +641,18 @@ def render_energy_profile(groups: dict[RunKey, list[Sample]]) -> str:
 
 def render_debug_note(groups: dict[RunKey, list[Sample]]) -> str:
     n = sum(1 for samples in groups.values() for s in samples if s.build == "Debug")
+    warm_note = (
+        "> **Decode cold vs warm** ([fairness-rules §2](methodology/fairness-rules.md)): "
+        "cold = fresh process, first generation (the historical protocol); warm = in-process "
+        "steady state, median of runs 2-4 of a `--runs 4` session — the vendor-model-card "
+        "convention. Warm columns are populated only for cells re-captured by the 2026-07 "
+        "warm campaign (`scripts/bench_warm_matrix_iphone.sh`); superseded same-cell cold "
+        "rows live in `results/raw/superseded/` (see `results/raw/2026-07-13-mlx-variance/` "
+        "for why old and new sessions must not be pooled)."
+    )
     if not n:
-        return ""
-    return (
+        return warm_note
+    return warm_note + "\n>\n" + (
         f"> ⚠️ = **Debug-build capture** ({n} runs, `device.buildConfiguration` in the JSONL). "
         "Flagged per [fairness-rules #7](methodology/fairness-rules.md) — Debug and Release "
         "builds give different numbers; a Release re-capture is pending for these rows. "

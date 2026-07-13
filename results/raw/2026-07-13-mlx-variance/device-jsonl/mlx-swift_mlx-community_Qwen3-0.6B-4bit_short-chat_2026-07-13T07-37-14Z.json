@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "6261C6E8-F134-42DA-8EE7-F327698F7D84",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 164.78813019182482,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 53,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 6.073951721191406,
+    "interTokenLatencyP95MS" : 6.476998329162598,
+    "interTokenLatencyP99MS" : 6.865024566650391,
+    "loadTimeSeconds" : 0.7951509952545166,
+    "memoryAfterGenerationMB" : 487.5021438598633,
+    "memoryAfterLoadMB" : 413.7052459716797,
+    "memoryBaselineMB" : 15.501708984375,
+    "memoryPeakDuringDecodeMB" : 487.5021438598633,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 395.5280173911317,
+    "stopReason" : "cancelled",
+    "totalGenerationTimeSeconds" : 1.0396720170974731
+  },
+  "model" : {
+    "displayName" : "Qwen3-0.6B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Qwen3-0.6B-4bit",
+    "id" : "mlx-community\/Qwen3-0.6B-4bit",
+    "onDiskSizeMB" : 350,
+    "parameterCountB" : 0.6,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "<think>\nOkay, so I need to explain on-device AI in simple terms. Let me start by recalling what I know. On-device AI is a concept where AI models are trained on data from the user's devices, not exter",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T07:37:14Z"
+}

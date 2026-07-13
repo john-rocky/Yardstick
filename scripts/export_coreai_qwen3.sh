@@ -64,12 +64,13 @@ PY
 cd "$COREAI"
 
 log "export GPU (macOS dynamic 4bit) -> $BASE_DYN"
-[ -f "$EXPORTS/$BASE_DYN/$BASE_DYN.aimodel" ] || \
+# `.aimodel` is a directory (contains main.mlirb), so the guard must be -e, not -f.
+[ -e "$EXPORTS/$BASE_DYN/$BASE_DYN.aimodel" ] || \
   uv run coreai.llm.export "$HF_ID" --platform macOS --compression 4bit \
     --compute-precision float16 --experimental --output-name "$BASE_DYN"
 
 log "export ANE (iOS static palettized g32, ctx $ANE_CTX) -> $BASE_ANE"
-[ -f "$EXPORTS/$BASE_ANE/$BASE_ANE.aimodel" ] || \
+[ -e "$EXPORTS/$BASE_ANE/$BASE_ANE.aimodel" ] || \
   uv run coreai.llm.export "$HF_ID" --platform iOS \
     --compression 4bit_weight_palettized_group32 --compute-precision float16 \
     --max-context-length "$ANE_CTX" --experimental --output-name "$BASE_ANE"

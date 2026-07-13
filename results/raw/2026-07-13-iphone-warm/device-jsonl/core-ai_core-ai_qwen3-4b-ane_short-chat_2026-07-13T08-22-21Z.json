@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "BB34638A-4DF1-4279-A1FE-D85D0EFBF1C4",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      22.962649068220298
+    ],
+    "decodeTokensPerSecond" : 23.078257500163026,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 103,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 43.93291473388672,
+    "interTokenLatencyP95MS" : 47.38295078277588,
+    "interTokenLatencyP99MS" : 47.927021980285645,
+    "memoryAfterGenerationMB" : 3143.55224609375,
+    "memoryAfterLoadMB" : 3143.25537109375,
+    "memoryBaselineMB" : 3143.25537109375,
+    "memoryPeakDuringDecodeMB" : 3143.83349609375,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 185.55043033748285,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.649604082107544
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-4b-ane",
+    "onDiskSizeMB" : 2954,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants me to explain what on-device AI means in simple terms. Let me start by recalling what on-device AI is. It's a type of artificial intelligence where the processing is done ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:22:21Z"
+}

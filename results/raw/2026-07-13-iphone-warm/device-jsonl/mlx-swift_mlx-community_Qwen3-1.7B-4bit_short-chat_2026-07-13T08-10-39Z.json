@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "50E02BE6-0950-41E9-A1F3-EDB531D01331",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 62.3989666013199,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 90,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.034960746765137,
+    "interTokenLatencyP95MS" : 17.28999614715576,
+    "interTokenLatencyP99MS" : 17.69101619720459,
+    "loadTimeSeconds" : 1.15180504322052,
+    "memoryAfterGenerationMB" : 1077.4869766235352,
+    "memoryAfterLoadMB" : 1017.315055847168,
+    "memoryBaselineMB" : 15.329879760742188,
+    "memoryPeakDuringDecodeMB" : 1095.2994766235352,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 222.2668425647276,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.1489609479904175
+  },
+  "model" : {
+    "displayName" : "Qwen3-1.7B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Qwen3-1.7B-4bit",
+    "id" : "mlx-community\/Qwen3-1.7B-4bit",
+    "onDiskSizeMB" : 1000,
+    "parameterCountB" : 1.7,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "<think>\nOkay, the user is asking about what on-device AI means in simple terms. Let me start by breaking down the key components here. On-device AI refers to processing data locally on a device, like ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:10:39Z"
+}

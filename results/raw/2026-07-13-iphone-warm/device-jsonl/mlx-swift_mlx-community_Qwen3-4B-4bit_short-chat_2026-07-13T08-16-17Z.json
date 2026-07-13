@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "E604DFD7-418D-4CCD-84EF-8D2C0CD8E551",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      23.77770990934664
+    ],
+    "decodeTokensPerSecond" : 23.87777280315757,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 210,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 40.77506065368652,
+    "interTokenLatencyP95MS" : 50.50003528594971,
+    "interTokenLatencyP99MS" : 57.22200870513916,
+    "loadTimeSeconds" : 1.913680076599121,
+    "memoryAfterGenerationMB" : 2322.519142150879,
+    "memoryAfterLoadMB" : 2255.972198486328,
+    "memoryBaselineMB" : 15.501708984375,
+    "memoryPeakDuringDecodeMB" : 2348.191017150879,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 92.54116271332678,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.584388017654419
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Qwen3-4B-4bit",
+    "id" : "mlx-community\/Qwen3-4B-4bit",
+    "onDiskSizeMB" : 2300,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "<think>\nOkay, the user wants me to explain what on-device AI is in simple terms. Let me start by recalling what I know about on-device AI. From what I remember, on-device AI refers to AI models that r",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:16:17Z"
+}

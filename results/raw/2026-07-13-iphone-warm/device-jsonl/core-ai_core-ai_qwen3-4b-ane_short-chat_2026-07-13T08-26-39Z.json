@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "3585417C-B665-4B92-929D-B6E280B64703",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 30.178152200506435,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 208,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 32.813072204589844,
+    "interTokenLatencyP95MS" : 36.94891929626465,
+    "interTokenLatencyP99MS" : 39.16597366333008,
+    "loadTimeSeconds" : 9.559548020362854,
+    "memoryAfterGenerationMB" : 3119.521041870117,
+    "memoryAfterLoadMB" : 3118.8022689819336,
+    "memoryBaselineMB" : 14.173606872558594,
+    "memoryPeakDuringDecodeMB" : 3194.380439758301,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 98.09184412003644,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 4.448738098144531
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-4b-ane",
+    "onDiskSizeMB" : 2954,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants me to explain what on-device AI means in simple terms. Let me start by recalling what on-device AI is. It's a type of artificial intelligence where the processing is done ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:26:39Z"
+}

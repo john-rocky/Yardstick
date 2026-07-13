@@ -1,0 +1,36 @@
+# Files excluded from import (kept for audit). One basename per line; comments with #.
+# Reasons documented in README.md ("Session notes").
+
+# mlx 4B second pass — started ~100 s after the first 4B session, monotonic decline
+# 23.9->22.2 = thermal contamination the nominal-gate cannot see. First pass (T08-14-*)
+# matches June cold 27.3 and is the imported session.
+mlx-swift_mlx-community_Qwen3-4B-4bit_short-chat_2026-07-13T08-16-17Z.json
+mlx-swift_mlx-community_Qwen3-4B-4bit_short-chat_2026-07-13T08-16-23Z.json
+mlx-swift_mlx-community_Qwen3-4B-4bit_short-chat_2026-07-13T08-16-29Z.json
+mlx-swift_mlx-community_Qwen3-4B-4bit_short-chat_2026-07-13T08-16-35Z.json
+
+# core-ai 4B ANE first attempt — thermal-gate verdict HOT (runs declined 30.6->23.1);
+# the driver's 240 s-cooldown re-run (T08-26-*) is the imported session.
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-22-05Z.json
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-22-10Z.json
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-22-15Z.json
+core-ai_core-ai_qwen3-4b-ane_short-chat_2026-07-13T08-22-21Z.json
+
+# core-ai 4B GPU first attempt — same thermal-gate re-run; T08-33-* is the imported session.
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-28-55Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-29-00Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-29-05Z.json
+core-ai_core-ai_qwen3-4b-gpu_short-chat_2026-07-13T08-29-10Z.json
+
+# litert 0.6B stray cold run1s from the two aborted driver sessions (stdin-swallow bug,
+# then the teardown-hang kill); the complete morning tier-1 session (T06-*) is imported.
+litert-lm_litert-community_Qwen3-0.6B_short-chat_2026-07-13T08-02-03Z.json
+litert-lm_litert-community_Qwen3-0.6B_short-chat_2026-07-13T08-05-37Z.json
+
+# litert 1.7B int4 first attempt — thermal-gate verdict HOT (runs 1-2 initial=fair,
+# leftover heat from campaign A's tail); the 240 s-cooldown re-run (T09-1x..T09-4x,
+# verdict OK all-nominal, 47.6 cold / 48.2 warm ≈ same values) is the imported session.
+litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T08-36-41Z.json
+litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T08-46-57Z.json
+litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T08-57-12Z.json
+litert-lm_litert-local_qwen3-1.7b-int4_short-chat_2026-07-13T09-07-27Z.json

@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "339CC094-6D0E-4AB0-9ACF-C543CD3C28C5",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 59.961501714367536,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 606609,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.654014587402344,
+    "interTokenLatencyP95MS" : 17.57490634918213,
+    "interTokenLatencyP99MS" : 17.663955688476562,
+    "memoryAfterGenerationMB" : 450.5351333618164,
+    "memoryAfterLoadMB" : 447.6913833618164,
+    "memoryBaselineMB" : 447.6913833618164,
+    "memoryPeakDuringDecodeMB" : 450.5507583618164,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 608.7440810203552
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "INT4 (QAT)"
+  },
+  "outputSample" : "Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T05:58:38Z"
+}

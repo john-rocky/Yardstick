@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "71331A24-7D1F-4BE1-9560-96DFD7C556B6",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      24.86310118901331
+    ],
+    "decodeTokensPerSecond" : 24.72807315981951,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 86,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 34.889936447143555,
+    "interTokenLatencyP95MS" : 57.48307704925537,
+    "interTokenLatencyP99MS" : 58.69102478027344,
+    "memoryAfterGenerationMB" : 3143.22412109375,
+    "memoryAfterLoadMB" : 3143.05224609375,
+    "memoryBaselineMB" : 3143.05224609375,
+    "memoryPeakDuringDecodeMB" : 3143.53662109375,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 224.77766996863505,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.262286067008972
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-4b-ane",
+    "onDiskSizeMB" : 2954,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants me to explain what on-device AI means in simple terms. Let me start by recalling what on-device AI is. It's a type of artificial intelligence where the processing is done ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:22:15Z"
+}

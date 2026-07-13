@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F6F1514A-C758-4C55-A153-4E55965B8654",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 167.71951179699997,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 55,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 6.003022193908691,
+    "interTokenLatencyP95MS" : 6.168961524963379,
+    "interTokenLatencyP99MS" : 7.019996643066406,
+    "loadTimeSeconds" : 1.073490023612976,
+    "memoryAfterGenerationMB" : 487.7052688598633,
+    "memoryAfterLoadMB" : 413.8458709716797,
+    "memoryBaselineMB" : 15.720458984375,
+    "memoryPeakDuringDecodeMB" : 487.6896438598633,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 405.13345364886504,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 0.8214880228042603
+  },
+  "model" : {
+    "displayName" : "Qwen3-0.6B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Qwen3-0.6B-4bit",
+    "id" : "mlx-community\/Qwen3-0.6B-4bit",
+    "onDiskSizeMB" : 350,
+    "parameterCountB" : 0.6,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "<think>\nOkay, so I need to explain on-device AI in simple terms. Let me start by recalling what I know. On-device AI is a concept where AI models are trained on data from the user's devices, not exter",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T07:28:51Z"
+}

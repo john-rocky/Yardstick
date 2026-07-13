@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "0641E6C5-4DE5-4972-93EC-9DDD9B723A2D",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 30.16754102395384,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 982,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 32.5930118560791,
+    "interTokenLatencyP95MS" : 36.83304786682129,
+    "interTokenLatencyP99MS" : 39.898037910461426,
+    "loadTimeSeconds" : 222.3564590215683,
+    "memoryAfterGenerationMB" : 3123.23974609375,
+    "memoryAfterLoadMB" : 3120.7397689819336,
+    "memoryBaselineMB" : 14.173583984375,
+    "memoryPeakDuringDecodeMB" : 3196.802291870117,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 20.481884383894283,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.224697947502136
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-4b-ane",
+    "onDiskSizeMB" : 2954,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants me to explain what on-device AI means in simple terms. Let me start by recalling what on-device AI is. It's a type of artificial intelligence where the processing is done ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:22:05Z"
+}

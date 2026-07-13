@@ -1,5 +1,15 @@
 # Next-session brief — warm re-capture campaign
 
+> **STATUS: EXECUTED 2026-07-13 (evening session).** All three blockers resolved
+> (driver: `scripts/bench_warm_matrix_iphone.sh`; variance: device-state change, June binary
+> exonerated — `results/raw/2026-07-13-mlx-variance/`; bundles: LiteRT staged, Core AI 0.6B/1.7B
+> blocked by `methodology/coreai-build-regression-2026-07.md`). Warm matrix captured for the
+> Qwen3 ladder + E2B on iPhone (`results/raw/2026-07-13-iphone-warm/`) and Mac
+> (`results/raw/2026-07-13-mac-litert-warm/`); tables updated (README, RESULTS, cross-framework
+> doc). Residual follow-ups: MLX-E2B re-capture after a loader update; CoreML-LLM 0.6B
+> re-conversion; the 7 remaining Mac LiteRT artifacts; Core AI 0.6B/1.7B assemble after the
+> next macOS/MetalToolchain drop. The "within ~10%" claim below was corrected (0.76×).
+
 Context: the published iPhone/Mac benchmark tables report **cold (first-launch) medians**, which
 are not comparable with vendor model cards (warm/steady-state). This was confirmed a real
 methodology mistake on 2026-07-13 and disclosed to the LiteRT team in the shared Google doc

@@ -1,0 +1,57 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-4bit task=short-chat runs=4
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load FAILED: Key language_model.model.layers.15.self_attn.v_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Key language_model.model.layers.15.self_attn.v_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load FAILED: Key language_model.model.layers.15.self_attn.k_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: Key language_model.model.layers.15.self_attn.k_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load FAILED: Key language_model.model.layers.15.self_attn.k_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: Key language_model.model.layers.15.self_attn.k_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/CAE98A5A-209A-4A7F-9C82-7DF522309D3A/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load FAILED: Key language_model.model.layers.15.self_attn.v_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+YARDSTICK_RUN_FAIL run=4 error=Model load failed: Key language_model.model.layers.15.self_attn.v_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

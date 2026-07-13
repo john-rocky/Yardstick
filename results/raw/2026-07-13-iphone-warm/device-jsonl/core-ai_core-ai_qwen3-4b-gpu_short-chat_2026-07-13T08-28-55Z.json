@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A73C8038-579D-4FC5-8C93-5F7BAE4F841B",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      22.259021935070294
+    ],
+    "decodeTokensPerSecond" : 22.922151681350226,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 373,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 36.5750789642334,
+    "interTokenLatencyP95MS" : 38.68591785430908,
+    "interTokenLatencyP99MS" : 121.41704559326172,
+    "loadTimeSeconds" : 11.623058080673218,
+    "memoryAfterGenerationMB" : 233.86302947998047,
+    "memoryAfterLoadMB" : 243.42552947998047,
+    "memoryBaselineMB" : 14.220481872558594,
+    "memoryPeakDuringDecodeMB" : 1740.6442794799805,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 52.029286958724505,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.957378029823303
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-4b-gpu",
+    "onDiskSizeMB" : 2159,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "<think>\nOkay, the user is asking for an explanation of \"on-device AI\" in simple terms. Let me start by recalling what I know about on-device AI. From what I remember, on-device AI refers to AI models ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:28:55Z"
+}

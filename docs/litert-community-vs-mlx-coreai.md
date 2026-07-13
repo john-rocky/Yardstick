@@ -28,6 +28,18 @@ noted) → the decode tok/s comparison is apples-to-apples. **The Mac *prefill* 
 a 512-token prompt, MLX/LiteRT short) → it affects **prefill tok/s only** (directional-only, see below), not decode,
 and is being standardized to one shared prompt. The iPhone table is fully iso.
 
+> **Cold vs warm (2026-07-13 update, [fairness-rules §2](../methodology/fairness-rules.md)).** The iPhone
+> numbers in this report are **cold** (fresh process, first generation) — NOT comparable with vendor model
+> cards, which quote in-process steady state. The Qwen3 0.6B/1.7B/4B and Gemma-4-E2B iPhone cells were
+> re-captured warm-alongside-cold on 2026-07-13 (`results/raw/2026-07-13-iphone-warm/`; warm = median of
+> runs 2-4 of one `--runs 4` process) — see the warm sub-table below. The remaining models' Core AI bundles
+> cannot currently be re-assembled (`methodology/coreai-build-regression-2026-07.md`), so their rows stay
+> cold-labelled. Two cross-cutting findings from the re-capture: (1) cross-session ratios on this device are
+> invalid (`results/raw/2026-07-13-mlx-variance/README.md`) — this table's cells were captured within one
+> June-era device state (Jun 23-27), so its *internal* comparisons stand; (2) for ≥1.7B models today's cold re-captures match
+> the June values within noise (MLX 1.7B 62.4 vs 62.8; 4B 28.1 vs 27.3), so the June table is not stale for
+> those sizes — only the 0.6B dispatch-bound regime moved.
+
 > ⚠️ **Quantization is not uniform — this is the central caveat.** MLX and Core AI are benchmarked at
 > **4-bit** (their standard mobile weight size). For LiteRT-LM we benchmark **the file litert-community
 > actually publishes**, which differs per model: **DeepSeek-R1 and Phi-4-mini ship only as INT8 (q8)**;
@@ -130,6 +142,42 @@ sliding/full attention not expressible on the single-mask / single-RoPE iOS pipe
 | Ministral-3-3B | ✗ multimodal-fp8◇ | **17.6** | ✗ | **18.0** |
 
 ![On-device decode — Core AI ≈ MLX ≫ LiteRT-LM across architectures (iPhone 17 Pro)](charts/iphone_decode_summary.png)
+
+### Warm re-capture (2026-07-13) — Qwen3 ladder + Gemma-4-E2B, cold AND warm
+
+Per fairness-rules §2 (warm = median of in-process runs 2-4 of one `--runs 4` launch; cold =
+run 1; thermal-gated, Release, one session window; raw device JSON:
+`results/raw/2026-07-13-iphone-warm/`):
+
+| Model | Runtime | iPhone cold | iPhone warm | Mac cold | Mac warm (r2-5) |
+|---|---|--:|--:|--:|--:|
+| Qwen3-0.6B | MLX | 167.2 | **158.8** | — | 455† |
+| Qwen3-0.6B | LiteRT-LM (mixed int4) | 121.0 | **120.4** | 247.2 | **267.1** |
+| Qwen3-1.7B | MLX | 62.4 | **60.4** | — | — |
+| Qwen3-1.7B | LiteRT-LM (int4-mixed, ours) | 47.6 | **48.2** | 166.8 | **172.6** |
+| Qwen3-4B | Core AI ANE | 30.2 | **29.3** | — | — |
+| Qwen3-4B | MLX | 28.1 | **27.9** | — | — |
+| Qwen3-4B | Core AI GPU | 27.2 | **26.2** | — | — |
+| Qwen3-4B | LiteRT-LM (mixed int4) | 24.6 | **23.8** | 106.6 | **109.2** |
+| Gemma-4-E2B | LiteRT-LM | 55.1-55.9 | **59.7**‡ | 151.0 | **152.4**§ |
+| Gemma-4-E2B | MLX | 47.5 (June cold) | blocked¶ | — | — |
+
+† Mac MLX from the June steady-state `mlx_lm` protocol (already warm-equivalent).
+‡ n=2 warm runs (morning session; the evening re-run was interrupted at run 1 = the 55.9 cold).
+§ 1,029-token-prompt protocol vs the official card — `results/raw/2026-07-13-e2b-mac-webgpu/`.
+¶ `mlx-community/gemma-4-e2b-it-4bit` updated upstream 2026-07-06; no longer loads with the
+pinned loader (`v_proj.weight not found`), so no valid MLX E2B re-capture exists.
+
+**What warm changes — and what it doesn't.** Cold→warm is flat (±5%) for MLX and LiteRT on
+every Qwen3 size, +9% for LiteRT on E2B (engine ramp), and Core AI GPU ramps *up* in-process
+(22.9→26.5 within its session). **No cross-runtime ranking flips at ≥1.7B** — the June cold
+table's ordering stands there. The one correction is at **0.6B**: the previously reported
+"LiteRT ≈ MLX tie (118.6 vs 119.6)" compared LiteRT-Release against an MLX **Debug** build;
+Release-warm same-session gives **MLX 158.8 vs LiteRT 120.4 → LiteRT ≈ 0.76× MLX**. The
+LiteRT/MLX warm ratio improves with size (0.76 → 0.80 → 0.85 at 0.6B/1.7B/4B) — consistent
+with the dispatch-vs-bandwidth analysis above. Core AI 0.6B/1.7B warm rows are blocked by a
+toolchain regression (`methodology/coreai-build-regression-2026-07.md`); Core AI's warm
+behaviour is carried by the 4B pair above.
 
 **On-device the result is size- and arch-dependent — but Core AI's ANE remains the trump card MLX/LiteRT structurally can't
 use.** For the qwen-arch ≤1.7B Core AI iOS covers, Core AI leads: DeepSeek-R1 **ANE 83.3** / GPU 75.9 vs MLX 73.0 vs

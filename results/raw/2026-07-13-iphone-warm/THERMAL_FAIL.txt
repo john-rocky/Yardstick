@@ -1,0 +1,2 @@
+THERMAL_FAIL core-ai core-ai/qwen3-4b-ane (kept both captures; exclude from warm table)
+THERMAL_FAIL core-ai core-ai/qwen3-4b-gpu (kept both captures; exclude from warm table)

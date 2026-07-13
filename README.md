@@ -14,18 +14,33 @@ A neutral, reproducible benchmark for running local LLMs (and, in time, ASR / TT
 
 ![Apple Core AI vs MLX vs CoreML — iPhone 17 Pro, Qwen3-0.6B](docs/charts/iphone_coreai_qwen3_0_6b.png)
 
-**iPhone 17 Pro · Qwen3-0.6B · short-chat · warm decode (median):**
+**iPhone 17 Pro · Qwen3-0.6B · short-chat · decode tok/s (cold = fresh-process first generation; warm = in-process median of runs 2-4, [fairness-rules §2](methodology/fairness-rules.md)):**
 
-| Engine | Compute | Decode tok/s | Peak RAM |
-|---|---|---:|---:|
-| **Core AI** (pipelined) | GPU | **181** 🏆 _(1st run 71)_ | 524 MB |
-| MLX | GPU | 112 ⚠️ | 539 MB |
-| **Core AI** (static-shape) | ANE | 49 | 1,166 MB |
-| **CoreML-LLM** | ANE | 39 | **184** 🏆 |
+| Engine | Compute | Cold | Warm (r2-4) | Peak RAM | Session |
+|---|---|---:|---:|---:|---|
+| **Core AI** (pipelined) | GPU | **193.3** 🏆 _(first-ever 76.5)_ | blocked† | 196 MB | 2026-06-18 |
+| MLX | GPU | 167.2 | **158.8** | 489 MB | 2026-07-13 |
+| **Core AI** (static-shape) | ANE | 143.7 | blocked† | 1,158 MB | 2026-06-18 |
+| LiteRT-LM | GPU | 121.0 | 120.4 | 1,384 MB | 2026-07-13 |
+| **CoreML-LLM** | ANE | 39 | pending‡ | **184** 🏆 | 2026-06 |
 
-> ⚠️ **MLX row: Debug-build capture** ([fairness-rules #7](methodology/fairness-rules.md)). The warm 112 tok/s is the median of the two warm **Debug** runs (`iphone17pro-mlx-qwen3-0.6b-4bit-short-chat-run3/4.jsonl`); **Release**-build cold captures of the same model read **126–133 tok/s**, so warm MLX on Release is likely ~130 and Core AI's warm lead nearer **~1.4×** than 1.6×. A Release warm re-capture is pending. All other rows are Release builds.
+> **Read the Session column before comparing rows.** Cross-session ratios are invalid on this
+> device: the same MLX binary + pins measured 126–133 tok/s in mid-June and 159–180 today
+> (device-state change, likely an iOS 27 beta update — full investigation with raw data:
+> [`results/raw/2026-07-13-mlx-variance/`](results/raw/2026-07-13-mlx-variance/README.md)).
+> Within-June sessions Core AI GPU led MLX (193.3 vs 126–133 cold ≈ **1.5×**); today's
+> same-session Release warm gives **LiteRT-LM ≈ 0.76× MLX**. This replaces the earlier
+> Debug-contaminated MLX 112 row and the "~1.6× once warm" framing.
+>
+> † **Core AI warm re-capture is blocked**: `coreai-build` aborts on the current macOS 27
+> beta (both toolchain generations) so the 0.6B bundles can't be re-assembled —
+> [`methodology/coreai-build-regression-2026-07.md`](methodology/coreai-build-regression-2026-07.md).
+> Core AI cold/warm behaviour is instead re-verified at 4B (bundles survive on-device).
+> ‡ CoreML-LLM stateful-chunks bundle needs re-conversion before it can be re-measured.
 
-- **Core AI's GPU "pipelined" engine is the fastest on-device path here — ~1.6× MLX — once warm.** It pays a one-time first-run cost (kernel compilation + filling a 3-deep pipeline): ~71 tok/s on the very first generation, then ~181 steady-state. MLX is flat cold-to-warm.
+- **Core AI's GPU "pipelined" engine was the fastest path in the June session** — cold 193.3
+  after a one-time first-ever cost (76.5 on the very first generation while the shader/pipeline
+  caches build; subsequent fresh processes hit ~194). MLX and LiteRT are flat cold-to-warm.
 - **Core AI's compute unit is fixed by the *export shape*, not a runtime flag:** `coreai.llm.export … --platform iOS` (static) is detected as chunked-static → the **ANE**; a dynamic export → the **GPU** pipelined engine. And iOS can't JIT the exported IR — it must be `coreai-build compile`-d to a per-GPU-arch `.aimodelc` first (`No such file or directory` otherwise).
 - **CoreML-LLM is the memory champion** — 184 MB, ~6× leaner than Core AI's ANE path — via a stateful INT4 Neural-Engine conversion (own work, 100% ANE residency).
 - Faithful to Apple's intended path: official `coreai.llm.export` + the `coreai-models` `CoreAILM` runtime, driven by the in-tree [`CoreAIRuntime`](ios/BenchmarkApp/Sources/Runtimes/CoreAIRuntime.swift). Method + gotchas: [`methodology/coreai-ios.md`](methodology/coreai-ios.md).
@@ -83,6 +98,14 @@ the irreproducible macOS-26 0.6B artifact): [HF `<model>-CoreAI-official` repos]
 ## 📱 TL;DR — iPhone 17 Pro (A19 Pro)
 
 Real LLM inference on a phone — on-device, no server. iPhone 17 Pro, 4-bit, short-chat (128 tokens), median of 3 cold runs. **The winning runtime is model-dependent — and the upset is on Gemma.**
+
+> **2026-07-13 warm re-capture.** Gemma-4-E2B on LiteRT-LM measured with the §2 warm protocol:
+> **cold 55.1-55.9 / warm 59.7** (in-process runs 2-3, all nominal) — LiteRT's winning row gets
+> *stronger* warm (+9%, its engine ramps in-process). The MLX E2B warm re-capture is blocked:
+> `mlx-community/gemma-4-e2b-it-4bit` was updated upstream on 2026-07-06 and no longer loads with
+> the pinned June loader (`Key ...v_proj.weight not found`), so the MLX 47.5 below stays a
+> June-cold figure. Full Qwen3-ladder warm tables: [`RESULTS.md`](RESULTS.md) and
+> [`results/raw/2026-07-13-iphone-warm/`](results/raw/2026-07-13-iphone-warm/README.md).
 
 ![iPhone 17 Pro — decode + peak memory, LiteRT-LM vs MLX-Swift vs llama.cpp](docs/charts/iphone_decode_mem.png)
 

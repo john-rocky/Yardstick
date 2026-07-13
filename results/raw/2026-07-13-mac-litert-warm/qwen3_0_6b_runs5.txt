@@ -1,0 +1,310 @@
+=== Qwen3-0.6B mixed_int4 (litert-community) runs5 gpu greedy 512
+I0000 00:00:1783938926.847138 14599637 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783938926.848335 14599637 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783938926.848351 14599637 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783938926.848357 14599637 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783938926.848363 14599637 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1783938926.848366 14599637 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783938926.848372 14599637 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783938926.848391 14599637 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783938926.848397 14599637 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783938926.848400 14599637 litert_lm_loader.cc:265] section_end_offset: 20716
+I0000 00:00:1783938926.848404 14599637 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783938926.848407 14599637 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783938926.848410 14599637 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783938926.848413 14599637 litert_lm_loader.cc:265] section_end_offset: 2167136
+I0000 00:00:1783938926.848418 14599637 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1783938926.848423 14599637 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783938926.848427 14599637 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783938926.848431 14599637 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1783938926.848434 14599637 litert_lm_loader.cc:265] section_end_offset: 497661920
+I0000 00:00:1783938926.848473 14599637 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1783938926.848748 14599637 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1783938926.848754 14599637 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1783938926.848758 14599637 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1783938926.848762 14599637 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1783938926.848765 14599637 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1783938926.848768 14599637 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1783938926.848771 14599637 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1783938926.848774 14599637 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1783938926.848776 14599637 litert_lm_loader.cc:265] section_end_offset: 20716
+I0000 00:00:1783938926.848779 14599637 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1783938926.848782 14599637 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1783938926.848784 14599637 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1783938926.848787 14599637 litert_lm_loader.cc:265] section_end_offset: 2167136
+I0000 00:00:1783938926.848790 14599637 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1783938926.848793 14599637 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1783938926.848796 14599637 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1783938926.848799 14599637 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1783938926.848801 14599637 litert_lm_loader.cc:265] section_end_offset: 497661920
+I0000 00:00:1783938926.849062 14599637 engine_advanced_impl.cc:252] New model files have LlmModelType, loading tokenizer asynchronously
+W0000 00:00:1783938926.849079 14599637 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783938926.849084 14599637 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783938926.849088 14599637 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783938926.849099 14599637 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783938926.849085 14599638 litert_lm_loader.cc:289] Section not found: 
+I0000 00:00:1783938926.849109 14599637 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783938926.849132 14599637 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 512
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-0.6B/snapshots/3adacb36657dbe0119addf143782ed973c680716//qwen3_0_6b_mixed_int4.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151645
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<|im_start|>user\n"
+    suffix: "<|im_end|>\n"
+  }
+  model {
+    prefix: "<|im_start|>assistant\n"
+    suffix: "<|im_end|>\n"
+  }
+  system {
+    prefix: "<|im_start|>system\n"
+    suffix: "<|im_end|>\n"
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 20
+  p: 0.95
+  temperature: 0.6
+}
+max_num_tokens: 2048
+llm_model_type {
+  qwen3 {
+  }
+}
+jinja_prompt_template: "{%- if tools %}\n    {{- \'<|im_start|>system\\n\' }}\n    {%- if messages[0].role == \'system\' %}\n        {{- messages[0].content + \'\\n\\n\' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == \'system\' %}\n        {{- \'<|im_start|>system\\n\' + messages[0].content + \'<|im_end|>\\n\' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith(\'<tool_response>\') and message.content.endswith(\'</tool_response>\')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = \'\' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- \'<|im_start|>\' + message.role + \'\\n\' + content + \'<|im_end|>\' + \'\\n\' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = \'\' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if \'</think>\' in content %}\n                {%- set reasoning_content = content.split(\'</think>\')[0].rstrip(\'\\n\').split(\'<think>\')[-1].lstrip(\'\\n\') %}\n                {%- set content = content.split(\'</think>\')[-1].lstrip(\'\\n\') %}\n            {%- endif %}\n        {%- endif %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- \'<|im_start|>\' + message.role + \'\\n<think>\\n\' + reasoning_content.strip(\'\\n\') + \'\\n</think>\\n\\n\' + content.lstrip(\'\\n\') }}\n            {%- else %}\n                {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n            {%- endif %}\n        {%- else %}\n            {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- \'\\n\' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- \'<tool_call>\\n{\"name\": \"\' }}\n                {{- tool_call.name }}\n                {{- \'\", \"arguments\": \' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- \'}\\n</tool_call>\' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- \'<|im_end|>\\n\' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- \'<|im_start|>user\' }}\n        {%- endif %}\n        {{- \'\\n<tool_response>\\n\' }}\n        {{- content }}\n        {{- \'\\n</tool_response>\' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- \'<|im_end|>\\n\' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- \'<|im_start|>assistant\\n\' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- \'<think>\\n\\n</think>\\n\\n\' }}\n    {%- endif %}\n{%- endif %}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783938926.850556 14599637 model_resources_litert_lm.cc:67] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1783938926.850561 14599637 model_resources_litert_lm.cc:68] litert model size: 495482848
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x100343b00, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x100335db0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7c5af77b60, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7c5af77de0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1783938926.893815 14599637 executor_settings_base.cc:397] File does not exist: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-0.6B/snapshots/3adacb36657dbe0119addf143782ed973c680716//qwen3_0_6b_mixed_int4.litertlm_1783938851_497664000_mldrift_program_cache.bin Cleaning stale caches.
+I0000 00:00:1783938926.893880 14599637 executor_settings_base.cc:408] Deleted 0 stale cache files.
+I0000 00:00:1783938926.893912 14599637 executor_settings_base.cc:351] Deleted 0 stale cache files.
+I0000 00:00:1783938926.893917 14599637 litert_compiled_model_executor_utils.cc:518] Setting serialization dir: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-0.6B/snapshots/3adacb36657dbe0119addf143782ed973c680716
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1783938926.895578 14599637 delegate_webgpu.cc:219] Create WebGPU environment with device substr: 
+I0000 00:00:1783938926.902672 14599637 environment.cc:526] Found 1 adapters
+I0000 00:00:1783938926.902705 14599637 environment.cc:539] adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783938926.902722 14599637 environment.cc:561] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1783938926.903352 14599637 delegate_webgpu.cc:247] Created a WebGPU environment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1783938926.903394 14599637 delegate_webgpu.cc:675] # of threads to upload weights = 2
+I0000 00:00:1783938926.903420 14599637 delegate_webgpu.cc:683] # of threads to compile kernels = 1
+I0000 00:00:1783938927.318833 14599637 delegate_kernel.cc:297] Total 57 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783938927.318848 14599637 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1783938927.493110 14599637 delegate_kernel.cc:297] Total 58 external tensors are used for delegate inputs and outputs
+I0000 00:00:1783938927.493124 14599637 delegate_kernel.cc:817] Initializing WebGPU-based API from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7c561f0640, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7c561f08c0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+W0000 00:00:1783938927.541548 14599637 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783938927.541578 14599637 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+I0000 00:00:1783938927.541582 14599637 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1783938927.541585 14599637 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783938927.541591 14599637 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783938927.541593 14599637 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+I0000 00:00:1783938927.541596 14599637 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1783938927.541598 14599637 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783938927.541601 14599637 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783938927.541603 14599637 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+I0000 00:00:1783938927.541605 14599637 model_resources_litert_lm.cc:67] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1783938927.541622 14599637 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783938927.541625 14599637 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1783938927.541627 14599637 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+I0000 00:00:1783938927.541630 14599637 model_resources_litert_lm.cc:67] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1783938927.541632 14599637 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1783938927.541650 14599637 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1783938927.541655 14599637 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1783938927.541658 14599637 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1783938927.541660 14599637 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1783938927.541668 14599637 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1783938927.541671 14599637 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 512
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--Qwen3-0.6B/snapshots/3adacb36657dbe0119addf143782ed973c680716//qwen3_0_6b_mixed_int4.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151643
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151645
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<|im_start|>user\n"
+    suffix: "<|im_end|>\n"
+  }
+  model {
+    prefix: "<|im_start|>assistant\n"
+    suffix: "<|im_end|>\n"
+  }
+  system {
+    prefix: "<|im_start|>system\n"
+    suffix: "<|im_end|>\n"
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 20
+  p: 0.95
+  temperature: 0.6
+}
+max_num_tokens: 2048
+llm_model_type {
+  qwen3 {
+  }
+}
+jinja_prompt_template: "{%- if tools %}\n    {{- \'<|im_start|>system\\n\' }}\n    {%- if messages[0].role == \'system\' %}\n        {{- messages[0].content + \'\\n\\n\' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == \'system\' %}\n        {{- \'<|im_start|>system\\n\' + messages[0].content + \'<|im_end|>\\n\' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" and message.content is string and not(message.content.startswith(\'<tool_response>\') and message.content.endswith(\'</tool_response>\')) %}\n        {%- set ns.multi_step_tool = false %}\n        {%- set ns.last_query_index = index %}\n    {%- endif %}\n{%- endfor %}\n{%- for message in messages %}\n    {%- if message.content is string %}\n        {%- set content = message.content %}\n    {%- else %}\n        {%- set content = \'\' %}\n    {%- endif %}\n    {%- if (message.role == \"user\") or (message.role == \"system\" and not loop.first) %}\n        {{- \'<|im_start|>\' + message.role + \'\\n\' + content + \'<|im_end|>\' + \'\\n\' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = \'\' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if \'</think>\' in content %}\n                {%- set reasoning_content = content.split(\'</think>\')[0].rstrip(\'\\n\').split(\'<think>\')[-1].lstrip(\'\\n\') %}\n                {%- set content = content.split(\'</think>\')[-1].lstrip(\'\\n\') %}\n            {%- endif %}\n        {%- endif %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {%- if loop.last or (not loop.last and reasoning_content) %}\n                {{- \'<|im_start|>\' + message.role + \'\\n<think>\\n\' + reasoning_content.strip(\'\\n\') + \'\\n</think>\\n\\n\' + content.lstrip(\'\\n\') }}\n            {%- else %}\n                {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n            {%- endif %}\n        {%- else %}\n            {{- \'<|im_start|>\' + message.role + \'\\n\' + content }}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and content) or (not loop.first) %}\n                    {{- \'\\n\' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- \'<tool_call>\\n{\"name\": \"\' }}\n                {{- tool_call.name }}\n                {{- \'\", \"arguments\": \' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- \'}\\n</tool_call>\' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- \'<|im_end|>\\n\' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- \'<|im_start|>user\' }}\n        {%- endif %}\n        {{- \'\\n<tool_response>\\n\' }}\n        {{- content }}\n        {{- \'\\n</tool_response>\' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- \'<|im_end|>\\n\' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- \'<|im_start|>assistant\\n\' }}\n    {%- if enable_thinking is defined and enable_thinking is false %}\n        {{- \'<think>\\n\\n</think>\\n\\n\' }}\n    {%- endif %}\n{%- endif %}"
+  BenchmarkParams:   VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1783938927.541714 14599637 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1783938927.541718 14599637 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1783938927.542458 14599637 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783938927.543573 14599637 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1783938927.595197 14600359 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1783938927.699910 14600359 sampler_factory.cc:450] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.dylib: dlopen(libLiteRtTopKWebGpuSampler.dylib, 0x0005): tried: 'libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), '/System/Volumes/Preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/code/litert-mac-verify/.build/out/Products/Release/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.dQuc6i/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/var/run/com.apple.security.cryptexd/mnt/com.apple.MobileAsset.MetalToolchain-v27.1.5194.15.dQuc6i/Metal.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/Users/majimadaisuke/Downloads/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift-6.2/macosx/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKWebGpuSampler.dylib' (no such file).
+=== Source Location Trace: === 
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1783938927.699938 14600359 sampler_factory.cc:458] Statically linked LiteRtTopKWebGpuSampler C API.
+I0000 00:00:1783938929.145236 14599660 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783938930.614216 14599660 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783938932.086073 14599661 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783938933.552491 14599666 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1783938935.023735 14599666 threadpool.cc:46] ThreadPool 'callback_thread_pool': Shutting down...
+I0000 00:00:1783938935.023778 14600361 threadpool.cc:171] ThreadPool 'callback_thread_pool': Worker thread stopped.
+I0000 00:00:1783938935.023799 14599666 threadpool.cc:75] ThreadPool 'callback_thread_pool': Shutdown complete.
+I0000 00:00:1783938935.023805 14599666 threadpool.cc:46] ThreadPool 'execution_thread_pool': Shutting down...
+I0000 00:00:1783938935.023812 14600359 threadpool.cc:171] ThreadPool 'execution_thread_pool': Worker thread stopped.
+I0000 00:00:1783938935.024036 14599666 threadpool.cc:75] ThreadPool 'execution_thread_pool': Shutdown complete.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7c561f08c0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7c561f0640, name=GPU WebGPU
+engine[gpu] init 0.7s
+OUTPUT: [<think>⏎Okay, the user wants an explanation of on-device AI in simple terms. Let me start by recalling what on-device AI is. From what I remember, it's a type of AI that runs on a device without needing to connect to a cloud or a server. So, like, when you're using a smartphone, you can do things like analyze images or text on your phone without needing to download a model.⏎⏎Wait, but I should make sure. On-device AI is about using models that are pre-trained on data from the device itself. So, for example, if you have a camera on your phone, you can use that camera to analyze images or videos in real-time. That's how it works. It's not about cloud services, but rather the device itself.⏎⏎I should also mention that it's a common practice in mobile devices. For instance, when you take a photo, the AI might analyze it and make decisions like whether to flag it as suspicious. But I need to keep it simple. Let me check if there's any confusion here. On-device AI is about using models that are already trained on data from the device, not the cloud. So, it's not about cloud services but device-specific AI.⏎⏎I should also mention that it's a common practice in mobile devices. For example, when you use a camera, the AI can analyze images in real-time. So, the explanation is about using AI models that are pre-trained on data from the device itself, not the cloud. That's the key point.⏎</think>⏎⏎On-device AI refers to a type of AI technology that runs on a device without requiring an internet connection or cloud. It uses pre-trained models trained on data specific to the device, allowing real-time analysis of data like images, text, or videos on the device itself. This is common in mobile applications and other devices to enhance functionality and performance.]
+OK[gpu] run=1 cold=1 decode_tokens=383 stream_yields=382
+run 1: decode 247.2 tok/s · prefill 388.0 tok/s
+OK[gpu] run=2 cold=0 decode_tokens=383 stream_yields=382
+run 2: decode 267.4 tok/s · prefill 559.6 tok/s
+OK[gpu] run=3 cold=0 decode_tokens=383 stream_yields=382
+run 3: decode 266.8 tok/s · prefill 562.9 tok/s
+OK[gpu] run=4 cold=0 decode_tokens=383 stream_yields=382
+run 4: decode 267.8 tok/s · prefill 563.6 tok/s
+OK[gpu] run=5 cold=0 decode_tokens=383 stream_yields=382
+run 5: decode 266.8 tok/s · prefill 562.4 tok/s

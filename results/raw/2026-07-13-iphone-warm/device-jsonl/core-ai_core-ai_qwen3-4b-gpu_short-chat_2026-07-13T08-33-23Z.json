@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "614B180A-9181-452C-BD2D-2847C337F4A8",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 27.229963976543836,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 57,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 36.90898418426514,
+    "interTokenLatencyP95MS" : 38.5890007019043,
+    "interTokenLatencyP99MS" : 39.682984352111816,
+    "loadTimeSeconds" : 4.6540679931640625,
+    "memoryAfterGenerationMB" : 222.30050659179688,
+    "memoryAfterLoadMB" : 295.9567565917969,
+    "memoryBaselineMB" : 14.376708984375,
+    "memoryPeakDuringDecodeMB" : 306.0036315917969,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 359.3377762947866,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 4.758093953132629
+  },
+  "model" : {
+    "displayName" : "Qwen3-4B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-4b-gpu",
+    "onDiskSizeMB" : 2159,
+    "parameterCountB" : 4,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "<think>\nOkay, the user is asking for an explanation of \"on-device AI\" in simple terms. Let me start by recalling what I know about on-device AI. From what I remember, on-device AI refers to AI models ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:33:23Z"
+}

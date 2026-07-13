@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "53226DC1-3D85-4219-8FF4-20C25AE8AB5A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 60.42458669971422,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 78,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.539931297302246,
+    "interTokenLatencyP95MS" : 17.759084701538086,
+    "interTokenLatencyP99MS" : 18.069028854370117,
+    "memoryAfterGenerationMB" : 1057.0494766235352,
+    "memoryAfterLoadMB" : 1057.0338516235352,
+    "memoryBaselineMB" : 1057.0338516235352,
+    "memoryPeakDuringDecodeMB" : 1057.0807266235352,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 244.9525981640491,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.2042630910873413
+  },
+  "model" : {
+    "displayName" : "Qwen3-1.7B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Qwen3-1.7B-4bit",
+    "id" : "mlx-community\/Qwen3-1.7B-4bit",
+    "onDiskSizeMB" : 1000,
+    "parameterCountB" : 1.7,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "<think>\nOkay, the user is asking about what on-device AI means in simple terms. Let me start by breaking down the key components here. On-device AI refers to processing data locally on a device, like ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:10:43Z"
+}

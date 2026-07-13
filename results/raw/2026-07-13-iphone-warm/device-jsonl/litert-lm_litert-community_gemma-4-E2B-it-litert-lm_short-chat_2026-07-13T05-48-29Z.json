@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.85,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "E15FC1F4-B4D6-44CE-9751-38DFB5978381",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 55.07989654390575,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 111,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.95096492767334,
+    "interTokenLatencyP95MS" : 25.274038314819336,
+    "interTokenLatencyP99MS" : 26.742100715637207,
+    "loadTimeSeconds" : 4.412199020385742,
+    "memoryAfterGenerationMB" : 447.2382583618164,
+    "memoryAfterLoadMB" : 524.45703125,
+    "memoryBaselineMB" : 15.454879760742188,
+    "memoryPeakDuringDecodeMB" : 524.45703125,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.4347009658813477
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "INT4 (QAT)"
+  },
+  "outputSample" : "Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T05:48:29Z"
+}

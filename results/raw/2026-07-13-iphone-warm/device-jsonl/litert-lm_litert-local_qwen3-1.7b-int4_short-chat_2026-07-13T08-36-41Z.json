@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "EECF08A5-192D-4056-B780-310960F49DB4",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 47.939499912759494,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 755,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 20.82204818725586,
+    "interTokenLatencyP95MS" : 22.28999137878418,
+    "interTokenLatencyP99MS" : 23.21803569793701,
+    "loadTimeSeconds" : 7.455047965049744,
+    "memoryAfterGenerationMB" : 410.112548828125,
+    "memoryAfterLoadMB" : 752.9097671508789,
+    "memoryBaselineMB" : 15.361083984375,
+    "memoryPeakDuringDecodeMB" : 802.7535171508789,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.4246360063552856
+  },
+  "model" : {
+    "displayName" : "Qwen3-1.7B (.litertlm, local int4 mixed)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "litert-local\/Qwen3-1.7B-int4",
+    "id" : "litert-local\/qwen3-1.7b-int4",
+    "onDiskSizeMB" : 1438,
+    "parameterCountB" : 1.7,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (mixed, int8 embed)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants me to explain what on-device AI is in simple terms. Let me think.\n\nFirst, I need to understand what on-device AI is. From what I know, AI is like training a model that can",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T08:36:41Z"
+}
