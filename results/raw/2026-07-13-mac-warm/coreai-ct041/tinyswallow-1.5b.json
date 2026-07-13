@@ -1,0 +1,32 @@
+{
+  "averages" : {
+    "generation_tps" : 326.5337380468742,
+    "prompt_tps" : 4240.573264040943
+  },
+  "generation_tokens" : 1024,
+  "model" : "tinyswallow_1_5b_dynamic_ct041",
+  "num_trials" : 5,
+  "prompt_tokens" : 512,
+  "trials" : [
+    {
+      "gen_tps" : 326.08292019060315,
+      "prompt_tps" : 4256.3125833301
+    },
+    {
+      "gen_tps" : 326.28480449031576,
+      "prompt_tps" : 4216.345774479556
+    },
+    {
+      "gen_tps" : 326.4528137468227,
+      "prompt_tps" : 4211.94067576985
+    },
+    {
+      "gen_tps" : 326.7443962008952,
+      "prompt_tps" : 4254.636964292594
+    },
+    {
+      "gen_tps" : 327.1037556057342,
+      "prompt_tps" : 4263.630322332618
+    }
+  ]
+}

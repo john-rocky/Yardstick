@@ -1,0 +1,32 @@
+{
+  "averages" : {
+    "generation_tps" : 188.78742289098304,
+    "prompt_tps" : 1992.811609817821
+  },
+  "generation_tokens" : 1024,
+  "model" : "ministral3_3b_dynamic_ct041",
+  "num_trials" : 5,
+  "prompt_tokens" : 512,
+  "trials" : [
+    {
+      "gen_tps" : 188.88542372660365,
+      "prompt_tps" : 1992.195294780235
+    },
+    {
+      "gen_tps" : 188.83766792771496,
+      "prompt_tps" : 1993.225493709108
+    },
+    {
+      "gen_tps" : 188.63403855588473,
+      "prompt_tps" : 1993.8568181043756
+    },
+    {
+      "gen_tps" : 188.79067224050527,
+      "prompt_tps" : 1993.3609788881854
+    },
+    {
+      "gen_tps" : 188.7893120042065,
+      "prompt_tps" : 1991.4194636072004
+    }
+  ]
+}

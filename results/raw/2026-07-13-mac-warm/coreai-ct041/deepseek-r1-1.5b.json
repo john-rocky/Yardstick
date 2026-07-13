@@ -1,0 +1,32 @@
+{
+  "averages" : {
+    "generation_tps" : 324.3957212596159,
+    "prompt_tps" : 4230.670860752505
+  },
+  "generation_tokens" : 1024,
+  "model" : "deepseek_r1_1_5b_dynamic_ct041",
+  "num_trials" : 5,
+  "prompt_tokens" : 512,
+  "trials" : [
+    {
+      "gen_tps" : 324.4902214610077,
+      "prompt_tps" : 4236.848363412226
+    },
+    {
+      "gen_tps" : 324.62630031789644,
+      "prompt_tps" : 4227.324647105911
+    },
+    {
+      "gen_tps" : 324.60909374289395,
+      "prompt_tps" : 4221.559027025629
+    },
+    {
+      "gen_tps" : 323.57014803883993,
+      "prompt_tps" : 4223.89675529161
+    },
+    {
+      "gen_tps" : 324.6828427374416,
+      "prompt_tps" : 4243.7255109271455
+    }
+  ]
+}

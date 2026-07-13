@@ -1,0 +1,32 @@
+{
+  "averages" : {
+    "generation_tps" : 326.87670032889116,
+    "prompt_tps" : 4223.253397667897
+  },
+  "generation_tokens" : 1024,
+  "model" : "vibethinker_1_5b_dynamic_ct041",
+  "num_trials" : 5,
+  "prompt_tokens" : 512,
+  "trials" : [
+    {
+      "gen_tps" : 328.0835466348628,
+      "prompt_tps" : 4259.6131732131425
+    },
+    {
+      "gen_tps" : 326.09645886777395,
+      "prompt_tps" : 4190.067004245307
+    },
+    {
+      "gen_tps" : 326.50368969132995,
+      "prompt_tps" : 4214.438361266677
+    },
+    {
+      "gen_tps" : 327.9536354345728,
+      "prompt_tps" : 4232.59718685884
+    },
+    {
+      "gen_tps" : 325.74617101591633,
+      "prompt_tps" : 4219.55126275552
+    }
+  ]
+}
