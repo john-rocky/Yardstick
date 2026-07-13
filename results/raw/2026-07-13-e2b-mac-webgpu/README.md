@@ -8,7 +8,7 @@ xcframework, WebGPU/Dawn→Metal backend, `litert-mac-verify <model> "<1,029-tok
 --max-tokens 2048 --runs 5 --backend gpu` (the `--runs N` flag repeats generation in-process:
 run 1 pays any remaining one-time cost, later runs are warm; each run is a fresh conversation).
 
-## Result — `e2b_webgpu_1029tok_runs5_clean.log`
+## Result — `e2b_webgpu_1029tok_runs5_clean.txt`
 
 | run | decode tok/s | prefill tok/s |
 |---|---:|---:|
@@ -24,15 +24,15 @@ prompt length).
 
 ## Cold vs warm — the earlier confusion
 
-- `e2b_webgpu_1029tok_single_cachebuild.log`: first invocation after ML Drift cache build
+- `e2b_webgpu_1029tok_single_cachebuild.txt`: first invocation after ML Drift cache build
   read **prefill 2,882 / decode 125.8** — the one-time cache/compile cost, not steady state.
-- `e2b_webgpu_1029tok_runs4_contended.log`: 4-run capture taken while unrelated GPU work ran
+- `e2b_webgpu_1029tok_runs4_contended.txt`: 4-run capture taken while unrelated GPU work ran
   concurrently (browser); run 1 cold 751/75.6, warm 5,785–7,314 / 108–148. Kept for provenance.
 - Same warm-vs-cold split as the iPhone numbers: the card is a warm protocol.
 
 ## Source-build (yardstick) accelerator evidence
 
-`yardstick_e2b_shortchat_console.log` shows the SwiftPM source-vendored v0.13.1 build also
+`yardstick_e2b_shortchat_console.txt` shows the SwiftPM source-vendored v0.13.1 build also
 selects WebGPU→Metal (`Selected adapter: Apple M4 Max ... backend=Metal`, `Initializing
 WebGPU-based API`), decoding E2B at 130.4 tok/s cold (`yardstick_e2b_shortchat.jsonl`).
 The `Failed to create OpenCL context` INFO line appears on this working GPU path too — it is
