@@ -8,10 +8,29 @@ Every runtime sees the same prompt text and the same `maxTokens` limit. If a run
 
 ## 2. Cold and warm runs are reported separately
 
-- **Cold** — app launched fresh, model loaded for the first time, first generation.
-- **Warm** — model already in memory, second or later generation in the same session.
+Three distinct regimes — a table must say which one each number is (tightened 2026-07-13 after
+the E2B card reconciliation, where conflating them produced a 2.6× prefill "discrepancy" that
+was purely protocol):
 
-Both numbers matter. Cold matters for app launch latency. Warm matters for the user's second message in a chat.
+- **First-ever** — first launch after install: compilation/weight caches (ML Drift cache,
+  Core AI Metal pipeline cache) are built during the run. One-time cost; report separately
+  where relevant, never as the engine's speed.
+- **Cold** — fresh process launch, caches already on disk, first generation. This is what this
+  repo's historical "median of 3 cold launches" tables measure. It is a *first-use latency*
+  metric, *not* comparable with vendor model cards.
+- **Warm** — in-process steady state: run generation N≥2 in the same process (`--runs 4`,
+  discard run 1, report the **median of runs 2–4**). This is the vendor-card convention
+  (HF litert-community cards, Core AI marketing numbers) and the headline for cross-vendor
+  comparison.
+
+Warm-up gains are **engine-dependent** (measured: Core AI ~2.5×, LiteRT E2B ~1.1×, MLX ≈ flat),
+so cold rankings do not imply warm rankings — a table that compares engines must hold the regime
+fixed, and a table meant to be checked against official cards must be warm.
+
+Thermal guard for warm campaigns: ≥100 s cooldown between cells; verify
+`initialThermalState == nominal` in the per-run JSONL post-hoc, re-run flagged cells.
+
+Both numbers matter. Cold matters for app launch latency. Warm matters for the user's second message in a chat — and for any comparison against published vendor numbers.
 
 ## 3. Quantization is explicit
 

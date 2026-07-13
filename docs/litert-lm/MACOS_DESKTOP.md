@@ -1,4 +1,16 @@
-# macOS desktop — LiteRT-LM is CPU-only on Apple Silicon (finding + Qwen3 scaling)
+# macOS desktop — ~~LiteRT-LM is CPU-only on Apple Silicon~~ RETRACTED (finding + Qwen3 scaling)
+
+> **⚠️ RETRACTION (2026-07-13).** The headline finding of this page was a misreading. The
+> `Failed to create OpenCL context` INFO line is a **benign probe inside GpuEnvironment** — it
+> appears on the *working* GPU path too, immediately followed by `Created Metal device from
+> provided device id`. Re-run on 2026-07-13, the current `yardstick` source build selects the
+> **WebGPU/Dawn→Metal GPU backend** (adapter log: `Apple M4 Max … backend=Metal`) and decodes
+> Gemma-4-E2B at 130 tok/s cold — clearly GPU, not XNNPACK. Evidence:
+> [`../../results/raw/2026-07-13-e2b-mac-webgpu/`](../../results/raw/2026-07-13-e2b-mac-webgpu/).
+> The Qwen3 scaling numbers below therefore need re-verification: they may have been GPU numbers
+> all along (their ~50–68%-of-MLX ratios match the known WebGPU-vs-native-Metal kernel gap), and
+> the "CPU" labels in RESULTS.md derived from this page are suspect until re-captured. Kept for
+> provenance; do not cite the CPU-only claim.
 
 > Part of the [LiteRT-LM package](README.md). Desktop tier (Apple M4 Max). Kept separate from the
 > iPhone GPU tables because **the headline here is a compute-unit finding, not a like-for-like GPU
