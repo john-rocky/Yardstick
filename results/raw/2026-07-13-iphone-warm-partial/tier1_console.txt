@@ -1,0 +1,57 @@
+==== CELL mlx-swift / mlx-community/Qwen3-0.6B-4bit 15:11:49 ====
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/Qwen3-0.6B-4bit task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=177.87 ttft_ms=1335 prefill_tok_s=14.3 prompt_tokens=19 peak_mb=472 tokens=128
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=179.48 ttft_ms=37 prefill_tok_s=524.3 prompt_tokens=19 peak_mb=461 tokens=128
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=179.58 ttft_ms=38 prefill_tok_s=515.1 prompt_tokens=19 peak_mb=461 tokens=128
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=178.76 ttft_ms=38 prefill_tok_s=517.6 prompt_tokens=19 peak_mb=451 tokens=128
+---- cooldown 100s ----
+==== CELL litert-lm / litert-community/Qwen3-0.6B 15:14:06 ====
+YARDSTICK_BEGIN runtime=litert-lm model=litert-community/Qwen3-0.6B task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=121.02 ttft_ms=239 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1263 tokens=128
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=120.43 ttft_ms=602077 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1178 tokens=128
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=120.86 ttft_ms=602108 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=922 tokens=128
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=116.71 ttft_ms=602022 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=923 tokens=128
+---- cooldown 100s ----
+==== CELL core-ai / core-ai/qwen3-0.6b-ane 15:47:18 ====
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-0.6b-ane task=short-chat runs=4
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Core AI bundle 'qwen3_0_6b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: Core AI bundle 'qwen3_0_6b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: Core AI bundle 'qwen3_0_6b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=4 error=Model load failed: Core AI bundle 'qwen3_0_6b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+---- cooldown 100s ----
+==== CELL core-ai / core-ai/qwen3-0.6b-gpu 15:49:00 ====
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-0.6b-gpu task=short-chat runs=4
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Core AI bundle 'qwen3_0_6b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: Core AI bundle 'qwen3_0_6b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: Core AI bundle 'qwen3_0_6b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=4 error=Model load failed: Core AI bundle 'qwen3_0_6b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_0_6b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+---- cooldown 100s ----
+==== CELL mlx-swift / mlx-community/Qwen3-1.7B-4bit 15:50:41 ====
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/Qwen3-1.7B-4bit task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=54.79 ttft_ms=146 prefill_tok_s=135.9 prompt_tokens=19 peak_mb=1087 tokens=128
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=57.05 ttft_ms=77 prefill_tok_s=250.2 prompt_tokens=19 peak_mb=1087 tokens=128
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=61.91 ttft_ms=77 prefill_tok_s=250.3 prompt_tokens=19 peak_mb=1060 tokens=128
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=62.19 ttft_ms=78 prefill_tok_s=248.5 prompt_tokens=19 peak_mb=1060 tokens=128
+---- cooldown 100s ----
+==== CELL litert-lm / litert-local/qwen3-1.7b-int4 15:54:19 ====
+YARDSTICK_BEGIN runtime=litert-lm model=litert-local/qwen3-1.7b-int4 task=short-chat runs=4
+YARDSTICK_RUN_FAIL run=1 error=Model download failed: The operation couldn’t be completed. (HuggingFace.HTTPClientError error 1.)
+YARDSTICK_RUN_FAIL run=2 error=Model download failed: The operation couldn’t be completed. (HuggingFace.HTTPClientError error 1.)
+YARDSTICK_RUN_FAIL run=3 error=Model download failed: The operation couldn’t be completed. (HuggingFace.HTTPClientError error 1.)
+YARDSTICK_RUN_FAIL run=4 error=Model download failed: The operation couldn’t be completed. (HuggingFace.HTTPClientError error 1.)
+---- cooldown 100s ----
+==== CELL core-ai / core-ai/qwen3-1.7b-gpu 15:56:01 ====
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-1.7b-gpu task=short-chat runs=4
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Core AI bundle 'qwen3_1_7b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: Core AI bundle 'qwen3_1_7b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: Core AI bundle 'qwen3_1_7b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=4 error=Model load failed: Core AI bundle 'qwen3_1_7b_gpu' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_gpu/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+---- cooldown 100s ----
+==== CELL core-ai / core-ai/qwen3-1.7b-ane 15:57:42 ====
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-1.7b-ane task=short-chat runs=4
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Core AI bundle 'qwen3_1_7b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: Core AI bundle 'qwen3_1_7b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: Core AI bundle 'qwen3_1_7b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+YARDSTICK_RUN_FAIL run=4 error=Model load failed: Core AI bundle 'qwen3_1_7b_ane' not found. Side-load the exported folder into Documents/CoreAIModels/qwen3_1_7b_ane/ (it must contain metadata.json, the .aimodel, and tokenizer/).
+---- cooldown 100s ----
+TIER1_DONE
