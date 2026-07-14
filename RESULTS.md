@@ -33,9 +33,9 @@ On-device / on-Mac measurements. Each row is a `(runtime, model, device, task, b
 
 - **Devices** (2): iPhone 17 Pro, Mac M4 Max
 - **Runtimes** (6): apple-fm, core-ai, coreml-llm, litert-lm, llama.cpp, mlx-swift
-- **Models** (37): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-4b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/minicpm5-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, mlx-community/LFM2-350M-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
+- **Models** (67): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/deepseek-r1-1.5b-ane, core-ai/deepseek-r1-1.5b-gpu, core-ai/gemma3-1b-gpu, core-ai/llama-3.2-3b-ane, core-ai/llama-3.2-3b-gpu, core-ai/ministral-3b-gpu, core-ai/olmo2-1b-ane, core-ai/olmo2-1b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-ane-june, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-1.7b-gpu-june, core-ai/qwen3-4b-gpu, core-ai/smollm3-3b-gpu, core-ai/tinyswallow-1.5b-ane, core-ai/tinyswallow-1.5b-gpu, core-ai/vibethinker-1.5b-ane, core-ai/vibethinker-1.5b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/DeepSeek-R1-Distill-Qwen-1.5B, litert-community/Gemma3-1B-IT, litert-community/Phi-4-mini-instruct, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/TinySwallow-1.5B-Instruct, litert-community/VibeThinker-1.5B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/llama32-3b, litert-local/minicpm5-1b, litert-local/ministral3-3b, litert-local/olmo2-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, litert-local/smollm3-3b, mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit, mlx-community/LFM2-350M-4bit, mlx-community/Llama-3.2-3B-Instruct-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Phi-4-mini-instruct-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/SmolLM3-3B-4bit, mlx-community/TinySwallow-1.5B-Instruct-4bit, mlx-community/gemma-3-1b-it-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
 - **Tasks** (7): energy, long-context, long-context-32k, long-context-8k, quality, short-chat, sustained-generation
-- **Total runs**: 188
+- **Total runs**: 310
 
 
 ## At-a-glance
@@ -44,11 +44,12 @@ The cross-runtime cell with the broadest coverage today — **Qwen 3 0.6B** on *
 
 | Runtime | Quant | n | TTFT (ms) | Decode cold | Decode warm | Prefill tok/s | Peak Mem (MB) |
 |---|---|---:|---:|---:|---:|---:|---:|
-| core-ai | 4-bit palettized (uniform g32) | 3 | 41 | 143.7 | — | 511.1 | 1158 |
+| core-ai | mixed 4/8-bit (June static export) | 4 | 79 | 124.9 | 122.4 | 266.6 | 1149 |
+| core-ai | 4-bit palettized (uniform g32) | 4 | 102 | 118.7 | 116.9 | 192.9 | 1159 |
 | core-ai | INT4 (dynamic) | 3 | 16 | 193.3 | — | 1699.9 | 196 |
 | coreml-llm | INT8 palettized | 3 | 572 | 37.7 | — | 33.2 | 987 |
-| litert-lm | INT4 (mixed, blockwise gs32) | 4 | 239 | 121.0 | 120.4 | — | 1050 |
-| mlx-swift | Q4 | 4 | 67 | 167.2 | 158.8 | 316.6 | 483 |
+| litert-lm | INT4 (mixed, blockwise gs32) | 4 | 502 | 120.9 | 119.3 | — | 930 |
+| mlx-swift | Q4 | 4 | 47 | 172.5 | 163.6 | 455.3 | 483 |
 
 ## Pivot 1 — by model
 
@@ -90,12 +91,18 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 1 | 0.9 | 369 | 351.5 | 28.3 | — | 2502 |
 
+### Gemma 3 1B  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/gemma-3-1b-it-4bit` | Q4 | 4 | 1.8 | 1150 | 19.5 | 104.3 | 104.9 | 901 |
+
 ### Gemma 4 E2B  (iPhone 17 Pro, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | coreml-llm ⚠️ | `coreml-llm/gemma4-e2b` | INT4 palettized | 3 | 4.7 | 728 | — | 33.4 | — | 1187 |
-| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | INT4 (QAT) | 4 | 3.4 | 430 | — | 55.5 | 59.7 | 458 |
+| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | INT4 (QAT) | 4 | 1.1 | 717 | — | 53.5 | 56.8 | 449 |
 | llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | 3 | 3.2 | 128 | 1455.6 | 35.5 | — | 253 |
 | mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | 3 | 2.7 | 155 | 169.9 | 46.2 | — | 3094 |
 
@@ -103,20 +110,22 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| core-ai | `core-ai/qwen3-0.6b-ane` | 4-bit palettized (uniform g32) | 3 | 1.0 | 41 | 511.1 | 143.7 | — | 1158 |
+| core-ai | `core-ai/qwen3-0.6b-ane-june` | mixed 4/8-bit (June static export) | 4 | 59.8 | 79 | 266.6 | 124.9 | 122.4 | 1149 |
+| core-ai | `core-ai/qwen3-0.6b-ane` | 4-bit palettized (uniform g32) | 4 | 1.9 | 102 | 192.9 | 118.7 | 116.9 | 1159 |
 | core-ai | `core-ai/qwen3-0.6b-gpu` | INT4 (dynamic) | 3 | 0.9 | 16 | 1699.9 | 193.3 | — | 196 |
 | coreml-llm | `coreml-llm/qwen3-0.6b` | INT8 palettized | 3 | 13.7 | 572 | 33.2 | 37.7 | — | 987 |
-| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | 4 | 79.1 | 239 | — | 121.0 | 120.4 | 1050 |
-| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 4 | 0.9 | 67 | 316.6 | 167.2 | 158.8 | 483 |
+| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | 4 | 1.6 | 502 | — | 120.9 | 119.3 | 930 |
+| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 4 | 0.9 | 47 | 455.3 | 172.5 | 163.6 | 483 |
 
 ### Qwen 3 1.7B  (iPhone 17 Pro, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| core-ai | `core-ai/qwen3-1.7b-gpu` | INT4 (dynamic) | 3 | 1.1 | 29 | 753.5 | 65.4 | — | 248 |
-| litert-lm | `litert-local/qwen3-1.7b-int4` | INT4 (mixed, int8 embed) | 4 | 3.5 | 919 | — | 47.6 | 48.2 | 1325 |
+| core-ai | `core-ai/qwen3-1.7b-gpu-june` | INT4 (dynamic, June export) | 4 | 1.7 | 31 | 768.5 | 67.9 | 67.6 | 270 |
+| core-ai | `core-ai/qwen3-1.7b-gpu` | INT4 (dynamic) | 4 | 1.7 | 31 | 763.6 | 64.7 | 66.3 | 275 |
+| litert-lm | `litert-local/qwen3-1.7b-int4` | INT4 (mixed, int8 embed) | 4 | 0.5 | 1252 | — | 46.8 | 49.3 | 834 |
 | litert-lm | `litert-local/qwen3-1.7b` | INT8 (dynamic, ekv1024) | 3 | 0.6 | 453 | — | 30.1 | — | 512 |
-| mlx-swift | `mlx-community/Qwen3-1.7B-4bit` | Q4 | 4 | 1.2 | 90 | 222.3 | 62.4 | 60.4 | 1068 |
+| mlx-swift | `mlx-community/Qwen3-1.7B-4bit` | Q4 | 4 | 1.4 | 85 | 235.4 | 63.9 | 65.1 | 1063 |
 
 ### Qwen 3.5 2B  (iPhone 17 Pro, short-chat)
 
@@ -126,23 +135,175 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | llama.cpp ⚠️ | `unsloth/Qwen3.5-2B-GGUF/Q4_K_M` | Q4_K_M | 3 | 0.3 | 96 | 2503.9 | 39.1 | — | 1479 |
 | mlx-swift ⚠️ | `mlx-community/Qwen3.5-2B-MLX-4bit` | Q4 | 3 | 1.9 | 103 | 249.3 | 61.2 | — | 1279 |
 
+### SmolLM 3B  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/smollm3-3b-gpu` | INT4 (dynamic) | 4 | 3.7 | 308 | 877.9 | 34.6 | 36.9 | 394 |
+| litert-lm | `litert-local/smollm3-3b` | INT4 | 4 | 7.5 | 633 | — | 22.7 | 22.9 | 2575 |
+| mlx-swift | `mlx-community/SmolLM3-3B-4bit` | Q4 | 4 | 2.1 | 442 | 597.2 | 34.6 | 34.3 | 2076 |
+
+### core-ai/deepseek-r1-1.5b-ane  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/deepseek-r1-1.5b-ane` | 4-bit palettized (uniform g32) | 4 | 125.1 | 75 | 235.6 | 81.9 | 73.8 | 1328 |
+
+### core-ai/deepseek-r1-1.5b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/deepseek-r1-1.5b-gpu` | INT4 (dynamic) | 4 | 1.6 | 25 | 712.1 | 75.8 | 74.8 | 231 |
+
+### core-ai/gemma3-1b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/gemma3-1b-gpu` | INT4 (dynamic) | 4 | 2.6 | 192 | 713.4 | 94.3 | 107.6 | 331 |
+
+### core-ai/llama-3.2-3b-ane  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/llama-3.2-3b-ane` | 4-bit palettized (uniform g32) | 3 | 0.0 | 58 | 897.4 | — | 38.0 | 2504 |
+
+### core-ai/llama-3.2-3b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/llama-3.2-3b-gpu` | INT4 (dynamic) | 3 | 0.0 | 84 | 622.6 | — | 34.8 | 289 |
+
+### core-ai/ministral-3b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/ministral-3b-gpu` | INT4 (dynamic) | 4 | 4.0 | 711 | 795.0 | 29.3 | 30.8 | 1827 |
+
+### core-ai/olmo2-1b-ane  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/olmo2-1b-ane` | 4-bit palettized (uniform g32) | 4 | 77.4 | 103 | 218.3 | 96.3 | 92.2 | 1567 |
+
+### core-ai/olmo2-1b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/olmo2-1b-gpu` | INT4 (dynamic) | 4 | 1.2 | 21 | 1180.8 | 92.5 | 86.5 | 223 |
+
 ### core-ai/qwen3-4b-gpu  (iPhone 17 Pro, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| core-ai | `core-ai/qwen3-4b-gpu` | INT4 (dynamic) | 1 | 12.0 | 286 | 69.5 | 20.8 | — | 335 |
+| core-ai | `core-ai/qwen3-4b-gpu` | INT4 (dynamic) | 4 | 4.5 | 60 | 360.2 | 27.0 | 26.4 | 274 |
+
+### core-ai/tinyswallow-1.5b-ane  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/tinyswallow-1.5b-ane` | 4-bit palettized (uniform g32) | 4 | 104.2 | 90 | 723.7 | 72.9 | 65.7 | 1242 |
+
+### core-ai/tinyswallow-1.5b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/tinyswallow-1.5b-gpu` | INT4 (dynamic) | 4 | 3.2 | 49 | 1437.0 | 69.7 | 74.2 | 222 |
+
+### core-ai/vibethinker-1.5b-ane  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/vibethinker-1.5b-ane` | 4-bit palettized (uniform g32) | 4 | 1.0 | 48 | 850.6 | 73.4 | 73.8 | 1241 |
+
+### core-ai/vibethinker-1.5b-gpu  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| core-ai | `core-ai/vibethinker-1.5b-gpu` | INT4 (dynamic) | 4 | 1.7 | 36 | 1254.3 | 71.0 | 74.2 | 225 |
+
+### litert-community/DeepSeek-R1-Distill-Qwen-1.5B  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | 4 | 6.6 | 174 | — | 30.8 | 28.9 | 1018 |
+
+### litert-community/Gemma3-1B-IT  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | 4 | 4.6 | 65 | — | 72.7 | 72.1 | 1076 |
+
+### litert-community/Phi-4-mini-instruct  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | 4 | 16.0 | 2749 | 7.1 | 11.1 | 11.0 | 3443 |
 
 ### litert-community/Qwen3-4B  (iPhone 17 Pro, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | 4 | 11.5 | 1588 | — | 24.6 | 23.8 | 1637 |
+| litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | 3 | 4.1 | 2285 | — | 24.2 | — | 1897 |
+
+### litert-community/TinySwallow-1.5B-Instruct  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | 4 | 5.0 | 548 | — | 30.6 | 30.5 | 860 |
+
+### litert-community/VibeThinker-1.5B  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | 4 | 0.5 | 925 | — | 29.7 | — | 542 |
+
+### litert-local/llama32-3b  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/llama32-3b` | INT4 | 4 | 7.9 | 671 | — | 19.2 | 18.2 | 3676 |
+
+### litert-local/ministral3-3b  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/ministral3-3b` | INT4 | 4 | 3.5 | 1641 | — | 19.0 | 18.4 | 3057 |
+
+### litert-local/olmo2-1b  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/olmo2-1b` | INT4 | 4 | 3.5 | 298 | 106.1 | 26.4 | 20.6 | 3290 |
+
+### mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit` | Q4 | 4 | 1.6 | 1230 | 13.0 | 74.5 | 73.2 | 1069 |
+
+### mlx-community/Llama-3.2-3B-Instruct-4bit  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/Llama-3.2-3B-Instruct-4bit` | Q4 | 4 | 2.3 | 154 | 314.9 | 34.4 | 33.8 | 1925 |
+
+### mlx-community/Phi-4-mini-instruct-4bit  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/Phi-4-mini-instruct-4bit` | Q4 | 4 | 2.1 | 145 | 91.8 | 29.5 | 29.3 | 2246 |
 
 ### mlx-community/Qwen3-4B-4bit  (iPhone 17 Pro, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 4 | 98.5 | 269 | 72.6 | 28.1 | 27.9 | 2323 |
+| mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 4 | 2.3 | 160 | 121.9 | 28.4 | 28.0 | 2323 |
+
+### mlx-community/TinySwallow-1.5B-Instruct-4bit  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | 4 | 1.5 | 103 | 602.3 | 72.6 | 72.9 | 990 |
 
 ### Qwen 3 0.6B  (Mac M4 Max, long-context)
 
@@ -437,10 +598,25 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 
 | Model | Params (B) | Quant | n | TTFT (ms, median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---:|---|---:|---:|---:|---:|---:|
-| Qwen3-0.6B (Core AI, ANE) | 0.6 | 4-bit palettized (uniform g32) | 3 | 41 | 143.7 | — | 1158 |
+| Qwen3-0.6B (Core AI, ANE) | 0.6 | 4-bit palettized (uniform g32) | 4 | 102 | 118.7 | 116.9 | 1159 |
+| Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage) | 0.6 | mixed 4/8-bit (June static export) | 4 | 79 | 124.9 | 122.4 | 1149 |
 | Qwen3-0.6B (Core AI, GPU) | 0.6 | INT4 (dynamic) | 3 | 16 | 193.3 | — | 196 |
-| Qwen3-1.7B (Core AI, GPU) | 1.7 | INT4 (dynamic) | 3 | 29 | 65.4 | — | 248 |
-| Qwen3-4B (Core AI, GPU) | 4 | INT4 (dynamic) | 1 | 286 | 20.8 | — | 335 |
+| Gemma3-1B (Core AI, GPU) | 1 | INT4 (dynamic) | 4 | 192 | 94.3 | 107.6 | 331 |
+| OLMo-2-1B (Core AI, ANE) | 1 | 4-bit palettized (uniform g32) | 4 | 103 | 96.3 | 92.2 | 1567 |
+| OLMo-2-1B (Core AI, GPU) | 1 | INT4 (dynamic) | 4 | 21 | 92.5 | 86.5 | 223 |
+| DeepSeek-R1-1.5B (Core AI, ANE) | 1.5 | 4-bit palettized (uniform g32) | 4 | 75 | 81.9 | 73.8 | 1328 |
+| DeepSeek-R1-1.5B (Core AI, GPU) | 1.5 | INT4 (dynamic) | 4 | 25 | 75.8 | 74.8 | 231 |
+| TinySwallow-1.5B (Core AI, ANE) | 1.5 | 4-bit palettized (uniform g32) | 4 | 90 | 72.9 | 65.7 | 1242 |
+| TinySwallow-1.5B (Core AI, GPU) | 1.5 | INT4 (dynamic) | 4 | 49 | 69.7 | 74.2 | 222 |
+| VibeThinker-1.5B (Core AI, ANE) | 1.5 | 4-bit palettized (uniform g32) | 4 | 48 | 73.4 | 73.8 | 1241 |
+| VibeThinker-1.5B (Core AI, GPU) | 1.5 | INT4 (dynamic) | 4 | 36 | 71.0 | 74.2 | 225 |
+| Qwen3-1.7B (Core AI, GPU) | 1.7 | INT4 (dynamic) | 4 | 31 | 64.7 | 66.3 | 275 |
+| Qwen3-1.7B (Core AI, GPU, June lineage) | 1.7 | INT4 (dynamic, June export) | 4 | 31 | 67.9 | 67.6 | 270 |
+| Llama-3.2-3B (Core AI, ANE) | 3 | 4-bit palettized (uniform g32) | 3 | 58 | — | 38.0 | 2504 |
+| Llama-3.2-3B (Core AI, GPU) | 3 | INT4 (dynamic) | 3 | 84 | — | 34.8 | 289 |
+| Ministral-3-3B (Core AI, GPU) | 3 | INT4 (dynamic) | 4 | 711 | 29.3 | 30.8 | 1827 |
+| SmolLM3-3B (Core AI, GPU) | 3 | INT4 (dynamic) | 4 | 308 | 34.6 | 36.9 | 394 |
+| Qwen3-4B (Core AI, GPU) | 4 | INT4 (dynamic) | 4 | 60 | 27.0 | 26.4 | 274 |
 
 ### `coreml-llm`  (iPhone 17 Pro, short-chat)
 
@@ -454,11 +630,20 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 
 | Model | Params (B) | Quant | n | TTFT (ms, median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---:|---|---:|---:|---:|---:|---:|
-| Qwen3 0.6B (.litertlm) | 0.6 | INT4 (mixed, blockwise gs32) | 4 | 239 | 121.0 | 120.4 | 1050 |
+| Qwen3 0.6B (.litertlm) | 0.6 | INT4 (mixed, blockwise gs32) | 4 | 502 | 120.9 | 119.3 | 930 |
+| Gemma3-1B (.litertlm, official int4) | 1 | INT4 | 4 | 65 | 72.7 | 72.1 | 1076 |
+| OLMo-2-1B (.litertlm, local int4) | 1 | INT4 | 4 | 298 | 26.4 | 20.6 | 3290 |
+| DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | 1.5 | INT8 | 4 | 174 | 30.8 | 28.9 | 1018 |
+| TinySwallow-1.5B (.litertlm) | 1.5 | INT8 | 4 | 548 | 30.6 | 30.5 | 860 |
+| VibeThinker-1.5B (.litertlm) | 1.5 | INT8 | 4 | 925 | 29.7 | — | 542 |
 | Qwen3-1.7B (.litertlm, local int8) | 1.7 | INT8 (dynamic, ekv1024) | 3 | 453 | 30.1 | — | 512 |
-| Qwen3-1.7B (.litertlm, local int4 mixed) | 1.7 | INT4 (mixed, int8 embed) | 4 | 919 | 47.6 | 48.2 | 1325 |
-| Gemma 4 E2B (.litertlm) | 2 | INT4 (QAT) | 4 | 430 | 55.5 | 59.7 | 458 |
-| Qwen3 4B (.litertlm) | 4 | INT4 (mixed, blockwise gs32) | 4 | 1588 | 24.6 | 23.8 | 1637 |
+| Qwen3-1.7B (.litertlm, local int4 mixed) | 1.7 | INT4 (mixed, int8 embed) | 4 | 1252 | 46.8 | 49.3 | 834 |
+| Gemma 4 E2B (.litertlm) | 2 | INT4 (QAT) | 4 | 717 | 53.5 | 56.8 | 449 |
+| Llama-3.2-3B (.litertlm, local int4) | 3 | INT4 | 4 | 671 | 19.2 | 18.2 | 3676 |
+| Ministral-3-3B (.litertlm, local int4) | 3 | INT4 | 4 | 1641 | 19.0 | 18.4 | 3057 |
+| SmolLM3-3B (.litertlm, local int4) | 3 | INT4 | 4 | 633 | 22.7 | 22.9 | 2575 |
+| Phi-4-mini (.litertlm) | 3.8 | INT8 | 4 | 2749 | 11.1 | 11.0 | 3443 |
+| Qwen3 4B (.litertlm) | 4 | INT4 (mixed, blockwise gs32) | 3 | 2285 | 24.2 | — | 1897 |
 
 ### `llama.cpp`  (iPhone 17 Pro, short-chat)
 
@@ -471,11 +656,17 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 
 | Model | Params (B) | Quant | n | TTFT (ms, median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---:|---|---:|---:|---:|---:|---:|
-| Qwen3-0.6B (4-bit) | 0.6 | Q4 | 4 | 67 | 167.2 | 158.8 | 483 |
-| Qwen3-1.7B (4-bit) | 1.7 | Q4 | 4 | 90 | 62.4 | 60.4 | 1068 |
+| Qwen3-0.6B (4-bit) | 0.6 | Q4 | 4 | 47 | 172.5 | 163.6 | 483 |
+| Gemma3-1B-IT (4-bit) | 1 | Q4 | 4 | 1150 | 104.3 | 104.9 | 901 |
+| DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | 1.5 | Q4 | 4 | 1230 | 74.5 | 73.2 | 1069 |
+| TinySwallow-1.5B (4-bit) | 1.5 | Q4 | 4 | 103 | 72.6 | 72.9 | 990 |
+| Qwen3-1.7B (4-bit) | 1.7 | Q4 | 4 | 85 | 63.9 | 65.1 | 1063 |
 | Qwen 3.5 2B (4-bit) ⚠️ | 2 | Q4 | 3 | 103 | 61.2 | — | 1279 |
 | Gemma 4 E2B (4-bit) | 2 | Q4 | 3 | 155 | 46.2 | — | 3094 |
-| Qwen3-4B (4-bit) | 4 | Q4 | 4 | 269 | 28.1 | 27.9 | 2323 |
+| Llama-3.2-3B (4-bit) | 3 | Q4 | 4 | 154 | 34.4 | 33.8 | 1925 |
+| SmolLM3-3B (4-bit) | 3 | Q4 | 4 | 442 | 34.6 | 34.3 | 2076 |
+| Phi-4-mini (4-bit) | 3.8 | Q4 | 4 | 145 | 29.5 | 29.3 | 2246 |
+| Qwen3-4B (4-bit) | 4 | Q4 | 4 | 160 | 28.4 | 28.0 | 2323 |
 
 ### `mlx-swift`  (Mac M4 Max, long-context)
 
@@ -623,24 +814,54 @@ Decode tok/s is an average. The percentiles below are the gap between consecutiv
 | iPhone 17 Pro | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | 1 | 133 | 19.9 | 21.9 | 23.4 |
 | iPhone 17 Pro | mlx-swift | Qwen3-1.7B (4-bit) | 1 | 259 | 16.0 | 20.0 | 25.6 |
 | iPhone 17 Pro | mlx-swift | Qwen3-4B (4-bit) | 1 | 369 | 35.4 | 36.6 | 37.2 |
-| iPhone 17 Pro | core-ai | Qwen3-0.6B (Core AI, ANE) | 3 | 41 | 6.9 | 7.2 | 9.5 |
+| iPhone 17 Pro | core-ai | DeepSeek-R1-1.5B (Core AI, ANE) | 4 | 26 | 13.0 | 16.2 | 20.5 |
+| iPhone 17 Pro | core-ai | DeepSeek-R1-1.5B (Core AI, GPU) | 4 | 36 | 13.2 | 15.2 | 15.5 |
+| iPhone 17 Pro | core-ai | Gemma3-1B (Core AI, GPU) | 4 | 190 | 9.3 | 10.6 | 11.5 |
+| iPhone 17 Pro | core-ai | Llama-3.2-3B (Core AI, ANE) | 3 | 58 | 26.2 | 28.2 | 32.7 |
+| iPhone 17 Pro | core-ai | Llama-3.2-3B (Core AI, GPU) | 3 | 84 | 28.5 | 31.2 | 31.5 |
+| iPhone 17 Pro | core-ai | Ministral-3-3B (Core AI, GPU) | 4 | 732 | 33.1 | 36.2 | 37.1 |
+| iPhone 17 Pro | core-ai | OLMo-2-1B (Core AI, ANE) | 4 | 32 | 10.5 | 13.2 | 16.4 |
+| iPhone 17 Pro | core-ai | OLMo-2-1B (Core AI, GPU) | 4 | 36 | 11.5 | 12.8 | 13.7 |
+| iPhone 17 Pro | core-ai | Qwen3-0.6B (Core AI, ANE) | 4 | 28 | 8.1 | 11.8 | 15.0 |
+| iPhone 17 Pro | core-ai | Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage) | 4 | 29 | 7.7 | 11.0 | 15.2 |
 | iPhone 17 Pro | core-ai | Qwen3-0.6B (Core AI, GPU) | 3 | 16 | 5.1 | 5.4 | 5.9 |
-| iPhone 17 Pro | core-ai | Qwen3-1.7B (Core AI, GPU) | 3 | 29 | 14.9 | 15.5 | 16.5 |
-| iPhone 17 Pro | core-ai | Qwen3-4B (Core AI, GPU) | 1 | 286 | 39.8 | 46.5 | 107.4 |
+| iPhone 17 Pro | core-ai | Qwen3-1.7B (Core AI, GPU) | 4 | 40 | 15.0 | 17.0 | 17.2 |
+| iPhone 17 Pro | core-ai | Qwen3-1.7B (Core AI, GPU, June lineage) | 4 | 45 | 14.7 | 16.4 | 16.7 |
+| iPhone 17 Pro | core-ai | Qwen3-4B (Core AI, GPU) | 4 | 73 | 37.6 | 41.1 | 41.9 |
+| iPhone 17 Pro | core-ai | SmolLM3-3B (Core AI, GPU) | 4 | 324 | 27.1 | 29.7 | 30.8 |
+| iPhone 17 Pro | core-ai | TinySwallow-1.5B (Core AI, ANE) | 4 | 34 | 13.5 | 26.1 | 28.4 |
+| iPhone 17 Pro | core-ai | TinySwallow-1.5B (Core AI, GPU) | 4 | 61 | 13.4 | 15.3 | 15.5 |
+| iPhone 17 Pro | core-ai | VibeThinker-1.5B (Core AI, ANE) | 4 | 36 | 13.4 | 14.8 | 20.1 |
+| iPhone 17 Pro | core-ai | VibeThinker-1.5B (Core AI, GPU) | 4 | 50 | 13.4 | 15.3 | 15.7 |
 | iPhone 17 Pro | coreml-llm | Gemma 4 E2B (CoreML, ANE) ⚠️ | 3 | 728 | 29.8 | 31.2 | 33.4 |
 | iPhone 17 Pro | coreml-llm | Qwen3-0.6B (CoreML, ANE) | 3 | 572 | 26.4 | 29.5 | 30.1 |
 | iPhone 17 Pro | coreml-llm | Qwen 3.5 2B (CoreML, ANE) ⚠️ | 3 | 844 | 35.4 | 38.8 | 39.9 |
-| iPhone 17 Pro | litert-lm | Qwen3 0.6B (.litertlm) | 4 | 602050 | 8.2 | 8.9 | 9.5 |
-| iPhone 17 Pro | litert-lm | Qwen3 4B (.litertlm) | 4 | 623483 | 41.7 | 43.6 | 44.8 |
-| iPhone 17 Pro | litert-lm | Gemma 4 E2B (.litertlm) | 4 | 303291 | 16.8 | 21.1 | 22.0 |
+| iPhone 17 Pro | litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | 4 | 530 | 33.6 | 36.5 | 38.4 |
+| iPhone 17 Pro | litert-lm | Gemma3-1B (.litertlm, official int4) | 4 | 352 | 13.7 | 15.7 | 15.9 |
+| iPhone 17 Pro | litert-lm | Phi-4-mini (.litertlm) | 4 | 2174 | 90.5 | 94.2 | 98.3 |
+| iPhone 17 Pro | litert-lm | Qwen3 0.6B (.litertlm) | 4 | 194 | 8.3 | 10.3 | 10.4 |
+| iPhone 17 Pro | litert-lm | Qwen3 4B (.litertlm) | 3 | 2285 | 41.5 | 44.1 | 45.6 |
+| iPhone 17 Pro | litert-lm | TinySwallow-1.5B (.litertlm) | 4 | 856 | 32.6 | 35.3 | 36.1 |
+| iPhone 17 Pro | litert-lm | VibeThinker-1.5B (.litertlm) | 4 | 925 | 33.8 | 36.1 | 37.2 |
+| iPhone 17 Pro | litert-lm | Gemma 4 E2B (.litertlm) | 4 | 65 | 17.4 | 20.1 | 21.5 |
+| iPhone 17 Pro | litert-lm | Llama-3.2-3B (.litertlm, local int4) | 4 | 2070 | 52.5 | 56.7 | 61.0 |
+| iPhone 17 Pro | litert-lm | Ministral-3-3B (.litertlm, local int4) | 4 | 2100 | 53.2 | 56.3 | 61.9 |
+| iPhone 17 Pro | litert-lm | OLMo-2-1B (.litertlm, local int4) | 4 | 1890 | 42.8 | 49.4 | 51.3 |
 | iPhone 17 Pro | litert-lm | Qwen3-1.7B (.litertlm, local int8) | 3 | 453 | 33.2 | 34.9 | 36.1 |
-| iPhone 17 Pro | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | 4 | 611228 | 20.8 | 22.5 | 23.1 |
+| iPhone 17 Pro | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | 4 | 856 | 20.4 | 22.5 | 23.1 |
+| iPhone 17 Pro | litert-lm | SmolLM3-3B (.litertlm, local int4) | 4 | 1454 | 44.1 | 47.0 | 49.3 |
 | iPhone 17 Pro | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) ⚠️ | 3 | 96 | 24.9 | 26.7 | 29.1 |
 | iPhone 17 Pro | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 3 | 128 | 27.0 | 29.6 | 36.4 |
-| iPhone 17 Pro | mlx-swift | Qwen3-0.6B (4-bit) | 4 | 44 | 6.3 | 6.7 | 7.3 |
-| iPhone 17 Pro | mlx-swift | Qwen3-1.7B (4-bit) | 4 | 78 | 16.5 | 17.5 | 17.8 |
-| iPhone 17 Pro | mlx-swift | Qwen3-4B (4-bit) | 4 | 152 | 35.7 | 37.3 | 38.1 |
+| iPhone 17 Pro | mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | 4 | 67 | 13.5 | 15.0 | 15.8 |
+| iPhone 17 Pro | mlx-swift | Llama-3.2-3B (4-bit) | 4 | 116 | 29.5 | 32.0 | 32.5 |
+| iPhone 17 Pro | mlx-swift | Phi-4-mini (4-bit) | 4 | 139 | 33.9 | 36.3 | 37.6 |
+| iPhone 17 Pro | mlx-swift | Qwen3-0.6B (4-bit) | 4 | 50 | 6.1 | 7.9 | 8.2 |
+| iPhone 17 Pro | mlx-swift | Qwen3-1.7B (4-bit) | 4 | 78 | 15.3 | 17.3 | 17.7 |
+| iPhone 17 Pro | mlx-swift | Qwen3-4B (4-bit) | 4 | 159 | 35.5 | 37.9 | 39.4 |
 | iPhone 17 Pro | mlx-swift | Qwen 3.5 2B (4-bit) ⚠️ | 3 | 103 | 16.4 | 16.8 | 17.0 |
+| iPhone 17 Pro | mlx-swift | SmolLM3-3B (4-bit) | 4 | 400 | 29.0 | 31.4 | 32.4 |
+| iPhone 17 Pro | mlx-swift | TinySwallow-1.5B (4-bit) | 4 | 71 | 13.6 | 15.7 | 16.0 |
+| iPhone 17 Pro | mlx-swift | Gemma3-1B-IT (4-bit) | 4 | 204 | 9.4 | 11.2 | 11.9 |
 | iPhone 17 Pro | mlx-swift | Gemma 4 E2B (4-bit) | 3 | 155 | 21.7 | 23.0 | 23.5 |
 | Mac M4 Max | mlx-swift | Qwen3-0.6B (4-bit) | 1 | 395 | 2.6 | 2.8 | 2.9 |
 | Mac M4 Max | mlx-swift | Qwen3-4B (4-bit) | 1 | 1735 | 7.3 | 7.6 | 7.6 |
@@ -728,16 +949,79 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 1 | 0.4 | 133 | — | 49.4 | 445 | `iphone17pro-litert-lm-qwen3-1.7b-int4-quality-run1.jsonl` |
 | mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 1 | 1.1 | 259 | 511.4 | 60.4 | 1231 | `iphone17pro-mlx-qwen3-1.7b-quality-run1.jsonl` |
 | mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 0.9 | 369 | 351.5 | 28.3 | 2502 | `iphone17pro-mlx-qwen3-4b-quality-run1.jsonl` |
-| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | 3.9 | 224 | 87.4 | 131.7 | 1125 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run1.jsonl` |
-| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | 1.0 | 40 | 518.6 | 144.3 | 1160 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run2.jsonl` |
-| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | 1.0 | 41 | 511.1 | 143.7 | 1158 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run3.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | — | 25 | 679.3 | 78.8 | 1339 | `iphone17pro-core-ai-deepseek-r1-1.5b-ane-short-chat-run1.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | — | 27 | 629.6 | 73.2 | 1316 | `iphone17pro-core-ai-deepseek-r1-1.5b-ane-short-chat-run2.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | — | 25 | 680.2 | 73.8 | 1317 | `iphone17pro-core-ai-deepseek-r1-1.5b-ane-short-chat-run3.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 4 | 125.1 | 75 | 235.6 | 81.9 | 1348 | `iphone17pro-core-ai-deepseek-r1-1.5b-ane-short-chat-run4.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, GPU) | INT4 (dynamic) | 1 | 1.6 | 25 | 712.1 | 75.8 | 223 | `iphone17pro-core-ai-deepseek-r1-1.5b-gpu-short-chat-run1.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 37 | 477.3 | 74.8 | 231 | `iphone17pro-core-ai-deepseek-r1-1.5b-gpu-short-chat-run2.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 43 | 414.8 | 75.2 | 231 | `iphone17pro-core-ai-deepseek-r1-1.5b-gpu-short-chat-run3.jsonl` |
+| core-ai | DeepSeek-R1-1.5B (Core AI, GPU) | INT4 (dynamic) | 4 | — | 36 | 503.7 | 74.8 | 231 | `iphone17pro-core-ai-deepseek-r1-1.5b-gpu-short-chat-run4.jsonl` |
+| core-ai | Gemma3-1B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 189 | 704.6 | 107.8 | 347 | `iphone17pro-core-ai-gemma3-1b-gpu-short-chat-run1.jsonl` |
+| core-ai | Gemma3-1B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 194 | 623.1 | 107.0 | 313 | `iphone17pro-core-ai-gemma3-1b-gpu-short-chat-run2.jsonl` |
+| core-ai | Gemma3-1B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 185 | 813.7 | 107.6 | 314 | `iphone17pro-core-ai-gemma3-1b-gpu-short-chat-run3.jsonl` |
+| core-ai | Gemma3-1B (Core AI, GPU) | INT4 (dynamic) | 4 | 2.6 | 192 | 713.4 | 94.3 | 383 | `iphone17pro-core-ai-gemma3-1b-gpu-short-chat-run4.jsonl` |
+| core-ai | Llama-3.2-3B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | — | 59 | 884.9 | 38.0 | 2504 | `iphone17pro-core-ai-llama-3.2-3b-ane-short-chat-run1.jsonl` |
+| core-ai | Llama-3.2-3B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | — | 58 | 898.2 | 38.3 | 2504 | `iphone17pro-core-ai-llama-3.2-3b-ane-short-chat-run2.jsonl` |
+| core-ai | Llama-3.2-3B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | — | 57 | 897.4 | 36.8 | 2505 | `iphone17pro-core-ai-llama-3.2-3b-ane-short-chat-run3.jsonl` |
+| core-ai | Llama-3.2-3B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 79 | 661.1 | 35.4 | 263 | `iphone17pro-core-ai-llama-3.2-3b-gpu-short-chat-run1.jsonl` |
+| core-ai | Llama-3.2-3B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 84 | 615.5 | 34.8 | 289 | `iphone17pro-core-ai-llama-3.2-3b-gpu-short-chat-run2.jsonl` |
+| core-ai | Llama-3.2-3B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 84 | 622.6 | 34.8 | 292 | `iphone17pro-core-ai-llama-3.2-3b-gpu-short-chat-run3.jsonl` |
+| core-ai | Ministral-3-3B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 691 | 819.3 | 31.9 | 1434 | `iphone17pro-core-ai-ministral-3b-gpu-short-chat-run1.jsonl` |
+| core-ai | Ministral-3-3B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 754 | 753.3 | 30.8 | 2202 | `iphone17pro-core-ai-ministral-3b-gpu-short-chat-run2.jsonl` |
+| core-ai | Ministral-3-3B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 836 | 677.2 | 29.1 | 2202 | `iphone17pro-core-ai-ministral-3b-gpu-short-chat-run3.jsonl` |
+| core-ai | Ministral-3-3B (Core AI, GPU) | INT4 (dynamic) | 4 | 4.0 | 711 | 795.0 | 29.3 | 1453 | `iphone17pro-core-ai-ministral-3b-gpu-short-chat-run4.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | — | 32 | 706.6 | 92.2 | 1580 | `iphone17pro-core-ai-olmo2-1b-ane-short-chat-run1.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | — | 32 | 723.1 | 90.5 | 1554 | `iphone17pro-core-ai-olmo2-1b-ane-short-chat-run2.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | — | 32 | 722.1 | 94.4 | 1555 | `iphone17pro-core-ai-olmo2-1b-ane-short-chat-run3.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, ANE) | 4-bit palettized (uniform g32) | 4 | 77.4 | 103 | 218.3 | 96.3 | 1583 | `iphone17pro-core-ai-olmo2-1b-ane-short-chat-run4.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 39 | 597.1 | 86.5 | 214 | `iphone17pro-core-ai-olmo2-1b-gpu-short-chat-run1.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 40 | 592.8 | 86.0 | 223 | `iphone17pro-core-ai-olmo2-1b-gpu-short-chat-run2.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 34 | 705.7 | 86.9 | 222 | `iphone17pro-core-ai-olmo2-1b-gpu-short-chat-run3.jsonl` |
+| core-ai | OLMo-2-1B (Core AI, GPU) | INT4 (dynamic) | 4 | 1.2 | 21 | 1180.8 | 92.5 | 231 | `iphone17pro-core-ai-olmo2-1b-gpu-short-chat-run4.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | 1.9 | 102 | 192.9 | 118.7 | 1220 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run1.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | — | 29 | 686.0 | 116.9 | 1178 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run2.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | — | 28 | 708.5 | 116.9 | 1139 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run3.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE) | 4-bit palettized (uniform g32) | 4 | — | 27 | 736.0 | 119.3 | 1140 | `iphone17pro-core-ai-qwen3-0.6b-ane-short-chat-run4.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage) | mixed 4/8-bit (June static export) | 1 | 59.8 | 79 | 266.6 | 124.9 | 1158 | `iphone17pro-core-ai-qwen3-0.6b-ane-june-short-chat-run1.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage) | mixed 4/8-bit (June static export) | 2 | — | 30 | 650.1 | 122.4 | 1178 | `iphone17pro-core-ai-qwen3-0.6b-ane-june-short-chat-run2.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage) | mixed 4/8-bit (June static export) | 3 | — | 28 | 704.2 | 126.2 | 1139 | `iphone17pro-core-ai-qwen3-0.6b-ane-june-short-chat-run3.jsonl` |
+| core-ai | Qwen3-0.6B (Core AI, ANE, June mixed-4/8 lineage) | mixed 4/8-bit (June static export) | 4 | — | 28 | 701.2 | 121.9 | 1140 | `iphone17pro-core-ai-qwen3-0.6b-ane-june-short-chat-run4.jsonl` |
 | core-ai | Qwen3-0.6B (Core AI, GPU) | INT4 (dynamic) | 1 | 2.3 | 569 | 33.6 | 76.5 | 201 | `iphone17pro-core-ai-qwen3-0.6b-gpu-short-chat-run1.jsonl` |
 | core-ai | Qwen3-0.6B (Core AI, GPU) | INT4 (dynamic) | 2 | 0.7 | 16 | 1761.4 | 194.2 | 195 | `iphone17pro-core-ai-qwen3-0.6b-gpu-short-chat-run2.jsonl` |
 | core-ai | Qwen3-0.6B (Core AI, GPU) | INT4 (dynamic) | 3 | 0.9 | 15 | 1699.9 | 193.3 | 196 | `iphone17pro-core-ai-qwen3-0.6b-gpu-short-chat-run3.jsonl` |
-| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 1 | 5.4 | 232 | 85.5 | 44.7 | 307 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run1.jsonl` |
-| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 2 | 0.7 | 28 | 795.6 | 67.5 | 246 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run2.jsonl` |
-| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 3 | 1.1 | 29 | 753.5 | 65.4 | 248 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run3.jsonl` |
-| core-ai | Qwen3-4B (Core AI, GPU) | INT4 (dynamic) | 1 | 12.0 | 286 | 69.5 | 20.8 | 335 | `iphone17pro-core-ai-qwen3-4b-gpu-short-chat-run1.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 39 | 527.4 | 66.4 | 278 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run1.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 49 | 438.5 | 66.3 | 279 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run2.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 41 | 514.3 | 66.0 | 271 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run3.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU) | INT4 (dynamic) | 4 | 1.7 | 31 | 763.6 | 64.7 | 248 | `iphone17pro-core-ai-qwen3-1.7b-gpu-short-chat-run4.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU, June lineage) | INT4 (dynamic, June export) | 1 | 1.7 | 31 | 768.5 | 67.9 | 254 | `iphone17pro-core-ai-qwen3-1.7b-gpu-june-short-chat-run1.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU, June lineage) | INT4 (dynamic, June export) | 2 | — | 45 | 458.4 | 67.6 | 267 | `iphone17pro-core-ai-qwen3-1.7b-gpu-june-short-chat-run2.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU, June lineage) | INT4 (dynamic, June export) | 3 | — | 49 | 417.8 | 67.8 | 274 | `iphone17pro-core-ai-qwen3-1.7b-gpu-june-short-chat-run3.jsonl` |
+| core-ai | Qwen3-1.7B (Core AI, GPU, June lineage) | INT4 (dynamic, June export) | 4 | — | 45 | 456.8 | 67.2 | 272 | `iphone17pro-core-ai-qwen3-1.7b-gpu-june-short-chat-run4.jsonl` |
+| core-ai | Qwen3-4B (Core AI, GPU) | INT4 (dynamic) | 1 | 4.5 | 60 | 360.2 | 27.0 | 301 | `iphone17pro-core-ai-qwen3-4b-gpu-short-chat-run1.jsonl` |
+| core-ai | Qwen3-4B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 74 | 268.6 | 26.6 | 274 | `iphone17pro-core-ai-qwen3-4b-gpu-short-chat-run2.jsonl` |
+| core-ai | Qwen3-4B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 73 | 272.7 | 26.3 | 274 | `iphone17pro-core-ai-qwen3-4b-gpu-short-chat-run3.jsonl` |
+| core-ai | Qwen3-4B (Core AI, GPU) | INT4 (dynamic) | 4 | — | 73 | 271.3 | 26.4 | 272 | `iphone17pro-core-ai-qwen3-4b-gpu-short-chat-run4.jsonl` |
+| core-ai | SmolLM3-3B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 318 | 848.8 | 37.1 | 397 | `iphone17pro-core-ai-smollm3-3b-gpu-short-chat-run1.jsonl` |
+| core-ai | SmolLM3-3B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 330 | 813.4 | 36.9 | 393 | `iphone17pro-core-ai-smollm3-3b-gpu-short-chat-run2.jsonl` |
+| core-ai | SmolLM3-3B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 347 | 775.6 | 36.5 | 394 | `iphone17pro-core-ai-smollm3-3b-gpu-short-chat-run3.jsonl` |
+| core-ai | SmolLM3-3B (Core AI, GPU) | INT4 (dynamic) | 4 | 3.7 | 308 | 877.9 | 34.6 | 369 | `iphone17pro-core-ai-smollm3-3b-gpu-short-chat-run4.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | — | 34 | 1828.4 | 65.7 | 1307 | `iphone17pro-core-ai-tinyswallow-1.5b-ane-short-chat-run1.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | — | 31 | 1981.0 | 66.2 | 1238 | `iphone17pro-core-ai-tinyswallow-1.5b-ane-short-chat-run2.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | — | 34 | 1813.0 | 64.6 | 1238 | `iphone17pro-core-ai-tinyswallow-1.5b-ane-short-chat-run3.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 4 | 104.2 | 90 | 723.7 | 72.9 | 1246 | `iphone17pro-core-ai-tinyswallow-1.5b-ane-short-chat-run4.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 61 | 1067.5 | 75.0 | 251 | `iphone17pro-core-ai-tinyswallow-1.5b-gpu-short-chat-run1.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 61 | 1073.1 | 74.2 | 221 | `iphone17pro-core-ai-tinyswallow-1.5b-gpu-short-chat-run2.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 75 | 884.2 | 73.9 | 222 | `iphone17pro-core-ai-tinyswallow-1.5b-gpu-short-chat-run3.jsonl` |
+| core-ai | TinySwallow-1.5B (Core AI, GPU) | INT4 (dynamic) | 4 | 3.2 | 49 | 1437.0 | 69.7 | 222 | `iphone17pro-core-ai-tinyswallow-1.5b-gpu-short-chat-run4.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 1 | 1.0 | 48 | 850.6 | 73.4 | 1295 | `iphone17pro-core-ai-vibethinker-1.5b-ane-short-chat-run1.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 2 | — | 37 | 1098.6 | 73.4 | 1255 | `iphone17pro-core-ai-vibethinker-1.5b-ane-short-chat-run2.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 3 | — | 35 | 1142.1 | 74.2 | 1228 | `iphone17pro-core-ai-vibethinker-1.5b-ane-short-chat-run3.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, ANE) | 4-bit palettized (uniform g32) | 4 | — | 36 | 1131.4 | 73.8 | 1212 | `iphone17pro-core-ai-vibethinker-1.5b-ane-short-chat-run4.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, GPU) | INT4 (dynamic) | 1 | — | 51 | 808.4 | 74.9 | 239 | `iphone17pro-core-ai-vibethinker-1.5b-gpu-short-chat-run1.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, GPU) | INT4 (dynamic) | 2 | — | 50 | 839.4 | 74.2 | 219 | `iphone17pro-core-ai-vibethinker-1.5b-gpu-short-chat-run2.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, GPU) | INT4 (dynamic) | 3 | — | 50 | 845.7 | 74.1 | 220 | `iphone17pro-core-ai-vibethinker-1.5b-gpu-short-chat-run3.jsonl` |
+| core-ai | VibeThinker-1.5B (Core AI, GPU) | INT4 (dynamic) | 4 | 1.7 | 36 | 1254.3 | 71.0 | 231 | `iphone17pro-core-ai-vibethinker-1.5b-gpu-short-chat-run4.jsonl` |
 | coreml-llm | Gemma 4 E2B (CoreML, ANE) | INT4 palettized | 1 | 91.6 | 728 | — | 33.5 | 795 | `iphone17pro-coreml-llm-gemma-4-e2b-short-chat-run1.jsonl` ⚠️ |
 | coreml-llm | Gemma 4 E2B (CoreML, ANE) | INT4 palettized | 2 | 4.2 | 1047 | — | 33.4 | 1187 | `iphone17pro-coreml-llm-gemma-4-e2b-short-chat-run2.jsonl` ⚠️ |
 | coreml-llm | Gemma 4 E2B (CoreML, ANE) | INT4 palettized | 3 | 4.7 | 712 | — | 33.3 | 1195 | `iphone17pro-coreml-llm-gemma-4-e2b-short-chat-run3.jsonl` ⚠️ |
@@ -747,46 +1031,105 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | INT8 | 1 | 52.0 | 844 | 27.3 | 27.9 | 233 | `iphone17pro-coreml-llm-qwen3.5-2b-short-chat-run1.jsonl` ⚠️ |
 | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | INT8 | 2 | 54.1 | 895 | 25.7 | 26.9 | 241 | `iphone17pro-coreml-llm-qwen3.5-2b-short-chat-run2.jsonl` ⚠️ |
 | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | INT8 | 3 | 53.8 | 831 | 27.7 | 28.1 | 243 | `iphone17pro-coreml-llm-qwen3.5-2b-short-chat-run3.jsonl` ⚠️ |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 79.1 | 239 | — | 121.0 | 1263 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run1.jsonl` |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | — | 602077 | — | 120.4 | 1178 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run2.jsonl` |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | — | 602108 | — | 120.9 | 922 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run3.jsonl` |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 4 | — | 602022 | — | 116.7 | 923 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run4.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 11.5 | 1588 | — | 24.6 | 1980 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run1.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | — | 623759 | — | 24.7 | 1636 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run2.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | — | 623207 | — | 23.7 | 1637 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run3.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 4 | — | 624400 | — | 23.8 | 1638 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run4.jsonl` |
-| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 1 | 4.4 | 111 | — | 55.1 | 524 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run1.jsonl` |
-| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 2 | — | 606609 | — | 60.0 | 451 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run2.jsonl` |
-| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 3 | — | 605832 | — | 59.4 | 451 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run3.jsonl` |
-| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 4 | 2.5 | 750 | — | 55.9 | 465 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run4.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 1 | 6.6 | 174 | — | 30.8 | 828 | `iphone17pro-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run1.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 2 | — | 516 | — | 30.4 | 927 | `iphone17pro-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run2.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 3 | — | 572 | — | 28.9 | 1110 | `iphone17pro-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run3.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 4 | — | 545 | — | 25.2 | 1197 | `iphone17pro-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run4.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 1 | 4.6 | 65 | — | 72.7 | 733 | `iphone17pro-litert-lm-gemma3-1b-it-short-chat-run1.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 2 | — | 349 | — | 72.7 | 975 | `iphone17pro-litert-lm-gemma3-1b-it-short-chat-run2.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 3 | — | 365 | — | 71.8 | 1176 | `iphone17pro-litert-lm-gemma3-1b-it-short-chat-run3.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 4 | — | 355 | — | 72.1 | 1248 | `iphone17pro-litert-lm-gemma3-1b-it-short-chat-run4.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 1 | 16.0 | 2749 | 7.1 | 11.1 | 1522 | `iphone17pro-litert-lm-phi-4-mini-instruct-short-chat-run1.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 2 | — | 2162 | 39.2 | 11.0 | 3422 | `iphone17pro-litert-lm-phi-4-mini-instruct-short-chat-run2.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 3 | — | 2116 | 41.5 | 11.0 | 3484 | `iphone17pro-litert-lm-phi-4-mini-instruct-short-chat-run3.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 4 | — | 2187 | 42.8 | 10.9 | 3463 | `iphone17pro-litert-lm-phi-4-mini-instruct-short-chat-run4.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 1.6 | 502 | — | 120.9 | 1058 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run1.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | — | 194 | — | 119.4 | 928 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run2.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | — | 189 | — | 118.7 | 929 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run3.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 4 | — | 195 | — | 119.3 | 930 | `iphone17pro-litert-lm-qwen3-0.6b-short-chat-run4.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 5.1 | 2348 | — | 24.1 | 2410 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run1.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | 4.1 | 2285 | — | 24.5 | 1798 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run2.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | 3.9 | 1263 | — | 24.2 | 1897 | `iphone17pro-litert-lm-qwen3-4b-short-chat-run3.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 1 | 5.0 | 548 | — | 30.6 | 719 | `iphone17pro-litert-lm-tinyswallow-1.5b-instruct-short-chat-run1.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 2 | — | 847 | — | 30.7 | 851 | `iphone17pro-litert-lm-tinyswallow-1.5b-instruct-short-chat-run2.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 3 | — | 866 | — | 30.5 | 870 | `iphone17pro-litert-lm-tinyswallow-1.5b-instruct-short-chat-run3.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 4 | — | 864 | — | 30.4 | 874 | `iphone17pro-litert-lm-tinyswallow-1.5b-instruct-short-chat-run4.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 1 | 4.5 | 513 | — | 30.1 | 713 | `iphone17pro-litert-lm-vibethinker-1.5b-short-chat-run1.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 2 | 0.5 | 1299 | — | 28.9 | 542 | `iphone17pro-litert-lm-vibethinker-1.5b-short-chat-run2.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 3 | 0.5 | 1446 | — | 31.1 | 543 | `iphone17pro-litert-lm-vibethinker-1.5b-short-chat-run3.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 4 | 0.4 | 551 | — | 29.2 | 538 | `iphone17pro-litert-lm-vibethinker-1.5b-short-chat-run4.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 1 | 1.1 | 717 | — | 53.5 | 491 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run1.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 2 | — | 62 | — | 58.7 | 448 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run2.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 3 | — | 66 | — | 56.8 | 449 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run3.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 4 | — | 64 | — | 55.6 | 450 | `iphone17pro-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run4.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 1 | 7.9 | 671 | — | 19.2 | 2092 | `iphone17pro-litert-lm-llama32-3b-short-chat-run1.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 2 | — | 1988 | — | 19.3 | 3247 | `iphone17pro-litert-lm-llama32-3b-short-chat-run2.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 3 | — | 2152 | — | 18.2 | 4121 | `iphone17pro-litert-lm-llama32-3b-short-chat-run3.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 4 | — | 2627 | — | 17.8 | 4104 | `iphone17pro-litert-lm-llama32-3b-short-chat-run4.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 1 | 3.5 | 1641 | — | 19.0 | 1652 | `iphone17pro-litert-lm-ministral3-3b-short-chat-run1.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 2 | — | 2109 | — | 19.2 | 3048 | `iphone17pro-litert-lm-ministral3-3b-short-chat-run2.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 3 | — | 2108 | — | 18.4 | 3066 | `iphone17pro-litert-lm-ministral3-3b-short-chat-run3.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 4 | — | 2093 | — | 16.7 | 3083 | `iphone17pro-litert-lm-ministral3-3b-short-chat-run4.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 1 | 3.5 | 298 | 106.1 | 26.4 | 1829 | `iphone17pro-litert-lm-olmo2-1b-short-chat-run1.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 2 | — | 1856 | 100.8 | 25.7 | 3232 | `iphone17pro-litert-lm-olmo2-1b-short-chat-run2.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 3 | — | 1925 | 88.6 | 20.6 | 3348 | `iphone17pro-litert-lm-olmo2-1b-short-chat-run3.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 4 | — | 1945 | 89.4 | 20.6 | 3348 | `iphone17pro-litert-lm-olmo2-1b-short-chat-run4.jsonl` |
 | litert-lm | Qwen3-1.7B (.litertlm, local int8) | INT8 (dynamic, ekv1024) | 1 | 7.9 | 938 | — | 30.0 | 483 | `iphone17pro-litert-lm-qwen3-1.7b-short-chat-run1.jsonl` |
 | litert-lm | Qwen3-1.7B (.litertlm, local int8) | INT8 (dynamic, ekv1024) | 2 | 0.6 | 283 | — | 30.1 | 599 | `iphone17pro-litert-lm-qwen3-1.7b-short-chat-run2.jsonl` |
 | litert-lm | Qwen3-1.7B (.litertlm, local int8) | INT8 (dynamic, ekv1024) | 3 | 0.4 | 453 | — | 30.2 | 512 | `iphone17pro-litert-lm-qwen3-1.7b-short-chat-run3.jsonl` |
-| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 1 | 3.5 | 919 | — | 47.6 | 2241 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run1.jsonl` |
-| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 2 | — | 611541 | — | 48.2 | 1329 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run2.jsonl` |
-| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 3 | — | 611641 | — | 47.4 | 1320 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run3.jsonl` |
-| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 4 | — | 610916 | — | 50.2 | 1321 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run4.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 1 | 0.5 | 1252 | — | 46.8 | 446 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run1.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 2 | — | 599853 | — | 49.7 | 855 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run2.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 3 | — | 446 | — | 49.3 | 836 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run3.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 4 | — | 459 | — | 48.1 | 832 | `iphone17pro-litert-lm-qwen3-1.7b-int4-short-chat-run4.jsonl` |
+| litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 1 | 7.5 | 633 | — | 22.7 | 1608 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run1.jsonl` |
+| litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 2 | — | 1422 | — | 23.1 | 2299 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run2.jsonl` |
+| litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 3 | — | 1485 | — | 22.9 | 2850 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run3.jsonl` |
+| litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 4 | — | 1516 | — | 20.6 | 2858 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run4.jsonl` |
 | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | Q4_K_M | 1 | 1.2 | 336 | 41.3 | 39.6 | 1442 | `iphone17pro-llama-cpp-qwen3.5-2b-short-chat-run1.jsonl` ⚠️ |
 | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | Q4_K_M | 2 | 0.3 | 96 | 2876.6 | 39.1 | 1479 | `iphone17pro-llama-cpp-qwen3.5-2b-short-chat-run2.jsonl` ⚠️ |
 | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.3 | 96 | 2503.9 | 38.7 | 1479 | `iphone17pro-llama-cpp-qwen3.5-2b-short-chat-run3.jsonl` ⚠️ |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 1 | 10.8 | 895 | 15.1 | 35.5 | 250 | `iphone17pro-llama-cpp-gemma-4-e2b-short-chat-run1.jsonl` |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 2 | 3.2 | 109 | 1455.6 | 36.2 | 253 | `iphone17pro-llama-cpp-gemma-4-e2b-short-chat-run2.jsonl` |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.5 | 128 | 2388.5 | 35.2 | 253 | `iphone17pro-llama-cpp-gemma-4-e2b-short-chat-run3.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 1 | 0.9 | 67 | 316.6 | 167.2 | 488 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run1.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 2 | — | 37 | 526.9 | 159.3 | 489 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run2.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 3 | — | 50 | 390.2 | 158.8 | 478 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run3.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 4 | — | 37 | 525.5 | 158.6 | 462 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run4.jsonl` |
-| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 1 | 1.2 | 90 | 222.3 | 62.4 | 1095 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run1.jsonl` |
-| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 2 | — | 77 | 249.5 | 61.0 | 1078 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run2.jsonl` |
-| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 3 | — | 78 | 245.0 | 60.4 | 1057 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run3.jsonl` |
-| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 4 | — | 78 | 246.8 | 60.4 | 1058 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run4.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 98.5 | 269 | 72.6 | 28.1 | 2349 | `iphone17pro-mlx-qwen3-4b-short-chat-run1.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 2 | — | 150 | 127.8 | 28.1 | 2322 | `iphone17pro-mlx-qwen3-4b-short-chat-run2.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 3 | — | 150 | 127.7 | 27.9 | 2323 | `iphone17pro-mlx-qwen3-4b-short-chat-run3.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 4 | — | 154 | 124.7 | 26.9 | 2323 | `iphone17pro-mlx-qwen3-4b-short-chat-run4.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 1 | 1.6 | 1230 | 13.0 | 74.5 | 1104 | `iphone17pro-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run1.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 2 | — | 66 | 246.2 | 73.2 | 1074 | `iphone17pro-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run2.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 3 | — | 67 | 243.7 | 73.3 | 1064 | `iphone17pro-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run3.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 4 | — | 67 | 242.7 | 72.6 | 1064 | `iphone17pro-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run4.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 1 | 2.3 | 154 | 314.9 | 34.4 | 1950 | `iphone17pro-mlx-llama-3.2-3b-instruct-short-chat-run1.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 2 | — | 112 | 438.3 | 33.8 | 1925 | `iphone17pro-mlx-llama-3.2-3b-instruct-short-chat-run2.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 3 | — | 119 | 414.0 | 33.3 | 1925 | `iphone17pro-mlx-llama-3.2-3b-instruct-short-chat-run3.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 4 | — | 113 | 437.2 | 34.0 | 1925 | `iphone17pro-mlx-llama-3.2-3b-instruct-short-chat-run4.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 1 | 2.1 | 145 | 91.8 | 29.5 | 2245 | `iphone17pro-mlx-phi-4-mini-instruct-short-chat-run1.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 2 | — | 132 | 99.4 | 29.5 | 2245 | `iphone17pro-mlx-phi-4-mini-instruct-short-chat-run2.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 3 | — | 133 | 98.4 | 29.3 | 2246 | `iphone17pro-mlx-phi-4-mini-instruct-short-chat-run3.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 4 | — | 150 | 87.3 | 29.0 | 2246 | `iphone17pro-mlx-phi-4-mini-instruct-short-chat-run4.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 1 | 0.9 | 47 | 455.3 | 172.5 | 488 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run1.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 2 | — | 52 | 374.0 | 165.1 | 489 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run2.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 3 | — | 56 | 344.9 | 161.8 | 478 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 4 | — | 36 | 537.5 | 163.6 | 461 | `iphone17pro-mlx-qwen3-0.6b-short-chat-run4.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 1 | 1.4 | 85 | 235.4 | 63.9 | 1096 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run1.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 2 | — | 77 | 250.7 | 65.1 | 1070 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run2.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 3 | — | 78 | 246.6 | 64.8 | 1056 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 4 | — | 77 | 250.8 | 65.4 | 1057 | `iphone17pro-mlx-qwen3-1.7b-short-chat-run4.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 2.3 | 160 | 121.9 | 28.4 | 2349 | `iphone17pro-mlx-qwen3-4b-short-chat-run1.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 2 | — | 154 | 124.9 | 28.1 | 2323 | `iphone17pro-mlx-qwen3-4b-short-chat-run2.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 3 | — | 163 | 117.7 | 28.0 | 2323 | `iphone17pro-mlx-qwen3-4b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 4 | — | 158 | 120.7 | 27.9 | 2324 | `iphone17pro-mlx-qwen3-4b-short-chat-run4.jsonl` |
 | mlx-swift | Qwen 3.5 2B (4-bit) | Q4 | 1 | 2.5 | 2589 | 8.9 | 60.7 | 1279 | `iphone17pro-mlx-qwen3.5-2b-short-chat-run1.jsonl` ⚠️ |
 | mlx-swift | Qwen 3.5 2B (4-bit) | Q4 | 2 | 1.7 | 102 | 251.3 | 61.6 | 1266 | `iphone17pro-mlx-qwen3.5-2b-short-chat-run2.jsonl` ⚠️ |
 | mlx-swift | Qwen 3.5 2B (4-bit) | Q4 | 3 | 1.9 | 103 | 249.3 | 61.2 | 1282 | `iphone17pro-mlx-qwen3.5-2b-short-chat-run3.jsonl` ⚠️ |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 1 | 2.1 | 442 | 597.2 | 34.6 | 2097 | `iphone17pro-mlx-smollm3-3b-short-chat-run1.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 2 | — | 391 | 674.4 | 34.4 | 2075 | `iphone17pro-mlx-smollm3-3b-short-chat-run2.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 3 | — | 396 | 664.9 | 34.3 | 2076 | `iphone17pro-mlx-smollm3-3b-short-chat-run3.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 4 | — | 405 | 651.0 | 33.4 | 2076 | `iphone17pro-mlx-smollm3-3b-short-chat-run4.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 1 | 1.5 | 103 | 602.3 | 72.6 | 1018 | `iphone17pro-mlx-tinyswallow-1.5b-instruct-short-chat-run1.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 2 | — | 71 | 876.9 | 73.1 | 1000 | `iphone17pro-mlx-tinyswallow-1.5b-instruct-short-chat-run2.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 3 | — | 71 | 878.0 | 72.4 | 979 | `iphone17pro-mlx-tinyswallow-1.5b-instruct-short-chat-run3.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 4 | — | 70 | 894.9 | 72.9 | 980 | `iphone17pro-mlx-tinyswallow-1.5b-instruct-short-chat-run4.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 1 | 1.8 | 1150 | 19.5 | 104.3 | 928 | `iphone17pro-mlx-gemma-3-1b-it-short-chat-run1.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 2 | — | 199 | 454.8 | 104.9 | 917 | `iphone17pro-mlx-gemma-3-1b-it-short-chat-run2.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 3 | — | 203 | 453.9 | 106.1 | 885 | `iphone17pro-mlx-gemma-3-1b-it-short-chat-run3.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 4 | — | 205 | 456.9 | 103.1 | 885 | `iphone17pro-mlx-gemma-3-1b-it-short-chat-run4.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 1 | 3.0 | 2010 | 10.6 | 40.5 | 3096 | `iphone17pro-mlx-gemma-4-e2b-short-chat-run1.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 2 | 2.7 | 150 | 169.9 | 46.2 | 3094 | `iphone17pro-mlx-gemma-4-e2b-short-chat-run2.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 3 | 2.4 | 155 | 170.0 | 46.7 | 3078 | `iphone17pro-mlx-gemma-4-e2b-short-chat-run3.jsonl` |

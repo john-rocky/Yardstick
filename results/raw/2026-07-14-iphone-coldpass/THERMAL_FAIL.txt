@@ -1,0 +1,1 @@
+THERMAL_FAIL core-ai core-ai/llama-3.2-3b-gpu (kept both captures; exclude from warm table)

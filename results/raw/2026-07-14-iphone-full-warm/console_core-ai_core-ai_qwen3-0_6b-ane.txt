@@ -1,0 +1,6 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-0.6b-ane task=short-chat runs=4
+loc("/var/mobile/Containers/Data/Application/A6C0F58B-00EF-46BB-980C-923E91F0C5E6/Documents/CoreAIModels/qwen3_0_6b_ane/qwen3_0_6b_ios_pure4bit_ct041.h18p.aimodelc/main-h18p-delegates/MPSGraph/mpsExecutable.mpsgraphpackage/specialized_model_1.mpsgraph":0:0): error: current mps dialect version is 1.3.12, can't parse version 1.3.13
+loc("/var/mobile/Containers/Data/Application/A6C0F58B-00EF-46BB-980C-923E91F0C5E6/Documents/CoreAIModels/qwen3_0_6b_ane/qwen3_0_6b_ios_pure4bit_ct041.h18p.aimodelc/main-h18p-delegates/MPSGraph/mpsExecutable.mpsgraphpackage/original_model_0.mpsgraph":0:0): error: current mps dialect version is 1.3.12, can't parse version 1.3.13
+App terminated due to signal 11.

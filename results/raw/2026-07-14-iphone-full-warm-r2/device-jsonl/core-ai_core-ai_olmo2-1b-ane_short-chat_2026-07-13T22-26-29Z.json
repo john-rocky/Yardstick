@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "21C0BE30-8CED-4F05-ADD9-072C2A600CEB",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 92.24773148321565,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 32,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 10.487079620361328,
+    "interTokenLatencyP95MS" : 14.937043190002441,
+    "interTokenLatencyP99MS" : 16.752958297729492,
+    "memoryAfterGenerationMB" : 1552.8000946044922,
+    "memoryAfterLoadMB" : 1567.5032196044922,
+    "memoryBaselineMB" : 1567.5032196044922,
+    "memoryPeakDuringDecodeMB" : 1580.3625946044922,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 22,
+    "promptTokensPerSecond" : 706.6227720535588,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.4196020364761353
+  },
+  "model" : {
+    "displayName" : "OLMo-2-1B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/olmo2-1b-ane",
+    "onDiskSizeMB" : 1100,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "On-device AI means AI that is processed and performed on the device itself, rather than in a remote server or cloud. This term is often used to describe AI that is processed on the device that perform",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:26:29Z"
+}

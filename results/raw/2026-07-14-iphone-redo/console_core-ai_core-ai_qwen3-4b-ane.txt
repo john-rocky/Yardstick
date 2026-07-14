@@ -1,0 +1,8 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-4b-ane task=short-chat runs=4
+2026-07-14 09:35:31.276 BenchmarkApp[5778:1283734] Error = Error Domain=com.apple.appleneuralengine.compiler Code=1 "_ANECompiler : ANECCompile() FAILED" UserInfo={NSLocalizedDescription=_ANECompiler : ANECCompile() FAILED, NSUnderlyingError=0x146c010b0 {Error Domain=com.apple.appleneuralengine.compiler Code=1 "ANECCompile(/var/mobile/Library/Caches/com.apple.aned/clones/6CC860494EDD1AF8E3C58217DD69E5554F15576453B584095D08AB462E3329FD/mpsExecutable.mpsgraphpackage/) FAILED: err=(
+)" UserInfo={NSLocalizedDescription=ANECCompile(/var/mobile/Library/Caches/com.apple.aned/clones/6CC860494EDD1AF8E3C58217DD69E5554F15576453B584095D08AB462E3329FD/mpsExecutable.mpsgraphpackage/) FAILED: err=(
+)}}}
+2026-07-14 09:35:31.276 BenchmarkApp[5778:1283734] ANE compile failed!
+App terminated due to signal 9.

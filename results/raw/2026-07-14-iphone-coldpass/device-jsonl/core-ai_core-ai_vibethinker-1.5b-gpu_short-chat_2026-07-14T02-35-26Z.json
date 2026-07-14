@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "678868E2-9D60-4F42-A245-B7CEDDF6EB70",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 73.57759962174487,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 36,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 13.698101043701172,
+    "interTokenLatencyP95MS" : 13.906002044677734,
+    "interTokenLatencyP99MS" : 14.168977737426758,
+    "loadTimeSeconds" : 1.6278860569000244,
+    "memoryAfterGenerationMB" : 205.39320373535156,
+    "memoryAfterLoadMB" : 211.22132873535156,
+    "memoryBaselineMB" : 14.220413208007812,
+    "memoryPeakDuringDecodeMB" : 223.03382873535156,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 1265.2892227009384,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7751219272613525
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI as AI that runs directly on a device, like a smartphone or a tablet, without needing to send your data to a remote server. This means:\n\n* **No internet connection:** You can use ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T02:35:26Z"
+}

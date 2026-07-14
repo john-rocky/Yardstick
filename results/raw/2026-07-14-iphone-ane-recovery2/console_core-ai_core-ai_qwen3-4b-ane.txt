@@ -1,0 +1,6 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-4b-ane task=short-chat runs=4
+2026-07-14 12:19:50.227 BenchmarkApp[1578:83167] Error = Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.ANECompilerService" UserInfo={NSDebugDescription=connection to service named com.apple.ANECompilerService}
+2026-07-14 12:19:50.227 BenchmarkApp[1578:83167] ANE compile failed!
+App terminated due to signal 9.

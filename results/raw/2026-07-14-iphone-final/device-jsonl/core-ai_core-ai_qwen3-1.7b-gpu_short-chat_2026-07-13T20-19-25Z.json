@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "D346D2CF-D927-460A-A60D-B494BEE6A9D6",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 66.3218925679075,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 49,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 14.953017234802246,
+    "interTokenLatencyP95MS" : 16.99697971343994,
+    "interTokenLatencyP99MS" : 17.270922660827637,
+    "memoryAfterGenerationMB" : 204.5496368408203,
+    "memoryAfterLoadMB" : 212.1433868408203,
+    "memoryBaselineMB" : 212.1433868408203,
+    "memoryPeakDuringDecodeMB" : 278.9558868408203,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 438.5053842132776,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.978621006011963
+  },
+  "model" : {
+    "displayName" : "Qwen3-1.7B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-1.7b-gpu",
+    "onDiskSizeMB" : 940,
+    "parameterCountB" : 1.7,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "<think>\nOkay, the user is asking for an explanation of what on-device AI means in simple terms. Let me start by recalling what on-device AI is. I know that AI refers to machine learning models that ca",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T20:19:25Z"
+}

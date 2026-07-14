@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F0FC3C6B-CEF5-4874-B63C-385A8F4E3EA1",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 65.66518599325642,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 34,
+    "generatedTokenCount" : 100,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.576030731201172,
+    "interTokenLatencyP95MS" : 26.04198455810547,
+    "interTokenLatencyP99MS" : 26.762962341308594,
+    "memoryAfterGenerationMB" : 1236.7846069335938,
+    "memoryAfterLoadMB" : 1285.0189590454102,
+    "memoryBaselineMB" : 1285.0189590454102,
+    "memoryPeakDuringDecodeMB" : 1306.7689819335938,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 60,
+    "promptTokensPerSecond" : 1828.3801220575415,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 99,
+    "totalGenerationTimeSeconds" : 1.5565990209579468
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/tinyswallow-1.5b-ane",
+    "onDiskSizeMB" : 1300,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "Imagine you're holding a tiny, portable AI assistant that's not just a computer but also has a built-in AI chip. This assistant can think and learn on its own, without needing a massive server or inte",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:51:53Z"
+}

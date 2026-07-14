@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "972831BE-7DB5-4CB1-B557-39188179A108",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 74.10134477280475,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 50,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.460040092468262,
+    "interTokenLatencyP95MS" : 15.321969985961914,
+    "interTokenLatencyP99MS" : 15.874981880187988,
+    "memoryAfterGenerationMB" : 183.29954528808594,
+    "memoryAfterLoadMB" : 182.90892028808594,
+    "memoryBaselineMB" : 182.90892028808594,
+    "memoryPeakDuringDecodeMB" : 219.69017028808594,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 845.7110595826192,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7775880098342896
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI as AI that runs directly on a device, like a smartphone or a tablet, without needing to send your data to a remote server. This means:\n\n* **No internet connection:** You can use ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:18:31Z"
+}

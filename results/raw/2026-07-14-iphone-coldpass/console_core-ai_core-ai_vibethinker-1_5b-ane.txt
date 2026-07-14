@@ -1,0 +1,6 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/vibethinker-1.5b-ane task=short-chat runs=1
+2026-07-14 11:29:26.601 BenchmarkApp[953:46801] Error = Error Domain=NSCocoaErrorDomain Code=4097 "connection to service named com.apple.ANECompilerService" UserInfo={NSDebugDescription=connection to service named com.apple.ANECompilerService}
+2026-07-14 11:29:26.601 BenchmarkApp[953:46801] ANE compile failed!
+App terminated due to signal 9.

@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "25E52ED5-1BEB-4F6B-ADF1-12CB90B67779",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 120.92686760369607,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 502,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 8.188009262084961,
+    "interTokenLatencyP95MS" : 8.635997772216797,
+    "interTokenLatencyP99MS" : 13.043999671936035,
+    "loadTimeSeconds" : 1.5607200860977173,
+    "memoryAfterGenerationMB" : 927.73681640625,
+    "memoryAfterLoadMB" : 600.3774642944336,
+    "memoryBaselineMB" : 15.517333984375,
+    "memoryPeakDuringDecodeMB" : 1057.76806640625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.3797539472579956
+  },
+  "model" : {
+    "displayName" : "Qwen3 0.6B (.litertlm)",
+    "hfFilePatterns" : [
+      "qwen3_0_6b_mixed_int4.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/Qwen3-0.6B",
+    "id" : "litert-community\/Qwen3-0.6B",
+    "onDiskSizeMB" : 498,
+    "parameterCountB" : 0.6,
+    "primaryFile" : "qwen3_0_6b_mixed_int4.litertlm",
+    "quantization" : "INT4 (mixed, blockwise gs32)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants a simple explanation of on-device AI. Let me start by recalling what I know. On-device AI refers to AI models that run locally on a device, not on a cloud. So, they're not",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T19:49:30Z"
+}

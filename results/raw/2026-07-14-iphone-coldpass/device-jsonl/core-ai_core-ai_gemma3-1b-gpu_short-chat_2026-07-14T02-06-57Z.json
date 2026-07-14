@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "512B7E2E-10B1-4B8C-858F-F0E113500F00",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 101.70644818581783,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 155,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 9.863972663879395,
+    "interTokenLatencyP95MS" : 10.367035865783691,
+    "interTokenLatencyP99MS" : 10.452985763549805,
+    "loadTimeSeconds" : 1.7419610023498535,
+    "memoryAfterGenerationMB" : 381.7212600708008,
+    "memoryAfterLoadMB" : 359.4712600708008,
+    "memoryBaselineMB" : 14.329788208007812,
+    "memoryPeakDuringDecodeMB" : 381.5181350708008,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 756.5449290001397,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.412324070930481
+  },
+  "model" : {
+    "displayName" : "Gemma3-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/gemma3-1b-gpu",
+    "onDiskSizeMB" : 574,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, let's break down \"on-device AI\" in simple terms.\n\n**Imagine this:** You're using a smartphone or a computer, and it's learning and acting on your data *without* needing to connect to the interne",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T02:06:57Z"
+}

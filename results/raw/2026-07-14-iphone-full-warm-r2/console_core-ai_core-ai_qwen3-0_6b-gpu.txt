@@ -1,0 +1,13 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-0.6b-gpu task=short-chat runs=4
+loc("Unknown buffer":0:0): error: bytecode version 50 is newer than the current version 6
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: [EngineFactory(variant=coreai-pipelined, model=qwen3_0_6b_dynamic_ct041.h18p.aimodelc, ple=0)] Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"
+loc("Unknown buffer":0:0): error: bytecode version 50 is newer than the current version 6
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: [EngineFactory(variant=coreai-pipelined, model=qwen3_0_6b_dynamic_ct041.h18p.aimodelc, ple=0)] Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"
+loc("Unknown buffer":0:0): error: bytecode version 50 is newer than the current version 6
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: [EngineFactory(variant=coreai-pipelined, model=qwen3_0_6b_dynamic_ct041.h18p.aimodelc, ple=0)] Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"
+loc("Unknown buffer":0:0): error: bytecode version 50 is newer than the current version 6
+YARDSTICK_RUN_FAIL run=4 error=Model load failed: [EngineFactory(variant=coreai-pipelined, model=qwen3_0_6b_dynamic_ct041.h18p.aimodelc, ple=0)] Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

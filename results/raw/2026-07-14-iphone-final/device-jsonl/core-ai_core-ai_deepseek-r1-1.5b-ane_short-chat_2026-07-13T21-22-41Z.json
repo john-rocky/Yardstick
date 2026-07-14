@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "2CE846DD-3B05-49ED-B1D0-E2CC33661C3D",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 73.78287049332685,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 25,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.719916343688965,
+    "interTokenLatencyP95MS" : 16.96491241455078,
+    "interTokenLatencyP99MS" : 20.92897891998291,
+    "memoryAfterGenerationMB" : 1315.9877319335938,
+    "memoryAfterLoadMB" : 1315.7221069335938,
+    "memoryBaselineMB" : 1315.7221069335938,
+    "memoryPeakDuringDecodeMB" : 1316.8002319335938,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 16,
+    "promptTokensPerSecond" : 680.1585543218823,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7593439817428589
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/deepseek-r1-1.5b-ane",
+    "onDiskSizeMB" : 1300,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "Okay, so I need to figure out what \"on-device AI\" means in simple terms. Hmm, I've heard the word \"on\" used in technology before, like \"on a device\" or \"on a device.\" Maybe that's part of the term. \"A",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:22:41Z"
+}

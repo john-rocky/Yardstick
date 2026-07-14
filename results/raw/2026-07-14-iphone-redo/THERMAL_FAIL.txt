@@ -1,0 +1,2 @@
+THERMAL_FAIL litert-lm litert-community/Qwen3-4B (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/VibeThinker-1.5B (kept both captures; exclude from warm table)

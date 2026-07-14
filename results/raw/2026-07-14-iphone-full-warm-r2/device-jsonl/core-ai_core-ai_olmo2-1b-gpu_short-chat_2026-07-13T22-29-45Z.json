@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "561989AA-5D12-4F33-8A83-311A7FA602C7",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 85.97701411547135,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 40,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 11.542916297912598,
+    "interTokenLatencyP95MS" : 13.746023178100586,
+    "interTokenLatencyP99MS" : 14.039039611816406,
+    "memoryAfterGenerationMB" : 173.76822662353516,
+    "memoryAfterLoadMB" : 174.69010162353516,
+    "memoryBaselineMB" : 174.69010162353516,
+    "memoryPeakDuringDecodeMB" : 223.39322662353516,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 22,
+    "promptTokensPerSecond" : 592.8154444123221,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.5286459922790527
+  },
+  "model" : {
+    "displayName" : "OLMo-2-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/olmo2-1b-gpu",
+    "onDiskSizeMB" : 806,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI means AI that is processed and executed on a device or chip on your device (like your phone or computer) without needing to send data to a cloud. This approach reduces the need for data t",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:29:45Z"
+}

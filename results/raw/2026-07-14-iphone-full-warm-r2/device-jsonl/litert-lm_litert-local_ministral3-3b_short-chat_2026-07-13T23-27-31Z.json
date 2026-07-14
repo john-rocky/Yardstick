@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "C6EF657B-379D-44FB-B7DB-9AF27F387A8E",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      18.182167431242373,
+      17.961296079093533,
+      17.87431332150054
+    ],
+    "decodeTokensPerSecond" : 18.130604123759003,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 2108,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 55.21094799041748,
+    "interTokenLatencyP95MS" : 59.689998626708984,
+    "interTokenLatencyP99MS" : 61.810970306396484,
+    "memoryAfterGenerationMB" : 2292.9899978637695,
+    "memoryAfterLoadMB" : 2292.5681228637695,
+    "memoryBaselineMB" : 2292.5681228637695,
+    "memoryPeakDuringDecodeMB" : 3084.318145751953,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 18.75190496444702
+  },
+  "model" : {
+    "displayName" : "Ministral-3-3B (.litertlm, local int4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "litert-local\/Ministral-3-3B",
+    "id" : "litert-local\/ministral3-3b",
+    "onDiskSizeMB" : 2200,
+    "parameterCountB" : 3,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4"
+  },
+  "outputSample" : "On-device AI is like having a smart assistant or helper that works right on your phone, tablet, or computer—**without sending your data to the cloud** (like a remote server).\n\n### Simple Explanation:\n",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T23:27:31Z"
+}

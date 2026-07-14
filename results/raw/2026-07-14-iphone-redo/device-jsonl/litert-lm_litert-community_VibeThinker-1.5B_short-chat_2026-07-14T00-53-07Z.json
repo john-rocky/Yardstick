@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "3CC50AB1-C63C-4781-8CC8-67DCF681031D",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      23.508283839732854
+    ],
+    "decodeTokensPerSecond" : 23.740206777835873,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 1260,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 42.11103916168213,
+    "interTokenLatencyP95MS" : 48.34699630737305,
+    "interTokenLatencyP99MS" : 53.0010461807251,
+    "memoryAfterGenerationMB" : 890.7382583618164,
+    "memoryAfterLoadMB" : 890.3163833618164,
+    "memoryBaselineMB" : 890.3163833618164,
+    "memoryPeakDuringDecodeMB" : 1081.3945083618164,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 31.638945937156677
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (.litertlm)",
+    "hfFilePatterns" : [
+      "VibeThinker-1.5B.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/VibeThinker-1.5B",
+    "id" : "litert-community\/VibeThinker-1.5B",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "VibeThinker-1.5B.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "<think>\nWe are going to explain what \"on-device\" AI means in simple terms.\n The idea is that we are looking for an explanation of what \"on-device\" means in the context of AI.\n\n However, note that the ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T00:53:07Z"
+}

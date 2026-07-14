@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "93F619A0-4435-4B6B-AA6C-E5EE51D1C6C8",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 28.754120312707958,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 978,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 34.76095199584961,
+    "interTokenLatencyP95MS" : 37.58895397186279,
+    "interTokenLatencyP99MS" : 38.32101821899414,
+    "memoryAfterGenerationMB" : 663.8629837036133,
+    "memoryAfterLoadMB" : 437.9875030517578,
+    "memoryBaselineMB" : 437.9875030517578,
+    "memoryPeakDuringDecodeMB" : 790.3941421508789,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 25.134228110313416
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (.litertlm)",
+    "hfFilePatterns" : [
+      "VibeThinker-1.5B.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/VibeThinker-1.5B",
+    "id" : "litert-community\/VibeThinker-1.5B",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "VibeThinker-1.5B.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "<think>\nWe are going to explain what \"on-device\" AI means in simple terms.\n The idea is that we are looking for an explanation of what \"on-device\" means in the context of AI.\n\n However, note that the ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T00:58:02Z"
+}

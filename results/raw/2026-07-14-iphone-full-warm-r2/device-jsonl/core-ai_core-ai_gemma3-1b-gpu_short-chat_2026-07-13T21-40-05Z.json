@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "CB8E788C-389A-41AE-B5D7-D02489CFEB1B",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 107.0212690631374,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 194,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 9.231090545654297,
+    "interTokenLatencyP95MS" : 11.188030242919922,
+    "interTokenLatencyP99MS" : 11.613011360168457,
+    "memoryAfterGenerationMB" : 313.2212829589844,
+    "memoryAfterLoadMB" : 311.6275329589844,
+    "memoryBaselineMB" : 311.6275329589844,
+    "memoryPeakDuringDecodeMB" : 313.2525329589844,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 623.0722036944879,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.3895809650421143
+  },
+  "model" : {
+    "displayName" : "Gemma3-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/gemma3-1b-gpu",
+    "onDiskSizeMB" : 574,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, let's break down \"on-device AI\" in simple terms.\n\n**Imagine this:** You're using a smartphone or a computer, and it's learning and acting on your data *without* needing to connect to the interne",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:40:05Z"
+}

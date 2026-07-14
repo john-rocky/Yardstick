@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "2E3D5632-E224-4FE9-92D3-8CEFC198A6E8",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 72.4029398076316,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 71,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.604998588562012,
+    "interTokenLatencyP95MS" : 15.763044357299805,
+    "interTokenLatencyP99MS" : 16.025066375732422,
+    "memoryAfterGenerationMB" : 979.3931579589844,
+    "memoryAfterLoadMB" : 979.0806579589844,
+    "memoryBaselineMB" : 979.0806579589844,
+    "memoryPeakDuringDecodeMB" : 979.4400329589844,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 60,
+    "promptTokensPerSecond" : 877.9515947565347,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.8454320430755615
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/TinySwallow-1.5B-Instruct-4bit",
+    "id" : "mlx-community\/TinySwallow-1.5B-Instruct-4bit",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "Imagine your phone has a tiny brain inside it, but it's not like the big computers in hospitals. It's a super-fast, super-smart little helper that can do all sorts of cool things.\n\nOn-device AI means ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:43:17Z"
+}

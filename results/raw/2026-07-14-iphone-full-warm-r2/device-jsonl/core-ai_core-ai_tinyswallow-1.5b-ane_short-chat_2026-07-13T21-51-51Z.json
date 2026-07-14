@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "66627C68-889A-488B-B4C6-4AEBC21E0114",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 73.4939604924124,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 117,
+    "generatedTokenCount" : 100,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.614058494567871,
+    "interTokenLatencyP95MS" : 14.06097412109375,
+    "interTokenLatencyP99MS" : 19.559025764465332,
+    "loadTimeSeconds" : 103.67307603359222,
+    "memoryAfterGenerationMB" : 1284.9252090454102,
+    "memoryAfterLoadMB" : 1195.753288269043,
+    "memoryBaselineMB" : 14.626731872558594,
+    "memoryPeakDuringDecodeMB" : 1299.2220840454102,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 60,
+    "promptTokensPerSecond" : 532.5711455988928,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 99,
+    "totalGenerationTimeSeconds" : 1.477964997291565
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/tinyswallow-1.5b-ane",
+    "onDiskSizeMB" : 1300,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "Imagine you're holding a tiny, portable AI assistant that's not just a computer but also has a built-in AI chip. This assistant can think and learn on its own, without needing a massive server or inte",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:51:51Z"
+}

@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "B6FC8778-067A-4A8E-A490-F55BA45A031C",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 30.79766735042072,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 996,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 31.30793571472168,
+    "interTokenLatencyP95MS" : 34.05404090881348,
+    "interTokenLatencyP99MS" : 35.694003105163574,
+    "loadTimeSeconds" : 6.774041056632996,
+    "memoryAfterGenerationMB" : 557.1284942626953,
+    "memoryAfterLoadMB" : 270.6597442626953,
+    "memoryBaselineMB" : 14.517356872558594,
+    "memoryPeakDuringDecodeMB" : 1498.0503692626953,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 551,
+    "promptTokensPerSecond" : 562.992248282962,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.151924014091492
+  },
+  "model" : {
+    "displayName" : "Ministral-3-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/ministral-3b-gpu",
+    "onDiskSizeMB" : 1800,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI is a way to use artificial intelligence (AI) **right on your phone, tablet, or computer**, without sending your data to the cloud (a remote server). Here’s a simple breakdown:\n\n### **What",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T23:38:33Z"
+}

@@ -1,0 +1,7 @@
+# Post-reboot ANE recovery: aned/ANECompilerService wedged ~08:00 (llama32-3b-ane
+# compile resource violations) killed subsequent ANE compiles. Reboot clears aned;
+# compiled-model disk caches persist.
+core-ai core-ai/qwen3-4b-ane 300
+core-ai core-ai/smollm3-3b-ane 300
+core-ai core-ai/vibethinker-1.5b-ane 300
+core-ai core-ai/llama-3.2-3b-ane 300

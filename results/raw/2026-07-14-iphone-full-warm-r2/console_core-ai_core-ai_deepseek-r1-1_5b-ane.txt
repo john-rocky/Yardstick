@@ -1,0 +1,13 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/deepseek-r1-1.5b-ane task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=84.02 ttft_ms=48 prefill_tok_s=360.4 prompt_tokens=16 peak_mb=1368 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=78.79 ttft_ms=25 prefill_tok_s=679.3 prompt_tokens=16 peak_mb=1339 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=73.18 ttft_ms=27 prefill_tok_s=629.6 prompt_tokens=16 peak_mb=1316 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=73.78 ttft_ms=25 prefill_tok_s=680.2 prompt_tokens=16 peak_mb=1317 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

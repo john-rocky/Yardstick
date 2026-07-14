@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "6874DC72-EFD9-4319-A6BF-FE734517F9FA",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 75.35608338239558,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 242,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.271927833557129,
+    "interTokenLatencyP95MS" : 13.962984085083008,
+    "interTokenLatencyP99MS" : 15.335917472839355,
+    "loadTimeSeconds" : 1.4783300161361694,
+    "memoryAfterGenerationMB" : 205.61204528808594,
+    "memoryAfterLoadMB" : 222.20579528808594,
+    "memoryBaselineMB" : 14.501731872558594,
+    "memoryPeakDuringDecodeMB" : 234.95579528808594,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 162.67695104511216,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.9406609535217285
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI as AI that runs directly on a device, like a smartphone or a tablet, without needing to send your data to a remote server. This means:\n\n* **No internet connection:** You can use ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:18:25Z"
+}

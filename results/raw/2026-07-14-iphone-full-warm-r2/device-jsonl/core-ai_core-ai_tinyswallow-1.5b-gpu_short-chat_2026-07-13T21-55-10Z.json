@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "60459947-B607-4AAE-8449-489060254CFB",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 74.24757327003393,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 61,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.345003128051758,
+    "interTokenLatencyP95MS" : 15.30003547668457,
+    "interTokenLatencyP99MS" : 15.53797721862793,
+    "memoryAfterGenerationMB" : 184.81514739990234,
+    "memoryAfterLoadMB" : 184.48702239990234,
+    "memoryBaselineMB" : 184.48702239990234,
+    "memoryPeakDuringDecodeMB" : 221.44014739990234,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 60,
+    "promptTokensPerSecond" : 1073.0962492964234,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7852120399475098
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/tinyswallow-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI like having a super-smart assistant that works directly on your device, like a smartphone or tablet. Instead of sending your data to a remote server, it stays on your device, mak",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:55:10Z"
+}

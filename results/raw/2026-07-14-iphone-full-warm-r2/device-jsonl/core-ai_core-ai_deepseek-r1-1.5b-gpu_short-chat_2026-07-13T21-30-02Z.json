@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "1E702555-0A5B-488F-B204-03831CB6F8B4",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 75.82965327487726,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 25,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.127923011779785,
+    "interTokenLatencyP95MS" : 15.088915824890137,
+    "interTokenLatencyP99MS" : 15.53797721862793,
+    "loadTimeSeconds" : 1.551252007484436,
+    "memoryAfterGenerationMB" : 207.47146606445312,
+    "memoryAfterLoadMB" : 212.76834106445312,
+    "memoryBaselineMB" : 14.283004760742188,
+    "memoryPeakDuringDecodeMB" : 223.45584106445312,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 16,
+    "promptTokensPerSecond" : 712.1210552006621,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7132400274276733
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/deepseek-r1-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, so I'm trying to understand what on-device AI means. I've heard the term before, but I'm not exactly sure what it entails. Let me think about it step by step.\n\nFirst, AI stands for Artificial In",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:30:02Z"
+}

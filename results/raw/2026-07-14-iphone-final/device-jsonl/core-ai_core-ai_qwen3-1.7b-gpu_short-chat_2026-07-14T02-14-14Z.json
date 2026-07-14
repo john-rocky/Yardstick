@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "958F71C2-C4A9-4F90-8B62-90801BAACB0B",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 64.67511126763762,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 31,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 15.498995780944824,
+    "interTokenLatencyP95MS" : 16.667962074279785,
+    "interTokenLatencyP99MS" : 16.9370174407959,
+    "loadTimeSeconds" : 1.7299690246582031,
+    "memoryAfterGenerationMB" : 217.51829528808594,
+    "memoryAfterLoadMB" : 240.23704528808594,
+    "memoryBaselineMB" : 14.298538208007812,
+    "memoryPeakDuringDecodeMB" : 247.65892028808594,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 763.6018129030404,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.0093929767608643
+  },
+  "model" : {
+    "displayName" : "Qwen3-1.7B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-1.7b-gpu",
+    "onDiskSizeMB" : 940,
+    "parameterCountB" : 1.7,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "<think>\nOkay, the user is asking for an explanation of what on-device AI means in simple terms. Let me start by recalling what on-device AI is. I know that AI refers to machine learning models that ca",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T02:14:14Z"
+}

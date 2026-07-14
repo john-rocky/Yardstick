@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "301DAD67-C760-473A-97B6-6EF27FCB64AB",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 74.4295085667197,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 44,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 13.453006744384766,
+    "interTokenLatencyP95MS" : 13.88096809387207,
+    "interTokenLatencyP99MS" : 16.395926475524902,
+    "loadTimeSeconds" : 2.092522978782654,
+    "memoryAfterGenerationMB" : 198.78385162353516,
+    "memoryAfterLoadMB" : 211.15885162353516,
+    "memoryBaselineMB" : 14.126663208007812,
+    "memoryPeakDuringDecodeMB" : 223.83072662353516,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 60,
+    "promptTokensPerSecond" : 1520.9106430041309,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7638959884643555
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/tinyswallow-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI like having a super-smart assistant that works directly on your device, like a smartphone or tablet. Instead of sending your data to a remote server, it stays on your device, mak",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T02:22:12Z"
+}

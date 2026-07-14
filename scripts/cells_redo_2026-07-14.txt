@@ -1,0 +1,7 @@
+# Redo cells after r2 main sweep (same session/day): thermal fails + one ANE loader death.
+# Long cooldowns (900s) so each cell starts from a fully settled chassis.
+litert-lm litert-community/Qwen3-4B 900
+core-ai core-ai/qwen3-4b-ane 900
+litert-lm litert-community/VibeThinker-1.5B 900
+core-ai core-ai/smollm3-3b-ane 900
+litert-lm litert-local/ministral3-3b 900

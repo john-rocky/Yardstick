@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "14DE6027-C047-462A-8725-63B6791370BC",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 29.291294601876785,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 711,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 34.976959228515625,
+    "interTokenLatencyP95MS" : 37.200927734375,
+    "interTokenLatencyP99MS" : 37.806034088134766,
+    "loadTimeSeconds" : 4.028854966163635,
+    "memoryAfterGenerationMB" : 535.8784484863281,
+    "memoryAfterLoadMB" : 254.25340270996094,
+    "memoryBaselineMB" : 14.267288208007812,
+    "memoryPeakDuringDecodeMB" : 1452.7221984863281,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 551,
+    "promptTokensPerSecond" : 794.9905931483336,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.080299019813538
+  },
+  "model" : {
+    "displayName" : "Ministral-3-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/ministral-3b-gpu",
+    "onDiskSizeMB" : 1800,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI is a way to use artificial intelligence (AI) **right on your phone, tablet, or computer**, without sending your data to the cloud (a remote server). Here’s a simple breakdown:\n\n### **What",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T03:13:09Z"
+}

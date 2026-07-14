@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "6486FBBD-CF00-4974-8AC1-004761668850",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      22.77423196619858
+    ],
+    "decodeTokensPerSecond" : 22.932985408551335,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1485,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 43.94805431365967,
+    "interTokenLatencyP95MS" : 46.46503925323486,
+    "interTokenLatencyP99MS" : 47.257065773010254,
+    "memoryAfterGenerationMB" : 2324.1149520874023,
+    "memoryAfterLoadMB" : 1746.051742553711,
+    "memoryBaselineMB" : 1746.051742553711,
+    "memoryPeakDuringDecodeMB" : 2849.8649291992188,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 9.111389994621277
+  },
+  "model" : {
+    "displayName" : "SmolLM3-3B (.litertlm, local int4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "litert-local\/SmolLM3-3B",
+    "id" : "litert-local\/smollm3-3b",
+    "onDiskSizeMB" : 1900,
+    "parameterCountB" : 3,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4"
+  },
+  "outputSample" : "<think>\n\n<\/think>\nOn-device AI is like having a super smart computer in your phone or device that can do cool things without needing to connect to the internet all the time.\n\nHere's a simple way to th",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T23:05:28Z"
+}

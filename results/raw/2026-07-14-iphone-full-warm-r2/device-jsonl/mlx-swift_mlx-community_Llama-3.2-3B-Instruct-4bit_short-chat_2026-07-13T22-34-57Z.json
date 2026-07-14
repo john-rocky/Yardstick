@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "0DE229BD-FD4F-4AFA-AD29-DC4BA0BE8C37",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 34.36723207421932,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 154,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 29.23297882080078,
+    "interTokenLatencyP95MS" : 31.488895416259766,
+    "interTokenLatencyP99MS" : 32.341957092285156,
+    "loadTimeSeconds" : 2.304179072380066,
+    "memoryAfterGenerationMB" : 1924.253288269043,
+    "memoryAfterLoadMB" : 1855.6750946044922,
+    "memoryBaselineMB" : 15.517379760742188,
+    "memoryPeakDuringDecodeMB" : 1950.347038269043,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 48,
+    "promptTokensPerSecond" : 314.9399018230625,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.8918240070343018
+  },
+  "model" : {
+    "displayName" : "Llama-3.2-3B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Llama-3.2-3B-Instruct-4bit",
+    "id" : "mlx-community\/Llama-3.2-3B-Instruct-4bit",
+    "onDiskSizeMB" : 1800,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence (AI) technology that is processed and executed directly on a device, such as a smartphone, tablet, or smartwatch, rather than being sent to a remote serv",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:34:57Z"
+}

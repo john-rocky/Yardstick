@@ -1,0 +1,26 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-4b-ane task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=30.87 ttft_ms=284 prefill_tok_s=78.1 prompt_tokens=19 peak_mb=3193 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=31.25 ttft_ms=70 prefill_tok_s=284.7 prompt_tokens=19 peak_mb=3139 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=30.34 ttft_ms=71 prefill_tok_s=273.4 prompt_tokens=19 peak_mb=3139 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=30.50 ttft_ms=74 prefill_tok_s=260.2 prompt_tokens=19 peak_mb=3140 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-4b-ane task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=27.00 ttft_ms=873 prefill_tok_s=23.1 prompt_tokens=19 peak_mb=3193 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=28.64 ttft_ms=73 prefill_tok_s=301.4 prompt_tokens=19 peak_mb=3140 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=28.57 ttft_ms=79 prefill_tok_s=259.0 prompt_tokens=19 peak_mb=3140 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=29.73 ttft_ms=82 prefill_tok_s=233.9 prompt_tokens=19 peak_mb=3141 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

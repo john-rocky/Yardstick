@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "5A8C832D-5BF8-4646-9B68-CB39E516EA28",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 35.16988828025912,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 70,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 28.54001522064209,
+    "interTokenLatencyP95MS" : 29.475927352905273,
+    "interTokenLatencyP99MS" : 29.91795539855957,
+    "loadTimeSeconds" : 4.115079998970032,
+    "memoryAfterGenerationMB" : 233.00331115722656,
+    "memoryAfterLoadMB" : 282.42518615722656,
+    "memoryBaselineMB" : 14.126663208007812,
+    "memoryPeakDuringDecodeMB" : 296.11268615722656,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 48,
+    "promptTokensPerSecond" : 779.5379611560264,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.7095019817352295
+  },
+  "model" : {
+    "displayName" : "Llama-3.2-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/llama-3.2-3b-gpu",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence (AI) technology that runs directly on a device, such as a smartphone, tablet, or smartwatch. This means that the AI algorithms and models are stored and ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T03:03:43Z"
+}

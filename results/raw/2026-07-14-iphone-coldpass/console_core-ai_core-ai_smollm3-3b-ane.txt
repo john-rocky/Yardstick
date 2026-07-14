@@ -1,0 +1,6 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/smollm3-3b-ane task=short-chat runs=1
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: [EngineFactory(variant=static-shape, model=smollm3_3b_ios_pure4bit.h18p.aimodelc, ple=0)] Error Domain=NSPOSIXErrorDomain Code=2 "No such file or directory"
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

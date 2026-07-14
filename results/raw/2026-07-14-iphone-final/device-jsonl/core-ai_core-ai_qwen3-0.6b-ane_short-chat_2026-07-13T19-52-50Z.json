@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F9FA2340-0718-4A01-92A5-D7228B27E74B",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 119.27514639157026,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 27,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 8.147001266479492,
+    "interTokenLatencyP95MS" : 10.712981224060059,
+    "interTokenLatencyP99MS" : 12.996077537536621,
+    "memoryAfterGenerationMB" : 1118.2214431762695,
+    "memoryAfterLoadMB" : 1138.5808181762695,
+    "memoryBaselineMB" : 1138.5808181762695,
+    "memoryPeakDuringDecodeMB" : 1139.5495681762695,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 736.0059108204957,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.0997380018234253
+  },
+  "model" : {
+    "displayName" : "Qwen3-0.6B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-0.6b-ane",
+    "onDiskSizeMB" : 389,
+    "parameterCountB" : 0.6,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nOkay, the user wants an explanation of on-device AI in simple terms. Let me start by recalling what on-device AI is. From what I remember, on-device AI refers to AI models that run on devices ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T19:52:50Z"
+}

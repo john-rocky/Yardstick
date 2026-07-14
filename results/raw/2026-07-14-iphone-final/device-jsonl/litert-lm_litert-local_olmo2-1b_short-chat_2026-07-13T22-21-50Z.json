@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "00CFE4D5-6548-4145-BED2-C5AD8442D19A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 25.746847546538017,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1856,
+    "generatedTokenCount" : 109,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 37.63699531555176,
+    "interTokenLatencyP95MS" : 47.438979148864746,
+    "interTokenLatencyP99MS" : 49.044013023376465,
+    "memoryAfterGenerationMB" : 2360.317024230957,
+    "memoryAfterLoadMB" : 1331.7996368408203,
+    "memoryBaselineMB" : 1331.7996368408203,
+    "memoryPeakDuringDecodeMB" : 3231.7390365600586,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 26,
+    "promptTokensPerSecond" : 100.76074361428786,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 108,
+    "totalGenerationTimeSeconds" : 6.051875948905945
+  },
+  "model" : {
+    "displayName" : "OLMo-2-1B (.litertlm, local int4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "litert-local\/OLMo-2-1B",
+    "id" : "litert-local\/olmo2-1b",
+    "onDiskSizeMB" : 888,
+    "parameterCountB" : 1,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4"
+  },
+  "outputSample" : "On-device AI means AI that is processed and executed on the device itself, rather than in a cloud or on a remote server. This approach is particularly important in mobile devices, where processing pow",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:21:50Z"
+}

@@ -1,0 +1,26 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/deepseek-r1-1.5b-gpu task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=74.92 ttft_ms=23 prefill_tok_s=774.3 prompt_tokens=16 peak_mb=231 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=75.06 ttft_ms=38 prefill_tok_s=462.3 prompt_tokens=16 peak_mb=237 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=74.93 ttft_ms=36 prefill_tok_s=495.3 prompt_tokens=16 peak_mb=229 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=74.92 ttft_ms=36 prefill_tok_s=492.6 prompt_tokens=16 peak_mb=229 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/deepseek-r1-1.5b-gpu task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=75.83 ttft_ms=25 prefill_tok_s=712.1 prompt_tokens=16 peak_mb=223 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=74.80 ttft_ms=37 prefill_tok_s=477.3 prompt_tokens=16 peak_mb=231 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=75.22 ttft_ms=43 prefill_tok_s=414.8 prompt_tokens=16 peak_mb=231 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=74.82 ttft_ms=36 prefill_tok_s=503.7 prompt_tokens=16 peak_mb=231 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

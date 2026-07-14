@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "8BFC65C4-8D93-404D-99C4-5ED674D29269",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      20.36018185349853,
+      20.44868459053149
+    ],
+    "decodeTokensPerSecond" : 20.631391365496658,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1516,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 46.661972999572754,
+    "interTokenLatencyP95MS" : 52.603960037231445,
+    "interTokenLatencyP99MS" : 124.51303005218506,
+    "memoryAfterGenerationMB" : 2324.7868270874023,
+    "memoryAfterLoadMB" : 2324.5212020874023,
+    "memoryBaselineMB" : 2324.5212020874023,
+    "memoryPeakDuringDecodeMB" : 2857.7555770874023,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 9.903899073600769
+  },
+  "model" : {
+    "displayName" : "SmolLM3-3B (.litertlm, local int4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "litert-local\/SmolLM3-3B",
+    "id" : "litert-local\/smollm3-3b",
+    "onDiskSizeMB" : 1900,
+    "parameterCountB" : 3,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4"
+  },
+  "outputSample" : "<think>\n\n<\/think>\nOn-device AI is like having a super smart computer in your phone or device that can do cool things without needing to connect to the internet all the time.\n\nHere's a simple way to th",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T23:05:38Z"
+}

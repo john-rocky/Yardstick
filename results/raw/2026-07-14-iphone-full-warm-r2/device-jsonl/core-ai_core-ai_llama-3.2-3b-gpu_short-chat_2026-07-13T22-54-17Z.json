@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "4E3E88A7-25AB-42E7-8E4C-32A2C46E1EAB",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 35.408590679213994,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 79,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 28.13899517059326,
+    "interTokenLatencyP95MS" : 30.26604652404785,
+    "interTokenLatencyP99MS" : 31.082987785339355,
+    "memoryAfterGenerationMB" : 208.00337982177734,
+    "memoryAfterLoadMB" : 206.39400482177734,
+    "memoryBaselineMB" : 206.39400482177734,
+    "memoryPeakDuringDecodeMB" : 263.25337982177734,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 48,
+    "promptTokensPerSecond" : 661.1026839588023,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.6937270164489746
+  },
+  "model" : {
+    "displayName" : "Llama-3.2-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/llama-3.2-3b-gpu",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence (AI) technology that runs directly on a device, such as a smartphone, tablet, or smartwatch. This means that the AI algorithms and models are stored and ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:54:17Z"
+}

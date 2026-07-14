@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "73322FFC-EACC-4D7F-8A84-EC0ED7AC0CD8",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 30.77762821591759,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 174,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 32.37795829772949,
+    "interTokenLatencyP95MS" : 35.257935523986816,
+    "interTokenLatencyP99MS" : 37.15097904205322,
+    "loadTimeSeconds" : 6.575753927230835,
+    "memoryAfterGenerationMB" : 547.8162231445312,
+    "memoryAfterLoadMB" : 683.28515625,
+    "memoryBaselineMB" : 15.517356872558594,
+    "memoryPeakDuringDecodeMB" : 827.55078125,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 21.746830940246582
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-Distill-Qwen-1.5B (.litertlm)",
+    "hfFilePatterns" : [
+      "DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/DeepSeek-R1-Distill-Qwen-1.5B",
+    "id" : "litert-community\/DeepSeek-R1-Distill-Qwen-1.5B",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "Okay, so I need to explain what on-device AI means in simple terms. I'm not super familiar with the term, but I know it's related to AI, which is artificial intelligence. Let me break it down.\n\nFirst,",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:16:18Z"
+}

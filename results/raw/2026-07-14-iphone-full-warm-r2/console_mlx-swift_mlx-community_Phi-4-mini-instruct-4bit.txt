@@ -1,0 +1,27 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/Phi-4-mini-instruct-4bit task=short-chat runs=4
+[MLX] load starting: mlx-community/Phi-4-mini-instruct-4bit
+[HubBridge] download id=mlx-community/Phi-4-mini-instruct-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/2177574851 bytes)
+[MLX] download progress: 0% (0/2177574851 bytes)
+[MLX] download progress: 0% (0/2177574851 bytes)
+[MLX] download progress: 0% (0/2177574851 bytes)
+[MLX] download progress: 100% (2177574851/2177574851 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/A6C0F58B-00EF-46BB-980C-923E91F0C5E6/Library/Caches/huggingface/hub/models--mlx-community--Phi-4-mini-instruct-4bit/snapshots/ac1c269cb4222a4e136a3d09edad301056c1f36a
+[HubBridge] download id=mlx-community/Phi-4-mini-instruct-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/2177574851 bytes)
+[MLX] download progress: 0% (0/2177574851 bytes)
+[MLX] download progress: 100% (2177574851/2177574851 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/A6C0F58B-00EF-46BB-980C-923E91F0C5E6/Library/Caches/huggingface/hub/models--mlx-community--Phi-4-mini-instruct-4bit/snapshots/ac1c269cb4222a4e136a3d09edad301056c1f36a
+[MLX] load complete in 2.08s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=29.51 ttft_ms=145 prefill_tok_s=91.8 prompt_tokens=13 peak_mb=2245 tokens=128
+YARDSTICK_ENERGY run=1 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=29.49 ttft_ms=132 prefill_tok_s=99.4 prompt_tokens=13 peak_mb=2245 tokens=128
+YARDSTICK_ENERGY run=2 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=29.34 ttft_ms=133 prefill_tok_s=98.4 prompt_tokens=13 peak_mb=2246 tokens=128
+YARDSTICK_ENERGY run=3 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=28.96 ttft_ms=150 prefill_tok_s=87.3 prompt_tokens=13 peak_mb=2246 tokens=128
+YARDSTICK_ENERGY run=4 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "31FBF48F-9259-4960-8E5E-1201C1F253B3",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 74.92105050892975,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 23,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 13.194918632507324,
+    "interTokenLatencyP95MS" : 15.23292064666748,
+    "interTokenLatencyP99MS" : 15.583038330078125,
+    "loadTimeSeconds" : 1.818796992301941,
+    "memoryAfterGenerationMB" : 204.20584106445312,
+    "memoryAfterLoadMB" : 222.14334106445312,
+    "memoryBaselineMB" : 14.392356872558594,
+    "memoryPeakDuringDecodeMB" : 231.36209106445312,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 16,
+    "promptTokensPerSecond" : 774.2585982117104,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7316190004348755
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/deepseek-r1-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, so I'm trying to understand what on-device AI means. I've heard the term before, but I'm not exactly sure what it entails. Let me think about it step by step.\n\nFirst, AI stands for Artificial In",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:25:49Z"
+}

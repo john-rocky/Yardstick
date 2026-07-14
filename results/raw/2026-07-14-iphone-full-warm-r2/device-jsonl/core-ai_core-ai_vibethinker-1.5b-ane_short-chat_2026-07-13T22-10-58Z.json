@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "93D681EC-6201-4452-A846-42A1865B03E1",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 66.80528824422669,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 88,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 14.487028121948242,
+    "interTokenLatencyP95MS" : 20.34902572631836,
+    "interTokenLatencyP99MS" : 23.79000186920166,
+    "loadTimeSeconds" : 111.47138702869415,
+    "memoryAfterGenerationMB" : 1229.237663269043,
+    "memoryAfterLoadMB" : 1224.6282653808594,
+    "memoryBaselineMB" : 14.345458984375,
+    "memoryPeakDuringDecodeMB" : 1286.6595611572266,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 463.18276251166253,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.0042150020599365
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-ane",
+    "onDiskSizeMB" : 1300,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nWe are going to explain what onvol on ontimes on on ... actually, what is \"on on the on the on what is not the same as what we have here. But let's break it down step by step.\n\nBut ... actuall",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:10:58Z"
+}

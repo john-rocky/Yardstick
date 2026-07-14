@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "53E49322-E25D-4F52-A04F-D199BCA55F16",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 71.78267910040158,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 365,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.787031173706055,
+    "interTokenLatencyP95MS" : 15.730023384094238,
+    "interTokenLatencyP99MS" : 15.864968299865723,
+    "memoryAfterGenerationMB" : 1107.6130752563477,
+    "memoryAfterLoadMB" : 898.9097213745117,
+    "memoryBaselineMB" : 898.9097213745117,
+    "memoryPeakDuringDecodeMB" : 1175.5347900390625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 5.569602012634277
+  },
+  "model" : {
+    "displayName" : "Gemma3-1B (.litertlm, official int4)",
+    "hfFilePatterns" : [
+      "gemma3-1b-it-int4.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/Gemma3-1B-IT",
+    "id" : "litert-community\/Gemma3-1B-IT",
+    "onDiskSizeMB" : 700,
+    "parameterCountB" : 1,
+    "primaryFile" : "gemma3-1b-it-int4.litertlm",
+    "quantization" : "INT4"
+  },
+  "outputSample" : "Okay! Let’s break down what \"on-device AI\" means simply:\n\n**Essentially, on-device AI means running AI algorithms *directly* within your device – like your phone, tablet, computer, or even your car.**",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:36:46Z"
+}

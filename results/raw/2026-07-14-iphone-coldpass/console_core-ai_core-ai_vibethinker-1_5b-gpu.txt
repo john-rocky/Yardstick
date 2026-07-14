@@ -1,0 +1,14 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/vibethinker-1.5b-gpu task=short-chat runs=1
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=73.58 ttft_ms=36 prefill_tok_s=1265.3 prompt_tokens=39 peak_mb=223 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/vibethinker-1.5b-gpu task=short-chat runs=1
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=71.04 ttft_ms=36 prefill_tok_s=1254.3 prompt_tokens=39 peak_mb=231 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

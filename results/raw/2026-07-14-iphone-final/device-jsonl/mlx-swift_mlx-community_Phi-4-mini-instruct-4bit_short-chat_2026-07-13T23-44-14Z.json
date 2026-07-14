@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "20A0B44F-EEE4-49B3-83BA-A2055E59D748",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 28.956694397795008,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 150,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 34.2029333114624,
+    "interTokenLatencyP95MS" : 36.949992179870605,
+    "interTokenLatencyP99MS" : 38.24198246002197,
+    "memoryAfterGenerationMB" : 2246.2378692626953,
+    "memoryAfterLoadMB" : 2246.1753692626953,
+    "memoryBaselineMB" : 2246.1753692626953,
+    "memoryPeakDuringDecodeMB" : 2246.2378692626953,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 13,
+    "promptTokensPerSecond" : 87.34451985781634,
+    "stopReason" : "cancelled",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 4.583134055137634
+  },
+  "model" : {
+    "displayName" : "Phi-4-mini (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/Phi-4-mini-instruct-4bit",
+    "id" : "mlx-community\/Phi-4-mini-instruct-4bit",
+    "onDiskSizeMB" : 2100,
+    "parameterCountB" : 3.8,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence (AI) technology that is directly embedded within a device, such as a smartphone, a smart home appliance, or a car, rather than relying on a distant data ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T23:44:14Z"
+}

@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "CB79EDBD-1911-41E0-8697-A74E065BDD75",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 74.91758995377296,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 36,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 13.308048248291016,
+    "interTokenLatencyP95MS" : 14.564990997314453,
+    "interTokenLatencyP99MS" : 16.009926795959473,
+    "memoryAfterGenerationMB" : 180.78396606445312,
+    "memoryAfterLoadMB" : 180.34646606445312,
+    "memoryBaselineMB" : 180.34646606445312,
+    "memoryPeakDuringDecodeMB" : 228.87771606445312,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 16,
+    "promptTokensPerSecond" : 492.5800814007685,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7449880838394165
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/deepseek-r1-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, so I'm trying to understand what on-device AI means. I've heard the term before, but I'm not exactly sure what it entails. Let me think about it step by step.\n\nFirst, AI stands for Artificial In",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:25:54Z"
+}

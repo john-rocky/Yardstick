@@ -1,0 +1,28 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/TinySwallow-1.5B-Instruct-4bit task=short-chat runs=4
+[MLX] load starting: mlx-community/TinySwallow-1.5B-Instruct-4bit
+[HubBridge] download id=mlx-community/TinySwallow-1.5B-Instruct-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/882888365 bytes)
+[MLX] download progress: 0% (0/882888365 bytes)
+[MLX] download progress: 0% (0/882888365 bytes)
+[MLX] download progress: 0% (0/882888365 bytes)
+[MLX] download progress: 99% (880058745/882888365 bytes)
+[MLX] download progress: 100% (882888365/882888365 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/A6C0F58B-00EF-46BB-980C-923E91F0C5E6/Library/Caches/huggingface/hub/models--mlx-community--TinySwallow-1.5B-Instruct-4bit/snapshots/b5198bc1d0eb53c9fe932b9a1b617e800af0e705
+[HubBridge] download id=mlx-community/TinySwallow-1.5B-Instruct-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/882888365 bytes)
+[MLX] download progress: 0% (0/882888365 bytes)
+[MLX] download progress: 100% (882888365/882888365 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/A6C0F58B-00EF-46BB-980C-923E91F0C5E6/Library/Caches/huggingface/hub/models--mlx-community--TinySwallow-1.5B-Instruct-4bit/snapshots/b5198bc1d0eb53c9fe932b9a1b617e800af0e705
+[MLX] load complete in 1.49s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=72.56 ttft_ms=103 prefill_tok_s=602.3 prompt_tokens=60 peak_mb=1018 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=73.08 ttft_ms=71 prefill_tok_s=876.9 prompt_tokens=60 peak_mb=1000 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=72.40 ttft_ms=71 prefill_tok_s=878.0 prompt_tokens=60 peak_mb=979 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=72.91 ttft_ms=70 prefill_tok_s=894.9 prompt_tokens=60 peak_mb=980 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

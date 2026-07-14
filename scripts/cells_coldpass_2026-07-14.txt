@@ -1,0 +1,19 @@
+# True-cold pass (RUNS=1) for Core AI cells whose in-campaign run 1 was FIRST-EVER
+# (bundle pushed fresh today -> run 1 included on-device compile/cache build).
+# Caches now exist, so a single fresh-process run = cold per fairness-rules S2.
+# Excluded (already have valid cold): qwen3-0.6b-ane & deepseek-r1-1.5b-gpu (probe warmed),
+# qwen3-4b pair (June-resident caches), the two _june controls (primary cells warmed them).
+core-ai core-ai/deepseek-r1-1.5b-ane
+core-ai core-ai/gemma3-1b-gpu
+core-ai core-ai/qwen3-1.7b-gpu
+core-ai core-ai/tinyswallow-1.5b-ane
+core-ai core-ai/tinyswallow-1.5b-gpu
+core-ai core-ai/vibethinker-1.5b-ane
+core-ai core-ai/vibethinker-1.5b-gpu
+core-ai core-ai/olmo2-1b-ane
+core-ai core-ai/olmo2-1b-gpu
+core-ai core-ai/smollm3-3b-gpu
+core-ai core-ai/llama-3.2-3b-ane 300
+core-ai core-ai/llama-3.2-3b-gpu 300
+core-ai core-ai/ministral-3b-gpu 300
+core-ai core-ai/smollm3-3b-ane

@@ -1,0 +1,13 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/smollm3-3b-gpu task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=37.09 ttft_ms=481 prefill_tok_s=551.5 prompt_tokens=259 peak_mb=425 tokens=128
+YARDSTICK_ENERGY run=1 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=37.06 ttft_ms=318 prefill_tok_s=848.8 prompt_tokens=259 peak_mb=397 tokens=128
+YARDSTICK_ENERGY run=2 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=36.93 ttft_ms=330 prefill_tok_s=813.4 prompt_tokens=259 peak_mb=393 tokens=128
+YARDSTICK_ENERGY run=3 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=36.50 ttft_ms=347 prefill_tok_s=775.6 prompt_tokens=259 peak_mb=394 tokens=128
+YARDSTICK_ENERGY run=4 state=full battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

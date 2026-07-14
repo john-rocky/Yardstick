@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "DF1E8256-9EAB-409D-980C-C1D51686D63A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 74.20956442956272,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 50,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 13.31794261932373,
+    "interTokenLatencyP95MS" : 15.429973602294922,
+    "interTokenLatencyP99MS" : 15.524983406066895,
+    "memoryAfterGenerationMB" : 182.90892028808594,
+    "memoryAfterLoadMB" : 182.59642028808594,
+    "memoryBaselineMB" : 182.59642028808594,
+    "memoryPeakDuringDecodeMB" : 219.34642028808594,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 839.413952271112,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7749420404434204
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI as AI that runs directly on a device, like a smartphone or a tablet, without needing to send your data to a remote server. This means:\n\n* **No internet connection:** You can use ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:18:29Z"
+}

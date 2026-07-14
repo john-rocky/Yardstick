@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "5E49B4C8-3C8C-43D3-8AAC-810B577D0C01",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 71.04082256735515,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 36,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 14.168977737426758,
+    "interTokenLatencyP95MS" : 14.576911926269531,
+    "interTokenLatencyP99MS" : 14.766931533813477,
+    "loadTimeSeconds" : 1.7249239683151245,
+    "memoryAfterGenerationMB" : 201.70570373535156,
+    "memoryAfterLoadMB" : 218.72132873535156,
+    "memoryBaselineMB" : 14.220413208007812,
+    "memoryPeakDuringDecodeMB" : 230.90882873535156,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 1254.3015562039207,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.8370519876480103
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-gpu",
+    "onDiskSizeMB" : 900,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Think of on-device AI as AI that runs directly on a device, like a smartphone or a tablet, without needing to send your data to a remote server. This means:\n\n* **No internet connection:** You can use ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-14T02:39:33Z"
+}

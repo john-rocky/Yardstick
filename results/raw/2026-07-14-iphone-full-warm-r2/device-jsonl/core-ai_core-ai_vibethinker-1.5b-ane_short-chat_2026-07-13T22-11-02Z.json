@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A5CB8C55-715A-4CD9-82E7-B1630FC7394D",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 69.85160926647607,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 37,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 14.147043228149414,
+    "interTokenLatencyP95MS" : 16.920089721679688,
+    "interTokenLatencyP99MS" : 22.817015647888184,
+    "memoryAfterGenerationMB" : 1222.5658111572266,
+    "memoryAfterLoadMB" : 1222.0814361572266,
+    "memoryBaselineMB" : 1222.0814361572266,
+    "memoryPeakDuringDecodeMB" : 1223.7064361572266,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 39,
+    "promptTokensPerSecond" : 1102.1318357762962,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.8691890239715576
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/vibethinker-1.5b-ane",
+    "onDiskSizeMB" : 1300,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "<think>\nWe are going to explain what onvol on ontimes on on ... actually, what is \"on on the on the on what is not the same as what we have here. But let's break it down step by step.\n\nBut ... actuall",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T22:11:02Z"
+}

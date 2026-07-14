@@ -1,0 +1,9 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-1.7b-ane task=short-chat runs=4
+loc("Unknown buffer":0:0): error: bytecode version 50 is newer than the current version 6
+loc("Unknown buffer":0:0): error: bytecode version 50 is newer than the current version 6
+loc("Unknown buffer":0:0): error: input buffer is not an MLIR bytecode file
+error: failed to parse bytecode
+LLVM ERROR: cannot unwrap empty `odiec_module_t`
+App terminated due to signal 6.

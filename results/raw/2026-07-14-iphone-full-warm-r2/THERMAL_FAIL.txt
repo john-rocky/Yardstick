@@ -1,0 +1,4 @@
+THERMAL_FAIL litert-lm litert-community/Qwen3-4B (kept both captures; exclude from warm table)
+THERMAL_FAIL core-ai core-ai/qwen3-4b-ane (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/VibeThinker-1.5B (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-local/ministral3-3b (kept both captures; exclude from warm table)

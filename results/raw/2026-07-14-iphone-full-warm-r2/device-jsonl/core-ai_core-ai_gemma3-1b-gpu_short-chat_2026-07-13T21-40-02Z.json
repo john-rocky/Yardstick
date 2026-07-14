@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "CCEE89F0-5127-4F0F-AA86-6AE1E9B83373",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 67.73536960074024,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 315,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 9.202003479003906,
+    "interTokenLatencyP95MS" : 11.455059051513672,
+    "interTokenLatencyP99MS" : 173.40803146362305,
+    "loadTimeSeconds" : 3.1307979822158813,
+    "memoryAfterGenerationMB" : 346.0650329589844,
+    "memoryAfterLoadMB" : 375.0025329589844,
+    "memoryBaselineMB" : 14.704856872558594,
+    "memoryPeakDuringDecodeMB" : 398.0650329589844,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 105.08122598404731,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.204800009727478
+  },
+  "model" : {
+    "displayName" : "Gemma3-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/gemma3-1b-gpu",
+    "onDiskSizeMB" : 574,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, let's break down \"on-device AI\" in simple terms.\n\n**Imagine this:** You're using a smartphone or a computer, and it's learning and acting on your data *without* needing to connect to the interne",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T21:40:02Z"
+}

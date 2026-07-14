@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "0DDCDDC1-CE3E-41E1-87CB-7AD82E5BFEAE",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      11.016390223482036,
+      11.121868976889456,
+      11.122350244023563
+    ],
+    "decodeTokensPerSecond" : 10.990408707367402,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 2162,
+    "generatedTokenCount" : 89,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 90.28291702270508,
+    "interTokenLatencyP95MS" : 93.20807456970215,
+    "interTokenLatencyP99MS" : 120.1409101486206,
+    "memoryAfterGenerationMB" : 2503.3039627075195,
+    "memoryAfterLoadMB" : 1494.5519714355469,
+    "memoryBaselineMB" : 1494.5519714355469,
+    "memoryPeakDuringDecodeMB" : 3421.710189819336,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 18,
+    "promptTokensPerSecond" : 39.223035252792464,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 88,
+    "totalGenerationTimeSeconds" : 10.124414920806885
+  },
+  "model" : {
+    "displayName" : "Phi-4-mini (.litertlm)",
+    "hfFilePatterns" : [
+      "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/Phi-4-mini-instruct",
+    "id" : "litert-community\/Phi-4-mini-instruct",
+    "onDiskSizeMB" : 3600,
+    "parameterCountB" : 3.8,
+    "primaryFile" : "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence technology that is installed directly on a device, such as a smartphone, tablet, or computer, rather than being run on a remote server or cloud-based sys",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-13T23:49:56Z"
+}
