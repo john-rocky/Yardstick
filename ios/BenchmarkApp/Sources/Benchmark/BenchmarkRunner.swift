@@ -194,6 +194,11 @@ public actor BenchmarkRunner {
             if Task.isCancelled { break }
         } while true
 
+        // Stamp the end of generation before teardown: sampler stops, the energy
+        // snapshot and the 200 ms settle sleep below are not generation time, and
+        // on a short run they inflated `totalGenerationTimeSeconds` by ~8%.
+        let generationEnd = CFAbsoluteTimeGetCurrent()
+
         emit(.finalizing)
         await memorySampler.stop()
         await thermalSampler.stop()
@@ -218,7 +223,7 @@ public actor BenchmarkRunner {
         }
 
         let firstTokenLatency = firstTokenAt.map { ($0 - generationStart) * 1000 } ?? 0
-        let totalTime = CFAbsoluteTimeGetCurrent() - generationStart
+        let totalTime = generationEnd - generationStart
 
         // Prefer runtime-reported counts (summed across sustain-loop calls);
         // fall back to streamed-chunk count / wall time when a runtime emits no

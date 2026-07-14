@@ -35,6 +35,7 @@ public enum BenchmarkTaskCatalog {
         LongContextTask(id: "long-context-3k", targetTokens: 3072),     // near the 4096 ctx ceiling (room for 128 decode)
         LongContextTask(id: "long-context-8k", targetTokens: 8192),
         LongContextTask(id: "long-context-32k", targetTokens: 32768),
+        CactusParityTask(),
         SustainedGenerationTask(),
         EnergyTask(),
         QualityTask(),

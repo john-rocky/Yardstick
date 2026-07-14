@@ -36,10 +36,13 @@ cmd_install(){
 
 cmd_coreai(){
   # <staging bundle> -> <device catalog folder>
+  local real
   while read -r src dst; do
     [ -e "$B/coreai/$src" ] || { echo "MISSING staging: $src"; continue; }
     if have "Documents/CoreAIModels/$dst" | grep -q metadata.json; then echo "skip $dst (on device)"; continue; fi
-    echo "-> $dst"; copy_to "$B/coreai/$src" "Documents/CoreAIModels/$dst"
+    # devicectl rejects a symlink as --source (error 21) — resolve to the real dir.
+    real="$(readlink "$B/coreai/$src" || echo "$B/coreai/$src")"
+    echo "-> $dst"; copy_to "$real" "Documents/CoreAIModels/$dst"
   done <<'MAP'
 qwen3_0_6b_ane_ct041 qwen3_0_6b_ane
 qwen3_0_6b_gpu_ct041 qwen3_0_6b_gpu
@@ -94,9 +97,11 @@ cmd_mlx(){
     local d="$HOME/.cache/huggingface/hub/models--mlx-community--$r"
     [ -d "$d/blobs" ] || { echo "MISSING mac cache: $r"; continue; }
     echo "-> mlx $r"
+    # blobs + refs only (June sideload pattern): the snapshots dir is a farm of
+    # relative symlinks and devicectl rejects '..' in paths; the on-device HF client
+    # reconstructs snapshots from refs + blobs.
     copy_to "$d/blobs" "$HUB/models--mlx-community--$r/blobs"
     copy_to "$d/refs"  "$HUB/models--mlx-community--$r/refs"
-    copy_to "$d/snapshots" "$HUB/models--mlx-community--$r/snapshots"
   done
   # E2B: the Mac could NOT re-download the pre-7/6 revision (CDN refused; see prep runbook).
   # The device's own June cache should still hold the old snapshot — pin refs/main to it so

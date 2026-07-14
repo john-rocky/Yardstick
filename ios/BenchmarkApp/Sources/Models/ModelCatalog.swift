@@ -500,6 +500,38 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // int4 companions for the two remaining int8-shipped litert-community models
+        // (Shuangfeng's all-int4 apple-to-apple ask, 2026-07-14). Same BOCTAV4 recipe as DeepSeek.
+        ModelInfo(
+            id: "own/TinySwallow-1.5B-int4-BOCTAV4",
+            displayName: "TinySwallow-1.5B (.litertlm, own int4 BOCTAV4)",
+            quantization: "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1024,
+            hfRepoId: "own/TinySwallow-1.5B-int4-BOCTAV4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "own/VibeThinker-1.5B-int4-BOCTAV4",
+            displayName: "VibeThinker-1.5B (.litertlm, own int4 BOCTAV4)",
+            quantization: "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1024,
+            hfRepoId: "own/VibeThinker-1.5B-int4-BOCTAV4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "own/Phi-4-mini-int4-BOCTAV4-128",
+            displayName: "Phi-4-mini (.litertlm, own int4 BOCTAV4-128)",
+            quantization: "INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope)",
+            parameterCountB: 3.8,
+            onDiskSizeMB: 2200,
+            hfRepoId: "own/Phi-4-mini-int4-BOCTAV4-128",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // Qwen3 4B / 8B — same mixed-INT4 .litertlm line as 0.6B, for a size-scaling
         // curve (0.6B → 4B → 8B). 8B (~4.4 GB) is desktop/Mac-tier; on phones it can
         // exceed the per-app memory ceiling (gemma-3n-style jetsam), so it stays Mac-only.
@@ -985,6 +1017,8 @@ public enum ModelCatalog {
         ModelInfo(id: "core-ai/llama-3.2-3b-static-gpu", displayName: "Llama-3.2-3B (Core AI, static-GPU)", quantization: "4-bit palettized (uniform g32, static→GPU)", parameterCountB: 3.0, onDiskSizeMB: 1700, hfRepoId: ""),
         // Gemma-4 E4B (Per-Layer-Embeddings): `_tbl` GPU-pipelined decode + mmap'd PLE table (in-graph gather).
         ModelInfo(id: "core-ai/gemma4-e4b-gpu", displayName: "Gemma 4 E4B (Core AI, GPU)", quantization: "int4 q4_0 (QAT)", parameterCountB: 4.0, onDiskSizeMB: 5300, hfRepoId: "mlboydaisuke/gemma-4-E4B-CoreAI"),
+        // Gemma-4 E2B: mixedbit ffn-fused decode, weights transplanted from litert-community's QAT (iso-int4 with the LiteRT cell).
+        ModelInfo(id: "core-ai/gemma4-e2b-gpu", displayName: "Gemma 4 E2B (Core AI, GPU)", quantization: "int4 q4_0 (QAT transplant)", parameterCountB: 2.0, onDiskSizeMB: 2048, hfRepoId: ""),
     ]
 
     /// Default model picked when the app first launches.

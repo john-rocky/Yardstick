@@ -130,8 +130,10 @@ FPS visibly sagging while the ANE holds is the whole point.
 
 ## The question this axis answers
 
-On sustained **text** decode, the iPhone's GPU runtimes (MLX, LiteRT) throttle
-~50% within 60 s while the ANE (CoreML) holds — a power-headroom story. **Does the
+On sustained **text** decode, the iPhone's GPU runtimes (MLX, LiteRT) shed
+~50–60% of their throughput within minutes (MLX within ~60 s, LiteRT a few
+minutes later) while the ANE (CoreML) holds (~65% retained) — a power-headroom
+story. **Does the
 same hold for a heavier vision-language workload, where the vision encoder adds a
 conv-heavy ANE-friendly burst to every frame?** If the ANE keeps its FPS while the
 GPU melts, "run the camera model on the ANE" stops being folklore and becomes a

@@ -94,6 +94,12 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         // from a mmap'd static table — the bundle folder also carries `ple/embed_per_layer.i8`
         // + `.scale.f32`, wired as EngineOptions.staticInputBuffers (see loadModel / GemmaPLEBench).
         case "core-ai/gemma4-e4b-gpu":    return ("gemma4_e4b_gpu", "coreai-pipelined")
+        // ⚠ 2026-07-14: E2B (and by extension E4B) decode-only S=1 graphs do NOT load through
+        // EngineFactory — NDArrayDescriptor rejects the chunked-prefill S=8 substitution even with
+        // COREAI_CHUNK_THRESHOLD=1 (verified on device with gemma4_e2b_mixedbit_device). The
+        // coreai-workspace numbers come from the low-level PreparedModel runner (GemmaPLEDeviceBench);
+        // porting that runner here is the deferred gemma4 work. Entry kept wired for that session.
+        case "core-ai/gemma4-e2b-gpu":    return ("gemma4_e2b_gpu", "coreai-pipelined")
         case "core-ai/phi-4-mini-gpu":    return ("phi4_mini_gpu", "coreai-pipelined")
         case "core-ai/llama-3.2-3b-ane":  return ("llama32_3b_ane", "static-shape")
         case "core-ai/llama-3.2-3b-gpu":  return ("llama32_3b_gpu", "coreai-pipelined")
@@ -227,7 +233,11 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             // the in-graph gather needs S=1 prefill steps (COREAI_CHUNK_THRESHOLD=1), set before
             // engine creation. Empty for non-PLE models (no behaviour change).
             let pleBuffers = Self.staticPLEBuffers(bundleURL: bundleURL)
-            if !pleBuffers.isEmpty { setenv("COREAI_CHUNK_THRESHOLD", "1", 1) }
+            // Gemma-4 E-series decode graphs are S=1 (single-step prefill) even when the PLE
+            // table is baked in-graph and no ple/ side-load is present (E2B mixedbit ffn-fused).
+            if !pleBuffers.isEmpty || spec.folder.hasPrefix("gemma4_") {
+                setenv("COREAI_CHUNK_THRESHOLD", "1", 1)
+            }
             step = "EngineFactory(variant=\(spec.variant ?? "auto"), model=\(modelURL.lastPathComponent), ple=\(pleBuffers.count))"
             let options = EngineOptions(
                 variant: spec.variant, kvCacheStrategy: .auto, staticInputBuffers: pleBuffers)

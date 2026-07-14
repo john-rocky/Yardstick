@@ -33,9 +33,9 @@ On-device / on-Mac measurements. Each row is a `(runtime, model, device, task, b
 
 - **Devices** (2): iPhone 17 Pro, Mac M4 Max
 - **Runtimes** (6): apple-fm, core-ai, coreml-llm, litert-lm, llama.cpp, mlx-swift
-- **Models** (67): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/deepseek-r1-1.5b-ane, core-ai/deepseek-r1-1.5b-gpu, core-ai/gemma3-1b-gpu, core-ai/llama-3.2-3b-ane, core-ai/llama-3.2-3b-gpu, core-ai/ministral-3b-gpu, core-ai/olmo2-1b-ane, core-ai/olmo2-1b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-ane-june, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-1.7b-gpu-june, core-ai/qwen3-4b-gpu, core-ai/smollm3-3b-gpu, core-ai/tinyswallow-1.5b-ane, core-ai/tinyswallow-1.5b-gpu, core-ai/vibethinker-1.5b-ane, core-ai/vibethinker-1.5b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/DeepSeek-R1-Distill-Qwen-1.5B, litert-community/Gemma3-1B-IT, litert-community/Phi-4-mini-instruct, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/TinySwallow-1.5B-Instruct, litert-community/VibeThinker-1.5B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/llama32-3b, litert-local/minicpm5-1b, litert-local/ministral3-3b, litert-local/olmo2-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, litert-local/smollm3-3b, mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit, mlx-community/LFM2-350M-4bit, mlx-community/Llama-3.2-3B-Instruct-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Phi-4-mini-instruct-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/SmolLM3-3B-4bit, mlx-community/TinySwallow-1.5B-Instruct-4bit, mlx-community/gemma-3-1b-it-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
+- **Models** (70): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/deepseek-r1-1.5b-ane, core-ai/deepseek-r1-1.5b-gpu, core-ai/gemma3-1b-gpu, core-ai/llama-3.2-3b-ane, core-ai/llama-3.2-3b-gpu, core-ai/ministral-3b-gpu, core-ai/olmo2-1b-ane, core-ai/olmo2-1b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-ane-june, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-1.7b-gpu-june, core-ai/qwen3-4b-gpu, core-ai/smollm3-3b-gpu, core-ai/tinyswallow-1.5b-ane, core-ai/tinyswallow-1.5b-gpu, core-ai/vibethinker-1.5b-ane, core-ai/vibethinker-1.5b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/DeepSeek-R1-Distill-Qwen-1.5B, litert-community/Gemma3-1B-IT, litert-community/Phi-4-mini-instruct, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/TinySwallow-1.5B-Instruct, litert-community/VibeThinker-1.5B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/llama32-3b, litert-local/minicpm5-1b, litert-local/ministral3-3b, litert-local/olmo2-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, litert-local/smollm3-3b, mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit, mlx-community/LFM2-350M-4bit, mlx-community/Llama-3.2-3B-Instruct-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Phi-4-mini-instruct-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/SmolLM3-3B-4bit, mlx-community/TinySwallow-1.5B-Instruct-4bit, mlx-community/gemma-3-1b-it-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, own/DeepSeek-R1-1.5B-int4-BOCTAV4, own/TinySwallow-1.5B-int4-BOCTAV4, own/VibeThinker-1.5B-int4-BOCTAV4, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
 - **Tasks** (7): energy, long-context, long-context-32k, long-context-8k, quality, short-chat, sustained-generation
-- **Total runs**: 404
+- **Total runs**: 416
 
 
 ## At-a-glance
@@ -304,6 +304,24 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | 4 | 1.5 | 103 | 602.3 | 72.6 | 72.9 | 990 |
+
+### own/DeepSeek-R1-1.5B-int4-BOCTAV4  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | 3.7 | 303 | — | 41.2 | 45.4 | 1184 |
+
+### own/TinySwallow-1.5B-int4-BOCTAV4  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/TinySwallow-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | 5.6 | 505 | — | 42.5 | 41.9 | 1283 |
+
+### own/VibeThinker-1.5B-int4-BOCTAV4  (iPhone 17 Pro, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | 5.7 | 276 | — | 45.2 | 44.9 | 1047 |
 
 ### Qwen 3 0.6B  (Mac M4 Max, long-context)
 
@@ -729,6 +747,9 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | 1.5 | INT8 | 4 | 174 | 30.8 | 28.9 | 1018 |
 | TinySwallow-1.5B (.litertlm) | 1.5 | INT8 | 4 | 548 | 30.6 | 30.5 | 860 |
 | VibeThinker-1.5B (.litertlm) | 1.5 | INT8 | 4 | 925 | 29.7 | — | 542 |
+| DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | 1.5 | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | 303 | 41.2 | 45.4 | 1184 |
+| TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | 1.5 | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | 505 | 42.5 | 41.9 | 1283 |
+| VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | 1.5 | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | 276 | 45.2 | 44.9 | 1047 |
 | Qwen3-1.7B (.litertlm, local int8) | 1.7 | INT8 (dynamic, ekv1024) | 3 | 453 | 30.1 | — | 512 |
 | Qwen3-1.7B (.litertlm, local int4 mixed) | 1.7 | INT4 (mixed, int8 embed) | 4 | 1252 | 46.8 | 49.3 | 834 |
 | Gemma 4 E2B (.litertlm) | 2 | INT4 (QAT) | 4 | 717 | 53.5 | 56.8 | 449 |
@@ -961,6 +982,9 @@ Decode tok/s is an average. The percentiles below are the gap between consecutiv
 | iPhone 17 Pro | litert-lm | Qwen3-1.7B (.litertlm, local int8) | 3 | 453 | 33.2 | 34.9 | 36.1 |
 | iPhone 17 Pro | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | 4 | 856 | 20.4 | 22.5 | 23.1 |
 | iPhone 17 Pro | litert-lm | SmolLM3-3B (.litertlm, local int4) | 4 | 1454 | 44.1 | 47.0 | 49.3 |
+| iPhone 17 Pro | litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | 4 | 616 | 22.6 | 25.0 | 25.4 |
+| iPhone 17 Pro | litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | 4 | 611 | 23.7 | 25.8 | 27.2 |
+| iPhone 17 Pro | litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | 4 | 624 | 22.0 | 24.0 | 24.7 |
 | iPhone 17 Pro | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) ⚠️ | 3 | 96 | 24.9 | 26.7 | 29.1 |
 | iPhone 17 Pro | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 3 | 128 | 27.0 | 29.6 | 36.4 |
 | iPhone 17 Pro | mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | 4 | 67 | 13.5 | 15.0 | 15.8 |
@@ -1214,6 +1238,18 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 2 | — | 1422 | — | 23.1 | 2299 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run2.jsonl` |
 | litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 3 | — | 1485 | — | 22.9 | 2850 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run3.jsonl` |
 | litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 4 | — | 1516 | — | 20.6 | 2858 | `iphone17pro-litert-lm-smollm3-3b-short-chat-run4.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 1 | 3.7 | 303 | — | 41.2 | 1132 | `iphone17pro-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run1.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 2 | — | 598 | — | 45.7 | 1060 | `iphone17pro-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run2.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 3 | — | 635 | — | 45.4 | 1237 | `iphone17pro-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run3.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | — | 653 | — | 42.5 | 1278 | `iphone17pro-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run4.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 1 | 5.6 | 505 | — | 42.5 | 1313 | `iphone17pro-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run1.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 2 | — | 604 | — | 42.4 | 1074 | `iphone17pro-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run2.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 3 | — | 621 | — | 41.0 | 1277 | `iphone17pro-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run3.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | — | 618 | — | 41.9 | 1289 | `iphone17pro-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run4.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 1 | 5.7 | 276 | — | 45.2 | 1116 | `iphone17pro-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run1.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 2 | — | 615 | — | 45.7 | 1026 | `iphone17pro-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run2.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 3 | — | 633 | — | 44.9 | 1046 | `iphone17pro-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run3.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | — | 650 | — | 42.2 | 1047 | `iphone17pro-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run4.jsonl` |
 | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | Q4_K_M | 1 | 1.2 | 336 | 41.3 | 39.6 | 1442 | `iphone17pro-llama-cpp-qwen3.5-2b-short-chat-run1.jsonl` ⚠️ |
 | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | Q4_K_M | 2 | 0.3 | 96 | 2876.6 | 39.1 | 1479 | `iphone17pro-llama-cpp-qwen3.5-2b-short-chat-run2.jsonl` ⚠️ |
 | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.3 | 96 | 2503.9 | 38.7 | 1479 | `iphone17pro-llama-cpp-qwen3.5-2b-short-chat-run3.jsonl` ⚠️ |

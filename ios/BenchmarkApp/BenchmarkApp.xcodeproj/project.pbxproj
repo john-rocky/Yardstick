@@ -29,6 +29,7 @@
 		365ACCF96B78A7F412A50860 /* BenchmarkRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C069A3D837A8C235381A361 /* BenchmarkRunner.swift */; };
 		38D2EEF177543768A564B297 /* RuntimeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A2757B6113092D68EC4F94 /* RuntimeKind.swift */; };
 		3C7056AF1BA49ED29DEFDB81 /* MLXVLM in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6E7223F8169CD107D2EDA9 /* MLXVLM */; };
+		3DF5F353B89E79F39EAED24B /* CactusParityTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B4F3C67CB66006931B21CA /* CactusParityTask.swift */; };
 		3E842913FD7699AD530BCBFF /* HuggingFace in Frameworks */ = {isa = PBXBuildFile; productRef = E1EE00212151957A2CF0EA1A /* HuggingFace */; };
 		4093906B51F58C8ECBC1A23B /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39105E2687FD536226E700E /* llama.xcframework */; };
 		40D04B05A0566F3D0E326DB7 /* ExecuTorchRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FDA1BD8CFFB6E92798B22 /* ExecuTorchRuntime.swift */; };
@@ -83,6 +84,7 @@
 		BE6487CEF4C49373288701CC /* Yardstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8A95BC024A5299976FB3A /* Yardstick.swift */; };
 		C3077165679D541B3891953F /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5119926653436F65E0C37EB /* RunView.swift */; };
 		C8B3745CF3A81689ED8873AB /* AppleFMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */; };
+		CCA02B182C10AFDBCCE83302 /* CactusParityTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B4F3C67CB66006931B21CA /* CactusParityTask.swift */; };
 		CCB176ACF070E9D1D8D4C50A /* backend_xnnpack in Frameworks */ = {isa = PBXBuildFile; productRef = 08015CC1FD43865B1B801A53 /* backend_xnnpack */; };
 		CCB3F0B9B7883B6C0119253C /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = 992DB9CED2E82FFE8B146A31 /* AnemllCore */; };
 		CE55A5633E945419992D1CC8 /* SustainedGenerationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */; };
@@ -126,6 +128,7 @@
 		194A6AE44E94937B50DA5B63 /* CameraVLMRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVLMRunner.swift; sourceTree = "<group>"; };
 		1E86895F4C4C799B493D115C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F54149AFF1D39F2B9377885 /* LlamaCppRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LlamaCppRuntime.swift; sourceTree = "<group>"; };
+		24B4F3C67CB66006931B21CA /* CactusParityTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CactusParityTask.swift; sourceTree = "<group>"; };
 		2F6CAC41B79737975D3977D7 /* BenchmarkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkResult.swift; sourceTree = "<group>"; };
 		2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleFMRuntime.swift; sourceTree = "<group>"; };
 		319BAA8C87D996DE5E74350D /* VLMRunResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMRunResult.swift; sourceTree = "<group>"; };
@@ -355,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				1124C321F63E5E0AEEF8902E /* AppLifecycleTask.swift */,
+				24B4F3C67CB66006931B21CA /* CactusParityTask.swift */,
 				FCADC364D9871831E17D1318 /* LongContextTask.swift */,
 				F6CCE863246D4DF67FA309E1 /* QualityTask.swift */,
 				3B472A5B7142B5A088948C3E /* ShortChatTask.swift */,
@@ -528,6 +532,7 @@
 				100A9D75956A32FC2BA2C1F2 /* BenchmarkResult.swift in Sources */,
 				FDB9A3ACB956F700E71E93E4 /* BenchmarkRunner.swift in Sources */,
 				235129CA3670027E3887200D /* BenchmarkTask.swift in Sources */,
+				3DF5F353B89E79F39EAED24B /* CactusParityTask.swift in Sources */,
 				D075A6247EB1EB171DD68013 /* CameraVLMTask.swift in Sources */,
 				F4803995ED52DD8969723131 /* CoreMLRuntime.swift in Sources */,
 				87EB333EA85EDBC955A75984 /* DeviceSnapshot.swift in Sources */,
@@ -566,6 +571,7 @@
 				233E07CCDFD38F03A7808A08 /* BenchmarkResult.swift in Sources */,
 				365ACCF96B78A7F412A50860 /* BenchmarkRunner.swift in Sources */,
 				0F82181CAC39B256ECB79580 /* BenchmarkTask.swift in Sources */,
+				CCA02B182C10AFDBCCE83302 /* CactusParityTask.swift in Sources */,
 				B9ABA81B66E23D58C7F7EB6D /* CameraFrameProvider.swift in Sources */,
 				59ED87AF2C745D8E012A1539 /* CameraVLMRunner.swift in Sources */,
 				F2D07CAE8B4C83B85D291512 /* CameraVLMTask.swift in Sources */,

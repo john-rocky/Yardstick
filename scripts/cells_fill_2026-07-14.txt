@@ -1,0 +1,1 @@
+litert-lm litert-community/Qwen3-4B 240

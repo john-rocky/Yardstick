@@ -1,0 +1,1 @@
+THERMAL_FAIL litert-lm litert-community/Qwen3-4B (kept both captures; exclude from warm table)

@@ -174,6 +174,10 @@ enum HeadlessAutoRun {
         /// runtimes (MLX) stay near their burst rate instead of being dragged into
         /// their long-context regime — a fairer comparison vs SWA runtimes (CoreML).
         var maxTokens: Int?
+        /// `--litert-native-benchmark <prefillTokens>x<decodeTokens>` bypasses the
+        /// task/runner path and calls LiteRT-LM's own `benchmark` entry point, the
+        /// analogue of Cactus's `cactus_benchmark_tokens`. litert-lm only.
+        var nativeBenchmark: (prefill: Int, decode: Int)?
     }
 
     static func specFromLaunchArgs(_ args: [String] = CommandLine.arguments) -> Spec? {
@@ -182,15 +186,31 @@ enum HeadlessAutoRun {
             guard let i = args.firstIndex(of: flag), i + 1 < args.count else { return nil }
             return args[i + 1]
         }
-        guard let runtimeRaw = value("--runtime"),
-              let runtime = RuntimeKind(rawValue: runtimeRaw),
-              let modelId = value("--model-id") else { return nil }
+        // Bad args used to fall through to the interactive UI, so an external driver
+        // would sit waiting for sentinel lines that never came. Fail loudly instead.
+        // `--runtime` takes a RuntimeKind raw value (`mlx-swift`, not `mlx`).
+        func fatal(_ reason: String) -> Never {
+            print("YARDSTICK_FATAL \(reason)")
+            fflush(stdout)
+            exit(2)
+        }
+        guard let runtimeRaw = value("--runtime") else { fatal("missing --runtime") }
+        guard let runtime = RuntimeKind(rawValue: runtimeRaw) else {
+            fatal("unknown runtime '\(runtimeRaw)' — expected one of "
+                  + RuntimeKind.allCases.map(\.rawValue).joined(separator: ", "))
+        }
+        guard let modelId = value("--model-id") else { fatal("missing --model-id") }
         let taskId = value("--task") ?? "short-chat"
         let runs = max(1, Int(value("--runs") ?? "1") ?? 1)
         let sustainSeconds = value("--sustain-seconds").flatMap(Double.init)
         let maxTokens = value("--max-tokens").flatMap(Int.init)
+        let native: (prefill: Int, decode: Int)? = value("--litert-native-benchmark").flatMap {
+            let parts = $0.split(separator: "x")
+            guard parts.count == 2, let p = Int(parts[0]), let d = Int(parts[1]) else { return nil }
+            return (p, d)
+        }
         return Spec(runtime: runtime, modelId: modelId, taskId: taskId, runs: runs,
-                    sustainSeconds: sustainSeconds, maxTokens: maxTokens)
+                    sustainSeconds: sustainSeconds, maxTokens: maxTokens, nativeBenchmark: native)
     }
 }
 
@@ -246,6 +266,10 @@ struct HeadlessRunnerView: View {
         guard let model = runtime.supportedModels.first(where: { $0.id == spec.modelId }) else {
             await log("YARDSTICK_FATAL model=\(spec.modelId) not_in_catalog runtime=\(spec.runtime.rawValue)")
             await finish(3)
+            return
+        }
+        if let native = spec.nativeBenchmark {
+            await runNativeBenchmark(runtime: runtime, model: model, spec: native)
             return
         }
         guard var task = BenchmarkTaskCatalog.task(for: spec.taskId) else {
@@ -309,5 +333,40 @@ struct HeadlessRunnerView: View {
         }
         await log("YARDSTICK_ALL_DONE")
         await finish(0)
+    }
+
+    /// Calls LiteRT-LM's own `benchmark` entry point instead of driving a task through
+    /// `BenchmarkRunner`. Reports the engine's internal prefill/decode counters, which
+    /// is the only way to get a LiteRT prefill tok/s at a fixed prompt length: the
+    /// streaming path leaves the counters unfinalized whenever output is capped.
+    private func runNativeBenchmark(
+        runtime: any LLMRuntime, model: ModelInfo, spec: (prefill: Int, decode: Int)
+    ) async {
+        #if canImport(LiteRTLM)
+        guard let litert = runtime as? MediaPipeRuntime else {
+            await log("YARDSTICK_FATAL native_benchmark requires runtime=litert-lm")
+            await finish(5)
+            return
+        }
+        await log("YARDSTICK_BEGIN native_benchmark model=\(model.id) prefill=\(spec.prefill) decode=\(spec.decode)")
+        do {
+            let info = try await litert.nativeBenchmark(
+                model, prefillTokens: spec.prefill, decodeTokens: spec.decode)
+            await log(String(
+                format: "YARDSTICK_NATIVE_OK prefill_tokens=%d prefill_tok_s=%.2f decode_tokens=%d decode_tok_s=%.2f ttft_ms=%.1f init_s=%.2f footprint_mb=%.0f",
+                info.prefillTokenCount, info.prefillTokensPerSecond,
+                info.decodeTokenCount, info.decodeTokensPerSecond,
+                info.timeToFirstTokenSeconds * 1000, info.initTimeSeconds,
+                MemoryMonitor.footprintMB()
+            ))
+            await finish(0)
+        } catch {
+            await log("YARDSTICK_FATAL native_benchmark_failed \(error.localizedDescription)")
+            await finish(6)
+        }
+        #else
+        await log("YARDSTICK_FATAL native_benchmark unavailable (LiteRTLM not linked)")
+        await finish(5)
+        #endif
     }
 }

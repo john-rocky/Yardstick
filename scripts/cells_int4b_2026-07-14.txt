@@ -1,0 +1,2 @@
+litert-lm own/TinySwallow-1.5B-int4-BOCTAV4 180
+litert-lm own/VibeThinker-1.5B-int4-BOCTAV4 180

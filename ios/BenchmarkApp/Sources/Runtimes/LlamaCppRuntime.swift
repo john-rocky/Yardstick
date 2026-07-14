@@ -19,7 +19,6 @@ public actor LlamaCppRuntime: LLMRuntime {
 
     private var model: OpaquePointer?
     private var context: OpaquePointer?
-    private var sampler: UnsafeMutablePointer<llama_sampler>?
     private var vocab: OpaquePointer?
     private var batch: llama_batch?
 
@@ -60,6 +59,11 @@ public actor LlamaCppRuntime: LLMRuntime {
         let nThreads = max(1, min(8, ProcessInfo.processInfo.processorCount - 2))
         var ctxParams = llama_context_default_params()
         ctxParams.n_ctx = 4096
+        // n_batch defaults to 512. A prompt longer than that is submitted as one
+        // `llama_batch` and comes back with logits that sample EOG immediately — the
+        // 1K-token parity prompt generated zero tokens until this was raised.
+        ctxParams.n_batch = 2048
+        ctxParams.n_ubatch = 512
         ctxParams.n_threads = Int32(nThreads)
         ctxParams.n_threads_batch = Int32(nThreads)
 
@@ -70,24 +74,31 @@ public actor LlamaCppRuntime: LLMRuntime {
         }
         self.context = c
 
-        let sparams = llama_sampler_chain_default_params()
-        let s = llama_sampler_chain_init(sparams)
-        llama_sampler_chain_add(s, llama_sampler_init_temp(0.7))
-        llama_sampler_chain_add(s, llama_sampler_init_top_p(0.9, 1))
-        llama_sampler_chain_add(s, llama_sampler_init_dist(1234))
-        self.sampler = s
-
         self.batch = llama_batch_init(2048, 0, 1)
 
         self.loadedModelId = model.id
     }
 
+    /// Build a sampler chain for one generation. `temperature == 0` means greedy, which is
+    /// what every benchmark task asks for; the other adapters honour it, so this one must too.
+    private func makeSampler(_ parameters: GenerationParameters) throws -> UnsafeMutablePointer<llama_sampler> {
+        guard let chain = llama_sampler_chain_init(llama_sampler_chain_default_params()) else {
+            throw LLMRuntimeError.generationFailed("llama_sampler_chain_init returned NULL")
+        }
+        if parameters.temperature <= 0 {
+            llama_sampler_chain_add(chain, llama_sampler_init_greedy())
+        } else {
+            llama_sampler_chain_add(chain, llama_sampler_init_top_p(parameters.topP, 1))
+            llama_sampler_chain_add(chain, llama_sampler_init_temp(parameters.temperature))
+            llama_sampler_chain_add(chain, llama_sampler_init_dist(UInt32(parameters.seed ?? 1234)))
+        }
+        return chain
+    }
+
     public func unloadModel() async {
-        if let s = sampler { llama_sampler_free(s) }
         if var b = batch { llama_batch_free(b); _ = withUnsafeMutablePointer(to: &b) { _ in } }
         if let c = context { llama_free(c) }
         if let m = model { llama_model_free(m) }
-        sampler = nil
         batch = nil
         context = nil
         model = nil
@@ -118,9 +129,21 @@ public actor LlamaCppRuntime: LLMRuntime {
         parameters: GenerationParameters,
         continuation: AsyncThrowingStream<GenerationEvent, Error>.Continuation
     ) async throws {
-        guard let context, let vocab, let sampler, let model else {
+        guard let context, let vocab, let model else {
             throw LLMRuntimeError.modelNotLoaded
         }
+
+        // Every call re-submits the prompt at positions 0…n-1. Without clearing the KV
+        // cache first, a second call in the same process collides with the first turn's
+        // entries and `llama_decode` fails — which is what a multi-run task (`--runs 4`)
+        // does. Matches the fresh-conversation-per-run behaviour of the other adapters.
+        llama_memory_clear(llama_get_memory(context), true)
+
+        // Build the sampler per call so the task's parameters are honoured. The chain used
+        // to be fixed at temp 0.7 / top-p 0.9, which silently ignored a greedy task and made
+        // llama.cpp the only sampled runtime in an otherwise greedy comparison.
+        let sampler = try makeSampler(parameters)
+        defer { llama_sampler_free(sampler) }
 
         // Apply the model's chat template so llama.cpp matches the other adapters (rule 1);
         // parseSpecial so the template's <start_of_turn> / <|im_start|> tokenize as special

@@ -1,0 +1,3 @@
+# Manual 1-run probe (16:10 JST) that preceded the measured 4-run cell — excluded to keep
+# strict one-launch cell semantics (cold 43.0 consistent with the cell's 42.55 anyway).
+litert-lm_own_TinySwallow-1.5B-int4-BOCTAV4_short-chat_2026-07-14T07-10-51Z.json
