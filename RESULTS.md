@@ -33,9 +33,9 @@ On-device / on-Mac measurements. Each row is a `(runtime, model, device, task, b
 
 - **Devices** (2): iPhone 17 Pro, Mac M4 Max
 - **Runtimes** (6): apple-fm, core-ai, coreml-llm, litert-lm, llama.cpp, mlx-swift
-- **Models** (70): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/deepseek-r1-1.5b-ane, core-ai/deepseek-r1-1.5b-gpu, core-ai/gemma3-1b-gpu, core-ai/llama-3.2-3b-ane, core-ai/llama-3.2-3b-gpu, core-ai/ministral-3b-gpu, core-ai/olmo2-1b-ane, core-ai/olmo2-1b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-ane-june, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-1.7b-gpu-june, core-ai/qwen3-4b-gpu, core-ai/smollm3-3b-gpu, core-ai/tinyswallow-1.5b-ane, core-ai/tinyswallow-1.5b-gpu, core-ai/vibethinker-1.5b-ane, core-ai/vibethinker-1.5b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/DeepSeek-R1-Distill-Qwen-1.5B, litert-community/Gemma3-1B-IT, litert-community/Phi-4-mini-instruct, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/TinySwallow-1.5B-Instruct, litert-community/VibeThinker-1.5B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/llama32-3b, litert-local/minicpm5-1b, litert-local/ministral3-3b, litert-local/olmo2-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, litert-local/smollm3-3b, mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit, mlx-community/LFM2-350M-4bit, mlx-community/Llama-3.2-3B-Instruct-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Phi-4-mini-instruct-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/SmolLM3-3B-4bit, mlx-community/TinySwallow-1.5B-Instruct-4bit, mlx-community/gemma-3-1b-it-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, own/DeepSeek-R1-1.5B-int4-BOCTAV4, own/TinySwallow-1.5B-int4-BOCTAV4, own/VibeThinker-1.5B-int4-BOCTAV4, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
+- **Models** (71): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/deepseek-r1-1.5b-ane, core-ai/deepseek-r1-1.5b-gpu, core-ai/gemma3-1b-gpu, core-ai/llama-3.2-3b-ane, core-ai/llama-3.2-3b-gpu, core-ai/ministral-3b-gpu, core-ai/olmo2-1b-ane, core-ai/olmo2-1b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-ane-june, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-1.7b-gpu-june, core-ai/qwen3-4b-gpu, core-ai/smollm3-3b-gpu, core-ai/tinyswallow-1.5b-ane, core-ai/tinyswallow-1.5b-gpu, core-ai/vibethinker-1.5b-ane, core-ai/vibethinker-1.5b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/DeepSeek-R1-Distill-Qwen-1.5B, litert-community/Gemma3-1B-IT, litert-community/Phi-4-mini-instruct, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/TinySwallow-1.5B-Instruct, litert-community/VibeThinker-1.5B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/llama32-3b, litert-local/minicpm5-1b, litert-local/ministral3-3b, litert-local/olmo2-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, litert-local/smollm3-3b, mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit, mlx-community/LFM2-350M-4bit, mlx-community/Llama-3.2-3B-Instruct-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Phi-4-mini-instruct-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/SmolLM3-3B-4bit, mlx-community/TinySwallow-1.5B-Instruct-4bit, mlx-community/gemma-3-1b-it-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, own/DeepSeek-R1-1.5B-int4-BOCTAV4, own/Phi-4-mini-int4-BOCTAV4-128, own/TinySwallow-1.5B-int4-BOCTAV4, own/VibeThinker-1.5B-int4-BOCTAV4, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
 - **Tasks** (7): energy, long-context, long-context-32k, long-context-8k, quality, short-chat, sustained-generation
-- **Total runs**: 416
+- **Total runs**: 436
 
 
 ## At-a-glance
@@ -615,6 +615,30 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | 5 | 0.6 | 43 | 1504.2 | 328.8 | 328.0 | 1197 |
 
+### own/DeepSeek-R1-1.5B-int4-BOCTAV4  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | 2.4 | 141 | — | 136.6 | 136.7 | 1939 |
+
+### own/Phi-4-mini-int4-BOCTAV4-128  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/Phi-4-mini-int4-BOCTAV4-128` | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 5 | 4.1 | 138 | — | 83.5 | 85.4 | 5177 |
+
+### own/TinySwallow-1.5B-int4-BOCTAV4  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/TinySwallow-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | 2.7 | 75 | — | 136.4 | 137.2 | 2031 |
+
+### own/VibeThinker-1.5B-int4-BOCTAV4  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | 2.7 | 80 | — | 137.4 | 137.4 | 1953 |
+
 ### Gemma 4 E2B  (Mac M4 Max, sustained-generation)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
@@ -850,12 +874,16 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | 1.5 | INT8 | 5 | 199 | 119.3 | 119.0 | 1684 |
 | TinySwallow-1.5B (.litertlm) | 1.5 | INT8 | 5 | 159 | 120.4 | 120.6 | 1652 |
 | VibeThinker-1.5B (.litertlm) | 1.5 | INT8 | 5 | 130 | 120.3 | 120.4 | 1602 |
+| DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | 1.5 | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | 141 | 136.6 | 136.7 | 1939 |
+| TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | 1.5 | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | 75 | 136.4 | 137.2 | 2031 |
+| VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | 1.5 | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | 80 | 137.4 | 137.4 | 1953 |
 | Qwen3-1.7B (.litertlm, local int4 mixed) | 1.7 | INT4 (mixed, int8 embed) | 5 | 351 | 94.9 | 171.1 | 1778 |
 | Gemma 4 E2B (.litertlm) | 2 | INT4 (QAT) | 5 | 337 | 133.0 | 155.9 | 664 |
 | Llama-3.2-3B (.litertlm, local int4) | 3 | INT4 | 5 | 125 | 92.9 | 93.3 | 5199 |
 | Ministral-3-3B (.litertlm, local int4) | 3 | INT4 | 5 | 140 | 91.7 | 92.0 | 5070 |
 | SmolLM3-3B (.litertlm, local int4) | 3 | INT4 | 1 | 129 | 90.9 | — | 1830 |
 | Phi-4-mini (.litertlm) | 3.8 | INT8 | 5 | 168 | 42.0 | 64.9 | 5153 |
+| Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | 3.8 | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 5 | 138 | 83.5 | 85.4 | 5177 |
 | Qwen3 4B (.litertlm) | 4 | INT4 (mixed, blockwise gs32) | 5 | 228 | 111.2 | 110.9 | 2479 |
 | Qwen3 8B (.litertlm) | 8 | INT4 (mixed, blockwise gs32) | 3 | 467 | 65.2 | — | 3451 |
 
@@ -1034,6 +1062,10 @@ Decode tok/s is an average. The percentiles below are the gap between consecutiv
 | Mac M4 Max | litert-lm | OLMo-2-1B (.litertlm, local int4) | 5 | 1397 | 7.3 | 7.6 | 7.7 |
 | Mac M4 Max | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | 5 | 350 | 5.9 | 6.2 | 6.3 |
 | Mac M4 Max | litert-lm | SmolLM3-3B (.litertlm, local int4) | 1 | 129 | 11.1 | 11.5 | 12.0 |
+| Mac M4 Max | litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | 5 | 358 | 7.3 | 7.6 | 7.7 |
+| Mac M4 Max | litert-lm | Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | 5 | 1447 | 11.8 | 12.1 | 12.3 |
+| Mac M4 Max | litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | 5 | 360 | 7.3 | 7.6 | 7.7 |
+| Mac M4 Max | litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | 5 | 361 | 7.3 | 7.6 | 7.7 |
 | Mac M4 Max | llama.cpp | Qwen 2.5 0.5B Q4_K_M (GGUF) | 3 | 17 | 3.3 | 3.4 | 3.5 |
 | Mac M4 Max | llama.cpp | Qwen 3.5 0.8B Q4_K_M (GGUF) | 3 | 22 | 4.9 | 5.1 | 5.2 |
 | Mac M4 Max | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | 3 | 29 | 6.5 | 6.7 | 6.9 |
@@ -1397,6 +1429,26 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 4 | — | 338 | — | 169.8 | 1778 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run4.jsonl` |
 | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 5 | — | 334 | — | 171.8 | 1566 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run5.jsonl` |
 | litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 1 | 4.5 | 129 | — | 90.9 | 1830 | `m4max-litert-lm-smollm3-3b-short-chat-run1.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 1 | 2.4 | 141 | — | 136.6 | 1560 | `m4max-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run1.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 2 | — | 366 | — | 136.7 | 1939 | `m4max-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run2.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 3 | — | 360 | — | 136.7 | 1982 | `m4max-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run3.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | — | 356 | — | 136.6 | 2056 | `m4max-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run4.jsonl` |
+| litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | — | 358 | — | 136.6 | 1789 | `m4max-litert-lm-deepseek-r1-1.5b-int4-boctav4-short-chat-run5.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 1 | 4.1 | 138 | — | 83.5 | 2361 | `m4max-litert-lm-phi-4-mini-int4-boctav4-128-short-chat-run1.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 2 | — | 1479 | — | 85.3 | 4791 | `m4max-litert-lm-phi-4-mini-int4-boctav4-128-short-chat-run2.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 3 | — | 1472 | — | 85.4 | 5177 | `m4max-litert-lm-phi-4-mini-int4-boctav4-128-short-chat-run3.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 4 | — | 1447 | — | 85.3 | 5257 | `m4max-litert-lm-phi-4-mini-int4-boctav4-128-short-chat-run4.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm, own int4 BOCTAV4-128) | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | 5 | — | 1442 | — | 85.4 | 5231 | `m4max-litert-lm-phi-4-mini-int4-boctav4-128-short-chat-run5.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 1 | 2.7 | 75 | — | 136.4 | 1564 | `m4max-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run1.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 2 | — | 362 | — | 136.5 | 1955 | `m4max-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run2.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 3 | — | 345 | — | 137.2 | 2039 | `m4max-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run3.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | — | 360 | — | 137.2 | 2035 | `m4max-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run4.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | — | 365 | — | 137.2 | 2031 | `m4max-litert-lm-tinyswallow-1.5b-int4-boctav4-short-chat-run5.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 1 | 2.7 | 80 | — | 137.4 | 1559 | `m4max-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run1.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 2 | — | 361 | — | 137.2 | 1953 | `m4max-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run2.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 3 | — | 373 | — | 137.4 | 2030 | `m4max-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run3.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 4 | — | 344 | — | 137.4 | 2038 | `m4max-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run4.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm, own int4 BOCTAV4) | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | 5 | — | 361 | — | 137.4 | 1637 | `m4max-litert-lm-vibethinker-1.5b-int4-boctav4-short-chat-run5.jsonl` |
 | llama.cpp | Llama 3.2 1B Q4_K_M (GGUF) | Q4_K_M | 1 | 91.1 | 92 | 163.4 | 303.1 | 1019 | `m4max-llama-cpp-llama-3.2-1b-short-chat-run1.jsonl` ⚠️ |
 | llama.cpp | Llama 3.2 1B Q4_K_M (GGUF) | Q4_K_M | 2 | 0.4 | 22 | 3657.4 | 285.9 | 1022 | `m4max-llama-cpp-llama-3.2-1b-short-chat-run2.jsonl` ⚠️ |
 | llama.cpp | Llama 3.2 1B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.4 | 25 | 3724.4 | 269.5 | 1023 | `m4max-llama-cpp-llama-3.2-1b-short-chat-run3.jsonl` ⚠️ |
