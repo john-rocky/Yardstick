@@ -35,7 +35,7 @@ On-device / on-Mac measurements. Each row is a `(runtime, model, device, task, b
 - **Runtimes** (6): apple-fm, core-ai, coreml-llm, litert-lm, llama.cpp, mlx-swift
 - **Models** (67): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/deepseek-r1-1.5b-ane, core-ai/deepseek-r1-1.5b-gpu, core-ai/gemma3-1b-gpu, core-ai/llama-3.2-3b-ane, core-ai/llama-3.2-3b-gpu, core-ai/ministral-3b-gpu, core-ai/olmo2-1b-ane, core-ai/olmo2-1b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-ane-june, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-1.7b-gpu-june, core-ai/qwen3-4b-gpu, core-ai/smollm3-3b-gpu, core-ai/tinyswallow-1.5b-ane, core-ai/tinyswallow-1.5b-gpu, core-ai/vibethinker-1.5b-ane, core-ai/vibethinker-1.5b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/DeepSeek-R1-Distill-Qwen-1.5B, litert-community/Gemma3-1B-IT, litert-community/Phi-4-mini-instruct, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/TinySwallow-1.5B-Instruct, litert-community/VibeThinker-1.5B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/llama32-3b, litert-local/minicpm5-1b, litert-local/ministral3-3b, litert-local/olmo2-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, litert-local/smollm3-3b, mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit, mlx-community/LFM2-350M-4bit, mlx-community/Llama-3.2-3B-Instruct-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Phi-4-mini-instruct-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/SmolLM3-3B-4bit, mlx-community/TinySwallow-1.5B-Instruct-4bit, mlx-community/gemma-3-1b-it-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e4b-it-4bit, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
 - **Tasks** (7): energy, long-context, long-context-32k, long-context-8k, quality, short-chat, sustained-generation
-- **Total runs**: 310
+- **Total runs**: 404
 
 
 ## At-a-glance
@@ -391,11 +391,18 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 1 | 0.6 | 113 | 1183.0 | 163.2 | — | 2816 |
 
+### Gemma 3 1B  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/gemma-3-1b-it-4bit` | Q4 | 5 | 1.2 | 808 | 29.2 | 328.4 | 328.2 | 1108 |
+
 ### Gemma 4 E2B  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | coreml-llm | `coreml-llm/gemma4-e2b` | INT4 palettized | 3 | 2.8 | 525 | — | 32.5 | — | 1036 |
+| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | INT4 (QAT) | 5 | 1.1 | 337 | — | 133.0 | 155.9 | 664 |
 | llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | 3 | 0.6 | 41 | 2143.6 | 119.2 | — | 3212 |
 | mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | 3 | 1.2 | 68 | 446.5 | 185.4 | — | 2829 |
 
@@ -430,8 +437,15 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | 3 | 0.6 | 59 | — | 271.9 | — | 801 |
-| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 3 | 0.7 | 54 | 381.7 | 561.4 | — | 652 |
+| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | 5 | 0.8 | 64 | — | 271.1 | 270.4 | 801 |
+| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 5 | 11.1 | 613 | 31.3 | 561.6 | 553.8 | 658 |
+
+### Qwen 3 1.7B  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/qwen3-1.7b-int4` | INT4 (mixed, int8 embed) | 5 | 3.9 | 351 | — | 94.9 | 171.1 | 1778 |
+| mlx-swift | `mlx-community/Qwen3-1.7B-4bit` | Q4 | 5 | 32.7 | 65 | 309.6 | 324.2 | 325.0 | 1267 |
 
 ### Qwen 3.5 0.8B  (Mac M4 Max, short-chat)
 
@@ -456,17 +470,42 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | llama.cpp | `unsloth/Qwen3.5-9B-GGUF/Q4_K_M` | Q4_K_M | 1 | 721.9 | 141 | 132.8 | 57.6 | — | 5682 |
 | mlx-swift | `mlx-community/Qwen3.5-9B-MLX-4bit` | Q4 | 3 | 0.9 | 95 | 240.8 | 90.0 | — | 5022 |
 
+### SmolLM 3B  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/smollm3-3b` | INT4 | 1 | 4.5 | 129 | — | 90.9 | — | 1830 |
+| mlx-swift | `mlx-community/SmolLM3-3B-4bit` | Q4 | 5 | 0.8 | 210 | 1278.5 | 196.0 | 196.6 | 2505 |
+
 ### apple-fm/default  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | apple-fm | `apple-fm/default` | Apple-quant (~2-4 bit, adapters) | 3 | 0.0 | 265 | 45.3 | 84.3 | — | 27 |
 
+### litert-community/DeepSeek-R1-Distill-Qwen-1.5B  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | 5 | 3.9 | 199 | — | 119.3 | 119.0 | 1684 |
+
+### litert-community/Gemma3-1B-IT  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | 5 | 2.1 | 45 | — | 182.0 | 181.3 | 1699 |
+
+### litert-community/Phi-4-mini-instruct  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | 5 | 10.6 | 168 | 134.0 | 42.0 | 64.9 | 5153 |
+
 ### litert-community/Qwen3-4B  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | 3 | 2.4 | 213 | — | 110.1 | — | 2382 |
+| litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | 5 | 6.0 | 228 | — | 111.2 | 110.9 | 2479 |
 
 ### litert-community/Qwen3-8B  (Mac M4 Max, short-chat)
 
@@ -474,11 +513,47 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | 3 | 3.5 | 467 | — | 65.2 | — | 3451 |
 
+### litert-community/TinySwallow-1.5B-Instruct  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | 5 | 3.0 | 159 | — | 120.4 | 120.6 | 1652 |
+
+### litert-community/VibeThinker-1.5B  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | 5 | 3.0 | 130 | — | 120.3 | 120.4 | 1602 |
+
+### litert-local/llama32-3b  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/llama32-3b` | INT4 | 5 | 4.6 | 125 | — | 92.9 | 93.3 | 5199 |
+
 ### litert-local/minicpm5-1b  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | litert-lm | `litert-local/minicpm5-1b` | INT4 (ekv1024) | 3 | 0.5 | 49 | — | 239.2 | — | 610 |
+
+### litert-local/ministral3-3b  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/ministral3-3b` | INT4 | 5 | 4.7 | 140 | — | 91.7 | 92.0 | 5070 |
+
+### litert-local/olmo2-1b  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-local/olmo2-1b` | INT4 | 5 | 2.0 | 80 | 421.7 | 135.1 | 136.3 | 5637 |
+
+### mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit` | Q4 | 5 | 0.6 | 591 | 27.2 | 330.8 | 332.8 | 1249 |
 
 ### mlx-community/LFM2-350M-4bit  (Mac M4 Max, short-chat)
 
@@ -486,23 +561,41 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/LFM2-350M-4bit` | Q4 | 3 | 0.5 | 21 | 1175.0 | 1024.2 | — | 432 |
 
+### mlx-community/Llama-3.2-3B-Instruct-4bit  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/Llama-3.2-3B-Instruct-4bit` | Q4 | 5 | 0.8 | 55 | 892.1 | 207.6 | 208.1 | 2147 |
+
 ### mlx-community/MiniCPM5-1B-4bit  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/MiniCPM5-1B-4bit` | Q4 | 3 | 0.6 | 28 | 748.7 | 526.2 | — | 860 |
 
+### mlx-community/Phi-4-mini-instruct-4bit  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/Phi-4-mini-instruct-4bit` | Q4 | 5 | 0.8 | 116 | 113.1 | 169.0 | 169.1 | 2411 |
+
 ### mlx-community/Qwen3-4B-4bit  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 3 | 0.6 | 50 | 414.4 | 163.0 | — | 2523 |
+| mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 5 | 67.5 | 56 | 370.3 | 163.1 | 162.2 | 2527 |
 
 ### mlx-community/Qwen3-8B-4bit  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 3 | 0.7 | 82 | 242.5 | 98.3 | — | 4757 |
+
+### mlx-community/TinySwallow-1.5B-Instruct-4bit  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | 5 | 0.6 | 43 | 1504.2 | 328.8 | 328.0 | 1197 |
 
 ### Gemma 4 E2B  (Mac M4 Max, sustained-generation)
 
@@ -729,9 +822,20 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 
 | Model | Params (B) | Quant | n | TTFT (ms, median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---:|---|---:|---:|---:|---:|---:|
-| Qwen3 0.6B (.litertlm) | 0.6 | INT4 (mixed, blockwise gs32) | 3 | 59 | 271.9 | — | 801 |
+| Qwen3 0.6B (.litertlm) | 0.6 | INT4 (mixed, blockwise gs32) | 5 | 64 | 271.1 | 270.4 | 801 |
+| Gemma3-1B (.litertlm, official int4) | 1 | INT4 | 5 | 45 | 182.0 | 181.3 | 1699 |
 | MiniCPM5-1B (.litertlm, local) | 1 | INT4 (ekv1024) | 3 | 49 | 239.2 | — | 610 |
-| Qwen3 4B (.litertlm) | 4 | INT4 (mixed, blockwise gs32) | 3 | 213 | 110.1 | — | 2382 |
+| OLMo-2-1B (.litertlm, local int4) | 1 | INT4 | 5 | 80 | 135.1 | 136.3 | 5637 |
+| DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | 1.5 | INT8 | 5 | 199 | 119.3 | 119.0 | 1684 |
+| TinySwallow-1.5B (.litertlm) | 1.5 | INT8 | 5 | 159 | 120.4 | 120.6 | 1652 |
+| VibeThinker-1.5B (.litertlm) | 1.5 | INT8 | 5 | 130 | 120.3 | 120.4 | 1602 |
+| Qwen3-1.7B (.litertlm, local int4 mixed) | 1.7 | INT4 (mixed, int8 embed) | 5 | 351 | 94.9 | 171.1 | 1778 |
+| Gemma 4 E2B (.litertlm) | 2 | INT4 (QAT) | 5 | 337 | 133.0 | 155.9 | 664 |
+| Llama-3.2-3B (.litertlm, local int4) | 3 | INT4 | 5 | 125 | 92.9 | 93.3 | 5199 |
+| Ministral-3-3B (.litertlm, local int4) | 3 | INT4 | 5 | 140 | 91.7 | 92.0 | 5070 |
+| SmolLM3-3B (.litertlm, local int4) | 3 | INT4 | 1 | 129 | 90.9 | — | 1830 |
+| Phi-4-mini (.litertlm) | 3.8 | INT8 | 5 | 168 | 42.0 | 64.9 | 5153 |
+| Qwen3 4B (.litertlm) | 4 | INT4 (mixed, blockwise gs32) | 5 | 228 | 111.2 | 110.9 | 2479 |
 | Qwen3 8B (.litertlm) | 8 | INT4 (mixed, blockwise gs32) | 3 | 467 | 65.2 | — | 3451 |
 
 ### `llama.cpp`  (Mac M4 Max, short-chat)
@@ -752,12 +856,19 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 |---|---:|---|---:|---:|---:|---:|---:|
 | LFM2-350M (4-bit) | 0.35 | Q4 | 3 | 21 | 1024.2 | — | 432 |
 | Qwen 2.5 0.5B (4-bit) | 0.5 | Q4 | 3 | 26 | 531.1 | — | 387 |
-| Qwen3-0.6B (4-bit) | 0.6 | Q4 | 3 | 54 | 561.4 | — | 652 |
+| Qwen3-0.6B (4-bit) | 0.6 | Q4 | 5 | 613 | 561.6 | 553.8 | 658 |
 | Qwen 3.5 0.8B (4-bit) | 0.8 | Q4 | 3 | 36 | 421.0 | — | 603 |
 | MiniCPM5-1B (4-bit) | 1 | Q4 | 3 | 28 | 526.2 | — | 860 |
+| Gemma3-1B-IT (4-bit) | 1 | Q4 | 5 | 808 | 328.4 | 328.2 | 1108 |
+| DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | 1.5 | Q4 | 5 | 591 | 330.8 | 332.8 | 1249 |
+| TinySwallow-1.5B (4-bit) | 1.5 | Q4 | 5 | 43 | 328.8 | 328.0 | 1197 |
+| Qwen3-1.7B (4-bit) | 1.7 | Q4 | 5 | 65 | 324.2 | 325.0 | 1267 |
 | Qwen 3.5 2B (4-bit) | 2 | Q4 | 3 | 42 | 295.1 | — | 1222 |
 | Gemma 4 E2B (4-bit) | 2 | Q4 | 3 | 68 | 185.4 | — | 2829 |
-| Qwen3-4B (4-bit) | 4 | Q4 | 3 | 50 | 163.0 | — | 2523 |
+| Llama-3.2-3B (4-bit) | 3 | Q4 | 5 | 55 | 207.6 | 208.1 | 2147 |
+| SmolLM3-3B (4-bit) | 3 | Q4 | 5 | 210 | 196.0 | 196.6 | 2505 |
+| Phi-4-mini (4-bit) | 3.8 | Q4 | 5 | 116 | 169.0 | 169.1 | 2411 |
+| Qwen3-4B (4-bit) | 4 | Q4 | 5 | 56 | 163.1 | 162.2 | 2527 |
 | Gemma 4 E4B (4-bit) | 4 | Q4 | 3 | 90 | 113.5 | — | 4376 |
 | Qwen3-8B (4-bit) | 8 | Q4 | 3 | 82 | 98.3 | — | 4757 |
 | Qwen 3.5 9B (4-bit) | 9 | Q4 | 3 | 95 | 90.0 | — | 5022 |
@@ -884,25 +995,43 @@ Decode tok/s is an average. The percentiles below are the gap between consecutiv
 | Mac M4 Max | coreml-llm | Qwen 2.5 0.5B (CoreML, text) | 3 | 171 | 5.5 | 5.6 | 5.7 |
 | Mac M4 Max | coreml-llm | Qwen 3.5 0.8B (CoreML, ANE) | 3 | 405 | 17.1 | 18.1 | 18.8 |
 | Mac M4 Max | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | 3 | 665 | 28.5 | 29.5 | 29.7 |
-| Mac M4 Max | litert-lm | Qwen3 0.6B (.litertlm) | 3 | 59 | 3.7 | 3.9 | 4.0 |
-| Mac M4 Max | litert-lm | Qwen3 4B (.litertlm) | 3 | 213 | 9.1 | 9.4 | 9.5 |
+| Mac M4 Max | litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | 5 | 338 | 8.4 | 8.6 | 8.8 |
+| Mac M4 Max | litert-lm | Gemma3-1B (.litertlm, official int4) | 5 | 292 | 5.5 | 5.8 | 5.9 |
+| Mac M4 Max | litert-lm | Phi-4-mini (.litertlm) | 5 | 1844 | 15.4 | 15.7 | 17.3 |
+| Mac M4 Max | litert-lm | Qwen3 0.6B (.litertlm) | 5 | 47 | 3.7 | 3.9 | 4.0 |
+| Mac M4 Max | litert-lm | Qwen3 4B (.litertlm) | 5 | 196 | 9.0 | 9.3 | 9.4 |
 | Mac M4 Max | litert-lm | Qwen3 8B (.litertlm) | 3 | 467 | 15.4 | 15.8 | 16.0 |
+| Mac M4 Max | litert-lm | TinySwallow-1.5B (.litertlm) | 5 | 406 | 8.3 | 8.6 | 8.8 |
+| Mac M4 Max | litert-lm | VibeThinker-1.5B (.litertlm) | 5 | 410 | 8.3 | 8.6 | 8.9 |
+| Mac M4 Max | litert-lm | Gemma 4 E2B (.litertlm) | 5 | 37 | 6.4 | 6.7 | 7.0 |
+| Mac M4 Max | litert-lm | Llama-3.2-3B (.litertlm, local int4) | 5 | 1329 | 10.8 | 11.2 | 11.4 |
 | Mac M4 Max | litert-lm | MiniCPM5-1B (.litertlm, local) | 3 | 49 | 4.2 | 4.3 | 4.5 |
+| Mac M4 Max | litert-lm | Ministral-3-3B (.litertlm, local int4) | 5 | 1246 | 11.0 | 11.3 | 11.7 |
+| Mac M4 Max | litert-lm | OLMo-2-1B (.litertlm, local int4) | 5 | 1397 | 7.3 | 7.6 | 7.7 |
+| Mac M4 Max | litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | 5 | 350 | 5.9 | 6.2 | 6.3 |
+| Mac M4 Max | litert-lm | SmolLM3-3B (.litertlm, local int4) | 1 | 129 | 11.1 | 11.5 | 12.0 |
 | Mac M4 Max | llama.cpp | Qwen 2.5 0.5B Q4_K_M (GGUF) | 3 | 17 | 3.3 | 3.4 | 3.5 |
 | Mac M4 Max | llama.cpp | Qwen 3.5 0.8B Q4_K_M (GGUF) | 3 | 22 | 4.9 | 5.1 | 5.2 |
 | Mac M4 Max | llama.cpp | Qwen 3.5 2B Q4_K_M (GGUF) | 3 | 29 | 6.5 | 6.7 | 6.9 |
 | Mac M4 Max | llama.cpp | Qwen 3.5 9B Q4_K_M (GGUF) | 1 | 141 | 16.9 | 17.7 | 18.1 |
 | Mac M4 Max | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 3 | 41 | 8.1 | 9.3 | 9.6 |
 | Mac M4 Max | llama.cpp | Gemma 4 E4B Q4_K_M (GGUF) | 3 | 62 | 12.1 | 12.7 | 12.9 |
+| Mac M4 Max | mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | 5 | 18 | 3.0 | 3.3 | 3.4 |
 | Mac M4 Max | mlx-swift | LFM2-350M (4-bit) | 3 | 21 | 1.0 | 1.1 | 1.4 |
+| Mac M4 Max | mlx-swift | Llama-3.2-3B (4-bit) | 5 | 47 | 4.8 | 5.1 | 5.2 |
 | Mac M4 Max | mlx-swift | MiniCPM5-1B (4-bit) | 3 | 28 | 1.9 | 2.0 | 2.1 |
+| Mac M4 Max | mlx-swift | Phi-4-mini (4-bit) | 5 | 33 | 5.9 | 6.2 | 6.3 |
 | Mac M4 Max | mlx-swift | Qwen 2.5 0.5B (4-bit) | 3 | 26 | 1.9 | 2.0 | 2.2 |
-| Mac M4 Max | mlx-swift | Qwen3-0.6B (4-bit) | 3 | 54 | 1.8 | 1.9 | 2.1 |
-| Mac M4 Max | mlx-swift | Qwen3-4B (4-bit) | 3 | 50 | 6.1 | 6.5 | 6.6 |
+| Mac M4 Max | mlx-swift | Qwen3-0.6B (4-bit) | 5 | 12 | 1.8 | 2.1 | 2.2 |
+| Mac M4 Max | mlx-swift | Qwen3-1.7B (4-bit) | 5 | 20 | 3.1 | 3.4 | 3.4 |
+| Mac M4 Max | mlx-swift | Qwen3-4B (4-bit) | 5 | 39 | 6.2 | 6.5 | 6.6 |
 | Mac M4 Max | mlx-swift | Qwen3-8B (4-bit) | 3 | 82 | 10.2 | 10.6 | 10.6 |
 | Mac M4 Max | mlx-swift | Qwen 3.5 0.8B (4-bit) | 3 | 36 | 2.4 | 2.7 | 2.9 |
 | Mac M4 Max | mlx-swift | Qwen 3.5 2B (4-bit) | 3 | 42 | 3.4 | 3.6 | 3.8 |
 | Mac M4 Max | mlx-swift | Qwen 3.5 9B (4-bit) | 3 | 95 | 11.0 | 11.7 | 12.1 |
+| Mac M4 Max | mlx-swift | SmolLM3-3B (4-bit) | 5 | 158 | 5.1 | 5.4 | 5.6 |
+| Mac M4 Max | mlx-swift | TinySwallow-1.5B (4-bit) | 5 | 25 | 3.0 | 3.3 | 3.4 |
+| Mac M4 Max | mlx-swift | Gemma3-1B-IT (4-bit) | 5 | 156 | 3.0 | 3.3 | 3.4 |
 | Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 3 | 68 | 5.4 | 5.7 | 5.8 |
 | Mac M4 Max | mlx-swift | Gemma 4 E4B (4-bit) | 3 | 90 | 8.8 | 9.2 | 9.4 |
 | Mac M4 Max | apple-fm | Apple Foundation Model (default, on-device) | 1 | 687 | 152.7 | 210.0 | 214.3 |
@@ -1165,18 +1294,73 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | INT8 | 1 | 18.5 | 666 | 34.5 | 34.6 | 230 | `m4max-coreml-llm-qwen3.5-2b-short-chat-run1.jsonl` |
 | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | INT8 | 2 | 18.1 | 665 | 34.6 | 35.3 | 230 | `m4max-coreml-llm-qwen3.5-2b-short-chat-run2.jsonl` |
 | coreml-llm | Qwen 3.5 2B (CoreML, ANE) | INT8 | 3 | 18.1 | 664 | 34.7 | 35.0 | 221 | `m4max-coreml-llm-qwen3.5-2b-short-chat-run3.jsonl` |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 0.8 | 57 | — | 271.9 | 1105 | `m4max-litert-lm-qwen3-0.6b-short-chat-run1.jsonl` |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | 0.6 | 60 | — | 272.3 | 797 | `m4max-litert-lm-qwen3-0.6b-short-chat-run2.jsonl` |
-| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | 0.6 | 59 | — | 271.4 | 801 | `m4max-litert-lm-qwen3-0.6b-short-chat-run3.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 157.3 | 217 | — | 111.0 | 2498 | `m4max-litert-lm-qwen3-4b-short-chat-run1.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | 2.4 | 213 | — | 110.1 | 2382 | `m4max-litert-lm-qwen3-4b-short-chat-run2.jsonl` |
-| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | 1.4 | 209 | — | 109.8 | 1558 | `m4max-litert-lm-qwen3-4b-short-chat-run3.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 1 | 3.9 | 199 | — | 119.3 | 1208 | `m4max-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run1.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 2 | — | 345 | — | 119.6 | 1638 | `m4max-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run2.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 3 | — | 346 | — | 118.9 | 1866 | `m4max-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run3.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 4 | — | 338 | — | 119.1 | 1684 | `m4max-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run4.jsonl` |
+| litert-lm | DeepSeek-R1-Distill-Qwen-1.5B (.litertlm) | INT8 | 5 | — | 337 | — | 118.9 | 1686 | `m4max-litert-lm-deepseek-r1-distill-qwen-1.5b-short-chat-run5.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 1 | 2.1 | 45 | — | 182.0 | 1092 | `m4max-litert-lm-gemma3-1b-it-short-chat-run1.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 2 | — | 292 | — | 182.1 | 1491 | `m4max-litert-lm-gemma3-1b-it-short-chat-run2.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 3 | — | 293 | — | 182.1 | 1699 | `m4max-litert-lm-gemma3-1b-it-short-chat-run3.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 4 | — | 298 | — | 177.1 | 1780 | `m4max-litert-lm-gemma3-1b-it-short-chat-run4.jsonl` |
+| litert-lm | Gemma3-1B (.litertlm, official int4) | INT4 | 5 | — | 288 | — | 180.5 | 1784 | `m4max-litert-lm-gemma3-1b-it-short-chat-run5.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 1 | 10.6 | 168 | 134.0 | 42.0 | 2881 | `m4max-litert-lm-phi-4-mini-instruct-short-chat-run1.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 2 | — | 4473 | 182.7 | 36.9 | 5385 | `m4max-litert-lm-phi-4-mini-instruct-short-chat-run2.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 3 | — | 2732 | 105.5 | 64.7 | 5150 | `m4max-litert-lm-phi-4-mini-instruct-short-chat-run3.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 4 | — | 1844 | 192.5 | 65.0 | 5153 | `m4max-litert-lm-phi-4-mini-instruct-short-chat-run4.jsonl` |
+| litert-lm | Phi-4-mini (.litertlm) | INT8 | 5 | — | 1439 | 201.8 | 65.4 | 5185 | `m4max-litert-lm-phi-4-mini-instruct-short-chat-run5.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 0.8 | 64 | — | 271.1 | 804 | `m4max-litert-lm-qwen3-0.6b-short-chat-run1.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | — | 44 | — | 269.7 | 801 | `m4max-litert-lm-qwen3-0.6b-short-chat-run2.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | — | 46 | — | 269.1 | 798 | `m4max-litert-lm-qwen3-0.6b-short-chat-run3.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 4 | — | 48 | — | 272.6 | 798 | `m4max-litert-lm-qwen3-0.6b-short-chat-run4.jsonl` |
+| litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 5 | — | 47 | — | 271.1 | 802 | `m4max-litert-lm-qwen3-0.6b-short-chat-run5.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 6.0 | 228 | — | 111.2 | 2488 | `m4max-litert-lm-qwen3-4b-short-chat-run1.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | — | 196 | — | 110.6 | 2479 | `m4max-litert-lm-qwen3-4b-short-chat-run2.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | — | 196 | — | 111.1 | 2479 | `m4max-litert-lm-qwen3-4b-short-chat-run3.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 4 | — | 193 | — | 111.4 | 1828 | `m4max-litert-lm-qwen3-4b-short-chat-run4.jsonl` |
+| litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 5 | — | 198 | — | 109.1 | 1233 | `m4max-litert-lm-qwen3-4b-short-chat-run5.jsonl` |
 | litert-lm | Qwen3 8B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 158.3 | 467 | — | 67.5 | 3611 | `m4max-litert-lm-qwen3-8b-short-chat-run1.jsonl` |
 | litert-lm | Qwen3 8B (.litertlm) | INT4 (mixed, blockwise gs32) | 2 | 3.5 | 364 | — | 65.2 | 3451 | `m4max-litert-lm-qwen3-8b-short-chat-run2.jsonl` |
 | litert-lm | Qwen3 8B (.litertlm) | INT4 (mixed, blockwise gs32) | 3 | 2.8 | 586 | — | 62.4 | 2107 | `m4max-litert-lm-qwen3-8b-short-chat-run3.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 1 | 3.0 | 159 | — | 120.4 | 1146 | `m4max-litert-lm-tinyswallow-1.5b-instruct-short-chat-run1.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 2 | — | 423 | — | 120.6 | 1634 | `m4max-litert-lm-tinyswallow-1.5b-instruct-short-chat-run2.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 3 | — | 415 | — | 120.4 | 1652 | `m4max-litert-lm-tinyswallow-1.5b-instruct-short-chat-run3.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 4 | — | 403 | — | 120.6 | 1652 | `m4max-litert-lm-tinyswallow-1.5b-instruct-short-chat-run4.jsonl` |
+| litert-lm | TinySwallow-1.5B (.litertlm) | INT8 | 5 | — | 406 | — | 120.6 | 1656 | `m4max-litert-lm-tinyswallow-1.5b-instruct-short-chat-run5.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 1 | 3.0 | 130 | — | 120.3 | 1143 | `m4max-litert-lm-vibethinker-1.5b-short-chat-run1.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 2 | — | 418 | — | 120.6 | 1581 | `m4max-litert-lm-vibethinker-1.5b-short-chat-run2.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 3 | — | 417 | — | 120.4 | 1870 | `m4max-litert-lm-vibethinker-1.5b-short-chat-run3.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 4 | — | 410 | — | 120.4 | 1602 | `m4max-litert-lm-vibethinker-1.5b-short-chat-run4.jsonl` |
+| litert-lm | VibeThinker-1.5B (.litertlm) | INT8 | 5 | — | 401 | — | 120.1 | 1608 | `m4max-litert-lm-vibethinker-1.5b-short-chat-run5.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 1 | 1.1 | 337 | — | 133.0 | 674 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run1.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 2 | — | 32 | — | 156.3 | 664 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run2.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 3 | — | 38 | — | 155.5 | 664 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run3.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 4 | — | 37 | — | 155.6 | 664 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run4.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | INT4 (QAT) | 5 | — | 37 | — | 156.3 | 664 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-short-chat-run5.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 1 | 4.6 | 125 | — | 92.9 | 2398 | `m4max-litert-lm-llama32-3b-short-chat-run1.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 2 | — | 1363 | — | 93.0 | 4499 | `m4max-litert-lm-llama32-3b-short-chat-run2.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 3 | — | 1355 | — | 93.8 | 5199 | `m4max-litert-lm-llama32-3b-short-chat-run3.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 4 | — | 1329 | — | 93.3 | 5274 | `m4max-litert-lm-llama32-3b-short-chat-run4.jsonl` |
+| litert-lm | Llama-3.2-3B (.litertlm, local int4) | INT4 | 5 | — | 1291 | — | 93.2 | 5255 | `m4max-litert-lm-llama32-3b-short-chat-run5.jsonl` |
 | litert-lm | MiniCPM5-1B (.litertlm, local) | INT4 (ekv1024) | 1 | 1.1 | 125 | — | 231.6 | 610 | `m4max-litert-lm-minicpm5-1b-short-chat-run1.jsonl` |
 | litert-lm | MiniCPM5-1B (.litertlm, local) | INT4 (ekv1024) | 2 | 0.5 | 48 | — | 239.2 | 831 | `m4max-litert-lm-minicpm5-1b-short-chat-run2.jsonl` |
 | litert-lm | MiniCPM5-1B (.litertlm, local) | INT4 (ekv1024) | 3 | 0.1 | 49 | — | 239.3 | 431 | `m4max-litert-lm-minicpm5-1b-short-chat-run3.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 1 | 4.7 | 140 | — | 91.7 | 2382 | `m4max-litert-lm-ministral3-3b-short-chat-run1.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 2 | — | 1340 | — | 91.6 | 4420 | `m4max-litert-lm-ministral3-3b-short-chat-run2.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 3 | — | 1288 | — | 92.4 | 5070 | `m4max-litert-lm-ministral3-3b-short-chat-run3.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 4 | — | 1246 | — | 93.7 | 5196 | `m4max-litert-lm-ministral3-3b-short-chat-run4.jsonl` |
+| litert-lm | Ministral-3-3B (.litertlm, local int4) | INT4 | 5 | — | 1218 | — | 90.7 | 5206 | `m4max-litert-lm-ministral3-3b-short-chat-run5.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 1 | 2.0 | 80 | 421.7 | 135.1 | 2165 | `m4max-litert-lm-olmo2-1b-short-chat-run1.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 2 | — | 1522 | 481.7 | 137.7 | 4608 | `m4max-litert-lm-olmo2-1b-short-chat-run2.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 3 | — | 1473 | 504.4 | 134.2 | 5637 | `m4max-litert-lm-olmo2-1b-short-chat-run3.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 4 | — | 1397 | 455.7 | 136.5 | 5746 | `m4max-litert-lm-olmo2-1b-short-chat-run4.jsonl` |
+| litert-lm | OLMo-2-1B (.litertlm, local int4) | INT4 | 5 | — | 1390 | 475.9 | 136.0 | 5745 | `m4max-litert-lm-olmo2-1b-short-chat-run5.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 1 | 3.9 | 351 | — | 94.9 | 1339 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run1.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 2 | — | 424 | — | 170.5 | 1816 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run2.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 3 | — | 350 | — | 171.7 | 1862 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run3.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 4 | — | 338 | — | 169.8 | 1778 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run4.jsonl` |
+| litert-lm | Qwen3-1.7B (.litertlm, local int4 mixed) | INT4 (mixed, int8 embed) | 5 | — | 334 | — | 171.8 | 1566 | `m4max-litert-lm-qwen3-1.7b-int4-short-chat-run5.jsonl` |
+| litert-lm | SmolLM3-3B (.litertlm, local int4) | INT4 | 1 | 4.5 | 129 | — | 90.9 | 1830 | `m4max-litert-lm-smollm3-3b-short-chat-run1.jsonl` |
 | llama.cpp | Llama 3.2 1B Q4_K_M (GGUF) | Q4_K_M | 1 | 91.1 | 92 | 163.4 | 303.1 | 1019 | `m4max-llama-cpp-llama-3.2-1b-short-chat-run1.jsonl` ⚠️ |
 | llama.cpp | Llama 3.2 1B Q4_K_M (GGUF) | Q4_K_M | 2 | 0.4 | 22 | 3657.4 | 285.9 | 1022 | `m4max-llama-cpp-llama-3.2-1b-short-chat-run2.jsonl` ⚠️ |
 | llama.cpp | Llama 3.2 1B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.4 | 25 | 3724.4 | 269.5 | 1023 | `m4max-llama-cpp-llama-3.2-1b-short-chat-run3.jsonl` ⚠️ |
@@ -1196,21 +1380,45 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | llama.cpp | Gemma 4 E4B Q4_K_M (GGUF) | Q4_K_M | 1 | 2.3 | 62 | 1825.7 | 80.5 | 5080 | `m4max-llama-cpp-gemma-4-e4b-short-chat-run1.jsonl` |
 | llama.cpp | Gemma 4 E4B Q4_K_M (GGUF) | Q4_K_M | 2 | 0.6 | 62 | 2071.1 | 80.5 | 5150 | `m4max-llama-cpp-gemma-4-e4b-short-chat-run2.jsonl` |
 | llama.cpp | Gemma 4 E4B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.6 | 61 | 1752.1 | 80.6 | 5155 | `m4max-llama-cpp-gemma-4-e4b-short-chat-run3.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 1 | 0.6 | 591 | 27.2 | 330.8 | 1249 | `m4max-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run1.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 2 | — | 15 | 1080.1 | 330.3 | 1249 | `m4max-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run2.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 3 | — | 18 | 951.7 | 331.6 | 1249 | `m4max-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run3.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 4 | — | 17 | 985.2 | 334.0 | 1250 | `m4max-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run4.jsonl` |
+| mlx-swift | DeepSeek-R1-Distill-Qwen-1.5B (4-bit) | Q4 | 5 | — | 18 | 959.1 | 335.4 | 1250 | `m4max-mlx-deepseek-r1-distill-qwen-1.5b-short-chat-run5.jsonl` |
 | mlx-swift | LFM2-350M (4-bit) | Q4 | 1 | 15.9 | 190 | 112.5 | 1018.8 | 431 | `m4max-mlx-lfm2.5-350m-short-chat-run1.jsonl` |
 | mlx-swift | LFM2-350M (4-bit) | Q4 | 2 | 0.5 | 21 | 1175.0 | 1031.4 | 433 | `m4max-mlx-lfm2.5-350m-short-chat-run2.jsonl` |
 | mlx-swift | LFM2-350M (4-bit) | Q4 | 3 | 0.4 | 20 | 1193.9 | 1024.2 | 432 | `m4max-mlx-lfm2.5-350m-short-chat-run3.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 1 | 0.8 | 55 | 892.1 | 207.6 | 2146 | `m4max-mlx-llama-3.2-3b-instruct-short-chat-run1.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 2 | — | 43 | 1154.8 | 207.8 | 2146 | `m4max-mlx-llama-3.2-3b-instruct-short-chat-run2.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 3 | — | 45 | 1129.2 | 207.8 | 2147 | `m4max-mlx-llama-3.2-3b-instruct-short-chat-run3.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 4 | — | 47 | 1095.7 | 208.3 | 2147 | `m4max-mlx-llama-3.2-3b-instruct-short-chat-run4.jsonl` |
+| mlx-swift | Llama-3.2-3B (4-bit) | Q4 | 5 | — | 47 | 1122.4 | 210.7 | 2147 | `m4max-mlx-llama-3.2-3b-instruct-short-chat-run5.jsonl` |
 | mlx-swift | MiniCPM5-1B (4-bit) | Q4 | 1 | 19.2 | 28 | 748.7 | 525.7 | 864 | `m4max-mlx-minicpm5-1b-short-chat-run1.jsonl` |
 | mlx-swift | MiniCPM5-1B (4-bit) | Q4 | 2 | 0.5 | 25 | 833.9 | 527.1 | 860 | `m4max-mlx-minicpm5-1b-short-chat-run2.jsonl` |
 | mlx-swift | MiniCPM5-1B (4-bit) | Q4 | 3 | 0.6 | 28 | 737.8 | 526.2 | 860 | `m4max-mlx-minicpm5-1b-short-chat-run3.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 1 | 0.8 | 116 | 113.1 | 169.0 | 2410 | `m4max-mlx-phi-4-mini-instruct-short-chat-run1.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 2 | — | 29 | 454.9 | 168.9 | 2410 | `m4max-mlx-phi-4-mini-instruct-short-chat-run2.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 3 | — | 30 | 444.7 | 169.5 | 2411 | `m4max-mlx-phi-4-mini-instruct-short-chat-run3.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 4 | — | 33 | 404.5 | 169.1 | 2411 | `m4max-mlx-phi-4-mini-instruct-short-chat-run4.jsonl` |
+| mlx-swift | Phi-4-mini (4-bit) | Q4 | 5 | — | 34 | 391.8 | 169.1 | 2411 | `m4max-mlx-phi-4-mini-instruct-short-chat-run5.jsonl` |
 | mlx-swift | Qwen 2.5 0.5B (4-bit) | Q4 | 1 | 0.5 | 387 | 104.2 | 532.8 | 387 | `m4max-mlx-qwen2.5-0.5b-short-chat-run1.jsonl` |
 | mlx-swift | Qwen 2.5 0.5B (4-bit) | Q4 | 2 | 0.5 | 26 | 1715.5 | 531.1 | 392 | `m4max-mlx-qwen2.5-0.5b-short-chat-run2.jsonl` |
 | mlx-swift | Qwen 2.5 0.5B (4-bit) | Q4 | 3 | 0.5 | 21 | 2279.2 | 528.4 | 387 | `m4max-mlx-qwen2.5-0.5b-short-chat-run3.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 1 | 25.5 | 859 | 22.2 | 563.5 | 652 | `m4max-mlx-qwen3-0.6b-short-chat-run1.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 2 | 0.7 | 54 | 381.7 | 561.4 | 650 | `m4max-mlx-qwen3-0.6b-short-chat-run2.jsonl` |
-| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 3 | 0.6 | 22 | 1030.7 | 560.0 | 654 | `m4max-mlx-qwen3-0.6b-short-chat-run3.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 58.9 | 86 | 232.2 | 161.4 | 2527 | `m4max-mlx-qwen3-4b-short-chat-run1.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 2 | 0.6 | 49 | 419.5 | 163.0 | 2523 | `m4max-mlx-qwen3-4b-short-chat-run2.jsonl` |
-| mlx-swift | Qwen3-4B (4-bit) | Q4 | 3 | 0.6 | 50 | 414.4 | 163.7 | 2523 | `m4max-mlx-qwen3-4b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 1 | 11.1 | 613 | 31.3 | 561.6 | 653 | `m4max-mlx-qwen3-0.6b-short-chat-run1.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 2 | — | 17 | 1206.5 | 549.7 | 654 | `m4max-mlx-qwen3-0.6b-short-chat-run2.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 3 | — | 10 | 1936.4 | 557.8 | 658 | `m4max-mlx-qwen3-0.6b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 4 | — | 11 | 1794.7 | 543.8 | 658 | `m4max-mlx-qwen3-0.6b-short-chat-run4.jsonl` |
+| mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 5 | — | 12 | 1687.2 | 563.1 | 658 | `m4max-mlx-qwen3-0.6b-short-chat-run5.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 1 | 32.7 | 65 | 309.6 | 324.2 | 1267 | `m4max-mlx-qwen3-1.7b-short-chat-run1.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 2 | — | 20 | 1009.3 | 324.4 | 1267 | `m4max-mlx-qwen3-1.7b-short-chat-run2.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 3 | — | 19 | 1049.3 | 326.7 | 1267 | `m4max-mlx-qwen3-1.7b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 4 | — | 18 | 1092.5 | 324.9 | 1267 | `m4max-mlx-qwen3-1.7b-short-chat-run4.jsonl` |
+| mlx-swift | Qwen3-1.7B (4-bit) | Q4 | 5 | — | 20 | 994.5 | 325.1 | 1267 | `m4max-mlx-qwen3-1.7b-short-chat-run5.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 67.5 | 56 | 370.3 | 163.1 | 2527 | `m4max-mlx-qwen3-4b-short-chat-run1.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 2 | — | 39 | 493.0 | 161.2 | 2527 | `m4max-mlx-qwen3-4b-short-chat-run2.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 3 | — | 38 | 501.1 | 162.2 | 2527 | `m4max-mlx-qwen3-4b-short-chat-run3.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 4 | — | 38 | 505.3 | 162.2 | 2527 | `m4max-mlx-qwen3-4b-short-chat-run4.jsonl` |
+| mlx-swift | Qwen3-4B (4-bit) | Q4 | 5 | — | 43 | 457.6 | 162.4 | 2527 | `m4max-mlx-qwen3-4b-short-chat-run5.jsonl` |
 | mlx-swift | Qwen3-8B (4-bit) | Q4 | 1 | 0.7 | 139 | 142.7 | 97.1 | 4758 | `m4max-mlx-qwen3-8b-short-chat-run1.jsonl` |
 | mlx-swift | Qwen3-8B (4-bit) | Q4 | 2 | 0.6 | 82 | 242.5 | 98.5 | 4757 | `m4max-mlx-qwen3-8b-short-chat-run2.jsonl` |
 | mlx-swift | Qwen3-8B (4-bit) | Q4 | 3 | 0.7 | 81 | 247.8 | 98.3 | 4757 | `m4max-mlx-qwen3-8b-short-chat-run3.jsonl` |
@@ -1223,6 +1431,21 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | mlx-swift | Qwen 3.5 9B (4-bit) | Q4 | 1 | 621.2 | 156 | 143.4 | 90.1 | 5029 | `m4max-mlx-qwen3.5-9b-short-chat-run1.jsonl` |
 | mlx-swift | Qwen 3.5 9B (4-bit) | Q4 | 2 | 0.9 | 95 | 240.8 | 89.4 | 5022 | `m4max-mlx-qwen3.5-9b-short-chat-run2.jsonl` |
 | mlx-swift | Qwen 3.5 9B (4-bit) | Q4 | 3 | 0.9 | 86 | 270.3 | 90.0 | 5003 | `m4max-mlx-qwen3.5-9b-short-chat-run3.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 1 | 0.8 | 210 | 1278.5 | 196.0 | 2504 | `m4max-mlx-smollm3-3b-short-chat-run1.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 2 | — | 159 | 1701.8 | 196.7 | 2505 | `m4max-mlx-smollm3-3b-short-chat-run2.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 3 | — | 156 | 1720.2 | 197.0 | 2505 | `m4max-mlx-smollm3-3b-short-chat-run3.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 4 | — | 158 | 1714.6 | 196.5 | 2505 | `m4max-mlx-smollm3-3b-short-chat-run4.jsonl` |
+| mlx-swift | SmolLM3-3B (4-bit) | Q4 | 5 | — | 157 | 1727.7 | 195.6 | 2505 | `m4max-mlx-smollm3-3b-short-chat-run5.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 1 | 0.6 | 43 | 1504.2 | 328.8 | 1197 | `m4max-mlx-tinyswallow-1.5b-instruct-short-chat-run1.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 2 | — | 24 | 2636.3 | 327.9 | 1197 | `m4max-mlx-tinyswallow-1.5b-instruct-short-chat-run2.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 3 | — | 26 | 2505.3 | 327.3 | 1197 | `m4max-mlx-tinyswallow-1.5b-instruct-short-chat-run3.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 4 | — | 25 | 2595.5 | 328.6 | 1197 | `m4max-mlx-tinyswallow-1.5b-instruct-short-chat-run4.jsonl` |
+| mlx-swift | TinySwallow-1.5B (4-bit) | Q4 | 5 | — | 25 | 2538.0 | 328.0 | 1197 | `m4max-mlx-tinyswallow-1.5b-instruct-short-chat-run5.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 1 | 1.2 | 808 | 29.2 | 328.4 | 1105 | `m4max-mlx-gemma-3-1b-it-short-chat-run1.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 2 | — | 156 | 1311.8 | 328.0 | 1107 | `m4max-mlx-gemma-3-1b-it-short-chat-run2.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 3 | — | 132 | 1341.6 | 328.3 | 1108 | `m4max-mlx-gemma-3-1b-it-short-chat-run3.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 4 | — | 161 | 1330.0 | 328.3 | 1108 | `m4max-mlx-gemma-3-1b-it-short-chat-run4.jsonl` |
+| mlx-swift | Gemma3-1B-IT (4-bit) | Q4 | 5 | — | 154 | 1322.9 | 327.7 | 1108 | `m4max-mlx-gemma-3-1b-it-short-chat-run5.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 1 | 1.5 | 932 | 23.1 | 170.0 | 2830 | `m4max-mlx-gemma-4-e2b-short-chat-run1.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 2 | 1.2 | 65 | 479.7 | 186.0 | 2812 | `m4max-mlx-gemma-4-e2b-short-chat-run2.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 3 | 1.2 | 68 | 446.5 | 185.4 | 2829 | `m4max-mlx-gemma-4-e2b-short-chat-run3.jsonl` |

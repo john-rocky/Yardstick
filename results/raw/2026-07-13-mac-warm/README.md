@@ -46,3 +46,13 @@ diff, no measurement code change) and locally staged litert-local dirs.
 
 Raw: one `<runtime>-<model>.jsonl` per cell (5 runs each), `*.stderr.log`, `FAILURES.txt`
 (first-pass catalog misses, superseded by the retry pass).
+
+## Imported to the RESULTS store 2026-07-14
+
+All 22 cells imported as `m4max-<rt>-<model>-short-chat-runN.jsonl` (old
+same-identity rows retired to `superseded/2026-07-13-mac-warm/`), with ONE
+exception per the audit above: **SmolLM3 litert warm runs are withheld from
+the store** (in-process decline anomaly — cold run 1 only imported, warm
+column intentionally blank). Core AI Mac cells are NOT in the store: yardstick
+cannot run them on Mac; the `coreai-ct041/` llm-benchmark sweep (10/12 within
+±2% of June) is the documented Mac Core AI lineage reference.
