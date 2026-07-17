@@ -30,10 +30,18 @@
 set -euo pipefail
 
 UDID="${1:-A6F3E849-1947-5202-9AD1-9C881CA58EEF}"   # DaisukeのiPhone (iPhone 17 Pro)
-BUNDLE_ID="com.iosllmbenchmark.benchmarkapp"; TEAM="MFN25KNUGJ"; DEVICE="iphone17pro"
+# com.iosllmbenchmark.benchmarkapp (the project's canonical id) is NOT registerable — "not
+# available", taken by another team; automatic signing cannot mint a profile for it, CLI and
+# Xcode GUI alike (methodology/next-session-brief.md). Build AND drive with an override id
+# that MFN25KNUGJ can register.
+BUNDLE_ID="com.daisukemajima.llmbench"; TEAM="MFN25KNUGJ"; DEVICE="iphone17pro"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PROJ="$REPO/ios/BenchmarkApp/BenchmarkApp.xcodeproj"
-DD="$HOME/Library/Developer/Xcode/DerivedData/BenchmarkApp-coreai"
+# Do NOT reuse the shared BenchmarkApp-coreai DerivedData: builds from the CoreML-arm era left
+# a CoreMLLLM.swiftmodule in Build/Products, which flips `#if canImport(CoreMLLLM)` back ON
+# and fails the build with "Config has no member 'qwen3_06b'" (verified 2026-07-17). A DD that
+# has never built the CoreML arm compiles it out as designed.
+DD="$HOME/Library/Developer/Xcode/DerivedData/BenchmarkApp-bestquant"
 APP="$DD/Build/Products/Release-iphoneos/BenchmarkApp.app"
 PULL="/tmp/gemma4-e2b-bestquant-results"
 
@@ -58,7 +66,8 @@ log "build + install"
 #   in Xcode once and let automatic signing register the capabilities; do not strip them.
 xcodebuild -project "$PROJ" -scheme BenchmarkApp -configuration Release \
   -destination "generic/platform=iOS" -derivedDataPath "$DD" \
-  -skipPackagePluginValidation -skipMacroValidation \
+  -skipPackagePluginValidation -skipMacroValidation -allowProvisioningUpdates \
+  PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
   DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Automatic build > /tmp/xcb_gemma4.log 2>&1 || {
     echo "BUILD FAILED — cause:"; grep -iE "error:" /tmp/xcb_gemma4.log | head -5; exit 1; }
 xcrun devicectl device uninstall app --device "$UDID" "$BUNDLE_ID" 2>/dev/null || true
@@ -71,7 +80,8 @@ ENGINES=(
   "litert-lm   litert-community/gemma-4-E2B-it-litert-lm"        # wNa8o8 QAT — unchanged, already its best
   "mlx-swift   mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit"      # QAT        — was PTQ
   "llama.cpp   google/gemma-4-E2B-it-qat-q4_0-gguf"              # official QAT — was 3rd-party PTQ
-  "coreml-llm  coreml-llm/gemma4-e2b"                            # INT4 palettized — unchanged
+  # "coreml-llm coreml-llm/gemma4-e2b"                           # arm compiled out by default
+  #   since "CoreML arm off by default" (project.yml packages note); re-add when re-enabled
 )
 
 for e in "${ENGINES[@]}"; do
