@@ -290,6 +290,13 @@ public enum ModelCatalog {
     public static let llamaCpp: [ModelInfo] = [
         // Google's own QAT GGUF — the llama.cpp arm's best available build, and the one
         // cross-runtime tables should use. The third-party Q4_K_M below is PTQ.
+        // ⚠️ UNLOADABLE as shipped (verified 2026-07-18): llama.cpp aborts loading its vocab —
+        // "load: empty token at index 237922" then GGML_ASSERT(id_to_token.size() ==
+        // token_to_id.size()) in llama-vocab.cpp. Reproduced on-device (vendored b8999) and
+        // on macOS with 8680 AND the latest release b10064; the Q4_K_M below loads fine, so
+        // it's this file's conversion, not gemma-4 support. Until Google re-exports or
+        // llama.cpp tolerates the empty piece, the arm's official-QAT row reads "unloadable" —
+        // which is itself the result. (Same lesson as wNa8o8: official artifact ≠ usable one.)
         ModelInfo(
             id: "google/gemma-4-E2B-it-qat-q4_0-gguf",
             displayName: "Gemma 4 E2B q4_0 QAT (GGUF)",
