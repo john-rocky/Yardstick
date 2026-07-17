@@ -131,13 +131,25 @@ public enum ModelCatalog {
             onDiskSizeMB: 500,
             hfRepoId: "mlx-community/Qwen3.5-0.8B-MLX-4bit"
         ),
+        // PTQ. Kept for the PTQ-vs-QAT delta; do NOT use it in a cross-runtime table — Google
+        // ships a QAT build for every arm, so a PTQ row measures the recipe, not the runtime.
+        // Measured on M4 Max: PTQ 78% vs QAT 87% on GSM8K (n=100, same protocol).
         ModelInfo(
             id: "mlx-community/gemma-4-e2b-it-4bit",
-            displayName: "Gemma 4 E2B (4-bit)",
-            quantization: "Q4",
+            displayName: "Gemma 4 E2B (PTQ 4-bit)",
+            quantization: "INT4 (PTQ)",
             parameterCountB: 2.0,
             onDiskSizeMB: 1330,
             hfRepoId: "mlx-community/gemma-4-e2b-it-4bit"
+        ),
+        // The MLX arm's best available build — this is the one cross-runtime tables should use.
+        ModelInfo(
+            id: "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+            displayName: "Gemma 4 E2B (QAT 4-bit)",
+            quantization: "INT4 (QAT, OptiQ)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 1330,
+            hfRepoId: "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit"
         ),
 
         // --- Small — fits 16 GB Mac and iPhone Pro models ---
@@ -157,7 +169,10 @@ public enum ModelCatalog {
             onDiskSizeMB: 3000,
             hfRepoId: "mlx-community/gemma-4-e4b-it-4bit"
         ),
-        // QAT-int4 variant — matches Core AI (q4_0 QAT) + LiteRT (INT4 QAT) for a QAT-iso 3-way.
+        // QAT-int4 variant — the MLX arm's best build. NOTE: this does NOT give a "QAT-iso"
+        // three-way with LiteRT; LiteRT runs the wNa8o8 mobile schema, which is a different
+        // checkpoint that no other runtime can execute properly (see the .litertlm entry).
+        // Each arm at its own best available quantization is the achievable comparison.
         ModelInfo(
             id: "mlx-community/gemma-4-e4b-it-qat-OptiQ-4bit",
             displayName: "Gemma 4 E4B (QAT 4-bit)",
@@ -273,10 +288,23 @@ public enum ModelCatalog {
     /// Models the llama.cpp adapter can load.
     /// One `.gguf` file per entry, downloaded from the listed HF repo.
     public static let llamaCpp: [ModelInfo] = [
+        // Google's own QAT GGUF — the llama.cpp arm's best available build, and the one
+        // cross-runtime tables should use. The third-party Q4_K_M below is PTQ.
+        ModelInfo(
+            id: "google/gemma-4-E2B-it-qat-q4_0-gguf",
+            displayName: "Gemma 4 E2B q4_0 QAT (GGUF)",
+            quantization: "Q4_0 (QAT, official)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 3350,
+            hfRepoId: "google/gemma-4-E2B-it-qat-q4_0-gguf",
+            hfFilePatterns: ["gemma-4-E2B_q4_0-it.gguf"],
+            primaryFile: "gemma-4-E2B_q4_0-it.gguf"
+        ),
+        // PTQ. Kept for the PTQ-vs-QAT delta; not for cross-runtime tables.
         ModelInfo(
             id: "unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",
-            displayName: "Gemma 4 E2B Q4_K_M (GGUF)",
-            quantization: "Q4_K_M",
+            displayName: "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
+            quantization: "Q4_K_M (PTQ)",
             parameterCountB: 2.0,
             onDiskSizeMB: 1700,
             hfRepoId: "unsloth/gemma-4-E2B-it-GGUF",
@@ -411,10 +439,18 @@ public enum ModelCatalog {
     /// mmap'd embeddings ≈ 2.59 GB on disk). Context window 32k. Qwen3-0.6B is
     /// the mixed blockwise-INT4 artifact (gs32 weights, INT8 embeddings).
     public static let liteRTLM: [ModelInfo] = [
+        // NOT uniform int4 — this is Google's wNa8o8 MOBILE schema (bit-identical to
+        // `google/gemma-4-E2B-it-qat-mobile-transformers`): targeted 2-bit decode layers,
+        // optimized KV cache, and STATIC INT8 ACTIVATIONS. It is a co-designed weights+runtime
+        // package, not a bit-width, and it does not transfer: those same weights score 85% on
+        // LiteRT and 48% on an fp16-activation runtime (GSM8K n=100, measured 2026-07-17 —
+        // two independent fp16 implementations return identical wrong answers).
+        // So its memory and decode wins here are partly the checkpoint's, not the runtime's;
+        // no other arm can adopt this build to level the field.
         ModelInfo(
             id: "litert-community/gemma-4-E2B-it-litert-lm",
             displayName: "Gemma 4 E2B (.litertlm)",
-            quantization: "INT4 (QAT)",
+            quantization: "wNa8o8 (int2/int4/int8 + int8 activations, QAT)",
             parameterCountB: 2.0,
             onDiskSizeMB: 2650,
             hfRepoId: "litert-community/gemma-4-E2B-it-litert-lm",
