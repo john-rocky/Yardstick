@@ -1,0 +1,47 @@
+Gemma-4-E2B iPhone best-quant rerun — 2026-07-18 (JST small hours; file timestamps are UTC)
+==========================================================================================
+Device: iPhone 17 Pro (iPhone18,1), iOS 27.0, Release build, bundle id override
+com.daisukemajima.llmbench (canonical id unregisterable). Task: short-chat, 128 tokens,
+temperature 0. Protocol: 3 cold runs per arm, median; quality task once per arm.
+Why this rerun exists: the published README table had each arm on a different checkpoint
+(MLX and llama.cpp on PTQ); this rerun puts EVERY ARM ON ITS BEST AVAILABLE QUANT
+(commit 0e83b7d labels, 9917c5a build fixes, 20d6b2a script traps).
+
+RESULT — the "upset" SURVIVES and WIDENS
+----------------------------------------
+arm         quant                 decode tok/s (3 cold)   ITL p50   peak MB   quality
+litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     9/9 answers correct
+mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    8 answers (one item missing from output)
+llama.cpp   official QAT q4_0     UNLOADABLE              —         —         —
+
+- LiteRT decode advantage over MLX: 1.51× (old confounded table: 1.17×).
+  Memory advantage: 9.5× (old: 4.5×).
+- MLX at its *best-quality* quant (QAT OptiQ) is SLOWER and HEAVIER than its PTQ 4-bit row
+  (47.5 -> 34.8 tok/s; 2.9 -> 4.65 GB). "Best" is a quality/speed tradeoff — state the quant
+  per row, which is the point of this rerun.
+- llama.cpp: google/gemma-4-E2B-it-qat-q4_0-gguf aborts in llama_vocab::impl::load —
+  "load: empty token at index 237922" then GGML_ASSERT(id_to_token.size()==token_to_id.size()).
+  Reproduced: on-device vendored b8999, macOS brew 8680, macOS latest release b10064
+  (2026-07-17). unsloth Q4_K_M (PTQ) loads fine => defect is in this file's conversion.
+  The official-QAT row therefore reads "unloadable" — that is the measurement.
+
+Thermal audit (fairness rules: cold runs at initialThermalState=nominal)
+------------------------------------------------------------------------
+- litert-lm captures: all nominal (clean first time).
+- mlx-swift: first 3 captures ran right after the ~3 GB HF download; thermal fair/fair/serious,
+  decode 29.2/19.3/35.9 — EXCLUDED from the median. Re-captured with cooling waits until
+  3× nominal->nominal (21:02–21:08 UTC files): 34.3/34.8/35.1. The fair-state runs cluster at
+  33.3–35.2, so contamination mostly hit the two immediately-post-download runs.
+- Median-of-3-nominal is the headline; all 15 raw JSONs (including excluded runs) are in this
+  directory for the audit trail.
+
+Operational notes (for the next rerun)
+--------------------------------------
+- First-launch model downloads outlive the committed script's fixed 150 s sleeps; use a
+  download-aware poll on Documents/results, or pre-sideload.
+- google/* repos are license-gated; the app's anonymous download gets nothing. The gguf was
+  sideloaded to Documents/models/llama.cpp/google__gemma-4-E2B-it-qat-q4_0-gguf/
+  (HFDownloader.snapshot() short-circuits on a non-empty dir).
+- LiteRT first-ever load builds caches (~112 s); subsequent cold loads 1.4–3.6 s.
+- litert quality answers: 42/Tokyo/Cold/Seven/Merci/56/0.9/0.11/blue (all correct).
+  mlx quality output had 8 of the 9 items (0.11 missing; stopped at 20 tokens).
