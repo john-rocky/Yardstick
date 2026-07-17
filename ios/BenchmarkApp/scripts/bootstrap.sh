@@ -91,10 +91,26 @@ fi
 #    Required for the project to *compile* (project.yml links it) even though Core AI *runs*
 #    additionally need a side-loaded .aimodel in Documents/CoreAIModels/<id>/.
 COREAI_DIR="${VENDORED_DIR}/coreai-models"
-COREAI_TAG="${COREAI_TAG:-0.1.0}"
-if [ ! -d "${COREAI_DIR}" ]; then
-    echo "Cloning coreai-models (${COREAI_TAG}) …"
-    git clone --depth 1 --branch "${COREAI_TAG}" https://github.com/apple/coreai-models.git "${COREAI_DIR}"
+COREAI_TAG="${COREAI_TAG:-0.2.0}"
+# The Core AI arm needs StaticInputBuffer (EngineOptions.staticInputBuffers) to feed Gemma-4's
+# per-layer-embedding table to the `_tbl` decode graph. That API does NOT exist in Apple's public
+# coreai-models (checked: absent from both 0.1.0 and 0.2.0) — it comes from our engine patch,
+# coreai-models-community/apps/coreai-pipelined-static-inputs.patch. So a plain clone of the
+# public repo compiles everything EXCEPT CoreAIRuntime.swift, with a bare
+# "cannot find type 'StaticInputBuffer' in scope".
+# Prefer a local patched checkout (what project.yml's comment assumes); fall back to the public
+# tag so the other arms still build, and say so loudly rather than failing 200 lines later.
+COREAI_LOCAL="${COREAI_LOCAL:-$HOME/code/coreai/coreai-models}"
+if [ ! -e "${COREAI_DIR}" ]; then
+    if [ -d "${COREAI_LOCAL}" ] && grep -qrs "public struct StaticInputBuffer" "${COREAI_LOCAL}/swift/Sources"; then
+        echo "Linking coreai-models -> ${COREAI_LOCAL} (patched: has StaticInputBuffer)"
+        ln -s "${COREAI_LOCAL}" "${COREAI_DIR}"
+    else
+        echo "WARNING: no patched coreai-models at ${COREAI_LOCAL}."
+        echo "         Cloning public ${COREAI_TAG}; the Core AI arm will NOT compile"
+        echo "         (needs coreai-pipelined-static-inputs.patch). Other arms are fine."
+        git clone --depth 1 --branch "${COREAI_TAG}" https://github.com/apple/coreai-models.git "${COREAI_DIR}"
+    fi
 else
     echo "${COREAI_DIR} already present."
 fi

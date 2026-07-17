@@ -139,11 +139,22 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
     }
 
     #if canImport(CoreAILanguageModels)
+    /// True when the bundle side-loads PLE tables — i.e. it can only run on a patched engine.
+    /// Cheap file check, so it compiles against the stock runtime too.
+    private static func hasPLETables(bundleURL: URL) -> Bool {
+        FileManager.default.fileExists(
+            atPath: bundleURL.appendingPathComponent("ple/embed_per_layer.i8").path)
+    }
+
+    #if COREAI_STATIC_INPUTS
     /// Gemma-4 E-series (E2B/E4B) carry Per-Layer-Embeddings whose table is too large to live
     /// in the graph. The `_tbl` decode graph gathers it in-graph from two static inputs
     /// (`ple_table` = int8 rows, `ple_scale` = per-row f32), mmap'd no-copy and bound on every
     /// encode. We side-load them next to the bundle under `ple/`. Returns [:] for non-PLE models.
     /// Adapted from `~/code/coreai/ondevice/GemmaPLEBench` (the reference that benched E4B on device).
+    ///
+    /// Requires the patched engine: `StaticInputBuffer` / `EngineOptions.staticInputBuffers` are
+    /// not part of Apple's released coreai-models.
     private static func staticPLEBuffers(bundleURL: URL) -> [String: StaticInputBuffer] {
         let pleDir = bundleURL.appendingPathComponent("ple", isDirectory: true)
         let files = ["ple_table": "embed_per_layer.i8", "ple_scale": "embed_per_layer.scale.f32"]
@@ -175,7 +186,8 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         return device.makeBuffer(bytesNoCopy: UnsafeMutableRawPointer(mutating: p),
                                  length: mapLen, options: .storageModeShared, deallocator: nil)
     }
-    #endif
+    #endif  // COREAI_STATIC_INPUTS
+    #endif  // canImport(CoreAILanguageModels)
 
     // MARK: - Load
 
@@ -222,11 +234,28 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             // Per-Layer-Embedding models (Gemma-4 E-series) bind the PLE table as static inputs;
             // the in-graph gather needs S=1 prefill steps (COREAI_CHUNK_THRESHOLD=1), set before
             // engine creation. Empty for non-PLE models (no behaviour change).
+            //
+            // COREAI_STATIC_INPUTS gates this: EngineOptions.staticInputBuffers is NOT in Apple's
+            // released coreai-models (absent from 0.1.0 and 0.2.0) — it is a local engine patch.
+            // A stock clone therefore builds every arm except this path, and PLE models (Gemma-4
+            // E2B/E4B) are unavailable rather than the whole app failing to compile. See
+            // methodology/core-ai-arm-provenance.md.
+            #if COREAI_STATIC_INPUTS
             let pleBuffers = Self.staticPLEBuffers(bundleURL: bundleURL)
             if !pleBuffers.isEmpty { setenv("COREAI_CHUNK_THRESHOLD", "1", 1) }
             step = "EngineFactory(variant=\(spec.variant ?? "auto"), model=\(modelURL.lastPathComponent), ple=\(pleBuffers.count))"
             let options = EngineOptions(
                 variant: spec.variant, kvCacheStrategy: .auto, staticInputBuffers: pleBuffers)
+            #else
+            if Self.hasPLETables(bundleURL: bundleURL) {
+                throw LLMRuntimeError.unsupported(
+                    "\(model.id) is a per-layer-embedding model and needs EngineOptions.staticInputBuffers, "
+                    + "which Apple's released coreai-models does not expose. Build with "
+                    + "COREAI_STATIC_INPUTS against a patched engine to measure this arm.")
+            }
+            step = "EngineFactory(variant=\(spec.variant ?? "auto"), model=\(modelURL.lastPathComponent), ple=stock)"
+            let options = EngineOptions(variant: spec.variant, kvCacheStrategy: .auto)
+            #endif
             let engine = try await EngineFactory.createEngine(
                 config: configData,
                 modelURL: modelURL,
@@ -310,7 +339,10 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         var accumIds: [Int] = []
         var emitted = ""
 
-        let stream = try engine.generate(
+        // `await`: generate() became async in coreai-models 0.2.0. Harmless against an older
+        // sync engine (Swift only warns that no async work occurs), so the patched-engine build
+        // still compiles.
+        let stream = try await engine.generate(
             with: inputIds,
             samplingConfiguration: sampling,
             inferenceOptions: options

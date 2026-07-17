@@ -8,21 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		04D814EC10CDC77A988C023A /* VLMRunResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319BAA8C87D996DE5E74350D /* VLMRunResult.swift */; };
-		0A5B1C0000026130BB11B5BE /* kernels_llm in Frameworks */ = {isa = PBXBuildFile; productRef = F2F2A8942501B44FD74F06D0 /* kernels_llm */; };
-		0B84BFD4FD22D8DD7E67E04E /* kernels_optimized in Frameworks */ = {isa = PBXBuildFile; productRef = 94E0BEAFA16C6763A28522EB /* kernels_optimized */; };
+		0A5B1C0000026130BB11B5BE /* kernels_optimized in Frameworks */ = {isa = PBXBuildFile; productRef = 94E0BEAFA16C6763A28522EB /* kernels_optimized */; };
+		0B84BFD4FD22D8DD7E67E04E /* kernels_quantized in Frameworks */ = {isa = PBXBuildFile; productRef = 5E734E7640926D7B17DD6CC4 /* kernels_quantized */; };
 		0CBBA289243FB4250C8B0FA2 /* VLMRunResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319BAA8C87D996DE5E74350D /* VLMRunResult.swift */; };
 		0F82181CAC39B256ECB79580 /* BenchmarkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D10CD171A7FE9EF1BB369F /* BenchmarkTask.swift */; };
 		100A9D75956A32FC2BA2C1F2 /* BenchmarkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CAC41B79737975D3977D7 /* BenchmarkResult.swift */; };
 		112E2A29A4EEA42B9F7D6444 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E86895F4C4C799B493D115C /* Assets.xcassets */; };
-		174A591078D87D4B3B504572 /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = 33E0A67472EF0169CD621D55 /* LiteRTLM */; };
-		1DE99C97463A3023A68C459C /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = F472A90A338D866AA59AA6CC /* AnemllCore */; };
+		11C2819431B53FEA86796BAC /* Yardstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132FE97843937145D4C57C4 /* Yardstick.swift */; };
+		1DE99C97463A3023A68C459C /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = 33E0A67472EF0169CD621D55 /* LiteRTLM */; };
 		1E92F72A316E9C57829D3371 /* CoreMLVLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD978FB1DEA49377A28D581F /* CoreMLVLMRuntime.swift */; };
 		233E07CCDFD38F03A7808A08 /* BenchmarkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CAC41B79737975D3977D7 /* BenchmarkResult.swift */; };
 		235129CA3670027E3887200D /* BenchmarkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D10CD171A7FE9EF1BB369F /* BenchmarkTask.swift */; };
-		23EE8DBC664CEB898C2405B1 /* CoreMLLLM in Frameworks */ = {isa = PBXBuildFile; productRef = 1FD8537D6751D093C80921A9 /* CoreMLLLM */; };
+		23EE8DBC664CEB898C2405B1 /* executorch in Frameworks */ = {isa = PBXBuildFile; productRef = 10A02929ED5A1A7DF466BDD6 /* executorch */; };
 		26A60402AE5BEF83F2FDAA7D /* LlamaCppRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F54149AFF1D39F2B9377885 /* LlamaCppRuntime.swift */; };
 		296689A741B674A7612FC0ED /* SustainedGenerationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */; };
-		2DCF41D723588916BF29D8F0 /* executorch in Frameworks */ = {isa = PBXBuildFile; productRef = 10A02929ED5A1A7DF466BDD6 /* executorch */; };
+		2DCF41D723588916BF29D8F0 /* executorch_llm in Frameworks */ = {isa = PBXBuildFile; productRef = 29AE3D43BC5F40FBC1105806 /* executorch_llm */; };
 		2E8B509B84C74A6A850BF4D4 /* LLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CEC963B0C412A01CB78853 /* LLMRuntime.swift */; };
 		2EC1A49EB3F96A59AD0345D1 /* HFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5235B8E78B06C2870291FF5 /* HFDownloader.swift */; };
 		3265BD866E12254B5F9D02D5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6340DF01289DE1C8F23AA39 /* AboutView.swift */; };
@@ -67,30 +67,28 @@
 		934F49A4C07A710BCD246052 /* MLXBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB25DA3940385A8468CDF86C /* MLXBridges.swift */; };
 		94DD408FB6BD844A7AEA46B2 /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = D9951B938519F9C6991F2B77 /* MLXLLM */; };
 		969557357BB859074D8D1B5C /* RuntimeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A2757B6113092D68EC4F94 /* RuntimeKind.swift */; };
-		9965B527BD88EF07B285754E /* CoreMLLLM in Frameworks */ = {isa = PBXBuildFile; productRef = E5271977FC951DC7C5EA72BD /* CoreMLLLM */; };
+		9965B527BD88EF07B285754E /* CoreAILM in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE5F5ADF5065EE7E42DB9E8 /* CoreAILM */; };
 		9C5DF4C1C1EF300A1B21B367 /* ShortChatTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B472A5B7142B5A088948C3E /* ShortChatTask.swift */; };
 		9CF9A0FAC7BDA40ADA7B7D86 /* ThermalMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07DBDFD928C557A5352D613E /* ThermalMonitor.swift */; };
 		9E7D44C95CD1FFE50638B1BF /* AppLifecycleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124C321F63E5E0AEEF8902E /* AppLifecycleTask.swift */; };
 		9F1C833528187CA27858CE0E /* AppleFMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */; };
 		9FB0903D22C954FDEB555847 /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7B6B97C8F1331B7F122CF4 /* ResultStore.swift */; };
-		A015EE7A7A064B865CF498FD /* executorch_llm in Frameworks */ = {isa = PBXBuildFile; productRef = 29AE3D43BC5F40FBC1105806 /* executorch_llm */; };
+		A015EE7A7A064B865CF498FD /* backend_xnnpack in Frameworks */ = {isa = PBXBuildFile; productRef = 08015CC1FD43865B1B801A53 /* backend_xnnpack */; };
 		A09211745827F71359B56AF8 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EE778237E01ED0945D4AE /* HistoryView.swift */; };
 		A90EA00E6A6DB24DE1E8ABBE /* EnergyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8646DFD32712FBAAEB72156D /* EnergyMonitor.swift */; };
-		B3236EC37B1CE4074B972226 /* kernels_quantized in Frameworks */ = {isa = PBXBuildFile; productRef = 5E734E7640926D7B17DD6CC4 /* kernels_quantized */; };
+		B3236EC37B1CE4074B972226 /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = F472A90A338D866AA59AA6CC /* AnemllCore */; };
 		B482BE617FA81E5C364D906D /* QualityTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CCE863246D4DF67FA309E1 /* QualityTask.swift */; };
 		B9ABA81B66E23D58C7F7EB6D /* CameraFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EDDC56E7FE6ECBD50E6F1 /* CameraFrameProvider.swift */; };
-		BCA6E27341892C066E7C17AB /* CoreAILM in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE5F5ADF5065EE7E42DB9E8 /* CoreAILM */; };
-		BE6487CEF4C49373288701CC /* Yardstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C8A95BC024A5299976FB3A /* Yardstick.swift */; };
+		BCA6E27341892C066E7C17AB /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = 992DB9CED2E82FFE8B146A31 /* AnemllCore */; };
 		C3077165679D541B3891953F /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5119926653436F65E0C37EB /* RunView.swift */; };
 		C8B3745CF3A81689ED8873AB /* AppleFMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */; };
-		CCB176ACF070E9D1D8D4C50A /* backend_xnnpack in Frameworks */ = {isa = PBXBuildFile; productRef = 08015CC1FD43865B1B801A53 /* backend_xnnpack */; };
-		CCB3F0B9B7883B6C0119253C /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = 992DB9CED2E82FFE8B146A31 /* AnemllCore */; };
+		CCB176ACF070E9D1D8D4C50A /* kernels_llm in Frameworks */ = {isa = PBXBuildFile; productRef = F2F2A8942501B44FD74F06D0 /* kernels_llm */; };
+		CCB3F0B9B7883B6C0119253C /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = A56AB7ADC552B4521F7725A8 /* LiteRTLM */; };
 		CE55A5633E945419992D1CC8 /* SustainedGenerationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */; };
 		CFA02802C87A009702AAAD75 /* VLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83851AB7C32EB65D8796EF6 /* VLMRuntime.swift */; };
 		D075A6247EB1EB171DD68013 /* CameraVLMTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59486A9C2FDFB6D3AB40E9 /* CameraVLMTask.swift */; };
 		D2F11BBCDAC07C3A8753D1E2 /* HFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5235B8E78B06C2870291FF5 /* HFDownloader.swift */; };
 		D9E40CE90A81EE9B5AADCFAF /* LLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CEC963B0C412A01CB78853 /* LLMRuntime.swift */; };
-		DAEEF03BA574196BF0C3AF1C /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = A56AB7ADC552B4521F7725A8 /* LiteRTLM */; };
 		E3720048DBF575F5136F3EA8 /* MLXBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB25DA3940385A8468CDF86C /* MLXBridges.swift */; };
 		E89444AEBDBF1290A74FE5D7 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 5EDC2498FDF127EF2101F26B /* MLXLMCommon */; };
 		EC039C8FC4A2DF68CE274F17 /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39105E2687FD536226E700E /* llama.xcframework */; };
@@ -146,7 +144,6 @@
 		59D10CD171A7FE9EF1BB369F /* BenchmarkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkTask.swift; sourceTree = "<group>"; };
 		5E26E6FC4D7741AF3A2EC137 /* anemll-swift-cli */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "anemll-swift-cli"; path = "Vendored/Anemll/anemll-swift-cli"; sourceTree = SOURCE_ROOT; };
 		6978D6BB9139052EA83F5605 /* DeviceSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSnapshot.swift; sourceTree = "<group>"; };
-		8547E031AEF973D901262CBB /* CoreML-LLM */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "CoreML-LLM"; path = "Vendored/CoreML-LLM"; sourceTree = SOURCE_ROOT; };
 		8646DFD32712FBAAEB72156D /* EnergyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyMonitor.swift; sourceTree = "<group>"; };
 		8A1FDA1BD8CFFB6E92798B22 /* ExecuTorchRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuTorchRuntime.swift; sourceTree = "<group>"; };
 		9B1EE778237E01ED0945D4AE /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -154,7 +151,6 @@
 		9F4F079AF5934BDEE412984B /* MLXRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXRuntime.swift; sourceTree = "<group>"; };
 		A0F9D87751860B9AB9619047 /* coreai-models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "coreai-models"; path = "Vendored/coreai-models"; sourceTree = SOURCE_ROOT; };
 		A5119926653436F65E0C37EB /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
-		A5C8A95BC024A5299976FB3A /* Yardstick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yardstick.swift; sourceTree = "<group>"; };
 		A6340DF01289DE1C8F23AA39 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		A8BAA10AA9E8F7A0B65E0E9F /* CoreAIRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAIRuntime.swift; sourceTree = "<group>"; };
 		AD978FB1DEA49377A28D581F /* CoreMLVLMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLVLMRuntime.swift; sourceTree = "<group>"; };
@@ -165,6 +161,7 @@
 		DB25DA3940385A8468CDF86C /* MLXBridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXBridges.swift; sourceTree = "<group>"; };
 		DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainedGenerationTask.swift; sourceTree = "<group>"; };
 		EE59486A9C2FDFB6D3AB40E9 /* CameraVLMTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVLMTask.swift; sourceTree = "<group>"; };
+		F132FE97843937145D4C57C4 /* Yardstick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yardstick.swift; sourceTree = "<group>"; };
 		F5235B8E78B06C2870291FF5 /* HFDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HFDownloader.swift; sourceTree = "<group>"; };
 		F5A53FFB38F5191EA948C20E /* LiteRT-LM */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "LiteRT-LM"; path = "Vendored/LiteRT-LM"; sourceTree = SOURCE_ROOT; };
 		F6CCE863246D4DF67FA309E1 /* QualityTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityTask.swift; sourceTree = "<group>"; };
@@ -182,15 +179,14 @@
 				7441EE04A6771C964FFBBE63 /* MLXLMCommon in Frameworks */,
 				5E44451A3DDE595221C1D747 /* HuggingFace in Frameworks */,
 				FCB55FD5BA55D670179B2DD0 /* Transformers in Frameworks */,
-				23EE8DBC664CEB898C2405B1 /* CoreMLLLM in Frameworks */,
-				2DCF41D723588916BF29D8F0 /* executorch in Frameworks */,
-				A015EE7A7A064B865CF498FD /* executorch_llm in Frameworks */,
-				CCB176ACF070E9D1D8D4C50A /* backend_xnnpack in Frameworks */,
-				0A5B1C0000026130BB11B5BE /* kernels_llm in Frameworks */,
-				0B84BFD4FD22D8DD7E67E04E /* kernels_optimized in Frameworks */,
-				B3236EC37B1CE4074B972226 /* kernels_quantized in Frameworks */,
-				1DE99C97463A3023A68C459C /* AnemllCore in Frameworks */,
-				174A591078D87D4B3B504572 /* LiteRTLM in Frameworks */,
+				23EE8DBC664CEB898C2405B1 /* executorch in Frameworks */,
+				2DCF41D723588916BF29D8F0 /* executorch_llm in Frameworks */,
+				A015EE7A7A064B865CF498FD /* backend_xnnpack in Frameworks */,
+				CCB176ACF070E9D1D8D4C50A /* kernels_llm in Frameworks */,
+				0A5B1C0000026130BB11B5BE /* kernels_optimized in Frameworks */,
+				0B84BFD4FD22D8DD7E67E04E /* kernels_quantized in Frameworks */,
+				B3236EC37B1CE4074B972226 /* AnemllCore in Frameworks */,
+				1DE99C97463A3023A68C459C /* LiteRTLM in Frameworks */,
 				EC039C8FC4A2DF68CE274F17 /* llama.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,10 +200,9 @@
 				E89444AEBDBF1290A74FE5D7 /* MLXLMCommon in Frameworks */,
 				3E842913FD7699AD530BCBFF /* HuggingFace in Frameworks */,
 				59BA60639CE894516CE31D7A /* Transformers in Frameworks */,
-				9965B527BD88EF07B285754E /* CoreMLLLM in Frameworks */,
-				BCA6E27341892C066E7C17AB /* CoreAILM in Frameworks */,
-				CCB3F0B9B7883B6C0119253C /* AnemllCore in Frameworks */,
-				DAEEF03BA574196BF0C3AF1C /* LiteRTLM in Frameworks */,
+				9965B527BD88EF07B285754E /* CoreAILM in Frameworks */,
+				BCA6E27341892C066E7C17AB /* AnemllCore in Frameworks */,
+				CCB3F0B9B7883B6C0119253C /* LiteRTLM in Frameworks */,
 				4093906B51F58C8ECBC1A23B /* llama.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,13 +210,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0537DC1AB59EE11017A1C3C8 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		0CCB397A556F53A8910A2C24 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +217,14 @@
 				3D1A95AD68FB592E643E5CD3 /* yardstick */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		206D0A2877D5C20D8334D569 /* apple */ = {
+			isa = PBXGroup;
+			children = (
+				D7889EDAD7DBA43D75DD0E94 /* YardstickCLI */,
+			);
+			path = apple;
 			sourceTree = "<group>";
 		};
 		361192F50EA1839D0510D905 /* Vision */ = {
@@ -260,14 +256,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		53660A1163C7A73EC677BABC /* YardstickCLI */ = {
-			isa = PBXGroup;
-			children = (
-				F981EE8D2381567E672C43BB /* Sources */,
-			);
-			path = YardstickCLI;
-			sourceTree = "<group>";
-		};
 		56D8CF71830F92F55D511138 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,7 +264,6 @@
 				486EDB6B4CDE83BD6959BF65 /* Info.plist */,
 				B19207CE005514F0B745B98E /* Benchmark */,
 				4B58FE9C1230DF5DC3A0D49E /* Models */,
-				0537DC1AB59EE11017A1C3C8 /* Resources */,
 				CBB595073F4DBCEBE08B6A75 /* Runtimes */,
 				F4E4A8D522C0F39362B888E3 /* Views */,
 				361192F50EA1839D0510D905 /* Vision */,
@@ -284,12 +271,20 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		9372C441F73994925B104453 /* apple-silicon-llm-bench */ = {
+			isa = PBXGroup;
+			children = (
+				206D0A2877D5C20D8334D569 /* apple */,
+			);
+			name = "apple-silicon-llm-bench";
+			path = ../..;
+			sourceTree = "<group>";
+		};
 		ABFC6F14C1F48FC1603B0D4B /* Packages */ = {
 			isa = PBXGroup;
 			children = (
 				5E26E6FC4D7741AF3A2EC137 /* anemll-swift-cli */,
 				A0F9D87751860B9AB9619047 /* coreai-models */,
-				8547E031AEF973D901262CBB /* CoreML-LLM */,
 				F5A53FFB38F5191EA948C20E /* LiteRT-LM */,
 			);
 			name = Packages;
@@ -314,20 +309,12 @@
 		C0F8CB4D76AD73BE399F6DEA = {
 			isa = PBXGroup;
 			children = (
-				EABA9F7F2D274F6F7C3ACD9F /* ios-llm-benchmark */,
+				9372C441F73994925B104453 /* apple-silicon-llm-bench */,
 				ABFC6F14C1F48FC1603B0D4B /* Packages */,
 				56D8CF71830F92F55D511138 /* Sources */,
 				48DCBE35C783F3731505CB3A /* Frameworks */,
 				0CCB397A556F53A8910A2C24 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		C516159BFE7DFA51E14C8EF9 /* apple */ = {
-			isa = PBXGroup;
-			children = (
-				53660A1163C7A73EC677BABC /* YardstickCLI */,
-			);
-			path = apple;
 			sourceTree = "<group>";
 		};
 		CBB595073F4DBCEBE08B6A75 /* Runtimes */ = {
@@ -351,6 +338,22 @@
 			path = Runtimes;
 			sourceTree = "<group>";
 		};
+		D5F23000503CDEB08CC75BB7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F132FE97843937145D4C57C4 /* Yardstick.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		D7889EDAD7DBA43D75DD0E94 /* YardstickCLI */ = {
+			isa = PBXGroup;
+			children = (
+				D5F23000503CDEB08CC75BB7 /* Sources */,
+			);
+			path = YardstickCLI;
+			sourceTree = "<group>";
+		};
 		E6702CCAC87E38942573AE43 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,15 +364,6 @@
 				DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */,
 			);
 			path = Tasks;
-			sourceTree = "<group>";
-		};
-		EABA9F7F2D274F6F7C3ACD9F /* ios-llm-benchmark */ = {
-			isa = PBXGroup;
-			children = (
-				C516159BFE7DFA51E14C8EF9 /* apple */,
-			);
-			name = "ios-llm-benchmark";
-			path = ../..;
 			sourceTree = "<group>";
 		};
 		F4E4A8D522C0F39362B888E3 /* Views */ = {
@@ -383,14 +377,6 @@
 				A5119926653436F65E0C37EB /* RunView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		F981EE8D2381567E672C43BB /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				A5C8A95BC024A5299976FB3A /* Yardstick.swift */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,7 +399,6 @@
 				01FA12B5AFE994F6E0A44BB4 /* MLXLMCommon */,
 				1946F8E2583DCE11CFEA7AD8 /* HuggingFace */,
 				F096C2521A8E6BB4A3275B51 /* Transformers */,
-				1FD8537D6751D093C80921A9 /* CoreMLLLM */,
 				10A02929ED5A1A7DF466BDD6 /* executorch */,
 				29AE3D43BC5F40FBC1105806 /* executorch_llm */,
 				08015CC1FD43865B1B801A53 /* backend_xnnpack */,
@@ -447,7 +432,6 @@
 				5EDC2498FDF127EF2101F26B /* MLXLMCommon */,
 				E1EE00212151957A2CF0EA1A /* HuggingFace */,
 				41522D438C797371055C13FC /* Transformers */,
-				E5271977FC951DC7C5EA72BD /* CoreMLLLM */,
 				3CE5F5ADF5065EE7E42DB9E8 /* CoreAILM */,
 				992DB9CED2E82FFE8B146A31 /* AnemllCore */,
 				A56AB7ADC552B4521F7725A8 /* LiteRTLM */,
@@ -491,7 +475,6 @@
 				80DD55C85D3764D0D34ECC4E /* XCRemoteSwiftPackageReference "swift-huggingface" */,
 				3CA1B107F9BEE92DC4D9485E /* XCRemoteSwiftPackageReference "swift-transformers" */,
 				1FA24253559F386509684D8D /* XCLocalSwiftPackageReference "Vendored/Anemll/anemll-swift-cli" */,
-				E52A1D1B19750F78D1222D77 /* XCLocalSwiftPackageReference "Vendored/CoreML-LLM" */,
 				CCEC444E85A63997D78907B2 /* XCLocalSwiftPackageReference "Vendored/LiteRT-LM" */,
 				7C09FF6785090A589B813B1F /* XCLocalSwiftPackageReference "Vendored/coreai-models" */,
 			);
@@ -549,7 +532,7 @@
 				296689A741B674A7612FC0ED /* SustainedGenerationTask.swift in Sources */,
 				4C7A81F47EB282F5B3B84166 /* ThermalMonitor.swift in Sources */,
 				04D814EC10CDC77A988C023A /* VLMRunResult.swift in Sources */,
-				BE6487CEF4C49373288701CC /* Yardstick.swift in Sources */,
+				11C2819431B53FEA86796BAC /* Yardstick.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -692,6 +675,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosllmbenchmark.benchmarkapp;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -738,6 +722,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosllmbenchmark.benchmarkapp;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -868,10 +853,6 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = "Vendored/LiteRT-LM";
 		};
-		E52A1D1B19750F78D1222D77 /* XCLocalSwiftPackageReference "Vendored/CoreML-LLM" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "Vendored/CoreML-LLM";
-		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -929,10 +910,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80DD55C85D3764D0D34ECC4E /* XCRemoteSwiftPackageReference "swift-huggingface" */;
 			productName = HuggingFace;
-		};
-		1FD8537D6751D093C80921A9 /* CoreMLLLM */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CoreMLLLM;
 		};
 		29AE3D43BC5F40FBC1105806 /* executorch_llm */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -994,10 +971,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 80DD55C85D3764D0D34ECC4E /* XCRemoteSwiftPackageReference "swift-huggingface" */;
 			productName = HuggingFace;
-		};
-		E5271977FC951DC7C5EA72BD /* CoreMLLLM */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = CoreMLLLM;
 		};
 		F096C2521A8E6BB4A3275B51 /* Transformers */ = {
 			isa = XCSwiftPackageProductDependency;
