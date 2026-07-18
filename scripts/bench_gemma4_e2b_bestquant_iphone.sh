@@ -14,8 +14,10 @@
 #   coreml-llm  mlboydaisuke/gemma-4-E2B-coreml             INT4 palett.
 #
 # So the trophy was measuring who used the better checkpoint, not which runtime is faster.
-# Google ships an official QAT build for every one of these ecosystems; this script uses them.
-# Measured on M4 Max, the PTQ->QAT swap alone is worth 9 points of GSM8K (78% -> 87%).
+# Google ships an official QAT build for every one of these ecosystems; this script uses the
+# best build that actually LOADS per arm. Measured (stored reports, 2026-07-18): the MLX
+# PTQ->QAT swap is worth +7 GSM8K points (84.0 -> 91.0); the official QAT GGUF is unloadable
+# in llama.cpp (vocab empty-token assert through b10064), so llama.cpp's best stays Q4_K_M.
 #
 # Matching the WEIGHTS across arms is not achievable and we stopped trying: LiteRT's wNa8o8 is a
 # co-designed weights+runtime package (2-bit decode layers, optimized KV cache, static int8
@@ -34,7 +36,7 @@ UDID="${1:-A6F3E849-1947-5202-9AD1-9C881CA58EEF}"   # DaisukeのiPhone (iPhone 1
 # available", taken by another team; automatic signing cannot mint a profile for it, CLI and
 # Xcode GUI alike (methodology/next-session-brief.md). Build AND drive with an override id
 # that MFN25KNUGJ can register.
-BUNDLE_ID="com.daisukemajima.llmbench"; TEAM="MFN25KNUGJ"; DEVICE="iphone17pro"
+BUNDLE_ID="${YARDSTICK_BUNDLE_ID:-com.daisukemajima.llmbench}"; TEAM="${YARDSTICK_TEAM:-MFN25KNUGJ}"; DEVICE="iphone17pro"   # override both for your own Apple ID / App ID (see methodology/comprehensive-bench-runbook.md)
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PROJ="$REPO/ios/BenchmarkApp/BenchmarkApp.xcodeproj"
 # Do NOT reuse the shared BenchmarkApp-coreai DerivedData: builds from the CoreML-arm era left
@@ -73,15 +75,22 @@ xcodebuild -project "$PROJ" -scheme BenchmarkApp -configuration Release \
 xcrun devicectl device uninstall app --device "$UDID" "$BUNDLE_ID" 2>/dev/null || true
 xcrun devicectl device install app --device "$UDID" "$APP"
 
-# runtime, model-id  — each arm at its BEST available quantization.
-# These are the four arms in the published table. Core AI has no E2B entry in the catalog
-# (only E4B); adding it needs the h18p bundle published or sideloaded — separate task.
+# runtime, model-id — each arm at its BEST USABLE build (2026-07-18 final lineup).
+# NOTE on first runs: the app downloads each model from HF on first launch (2-3 GB); the
+# fixed 150 s sleep below is NOT enough for that download — either pre-run each model once
+# manually, or poll Documents/results for the first capture before starting the cadence
+# (see results/raw/2026-07-18-gemma4-bestquant/SUMMARY.txt "Operational notes").
 ENGINES=(
-  "litert-lm   litert-community/gemma-4-E2B-it-litert-lm"        # wNa8o8 QAT — unchanged, already its best
-  "mlx-swift   mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit"      # QAT        — was PTQ
-  "llama.cpp   google/gemma-4-E2B-it-qat-q4_0-gguf"              # official QAT — was 3rd-party PTQ
+  "litert-lm   litert-community/gemma-4-E2B-it-litert-lm"        # wNa8o8 QAT — its best
+  "mlx-swift   mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit"      # QAT OptiQ  — MLX quality-best (GSM8K 91.0)
+  "mlx-swift   mlx-community/gemma-4-e2b-it-4bit"                # PTQ 4-bit  — MLX speed-best (46.4 tok/s)
+  "llama.cpp   unsloth/gemma-4-E2B-it-GGUF/Q4_K_M"               # PTQ — llama.cpp's best that LOADS
+  # "llama.cpp google/gemma-4-E2B-it-qat-q4_0-gguf"              # official QAT: UNLOADABLE (vocab
+  #   empty-token assert through b10064, see ModelCatalog note) AND license-gated (anonymous
+  #   download fails; sideload required). The unloadable row is itself a result.
+  # "core-ai   core-ai/gemma4-e2b-gpu"                           # needs the patched engine +
+  #   sideload — build per methodology/core-ai-arm-provenance.md, label "patched (reference)"
   # "coreml-llm coreml-llm/gemma4-e2b"                           # arm compiled out by default
-  #   since "CoreML arm off by default" (project.yml packages note); re-add when re-enabled
 )
 
 for e in "${ENGINES[@]}"; do

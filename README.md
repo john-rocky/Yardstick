@@ -123,7 +123,7 @@ The earlier version of this table had each arm on a different checkpoint quality
 >
 > **How the CoreML/ANE rows were measured:** `john-rocky/CoreML-LLM` on the Neural Engine (`computeUnits: .cpuAndNeuralEngine`) — Gemma 4 E2B via the chunked `.mlmodelc` path, Qwen 3.5 2B via `Qwen35MLKVGenerator` (chunked MLKV, hence the 241 MB). Decode counts streamed pieces (≈ tokens); first-load ANE compilation makes its load time high (and it's the lowest-throughput runtime — the ANE trades speed for memory).
 >
-> Decode tok/s is the headline number; the full per-run audit (prefill, TTFT, inter-token jitter, memory) lives in [`RESULTS.md`](RESULTS.md).
+> Decode tok/s is the headline number; the full per-run audit (prefill, TTFT, inter-token jitter, memory) lives in [`RESULTS.md`](RESULTS.md). The 2026-07-18 Gemma-4-E2B session's raw per-run JSONs and audit trail (including the thermally-excluded captures) live in [`results/raw/2026-07-18-gemma4-bestquant/`](results/raw/2026-07-18-gemma4-bestquant/SUMMARY.txt) pending the RESULTS.md importer's extension to that format.
 
 ---
 

@@ -16,8 +16,8 @@ set -euo pipefail
 
 UDID="${1:-00008150-0018713A0207801C}"          # iPhone 17 Pro (iPhone18,1, arch h18p)
 ARCH="${COREAI_ARCH:-h18p}"
-BUNDLE_ID="com.iosllmbenchmark.benchmarkapp"
-TEAM="MFN25KNUGJ"
+BUNDLE_ID="${YARDSTICK_BUNDLE_ID:-com.iosllmbenchmark.benchmarkapp}"   # override for your own App ID
+TEAM="${YARDSTICK_TEAM:-MFN25KNUGJ}"                                # override for your own team
 DEVICE_LABEL="iphone17pro"
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"

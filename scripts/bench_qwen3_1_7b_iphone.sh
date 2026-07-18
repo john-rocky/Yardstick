@@ -25,7 +25,7 @@ MLX_REPO="mlx-community/Qwen3-1.7B-4bit"
 LITERT_ID="litert-local/qwen3-1.7b"
 LITERT_DEVDIR="litert-local__Qwen3-1.7B"            # hfRepoId 'litert-local/Qwen3-1.7B' -> '/'→'__'
 LITERT_SRC_DIR="$HOME/code/litertlm-convert/out/qwen3_1_7b_int8"
-BUNDLE_ID="com.iosllmbenchmark.benchmarkapp"; TEAM="MFN25KNUGJ"; DEVICE="iphone17pro"
+BUNDLE_ID="${YARDSTICK_BUNDLE_ID:-com.iosllmbenchmark.benchmarkapp}"; TEAM="${YARDSTICK_TEAM:-MFN25KNUGJ}"; DEVICE="iphone17pro"   # override both for your own Apple ID / App ID
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PROJ="$REPO/ios/BenchmarkApp/BenchmarkApp.xcodeproj"
 DD="$HOME/Library/Developer/Xcode/DerivedData/BenchmarkApp-coreai"

@@ -15,7 +15,7 @@ UDID="${1:-A6F3E849-1947-5202-9AD1-9C881CA58EEF}"   # iPhone 17 Pro
 MODEL_ID="litert-local/qwen3-1.7b-int4"
 DEVDIR="litert-local__Qwen3-1.7B-int4"              # hfRepoId 'litert-local/Qwen3-1.7B-int4' -> '/'→'__'
 LITERT_SRC="$HOME/code/litertlm-convert/out/qwen3_1_7b_mixed4/model.litertlm"
-BUNDLE_ID="com.iosllmbenchmark.benchmarkapp"; TEAM="MFN25KNUGJ"; DEVICE="iphone17pro"
+BUNDLE_ID="${YARDSTICK_BUNDLE_ID:-com.iosllmbenchmark.benchmarkapp}"; TEAM="${YARDSTICK_TEAM:-MFN25KNUGJ}"; DEVICE="iphone17pro"   # override both for your own Apple ID / App ID
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PROJ="$REPO/ios/BenchmarkApp/BenchmarkApp.xcodeproj"
 DD="$HOME/Library/Developer/Xcode/DerivedData/BenchmarkApp-coreai"
