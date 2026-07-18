@@ -90,6 +90,13 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         // from a mmap'd static table — the bundle folder also carries `ple/embed_per_layer.i8`
         // + `.scale.f32`, wired as EngineOptions.staticInputBuffers (see loadModel / GemmaPLEBench).
         case "core-ai/gemma4-e4b-gpu":    return ("gemma4_e4b_gpu", "coreai-pipelined")
+        // ⚠ verified on device 2026-07-18 (this app, patched engine, PLE side-load in place):
+        // E2B's decode-only S=1 graph does NOT load through EngineFactory —
+        // "NDArrayDescriptor.swift:139: Fatal error: Shape at dimension 1 of 8 is not a valid
+        // substitution for source shape 1" even with COREAI_CHUNK_THRESHOLD=1. Same wall the
+        // community-bench app documented 2026-07-14. The llm-runner E2B numbers come from the
+        // low-level PreparedModel runner (GemmaPLEDeviceBench); porting it here is the
+        // deferred gemma4 work. Entry stays wired for that session.
         case "core-ai/gemma4-e2b-gpu":    return ("gemma4_e2b_gpu", "coreai-pipelined")
         case "core-ai/phi-4-mini-gpu":    return ("phi4_mini_gpu", "coreai-pipelined")
         case "core-ai/llama-3.2-3b-ane":  return ("llama32_3b_ane", "static-shape")

@@ -19,7 +19,7 @@ litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     85
 mlx-swift   PTQ 4bit              46.4  (49.4/46.4/46.0)  21.5 ms   ~3,010    84.0%
 llama.cpp   Q4_K_M (PTQ)          37.6  (37.8/37.6/37.5)  25.5 ms     253*    76.0%
 mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    91.0%
-core-ai     own int4 (q4_0)       pending (device away)   —         —         88.0%
+core-ai     own int4 (q4_0)       BLOCKED (app path)      —         —         88.0%
 llama.cpp   official QAT q4_0     UNLOADABLE              —         —         —
 
 * llama.cpp mmaps weights; phys_footprint does not charge clean mmap'd pages, so its
@@ -42,6 +42,15 @@ Reading of the table (each claim same-session / same-harness):
 - On-device quality-task answers (sanity only): litert 9/9 correct; both MLX quants ~8/9;
   llama Q4_K_M quality-task output came back EMPTY on device (needs a look — its Mac-side
   GSM8K ran fine, so likely a stop-token/template quirk in the app path).
+- core-ai row: measurement BLOCKED at the engine layer, verified on device 2026-07-18 with
+  the patched (COREAI_STATIC_INPUTS) build, catalog wiring, and the full 4.2 GB bundle+PLE
+  side-load in place: EngineFactory rejects the S=1 decode-only graph
+  ("NDArrayDescriptor.swift:139 ... dimension 1 of 8 is not a valid substitution for source
+  shape 1") even with COREAI_CHUNK_THRESHOLD=1 — the wall the community-bench app documented
+  2026-07-14. Known llm-runner-protocol reference (NOT comparable to this table's short-chat
+  task; depth-128 prefill/decode): 36.7/30.7 tok/s, ~6 GB working set at depth 256.
+  Unblocking = porting the low-level GemmaPLEDeviceBench (PreparedModel) runner into the app
+  — the deferred gemma4 work. Everything else (build, catalog, side-load) is ready for it.
 GSM8K reports: ~/code/hf-to-litertlm/reports/parity/gsm8k_{mlx-gemma4-e2b-qat-optiq4,
 mlx-gemma4-e2b-ptq4,llamacpp-gemma4-e2b-q4km}.json (new, this session) alongside the
 existing litert 85.0 / core-ai 88.0 / wna8o8-on-fp16 48.0 reports.
