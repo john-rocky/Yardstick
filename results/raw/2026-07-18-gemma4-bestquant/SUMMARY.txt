@@ -7,23 +7,44 @@ Why this rerun exists: the published README table had each arm on a different ch
 (MLX and llama.cpp on PTQ); this rerun puts EVERY ARM ON ITS BEST AVAILABLE QUANT
 (commit 0e83b7d labels, 9917c5a build fixes, 20d6b2a script traps).
 
-RESULT — the "upset" SURVIVES and WIDENS
-----------------------------------------
-arm         quant                 decode tok/s (3 cold)   ITL p50   peak MB   quality
-litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     9/9 answers correct
-mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    8 answers (one item missing from output)
+RESULT — full best-available table (updated 2026-07-18 evening with all arms + GSM8K)
+-------------------------------------------------------------------------------------
+Decode/ITL/memory: iPhone 17 Pro, median of 3 nominal colds (this session).
+GSM8K n=100: M4 Max, same harness/protocol for every row (greedy, thinking-off,
+max_tokens 1024, same extractor) — quality is a property of the weights, measured
+where every arm can run them.
+
+arm         quant                 decode tok/s (3 cold)   ITL p50   peak MB   GSM8K
+litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     85.0%
+mlx-swift   PTQ 4bit              46.4  (49.4/46.4/46.0)  21.5 ms   ~3,010    84.0%
+llama.cpp   Q4_K_M (PTQ)          37.6  (37.8/37.6/37.5)  25.5 ms     253*    76.0%
+mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    91.0%
+core-ai     own int4 (q4_0)       pending (device away)   —         —         88.0%
 llama.cpp   official QAT q4_0     UNLOADABLE              —         —         —
 
-- LiteRT decode advantage over MLX: 1.51× (old confounded table: 1.17×).
-  Memory advantage: 9.5× (old: 4.5×).
-- MLX at its *best-quality* quant (QAT OptiQ) is SLOWER and HEAVIER than its PTQ 4-bit row
-  (47.5 -> 34.8 tok/s; 2.9 -> 4.65 GB). "Best" is a quality/speed tradeoff — state the quant
-  per row, which is the point of this rerun.
+* llama.cpp mmaps weights; phys_footprint does not charge clean mmap'd pages, so its
+  "memory" is not comparable with runtimes that wire weights. Footnote it, don't rank it.
+
+Reading of the table (each claim same-session / same-harness):
+- The decode+memory upset SURVIVES: LiteRT beats every loadable arm on decode and beats the
+  non-mmap arms on memory by 6-9.5x.
+- QUALITY goes to MLX-OptiQ: 91.0% — +6 pts over the wNa8o8 LiteRT ships, at 0.66x its
+  decode speed. Nearest-quality framing: LiteRT 85.0 vs MLX-PTQ 84.0 -> LiteRT is 1.14x
+  faster at matched quality with 6x less memory.
+- The PTQ->QAT quality gap re-measured with stored reports: 84.0 -> 91.0 (+7 pts; the old
+  "78 -> 87, 9 pts" claim came from the defective harness era — supersede it).
 - llama.cpp: google/gemma-4-E2B-it-qat-q4_0-gguf aborts in llama_vocab::impl::load —
   "load: empty token at index 237922" then GGML_ASSERT(id_to_token.size()==token_to_id.size()).
   Reproduced: on-device vendored b8999, macOS brew 8680, macOS latest release b10064
   (2026-07-17). unsloth Q4_K_M (PTQ) loads fine => defect is in this file's conversion.
-  The official-QAT row therefore reads "unloadable" — that is the measurement.
+  The official-QAT row therefore reads "unloadable" — that is the measurement. Its usable
+  fallback (Q4_K_M) is also the QUALITY floor of the table at 76.0%.
+- On-device quality-task answers (sanity only): litert 9/9 correct; both MLX quants ~8/9;
+  llama Q4_K_M quality-task output came back EMPTY on device (needs a look — its Mac-side
+  GSM8K ran fine, so likely a stop-token/template quirk in the app path).
+GSM8K reports: ~/code/hf-to-litertlm/reports/parity/gsm8k_{mlx-gemma4-e2b-qat-optiq4,
+mlx-gemma4-e2b-ptq4,llamacpp-gemma4-e2b-q4km}.json (new, this session) alongside the
+existing litert 85.0 / core-ai 88.0 / wna8o8-on-fp16 48.0 reports.
 
 Thermal audit (fairness rules: cold runs at initialThermalState=nominal)
 ------------------------------------------------------------------------
