@@ -11,6 +11,20 @@ struct BenchmarkApp: App {
     @StateObject private var session = AppSession()
     private let autoRun = HeadlessAutoRun.specFromLaunchArgs()
 
+    init() {
+        // Gemma-4 PLE (S=1 decode graphs): the Core AI binary runtime appears to read
+        // COREAI_CHUNK_THRESHOLD at its first framework touch, so setting it inside
+        // loadModel (as CoreAIRuntime does) can be too late — the engine then substitutes
+        // S=8 chunked prefill and NDArrayDescriptor fatals. GemmaPLEDeviceBench sets it at
+        // app start for exactly this reason. Gate it on a gemma4 core-ai headless launch so
+        // S=1 stepping never leaks into other models' prefill measurements.
+        let args = CommandLine.arguments.joined(separator: " ")
+        if args.contains("core-ai") && args.contains("gemma4"),
+           getenv("COREAI_CHUNK_THRESHOLD") == nil {
+            setenv("COREAI_CHUNK_THRESHOLD", "1", 1)
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             if let autoRun {

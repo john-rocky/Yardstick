@@ -90,13 +90,14 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         // from a mmap'd static table — the bundle folder also carries `ple/embed_per_layer.i8`
         // + `.scale.f32`, wired as EngineOptions.staticInputBuffers (see loadModel / GemmaPLEBench).
         case "core-ai/gemma4-e4b-gpu":    return ("gemma4_e4b_gpu", "coreai-pipelined")
-        // ⚠ verified on device 2026-07-18 (this app, patched engine, PLE side-load in place):
-        // E2B's decode-only S=1 graph does NOT load through EngineFactory —
-        // "NDArrayDescriptor.swift:139: Fatal error: Shape at dimension 1 of 8 is not a valid
-        // substitution for source shape 1" even with COREAI_CHUNK_THRESHOLD=1. Same wall the
-        // community-bench app documented 2026-07-14. The llm-runner E2B numbers come from the
-        // low-level PreparedModel runner (GemmaPLEDeviceBench); porting it here is the
-        // deferred gemma4 work. Entry stays wired for that session.
+        // The 2026-07-14 "EngineFactory wall" was a MISDIAGNOSIS — root-caused 2026-07-18 on
+        // this app: the engine loads and generates fine through EngineFactory; what fataled
+        // was our own warmup(queryLength: 8) after createEngine (S=1-only graph → binary-layer
+        // NDArrayDescriptor fatal that `try?` can't catch). Fixed by skipping warmup for
+        // gemma4_* (see loadModel). Two further requirements, both data-side: the bundle's
+        // tokenizer_config.json must carry a chat_template (gemma-4 ships it as a separate
+        // chat_template.jinja that swift-transformers doesn't read → raw-encode → degenerate
+        // "<turn|>" output), and COREAI_CHUNK_THRESHOLD=1 must be set early (BenchmarkApp.init).
         case "core-ai/gemma4-e2b-gpu":    return ("gemma4_e2b_gpu", "coreai-pipelined")
         case "core-ai/phi-4-mini-gpu":    return ("phi4_mini_gpu", "coreai-pipelined")
         case "core-ai/llama-3.2-3b-ane":  return ("llama32_3b_ane", "static-shape")
@@ -277,8 +278,17 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             if let e = tok.eosTokenId { eos.insert(Int32(e)) }
 
             // Trigger kernel compilation up front so it folds into load time.
+            // NOT for Gemma-4 PLE bundles: their decode graphs are S=1-only, and
+            // warmup(queryLength: 8) fatals inside the binary runtime
+            // ("NDArrayDescriptor.swift:139 ... dimension 1 of 8 is not a valid substitution
+            // for source shape 1") — a fatalError, so `try?` cannot catch it. This was the
+            // whole "EngineFactory wall": the engine loads fine, the warmup killed it.
+            // For S=1 graphs the first generate step is the warmup (GemmaPLEDeviceBench rule:
+            // never call engine.warmup on these).
             step = "warmup"
-            try? await engine.warmup(queryLength: 8, sampling: SamplingConfiguration(temperature: 0))
+            if !spec.folder.hasPrefix("gemma4_") {
+                try? await engine.warmup(queryLength: 8, sampling: SamplingConfiguration(temperature: 0))
+            }
 
             self.engine = engine
             self.tokenizer = tok
