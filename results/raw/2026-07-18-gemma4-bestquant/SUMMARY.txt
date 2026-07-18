@@ -19,8 +19,16 @@ litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     85
 mlx-swift   PTQ 4bit              46.4  (49.4/46.4/46.0)  21.5 ms   ~3,010    84.0%
 llama.cpp   Q4_K_M (PTQ)          37.6  (37.8/37.6/37.5)  25.5 ms     253*    76.0%
 mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    91.0%
-core-ai     own int4 (q4_0)       BLOCKED (app path)      —         —         88.0%
+core-ai †   own int4 (q4_0)       34.2  (23.4/34.2/35.0)  29.0 ms    ~553*    88.0%
 llama.cpp   official QAT q4_0     UNLOADABLE              —         —         —
+
+† patched engine (reference): EngineOptions.staticInputBuffers is a local patch (not in
+  Apple's released coreai-models), and Apple ships no Gemma-4 bundle (own export). The
+  engine PATH is Apple's standard EngineFactory — the "sub-API runner" story was wrong,
+  see the misdiagnosis note below. TTFT is its real cost: ~5.1 s at a 19-token prompt
+  (S=1 unbatched prefill, ~3.7 tok/s — the PLE prefill wall, exactly as on Mac). Its
+  memory is mmap'd-weights footprint (same caveat as llama.cpp's *). The 23.4 first
+  capture is first-touch page-fault depressed; median carries.
 
 * llama.cpp mmaps weights; phys_footprint does not charge clean mmap'd pages, so its
   "memory" is not comparable with runtimes that wire weights. Footnote it, don't rank it.
@@ -42,15 +50,20 @@ Reading of the table (each claim same-session / same-harness):
 - On-device quality-task answers (sanity only): litert 9/9 correct; both MLX quants ~8/9;
   llama Q4_K_M quality-task output came back EMPTY on device (needs a look — its Mac-side
   GSM8K ran fine, so likely a stop-token/template quirk in the app path).
-- core-ai row: measurement BLOCKED at the engine layer, verified on device 2026-07-18 with
-  the patched (COREAI_STATIC_INPUTS) build, catalog wiring, and the full 4.2 GB bundle+PLE
-  side-load in place: EngineFactory rejects the S=1 decode-only graph
-  ("NDArrayDescriptor.swift:139 ... dimension 1 of 8 is not a valid substitution for source
-  shape 1") even with COREAI_CHUNK_THRESHOLD=1 — the wall the community-bench app documented
-  2026-07-14. Known llm-runner-protocol reference (NOT comparable to this table's short-chat
-  task; depth-128 prefill/decode): 36.7/30.7 tok/s, ~6 GB working set at depth 256.
-  Unblocking = porting the low-level GemmaPLEDeviceBench (PreparedModel) runner into the app
-  — the deferred gemma4 work. Everything else (build, catalog, side-load) is ready for it.
+- core-ai row — the "EngineFactory wall" was a MISDIAGNOSIS (root-caused + fixed 2026-07-18,
+  commit 21404c6). Three real causes, none of them the engine path:
+    1. our own warmup(queryLength: 8) after createEngine — S=1-only graph => binary-layer
+       NDArrayDescriptor fatal that `try?` cannot catch (this WAS the whole "wall"; the
+       community-bench 07-14 note misattributed the same crash to EngineFactory);
+    2. gemma-4 ships its chat template as a separate chat_template.jinja, which
+       swift-transformers does not read => raw-encode prompt => degenerate "<turn|>" output;
+       fixed by inlining a minimal template into the bundle's tokenizer_config.json
+       (canonical bundle under leaderboard/models/ patched too; the HF-published
+       mlboydaisuke/gemma-4-E2B-CoreAI copy still needs the same fix);
+    3. COREAI_CHUNK_THRESHOLD=1 set at app init (gated to gemma4 core-ai launches).
+  GemmaPLEDeviceBench itself uses the SAME official EngineFactory + engine.generate — the
+  "low-level PreparedModel runner" description was wrong. So the row's provenance is: Apple's
+  standard engine path + two local additions (staticInputBuffers patch, own export).
 GSM8K reports: ~/code/hf-to-litertlm/reports/parity/gsm8k_{mlx-gemma4-e2b-qat-optiq4,
 mlx-gemma4-e2b-ptq4,llamacpp-gemma4-e2b-q4km}.json (new, this session) alongside the
 existing litert 85.0 / core-ai 88.0 / wna8o8-on-fp16 48.0 reports.
