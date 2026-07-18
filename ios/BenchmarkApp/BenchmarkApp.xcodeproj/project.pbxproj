@@ -8,21 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		04D814EC10CDC77A988C023A /* VLMRunResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319BAA8C87D996DE5E74350D /* VLMRunResult.swift */; };
-		0A5B1C0000026130BB11B5BE /* kernels_optimized in Frameworks */ = {isa = PBXBuildFile; productRef = 94E0BEAFA16C6763A28522EB /* kernels_optimized */; };
-		0B84BFD4FD22D8DD7E67E04E /* kernels_quantized in Frameworks */ = {isa = PBXBuildFile; productRef = 5E734E7640926D7B17DD6CC4 /* kernels_quantized */; };
 		0CBBA289243FB4250C8B0FA2 /* VLMRunResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319BAA8C87D996DE5E74350D /* VLMRunResult.swift */; };
 		0F82181CAC39B256ECB79580 /* BenchmarkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D10CD171A7FE9EF1BB369F /* BenchmarkTask.swift */; };
 		100A9D75956A32FC2BA2C1F2 /* BenchmarkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CAC41B79737975D3977D7 /* BenchmarkResult.swift */; };
 		112E2A29A4EEA42B9F7D6444 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E86895F4C4C799B493D115C /* Assets.xcassets */; };
 		11C2819431B53FEA86796BAC /* Yardstick.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132FE97843937145D4C57C4 /* Yardstick.swift */; };
-		1DE99C97463A3023A68C459C /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = 33E0A67472EF0169CD621D55 /* LiteRTLM */; };
 		1E92F72A316E9C57829D3371 /* CoreMLVLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD978FB1DEA49377A28D581F /* CoreMLVLMRuntime.swift */; };
 		233E07CCDFD38F03A7808A08 /* BenchmarkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6CAC41B79737975D3977D7 /* BenchmarkResult.swift */; };
 		235129CA3670027E3887200D /* BenchmarkTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D10CD171A7FE9EF1BB369F /* BenchmarkTask.swift */; };
-		23EE8DBC664CEB898C2405B1 /* executorch in Frameworks */ = {isa = PBXBuildFile; productRef = 10A02929ED5A1A7DF466BDD6 /* executorch */; };
+		23EE8DBC664CEB898C2405B1 /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = F472A90A338D866AA59AA6CC /* AnemllCore */; };
 		26A60402AE5BEF83F2FDAA7D /* LlamaCppRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F54149AFF1D39F2B9377885 /* LlamaCppRuntime.swift */; };
 		296689A741B674A7612FC0ED /* SustainedGenerationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */; };
-		2DCF41D723588916BF29D8F0 /* executorch_llm in Frameworks */ = {isa = PBXBuildFile; productRef = 29AE3D43BC5F40FBC1105806 /* executorch_llm */; };
+		2DCF41D723588916BF29D8F0 /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = 33E0A67472EF0169CD621D55 /* LiteRTLM */; };
 		2E8B509B84C74A6A850BF4D4 /* LLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CEC963B0C412A01CB78853 /* LLMRuntime.swift */; };
 		2EC1A49EB3F96A59AD0345D1 /* HFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5235B8E78B06C2870291FF5 /* HFDownloader.swift */; };
 		3265BD866E12254B5F9D02D5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6340DF01289DE1C8F23AA39 /* AboutView.swift */; };
@@ -73,16 +70,13 @@
 		9E7D44C95CD1FFE50638B1BF /* AppLifecycleTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124C321F63E5E0AEEF8902E /* AppLifecycleTask.swift */; };
 		9F1C833528187CA27858CE0E /* AppleFMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */; };
 		9FB0903D22C954FDEB555847 /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7B6B97C8F1331B7F122CF4 /* ResultStore.swift */; };
-		A015EE7A7A064B865CF498FD /* backend_xnnpack in Frameworks */ = {isa = PBXBuildFile; productRef = 08015CC1FD43865B1B801A53 /* backend_xnnpack */; };
 		A09211745827F71359B56AF8 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1EE778237E01ED0945D4AE /* HistoryView.swift */; };
 		A90EA00E6A6DB24DE1E8ABBE /* EnergyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8646DFD32712FBAAEB72156D /* EnergyMonitor.swift */; };
-		B3236EC37B1CE4074B972226 /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = F472A90A338D866AA59AA6CC /* AnemllCore */; };
 		B482BE617FA81E5C364D906D /* QualityTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CCE863246D4DF67FA309E1 /* QualityTask.swift */; };
 		B9ABA81B66E23D58C7F7EB6D /* CameraFrameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347EDDC56E7FE6ECBD50E6F1 /* CameraFrameProvider.swift */; };
 		BCA6E27341892C066E7C17AB /* AnemllCore in Frameworks */ = {isa = PBXBuildFile; productRef = 992DB9CED2E82FFE8B146A31 /* AnemllCore */; };
 		C3077165679D541B3891953F /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5119926653436F65E0C37EB /* RunView.swift */; };
 		C8B3745CF3A81689ED8873AB /* AppleFMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */; };
-		CCB176ACF070E9D1D8D4C50A /* kernels_llm in Frameworks */ = {isa = PBXBuildFile; productRef = F2F2A8942501B44FD74F06D0 /* kernels_llm */; };
 		CCB3F0B9B7883B6C0119253C /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = A56AB7ADC552B4521F7725A8 /* LiteRTLM */; };
 		CE55A5633E945419992D1CC8 /* SustainedGenerationTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */; };
 		CFA02802C87A009702AAAD75 /* VLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83851AB7C32EB65D8796EF6 /* VLMRuntime.swift */; };
@@ -179,14 +173,8 @@
 				7441EE04A6771C964FFBBE63 /* MLXLMCommon in Frameworks */,
 				5E44451A3DDE595221C1D747 /* HuggingFace in Frameworks */,
 				FCB55FD5BA55D670179B2DD0 /* Transformers in Frameworks */,
-				23EE8DBC664CEB898C2405B1 /* executorch in Frameworks */,
-				2DCF41D723588916BF29D8F0 /* executorch_llm in Frameworks */,
-				A015EE7A7A064B865CF498FD /* backend_xnnpack in Frameworks */,
-				CCB176ACF070E9D1D8D4C50A /* kernels_llm in Frameworks */,
-				0A5B1C0000026130BB11B5BE /* kernels_optimized in Frameworks */,
-				0B84BFD4FD22D8DD7E67E04E /* kernels_quantized in Frameworks */,
-				B3236EC37B1CE4074B972226 /* AnemllCore in Frameworks */,
-				1DE99C97463A3023A68C459C /* LiteRTLM in Frameworks */,
+				23EE8DBC664CEB898C2405B1 /* AnemllCore in Frameworks */,
+				2DCF41D723588916BF29D8F0 /* LiteRTLM in Frameworks */,
 				EC039C8FC4A2DF68CE274F17 /* llama.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,12 +387,6 @@
 				01FA12B5AFE994F6E0A44BB4 /* MLXLMCommon */,
 				1946F8E2583DCE11CFEA7AD8 /* HuggingFace */,
 				F096C2521A8E6BB4A3275B51 /* Transformers */,
-				10A02929ED5A1A7DF466BDD6 /* executorch */,
-				29AE3D43BC5F40FBC1105806 /* executorch_llm */,
-				08015CC1FD43865B1B801A53 /* backend_xnnpack */,
-				F2F2A8942501B44FD74F06D0 /* kernels_llm */,
-				94E0BEAFA16C6763A28522EB /* kernels_optimized */,
-				5E734E7640926D7B17DD6CC4 /* kernels_quantized */,
 				F472A90A338D866AA59AA6CC /* AnemllCore */,
 				33E0A67472EF0169CD621D55 /* LiteRTLM */,
 			);
@@ -690,7 +672,7 @@
 					"$(inherited)",
 					"\"Vendored\"",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "$(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path $(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosllmbenchmark.yardstick;
@@ -797,7 +779,7 @@
 					"$(inherited)",
 					"\"Vendored\"",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "$(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path $(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64";
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iosllmbenchmark.yardstick;
@@ -896,25 +878,10 @@
 			package = 222066378580FE50F7021006 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
 			productName = MLXLMCommon;
 		};
-		08015CC1FD43865B1B801A53 /* backend_xnnpack */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */;
-			productName = backend_xnnpack;
-		};
-		10A02929ED5A1A7DF466BDD6 /* executorch */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */;
-			productName = executorch;
-		};
 		1946F8E2583DCE11CFEA7AD8 /* HuggingFace */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 80DD55C85D3764D0D34ECC4E /* XCRemoteSwiftPackageReference "swift-huggingface" */;
 			productName = HuggingFace;
-		};
-		29AE3D43BC5F40FBC1105806 /* executorch_llm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */;
-			productName = executorch_llm;
 		};
 		2D6E7223F8169CD107D2EDA9 /* MLXVLM */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -939,20 +906,10 @@
 			package = 222066378580FE50F7021006 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
 			productName = MLXLLM;
 		};
-		5E734E7640926D7B17DD6CC4 /* kernels_quantized */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */;
-			productName = kernels_quantized;
-		};
 		5EDC2498FDF127EF2101F26B /* MLXLMCommon */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 222066378580FE50F7021006 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
 			productName = MLXLMCommon;
-		};
-		94E0BEAFA16C6763A28522EB /* kernels_optimized */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */;
-			productName = kernels_optimized;
 		};
 		992DB9CED2E82FFE8B146A31 /* AnemllCore */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -976,11 +933,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CA1B107F9BEE92DC4D9485E /* XCRemoteSwiftPackageReference "swift-transformers" */;
 			productName = Transformers;
-		};
-		F2F2A8942501B44FD74F06D0 /* kernels_llm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */;
-			productName = kernels_llm;
 		};
 		F472A90A338D866AA59AA6CC /* AnemllCore */ = {
 			isa = XCSwiftPackageProductDependency;

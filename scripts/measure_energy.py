@@ -178,7 +178,33 @@ def main() -> int:
         default=SAMPLE_INTERVAL_MS,
         help=f"powermetrics sampling interval in ms (default {SAMPLE_INTERVAL_MS}).",
     )
+    parser.add_argument(
+        "--cmd",
+        default=None,
+        help="Wrap an arbitrary shell command instead of the yardstick CLI (for engines "
+        "yardstick doesn't drive on the Mac, e.g. Core AI's llm-benchmark). A minimal "
+        "yardstick-shaped record is synthesized so the energy fields and the render "
+        "pipeline work unchanged. Requires --tokens.",
+    )
+    parser.add_argument(
+        "--tokens",
+        type=int,
+        default=None,
+        help="--cmd only: total generated tokens the command produces "
+        "(e.g. llm-benchmark -g 512 -n 3 → 1536). Sets generatedTokenCount → J/token.",
+    )
+    parser.add_argument(
+        "--quant",
+        default=None,
+        help="--cmd only: quantization label for the synthesized record "
+        "(shown in RESULTS.md; include 'patched engine' where it applies).",
+    )
     args = parser.parse_args()
+
+    if args.cmd and args.tokens is None:
+        print("error: --cmd requires --tokens (generated-token count for J/token).",
+              file=sys.stderr)
+        return 2
 
     if os.geteuid() == 0:
         print(
@@ -191,7 +217,7 @@ def main() -> int:
         )
         return 2
 
-    bin_path = locate_yardstick()
+    bin_path = None if args.cmd else locate_yardstick()
 
     output_path = args.output
     if output_path is None:
@@ -204,15 +230,18 @@ def main() -> int:
             / f"{dev_tag}-{args.runtime}-{model_tag}-{args.task}-energy.jsonl"
         )
 
-    yardstick_argv = [
-        str(bin_path),
-        "run",
-        "--task", args.task,
-        "--runtime", args.runtime,
-        "--output", output_path,
-    ]
-    if args.model:
-        yardstick_argv += ["--model", args.model]
+    if args.cmd:
+        yardstick_argv = ["/bin/zsh", "-c", args.cmd]
+    else:
+        yardstick_argv = [
+            str(bin_path),
+            "run",
+            "--task", args.task,
+            "--runtime", args.runtime,
+            "--output", output_path,
+        ]
+        if args.model:
+            yardstick_argv += ["--model", args.model]
 
     power_log = tempfile.NamedTemporaryFile(
         prefix="yardstick-power-", suffix=".txt", delete=False
@@ -279,6 +308,33 @@ def main() -> int:
     bench = subprocess.run(yardstick_argv)
     end_t = time.monotonic()
     elapsed = end_t - start_t
+
+    if args.cmd:
+        # Synthesize a yardstick-shaped record so the energy patch below (and the
+        # render/chart pipeline) work unchanged. The command's own stdout was shown
+        # live; tokens come from --tokens (the caller knows the -g × -n arithmetic).
+        if bench.returncode != 0:
+            print(f"error: wrapped command exited {bench.returncode}; not writing a record.",
+                  file=sys.stderr)
+            return bench.returncode
+        record = {
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "runtime": args.runtime,
+            "task": args.task,
+            "device": {"buildConfiguration": "Release", "systemName": "macOS"},
+            "model": {
+                "id": args.model or "cmd",
+                "quantization": args.quant or "?",
+                "hfRepoId": "",
+            },
+            "metrics": {
+                "generatedTokenCount": args.tokens,
+                "totalGenerationTimeSeconds": round(elapsed, 3),
+            },
+            "parameters": {"wrappedCommand": args.cmd},
+        }
+        with open(output_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record) + "\n")
 
     # Need `sudo kill` because powermetrics is running as root — the
     # earlier `sudo powermetrics` call will have cached the credential

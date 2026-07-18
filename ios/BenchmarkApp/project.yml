@@ -171,7 +171,10 @@ targets:
         # Tool targets can't embed frameworks the way .app bundles do; point
         # the runtime linker at the xcframework's macOS slice so the
         # `llama.framework` dylib resolves without `DYLD_FRAMEWORK_PATH`.
-        LD_RUNPATH_SEARCH_PATHS: "$(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64"
+        # @executable_path first: SwiftPM copies dylib products (libCLiteRTLM_mac.dylib)
+        # next to the tool binary in Products/Release — without it the litert dylib only
+        # resolves when the binary happens to run from a directory on the llama rpath.
+        LD_RUNPATH_SEARCH_PATHS: "@executable_path $(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64"
     dependencies:
       - package: mlx-swift-lm
         product: MLXLLM
@@ -183,18 +186,13 @@ targets:
         product: Transformers
       # - package: CoreML-LLM      # arm off by default — see the packages: note above
       #   product: CoreMLLLM
-      - package: executorch
-        product: executorch
-      - package: executorch
-        product: executorch_llm
-      - package: executorch
-        product: backend_xnnpack
-      - package: executorch
-        product: kernels_llm
-      - package: executorch
-        product: kernels_optimized
-      - package: executorch
-        product: kernels_quantized
+      # executorch is OFF for the macOS tool: its xcframework and LiteRT-LM's CLiteRTLM_mac
+      # both ship include/module.modulemap, and xcodebuild's ProcessXCFramework copies both
+      # into Products/Release/ -> "Multiple commands produce ... module.modulemap". The
+      # ExecuTorch arm has never been benched on the Mac; ExecuTorchRuntime.swift is
+      # canImport-guarded and compiles to a stub without the package. (iOS app keeps it.)
+      # - package: executorch
+      #   product: executorch
       - package: Anemll
         product: AnemllCore
       - package: LiteRT-LM
