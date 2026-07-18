@@ -1,1 +1,60 @@
-{"device":{"batteryLevel":0.9,"batteryState":"charging","buildConfiguration":"Release","initialThermalState":"nominal","isLowPowerModeEnabled":false,"modelIdentifier":"iPhone18,1","physicalMemoryMB":11718,"processorCount":6,"systemName":"iOS","systemVersion":"27.0"},"id":"44779161-5AAB-478C-ACBD-502FA7D6A8B5","metrics":{"batteryDeltaPercent":0,"coldRun":true,"decodeRateRollingWindow":[],"decodeTokensPerSecond":58.39703706813805,"finalThermalState":"nominal","firstTokenLatencyMS":58,"generatedTokenCount":128,"initialThermalState":"nominal","interTokenLatencyP50MS":17.113924026489258,"interTokenLatencyP95MS":18.084049224853516,"interTokenLatencyP99MS":18.491029739379883,"loadTimeSeconds":1.4698820114135742,"memoryAfterGenerationMB":451.2382354736328,"memoryAfterLoadMB":431.6913146972656,"memoryBaselineMB":15.314186096191406,"memoryPeakDuringDecodeMB":482.7538604736328,"peakThermalState":"nominal","promptTokenCount":0,"promptTokensPerSecond":0,"stopReason":"length","totalGenerationTimeSeconds":2.462915062904358},"model":{"displayName":"Gemma 4 E2B (.litertlm)","hfFilePatterns":["gemma-4-E2B-it.litertlm"],"hfRepoId":"litert-community/gemma-4-E2B-it-litert-lm","id":"litert-community/gemma-4-E2B-it-litert-lm","onDiskSizeMB":2650,"parameterCountB":2,"primaryFile":"gemma-4-E2B-it.litertlm","quantization":"INT4 (QAT)"},"outputSample":"Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv","parameters":{"maxTokens":128,"temperature":0,"topP":1},"runtime":"litert-lm","task":"short-chat","timestamp":"2026-06-17T05:45:35Z"}
+{
+  "device": {
+    "batteryLevel": 0.8,
+    "batteryState": "charging",
+    "buildConfiguration": "Release",
+    "initialThermalState": "fair",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "D4FB156F-4D8A-471F-8ACB-11EB5039EB72",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 53.686232220284474,
+    "finalThermalState": "fair",
+    "firstTokenLatencyMS": 822,
+    "generatedTokenCount": 128,
+    "initialThermalState": "fair",
+    "interTokenLatencyP50MS": 17.56107807159424,
+    "interTokenLatencyP95MS": 25.263071060180664,
+    "interTokenLatencyP99MS": 26.48007869720459,
+    "loadTimeSeconds": 3.071756958961487,
+    "memoryAfterGenerationMB": 458.08187103271484,
+    "memoryAfterLoadMB": 429.87870025634766,
+    "memoryBaselineMB": 14.532958984375,
+    "memoryPeakDuringDecodeMB": 486.90999603271484,
+    "peakThermalState": "fair",
+    "promptTokenCount": 0,
+    "promptTokensPerSecond": 0,
+    "stopReason": "length",
+    "streamedChunkCount": 128,
+    "totalGenerationTimeSeconds": 3.416438937187195
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns": [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId": "litert-community/gemma-4-E2B-it-litert-lm",
+    "id": "litert-community/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB": 2650,
+    "parameterCountB": 2,
+    "primaryFile": "gemma-4-E2B-it.litertlm",
+    "quantization": "wNa8o8 (int2/int4/int8 + int8 activations, QAT)"
+  },
+  "outputSample": "Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv",
+  "parameters": {
+    "maxTokens": 128,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "litert-lm",
+  "task": "short-chat",
+  "timestamp": "2026-07-17T20:08:14Z"
+}

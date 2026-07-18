@@ -11,30 +11,30 @@
     "systemName": "iOS",
     "systemVersion": "27.0"
   },
-  "id": "FE6520DB-2DA2-44BD-9875-D1A08E960641",
+  "id": "89AA35E3-97FB-4708-BD4C-D95AFEA2B48C",
   "metrics": {
     "batteryDeltaPercent": 0,
     "coldRun": true,
     "decodeRateRollingWindow": [],
-    "decodeTokensPerSecond": 51.668677561947426,
+    "decodeTokensPerSecond": 57.31499864736603,
     "finalThermalState": "nominal",
-    "firstTokenLatencyMS": 320,
-    "generatedTokenCount": 128,
+    "firstTokenLatencyMS": 308,
+    "generatedTokenCount": 25,
     "initialThermalState": "nominal",
-    "interTokenLatencyP50MS": 17.408013343811035,
-    "interTokenLatencyP95MS": 29.965996742248535,
-    "interTokenLatencyP99MS": 37.15205192565918,
-    "loadTimeSeconds": 112.2273759841919,
-    "memoryAfterGenerationMB": 448.5195770263672,
-    "memoryAfterLoadMB": 419.41015625,
-    "memoryBaselineMB": 14.204833984375,
-    "memoryPeakDuringDecodeMB": 484.5352020263672,
+    "interTokenLatencyP50MS": 16.472935676574707,
+    "interTokenLatencyP95MS": 23.79000186920166,
+    "interTokenLatencyP99MS": 24.198055267333984,
+    "loadTimeSeconds": 3.589811086654663,
+    "memoryAfterGenerationMB": 608.4728164672852,
+    "memoryAfterLoadMB": 527.425895690918,
+    "memoryBaselineMB": 14.517356872558594,
+    "memoryPeakDuringDecodeMB": 689.6603851318359,
     "peakThermalState": "nominal",
-    "promptTokenCount": 0,
-    "promptTokensPerSecond": 0,
-    "stopReason": "length",
-    "streamedChunkCount": 128,
-    "totalGenerationTimeSeconds": 3.0106239318847656
+    "promptTokenCount": 134,
+    "promptTokensPerSecond": 473.58525241387116,
+    "stopReason": "stop",
+    "streamedChunkCount": 24,
+    "totalGenerationTimeSeconds": 0.9358229637145996
   },
   "model": {
     "displayName": "Gemma 4 E2B (.litertlm)",
@@ -48,13 +48,13 @@
     "primaryFile": "gemma-4-E2B-it.litertlm",
     "quantization": "wNa8o8 (int2/int4/int8 + int8 activations, QAT)"
   },
-  "outputSample": "Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv",
+  "outputSample": "42\nTokyo\nCold\nSeven\nMerci\n56\n0.9\n0.11\nblue",
   "parameters": {
-    "maxTokens": 128,
+    "maxTokens": 256,
     "temperature": 0,
     "topP": 1
   },
   "runtime": "litert-lm",
-  "task": "short-chat",
-  "timestamp": "2026-07-17T19:05:24Z"
+  "task": "quality",
+  "timestamp": "2026-07-17T19:06:04Z"
 }

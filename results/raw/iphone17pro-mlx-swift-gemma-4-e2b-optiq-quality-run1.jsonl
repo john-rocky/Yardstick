@@ -1,0 +1,60 @@
+{
+  "device": {
+    "batteryLevel": 0.6,
+    "batteryState": "charging",
+    "buildConfiguration": "Release",
+    "initialThermalState": "fair",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "74614C40-5553-46F5-859E-B938E26795B2",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 35.75220590209601,
+    "finalThermalState": "fair",
+    "firstTokenLatencyMS": 1382,
+    "generatedTokenCount": 20,
+    "initialThermalState": "fair",
+    "interTokenLatencyP50MS": 27.891993522644043,
+    "interTokenLatencyP95MS": 28.25796604156494,
+    "interTokenLatencyP99MS": 28.25796604156494,
+    "loadTimeSeconds": 7.616932988166809,
+    "memoryAfterGenerationMB": 4742.864654541016,
+    "memoryAfterLoadMB": 4692.817733764648,
+    "memoryBaselineMB": 14.548606872558594,
+    "memoryPeakDuringDecodeMB": 4811.458404541016,
+    "peakThermalState": "fair",
+    "promptTokenCount": 135,
+    "promptTokensPerSecond": 99.27076976211912,
+    "stopReason": "stop",
+    "streamedChunkCount": 20,
+    "totalGenerationTimeSeconds": 2.1660619974136353
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns": [
+      "*"
+    ],
+    "hfRepoId": "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id": "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB": 1330,
+    "parameterCountB": 2,
+    "primaryFile": "",
+    "quantization": "INT4 (QAT, OptiQ)"
+  },
+  "outputSample": "42\nTokyo\ncold\nseven\nmerci\n56\n0.9\nblue",
+  "parameters": {
+    "maxTokens": 256,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "mlx-swift",
+  "task": "quality",
+  "timestamp": "2026-07-17T19:40:35Z"
+}

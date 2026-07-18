@@ -279,69 +279,94 @@ def chart_tradeoff():
 # ------------------------------------------------------------------ #
 
 def chart_iphone():
+    """Gemma 4 E2B — every runtime at its best AVAILABLE build (2026-07-18 session).
+
+    Three panels (one measure per axis — never dual-axis): decode, peak memory, GSM8K.
+    Bar rows are fixed across panels, sorted by decode. Color follows the RUNTIME entity
+    (both MLX builds share the MLX violet; the PTQ build carries a hatch as the secondary
+    encoding). Palette adjacency validated (dataviz six checks): the sky-blue contrast
+    WARN is relieved by direct value labels on every bar + the README table view.
+    GSM8K constants come from the cross-runtime harness reports
+    (hf-to-litertlm/reports/parity/, n=100, one identical protocol per row).
+    """
     runs = load_runs("iphone17pro", task="short-chat")
-    models = ["Qwen 3.5 2B", "Gemma 4 E2B"]
-    # litert-lm first to spotlight the Gemma upset; no LiteRT Qwen bar captured yet
-    # (Qwen3-0.6B .litertlm is wired — its device run is pending).
-    runtimes = ["litert-lm", "mlx-swift", "llama.cpp", "coreml-llm"]
-    rt_label = {"litert-lm": "LiteRT-LM", "mlx-swift": "MLX-Swift",
-                "llama.cpp": "llama.cpp", "coreml-llm": "CoreML/ANE"}
-    color = {"litert-lm": "#e11d48", "mlx-swift": PALETTE["mlx-swift"],
-             "llama.cpp": PALETTE["llama.cpp"], "coreml-llm": PALETTE["coreml-llm"]}
+
+    CORE_AI = "#65a30d"   # lime — distinct from every neighbour (validated)
+    ROWS = [
+        # (model.id, label, color, hatch, gsm8k, mem_note)
+        ("litert-community/gemma-4-E2B-it-litert-lm",
+         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 85.0, ""),
+        ("mlx-community/gemma-4-e2b-it-4bit",
+         "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//", 84.0, ""),
+        ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",
+         "llama.cpp\nQ4_K_M (PTQ)", PALETTE["llama.cpp"], None, 76.0, "†"),
+        ("mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+         "MLX-Swift\nQAT OptiQ int4", PALETTE["mlx-swift"], None, 91.0, ""),
+        ("core-ai/gemma4-e2b-gpu",
+         "Core AI ‡\nown int4 (QAT q4_0)", CORE_AI, None, 88.0, "†"),
+    ]
 
     dec: dict = {}
     mem: dict = {}
     for r in runs:
-        lm = logical_model(r["model"]["id"])
-        rt = r["runtime"]
-        if lm not in models or rt not in runtimes:
-            continue
-        dec.setdefault((lm, rt), []).append(r["metrics"]["decodeTokensPerSecond"])
-        mem.setdefault((lm, rt), []).append(r["metrics"]["memoryPeakDuringDecodeMB"])
+        mid = r["model"]["id"]
+        dec.setdefault(mid, []).append(r["metrics"]["decodeTokensPerSecond"])
+        mem.setdefault(mid, []).append(r["metrics"]["memoryPeakDuringDecodeMB"])
 
-    xs = list(range(len(models)))
-    width = 0.20
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.8))
+    labels = [row[1] for row in ROWS]
+    colors = [row[2] for row in ROWS]
+    hatches = [row[3] for row in ROWS]
+    dec_v = [median(dec.get(row[0], [])) or 0 for row in ROWS]
+    mem_v = [median(mem.get(row[0], [])) or 0 for row in ROWS]
+    gsm_v = [row[4] for row in ROWS]
+    mem_note = [row[5] for row in ROWS]
 
-    def grouped(ax, data, fmt, title, ylab):
-        ax.grid(False)
-        labelled: set = set()
-        for i, rt in enumerate(runtimes):
-            for j, m in enumerate(models):
-                vals = data.get((m, rt))
-                if not vals:
-                    continue  # e.g. no LiteRT Qwen row captured yet (Qwen3-0.6B coming)
-                y = median(vals)
-                x = xs[j] + (i - 1.5) * width
-                ax.bar([x], [y], width,
-                       label=(rt_label[rt] if rt not in labelled else None),
-                       color=color[rt], edgecolor="white", linewidth=0.6)
-                labelled.add(rt)
-                ax.text(x, y, fmt.format(y), ha="center", va="bottom",
-                        fontsize=10, fontweight="bold")
-        ax.set_xticks(xs)
-        ax.set_xticklabels(models, fontsize=11)
-        ax.set_title(title, fontsize=12.5, fontweight="bold", pad=10)
-        ax.set_ylabel(ylab)
-        ax.grid(True, axis="y", alpha=0.3)
+    ys = list(range(len(ROWS)))[::-1]  # top row first
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12.5, 4.6),
+                                        gridspec_kw={"width_ratios": [1.25, 1, 1]})
+
+    def hbars(ax, vals, fmt, title, notes=None):
+        for y, v, c, h in zip(ys, vals, colors, hatches):
+            ax.barh([y], [v], 0.62, color=c, hatch=h, edgecolor="white", linewidth=0.8)
+            note = (notes[ys.index(y)] if notes else "")
+            ax.text(v, y, " " + fmt.format(v) + note, va="center", ha="left",
+                    fontsize=10, fontweight="bold", color="#222")
+        ax.set_yticks(ys)
+        ax.set_title(title, fontsize=12, fontweight="bold", pad=8)
+        ax.grid(True, axis="x", alpha=0.25)
         ax.set_axisbelow(True)
-        ax.margins(y=0.22)
+        ax.margins(x=0.22)
+        ax.spines[["top", "right"]].set_visible(False)
 
-    grouped(ax1, dec, "{:.0f}", "Decode throughput   ↑ better", "tok/s")
-    grouped(ax2, mem, "{:.0f}", "Peak memory   ↓ better", "MB")
-    ax1.legend(frameon=False, loc="upper right", fontsize=10, ncol=3,
-               bbox_to_anchor=(1.0, 1.0))
+    hbars(ax1, dec_v, "{:.1f}", "Decode tok/s   ↑ better")
+    ax1.set_yticklabels(labels, fontsize=9.5)
+    # the unloadable row is a result, not an omission — keep it visible
+    ax1.text(0.02, -0.72, "official QAT q4_0 GGUF: unloadable (llama.cpp vocab assert)",
+             fontsize=8.5, color="#888", style="italic")
+    ax1.set_ylim(-1.05, len(ROWS) - 0.4)
+
+    hbars(ax2, mem_v, "{:.0f}", "Peak memory MB   ↓ better", notes=mem_note)
+    ax2.set_yticklabels([])
+    ax2.set_ylim(-1.05, len(ROWS) - 0.4)
+
+    hbars(ax3, gsm_v, "{:.1f}", "GSM8K % (n=100)   ↑ better")
+    ax3.set_yticklabels([])
+    ax3.set_xlim(0, 100)
+    ax3.set_ylim(-1.05, len(ROWS) - 0.4)
+
     fig.suptitle(
-        "On-device LLM — iPhone 17 Pro (A19 Pro) · 4-bit · short-chat · median of 3 cold runs",
-        fontsize=12.5, fontweight="bold", y=1.03,
-    )
-    fig.text(0.5, -0.03,
-             "Decode: LiteRT-LM wins Gemma, MLX wins Qwen  ·  Memory: CoreML/ANE as low as 241 MB (Qwen, ~5× leaner)  ·  LiteRT-LM Qwen3 row coming; CoreML/ANE trades speed for memory",
+        "Gemma 4 E2B on iPhone 17 Pro (A19 Pro) — every runtime at its best available build"
+        " · short-chat, median of 3 thermal-nominal cold runs · 2026-07-18",
+        fontsize=12, fontweight="bold", y=1.04)
+    fig.text(0.5, -0.06,
+             "† mmap'd weights (clean pages not charged to phys_footprint — not comparable with wired-memory rows)"
+             "   ·   ‡ patched engine (reference): Apple ships no Gemma-4 bundle; see methodology/core-ai-arm-provenance.md"
+             "   ·   GSM8K measured on M4 Max, one identical harness per row",
              ha="center", fontsize=8.5, color="#666")
     plt.tight_layout()
-    plt.savefig(OUT / "iphone_decode_mem.png")
+    plt.savefig(OUT / "iphone_gemma4_bestavailable.png")
     plt.close(fig)
-    print(f"wrote {OUT / 'iphone_decode_mem.png'}")
+    print(f"wrote {OUT / 'iphone_gemma4_bestavailable.png'}")
 
 
 # ------------------------------------------------------------------ #

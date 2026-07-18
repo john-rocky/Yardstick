@@ -1,0 +1,60 @@
+{
+  "device": {
+    "batteryLevel": 1,
+    "batteryState": "charging",
+    "buildConfiguration": "Release",
+    "initialThermalState": "nominal",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "70006907-F9CB-44E9-8B45-8F0B07595EA9",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 35.1332545862539,
+    "finalThermalState": "nominal",
+    "firstTokenLatencyMS": 619,
+    "generatedTokenCount": 128,
+    "initialThermalState": "nominal",
+    "interTokenLatencyP50MS": 28.638005256652832,
+    "interTokenLatencyP95MS": 29.38103675842285,
+    "interTokenLatencyP99MS": 29.60205078125,
+    "loadTimeSeconds": 7.71392297744751,
+    "memoryAfterGenerationMB": 4576.130233764648,
+    "memoryAfterLoadMB": 4587.692733764648,
+    "memoryBaselineMB": 14.267333984375,
+    "memoryPeakDuringDecodeMB": 4613.911483764648,
+    "peakThermalState": "nominal",
+    "promptTokenCount": 21,
+    "promptTokensPerSecond": 36.46801072174714,
+    "stopReason": "length",
+    "streamedChunkCount": 128,
+    "totalGenerationTimeSeconds": 4.478296995162964
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns": [
+      "*"
+    ],
+    "hfRepoId": "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id": "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB": 1330,
+    "parameterCountB": 2,
+    "primaryFile": "",
+    "quantization": "INT4 (QAT, OptiQ)"
+  },
+  "outputSample": "Imagine you have a smart device, like your smartphone, a smart speaker, or even a smart camera.\n\n**On-device AI** simply means that the \"brain\" or the \"intelligence\" of the AI lives **right on that de",
+  "parameters": {
+    "maxTokens": 128,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "mlx-swift",
+  "task": "short-chat",
+  "timestamp": "2026-07-17T21:07:42Z"
+}

@@ -109,6 +109,9 @@ LOGICAL_MODELS: list[tuple[str, str]] = [
     # Gemma 4
     ("gemma-4-26b-a4b", "Gemma 4 26B-A4B (MoE)"),
     ("gemma-4-31b",     "Gemma 4 31B"),
+    # OptiQ before the generic e2b pattern: MLX has two 4-bit builds of E2B in the table
+    # (quality-best QAT OptiQ vs speed-best PTQ) and they must not pool in the pivots.
+    ("gemma-4-e2b-it-qat-optiq", "Gemma 4 E2B (QAT OptiQ)"),
     ("gemma-4-e2b",     "Gemma 4 E2B"),
     ("gemma-4-e4b",     "Gemma 4 E4B"),
     ("gemma4-e2b",      "Gemma 4 E2B"),

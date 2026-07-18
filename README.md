@@ -86,6 +86,8 @@ Real LLM inference on a phone — on-device, no server. iPhone 17 Pro, short-cha
 
 ### Gemma 4 E2B — every runtime at its best *available* build (2026-07-18, iOS 27.0)
 
+![Gemma 4 E2B on iPhone 17 Pro — decode, peak memory, GSM8K per runtime at its best available build](docs/charts/iphone_gemma4_bestavailable.png)
+
 The earlier version of this table had each arm on a different checkpoint quality class (MLX and llama.cpp on PTQ, LiteRT on QAT) — it measured who had the better checkpoint, not the better runtime. This one states the build per row and adds **GSM8K n=100** (measured on M4 Max with one identical harness for every row — greedy, thinking-off, same extractor):
 
 | Runtime | Build | Decode tok/s | ITL p50 | Peak MB | GSM8K |

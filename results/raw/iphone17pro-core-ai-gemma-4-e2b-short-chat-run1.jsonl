@@ -1,0 +1,62 @@
+{
+  "device": {
+    "batteryLevel": 0.8,
+    "batteryState": "unplugged",
+    "buildConfiguration": "Release",
+    "initialThermalState": "nominal",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "01236CBB-131B-445F-BBA6-D12C38B931A4",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [
+      23.92679532440776
+    ],
+    "decodeTokensPerSecond": 23.434047010529415,
+    "finalThermalState": "nominal",
+    "firstTokenLatencyMS": 5141,
+    "generatedTokenCount": 128,
+    "initialThermalState": "nominal",
+    "interTokenLatencyP50MS": 29.541969299316406,
+    "interTokenLatencyP95MS": 175.41801929473877,
+    "interTokenLatencyP99MS": 236.69493198394775,
+    "loadTimeSeconds": 3.405946969985962,
+    "memoryAfterGenerationMB": 567.3474960327148,
+    "memoryAfterLoadMB": 207.48809814453125,
+    "memoryBaselineMB": 13.361083984375,
+    "memoryPeakDuringDecodeMB": 567.3631210327148,
+    "peakThermalState": "nominal",
+    "promptTokenCount": 19,
+    "promptTokensPerSecond": 3.6983666568744975,
+    "stopReason": "length",
+    "streamedChunkCount": 128,
+    "totalGenerationTimeSeconds": 10.811890006065369
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (Core AI, GPU)",
+    "hfFilePatterns": [
+      "*"
+    ],
+    "hfRepoId": "mlboydaisuke/gemma-4-E2B-CoreAI",
+    "id": "core-ai/gemma4-e2b-gpu",
+    "onDiskSizeMB": 2048,
+    "parameterCountB": 2,
+    "primaryFile": "",
+    "quantization": "int4 q4_0 (QAT, own export)"
+  },
+  "outputSample": "Imagine you have a super smart assistant (like Siri or Google Assistant) that can understand your voice and answer questions.\n\n**On-device AI** is like putting that \"super smart assistant\" **directly ",
+  "parameters": {
+    "maxTokens": 128,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "core-ai",
+  "task": "short-chat",
+  "timestamp": "2026-07-18T13:46:16Z"
+}

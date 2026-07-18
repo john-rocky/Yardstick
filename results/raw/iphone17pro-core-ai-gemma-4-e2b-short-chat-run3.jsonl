@@ -1,0 +1,60 @@
+{
+  "device": {
+    "batteryLevel": 0.8,
+    "batteryState": "unplugged",
+    "buildConfiguration": "Release",
+    "initialThermalState": "nominal",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "86379727-A5A9-435A-8393-91DD495C1C3F",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 34.96651538655627,
+    "finalThermalState": "nominal",
+    "firstTokenLatencyMS": 4373,
+    "generatedTokenCount": 128,
+    "initialThermalState": "nominal",
+    "interTokenLatencyP50MS": 28.26106548309326,
+    "interTokenLatencyP95MS": 33.210039138793945,
+    "interTokenLatencyP99MS": 36.540985107421875,
+    "loadTimeSeconds": 3.6947509050369263,
+    "memoryAfterGenerationMB": 552.8631439208984,
+    "memoryAfterLoadMB": 191.11307525634766,
+    "memoryBaselineMB": 13.407981872558594,
+    "memoryPeakDuringDecodeMB": 552.8318939208984,
+    "peakThermalState": "nominal",
+    "promptTokenCount": 19,
+    "promptTokensPerSecond": 4.348108734887877,
+    "stopReason": "length",
+    "streamedChunkCount": 128,
+    "totalGenerationTimeSeconds": 8.235106945037842
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (Core AI, GPU)",
+    "hfFilePatterns": [
+      "*"
+    ],
+    "hfRepoId": "mlboydaisuke/gemma-4-E2B-CoreAI",
+    "id": "core-ai/gemma4-e2b-gpu",
+    "onDiskSizeMB": 2048,
+    "parameterCountB": 2,
+    "primaryFile": "",
+    "quantization": "int4 q4_0 (QAT, own export)"
+  },
+  "outputSample": "Imagine you have a super smart assistant (like Siri or Google Assistant) that can understand your voice and answer questions.\n\n**On-device AI** is like putting that \"super smart assistant\" **directly ",
+  "parameters": {
+    "maxTokens": 128,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "core-ai",
+  "task": "short-chat",
+  "timestamp": "2026-07-18T13:53:09Z"
+}
