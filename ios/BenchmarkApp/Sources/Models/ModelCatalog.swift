@@ -992,6 +992,11 @@ public enum ModelCatalog {
         ModelInfo(id: "core-ai/llama-3.2-3b-static-gpu", displayName: "Llama-3.2-3B (Core AI, static-GPU)", quantization: "4-bit palettized (uniform g32, static→GPU)", parameterCountB: 3.0, onDiskSizeMB: 1700, hfRepoId: ""),
         // Gemma-4 E4B (Per-Layer-Embeddings): `_tbl` GPU-pipelined decode + mmap'd PLE table (in-graph gather).
         ModelInfo(id: "core-ai/gemma4-e4b-gpu", displayName: "Gemma 4 E4B (Core AI, GPU)", quantization: "int4 q4_0 (QAT)", parameterCountB: 4.0, onDiskSizeMB: 5300, hfRepoId: "mlboydaisuke/gemma-4-E4B-CoreAI"),
+        // Gemma-4 E2B, same PLE structure (own export from google's -qat-q4_0-unquantized; Apple
+        // ships no Gemma-4 bundle). PLE arm ⇒ needs the patched engine (COREAI_STATIC_INPUTS) —
+        // a stock build reports it unsupported; any published number must be labelled
+        // "patched engine (reference)". See methodology/core-ai-arm-provenance.md.
+        ModelInfo(id: "core-ai/gemma4-e2b-gpu", displayName: "Gemma 4 E2B (Core AI, GPU)", quantization: "int4 q4_0 (QAT, own export)", parameterCountB: 2.0, onDiskSizeMB: 2048, hfRepoId: "mlboydaisuke/gemma-4-E2B-CoreAI"),
     ]
 
     /// Default model picked when the app first launches.
