@@ -125,6 +125,10 @@ that IS the sustained operating point; regime held equal across arms.
 arm         build            J/tok    tokens in 600s   sustained tok/s (vs burst)
 litert-lm   wNa8o8 (native)  0.122       24,336          40.3  (76% of 52.7)
 mlx-swift   PTQ 4-bit        0.151       19,640          29.6  (64% of 46.4)
+mlx-swift   QAT OptiQ        0.207       14,336          23.3  (67% of 34.8)   <- the +7-GSM8K-pt build costs +37% J/tok on device
+llama.cpp   Q4_K_M           BLOCKED — adapter empty-output bug (zero tokens on every task
+                             except short-chat; prefill runs, Mac llama-server fine; the
+                             zero-decode sustain loop never accumulates, hence the spin)
 core-ai     own int4         0.352*      8,448          19.0  (56% of 34.2)  *shallow-rep
 
 ANSWER: on its native iPhone path, wNa8o8/LiteRT wins energy too — 24% more tokens on the
@@ -146,3 +150,12 @@ The planned litert-shallow calibration bridge was skipped (battery hit 15%); it 
 push core-ai's deep-equivalent HIGHER, so the ranking is settled without it. Optional
 refinement: run litert-lm energy --max-tokens 192 at >40% battery and compute
 core-ai_deep-equiv = 0.352 x (0.122 / litert_shallow).
+
+
+Deep-context p=1024/g=256 fill (2026-07-19, nominal x3 medians, long-context-1024 task)
+---------------------------------------------------------------------------------------
+mlx-swift PTQ:   prefill 2,307  decode 47.6  peak 3,387 MB   (decode flat vs 46.4 burst)
+mlx-swift OptiQ: prefill 2,592  decode 35.1  peak 4,999 MB   (flat vs 34.8)
+llama.cpp Q4_K_M: prefill 1,040; decode EMPTY-OUTPUT (adapter bug above); peak 300 MB
+The deep-context story is the 3-orders memory gradient: LiteRT 92 MB / MLX 3.4-5.0 GB /
+core-ai dead — decode-at-depth is flat on every surviving arm.
