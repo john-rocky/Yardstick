@@ -192,10 +192,14 @@ class Sample:
 
 def parse_sample(path: Path) -> tuple[RunKey, Sample] | None:
     try:
-        # JSONL: repeated measure_energy passes APPEND records; take the last line
-        # (single-record files parse identically).
-        lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
-        data = json.loads(lines[-1])
+        # Two shapes coexist: pretty-printed single records (import_to_flat) and true
+        # JSONL with appended records (measure_energy passes). Whole-file parse first;
+        # fall back to the last non-empty line.
+        text = path.read_text(encoding="utf-8")
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+            data = json.loads([l for l in text.splitlines() if l.strip()][-1])
     except Exception as exc:
         print(f"warn: skipping {path.name}: {exc}", file=sys.stderr)
         return None

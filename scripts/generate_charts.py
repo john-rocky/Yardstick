@@ -80,11 +80,16 @@ def logical_model(model_id: str) -> str | None:
 def load_runs(device: str, task: str | None = None) -> list[dict]:
     out = []
     for p in sorted(RAW.glob(f"{device}-*.jsonl")):
-        # JSONL: repeated measure_energy passes APPEND records; the last line is the
-        # current one (single-record files parse the same way).
+        # Two on-disk shapes coexist: pretty-printed single records (multi-line JSON,
+        # the import_to_flat convention) and true JSONL where repeated measure_energy
+        # passes APPEND one-line records. Whole-file parse first; fall back to the last
+        # non-empty line for appended JSONL.
         try:
-            lines = [l for l in p.read_text().splitlines() if l.strip()]
-            obj = json.loads(lines[-1])
+            text = p.read_text()
+            try:
+                obj = json.loads(text)
+            except json.JSONDecodeError:
+                obj = json.loads([l for l in text.splitlines() if l.strip()][-1])
         except Exception:
             continue
         if task and obj.get("task") != task:
@@ -321,17 +326,17 @@ def chart_iphone():
 
     CORE_AI = "#65a30d"   # lime — distinct from every neighbour (validated)
     ROWS = [
-        # (model.id, label, color, hatch, gsm8k, mem_note)
+        # (model.id, label, color, hatch, gsm8k, mem_note, j_per_tok, jtok_note)
         ("litert-community/gemma-4-E2B-it-litert-lm",
-         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 85.0, ""),
+         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 85.0, "", 0.122, ""),
         ("mlx-community/gemma-4-e2b-it-4bit",
-         "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//", 84.0, ""),
+         "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//", 84.0, "", 0.151, ""),
         ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",
-         "llama.cpp\nQ4_K_M (PTQ)", PALETTE["llama.cpp"], None, 76.0, "†"),
+         "llama.cpp\nQ4_K_M (PTQ)", PALETTE["llama.cpp"], None, 76.0, "†", 0.483, ""),
         ("mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
-         "MLX-Swift\nQAT OptiQ int4", PALETTE["mlx-swift"], None, 91.0, ""),
+         "MLX-Swift\nQAT OptiQ int4", PALETTE["mlx-swift"], None, 91.0, "", 0.207, ""),
         ("core-ai/gemma4-e2b-gpu",
-         "Core AI ‡\nown int4 (QAT q4_0)", CORE_AI, None, 88.0, "†"),
+         "Core AI ‡\nown int4 (QAT q4_0)", CORE_AI, None, 88.0, "†", 0.352, "◊"),
     ]
 
     dec: dict = {}
@@ -348,10 +353,12 @@ def chart_iphone():
     mem_v = [median(mem.get(row[0], [])) or 0 for row in ROWS]
     gsm_v = [row[4] for row in ROWS]
     mem_note = [row[5] for row in ROWS]
+    jt_v = [row[6] for row in ROWS]
+    jt_note = [row[7] for row in ROWS]
 
     ys = list(range(len(ROWS)))[::-1]  # top row first
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(12.5, 4.6),
-                                        gridspec_kw={"width_ratios": [1.25, 1, 1]})
+    fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(15.5, 4.6),
+                                             gridspec_kw={"width_ratios": [1.3, 1, 1, 1]})
 
     def hbars(ax, vals, fmt, title, notes=None):
         for y, v, c, h in zip(ys, vals, colors, hatches):
@@ -382,14 +389,17 @@ def chart_iphone():
     ax3.set_xlim(0, 100)
     ax3.set_ylim(-1.05, len(ROWS) - 0.4)
 
+    hbars(ax4, jt_v, "{:.3f}", "Energy J/token   ↓ better", notes=jt_note)
+    ax4.set_yticklabels([])
+    ax4.set_ylim(-1.05, len(ROWS) - 0.4)
+
     fig.suptitle(
         "Gemma 4 E2B on iPhone 17 Pro (A19 Pro) — every runtime at its best available build"
         " · short-chat, median of 3 thermal-nominal cold runs · 2026-07-18",
         fontsize=12, fontweight="bold", y=1.04)
     fig.text(0.5, -0.06,
-             "† mmap'd weights (clean pages not charged to phys_footprint — not comparable with wired-memory rows)"
-             "   ·   ‡ patched engine (reference): Apple ships no Gemma-4 bundle; see methodology/core-ai-arm-provenance.md"
-             "   ·   GSM8K measured on M4 Max, one identical harness per row",
+             "† mmap'd weights (not comparable with wired-memory rows)   ·   ‡ patched engine (reference): Apple ships no Gemma-4 bundle"
+             "   ·   ◊ shallow-rep lower bound (depth wall)   ·   GSM8K on M4 Max, one harness per row   ·   J/tok = battery-delta, 600 s sustained, unplugged",
              ha="center", fontsize=8.5, color="#666")
     plt.tight_layout()
     plt.savefig(OUT / "iphone_gemma4_bestavailable.png")
@@ -506,8 +516,110 @@ def chart_iphone_tradeoff():
     print(f"wrote {OUT / 'iphone_tradeoff.png'}")
 
 
+
+
+# ------------------------------------------------------------------ #
+#  Chart — thinking mode: the quality crown flips
+# ------------------------------------------------------------------ #
+
+def chart_thinking():
+    """GSM8K thinking OFF vs ON per arm. LiteRT's lockout is drawn as a labeled empty
+    slot — the absence is the finding, not a missing measurement. Time-to-answer
+    annotated under the ON bars (thinking ~820 tok / measured decode)."""
+    CORE_AI = "#65a30d"
+    arms = [
+        ("Core AI\nown int4",  CORE_AI,             88.0, 92.0, "~75 s/answer ②"),
+        ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"], 91.0, 90.0, "~24 s/answer"),
+        ("LiteRT-LM\nwNa8o8",  "#e11d48",            85.0, None, "locked out ①"),
+    ]
+    x = list(range(len(arms)))
+    w = 0.36
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
+    for i, (label, color, off, on, note) in enumerate(arms):
+        ax.bar(i - w/2, off, w, color=color, alpha=0.45, edgecolor="white", linewidth=0.8)
+        ax.text(i - w/2, off, f"{off:.0f}", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#222")
+        if on is not None:
+            ax.bar(i + w/2, on, w, color=color, edgecolor="white", linewidth=0.8)
+            ax.text(i + w/2, on, f"{on:.0f}", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#222")
+            delta = on - off
+            ax.annotate(f"{'+' if delta >= 0 else ''}{delta:.0f}", (i + w/2, on - 7),
+                        ha="center", fontsize=10.5, fontweight="bold", color="white")
+        else:
+            ax.bar(i + w/2, 92, w, fill=False, edgecolor="#bbb", linestyle="--", linewidth=1.2)
+            ax.text(i + w/2, 46, "no thinking\ntoggle in the\npublic API", ha="center", va="center",
+                    fontsize=8.5, color="#666", style="italic")
+        ax.text(i, -20.5, note, ha="center", fontsize=8.5, color="#555")
+    ax.set_xticks(x)
+    ax.set_xticklabels([a[0] for a in arms], fontsize=10)
+    ax.set_ylabel("GSM8K % (n=100)")
+    ax.set_ylim(0, 104)
+    ax.grid(True, axis="y", alpha=0.25); ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    from matplotlib.patches import Patch
+    ax.legend(handles=[Patch(facecolor="#888", alpha=0.45, label="thinking OFF"),
+                       Patch(facecolor="#888", label="thinking ON")],
+              frameon=False, loc="lower right", fontsize=9)
+    ax.set_title("Thinking flips the quality crown — Gemma 4 E2B, iPhone-relevant builds",
+                 fontsize=12.5, fontweight="bold", pad=10)
+    fig.text(0.5, -0.05,
+             "① no toggle in LiteRT-LM's API; <|think|> marker injection is sanitized (verified two ways)"
+             "   ·   ② decode collapses 34.2→11.7 tok/s at thinking depth on iPhone (only runtime that degrades with depth)"
+             "   ·   Core AI 92.0 equals the bf16 anchor",
+             ha="center", fontsize=8.5, color="#666")
+    plt.tight_layout()
+    plt.savefig(OUT / "iphone_gemma4_thinking.png")
+    plt.close(fig)
+    print(f"wrote {OUT / 'iphone_gemma4_thinking.png'}")
+
+
+# ------------------------------------------------------------------ #
+#  Chart — deep context (p=1024): a three-orders memory gradient
+# ------------------------------------------------------------------ #
+
+def chart_deepcontext():
+    """Peak memory to hold a 1,024-token context, log scale — the axis where the arms
+    separate by orders of magnitude. Decode-at-depth stays flat on every surviving arm,
+    so it rides along as a bar label, not a second axis."""
+    CORE_AI = "#65a30d"
+    rows = [
+        ("LiteRT-LM  wNa8o8",      "#e11d48",            92,   "decode ~56 tok/s", ""),
+        ("llama.cpp  Q4_K_M",      PALETTE["llama.cpp"], 300,  "decode 33.9 tok/s", " †"),
+        ("MLX  PTQ 4-bit",         PALETTE["mlx-swift"], 3387, "decode 47.6 tok/s", "", "//"),
+        ("MLX  QAT OptiQ",         PALETTE["mlx-swift"], 4999, "decode 35.1 tok/s", "", None),
+    ]
+    rows = [r if len(r) == 6 else (*r, None) for r in rows]
+    fig, ax = plt.subplots(figsize=(8.6, 4.0))
+    ys = list(range(len(rows) + 1))[::-1]
+    for y, (label, color, mem, note, dag, hatch) in zip(ys[:len(rows)], rows):
+        ax.barh([y], [mem], 0.6, color=color, hatch=hatch, edgecolor="white", linewidth=0.8)
+        ax.text(mem * 1.12, y, f"{mem:,} MB{dag}   ·   {note}", va="center", fontsize=9.5, color="#222")
+    y_dead = ys[len(rows)]
+    ax.barh([y_dead], [6440], 0.6, fill=False, edgecolor=CORE_AI, linestyle="--", linewidth=1.4)
+    ax.text(6440 * 0.96, y_dead, "jetsam @ depth 384 — cannot finish  ", va="center", ha="right",
+            fontsize=9.5, color=CORE_AI, fontweight="bold")
+    ax.set_yticks(ys)
+    ax.set_yticklabels([r[0] for r in rows] + ["Core AI  own int4 ‡"], fontsize=10)
+    ax.set_xscale("log")
+    ax.set_xlim(50, 30000)
+    ax.set_xlabel("Peak memory for a 1,024-token context (MB, log scale)   ↓ better")
+    ax.grid(True, axis="x", alpha=0.25); ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_title("Deep context is a memory story, not a speed story — Gemma 4 E2B, iPhone 17 Pro (p=1024/g=256)",
+                 fontsize=12, fontweight="bold", pad=10)
+    fig.text(0.5, -0.06,
+             "decode-at-depth stays flat on every surviving runtime (MLX 46.4→47.6, OptiQ 34.8→35.1 vs their short-chat rates)"
+             "   ·   † mmap'd weights   ·   ‡ patched engine (reference); dashed bar = ~6.44 GB jetsam ceiling",
+             ha="center", fontsize=8.5, color="#666")
+    plt.tight_layout()
+    plt.savefig(OUT / "iphone_gemma4_deepcontext.png")
+    plt.close(fig)
+    print(f"wrote {OUT / 'iphone_gemma4_deepcontext.png'}")
+
+
 def main():
     chart_iphone()
+    chart_thinking()
+    chart_deepcontext()
     chart_iphone_energy()
     chart_iphone_tradeoff()
     chart_decode_tok_per_s()
