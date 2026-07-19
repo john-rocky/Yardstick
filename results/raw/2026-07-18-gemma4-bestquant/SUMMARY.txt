@@ -203,3 +203,19 @@ same session-noise band, so the published short-chat/ITL cells stand unchanged; 
 07-19 re-captures are on record). Preflight energy records (08-05-04Z, 08-06-11Z) are
 validation runs, not measurements — excluded from cells. The 600 s standard-protocol
 energy capture followed (08-21-57Z): 0.483 J/tok — the iPhone energy table above.
+
+Thinking mode (2026-07-19 evening)
+----------------------------------
+GSM8K n=100, thinking ON (same harness; mlx via enable_thinking, core-ai via llm-runner
+--raw-tokens template bypass; median think length ~820 tok):
+  core-ai own int4   92.0  (+4.0 vs off — new campaign quality high, equals the bf16 anchor)
+  mlx OptiQ          90.0  (-1.0 vs off — thinking gains nothing for the QAT'd build)
+  litert wNa8o8      NOT MEASURABLE — no thinking toggle in the public API; <|think|> marker
+                     injection inside user text is sanitized/inert (plain + turn-closing
+                     probes). The wNa8o8 3-crown sweep is a thinking-OFF story.
+iPhone thinking feasibility (patched app, energy task --max-tokens 480, n=3):
+  Core AI COMPLETES a thinking-length decode (depth ~550) — the depth-wall extrapolation
+  ("cannot think") was WRONG — but decode collapses 34.2 -> 11.7 tok/s (2.9x) at 4.2 GB
+  peak (7.6x short-chat). Only Core AI degrades with depth (MLX 47.6/35.1 and LiteRT ~56
+  stay flat at depth ~1082). Depth ~2048 still jetsams: one thinking answer yes (~75 s),
+  multi-turn thinking chat no. Reports: gsm8k_{mlx-gemma4-e2b-optiq4,coreai-gemma4-e2b-q40}-thinking.json
