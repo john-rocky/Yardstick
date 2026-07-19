@@ -90,15 +90,16 @@ Real LLM inference on a phone — on-device, no server. iPhone 17 Pro, short-cha
 
 The earlier version of this table had each arm on a different checkpoint quality class (MLX and llama.cpp on PTQ, LiteRT on QAT) — it measured who had the better checkpoint, not the better runtime. This one states the build per row and adds **GSM8K n=100** (measured on M4 Max with one identical harness for every row — greedy, thinking-off, same extractor):
 
-| Runtime | Build | Decode tok/s | ITL p50 | Peak MB | GSM8K |
-|---|---|---:|---:|---:|---:|
-| 🔴 LiteRT-LM | wNa8o8 QAT (official) | **52.7** 🏆 | **17.4 ms** | **487** 🏆 | 85.0% |
-| 🟣 MLX-Swift | PTQ 4-bit | 46.4 | 21.5 ms | 3,010 | 84.0% |
-| 🔵 llama.cpp | Q4_K_M (PTQ) | 37.6 | 25.5 ms | 253 † | 76.0% |
-| 🟣 MLX-Swift | QAT OptiQ int4 | 34.8 | 29.0 ms | 4,650 | **91.0%** 🏆 |
-| 🍎 Core AI ‡ | own int4 (from official QAT q4_0) | 34.2 | 29.0 ms | 553 † | 88.0% |
-| 🔵 llama.cpp | **official QAT q4_0** | **unloadable** | — | — | — |
+| Runtime | Build | Decode tok/s | ITL p50 | Peak MB | GSM8K | J/tok ◊ |
+|---|---|---:|---:|---:|---:|---:|
+| 🔴 LiteRT-LM | wNa8o8 QAT (official) | **52.7** 🏆 | **17.4 ms** | **487** 🏆 | 85.0% | **0.122** 🏆 |
+| 🟣 MLX-Swift | PTQ 4-bit | 46.4 | 21.5 ms | 3,010 | 84.0% | 0.151 |
+| 🔵 llama.cpp | Q4_K_M (PTQ) | 37.6 | 25.5 ms | 253 † | 76.0% | n/m ◊ |
+| 🟣 MLX-Swift | QAT OptiQ int4 | 34.8 | 29.0 ms | 4,650 | **91.0%** 🏆 | n/m ◊ |
+| 🍎 Core AI ‡ | own int4 (from official QAT q4_0) | 34.2 | 29.0 ms | 553 † | 88.0% | 0.352 ◊ |
+| 🔵 llama.cpp | **official QAT q4_0** | **unloadable** | — | — | — | — |
 
+> ◊ battery-delta, 600 s sustained, unplugged. "n/m" = not yet measured (battery budget), measurable. Core AI's 0.352 is a shallow-rep reference (192 tok/rep to stay under its depth jetsam wall; the shallow bias *favors* it — still ~2.9× LiteRT). The standard deep protocol jetsams Core AI — that failed run stays on record per fairness rule #4.
 > † mmap'd weights: clean pages aren't charged to `phys_footprint`, so these "memory" cells are not comparable with runtimes that wire their weights — footnote, don't rank.
 > ‡ **Patched engine (reference)**: Apple ships no Gemma-4 bundle and `EngineOptions.staticInputBuffers` is a local engine patch — but the *path* is Apple's standard `EngineFactory`. Its TTFT is the honest cost: ~5.1 s on a 19-token prompt (S=1 unbatched prefill — Gemma-4's per-layer embeddings force it).
 
