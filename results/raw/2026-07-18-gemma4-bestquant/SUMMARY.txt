@@ -125,7 +125,7 @@ that IS the sustained operating point; regime held equal across arms.
 arm         build            J/tok    tokens in 600s   sustained tok/s (vs burst)
 litert-lm   wNa8o8 (native)  0.122       24,336          40.3  (76% of 52.7)
 mlx-swift   PTQ 4-bit        0.151       19,640          29.6  (64% of 46.4)
-core-ai     own int4         JETSAM — not measurable under this protocol (see below)
+core-ai     own int4         0.352*      8,448          19.0  (56% of 34.2)  *shallow-rep
 
 ANSWER: on its native iPhone path, wNa8o8/LiteRT wins energy too — 24% more tokens on the
 same 5% of battery (0.122 vs 0.151 J/tok) — REVERSING the Mac result (Mac: MLX 0.090 vs
@@ -134,9 +134,15 @@ speed / memory / energy on device; quality remains MLX-OptiQ's (91.0 vs 85.0).
 LiteRT also throttles less under sustained load (76% vs 64% of burst rate retained),
 consistent with the README's throttling section.
 
-core-ai row: SIGKILL (jetsam) reproduced down to --sustain-seconds 30. Cause is the known
-depth wall (report 注4: working set +0.25 GB @depth128, +1.06 @256, +3.47 @512 -> kill):
-EnergyTask decodes to maxTokens=2048 per rep, far past the ~depth-400 kill line. This is a
-measurement, not a harness bug (fairness rule 4): Core AI E2B cannot run the sustained
-protocol on device. A shallow-rep variant (maxTokens ~192, reset per rep) could produce a
-labelled non-comparable reference number if ever needed.
+core-ai row, standard (deep) protocol: SIGKILL (jetsam) reproduced down to
+--sustain-seconds 30. Cause is the known depth wall (report 注4: working set +0.25 GB
+@depth128, +1.06 @256, +3.47 @512 -> kill): EnergyTask decodes to maxTokens=2048 per rep,
+far past the ~depth-400 kill line. That failed-run finding stands (fairness rule 4).
+The 0.352 number comes from the SHALLOW-REP variant (--max-tokens 192/rep — the CLI knob
+already existed for exactly this) which keeps depth < the wall. Shallow attention is
+CHEAPER per token, so 0.352 is a favorable-bias lower bound — and core-ai still uses ~2.9x
+litert's deep-protocol energy per token (8,448 vs 24,336 tokens on the same 5% of battery).
+The planned litert-shallow calibration bridge was skipped (battery hit 15%); it can only
+push core-ai's deep-equivalent HIGHER, so the ranking is settled without it. Optional
+refinement: run litert-lm energy --max-tokens 192 at >40% battery and compute
+core-ai_deep-equiv = 0.352 x (0.122 / litert_shallow).
