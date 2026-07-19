@@ -497,7 +497,11 @@ def main() -> int:
     # totalGenerationTimeSeconds worth of samples ≈ the decode phase. Report it as a
     # separate, per-arm-comparable metric; the full-window numbers stay for continuity.
     gen_s = float(metrics.get("totalGenerationTimeSeconds") or 0)
-    if gen_tok > 0 and 0 < gen_s <= elapsed and samples_mW:
+    # +50ms slack: --cmd records store totalGenerationTimeSeconds = round(elapsed, 3), and
+    # the window clip can land elapsed a hair BELOW it — strict <= then skips the decode
+    # fields for exactly the records where decode == the whole window.
+    if gen_tok > 0 and 0 < gen_s <= elapsed + 0.05 and samples_mW:
+        gen_s = min(gen_s, elapsed)
         n_gen = max(1, int(gen_s / (args.sample_interval_ms / 1000.0)))
         tail = samples_mW[-n_gen:]
         if len(tail) >= 4:

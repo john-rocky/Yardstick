@@ -88,3 +88,28 @@ Operational notes (for the next rerun)
 - LiteRT first-ever load builds caches (~112 s); subsequent cold loads 1.4–3.6 s.
 - litert quality answers: 42/Tokyo/Cold/Seven/Merci/56/0.9/0.11/blue (all correct).
   mlx quality output had 8 of the 9 items (0.11 missing; stopped at 20 tokens).
+
+Mac (M4 Max) energy — 2026-07-19, decode-window J/token (second pass, warm loads)
+---------------------------------------------------------------------------------
+Contamination check: every arm's decode tok/s in pass 2 >= pass 1 (no GPU contention;
+a concurrent export session was suspected but did not bite). Pass-1 rows are polluted
+(llama window = its own gguf download; OptiQ window = cold 4.3 GB load) — superseded.
+
+arm         build             J/tok(decode)   W(decode)   decode tok/s
+mlx-swift   PTQ 4-bit             0.090         14.6         177.8     <- efficiency + speed king on Mac
+mlx-swift   QAT OptiQ int4        0.106         14.6         149.5     (+18% J/tok buys +7 GSM8K pts)
+litert-lm   wNa8o8 (WebGPU!)      0.154         22.2         155.0
+llama.cpp   Q4_K_M                0.170         20.5         127.1
+core-ai     own int4 (patched)   ~0.33*         18.9          53 eff   * S=1 stepping makes the whole
+                                                                          window decode-like; full-window
+                                                                          0.356 minus ~load; upper bound
+
+Reading:
+- On the Mac, MLX owns the energy Pareto (lowest J/tok at the highest speed).
+- The litert number does NOT answer the "does wNa8o8's int8 activation path also win
+  energy?" question: Mac LiteRT runs the WebGPU->Metal path, a different efficiency class
+  from the iPhone's native path where wNa8o8 wins speed/memory. The iPhone battery-delta
+  bench (part 2) is where that question gets its real answer.
+- Core AI pays its S=1 wall in energy too on Mac: ~2.2x MLX's J/tok at 0.3x the speed.
+powermetrics = whole-system; run on an idle desktop; rows live in
+results/raw/m4max-*-sustained-energy.jsonl (pass 2 = the 01:5x UTC records).

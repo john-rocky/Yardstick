@@ -33,7 +33,7 @@ On-device / on-Mac measurements. Each row is a `(runtime, model, device, task, b
 - **Runtimes** (6): apple-fm, core-ai, coreml-llm, litert-lm, llama.cpp, mlx-swift
 - **Models** (39): apple-fm/default, bartowski/Llama-3.2-1B-Instruct-GGUF/Q4_K_M, bartowski/Qwen2.5-0.5B-Instruct-GGUF/Q4_K_M, bartowski/Qwen_Qwen3.5-0.8B-GGUF/Q4_K_M, core-ai/gemma4-e2b-gpu, core-ai/qwen3-0.6b-ane, core-ai/qwen3-0.6b-gpu, core-ai/qwen3-1.7b-gpu, core-ai/qwen3-4b-gpu, coreml-llm/gemma4-e2b, coreml-llm/lfm2.5-350m, coreml-llm/qwen2.5-0.5b, coreml-llm/qwen3-0.6b, coreml-llm/qwen3.5-0.8b, coreml-llm/qwen3.5-2b, litert-community/Qwen3-0.6B, litert-community/Qwen3-4B, litert-community/Qwen3-8B, litert-community/gemma-4-E2B-it-litert-lm, litert-local/minicpm5-1b, litert-local/qwen3-1.7b, litert-local/qwen3-1.7b-int4, mlx-community/LFM2-350M-4bit, mlx-community/MiniCPM5-1B-4bit, mlx-community/Qwen2.5-0.5B-Instruct-4bit, mlx-community/Qwen3-0.6B-4bit, mlx-community/Qwen3-1.7B-4bit, mlx-community/Qwen3-4B-4bit, mlx-community/Qwen3-8B-4bit, mlx-community/Qwen3.5-0.8B-MLX-4bit, mlx-community/Qwen3.5-2B-MLX-4bit, mlx-community/Qwen3.5-9B-MLX-4bit, mlx-community/gemma-4-e2b-it-4bit, mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit, mlx-community/gemma-4-e4b-it-4bit, unsloth/Qwen3.5-2B-GGUF/Q4_K_M, unsloth/Qwen3.5-9B-GGUF/Q4_K_M, unsloth/gemma-4-E2B-it-GGUF/Q4_K_M, unsloth/gemma-4-E4B-it-GGUF/Q4_K_M
 - **Tasks** (7): energy, long-context, long-context-32k, long-context-8k, quality, short-chat, sustained-generation
-- **Total runs**: 192
+- **Total runs**: 191
 
 
 ## At-a-glance
@@ -362,7 +362,7 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|
 | coreml-llm | `coreml-llm/gemma4-e2b` | INT4 palettized | 4 | 2.8 | 524 | — | 32.8 | 1037 |
 | llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | 4 | 0.6 | 42 | 2914.5 | 120.5 | 3214 |
-| mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | 4 | 1.3 | 74 | 487.9 | 163.9 | 2825 |
+| mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | 3 | 1.3 | 69 | 525.4 | 166.0 | 2832 |
 
 ### Qwen 3 0.6B  (Mac M4 Max, sustained-generation)
 
@@ -625,7 +625,7 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 | Model | Params (B) | Quant | n | TTFT (ms, median) | Decode tok/s (median) | Peak Mem (MB, median) |
 |---|---:|---|---:|---:|---:|---:|
 | Qwen3-0.6B (4-bit) | 0.6 | Q4 | 1 | 745 | 474.4 | 816 |
-| Gemma 4 E2B (4-bit) | 2 | Q4 | 4 | 74 | 163.9 | 2825 |
+| Gemma 4 E2B (4-bit) | 2 | Q4 | 3 | 69 | 166.0 | 2832 |
 | Qwen3-4B (4-bit) | 4 | Q4 | 1 | 49 | 151.1 | 2738 |
 | Qwen3-8B (4-bit) | 8 | Q4 | 1 | 73 | 93.2 | 4977 |
 
@@ -720,7 +720,7 @@ Decode tok/s is an average. The percentiles below are the gap between consecutiv
 | Mac M4 Max | mlx-swift | Qwen3-0.6B (4-bit) | 1 | 745 | 2.1 | 2.4 | 2.4 |
 | Mac M4 Max | mlx-swift | Qwen3-4B (4-bit) | 1 | 49 | 6.6 | 6.9 | 7.0 |
 | Mac M4 Max | mlx-swift | Qwen3-8B (4-bit) | 1 | 73 | 10.7 | 11.1 | 11.2 |
-| Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 4 | 74 | 6.0 | 6.6 | 6.7 |
+| Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 3 | 69 | 6.0 | 6.5 | 6.7 |
 
 ## Energy profile (joules per token)
 
@@ -736,7 +736,6 @@ Populated for runs wrapped in `scripts/measure_energy.py` on Mac (`powermetrics`
 | Mac M4 Max | apple-fm | Apple Foundation Model (default, on-device) | 1 | powermetrics | 7.6 | 0.1092 | 32974 | — |
 | Mac M4 Max | coreml-llm | Gemma 4 E2B (CoreML, ANE) | 1 | powermetrics | 12.7 | 0.4784 | 7525 | — |
 | Mac M4 Max | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 1 | powermetrics | 24.5 | 0.2468 | 14589 | — |
-| Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 1 | powermetrics | 24.7 | 0.2402 | 14986 | — |
 
 ### Pivot 3 — full row dump (audit trail)
 
@@ -933,7 +932,6 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 0.6 | 49 | 507.8 | 151.1 | 2738 | `m4max-mlx-qwen3-4b-sustained-generation-run1.jsonl` |
 | mlx-swift | Qwen3-8B (4-bit) | Q4 | 1 | 0.6 | 73 | 331.0 | 93.2 | 4977 | `m4max-mlx-qwen3-8b-sustained-generation-run1.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 1 | 1.3 | 676 | 38.2 | 158.0 | 2835 | `m4max-mlx-gemma-4-e2b-sustained-run1.jsonl` |
-| mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 1 | 1.4 | 78 | 450.4 | 161.8 | 2817 | `m4max-mlx-swift-gemma-4-e2b-it-4bit-sustained-energy.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 2 | 1.2 | 69 | 525.4 | 166.0 | 2816 | `m4max-mlx-gemma-4-e2b-sustained-run2.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 3 | 1.4 | 67 | 546.0 | 166.3 | 2832 | `m4max-mlx-gemma-4-e2b-sustained-run3.jsonl` |
 
