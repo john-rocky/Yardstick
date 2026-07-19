@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.55,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "0BF85ECE-82A5-4666-B4D1-79F39BD0A2D4",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 33.67653413235482,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1145,
+    "generatedTokenCount" : 30,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 24.847030639648438,
+    "interTokenLatencyP95MS" : 28.7020206451416,
+    "interTokenLatencyP99MS" : 32.71496295928955,
+    "loadTimeSeconds" : 0.6202750205993652,
+    "memoryAfterGenerationMB" : 292.9261016845703,
+    "memoryAfterLoadMB" : 226.16038513183594,
+    "memoryBaselineMB" : 14.361083984375,
+    "memoryPeakDuringDecodeMB" : 300.4261016845703,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1081,
+    "promptTokensPerSecond" : 1054.057268434176,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 30,
+    "totalGenerationTimeSeconds" : 2.1282880306243896
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M (PTQ)"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot is perform real-time, private processing of sensitive data directly on the device.",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "long-context-1024",
+  "timestamp" : "2026-07-19T07:56:28Z"
+}

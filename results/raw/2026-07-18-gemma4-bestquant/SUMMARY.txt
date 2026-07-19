@@ -48,8 +48,9 @@ Reading of the table (each claim same-session / same-harness):
   The official-QAT row therefore reads "unloadable" — that is the measurement. Its usable
   fallback (Q4_K_M) is also the QUALITY floor of the table at 76.0%.
 - On-device quality-task answers (sanity only): litert 9/9 correct; both MLX quants ~8/9;
-  llama Q4_K_M quality-task output came back EMPTY on device (needs a look — its Mac-side
-  GSM8K ran fine, so likely a stop-token/template quirk in the app path).
+  llama Q4_K_M 6/8 post-fix (42/Tokyo/cold/7/0.9/blue; drops merci + 56 — a quant
+  behavior, not degeneracy). The EMPTY output this note originally flagged was the
+  adapter template bug, root-caused + fixed 2026-07-19 — see the dated section below.
 - core-ai row — the "EngineFactory wall" was a MISDIAGNOSIS (root-caused + fixed 2026-07-18,
   commit 21404c6). Three real causes, none of them the engine path:
     1. our own warmup(queryLength: 8) after createEngine — S=1-only graph => binary-layer
@@ -126,10 +127,15 @@ arm         build            J/tok    tokens in 600s   sustained tok/s (vs burst
 litert-lm   wNa8o8 (native)  0.122       24,336          40.3  (76% of 52.7)
 mlx-swift   PTQ 4-bit        0.151       19,640          29.6  (64% of 46.4)
 mlx-swift   QAT OptiQ        0.207       14,336          23.3  (67% of 34.8)   <- the +7-GSM8K-pt build costs +37% J/tok on device
-llama.cpp   Q4_K_M           BLOCKED — adapter empty-output bug (zero tokens on every task
-                             except short-chat; prefill runs, Mac llama-server fine; the
-                             zero-decode sustain loop never accumulates, hence the spin)
 core-ai     own int4         0.352*      8,448          19.0  (56% of 34.2)  *shallow-rep
+llama.cpp   Q4_K_M           0.483      12,288          20.2  (54% of 37.6)   <- 2026-07-19 post-fix capture
+                             10% battery in ONE 608 s window (5,940 J, 9.8 W avg — ~2x any
+                             other arm's draw; 6 x 2048-token calls, no early EOS). The
+                             energy floor of the table: 4.0x LiteRT, 3.2x MLX-PTQ J/tok, and
+                             the worst throttle retention (54%). Direction matches the Mac
+                             (llama 0.170 = 1.9x MLX there); the phone's thermal ceiling
+                             amplifies it — more W -> serious sooner -> fewer tok/s -> worse
+                             J/tok. Same fair-entry regime as the other captured arms.
 
 ANSWER: on its native iPhone path, wNa8o8/LiteRT wins energy too — 24% more tokens on the
 same 5% of battery (0.122 vs 0.151 J/tok) — REVERSING the Mac result (Mac: MLX 0.090 vs
@@ -156,6 +162,44 @@ Deep-context p=1024/g=256 fill (2026-07-19, nominal x3 medians, long-context-102
 ---------------------------------------------------------------------------------------
 mlx-swift PTQ:   prefill 2,307  decode 47.6  peak 3,387 MB   (decode flat vs 46.4 burst)
 mlx-swift OptiQ: prefill 2,592  decode 35.1  peak 4,999 MB   (flat vs 34.8)
-llama.cpp Q4_K_M: prefill 1,040; decode EMPTY-OUTPUT (adapter bug above); peak 300 MB
+llama.cpp Q4_K_M: prefill 1,053  decode 33.9  peak 300 MB    (2026-07-19 post-fix,
+  33.68/34.17/33.85 — 90% of its 37.6 burst; the earlier 1,040/EMPTY captures were the
+  adapter template bug, see the dated section below)
 The deep-context story is the 3-orders memory gradient: LiteRT 92 MB / MLX 3.4-5.0 GB /
-core-ai dead — decode-at-depth is flat on every surviving arm.
+core-ai dead — decode-at-depth is flat on every surviving arm, and llama.cpp's mmap'd
+300 MB is the smallest phys_footprint of any arm that survives depth (same non-comparable
+caveat as its short-chat cell).
+
+
+llama.cpp adapter empty-output bug — ROOT-CAUSED + FIXED (2026-07-19)
+---------------------------------------------------------------------
+Symptom: zero tokens on every task except short-chat (prefill ran; stopReason "stop").
+Root cause chain, proven on the Mac CLI (same adapter binary) then on device:
+  1. The adapter wraps prompts via llama_chat_apply_template, which pattern-matches the
+     template SOURCE — it does not run Jinja. unsloth's gemma-4 template is 18.8 KB of
+     macro indirection with NO literal turn-marker anywhere, so it comes back
+     unrecognized (-1) and the adapter silently fell back to the BARE prompt on every
+     task (recorded prompt_tokens prove it: short-chat 12 = bare+BOS exactly).
+  2. gemma-4 also RENAMED the turn markers: <|turn>role ... <turn|> (ids 105/106), and
+     <turn|> IS the EOS. Untemplated, the instruction-tuned model treats a
+     complete-looking prompt (quality's 9-question block, long-context's 1,073-token
+     document, energy's essay brief) as a finished turn and samples <turn|> as the FIRST
+     token -> 0 tokens, "stop". short-chat's bare one-liner invites continuation ->
+     it alone "worked" (as an untemplated completion at that).
+Fix (LlamaCppRuntime.swift): when the stored template is rejected, detect the family by
+vocab probe (turn marker tokenizes to a single special token only in its own family) and
+render gemma-4's markup directly (<|turn>user\n...<turn|>\n<|turn>model\n; single BOS via
+tokenize(addBOS:), matching the template's {{ bos_token }}). Also fixed in the same pass:
+KV cache now cleared per generate() call (energy's re-prompt loop and --runs N reused the
+context with stale cells at overlapping positions), and the sampler is built per call from
+task parameters (quality now actually runs greedy; the old load-time chain was a fixed
+temp 0.7 that ignored GenerationParameters).
+Validation: Mac quality/short-chat/long-context all decode (quality 42/Tokyo/cold/7/0.9/
+blue); device quality 134 prompt tokens templated + same answers; device long-context
+33.68/34.17/33.85; device multi-call preflight (energy --sustain-seconds 45 --max-tokens
+128) = 10 calls x 128 tokens, KV clear proven on the production path. Post-fix templated
+short-chat sanity n=3: 38.29/36.31/32.66 (median 36.31 vs published 37.6 from 07-18 —
+same session-noise band, so the published short-chat/ITL cells stand unchanged; the
+07-19 re-captures are on record). Preflight energy records (08-05-04Z, 08-06-11Z) are
+validation runs, not measurements — excluded from cells. The 600 s standard-protocol
+energy capture followed (08-21-57Z): 0.483 J/tok — the iPhone energy table above.

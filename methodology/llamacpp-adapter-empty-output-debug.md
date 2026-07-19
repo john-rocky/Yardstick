@@ -1,5 +1,16 @@
 # DEBUG SESSION BRIEF — llama.cpp adapter empty-output bug (written 2026-07-19)
 
+> **RESOLVED 2026-07-19 (same day).** Root cause: the adapter's applyChatTemplate fell
+> back to the BARE prompt on every task — llama_chat_apply_template pattern-matches
+> template *source* and unsloth's 18.8 KB gemma-4 Jinja contains no literal turn marker;
+> gemma-4 renamed the markers to `<|turn>role`…`<turn|>` (ids 105/106) and `<turn|>` IS
+> the EOS, so untemplated complete-looking prompts sampled EOS as the first token
+> (short-chat's one-liner invited continuation and escaped). Fixed in
+> LlamaCppRuntime.swift (vocab-probe family detection + hand-rolled gemma-4 markup,
+> per-call KV clear, per-call sampler honoring task temp). All acceptance criteria met;
+> full chain + validation in `results/raw/2026-07-18-gemma4-bestquant/SUMMARY.txt`
+> ("llama.cpp adapter empty-output bug — ROOT-CAUSED + FIXED"). Kept for methodology.
+
 Self-contained. Launch the session in `~/code/apple-silicon-llm-bench`. The bug blocks two
 cells of the published Gemma-4-E2B table (README + the Lu report), both annotated ⓕ —
 fixing it and filling those cells is the deliverable.

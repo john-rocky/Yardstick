@@ -1,7 +1,7 @@
 {
   "device": {
-    "batteryLevel": 0.75,
-    "batteryState": "charging",
+    "batteryLevel": 0.55,
+    "batteryState": "unplugged",
     "buildConfiguration": "Release",
     "initialThermalState": "nominal",
     "isLowPowerModeEnabled": false,
@@ -11,27 +11,30 @@
     "systemName": "iOS",
     "systemVersion": "27.0"
   },
-  "id": "7D663360-A10D-4766-921E-1CD0B0047542",
+  "id": "8C1A8950-5D29-4642-BD20-8479F0549FC1",
   "metrics": {
     "batteryDeltaPercent": 0,
     "coldRun": true,
     "decodeRateRollingWindow": [],
-    "decodeTokensPerSecond": 0,
+    "decodeTokensPerSecond": 25.813320491203765,
     "finalThermalState": "nominal",
-    "firstTokenLatencyMS": 0,
-    "generatedTokenCount": 0,
+    "firstTokenLatencyMS": 212,
+    "generatedTokenCount": 16,
     "initialThermalState": "nominal",
-    "loadTimeSeconds": 3.6398409605026245,
-    "memoryAfterGenerationMB": 257.2854995727539,
-    "memoryAfterLoadMB": 217.97290802001953,
-    "memoryBaselineMB": 14.689254760742188,
-    "memoryPeakDuringDecodeMB": 253.3167495727539,
+    "interTokenLatencyP50MS": 26.11708641052246,
+    "interTokenLatencyP95MS": 33.75899791717529,
+    "interTokenLatencyP99MS": 33.75899791717529,
+    "loadTimeSeconds": 3.2954589128494263,
+    "memoryAfterGenerationMB": 242.5199203491211,
+    "memoryAfterLoadMB": 221.84793090820312,
+    "memoryBaselineMB": 14.345481872558594,
+    "memoryPeakDuringDecodeMB": 258.1292953491211,
     "peakThermalState": "nominal",
-    "promptTokenCount": 126,
-    "promptTokensPerSecond": 299.0579241120059,
+    "promptTokenCount": 134,
+    "promptTokensPerSecond": 9103.873525981599,
     "stopReason": "stop",
-    "streamedChunkCount": 0,
-    "totalGenerationTimeSeconds": 0.7509900331497192
+    "streamedChunkCount": 16,
+    "totalGenerationTimeSeconds": 0.8485540151596069
   },
   "model": {
     "displayName": "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
@@ -45,7 +48,7 @@
     "primaryFile": "gemma-4-E2B-it-Q4_K_M.gguf",
     "quantization": "Q4_K_M (PTQ)"
   },
-  "outputSample": "",
+  "outputSample": "42\nTokyo\ncold\ncool\n7\n0.9\nblue",
   "parameters": {
     "maxTokens": 256,
     "temperature": 0,
@@ -53,5 +56,5 @@
   },
   "runtime": "llama.cpp",
   "task": "quality",
-  "timestamp": "2026-07-18T05:21:24Z"
+  "timestamp": "2026-07-19T07:56:08Z"
 }

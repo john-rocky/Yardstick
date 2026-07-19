@@ -35,7 +35,11 @@ SELECTION = {
     ),
     "llama-cpp-gemma-4-e2b": (
         ["2026-07-18T00-36-36Z", "2026-07-18T00-42-08Z", "2026-07-18T00-45-01Z"],
-        "2026-07-18T05-21-24Z",
+        # 2026-07-19: the 07-18T05-21-24Z quality capture was a bug artifact (adapter ran
+        # every prompt untemplated; gemma-4's <|turn> markers made the first sampled token
+        # the EOS on all tasks but short-chat -> empty output). Post-fix capture below;
+        # the empty record stays in this directory for the audit trail.
+        "2026-07-19T07-56-08Z",
         "llama.cpp_unsloth_gemma-4-E2B-it-GGUF_Q4_K_M",
     ),
     "core-ai-gemma-4-e2b": (
@@ -43,6 +47,27 @@ SELECTION = {
         "2026-07-18T13-57-19Z",
         "core-ai_core-ai_gemma4-e2b-gpu",
     ),
+}
+
+
+# Deep-context (long-context-1024, p=1024/g=256 protocol) and energy (600 s battery-delta)
+# captures, added 2026-07-19. litert's deep-context row comes from its own benchmark
+# counters and core-ai jetsams under the deep protocol, so neither has files here.
+# llama.cpp's 07-19T05-* long-context captures were the adapter-bug empty-output runs
+# (prefill-only); superseded by the post-fix 07-56/07-57/07-58 set — audit trail as above.
+LONG_CONTEXT = {
+    "mlx-swift-gemma-4-e2b": ["2026-07-19T05-27-21Z", "2026-07-19T05-29-25Z", "2026-07-19T05-31-30Z"],
+    "mlx-swift-gemma-4-e2b-optiq": ["2026-07-19T05-33-44Z", "2026-07-19T05-35-50Z", "2026-07-19T05-37-55Z"],
+    "llama-cpp-gemma-4-e2b": ["2026-07-19T07-56-28Z", "2026-07-19T07-57-17Z", "2026-07-19T07-58-05Z"],
+}
+ENERGY = {
+    "litert-lm-gemma-4-e2b": "2026-07-19T03-00-21Z",
+    "mlx-swift-gemma-4-e2b": "2026-07-19T03-18-56Z",
+    "mlx-swift-gemma-4-e2b-optiq": "2026-07-19T06-29-29Z",
+    "core-ai-gemma-4-e2b": "2026-07-19T04-09-29Z",   # shallow-rep variant (--max-tokens 192)
+    "llama-cpp-gemma-4-e2b": "2026-07-19T08-21-57Z", # post-fix 600 s standard protocol
+    # (the 08-05-04Z / 08-06-11Z energy files are the fix-validation preflights — 45 s
+    #  sustain, no battery delta; audit trail only, never imported)
 }
 
 
@@ -58,4 +83,10 @@ for slug, (shorts, quality_ts, prefix) in SELECTION.items():
              RAW / f"iphone17pro-{slug}-short-chat-run{i}.jsonl")
     copy(HERE / f"{prefix}_quality_{quality_ts}.json",
          RAW / f"iphone17pro-{slug}-quality-run1.jsonl")
+    for i, ts in enumerate(LONG_CONTEXT.get(slug, []), start=1):
+        copy(HERE / f"{prefix}_long-context-1024_{ts}.json",
+             RAW / f"iphone17pro-{slug}-long-context-1024-run{i}.jsonl")
+    if (ets := ENERGY.get(slug)) and "TS" not in ets:
+        copy(HERE / f"{prefix}_energy_{ets}.json",
+             RAW / f"iphone17pro-{slug}-energy-run1.jsonl")
 print("done")

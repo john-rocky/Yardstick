@@ -19,9 +19,9 @@ public actor LlamaCppRuntime: LLMRuntime {
 
     private var model: OpaquePointer?
     private var context: OpaquePointer?
-    private var sampler: UnsafeMutablePointer<llama_sampler>?
     private var vocab: OpaquePointer?
     private var batch: llama_batch?
+    private var batchCapacity: Int32 = 0
 
     private static let backendInit: Void = {
         llama_backend_init()
@@ -70,25 +70,18 @@ public actor LlamaCppRuntime: LLMRuntime {
         }
         self.context = c
 
-        let sparams = llama_sampler_chain_default_params()
-        let s = llama_sampler_chain_init(sparams)
-        llama_sampler_chain_add(s, llama_sampler_init_temp(0.7))
-        llama_sampler_chain_add(s, llama_sampler_init_top_p(0.9, 1))
-        llama_sampler_chain_add(s, llama_sampler_init_dist(1234))
-        self.sampler = s
-
         self.batch = llama_batch_init(2048, 0, 1)
+        self.batchCapacity = 2048
 
         self.loadedModelId = model.id
     }
 
     public func unloadModel() async {
-        if let s = sampler { llama_sampler_free(s) }
         if var b = batch { llama_batch_free(b); _ = withUnsafeMutablePointer(to: &b) { _ in } }
         if let c = context { llama_free(c) }
         if let m = model { llama_model_free(m) }
-        sampler = nil
         batch = nil
+        batchCapacity = 0
         context = nil
         model = nil
         vocab = nil
@@ -118,19 +111,47 @@ public actor LlamaCppRuntime: LLMRuntime {
         parameters: GenerationParameters,
         continuation: AsyncThrowingStream<GenerationEvent, Error>.Continuation
     ) async throws {
-        guard let context, let vocab, let sampler, let model else {
+        guard let context, let vocab, let model else {
             throw LLMRuntimeError.modelNotLoaded
+        }
+
+        // Every generate() call is an independent benchmark prompt: drop whatever the
+        // previous call left in the KV cache (the energy task re-prompts in a loop, and
+        // --runs N reuses the loaded model). Stale cells at overlapping positions
+        // corrupt the logits of every call after the first.
+        llama_memory_clear(llama_get_memory(context), true)
+
+        // Per-call sampler honoring the task's parameters — quality is defined as
+        // greedy (temp 0) and the other adapters sample at their task temperature.
+        let sparams = llama_sampler_chain_default_params()
+        guard let sampler = llama_sampler_chain_init(sparams) else {
+            throw LLMRuntimeError.generationFailed("llama_sampler_chain_init returned NULL")
+        }
+        defer { llama_sampler_free(sampler) }
+        if parameters.temperature <= 0 {
+            llama_sampler_chain_add(sampler, llama_sampler_init_greedy())
+        } else {
+            llama_sampler_chain_add(sampler, llama_sampler_init_temp(Float(parameters.temperature)))
+            llama_sampler_chain_add(sampler, llama_sampler_init_top_p(Float(parameters.topP), 1))
+            llama_sampler_chain_add(sampler, llama_sampler_init_dist(1234))
         }
 
         // Apply the model's chat template so llama.cpp matches the other adapters (rule 1);
         // parseSpecial so the template's <start_of_turn> / <|im_start|> tokenize as special
-        // tokens, not literal text. VERIFY ON DEVICE: if the template also prepends <bos>,
-        // drop addBOS here to avoid a double-BOS. llama.cpp rows need re-measure after this.
+        // tokens, not literal text. Single-BOS verified against the vendored framework:
+        // the built-in template renderers emit no <bos>, so addBOS supplies exactly one.
         let templated = applyChatTemplate(prompt)
         let promptTokens = tokenize(text: templated ?? prompt, addBOS: true,
                                     parseSpecial: templated != nil)
 
-        var b = batch ?? llama_batch_init(Int32(max(promptTokens.count, 2048)), 0, 1)
+        // Grow the reusable batch if the prompt outsizes it — llama_batch_add past
+        // capacity is silent heap corruption, not an error.
+        if batch == nil || Int32(promptTokens.count) > batchCapacity {
+            if var old = batch { llama_batch_free(old); _ = withUnsafeMutablePointer(to: &old) { _ in } }
+            batchCapacity = Int32(max(promptTokens.count, 2048))
+            batch = llama_batch_init(batchCapacity, 0, 1)
+        }
+        var b = batch!
         // Reset batch.
         b.n_tokens = 0
 
@@ -203,15 +224,46 @@ public actor LlamaCppRuntime: LLMRuntime {
         return (0 ..< Int(count)).map { buf[$0] }
     }
 
-    /// Wrap the bare prompt in the model's own chat template (read from the GGUF metadata)
-    /// so llama.cpp sees the same input as every other adapter — MLX / CoreML / Core AI /
-    /// ANEMLL / LiteRT all apply their template via the tokenizer; llama.cpp must do it
-    /// explicitly (fairness rule 1). Returns nil if the model has no template or it isn't in
-    /// `llama_chat_apply_template`'s built-in set (Gemma / Qwen / Llama are), so the caller
-    /// falls back to the bare prompt rather than failing.
+    /// Wrap the bare prompt in the model's chat template so llama.cpp sees the same input
+    /// as every other adapter — MLX / CoreML / Core AI / ANEMLL / LiteRT all apply their
+    /// template via the tokenizer; llama.cpp must do it explicitly (fairness rule 1).
+    ///
+    /// `llama_chat_apply_template` doesn't run Jinja — it pattern-matches the template
+    /// SOURCE against known families. Templates that build their markup through Jinja
+    /// indirection (unsloth's gemma-4 template is 18 KB with no literal `<start_of_turn>`
+    /// anywhere) come back unrecognized (-1) even though the family is fully supported, and
+    /// an instruction-tuned model fed the resulting bare prompt can emit `<end_of_turn>` as
+    /// its FIRST token (the zero-token empty-output bug). So when the stored template is
+    /// rejected, detect the family from the vocab — the turn marker tokenizes to a single
+    /// special token only in its own family — and render with the built-in template of that
+    /// name. Returns nil (bare prompt) only when neither path applies.
     private func applyChatTemplate(_ userPrompt: String) -> String? {
-        guard let model, let tmpl = llama_model_chat_template(model, nil) else { return nil }
-        return "user".withCString { rolePtr in
+        guard let model else { return nil }
+        if let tmpl = llama_model_chat_template(model, nil),
+           let rendered = renderChatTemplate(String(cString: tmpl), userPrompt: userPrompt) {
+            return rendered
+        }
+        // Gemma-4 renamed the turn markers (<|turn>role … <turn|>, ids 105/106; <turn|>
+        // IS the EOS) and its Jinja builds them via indirection, so the source-matching
+        // engine can't recognize it and the "gemma" builtin would render markup this
+        // vocab doesn't own. Hand-roll the plain user→model turn exactly as the
+        // template does ({{ bos_token }} first — supplied by tokenize(addBOS:), not here;
+        // enable_thinking defaults false so no system turn).
+        if isSingleSpecialToken("<|turn>") {
+            return "<|turn>user\n" + userPrompt + "<turn|>\n<|turn>model\n"
+        }
+        let family: String? = isSingleSpecialToken("<start_of_turn>") ? "gemma"
+            : isSingleSpecialToken("<|start_header_id|>") ? "llama3"
+            : isSingleSpecialToken("<|im_start|>") ? "chatml"
+            : nil
+        guard let family else { return nil }
+        return renderChatTemplate(family, userPrompt: userPrompt)
+    }
+
+    /// Render one user turn (+ assistant prefix) through `llama_chat_apply_template`.
+    /// `tmpl` is either raw template source or a built-in template name ("gemma", …).
+    private func renderChatTemplate(_ tmpl: String, userPrompt: String) -> String? {
+        "user".withCString { rolePtr in
             userPrompt.withCString { contentPtr -> String? in
                 var msg = llama_chat_message(role: rolePtr, content: contentPtr)
                 var buf = [CChar](repeating: 0, count: max(userPrompt.utf8.count * 2 + 256, 512))
@@ -225,6 +277,11 @@ public actor LlamaCppRuntime: LLMRuntime {
                 return String(cString: Array(buf[0..<take]) + [0])
             }
         }
+    }
+
+    /// True when `text` tokenizes to exactly one (special) token — i.e. the vocab owns it.
+    private func isSingleSpecialToken(_ text: String) -> Bool {
+        tokenize(text: text, addBOS: false, parseSpecial: true).count == 1
     }
 
     private func tokenToPiece(token: llama_token) -> String {

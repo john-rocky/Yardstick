@@ -1,6 +1,6 @@
 {
   "device": {
-    "batteryLevel": 0.7,
+    "batteryLevel": 0.55,
     "batteryState": "unplugged",
     "buildConfiguration": "Release",
     "initialThermalState": "nominal",
@@ -11,27 +11,30 @@
     "systemName": "iOS",
     "systemVersion": "27.0"
   },
-  "id": "C9D4263A-393B-4217-B62E-9C1D1595D0B8",
+  "id": "0BF85ECE-82A5-4666-B4D1-79F39BD0A2D4",
   "metrics": {
     "batteryDeltaPercent": 0,
     "coldRun": true,
     "decodeRateRollingWindow": [],
-    "decodeTokensPerSecond": 0,
+    "decodeTokensPerSecond": 33.67653413235482,
     "finalThermalState": "nominal",
-    "firstTokenLatencyMS": 0,
-    "generatedTokenCount": 0,
+    "firstTokenLatencyMS": 1145,
+    "generatedTokenCount": 30,
     "initialThermalState": "nominal",
-    "loadTimeSeconds": 3.1547460556030273,
-    "memoryAfterGenerationMB": 283.3323745727539,
-    "memoryAfterLoadMB": 217.51978302001953,
-    "memoryBaselineMB": 14.236083984375,
-    "memoryPeakDuringDecodeMB": 291.2229995727539,
+    "interTokenLatencyP50MS": 24.847030639648438,
+    "interTokenLatencyP95MS": 28.7020206451416,
+    "interTokenLatencyP99MS": 32.71496295928955,
+    "loadTimeSeconds": 0.6202750205993652,
+    "memoryAfterGenerationMB": 292.9261016845703,
+    "memoryAfterLoadMB": 226.16038513183594,
+    "memoryBaselineMB": 14.361083984375,
+    "memoryPeakDuringDecodeMB": 300.4261016845703,
     "peakThermalState": "nominal",
-    "promptTokenCount": 1073,
-    "promptTokensPerSecond": 904.4929313506051,
+    "promptTokenCount": 1081,
+    "promptTokensPerSecond": 1054.057268434176,
     "stopReason": "stop",
-    "streamedChunkCount": 0,
-    "totalGenerationTimeSeconds": 1.5069639682769775
+    "streamedChunkCount": 30,
+    "totalGenerationTimeSeconds": 2.1282880306243896
   },
   "model": {
     "displayName": "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
@@ -45,7 +48,7 @@
     "primaryFile": "gemma-4-E2B-it-Q4_K_M.gguf",
     "quantization": "Q4_K_M (PTQ)"
   },
-  "outputSample": "",
+  "outputSample": "What on-device AI lets a phone do that a cloud model cannot is perform real-time, private processing of sensitive data directly on the device.",
   "parameters": {
     "maxTokens": 256,
     "temperature": 0,
@@ -53,5 +56,5 @@
   },
   "runtime": "llama.cpp",
   "task": "long-context-1024",
-  "timestamp": "2026-07-19T05:39:59Z"
+  "timestamp": "2026-07-19T07:56:28Z"
 }

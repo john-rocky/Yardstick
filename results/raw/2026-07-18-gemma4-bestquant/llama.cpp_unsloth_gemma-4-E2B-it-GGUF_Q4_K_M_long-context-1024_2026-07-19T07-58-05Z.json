@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.55,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "6A74225C-624B-4BBF-BC9D-69B16BA9F8B6",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 33.85351198003804,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1141,
+    "generatedTokenCount" : 30,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 25.41804313659668,
+    "interTokenLatencyP95MS" : 27.947068214416504,
+    "interTokenLatencyP99MS" : 31.90302848815918,
+    "loadTimeSeconds" : 0.6176079511642456,
+    "memoryAfterGenerationMB" : 292.7542266845703,
+    "memoryAfterLoadMB" : 225.94163513183594,
+    "memoryBaselineMB" : 14.220481872558594,
+    "memoryPeakDuringDecodeMB" : 300.2698516845703,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1081,
+    "promptTokensPerSecond" : 1052.6479509601609,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 30,
+    "totalGenerationTimeSeconds" : 2.1255379915237427
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M (PTQ)"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot is perform real-time, private processing of sensitive data directly on the device.",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "long-context-1024",
+  "timestamp" : "2026-07-19T07:58:05Z"
+}

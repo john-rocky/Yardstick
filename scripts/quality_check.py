@@ -69,7 +69,11 @@ def empty_collapse(text, gen_tokens, streamed_chunks):
 def main():
     rows = []
     for f in sorted(RAW.glob("*-quality-run*.jsonl")):
-        d = json.loads(open(f).read().split("\n")[0])
+        raw = open(f).read()
+        try:
+            d = json.loads(raw.split("\n")[0])  # JSONL: first record
+        except json.JSONDecodeError:
+            d = json.loads(raw)                 # pretty-printed single record (import_to_flat.py)
         dev = f.name.split("-quality-")[0]
         out = d.get("outputSample", "")
         m = d.get("metrics", {})
