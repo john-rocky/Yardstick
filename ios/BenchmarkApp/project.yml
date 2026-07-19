@@ -138,6 +138,14 @@ targets:
         embed: true
         codeSign: true
         optional: true
+      # Cactus engine (cactus-compute/cactus) — static-lib xcframework built from
+      # source by scripts/bootstrap.sh (`bash apple/build.sh` in the clone). The
+      # framework bundles cactus_engine.h + modulemap, so `import cactus` works;
+      # CactusRuntime is canImport-guarded and stubs out when this is absent.
+      - framework: Vendored/cactus-ios.xcframework
+        embed: true
+        codeSign: true
+        optional: true
 
   yardstick:
     type: tool

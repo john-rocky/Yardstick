@@ -9,6 +9,7 @@ public enum RuntimeKind: String, CaseIterable, Codable, Sendable, Identifiable {
     case anemll = "anemll"
     case appleFM = "apple-fm"
     case coreAI = "core-ai"
+    case cactus = "cactus"
 
     public var id: String { rawValue }
 
@@ -22,6 +23,7 @@ public enum RuntimeKind: String, CaseIterable, Codable, Sendable, Identifiable {
         case .anemll: return "ANEMLL (ANE)"
         case .appleFM: return "Apple Foundation Models"
         case .coreAI: return "Apple Core AI"
+        case .cactus: return "Cactus"
         }
     }
 }

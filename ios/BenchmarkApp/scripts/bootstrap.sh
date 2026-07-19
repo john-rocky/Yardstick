@@ -115,7 +115,40 @@ else
     echo "${COREAI_DIR} already present."
 fi
 
-# 6. Optional: regenerate the Xcode project (only needed if you edit project.yml).
+# 6. Cactus engine (cactus-compute/cactus) — build cactus-ios.xcframework from source.
+#    The framework bundles cactus_engine.h + a module map, so `import cactus` works
+#    directly; CactusRuntime.swift is canImport-guarded and stubs out if this step
+#    is skipped (e.g. no cmake). Requires cmake >= 3.10 + Xcode iOS SDK.
+CACTUS_DIR="${VENDORED_DIR}/cactus"
+CACTUS_FRAMEWORK="${VENDORED_DIR}/cactus-ios.xcframework"
+if [ ! -d "${CACTUS_FRAMEWORK}" ]; then
+    if command -v cmake >/dev/null 2>&1; then
+        if [ ! -d "${CACTUS_DIR}" ]; then
+            echo "Cloning cactus …"
+            git clone --depth 1 https://github.com/cactus-compute/cactus.git "${CACTUS_DIR}"
+        fi
+        echo "Building cactus-ios.xcframework (this compiles the engine twice: device + simulator) …"
+        if (cd "${CACTUS_DIR}" && bash apple/build.sh); then
+            cp -R "${CACTUS_DIR}/apple/cactus-ios.xcframework" "${CACTUS_FRAMEWORK}"
+            # Upstream bundles only cactus_engine.h, whose first include is the C++
+            # cactus_graph.h — absent from the framework, so `import cactus` cannot
+            # compile as shipped. The FFI declarations never use graph types; drop
+            # the include from the bundled header (our copy only).
+            for h in "${CACTUS_FRAMEWORK}"/*/cactus.framework/Headers/cactus_engine.h; do
+                sed -i '' '/#include "cactus_graph.h"/d' "$h"
+            done
+            echo "  -> ${CACTUS_FRAMEWORK}"
+        else
+            echo "WARNING: cactus apple build failed; the Cactus arm will report unavailable."
+        fi
+    else
+        echo "WARNING: cmake not found; skipping the Cactus arm (CactusRuntime stubs out)."
+    fi
+else
+    echo "${CACTUS_FRAMEWORK} already present."
+fi
+
+# 7. Optional: regenerate the Xcode project (only needed if you edit project.yml).
 if command -v xcodegen >/dev/null 2>&1; then
     if [ "${REGEN_XCODEPROJ:-0}" = "1" ] || [ ! -d "BenchmarkApp.xcodeproj" ]; then
         echo "Generating BenchmarkApp.xcodeproj …"

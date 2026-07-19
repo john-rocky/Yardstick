@@ -39,6 +39,7 @@
 		52F23D827122805FEDBBDA29 /* DeviceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6978D6BB9139052EA83F5605 /* DeviceSnapshot.swift */; };
 		531015CDC40AD8F9995AE7F7 /* AnemllRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF89FC5DAB913F5DC74C99 /* AnemllRuntime.swift */; };
 		54A24EF1C659F98597A290C6 /* QualityTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CCE863246D4DF67FA309E1 /* QualityTask.swift */; };
+		555DC5405A8A5E1DACBFA8A1 /* cactus-ios.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06727DEFF0FFE8E16E2F37A3 /* cactus-ios.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		584FCFB61598A0F55B3649E2 /* ExecuTorchRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FDA1BD8CFFB6E92798B22 /* ExecuTorchRuntime.swift */; };
 		59BA60639CE894516CE31D7A /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = 41522D438C797371055C13FC /* Transformers */; };
 		59ED87AF2C745D8E012A1539 /* CameraVLMRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194A6AE44E94937B50DA5B63 /* CameraVLMRunner.swift */; };
@@ -50,6 +51,7 @@
 		67AE241DA38F53CE78E20C86 /* MemoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51351D8E4737B395636E0DB4 /* MemoryMonitor.swift */; };
 		735A14E6E09D3E68F1C50E4F /* ResultStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7B6B97C8F1331B7F122CF4 /* ResultStore.swift */; };
 		7441EE04A6771C964FFBBE63 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 01FA12B5AFE994F6E0A44BB4 /* MLXLMCommon */; };
+		7A82672B1A50492CE016C7F7 /* cactus-ios.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06727DEFF0FFE8E16E2F37A3 /* cactus-ios.xcframework */; };
 		7D5DFD2C5ADA523317036D0C /* EnergyMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8646DFD32712FBAAEB72156D /* EnergyMonitor.swift */; };
 		7EDA3E9184B29B3565D7AA0A /* MemoryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51351D8E4737B395636E0DB4 /* MemoryMonitor.swift */; };
 		7FF0259C8DB96A0B621D7141 /* LongContextTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCADC364D9871831E17D1318 /* LongContextTask.swift */; };
@@ -86,6 +88,7 @@
 		E3720048DBF575F5136F3EA8 /* MLXBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB25DA3940385A8468CDF86C /* MLXBridges.swift */; };
 		E89444AEBDBF1290A74FE5D7 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 5EDC2498FDF127EF2101F26B /* MLXLMCommon */; };
 		EC039C8FC4A2DF68CE274F17 /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39105E2687FD536226E700E /* llama.xcframework */; };
+		ECE0002D82147918AAACF0BB /* CactusRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E844209F2F8C874E8500C7 /* CactusRuntime.swift */; };
 		ECED951E4D6726C5E7EB6241 /* ANEResidency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944939C99194A89ED89B0BE /* ANEResidency.swift */; };
 		F2D07CAE8B4C83B85D291512 /* CameraVLMTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59486A9C2FDFB6D3AB40E9 /* CameraVLMTask.swift */; };
 		F4803995ED52DD8969723131 /* CoreMLRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571463D6F5C7502E074043E5 /* CoreMLRuntime.swift */; };
@@ -105,6 +108,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				627A387DE07972B42C553A87 /* llama.xcframework in Embed Frameworks */,
+				555DC5405A8A5E1DACBFA8A1 /* cactus-ios.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -112,6 +116,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06727DEFF0FFE8E16E2F37A3 /* cactus-ios.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "cactus-ios.xcframework"; path = "Vendored/cactus-ios.xcframework"; sourceTree = "<group>"; };
 		07DBDFD928C557A5352D613E /* ThermalMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalMonitor.swift; sourceTree = "<group>"; };
 		0C069A3D837A8C235381A361 /* BenchmarkRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkRunner.swift; sourceTree = "<group>"; };
 		1124C321F63E5E0AEEF8902E /* AppLifecycleTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleTask.swift; sourceTree = "<group>"; };
@@ -137,6 +142,7 @@
 		5944939C99194A89ED89B0BE /* ANEResidency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANEResidency.swift; sourceTree = "<group>"; };
 		59D10CD171A7FE9EF1BB369F /* BenchmarkTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenchmarkTask.swift; sourceTree = "<group>"; };
 		5E26E6FC4D7741AF3A2EC137 /* anemll-swift-cli */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "anemll-swift-cli"; path = "Vendored/Anemll/anemll-swift-cli"; sourceTree = SOURCE_ROOT; };
+		60E844209F2F8C874E8500C7 /* CactusRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CactusRuntime.swift; sourceTree = "<group>"; };
 		6978D6BB9139052EA83F5605 /* DeviceSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSnapshot.swift; sourceTree = "<group>"; };
 		8646DFD32712FBAAEB72156D /* EnergyMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyMonitor.swift; sourceTree = "<group>"; };
 		8A1FDA1BD8CFFB6E92798B22 /* ExecuTorchRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecuTorchRuntime.swift; sourceTree = "<group>"; };
@@ -192,6 +198,7 @@
 				BCA6E27341892C066E7C17AB /* AnemllCore in Frameworks */,
 				CCB3F0B9B7883B6C0119253C /* LiteRTLM in Frameworks */,
 				4093906B51F58C8ECBC1A23B /* llama.xcframework in Frameworks */,
+				7A82672B1A50492CE016C7F7 /* cactus-ios.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +234,7 @@
 		48DCBE35C783F3731505CB3A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06727DEFF0FFE8E16E2F37A3 /* cactus-ios.xcframework */,
 				B39105E2687FD536226E700E /* llama.xcframework */,
 			);
 			name = Frameworks;
@@ -310,6 +318,7 @@
 			children = (
 				46BF89FC5DAB913F5DC74C99 /* AnemllRuntime.swift */,
 				2F9A6C56B5E90A8DF016F8DB /* AppleFMRuntime.swift */,
+				60E844209F2F8C874E8500C7 /* CactusRuntime.swift */,
 				A8BAA10AA9E8F7A0B65E0E9F /* CoreAIRuntime.swift */,
 				571463D6F5C7502E074043E5 /* CoreMLRuntime.swift */,
 				AD978FB1DEA49377A28D581F /* CoreMLVLMRuntime.swift */,
@@ -531,6 +540,7 @@
 				233E07CCDFD38F03A7808A08 /* BenchmarkResult.swift in Sources */,
 				365ACCF96B78A7F412A50860 /* BenchmarkRunner.swift in Sources */,
 				0F82181CAC39B256ECB79580 /* BenchmarkTask.swift in Sources */,
+				ECE0002D82147918AAACF0BB /* CactusRuntime.swift in Sources */,
 				B9ABA81B66E23D58C7F7EB6D /* CameraFrameProvider.swift in Sources */,
 				59ED87AF2C745D8E012A1539 /* CameraVLMRunner.swift in Sources */,
 				F2D07CAE8B4C83B85D291512 /* CameraVLMTask.swift in Sources */,

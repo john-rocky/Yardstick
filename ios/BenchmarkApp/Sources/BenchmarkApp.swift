@@ -131,6 +131,10 @@ final class AppSession: ObservableObject {
             // coreai-models Swift package is linked (iOS 27 build) it runs; when
             // it isn't, it returns an unavailable stub.
             return CoreAIRuntime()
+        case .cactus:
+            // CactusRuntime self-reports availability via canImport(cactus):
+            // vendored xcframework present -> runs; absent -> unavailable stub.
+            return CactusRuntime()
         }
     }
 }
