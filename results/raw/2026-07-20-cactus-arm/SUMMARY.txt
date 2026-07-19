@@ -1,0 +1,139 @@
+Cactus arm — the 7th row of the Gemma-4-E2B best-available table (2026-07-20)
+=============================================================================
+Why: Lu's engine list for the continuous-benchmarking tool is LiteRT-LM / llama.cpp /
+Core AI / MLX / Cactus; Cactus was the only listed engine with no arm in this app.
+Integration is Path A (in-app runtime adapter): CactusRuntime.swift over cactus's C FFI
+(cactus_init/cactus_complete + token callback), vendored as cactus-ios.xcframework built
+from source (cactus-compute/cactus @ 1ace6d78, 2026-07-17). Same headless harness, same
+protocols, same JSONL as every other arm. Cloud handoff + telemetry forced OFF per call.
+
+BUILD SELECTION (the question answered FIRST — it reshaped the row)
+-------------------------------------------------------------------
+Cactus-Compute/gemma-4-E2B-it (HF, revision e1306ead = tag v2.0.1 = main 2026-07-17)
+ships SIX CQ bundles + non-CQ extras. What each is, and what their tooling can deploy:
+
+  gemma-4-e2b-it-cq4.zip              sha256 7a2579ad1089f626…  THE SHIPPED DEFAULT:
+      `cactus run/download google/gemma-4-E2B-it` resolves bits=4 -> this file
+      (code-verified: DEFAULT_MODEL_ID + `-cq<bits>$` archive regex). Since
+      2026-07-09 its content is "locally-built calibrated CQ4 (GPTQ language,
+      FP16 towers)" (their commit title); 2026-07-17 re-added the cloud-handoff
+      probe ("probe-only change vs original graphs").
+  gemma-4-e2b-it-cq4-uncalibrated.zip sha256 7c71f075554bd27b…  the pre-07-09 CQ4
+      (renamed when the calibrated build replaced it). NOT CLI-fetchable (name
+      fails the `-cq<bits>$` rule) but same bundle format; loads via plain
+      cactus_init after manual download+unzip.
+  gemma-4-e2b-it-cq2/cq3.zip          uniform 2-/3-bit CQ (added 07-11).
+  gemma-4-e2b-it-cq2.54/cq3.26.zip    mixed-precision prebuilts (added 07-11) —
+      the docs' sensitivity-allocated builds; CLI-fetchable via --bits 2.54/3.26.
+  weights/…int4/int8(.zip|-apple)     conversion source weights, not CLI-resolvable.
+  gemma4-e2b-grouped-k96/k192[-router] separate HF repos: 10 GB research .pt
+      checkpoints (grouped-experts pruning experiments), not runnable bundles.
+
+GSM8K n=100 (canonical one-harness: greedy, thinking-off, max_tokens 1024, same
+extractor as every other row; run_cactus arm added to hf-to-litertlm/scripts/
+parity_gsm8k.py driving their cactus_complete FFI, Metal backend, cloud handoff off):
+
+  cq4 (shipped default, "calibrated")   3.0%   (3/100; 100/100 never emitted "####";
+                                                mean ~4.4k chars = budget exhaustion —
+                                                REPRODUCES the 2026-07-10 3.0% finding
+                                                on the same graphs, now via the table's
+                                                own harness)
+  cq4-uncalibrated                      87.0%  (87/100 — the QAT-class band: sits between
+                                                Core AI 88.0 and LiteRT 85.0; n=25 probe
+                                                was 84%. Still mostly ignores the "####"
+                                                marker — extract()'s standard fallbacks
+                                                score it, same as every arm)
+  cq2.54 probe (n=25)                   16.0%  (4/25 — the docs' "deployment sweet spot")
+  cq3.26 probe (n=25)                    4.0%  (1/25)
+  (cq2.54/cq3.26 were added 07-11 — the calibrated lineage. The whole post-07-09
+   family is reasoning-dead; only the pre-07-09 uncalibrated CQ4 retains it.
+   cq1/cq2/cq3 not probed: same lineage, lower bits.)
+
+THE BUILD-SELECTION FINDING: the bundle Cactus ships as its default download is
+quality-dead on multi-step reasoning (3%), while the bundle they RENAMED AWAY on
+07-09 retains it (87.0% — the QAT-class band). Their published CQ4 claims
+(docs/cactus_quants.md: GSM8K 71.20 4-bit, 74.00 production bundle) are consistent
+with the UNCALIBRATED lineage, not with what `cactus run` fetches today.
+=> Row build = cq4-uncalibrated ("best usable, stated per row" — same rule that put
+MLX on OptiQ). The shipped-default 3% stays as the footnote finding.
+
+Integration difficulty (fairness rule 5 — recorded, not folded into scores):
+  * Their swift surface is a modulemap over cactus_engine.h; the xcframework
+    `apple/build.sh` produces bundles ONLY that header, whose first include is the
+    C++ cactus_graph.h -> `import cactus` cannot compile as shipped. The FFI decls
+    never reference graph types; vendoring strips the include (bootstrap.sh).
+  * Bundle graphs embed the converter machine's ABSOLUTE weight paths
+    (/Users/jakmro/dev/cali/…); the engine falls back to bundle_dir/basename only
+    when that file exists -> any incompletely-copied bundle fails at cactus_init
+    with the converter's path in the error.
+  * devicectl `copy to` of the 3.8 GB / 2030-file bundle SILENTLY dropped 219 files
+    (exit 0) — the missing-file sweep in this session's notes is mandatory device
+    prep. (That is our tooling's trap, not Cactus's, but it presents as the above.)
+    A name-level sweep is NOT enough: a second pass found 19+14 size-TRUNCATED
+    files (incl. embed_tokens_per_layer / ffn_down) — verify sizes via
+    pymobiledevice3 house_arrest and rm-then-rewrite.
+  * cactus's messages parser is KEY-ORDER-SENSITIVE: parse_messages_json only
+    searches for "content" after "role". JSONSerialization randomizes dict order
+    per process -> ~half of app launches sent content-first JSON and the engine
+    silently generated from an EMPTY user turn (prompt_tokens=9 = bare gemma-4
+    template, "Please provide the text…" answers). First capture pass invalidated
+    (3/4 short-chat + 1/2 deep-context); adapter now hand-serializes role-first
+    (commit 2b4a342). Python/json.dumps clients never hit it (insertion order) —
+    which is why every Mac GSM8K number stands. Any order-randomizing serializer
+    (Swift, some Kotlin configs) hits it silently.
+
+Thinking mode (same harness, thinking ON, max_tokens 2048 — the thinking-table protocol):
+  cactus uncal 87.0% (87/100) — identical to thinking-off 87.0%; the toggle WORKS
+  (their gemma-4 template injects a system-turn <|think|>; trace returned in a separate
+  "thinking" field, median ~386 est-tokens) but buys nothing, the MLX-OptiQ pattern
+  (91->90) rather than Core AI's +4 (88->92). Unlike LiteRT, cactus is thinking-MEASURABLE.
+  Report: gsm8k_cactus-gemma4-e2b-cq4-uncal-thinking.json.
+
+Device cells (iPhone 17 Pro, iOS 27.0, Release, bundle-id override; post-fix binary,
+every imported capture initialThermalState=nominal — audit_pull.py over the final pull)
+--------------------------------------------------------------------------------------
+cactus row (cq4-uncalibrated), 3 nominal colds, medians:
+  short-chat: decode 50.6 (50.6/50.4/50.6)  ITL p50 19.6 ms  TTFT ~170 ms  peak ~1,061 MB
+              (18-09-24Z/18-11-55Z/18-14-26Z; the 18-08-58Z first-ever of the fixed
+               binary — decode 36.9, load 2.4 s Metal compile — reported separately)
+  deep-context p=1024/g=256: decode-at-depth 40.3 (40.3/40.3/40.4 — 80% of burst),
+              prefill 683 tok/s, TTFT 1.58 s, peak ~1,068 MB
+              (LiteRT ~3,200-3,900 prefill remains ~5x; llama.cpp 1,053; cactus 683)
+  quality sanity: 8/8 of emitted items correct (42/Tokyo/Cold/Seven/Merci/56/0.9/Blue)
+  energy (600 s standard deep protocol, unplugged, battery-1pct):
+              0.322 J/tok — 18,446 tokens on 10% battery (5,940 J), avg 9.2 W
+              (second-highest draw after llama's 9.8), sustained 28.7 tok/s = 57% of
+              burst. Regime disclosure: entered nominal, peaked fair — the 07-19 arms
+              entered fair, peaked serious; slightly favorable to cactus, disclosed.
+              Table position: LiteRT 0.122 / MLX-PTQ 0.151 / OptiQ 0.207 /
+              CACTUS 0.322 / Core AI 0.352(shallow) / llama 0.483.
+calibrated (shipped default) footnote row, 3 nominal colds after its own first-ever
+(18-28-36Z decode 36.4 load 2.5 s):
+  short-chat: decode 50.2 (49.9/50.4/50.2)  ITL p50 19.8 ms  peak ~1,061 MB
+              -> SPEED-IDENTICAL to uncalibrated; the lineage difference is pure quality.
+  quality sanity: 5/7 — misses one-step items (merci->"Bonjour", 7x8->"119"): the
+              GSM8K 3% collapse is visible even on single-step questions on-device.
+First capture pass (pre-fix) invalidated by the key-order bug: 18-00/18-03 LC and
+several short-chat records show ptok=9 + "Please provide the text…" — kept in this
+dir as audit trail, never imported.
+
+Same-session LiteRT control re-anchor (3 nominal colds, cross-session bridge for the
+published 07-18 table — NOT imported to flat, pooling ban):
+  decode 60.9 / 60.5 / 61.05 -> median 60.9  (ITL p50 16.5-16.6 ms, peak ~491 MB)
+  vs the published 52.7 (07-18): TODAY'S SESSION RUNS LITERT 1.16x FASTER — the known
+  iphone-session-variance drift, now measured in-session. Consequences, applied:
+  * The cactus 50.6 vs litert 52.7 table adjacency is a CROSS-SESSION artifact.
+    The honest same-session ratio is cactus = 50.6/60.9 = 0.83x LiteRT decode.
+    README footnote + bullets state it; the absolute 50.6 stays as a dated cell.
+  * A first-ever popped up again in the anchor (load 111 s, decode 50.7, excluded):
+    LiteRT's mldrift device cache is keyed to the app binary — the fixed-binary
+    reinstall invalidated it even though the tmp cache files survived. Expect a
+    ~112 s first-ever after EVERY reinstall.
+  * ITL-implied drift is smaller (16.5 vs 17.4 ms p50 = +5%) than decode drift
+    (+15%) — the decode metric includes per-chunk overheads beyond p50; both
+    sessions used the same capped-run fallback measure, so the 1.16x is
+    like-for-like on the metric the table quotes.
+
+Provenance: all zips sha256-verified against HF LFS metadata (bundle_sha256s.txt).
+GSM8K reports: gsm8k_cactus-gemma4-e2b-cq4.json (this dir) +
+~/code/hf-to-litertlm/reports/parity/gsm8k_cactus-*.json.

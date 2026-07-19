@@ -1,0 +1,60 @@
+{
+  "device": {
+    "batteryLevel": 0.7,
+    "batteryState": "unplugged",
+    "buildConfiguration": "Release",
+    "initialThermalState": "nominal",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "7249B4AF-C36F-40F7-A762-7FF43C1C1B22",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 46.795788379045895,
+    "finalThermalState": "nominal",
+    "firstTokenLatencyMS": 316,
+    "generatedTokenCount": 18,
+    "initialThermalState": "nominal",
+    "interTokenLatencyP50MS": 20.161986351013184,
+    "interTokenLatencyP95MS": 34.999966621398926,
+    "interTokenLatencyP99MS": 34.999966621398926,
+    "loadTimeSeconds": 0.81666100025177,
+    "memoryAfterGenerationMB": 1060.3656387329102,
+    "memoryAfterLoadMB": 1056.7872619628906,
+    "memoryBaselineMB": 14.361083984375,
+    "memoryPeakDuringDecodeMB": 1061.0218887329102,
+    "peakThermalState": "nominal",
+    "promptTokenCount": 134,
+    "promptTokensPerSecond": 424.1714412332626,
+    "stopReason": "stop",
+    "streamedChunkCount": 18,
+    "totalGenerationTimeSeconds": 0.9095360040664673
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (Cactus CQ4)",
+    "hfFilePatterns": [
+      "config.json"
+    ],
+    "hfRepoId": "Cactus-Compute/gemma-4-E2B-it",
+    "id": "Cactus-Compute/gemma-4-E2B-it-cq4",
+    "onDiskSizeMB": 3800,
+    "parameterCountB": 2,
+    "primaryFile": "gemma-4-e2b-it-cq4",
+    "quantization": "CQ4 (rotation+codebook PTQ, calibrated)"
+  },
+  "outputSample": "42\nTokyo\nCold\nSeven\nBonjour\n119\n0.9",
+  "parameters": {
+    "maxTokens": 256,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "cactus",
+  "task": "quality",
+  "timestamp": "2026-07-19T18:38:37Z"
+}

@@ -1,0 +1,7 @@
+gemma-4-e2b-it-cq2.54.zip 357386b0bf6ba28f 2408MB
+gemma-4-e2b-it-cq2.zip d0cc5bb7e611ae79 2278MB
+gemma-4-e2b-it-cq3.26.zip e1ed9958eca01e4b 2575MB
+gemma-4-e2b-it-cq3.zip f42dc19ec1d4611a 2520MB
+gemma-4-e2b-it-cq4-apple-uncalibrated.zip 4301a845af2ee5a1 3041MB
+gemma-4-e2b-it-cq4-uncalibrated.zip 7c71f075554bd27b 2723MB
+gemma-4-e2b-it-cq4.zip 7a2579ad1089f626 2721MB

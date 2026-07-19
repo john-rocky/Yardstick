@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "7B78C6B5-8C34-458A-90AB-2A5F1A946B65",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 47.54062176341749,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 177,
+    "generatedTokenCount" : 28,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 19.954919815063477,
+    "interTokenLatencyP95MS" : 21.845102310180664,
+    "interTokenLatencyP99MS" : 42.6180362701416,
+    "loadTimeSeconds" : 0.9204200506210327,
+    "memoryAfterGenerationMB" : 1060.3810119628906,
+    "memoryAfterLoadMB" : 1057.146614074707,
+    "memoryBaselineMB" : 14.392333984375,
+    "memoryPeakDuringDecodeMB" : 1061.0216369628906,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 9,
+    "promptTokensPerSecond" : 50.94243504839532,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 28,
+    "totalGenerationTimeSeconds" : 0.9778130054473877
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Cactus CQ4, uncalibrated)",
+    "hfFilePatterns" : [
+      "config.json"
+    ],
+    "hfRepoId" : "Cactus-Compute\/gemma-4-E2B-it",
+    "id" : "Cactus-Compute\/gemma-4-E2B-it-cq4-uncalibrated",
+    "onDiskSizeMB" : 3800,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-e2b-it-cq4-uncalibrated",
+    "quantization" : "CQ4 (rotation+codebook PTQ, uncalibrated pre-07-09 build)"
+  },
+  "outputSample" : "Please provide the text or image you would like me to process. I am ready to help once you give me something to work with! 😊",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "cactus",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-19T17:55:20Z"
+}

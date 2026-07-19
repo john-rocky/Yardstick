@@ -1,0 +1,7 @@
+{
+  "tag": "cactus-cq254-probe",
+  "n": 25,
+  "correct": 4,
+  "acc": 0.16,
+  "max_tokens": 1024
+}

@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "19E2C650-E50E-4CAD-8682-D2D4138E110D",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 49.21000369075028,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 170,
+    "generatedTokenCount" : 28,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 19.49906349182129,
+    "interTokenLatencyP95MS" : 21.746039390563965,
+    "interTokenLatencyP99MS" : 36.9410514831543,
+    "loadTimeSeconds" : 0.8424720764160156,
+    "memoryAfterGenerationMB" : 1060.0372848510742,
+    "memoryAfterLoadMB" : 1056.6622619628906,
+    "memoryBaselineMB" : 14.407958984375,
+    "memoryPeakDuringDecodeMB" : 1060.6779098510742,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 9,
+    "promptTokensPerSecond" : 53.12555339118116,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 28,
+    "totalGenerationTimeSeconds" : 0.9504820108413696
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Cactus CQ4, uncalibrated)",
+    "hfFilePatterns" : [
+      "config.json"
+    ],
+    "hfRepoId" : "Cactus-Compute\/gemma-4-E2B-it",
+    "id" : "Cactus-Compute\/gemma-4-E2B-it-cq4-uncalibrated",
+    "onDiskSizeMB" : 3800,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-e2b-it-cq4-uncalibrated",
+    "quantization" : "CQ4 (rotation+codebook PTQ, uncalibrated pre-07-09 build)"
+  },
+  "outputSample" : "Please provide the text or image you would like me to process. I am ready to help once you give me something to work with! 😊",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "cactus",
+  "task" : "long-context-1024",
+  "timestamp" : "2026-07-19T18:03:54Z"
+}

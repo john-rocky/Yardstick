@@ -325,10 +325,13 @@ def chart_iphone():
     runs = load_runs("iphone17pro", task="short-chat")
 
     CORE_AI = "#65a30d"   # lime — distinct from every neighbour (validated)
+    CACTUS = "#0f766e"    # deep teal — adjacency re-validated 2026-07-20 (worst pair vs lime ΔE 19.9)
     ROWS = [
         # (model.id, label, color, hatch, gsm8k, mem_note, j_per_tok, jtok_note)
         ("litert-community/gemma-4-E2B-it-litert-lm",
          "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 85.0, "", 0.122, ""),
+        ("Cactus-Compute/gemma-4-E2B-it-cq4-uncalibrated",
+         "Cactus ¶\nCQ4 uncalibrated (pre-07-09)", CACTUS, None, 87.0, "", 0.322, ""),
         ("mlx-community/gemma-4-e2b-it-4bit",
          "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//", 84.0, "", 0.151, ""),
         ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",
@@ -395,7 +398,7 @@ def chart_iphone():
 
     fig.suptitle(
         "Gemma 4 E2B on iPhone 17 Pro (A19 Pro) — every runtime at its best available build"
-        " · short-chat, median of 3 thermal-nominal cold runs · 2026-07-18",
+        " · short-chat, median of 3 thermal-nominal cold runs · 2026-07-18 (Cactus 07-20, anchor-bridged)",
         fontsize=12, fontweight="bold", y=1.04)
     fig.text(0.5, -0.06,
              "† mmap'd weights (not comparable with wired-memory rows)   ·   ‡ patched engine (reference): Apple ships no Gemma-4 bundle"
@@ -527,9 +530,11 @@ def chart_thinking():
     slot — the absence is the finding, not a missing measurement. Time-to-answer
     annotated under the ON bars (thinking ~820 tok / measured decode)."""
     CORE_AI = "#65a30d"
+    CACTUS = "#0f766e"
     arms = [
         ("Core AI\nown int4",  CORE_AI,             88.0, 92.0, "~75 s/answer ②"),
         ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"], 91.0, 90.0, "~24 s/answer"),
+        ("Cactus\nCQ4 uncalibrated", CACTUS,         87.0, 87.0, "~12 s/answer (est.)"),
         ("LiteRT-LM\nwNa8o8",  "#e11d48",            85.0, None, "locked out ①"),
     ]
     x = list(range(len(arms)))
@@ -584,6 +589,7 @@ def chart_deepcontext():
     rows = [
         ("LiteRT-LM  wNa8o8",      "#e11d48",            92,   "decode ~56 tok/s", ""),
         ("llama.cpp  Q4_K_M",      PALETTE["llama.cpp"], 300,  "decode 33.9 tok/s", " †"),
+        ("Cactus  CQ4 uncalibrated", "#0f766e",          1068, "decode 40.3 tok/s", ""),
         ("MLX  PTQ 4-bit",         PALETTE["mlx-swift"], 3387, "decode 47.6 tok/s", "", "//"),
         ("MLX  QAT OptiQ",         PALETTE["mlx-swift"], 4999, "decode 35.1 tok/s", "", None),
     ]

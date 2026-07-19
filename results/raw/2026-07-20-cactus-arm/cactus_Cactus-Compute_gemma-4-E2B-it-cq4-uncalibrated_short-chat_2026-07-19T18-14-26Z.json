@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "AD824BBA-2140-4691-A711-90E4C5A0A368",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 50.578291639171304,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 168,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 19.616007804870605,
+    "interTokenLatencyP95MS" : 21.68595790863037,
+    "interTokenLatencyP99MS" : 21.953940391540527,
+    "loadTimeSeconds" : 0.8360739946365356,
+    "memoryAfterGenerationMB" : 619.6620330810547,
+    "memoryAfterLoadMB" : 934.7402954101562,
+    "memoryBaselineMB" : 14.314208984375,
+    "memoryPeakDuringDecodeMB" : 938.865364074707,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 119.15400655347037,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.9056320190429688
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Cactus CQ4, uncalibrated)",
+    "hfFilePatterns" : [
+      "config.json"
+    ],
+    "hfRepoId" : "Cactus-Compute\/gemma-4-E2B-it",
+    "id" : "Cactus-Compute\/gemma-4-E2B-it-cq4-uncalibrated",
+    "onDiskSizeMB" : 3800,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-e2b-it-cq4-uncalibrated",
+    "quantization" : "CQ4 (rotation+codebook PTQ, uncalibrated pre-07-09 build)"
+  },
+  "outputSample" : "Imagine a computer or your phone is like a person who can think and learn, but instead of sending everything to a big, distant brain (like the internet), **the thinking and learning happens right ther",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "cactus",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-19T18:14:26Z"
+}
