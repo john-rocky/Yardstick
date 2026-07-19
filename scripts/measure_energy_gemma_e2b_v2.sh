@@ -37,11 +37,13 @@ $PY "$SCRIPT" run --task sustained --runtime llama.cpp \
     --model unsloth/gemma-4-E2B-it-GGUF/Q4_K_M --device m4max
 
 echo "=== 5/5: Core AI (own int4, PATCHED ENGINE reference — via llm-benchmark) ==="
-# -g 512 x -n 3 = 1536 generated tokens; S=1 prefill kept short (-p 32) so decode dominates.
+# -g 1024 x -n 3 = 3072 generated tokens; S=1 prefill kept short (-p 32). --cmd mode can't
+# split load from decode, so long generation keeps the load share small (~15%) — its J/tok
+# is a mild upper bound; footnote it.
 $PY "$SCRIPT" run --task sustained --runtime core-ai \
     --model core-ai/gemma4-e2b-gpu --device m4max \
-    --cmd "COREAI_CHUNK_THRESHOLD=1 '$COREAI_BIN' --model '$COREAI_BUNDLE' --raw-dir '$COREAI_PLE' -p 32 -g 512 -n 3" \
-    --tokens 1536 \
+    --cmd "COREAI_CHUNK_THRESHOLD=1 '$COREAI_BIN' --model '$COREAI_BUNDLE' --raw-dir '$COREAI_PLE' -p 32 -g 1024 -n 3" \
+    --tokens 3072 \
     --quant "int4 q4_0 (QAT, own export; patched engine — see methodology/core-ai-arm-provenance.md)"
 
 echo "=== Done. Re-rendering RESULTS.md ==="

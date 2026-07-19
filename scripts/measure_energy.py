@@ -490,6 +490,23 @@ def main() -> int:
     if gen_tok > 0:
         metrics["energyJoulesPerToken"] = round(energy_J / gen_tok, 6)
 
+    # Decode-only attribution. The full window includes model load (and, on a first
+    # run, even the HF download), whose share differs wildly per arm — a 3 s load on a
+    # 4 s generation halves the apparent W. powermetrics samples are time-ordered and
+    # generation is the LAST phase of the bench, so the trailing
+    # totalGenerationTimeSeconds worth of samples ≈ the decode phase. Report it as a
+    # separate, per-arm-comparable metric; the full-window numbers stay for continuity.
+    gen_s = float(metrics.get("totalGenerationTimeSeconds") or 0)
+    if gen_tok > 0 and 0 < gen_s <= elapsed and samples_mW:
+        n_gen = max(1, int(gen_s / (args.sample_interval_ms / 1000.0)))
+        tail = samples_mW[-n_gen:]
+        if len(tail) >= 4:
+            avg_dec_W = (sum(tail) / len(tail)) / 1000.0
+            dec_J = avg_dec_W * gen_s
+            metrics["averagePackagePowerWDecode"] = round(avg_dec_W, 4)
+            metrics["energyJoulesDecode"] = round(dec_J, 4)
+            metrics["energyJoulesPerTokenDecode"] = round(dec_J / gen_tok, 6)
+
     lines[-1] = json.dumps(last)
     out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -506,8 +523,12 @@ def main() -> int:
         file=sys.stderr,
     )
     if gen_tok > 0:
+        dec_note = ""
+        if "energyJoulesPerTokenDecode" in metrics:
+            dec_note = (f"  decode-only J/tok={metrics['energyJoulesPerTokenDecode']:.4f} "
+                        f"@ {metrics['averagePackagePowerWDecode']:.2f}W")
         print(
-            f"yardstick-energy: J/tok={energy_J / gen_tok:.4f} (n={gen_tok})",
+            f"yardstick-energy: J/tok={energy_J / gen_tok:.4f} (n={gen_tok}){dec_note}",
             file=sys.stderr,
         )
     return 0
