@@ -76,7 +76,12 @@ public actor CactusRuntime: LLMRuntime {
         // LiteRT gets a fresh conversation, llama.cpp clears its cache per call).
         cactus_reset(model)
 
-        let messages = try jsonString([["role": "user", "content": prompt]])
+        // Key order is load-bearing: cactus's hand-rolled messages parser only searches
+        // for "content" AFTER the "role" key (utils.h parse_messages_json), and
+        // JSONSerialization randomizes dictionary key order per process — content-first
+        // processes silently generate from an EMPTY user turn (9-token template-only
+        // prompt). Serialize the object by hand, role first, content JSON-escaped.
+        let messages = "[{\"role\":\"user\",\"content\":\(try jsonStringLiteral(prompt))}]"
         var options: [String: Any] = [
             "max_tokens": parameters.maxTokens,
             "temperature": parameters.temperature,
@@ -165,6 +170,14 @@ public actor CactusRuntime: LLMRuntime {
     private func jsonString(_ obj: Any) throws -> String {
         let data = try JSONSerialization.data(withJSONObject: obj)
         return String(data: data, encoding: .utf8)!
+    }
+
+    /// A single JSON string literal (quoted + escaped), for hand-assembled payloads
+    /// where key order matters to the consumer.
+    private func jsonStringLiteral(_ s: String) throws -> String {
+        let data = try JSONSerialization.data(withJSONObject: [s])
+        let arr = String(data: data, encoding: .utf8)!
+        return String(arr.dropFirst().dropLast())
     }
 }
 
