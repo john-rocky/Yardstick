@@ -31,6 +31,7 @@ public enum BenchmarkTaskCatalog {
     public static let all: [any BenchmarkTask] = [
         ShortChatTask(),
         LongContextTask(id: "long-context-512", targetTokens: 512),     // context-length sweep within the 4096 ctx ceiling
+        LongContextTask(id: "long-context-1024", targetTokens: 1024, maxTokens: 256),  // the p=1024/g=256 deep-context protocol (matches the LiteRT card row)
         LongContextTask(),                                              // ~2K
         LongContextTask(id: "long-context-3k", targetTokens: 3072),     // near the 4096 ctx ceiling (room for 128 decode)
         LongContextTask(id: "long-context-8k", targetTokens: 8192),
