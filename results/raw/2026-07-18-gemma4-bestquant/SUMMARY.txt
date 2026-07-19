@@ -113,3 +113,30 @@ Reading:
 - Core AI pays its S=1 wall in energy too on Mac: ~2.2x MLX's J/tok at 0.3x the speed.
 powermetrics = whole-system; run on an idle desktop; rows live in
 results/raw/m4max-*-sustained-energy.jsonl (pass 2 = the 01:5x UTC records).
+
+iPhone energy — 2026-07-19, battery-delta (part 2: the int8-activation energy answer)
+-------------------------------------------------------------------------------------
+Protocol: unplugged, Wi-Fi-driven, 600 s sustained decode per arm, 1%-step battery API
+(energySource battery-1pct), 300 s cooldowns. Both captured arms happened to burn exactly
+5% in their 600 s window -> identical joules (2,970 J), so the cleanest framing is tokens
+per charge. Sustained regime: both arms entered at thermal "fair" and peaked "serious" —
+that IS the sustained operating point; regime held equal across arms.
+
+arm         build            J/tok    tokens in 600s   sustained tok/s (vs burst)
+litert-lm   wNa8o8 (native)  0.122       24,336          40.3  (76% of 52.7)
+mlx-swift   PTQ 4-bit        0.151       19,640          29.6  (64% of 46.4)
+core-ai     own int4         JETSAM — not measurable under this protocol (see below)
+
+ANSWER: on its native iPhone path, wNa8o8/LiteRT wins energy too — 24% more tokens on the
+same 5% of battery (0.122 vs 0.151 J/tok) — REVERSING the Mac result (Mac: MLX 0.090 vs
+litert-WebGPU 0.154). The co-designed weights+runtime package holds all three of
+speed / memory / energy on device; quality remains MLX-OptiQ's (91.0 vs 85.0).
+LiteRT also throttles less under sustained load (76% vs 64% of burst rate retained),
+consistent with the README's throttling section.
+
+core-ai row: SIGKILL (jetsam) reproduced down to --sustain-seconds 30. Cause is the known
+depth wall (report 注4: working set +0.25 GB @depth128, +1.06 @256, +3.47 @512 -> kill):
+EnergyTask decodes to maxTokens=2048 per rep, far past the ~depth-400 kill line. This is a
+measurement, not a harness bug (fairness rule 4): Core AI E2B cannot run the sustained
+protocol on device. A shallow-rep variant (maxTokens ~192, reset per rep) could produce a
+labelled non-comparable reference number if ever needed.
