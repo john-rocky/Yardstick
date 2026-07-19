@@ -181,14 +181,26 @@ once the runs are captured on device — [a paired ANE/GPU session is a great PR
 
 ## 🖥 Desktop reference — Apple M4 Max
 
-The same harness on a laptop-class chip, for scale. No runtime wins everything here — each optimises a different corner of the throughput / memory / energy / streaming box:
+The same harness on a laptop-class chip, for scale. No runtime wins everything here — each optimises a different corner of the throughput / memory / energy / streaming box.
 
-![Throughput × Energy tradeoff](docs/charts/tradeoff.png)
+**Gemma 4 E2B, best-available builds — throughput × energy (2026-07-19, decode-window J/token, warm loads):**
 
-- **mlx-swift** wins decode throughput on every cell measured (1.4×–1.8× over llama.cpp after early-2026 kernel updates).
-- **Apple Foundation Models** is 2× more energy-efficient per token than the GPU-backed runtimes, 4× more than CoreML/ANE.
-- **CoreML / ANE** wins peak memory (chunked MLKV) but is the slowest *and* the worst on J/token.
-- **llama.cpp** sits in the middle on speed and energy — no axis it wins, no axis it loses badly.
+![Throughput × Energy tradeoff — Gemma 4 E2B best-available builds](docs/charts/tradeoff.png)
+
+| Build | J/tok (decode) | W (decode) | tok/s |
+|---|---:|---:|---:|
+| 🟣 MLX PTQ 4-bit | **0.090** 🏆 | 14.6 | **177.8** 🏆 |
+| 🟣 MLX QAT OptiQ | 0.106 | 14.6 | 149.5 |
+| 🔴 LiteRT wNa8o8 *(WebGPU path)* | 0.154 | 22.2 | 155.0 |
+| 🔵 llama.cpp Q4_K_M | 0.170 | 20.5 | 127.1 |
+| 🍎 Core AI own int4 *(patched, S=1 window)* | ~0.33 | 18.9 | 53 eff. |
+
+- **MLX owns the Mac energy Pareto** — fastest *and* most efficient, at the lowest package power. The +7-pt GSM8K of OptiQ costs +18 % J/tok.
+- **The LiteRT row does not answer the int8-activation energy question**: Mac LiteRT runs the WebGPU→Metal path, a different efficiency class from the iPhone's native path (where wNa8o8 wins decode+memory). That question needs the iPhone battery-delta bench (planned as part 2).
+- **Core AI pays its S=1 prefill wall in energy too** on the Mac (~2.2× MLX's J/tok at 0.3× the speed) — patched-engine reference row, whole-window measurement.
+- Whole-system `powermetrics` on an idle desktop; decode-window attribution (the trailing generation phase of the sample train) so per-arm load differences don't dilute the number. Raw rows: `results/raw/m4max-*-sustained-energy.jsonl`.
+
+Older cross-runtime observations (Apple FM 2× efficiency, CoreML/ANE memory-vs-J/tok inversion) belong to the 4-backend charts below, measured 2026-05 with full-window attribution:
 
 | | |
 |---|---|

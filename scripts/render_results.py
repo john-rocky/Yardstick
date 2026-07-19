@@ -192,7 +192,10 @@ class Sample:
 
 def parse_sample(path: Path) -> tuple[RunKey, Sample] | None:
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
+        # JSONL: repeated measure_energy passes APPEND records; take the last line
+        # (single-record files parse identically).
+        lines = [l for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
+        data = json.loads(lines[-1])
     except Exception as exc:
         print(f"warn: skipping {path.name}: {exc}", file=sys.stderr)
         return None

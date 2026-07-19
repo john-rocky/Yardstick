@@ -80,8 +80,11 @@ def logical_model(model_id: str) -> str | None:
 def load_runs(device: str, task: str | None = None) -> list[dict]:
     out = []
     for p in sorted(RAW.glob(f"{device}-*.jsonl")):
+        # JSONL: repeated measure_energy passes APPEND records; the last line is the
+        # current one (single-record files parse the same way).
         try:
-            obj = json.loads(p.read_text())
+            lines = [l for l in p.read_text().splitlines() if l.strip()]
+            obj = json.loads(lines[-1])
         except Exception:
             continue
         if task and obj.get("task") != task:
@@ -235,40 +238,65 @@ def chart_itl_jitter():
 
 
 def chart_tradeoff():
+    """M4 Max Gemma-4-E2B: decode speed x decode-window J/token, one point per BUILD.
+
+    2026-07-19 pass only (warm loads, contamination-checked) — older energy rows used a
+    different window convention and session, and cross-session pooling is banned. Prefers
+    energyJoulesPerTokenDecode; falls back to the full-window value (core-ai's --cmd row,
+    where S=1 stepping makes the whole window decode-like — annotated).
+    """
     runs = load_runs("m4max")
-    points: dict[str, tuple[float, float]] = {}
+    CORE_AI = "#65a30d"
+    # (id, label, color, label_offset_pts, ha) — offsets hand-placed so the upper-right
+    # cluster (PTQ/OptiQ/litert/llama within 50 tok/s x 0.08 J/tok) doesn't collide.
+    BUILDS = [
+        ("mlx-community/gemma-4-e2b-it-4bit",            "MLX PTQ 4-bit",     PALETTE["mlx-swift"], (8, 10), "left"),
+        ("mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",  "MLX QAT OptiQ",     PALETTE["mlx-swift"], (-10, 10), "right"),
+        ("litert-community/gemma-4-E2B-it-litert-lm",    "LiteRT wNa8o8 (WebGPU path)", "#e11d48", (12, -2), "left"),
+        ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",           "llama.cpp Q4_K_M",  PALETTE["llama.cpp"], (-10, -24), "right"),
+        ("core-ai/gemma4-e2b-gpu",                       "Core AI own int4\n(patched, S=1 window)", CORE_AI, (8, 10), "left"),
+    ]
+    points: dict[str, tuple[float, float, str, tuple, str]] = {}
     for r in runs:
         m = r.get("metrics") or {}
         if m.get("energySource") != "powermetrics":
             continue
-        if r.get("task") != "sustained-generation":
+        if not str(r.get("timestamp", "")).startswith("2026-07-19"):
             continue
-        rt = r.get("runtime")
-        points[rt] = (m["decodeTokensPerSecond"], m["energyJoulesPerToken"])
+        mid = (r.get("model") or {}).get("id")
+        for bid, label, color, off, ha in BUILDS:
+            if mid == bid:
+                jt = m.get("energyJoulesPerTokenDecode") or m.get("energyJoulesPerToken")
+                tok_s = m.get("decodeTokensPerSecond") or (
+                    (m.get("generatedTokenCount") or 0)
+                    / (m.get("energyMeasurementWindowSeconds") or 1))
+                if jt:
+                    points[label] = (tok_s, jt, color, off, ha)
 
     fig, ax = plt.subplots(figsize=(8.5, 5.5))
-    for rt, (tok_s, j_per_tok) in points.items():
-        ax.scatter(tok_s, j_per_tok, s=240, color=PALETTE[rt], edgecolor="white", linewidth=1.4, zorder=5)
-        ax.annotate(rt,
-                    (tok_s, j_per_tok),
-                    textcoords="offset points",
-                    xytext=(8, 8),
-                    fontsize=11, fontweight="bold", color="#222")
-        ax.annotate(f"{j_per_tok:.2f} J/tok · {tok_s:.0f} tok/s",
-                    (tok_s, j_per_tok),
-                    textcoords="offset points",
-                    xytext=(8, -14),
+    for label, (tok_s, j_per_tok, color, off, ha) in points.items():
+        ax.scatter(tok_s, j_per_tok, s=240, color=color, edgecolor="white",
+                   linewidth=1.4, zorder=5)
+        ax.annotate(label, (tok_s, j_per_tok), textcoords="offset points",
+                    xytext=off, ha=ha, fontsize=10, fontweight="bold", color="#222")
+        ax.annotate(f"{j_per_tok:.3f} J/tok · {tok_s:.0f} tok/s",
+                    (tok_s, j_per_tok), textcoords="offset points",
+                    xytext=(off[0], off[1] - 12 if off[1] <= 0 else -16), ha=ha,
                     fontsize=8.5, color="#555")
 
-    ax.set_xlabel("Decode throughput (tok/s, sustained-512) — right = faster")
-    ax.set_ylabel("Energy per token (J/tok) — down = more efficient")
-    ax.set_title("Throughput × Energy — M4 Max, Gemma 4 E2B (Apple FM uses own model)")
+    ax.set_xlabel("Decode throughput (tok/s) — right = faster")
+    ax.set_ylabel("Energy per token (J/tok, decode window) — down = more efficient")
+    ax.set_title("Throughput × Energy — M4 Max, Gemma 4 E2B, best-available builds (2026-07-19)")
     ax.invert_yaxis()
-    ax.set_xlim(0, max(p[0] for p in points.values()) * 1.2)
-    ax.set_ylim(max(p[1] for p in points.values()) * 1.15, 0)
+    ax.set_xlim(0, max((pt[0] for pt in points.values()), default=1) * 1.28)
+    ax.set_ylim(max((pt[1] for pt in points.values()), default=1) * 1.18, 0)
+    ax.grid(True, alpha=0.25)
+    ax.set_axisbelow(True)
     fig.text(0.5, -0.02,
-             "Apple FM owns the efficiency Pareto frontier; MLX-Swift owns throughput. No runtime is Pareto-dominant.",
+             "MLX owns the Mac energy Pareto (fastest AND most efficient). Mac LiteRT runs the WebGPU→Metal path — "
+             "a different efficiency class from the iPhone's native path; the int8-activation energy question needs the iPhone battery bench.",
              ha="center", fontsize=8.5, color="#555")
+    plt.tight_layout()
     plt.savefig(OUT / "tradeoff.png")
     plt.close(fig)
     print(f"wrote {OUT / 'tradeoff.png'}")
