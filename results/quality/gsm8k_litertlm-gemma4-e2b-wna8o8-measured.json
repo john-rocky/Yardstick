@@ -1,0 +1,7 @@
+{
+  "tag": "litertlm-gemma4-e2b-wna8o8-measured",
+  "n": 100,
+  "correct": 85,
+  "acc": 0.85,
+  "max_tokens": 2048
+}

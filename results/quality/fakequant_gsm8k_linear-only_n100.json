@@ -1,0 +1,607 @@
+{
+  "mode": "linear-only",
+  "ok": 82,
+  "n": 100,
+  "results": [
+    {
+      "q": 0,
+      "ok": true,
+      "pred": "18",
+      "gold": "18"
+    },
+    {
+      "q": 1,
+      "ok": true,
+      "pred": "3",
+      "gold": "3"
+    },
+    {
+      "q": 2,
+      "ok": true,
+      "pred": "70000",
+      "gold": "70000"
+    },
+    {
+      "q": 3,
+      "ok": true,
+      "pred": "540",
+      "gold": "540"
+    },
+    {
+      "q": 4,
+      "ok": true,
+      "pred": "20",
+      "gold": "20"
+    },
+    {
+      "q": 5,
+      "ok": true,
+      "pred": "64",
+      "gold": "64"
+    },
+    {
+      "q": 6,
+      "ok": false,
+      "pred": "240",
+      "gold": "260"
+    },
+    {
+      "q": 7,
+      "ok": false,
+      "pred": "120",
+      "gold": "160"
+    },
+    {
+      "q": 8,
+      "ok": false,
+      "pred": "120",
+      "gold": "45"
+    },
+    {
+      "q": 9,
+      "ok": true,
+      "pred": "460",
+      "gold": "460"
+    },
+    {
+      "q": 10,
+      "ok": true,
+      "pred": "366",
+      "gold": "366"
+    },
+    {
+      "q": 11,
+      "ok": true,
+      "pred": "694",
+      "gold": "694"
+    },
+    {
+      "q": 12,
+      "ok": false,
+      "pred": "12",
+      "gold": "13"
+    },
+    {
+      "q": 13,
+      "ok": true,
+      "pred": "18",
+      "gold": "18"
+    },
+    {
+      "q": 14,
+      "ok": true,
+      "pred": "60",
+      "gold": "60"
+    },
+    {
+      "q": 15,
+      "ok": true,
+      "pred": "125",
+      "gold": "125"
+    },
+    {
+      "q": 16,
+      "ok": true,
+      "pred": "230",
+      "gold": "230"
+    },
+    {
+      "q": 17,
+      "ok": true,
+      "pred": "57500",
+      "gold": "57500"
+    },
+    {
+      "q": 18,
+      "ok": true,
+      "pred": "7",
+      "gold": "7"
+    },
+    {
+      "q": 19,
+      "ok": true,
+      "pred": "6",
+      "gold": "6"
+    },
+    {
+      "q": 20,
+      "ok": true,
+      "pred": "15",
+      "gold": "15"
+    },
+    {
+      "q": 21,
+      "ok": true,
+      "pred": "14",
+      "gold": "14"
+    },
+    {
+      "q": 22,
+      "ok": true,
+      "pred": "7",
+      "gold": "7"
+    },
+    {
+      "q": 23,
+      "ok": true,
+      "pred": "8",
+      "gold": "8"
+    },
+    {
+      "q": 24,
+      "ok": true,
+      "pred": "26",
+      "gold": "26"
+    },
+    {
+      "q": 25,
+      "ok": true,
+      "pred": "2",
+      "gold": "2"
+    },
+    {
+      "q": 26,
+      "ok": false,
+      "pred": "243.00",
+      "gold": "243"
+    },
+    {
+      "q": 27,
+      "ok": false,
+      "pred": "16.00",
+      "gold": "16"
+    },
+    {
+      "q": 28,
+      "ok": true,
+      "pred": "25",
+      "gold": "25"
+    },
+    {
+      "q": 29,
+      "ok": true,
+      "pred": "104",
+      "gold": "104"
+    },
+    {
+      "q": 30,
+      "ok": true,
+      "pred": "109",
+      "gold": "109"
+    },
+    {
+      "q": 31,
+      "ok": true,
+      "pred": "80",
+      "gold": "80"
+    },
+    {
+      "q": 32,
+      "ok": true,
+      "pred": "35",
+      "gold": "35"
+    },
+    {
+      "q": 33,
+      "ok": true,
+      "pred": "70",
+      "gold": "70"
+    },
+    {
+      "q": 34,
+      "ok": true,
+      "pred": "23",
+      "gold": "23"
+    },
+    {
+      "q": 35,
+      "ok": true,
+      "pred": "9",
+      "gold": "9"
+    },
+    {
+      "q": 36,
+      "ok": false,
+      "pred": "75.00",
+      "gold": "75"
+    },
+    {
+      "q": 37,
+      "ok": false,
+      "pred": "0",
+      "gold": "2"
+    },
+    {
+      "q": 38,
+      "ok": true,
+      "pred": "10",
+      "gold": "10"
+    },
+    {
+      "q": 39,
+      "ok": true,
+      "pred": "18",
+      "gold": "18"
+    },
+    {
+      "q": 40,
+      "ok": true,
+      "pred": "8",
+      "gold": "8"
+    },
+    {
+      "q": 41,
+      "ok": false,
+      "pred": "1200",
+      "gold": "200"
+    },
+    {
+      "q": 42,
+      "ok": true,
+      "pred": "26",
+      "gold": "26"
+    },
+    {
+      "q": 43,
+      "ok": true,
+      "pred": "48",
+      "gold": "48"
+    },
+    {
+      "q": 44,
+      "ok": false,
+      "pred": "20.00",
+      "gold": "20"
+    },
+    {
+      "q": 45,
+      "ok": true,
+      "pred": "104",
+      "gold": "104"
+    },
+    {
+      "q": 46,
+      "ok": true,
+      "pred": "163",
+      "gold": "163"
+    },
+    {
+      "q": 47,
+      "ok": true,
+      "pred": "800",
+      "gold": "800"
+    },
+    {
+      "q": 48,
+      "ok": true,
+      "pred": "8",
+      "gold": "8"
+    },
+    {
+      "q": 49,
+      "ok": true,
+      "pred": "30",
+      "gold": "30"
+    },
+    {
+      "q": 50,
+      "ok": true,
+      "pred": "294",
+      "gold": "294"
+    },
+    {
+      "q": 51,
+      "ok": true,
+      "pred": "5",
+      "gold": "5"
+    },
+    {
+      "q": 52,
+      "ok": true,
+      "pred": "15",
+      "gold": "15"
+    },
+    {
+      "q": 53,
+      "ok": true,
+      "pred": "40",
+      "gold": "40"
+    },
+    {
+      "q": 54,
+      "ok": true,
+      "pred": "40",
+      "gold": "40"
+    },
+    {
+      "q": 55,
+      "ok": true,
+      "pred": "14",
+      "gold": "14"
+    },
+    {
+      "q": 56,
+      "ok": true,
+      "pred": "3",
+      "gold": "3"
+    },
+    {
+      "q": 57,
+      "ok": true,
+      "pred": "83",
+      "gold": "83"
+    },
+    {
+      "q": 58,
+      "ok": false,
+      "pred": "57.00",
+      "gold": "57"
+    },
+    {
+      "q": 59,
+      "ok": true,
+      "pred": "187",
+      "gold": "187"
+    },
+    {
+      "q": 60,
+      "ok": true,
+      "pred": "17",
+      "gold": "17"
+    },
+    {
+      "q": 61,
+      "ok": true,
+      "pred": "1430",
+      "gold": "1430"
+    },
+    {
+      "q": 62,
+      "ok": false,
+      "pred": "2500",
+      "gold": "25000"
+    },
+    {
+      "q": 63,
+      "ok": true,
+      "pred": "1596",
+      "gold": "1596"
+    },
+    {
+      "q": 64,
+      "ok": false,
+      "pred": "150",
+      "gold": "300"
+    },
+    {
+      "q": 65,
+      "ok": true,
+      "pred": "36",
+      "gold": "36"
+    },
+    {
+      "q": 66,
+      "ok": true,
+      "pred": "48",
+      "gold": "48"
+    },
+    {
+      "q": 67,
+      "ok": true,
+      "pred": "595",
+      "gold": "595"
+    },
+    {
+      "q": 68,
+      "ok": true,
+      "pred": "36",
+      "gold": "36"
+    },
+    {
+      "q": 69,
+      "ok": true,
+      "pred": "60",
+      "gold": "60"
+    },
+    {
+      "q": 70,
+      "ok": false,
+      "pred": "2925",
+      "gold": "7425"
+    },
+    {
+      "q": 71,
+      "ok": true,
+      "pred": "60",
+      "gold": "60"
+    },
+    {
+      "q": 72,
+      "ok": true,
+      "pred": "221",
+      "gold": "221"
+    },
+    {
+      "q": 73,
+      "ok": true,
+      "pred": "255",
+      "gold": "255"
+    },
+    {
+      "q": 74,
+      "ok": true,
+      "pred": "88",
+      "gold": "88"
+    },
+    {
+      "q": 75,
+      "ok": false,
+      "pred": "7.5",
+      "gold": "60"
+    },
+    {
+      "q": 76,
+      "ok": true,
+      "pred": "5",
+      "gold": "5"
+    },
+    {
+      "q": 77,
+      "ok": true,
+      "pred": "100",
+      "gold": "100"
+    },
+    {
+      "q": 78,
+      "ok": false,
+      "pred": "6.00",
+      "gold": "6"
+    },
+    {
+      "q": 79,
+      "ok": true,
+      "pred": "70",
+      "gold": "70"
+    },
+    {
+      "q": 80,
+      "ok": true,
+      "pred": "10",
+      "gold": "10"
+    },
+    {
+      "q": 81,
+      "ok": true,
+      "pred": "17",
+      "gold": "17"
+    },
+    {
+      "q": 82,
+      "ok": true,
+      "pred": "623",
+      "gold": "623"
+    },
+    {
+      "q": 83,
+      "ok": true,
+      "pred": "600",
+      "gold": "600"
+    },
+    {
+      "q": 84,
+      "ok": true,
+      "pred": "15",
+      "gold": "15"
+    },
+    {
+      "q": 85,
+      "ok": false,
+      "pred": "11",
+      "gold": "44"
+    },
+    {
+      "q": 86,
+      "ok": true,
+      "pred": "22",
+      "gold": "22"
+    },
+    {
+      "q": 87,
+      "ok": true,
+      "pred": "9360",
+      "gold": "9360"
+    },
+    {
+      "q": 88,
+      "ok": true,
+      "pred": "8000",
+      "gold": "8000"
+    },
+    {
+      "q": 89,
+      "ok": true,
+      "pred": "24",
+      "gold": "24"
+    },
+    {
+      "q": 90,
+      "ok": true,
+      "pred": "225",
+      "gold": "225"
+    },
+    {
+      "q": 91,
+      "ok": true,
+      "pred": "28",
+      "gold": "28"
+    },
+    {
+      "q": 92,
+      "ok": true,
+      "pred": "4",
+      "gold": "4"
+    },
+    {
+      "q": 93,
+      "ok": false,
+      "pred": "44",
+      "gold": "36"
+    },
+    {
+      "q": 94,
+      "ok": true,
+      "pred": "348",
+      "gold": "348"
+    },
+    {
+      "q": 95,
+      "ok": true,
+      "pred": "40",
+      "gold": "40"
+    },
+    {
+      "q": 96,
+      "ok": true,
+      "pred": "3",
+      "gold": "3"
+    },
+    {
+      "q": 97,
+      "ok": true,
+      "pred": "12",
+      "gold": "12"
+    },
+    {
+      "q": 98,
+      "ok": true,
+      "pred": "5",
+      "gold": "5"
+    },
+    {
+      "q": 99,
+      "ok": true,
+      "pred": "58",
+      "gold": "58"
+    }
+  ]
+}

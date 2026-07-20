@@ -1,0 +1,7 @@
+{
+  "tag": "mlx-gemma4-e2b-ptq4",
+  "n": 100,
+  "correct": 84,
+  "acc": 0.84,
+  "max_tokens": 1024
+}

@@ -1,0 +1,7 @@
+{
+  "tag": "mlx-gemma4-e2b-qat-optiq4",
+  "n": 100,
+  "correct": 91,
+  "acc": 0.91,
+  "max_tokens": 1024
+}

@@ -1,0 +1,7 @@
+{
+  "tag": "mlx-gemma4-e2b-optiq4-thinking",
+  "n": 100,
+  "correct": 90,
+  "acc": 0.9,
+  "max_tokens": 2048
+}
