@@ -61,21 +61,31 @@ def load_q(n):
             break
     return out
 
+def _trim_num(v):
+    """'26.00'->'26', '10.0'->'10', '0.9'->'0.9'. The old inline `rstrip(".0")` stripped
+    CHARACTERS, mangling trailing-zero integers ('20.00'->'2') — it scored LiteRT's correct
+    "#### 20.00" as wrong (found 2026-07-20; LiteRT 85->86 after the fix)."""
+    try:
+        f = float(v)
+        return str(int(f)) if f == int(f) else str(f)
+    except Exception:
+        return v
+
 def extract(text):
     """GSM8K-standard: prefer '#### N', then 'answer is/: N', then the last number."""
     if not text:
         return None
     t = text.replace(",", "")
     m = re.findall(r"####\s*\$?(-?\d+(?:\.\d+)?)", t)
-    if m: return m[-1].rstrip(".0") if "." in m[-1] else m[-1]
+    if m: return _trim_num(m[-1])
     m = re.findall(r"\\boxed\{\s*\$?(-?\d+(?:\.\d+)?)", t)  # OLMo-2 etc. mark the final answer with \boxed{}
-    if m: return m[-1].rstrip(".0") if "." in m[-1] else m[-1]
+    if m: return _trim_num(m[-1])
     m = re.findall(r"(?:answer|total|result)\s*(?:is|:|=)\s*\$?(-?\d+(?:\.\d+)?)", t, re.I)
-    if m: return m[-1].rstrip(".0") if "." in m[-1] else m[-1]
+    if m: return _trim_num(m[-1])
     m = re.findall(r"-?\d+(?:\.\d+)?", t)
     if not m: return None
     v = m[-1]
-    return v.rstrip(".0") if "." in v else v
+    return _trim_num(v)
 
 def norm(x):
     if x is None: return None

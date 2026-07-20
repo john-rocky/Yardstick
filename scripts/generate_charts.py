@@ -329,7 +329,7 @@ def chart_iphone():
     ROWS = [
         # (model.id, label, color, hatch, gsm8k, mem_note, j_per_tok, jtok_note)
         ("litert-community/gemma-4-E2B-it-litert-lm",
-         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 85.0, "", 0.122, ""),
+         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 86.0, "", 0.122, ""),
         ("Cactus-Compute/gemma-4-E2B-it-cq4-uncalibrated",
          "Cactus ¶\nCQ4 uncalibrated (pre-07-09)", CACTUS, None, 87.0, "", 0.322, ""),
         ("mlx-community/gemma-4-e2b-it-4bit",
@@ -535,7 +535,7 @@ def chart_thinking():
         ("Core AI\nown int4",  CORE_AI,             88.0, 92.0, "~75 s/answer ②"),
         ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"], 91.0, 90.0, "~24 s/answer"),
         ("Cactus\nCQ4 uncalibrated", CACTUS,         87.0, 87.0, "~12 s/answer (est.)"),
-        ("LiteRT-LM\nwNa8o8",  "#e11d48",            85.0, None, "locked out ①"),
+        ("LiteRT-LM\nwNa8o8",  "#e11d48",            86.0, None, "locked out ①"),
     ]
     x = list(range(len(arms)))
     w = 0.36

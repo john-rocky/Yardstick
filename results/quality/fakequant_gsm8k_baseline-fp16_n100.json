@@ -1,6 +1,6 @@
 {
   "mode": "baseline-fp16",
-  "ok": 46,
+  "ok": 48,
   "n": 100,
   "results": [
     {
@@ -167,7 +167,7 @@
     },
     {
       "q": 27,
-      "ok": false,
+      "ok": true,
       "pred": "16.00",
       "gold": "16"
     },
@@ -221,7 +221,7 @@
     },
     {
       "q": 36,
-      "ok": false,
+      "ok": true,
       "pred": "75.00",
       "gold": "75"
     },
@@ -603,5 +603,6 @@
       "pred": "40",
       "gold": "58"
     }
-  ]
+  ],
+  "rescored": "2026-07-20 float-canonical normalization (the original norm() failed on decimal-formatted answers like '26.00'; see the scoring-normalization postmortem in results/raw/2026-07-18-gemma4-bestquant/SUMMARY.txt)"
 }

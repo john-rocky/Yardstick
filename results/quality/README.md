@@ -3,7 +3,7 @@
 Written by `scripts/parity_gsm8k.py` (one identical protocol per arm — see the script
 docstring and `methodology/fairness-rules.md`). File = one arm × build × mode:
 
-- `gsm8k_litertlm-gemma4-e2b-wna8o8-measured.json` — LiteRT wNa8o8, 85.0 (table row)
+- `gsm8k_litertlm-gemma4-e2b-wna8o8-measured.json` — LiteRT wNa8o8, 86.0 (table row; 85.0 pre-rescore — see the postmortem in results/raw/2026-07-18-gemma4-bestquant/SUMMARY.txt)
 - `gsm8k_mlx-gemma4-e2b-qat-optiq4[.json / -thinking]` — MLX OptiQ 91.0 / thinking 90.0
 - `gsm8k_mlx-gemma4-e2b-ptq4.json` — MLX PTQ 84.0
 - `gsm8k_coreai-gemma4-e2b-q40-engine020[.json / thinking]` — Core AI own-int4 88.0 / thinking 92.0

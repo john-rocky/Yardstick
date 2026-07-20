@@ -15,7 +15,7 @@ max_tokens 1024, same extractor) — quality is a property of the weights, measu
 where every arm can run them.
 
 arm         quant                 decode tok/s (3 cold)   ITL p50   peak MB   GSM8K
-litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     85.0%
+litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     86.0%
 mlx-swift   PTQ 4bit              46.4  (49.4/46.4/46.0)  21.5 ms   ~3,010    84.0%
 llama.cpp   Q4_K_M (PTQ)          37.6  (37.8/37.6/37.5)  25.5 ms     253*    76.0%
 mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    91.0%
@@ -219,3 +219,25 @@ iPhone thinking feasibility (patched app, energy task --max-tokens 480, n=3):
   peak (7.6x short-chat). Only Core AI degrades with depth (MLX 47.6/35.1 and LiteRT ~56
   stay flat at depth ~1082). Depth ~2048 still jetsams: one thinking answer yes (~75 s),
   multi-turn thinking chat no. Reports: gsm8k_{mlx-gemma4-e2b-optiq4,coreai-gemma4-e2b-q40}-thinking.json
+
+
+Scoring-normalization postmortem (2026-07-20, flagged by a brief-review session)
+--------------------------------------------------------------------------------
+Two scoring defects found and fixed BEFORE publication; every stored per-question record
+was re-scored with float-canonical normalization ('26.00' == '26'):
+1. The fake-quant harnesses' norm() only rstrip'd trailing dots -> every n=100 run
+   under-scored: fp16 46->48 (now EXACTLY Core AI's 48), linear-only 82->88,
+   linear+kv 83->89, +pleproj 86. The clamp therefore recovers the ENTIRE fp16 gap
+   (48 -> 88-89, at/above the true int8 path) — the finding got stronger.
+2. The canonical harness's extract() rstrip(".0") stripped CHARACTERS, mangling
+   trailing-zero integers ('20.00' -> '2'). Log audit of every table arm: one confirmed
+   hit — LiteRT q45's correct '#### 20.00' scored wrong; raw output re-verified ->
+   **LiteRT GSM8K = 86.0, not 85.0** (n=250 companion has the same q44 mangle; 86.4).
+   All other table arms' logs show no mangle signature (the pred=2500/7000-style items
+   are genuine model errors — rstrip cannot produce those strings).
+   ±1 disclosed, not re-run (source artifacts gone / env friction): wna8o8-on-fp16 48
+   (q5 shows the signature; possibly 49) and cactus-think 87 (q45 signature; possibly 88).
+   Neither moves any claim.
+Downstream deltas applied: README/report tables (LiteRT 86.0), OptiQ lead +6->+5 pts,
+cactus-vs-litert quality 87-vs-86, note-2 fake-quant ladder 48/88/89/86 with
+full-gap-recovery prose. Normalizers fixed in all four harness scripts.
