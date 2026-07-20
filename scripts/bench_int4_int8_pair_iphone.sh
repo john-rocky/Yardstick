@@ -107,6 +107,7 @@ if [[ "${SKIP_PUSH:-0}" != "1" ]]; then
   for i in {1..$NPAIR}; do
     repo_dir="${INT8_IDS[$i]//\//__}"
     src=$(hf download "${INT8_IDS[$i]}" "${INT8_FILES[$i]}" 2>/dev/null | tail -1)
+    src="${src:A}"  # resolve the HF-cache symlink — devicectl rejects symlinks containing ".."
     push_if_needed "$repo_dir" "${INT8_FILES[$i]}" "$src" || exit 1
     int4_dir="${INT4_IDS[$i]//\//__}"
     push_if_needed "$int4_dir" "model.litertlm" "${INT4_SRCS[$i]}" || exit 1
