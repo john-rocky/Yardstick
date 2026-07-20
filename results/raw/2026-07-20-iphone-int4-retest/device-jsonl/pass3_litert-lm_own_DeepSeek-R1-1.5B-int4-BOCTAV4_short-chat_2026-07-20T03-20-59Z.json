@@ -1,0 +1,66 @@
+{
+  "device" : {
+    "batteryLevel" : 0.7,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "3E2B82AB-1383-4FCF-84D9-4C0CEAD3D07E",
+  "metrics" : {
+    "averagePackagePowerW" : 194.44098582320828,
+    "batteryDeltaPercent" : 5.000001,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.578432843625976,
+    "energyJoules" : 2970.00070810318,
+    "energyJoulesPerToken" : 23.203130532056093,
+    "energyMeasurementWindowSeconds" : 15.274561047554016,
+    "energySource" : "battery-1pct",
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 627,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 21.307945251464844,
+    "interTokenLatencyP95MS" : 23.090004920959473,
+    "interTokenLatencyP99MS" : 23.308992385864258,
+    "memoryAfterGenerationMB" : 1211.3782653808594,
+    "memoryAfterLoadMB" : 994.487434387207,
+    "memoryBaselineMB" : 994.487434387207,
+    "memoryPeakDuringDecodeMB" : 1383.7688446044922,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 15.274540901184082
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/DeepSeek-R1-1.5B-int4-BOCTAV4",
+    "id" : "own\/DeepSeek-R1-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB" : 1024,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample" : "<think>\nOkay, so I'm trying to understand what on-device AI means. I've heard the term before, but I'm not exactly sure what it entails. Let me break it down.\n\nFirst, AI stands for Artificial Intellig",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-20T03:20:59Z"
+}

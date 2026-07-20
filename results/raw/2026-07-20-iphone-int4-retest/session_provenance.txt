@@ -1,0 +1,10 @@
+session 2026-07-20 iPhone int4 retest (all 4 cells, single session)
+OS Build: 24A5380h (iOS 27.0) — NOTE: updated from 24A5355q since 07-14 session
+app: com.example.CoreMLLLMChat build 0.2.0(1) — same binary as 07-14 (no rebuild)
+run1 = first-ever (mldrift caches absent for all 4; same as 07-14 push-then-run)
+plugged (USB), battery 39% at start
+pass1 10:57-11:04 JST plugged/charging: DeepSeek nominal, other 3 init=fair -> all EXCLUDED
+pass2 11:36 JST TinySwallow probe (still charging, temp-gate COOL_TIMEOUT): nominal but charging -> EXCLUDED
+pass3 12:08-12:21 JST unplugged (user pulled USB ~11:45), WiFi devicectl: all 4 cells imported
+  TinySwallow 12:08, VibeThinker 12:13, Phi-4-mini 12:17, DeepSeek 12:20 (JST)
+battery: 39%->75% (charged during pass1-2), unplugged for pass3

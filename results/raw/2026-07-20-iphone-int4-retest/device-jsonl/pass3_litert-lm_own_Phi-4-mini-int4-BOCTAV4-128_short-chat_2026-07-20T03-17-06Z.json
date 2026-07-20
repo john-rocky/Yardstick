@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "9DA7B2ED-19ED-4D35-94AD-EEDC612631DC",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      16.920545103127132,
+      17.217916472088305
+    ],
+    "decodeTokensPerSecond" : 16.954623248464618,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1653,
+    "generatedTokenCount" : 107,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 57.73210525512695,
+    "interTokenLatencyP95MS" : 63.384056091308594,
+    "interTokenLatencyP99MS" : 67.90101528167725,
+    "loadTimeSeconds" : 3.5294950008392334,
+    "memoryAfterGenerationMB" : 1774.5812072753906,
+    "memoryAfterLoadMB" : 2207.612892150879,
+    "memoryBaselineMB" : 14.454833984375,
+    "memoryPeakDuringDecodeMB" : 2577.4880294799805,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 14,
+    "promptTokensPerSecond" : 9.059184298104107,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 106,
+    "totalGenerationTimeSeconds" : 7.869098901748657
+  },
+  "model" : {
+    "displayName" : "Phi-4-mini (.litertlm, own int4 BOCTAV4-128)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/Phi-4-mini-int4-BOCTAV4-128",
+    "id" : "own\/Phi-4-mini-int4-BOCTAV4-128",
+    "onDiskSizeMB" : 2200,
+    "parameterCountB" : 3.8,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope)"
+  },
+  "outputSample" : "\"On-device AI\" refers to artificial intelligence technology that is embedded directly on a user's electronic device, like a smartphone or a computer. This means the AI is running locally on the device",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-20T03:17:06Z"
+}

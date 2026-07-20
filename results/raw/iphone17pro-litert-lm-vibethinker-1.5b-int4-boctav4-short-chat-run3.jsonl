@@ -1,1 +1,59 @@
-{"device": {"batteryLevel": 0.9, "batteryState": "unplugged", "buildConfiguration": "Release", "initialThermalState": "nominal", "isLowPowerModeEnabled": false, "modelIdentifier": "iPhone18,1", "physicalMemoryMB": 11718, "processorCount": 6, "systemName": "iOS", "systemVersion": "27.0"}, "id": "99939878-CC95-43F3-80A1-363AB87BDED8", "metrics": {"batteryDeltaPercent": 0, "coldRun": false, "decodeRateRollingWindow": [], "decodeTokensPerSecond": 44.8905912952185, "finalThermalState": "nominal", "firstTokenLatencyMS": 633, "generatedTokenCount": 128, "initialThermalState": "nominal", "interTokenLatencyP50MS": 22.25196361541748, "interTokenLatencyP95MS": 24.00803565979004, "interTokenLatencyP99MS": 24.789929389953613, "memoryAfterGenerationMB": 854.1287460327148, "memoryAfterLoadMB": 853.7537460327148, "memoryBaselineMB": 853.7537460327148, "memoryPeakDuringDecodeMB": 1046.3474960327148, "peakThermalState": "nominal", "promptTokenCount": 0, "promptTokensPerSecond": 0, "stopReason": "length", "streamedChunkCount": 128, "totalGenerationTimeSeconds": 15.608457088470459}, "model": {"displayName": "VibeThinker-1.5B (.litertlm, own int4 BOCTAV4)", "hfFilePatterns": ["*.litertlm"], "hfRepoId": "own/VibeThinker-1.5B-int4-BOCTAV4", "id": "own/VibeThinker-1.5B-int4-BOCTAV4", "onDiskSizeMB": 1024, "parameterCountB": 1.5, "primaryFile": "model.litertlm", "quantization": "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"}, "outputSample": "<think>\nWe are going to explain \"on-device AI\" in simple terms.\n On-device AI refers to AI that is executed directly on the device, as opposed to being sent to a cloud or edge server.\n\n Let's break it", "parameters": {"maxTokens": 128, "temperature": 0, "topP": 1}, "runtime": "litert-lm", "task": "short-chat", "timestamp": "2026-07-14T07:50:18Z"}
+{
+  "device": {
+    "batteryLevel": 0.75,
+    "batteryState": "unplugged",
+    "buildConfiguration": "Release",
+    "initialThermalState": "nominal",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "72CBDCE5-62FD-49E0-80E3-2875813F1F3E",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": false,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 45.75824640194682,
+    "finalThermalState": "nominal",
+    "firstTokenLatencyMS": 607,
+    "generatedTokenCount": 128,
+    "initialThermalState": "nominal",
+    "interTokenLatencyP50MS": 21.641969680786133,
+    "interTokenLatencyP95MS": 23.38099479675293,
+    "interTokenLatencyP99MS": 24.263978004455566,
+    "memoryAfterGenerationMB": 1212.7065505981445,
+    "memoryAfterLoadMB": 1216.3784255981445,
+    "memoryBaselineMB": 1216.3784255981445,
+    "memoryPeakDuringDecodeMB": 1421.0503005981445,
+    "peakThermalState": "nominal",
+    "promptTokenCount": 0,
+    "promptTokensPerSecond": 0,
+    "stopReason": "length",
+    "streamedChunkCount": 128,
+    "totalGenerationTimeSeconds": 15.228838086128235
+  },
+  "model": {
+    "displayName": "VibeThinker-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns": [
+      "*.litertlm"
+    ],
+    "hfRepoId": "own/VibeThinker-1.5B-int4-BOCTAV4",
+    "id": "own/VibeThinker-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB": 1024,
+    "parameterCountB": 1.5,
+    "primaryFile": "model.litertlm",
+    "quantization": "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample": "<think>\nWe are going to explain \"on-device AI\" in simple terms.\n On-device AI refers to AI that is executed directly on the device, as opposed to being sent to a cloud or edge server.\n\n Let's break it",
+  "parameters": {
+    "maxTokens": 128,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "litert-lm",
+  "task": "short-chat",
+  "timestamp": "2026-07-20T03:13:36Z"
+}

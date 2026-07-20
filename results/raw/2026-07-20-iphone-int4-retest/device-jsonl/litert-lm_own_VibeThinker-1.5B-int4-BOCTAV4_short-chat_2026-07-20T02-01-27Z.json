@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.45,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "39557185-839C-43BE-A9E1-C08A1D075D17",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.096955504196565,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 392,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 21.420955657958984,
+    "interTokenLatencyP95MS" : 23.27895164489746,
+    "interTokenLatencyP99MS" : 25.259017944335938,
+    "loadTimeSeconds" : 5.142422914505005,
+    "memoryAfterGenerationMB" : 625.3782196044922,
+    "memoryAfterLoadMB" : 949.9253921508789,
+    "memoryBaselineMB" : 14.626708984375,
+    "memoryPeakDuringDecodeMB" : 1109.2222900390625,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 14.628355979919434
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/VibeThinker-1.5B-int4-BOCTAV4",
+    "id" : "own\/VibeThinker-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB" : 1024,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample" : "<think>\nWe are going to explain \"on-device AI\" in simple terms.\n On-device AI refers to AI that is executed directly on the device, as opposed to being sent to a cloud or edge server.\n\n Let's break it",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-20T02:01:27Z"
+}

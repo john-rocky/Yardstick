@@ -1,0 +1,20 @@
+# Excluded captures (kept in device-jsonl/ for audit; NOT imported)
+#
+# Pass 1 (10:57-11:04 JST, plugged/charging, 60 s inter-cell gaps): charging heat
+# pushed the device to thermal=fair from the 2nd cell on; VibeThinker showed a
+# clear thermal decode decline (46.1 -> 33.3 within the cell). Only the DeepSeek
+# cell started nominal, but it was charging and its run 4 went final=fair
+# (42.44), so the whole pass was discarded and re-captured unplugged.
+#   litert-lm_own_DeepSeek-R1-1.5B-int4-BOCTAV4_*T01-57/58*.json   (nominal but charging; run4 final=fair)
+#   litert-lm_own_TinySwallow-1.5B-int4-BOCTAV4_*T01-59/02-00*.json (init=fair all runs)
+#   litert-lm_own_VibeThinker-1.5B-int4-BOCTAV4_*T02-01/02*.json    (init=fair all runs, decode decline)
+#   litert-lm_own_Phi-4-mini-int4-BOCTAV4-128_*T02-03/04*.json      (init=fair all runs)
+#
+# Pass 2 (11:36 JST, still charging, COOL_TIMEOUT probe; driver stopped after):
+# runs came back nominal (the battery "AverageBatt*Temp" 33C gate was a lagging
+# long-window average, not actual thermal state) but the device was charging, so
+# the unplugged pass-3 capture minutes later supersedes it.
+#   pass2_litert-lm_own_TinySwallow-1.5B-int4-BOCTAV4_*T02-37*.json (nominal but charging)
+#
+# Imported cells = pass 3 (12:08-12:26 JST, unplugged, 120-180 s idle gaps,
+# init+peak thermal nominal on every run): pass3_*.json

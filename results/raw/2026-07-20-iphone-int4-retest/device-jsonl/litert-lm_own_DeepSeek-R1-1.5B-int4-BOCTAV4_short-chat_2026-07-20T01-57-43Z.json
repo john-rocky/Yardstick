@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.45,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A2F54E13-4071-4CAD-9171-D692F35D5BE1",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.52914319554145,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 450,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 21.234989166259766,
+    "interTokenLatencyP95MS" : 22.984027862548828,
+    "interTokenLatencyP99MS" : 28.468012809753418,
+    "loadTimeSeconds" : 6.514379024505615,
+    "memoryAfterGenerationMB" : 626.2530364990234,
+    "memoryAfterLoadMB" : 842.5032424926758,
+    "memoryBaselineMB" : 14.423606872558594,
+    "memoryPeakDuringDecodeMB" : 862.6906967163086,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 14.751008033752441
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/DeepSeek-R1-1.5B-int4-BOCTAV4",
+    "id" : "own\/DeepSeek-R1-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB" : 1024,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample" : "<think>\nOkay, so I'm trying to understand what on-device AI means. I've heard the term before, but I'm not exactly sure what it entails. Let me break it down.\n\nFirst, AI stands for Artificial Intellig",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-20T01:57:43Z"
+}

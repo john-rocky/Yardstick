@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 0.45,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "1B8E8A91-2CA5-4BA9-A668-D336F7CC450E",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 40.425274642653854,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 678,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 24.819016456604004,
+    "interTokenLatencyP95MS" : 27.66406536102295,
+    "interTokenLatencyP99MS" : 27.90701389312744,
+    "memoryAfterGenerationMB" : 852.3474960327148,
+    "memoryAfterLoadMB" : 852.0662460327148,
+    "memoryBaselineMB" : 852.0662460327148,
+    "memoryPeakDuringDecodeMB" : 1032.5349960327148,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 18.7017719745636
+  },
+  "model" : {
+    "displayName" : "VibeThinker-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/VibeThinker-1.5B-int4-BOCTAV4",
+    "id" : "own\/VibeThinker-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB" : 1024,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample" : "<think>\nWe are going to explain \"on-device AI\" in simple terms.\n On-device AI refers to AI that is executed directly on the device, as opposed to being sent to a cloud or edge server.\n\n Let's break it",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-20T02:02:02Z"
+}
