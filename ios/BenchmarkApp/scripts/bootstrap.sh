@@ -121,11 +121,15 @@ fi
 #    is skipped (e.g. no cmake). Requires cmake >= 3.10 + Xcode iOS SDK.
 CACTUS_DIR="${VENDORED_DIR}/cactus"
 CACTUS_FRAMEWORK="${VENDORED_DIR}/cactus-ios.xcframework"
+# Pinned: cactus main moves fast and artifacts change under it (their 07-09 CQ4 swap
+# is a table-level finding in this repo). This is the commit the published cells used.
+CACTUS_COMMIT="${CACTUS_COMMIT:-1ace6d78}"
 if [ ! -d "${CACTUS_FRAMEWORK}" ]; then
     if command -v cmake >/dev/null 2>&1; then
         if [ ! -d "${CACTUS_DIR}" ]; then
-            echo "Cloning cactus …"
-            git clone --depth 1 https://github.com/cactus-compute/cactus.git "${CACTUS_DIR}"
+            echo "Cloning cactus @ ${CACTUS_COMMIT} …"
+            git clone https://github.com/cactus-compute/cactus.git "${CACTUS_DIR}"
+            (cd "${CACTUS_DIR}" && git checkout --quiet "${CACTUS_COMMIT}")
         fi
         echo "Building cactus-ios.xcframework (this compiles the engine twice: device + simulator) …"
         if (cd "${CACTUS_DIR}" && bash apple/build.sh); then
