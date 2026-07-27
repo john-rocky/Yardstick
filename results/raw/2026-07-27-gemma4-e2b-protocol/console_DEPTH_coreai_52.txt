@@ -1,0 +1,13 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=long-context-1024-gen256 runs=4 context_tokens=2048
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_FAIL run=1 error=Context length exceeded: position 0 >= max context length 1024. Reduce prompt length or increase max context length.
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_FAIL run=2 error=Context length exceeded: position 0 >= max context length 1024. Reduce prompt length or increase max context length.
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_FAIL run=3 error=Context length exceeded: position 0 >= max context length 1024. Reduce prompt length or increase max context length.
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_FAIL run=4 error=Context length exceeded: position 0 >= max context length 1024. Reduce prompt length or increase max context length.
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

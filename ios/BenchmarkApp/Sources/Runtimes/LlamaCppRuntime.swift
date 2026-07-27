@@ -22,12 +22,24 @@ public actor LlamaCppRuntime: LLMRuntime {
     private var vocab: OpaquePointer?
     private var batch: llama_batch?
 
+    /// KV context size handed to `llama_init_from_model`. llama.cpp allocates its KV to
+    /// `n_ctx` up front, so this is most of what a memory cell measures — it used to be
+    /// hardcoded at 4096 while LiteRT-LM sized its KV from the task, which meant the
+    /// cross-runtime memory column compared arms at different context budgets without
+    /// saying so. `prepareContext` now sets it, so `--context-tokens` means the same thing
+    /// for both. Default unchanged at 4096 for runs that don't pass it.
+    private var contextBudget: Int32 = 4096
+
     private static let backendInit: Void = {
         llama_backend_init()
     }()
 
     public init() {
         _ = Self.backendInit
+    }
+
+    public func prepareContext(maxContextTokens: Int) {
+        contextBudget = Int32(max(256, maxContextTokens))
     }
 
     public func loadModel(
@@ -58,11 +70,13 @@ public actor LlamaCppRuntime: LLMRuntime {
 
         let nThreads = max(1, min(8, ProcessInfo.processInfo.processorCount - 2))
         var ctxParams = llama_context_default_params()
-        ctxParams.n_ctx = 4096
+        ctxParams.n_ctx = UInt32(contextBudget)
         // n_batch defaults to 512. A prompt longer than that is submitted as one
         // `llama_batch` and comes back with logits that sample EOG immediately — the
         // 1K-token parity prompt generated zero tokens until this was raised.
-        ctxParams.n_batch = 2048
+        // Keep it within the context: llama.cpp clamps n_batch to n_ctx internally, and a
+        // batch wider than the context is meaningless.
+        ctxParams.n_batch = UInt32(min(2048, contextBudget))
         ctxParams.n_ubatch = 512
         ctxParams.n_threads = Int32(nThreads)
         ctxParams.n_threads_batch = Int32(nThreads)

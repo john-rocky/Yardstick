@@ -1,0 +1,68 @@
+{
+  "device" : {
+    "batteryLevel" : 0.55,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "58380A13-74CD-474A-9A6D-2C821C73028C",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 60.54872386566071,
+    "decodeTokensPerSecondWallClock" : 60.07582585613785,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 64,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-27-agreed-protocol-r2",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.60001277923584,
+    "interTokenLatencyP95MS" : 17.04704761505127,
+    "interTokenLatencyP99MS" : 17.58897304534912,
+    "memoryAfterGenerationMB" : 497.73816680908203,
+    "memoryAfterLoadMB" : 497.12879180908203,
+    "memoryBaselineMB" : 497.12879180908203,
+    "memoryFinalResidentMB" : 679.421875,
+    "memoryMedianMB" : 497.32410430908203,
+    "memoryMedianResidentMB" : 679.2421875,
+    "memoryPeakDuringDecodeMB" : 497.73816680908203,
+    "memoryPeakResidentMB" : 679.421875,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 7.788941025733948
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "INT4 (QAT)"
+  },
+  "outputSample" : "Imagine you have a smart device, like your smartphone, a smart watch, or even a specialized camera.\n\n**On-device AI simply means that the \"brain\" or the intelligence that powers the AI is running *dir",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-27T06:12:25Z"
+}

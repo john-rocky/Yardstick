@@ -1,0 +1,335 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN native_benchmark model=litert-community/gemma-4-E2B-it-litert-lm prefill=1024 decode=256 context_tokens=2048
+I0000 00:00:1785120945.810337  709158 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1785120945.811110  709158 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1785120945.811136  709158 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1785120945.811144  709158 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1785120945.811146  709158 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1785120945.811147  709158 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1785120945.811169  709158 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1785120945.811170  709158 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1785120945.811171  709158 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1785120945.811172  709158 litert_lm_loader.cc:265] section_end_offset: 28576
+I0000 00:00:1785120945.811180  709158 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1785120945.811182  709158 litert_lm_loader.cc:262] section_data_type: SP_Tokenizer
+I0000 00:00:1785120945.811183  709158 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1785120945.811205  709158 litert_lm_loader.cc:265] section_end_offset: 4721781
+I0000 00:00:1785120945.811268  709158 litert_lm_loader.cc:105] model_type: tf_lite_embedder
+I0000 00:00:1785120945.811280  709158 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1785120945.811281  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811282  709158 litert_lm_loader.cc:264] section_begin_offset: 4734976
+I0000 00:00:1785120945.811284  709158 litert_lm_loader.cc:265] section_end_offset: 108546696
+I0000 00:00:1785120945.811285  709158 litert_lm_loader.cc:105] model_type: tf_lite_per_layer_embedder
+I0000 00:00:1785120945.811286  709158 litert_lm_loader.cc:261] section_index: 3
+I0000 00:00:1785120945.811287  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811287  709158 litert_lm_loader.cc:264] section_begin_offset: 108560384
+I0000 00:00:1785120945.811289  709158 litert_lm_loader.cc:265] section_end_offset: 1393078776
+I0000 00:00:1785120945.811290  709158 litert_lm_loader.cc:105] model_type: tf_lite_audio_encoder_hw
+I0000 00:00:1785120945.811291  709158 litert_lm_loader.cc:244] section_backend_constraint: cpu
+I0000 00:00:1785120945.811292  709158 litert_lm_loader.cc:261] section_index: 4
+I0000 00:00:1785120945.811293  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811293  709158 litert_lm_loader.cc:264] section_begin_offset: 1393082368
+I0000 00:00:1785120945.811294  709158 litert_lm_loader.cc:265] section_end_offset: 1487134648
+I0000 00:00:1785120945.811295  709158 litert_lm_loader.cc:105] model_type: tf_lite_audio_adapter
+I0000 00:00:1785120945.811303  709158 litert_lm_loader.cc:244] section_backend_constraint: cpu
+I0000 00:00:1785120945.811305  709158 litert_lm_loader.cc:261] section_index: 5
+I0000 00:00:1785120945.811305  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811306  709158 litert_lm_loader.cc:264] section_begin_offset: 1487142912
+I0000 00:00:1785120945.811307  709158 litert_lm_loader.cc:265] section_end_offset: 1496584156
+I0000 00:00:1785120945.811309  709158 litert_lm_loader.cc:105] model_type: tf_lite_end_of_audio
+I0000 00:00:1785120945.811309  709158 litert_lm_loader.cc:261] section_index: 6
+I0000 00:00:1785120945.811310  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811312  709158 litert_lm_loader.cc:264] section_begin_offset: 1496596480
+I0000 00:00:1785120945.811312  709158 litert_lm_loader.cc:265] section_end_offset: 1496603252
+I0000 00:00:1785120945.811313  709158 litert_lm_loader.cc:105] model_type: tf_lite_vision_encoder
+I0000 00:00:1785120945.811314  709158 litert_lm_loader.cc:248] section_prefer_activation_type: fp16
+I0000 00:00:1785120945.811315  709158 litert_lm_loader.cc:261] section_index: 7
+I0000 00:00:1785120945.811316  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811317  709158 litert_lm_loader.cc:264] section_begin_offset: 1496612864
+I0000 00:00:1785120945.811317  709158 litert_lm_loader.cc:265] section_end_offset: 1720750800
+I0000 00:00:1785120945.811318  709158 litert_lm_loader.cc:105] model_type: tf_lite_vision_adapter
+I0000 00:00:1785120945.811319  709158 litert_lm_loader.cc:244] section_backend_constraint: cpu
+I0000 00:00:1785120945.811320  709158 litert_lm_loader.cc:261] section_index: 8
+I0000 00:00:1785120945.811321  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811321  709158 litert_lm_loader.cc:264] section_begin_offset: 1720762368
+I0000 00:00:1785120945.811322  709158 litert_lm_loader.cc:265] section_end_offset: 1725505296
+I0000 00:00:1785120945.811323  709158 litert_lm_loader.cc:105] model_type: tf_lite_end_of_vision
+I0000 00:00:1785120945.811324  709158 litert_lm_loader.cc:261] section_index: 9
+I0000 00:00:1785120945.811324  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811325  709158 litert_lm_loader.cc:264] section_begin_offset: 1725513728
+I0000 00:00:1785120945.811326  709158 litert_lm_loader.cc:265] section_end_offset: 1725520500
+I0000 00:00:1785120945.811327  709158 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1785120945.811328  709158 litert_lm_loader.cc:248] section_prefer_activation_type: fp16
+I0000 00:00:1785120945.811329  709158 litert_lm_loader.cc:261] section_index: 10
+I0000 00:00:1785120945.811329  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811330  709158 litert_lm_loader.cc:264] section_begin_offset: 1725530112
+I0000 00:00:1785120945.811331  709158 litert_lm_loader.cc:265] section_end_offset: 2543805296
+I0000 00:00:1785120945.811332  709158 litert_lm_loader.cc:105] model_type: tf_lite_mtp_drafter
+I0000 00:00:1785120945.811333  709158 litert_lm_loader.cc:261] section_index: 11
+I0000 00:00:1785120945.811334  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811335  709158 litert_lm_loader.cc:264] section_begin_offset: 2543812608
+I0000 00:00:1785120945.811336  709158 litert_lm_loader.cc:265] section_end_offset: 2588138320
+I0000 00:00:1785120945.811482  709158 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1785120945.811664  709158 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1785120945.811668  709158 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1785120945.811669  709158 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1785120945.811670  709158 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1785120945.811671  709158 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1785120945.811672  709158 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1785120945.811673  709158 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1785120945.811673  709158 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1785120945.811674  709158 litert_lm_loader.cc:265] section_end_offset: 28576
+I0000 00:00:1785120945.811675  709158 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1785120945.811676  709158 litert_lm_loader.cc:262] section_data_type: SP_Tokenizer
+I0000 00:00:1785120945.811676  709158 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1785120945.811740  709158 litert_lm_loader.cc:265] section_end_offset: 4721781
+I0000 00:00:1785120945.811741  709158 litert_lm_loader.cc:105] model_type: tf_lite_embedder
+I0000 00:00:1785120945.811743  709158 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1785120945.811743  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811744  709158 litert_lm_loader.cc:264] section_begin_offset: 4734976
+I0000 00:00:1785120945.811745  709158 litert_lm_loader.cc:265] section_end_offset: 108546696
+I0000 00:00:1785120945.811746  709158 litert_lm_loader.cc:105] model_type: tf_lite_per_layer_embedder
+I0000 00:00:1785120945.811747  709158 litert_lm_loader.cc:261] section_index: 3
+I0000 00:00:1785120945.811748  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811748  709158 litert_lm_loader.cc:264] section_begin_offset: 108560384
+I0000 00:00:1785120945.811749  709158 litert_lm_loader.cc:265] section_end_offset: 1393078776
+I0000 00:00:1785120945.811750  709158 litert_lm_loader.cc:105] model_type: tf_lite_audio_encoder_hw
+I0000 00:00:1785120945.811751  709158 litert_lm_loader.cc:244] section_backend_constraint: cpu
+I0000 00:00:1785120945.811752  709158 litert_lm_loader.cc:261] section_index: 4
+I0000 00:00:1785120945.811752  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811754  709158 litert_lm_loader.cc:264] section_begin_offset: 1393082368
+I0000 00:00:1785120945.811754  709158 litert_lm_loader.cc:265] section_end_offset: 1487134648
+I0000 00:00:1785120945.811755  709158 litert_lm_loader.cc:105] model_type: tf_lite_audio_adapter
+I0000 00:00:1785120945.811756  709158 litert_lm_loader.cc:244] section_backend_constraint: cpu
+I0000 00:00:1785120945.811757  709158 litert_lm_loader.cc:261] section_index: 5
+I0000 00:00:1785120945.811758  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811759  709158 litert_lm_loader.cc:264] section_begin_offset: 1487142912
+I0000 00:00:1785120945.811759  709158 litert_lm_loader.cc:265] section_end_offset: 1496584156
+I0000 00:00:1785120945.811760  709158 litert_lm_loader.cc:105] model_type: tf_lite_end_of_audio
+I0000 00:00:1785120945.811761  709158 litert_lm_loader.cc:261] section_index: 6
+I0000 00:00:1785120945.811762  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811762  709158 litert_lm_loader.cc:264] section_begin_offset: 1496596480
+I0000 00:00:1785120945.811763  709158 litert_lm_loader.cc:265] section_end_offset: 1496603252
+I0000 00:00:1785120945.811764  709158 litert_lm_loader.cc:105] model_type: tf_lite_vision_encoder
+I0000 00:00:1785120945.811765  709158 litert_lm_loader.cc:248] section_prefer_activation_type: fp16
+I0000 00:00:1785120945.811766  709158 litert_lm_loader.cc:261] section_index: 7
+I0000 00:00:1785120945.811767  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811767  709158 litert_lm_loader.cc:264] section_begin_offset: 1496612864
+I0000 00:00:1785120945.811768  709158 litert_lm_loader.cc:265] section_end_offset: 1720750800
+I0000 00:00:1785120945.811769  709158 litert_lm_loader.cc:105] model_type: tf_lite_vision_adapter
+I0000 00:00:1785120945.811770  709158 litert_lm_loader.cc:244] section_backend_constraint: cpu
+I0000 00:00:1785120945.811770  709158 litert_lm_loader.cc:261] section_index: 8
+I0000 00:00:1785120945.811772  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811772  709158 litert_lm_loader.cc:264] section_begin_offset: 1720762368
+I0000 00:00:1785120945.811773  709158 litert_lm_loader.cc:265] section_end_offset: 1725505296
+I0000 00:00:1785120945.811774  709158 litert_lm_loader.cc:105] model_type: tf_lite_end_of_vision
+I0000 00:00:1785120945.811774  709158 litert_lm_loader.cc:261] section_index: 9
+I0000 00:00:1785120945.811775  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811776  709158 litert_lm_loader.cc:264] section_begin_offset: 1725513728
+I0000 00:00:1785120945.811777  709158 litert_lm_loader.cc:265] section_end_offset: 1725520500
+I0000 00:00:1785120945.811778  709158 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1785120945.811778  709158 litert_lm_loader.cc:248] section_prefer_activation_type: fp16
+I0000 00:00:1785120945.811779  709158 litert_lm_loader.cc:261] section_index: 10
+I0000 00:00:1785120945.811780  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811781  709158 litert_lm_loader.cc:264] section_begin_offset: 1725530112
+I0000 00:00:1785120945.811781  709158 litert_lm_loader.cc:265] section_end_offset: 2543805296
+I0000 00:00:1785120945.811782  709158 litert_lm_loader.cc:105] model_type: tf_lite_mtp_drafter
+I0000 00:00:1785120945.811783  709158 litert_lm_loader.cc:261] section_index: 11
+I0000 00:00:1785120945.811784  709158 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1785120945.811785  709158 litert_lm_loader.cc:264] section_begin_offset: 2543812608
+I0000 00:00:1785120945.811785  709158 litert_lm_loader.cc:265] section_end_offset: 2588138320
+I0000 00:00:1785120945.812101  709158 engine_advanced_impl.cc:252] New model files have LlmModelType, loading tokenizer asynchronously
+I0000 00:00:1785120945.812208  709158 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1785120945.812219  709158 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 2048
+activation_data_type: FLOAT16
+max_num_images: 0
+lora_rank: 0
+cache_dir: /private/var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/tmp/
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/Documents/models/litert-lm/litert-community__gemma-4-E2B-it-litert-lm/gemma-4-E2B-it.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: true
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: MessageLite at 0x16ef85630  BenchmarkParams: MessageLite at 0x16ef85608  VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1785120945.813976  709158 model_resources_litert_lm.cc:67] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1785120945.814020  709158 model_resources_litert_lm.cc:68] litert model size: 818275184
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x10efd8140, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x10efd8190, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1467508c0, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x146750b90, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1785120945.887452  709158 executor_settings_base.cc:351] Deleted 1 stale cache files.
+I0000 00:00:1785120945.887461  709158 litert_compiled_model_executor_utils.cc:518] Setting serialization dir: /private/var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/tmp
+INFO: [magic_number_utils.cc:97] Loaded: num_subgraphs=976, num_signatures=4
+INFO: [magic_number_utils.cc:105]   signature=decode, subgraph_index=0, num_tensors=2703, num_inputs=35, num_outputs=32, num_ops=2068
+INFO: [magic_number_utils.cc:105]   signature=prefill_1024, subgraph_index=1, num_tensors=1454, num_inputs=35, num_outputs=30, num_ops=1107
+INFO: [magic_number_utils.cc:105]   signature=prefill_128, subgraph_index=2, num_tensors=1454, num_inputs=35, num_outputs=30, num_ops=1107
+INFO: [magic_number_utils.cc:105]   signature=verify, subgraph_index=3, num_tensors=2887, num_inputs=35, num_outputs=32, num_ops=2243
+INFO: [magic_number_utils.cc:109] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:116]   config[0]: magic_number=32003, target_number=2048, signature_prefix=null
+INFO: [magic_number_utils.cc:425] 439 tensors of signature decode have been updated for magic number  32003 to target number 2048
+INFO: [magic_number_utils.cc:425] 271 tensors of signature prefill_1024 have been updated for magic number  32003 to target number 2048
+INFO: [magic_number_utils.cc:425] 270 tensors of signature prefill_128 have been updated for magic number  32003 to target number 2048
+INFO: [magic_number_utils.cc:425] 444 tensors of signature verify have been updated for magic number  32003 to target number 2048
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1785120945.898664  709158 delegate_metal.mm:88] Created a Metal device.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1785120945.915176  709158 delegate_kernel.cc:297] Total 32 external tensors are used for delegate inputs and outputs
+I0000 00:00:1785120945.915191  709158 delegate_kernel.cc:816] Initializing Metal-based API from serialized data.
+I0000 00:00:1785120946.108645  709158 delegate_kernel.cc:297] Total 31 external tensors are used for delegate inputs and outputs
+I0000 00:00:1785120946.108666  709158 delegate_kernel.cc:816] Initializing Metal-based API from serialized data.
+I0000 00:00:1785120946.251038  709158 delegate_kernel.cc:297] Total 31 external tensors are used for delegate inputs and outputs
+I0000 00:00:1785120946.251049  709158 delegate_kernel.cc:816] Initializing Metal-based API from serialized data.
+I0000 00:00:1785120946.395842  709158 delegate_kernel.cc:297] Total 32 external tensors are used for delegate inputs and outputs
+I0000 00:00:1785120946.395855  709158 delegate_kernel.cc:816] Initializing Metal-based API from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x702468e710, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x702468e760, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1785120946.647450  709158 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1785120946.647456  709158 model_resources_litert_lm.cc:68] litert model size: 6772
+I0000 00:00:1785120946.647473  709158 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1785120946.647475  709158 model_resources_litert_lm.cc:68] litert model size: 6772
+I0000 00:00:1785120946.647601  709158 model_resources_litert_lm.cc:67] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1785120946.647604  709158 model_resources_litert_lm.cc:68] litert model size: 103811720
+INFO: [magic_number_utils.cc:97] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:105]   signature=embedder, subgraph_index=0, num_tensors=16, num_inputs=1, num_outputs=1, num_ops=8
+INFO: [magic_number_utils.cc:109] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:116]   config[0]: magic_number=32003, target_number=2048, signature_prefix=null
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+I0000 00:00:1785120946.648206  709158 embedding_lookup_text.cc:303] EmbeddingLookupText::Initialize Creating input buffers
+I0000 00:00:1785120946.648217  709158 embedding_lookup_text.cc:342] EmbeddingLookupText initialized: signature=embedder, rank=3, floats_per_token=1536
+INFO: [magic_number_utils.cc:97] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:105]   signature=eoi, subgraph_index=0, num_tensors=1, num_inputs=0, num_outputs=1, num_ops=0
+INFO: [magic_number_utils.cc:109] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:116]   config[0]: magic_number=32003, target_number=2048, signature_prefix=null
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+INFO: [compiled_model.cc:1625] Tracked constant output tensor eoi_embedding with locked address
+INFO: [magic_number_utils.cc:97] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:105]   signature=eoa, subgraph_index=0, num_tensors=1, num_inputs=0, num_outputs=1, num_ops=0
+INFO: [magic_number_utils.cc:109] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:116]   config[0]: magic_number=32003, target_number=2048, signature_prefix=null
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+INFO: [compiled_model.cc:1625] Tracked constant output tensor eoa_embedding with locked address
+I0000 00:00:1785120946.650039  709158 model_resources_litert_lm.cc:67] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1785120946.650043  709158 model_resources_litert_lm.cc:68] litert model size: 1284518392
+INFO: [magic_number_utils.cc:97] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:105]   signature=per_layer_embedder, subgraph_index=0, num_tensors=83, num_inputs=1, num_outputs=1, num_ops=42
+INFO: [magic_number_utils.cc:109] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:116]   config[0]: magic_number=32003, target_number=2048, signature_prefix=null
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1785120946.664196  709158 embedding_lookup_text.cc:303] EmbeddingLookupText::Initialize Creating input buffers
+I0000 00:00:1785120946.664216  709158 embedding_lookup_text.cc:342] EmbeddingLookupText initialized: signature=per_layer_embedder, rank=4, floats_per_token=8960
+I0000 00:00:1785120946.664291  709158 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1785120946.664295  709158 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 2048
+activation_data_type: FLOAT16
+max_num_images: 0
+lora_rank: 0
+cache_dir: /private/var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/tmp/
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/Documents/models/litert-lm/litert-community__gemma-4-E2B-it-litert-lm/gemma-4-E2B-it.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: true
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: MessageLite at 0x16ef85630  BenchmarkParams: MessageLite at 0x16ef85608  VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1785120946.664391  709158 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1785120946.664395  709158 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1785120946.665574  709158 model_data_processor_factory.cc:427] Creating Gemma4DataProcessor
+W0000 00:00:1785120946.665580  709158 mel_filterbank.cc:137] Missing 10 bands  starting at 0 in mel-frequency design. Perhaps too many channels or not enough frequency resolution in spectrum. (fft_length: 257 sample_rate: 16000 mel_channel_count: 128 lower_frequency_limit: 0 upper_frequency_limit: 8000
+I0000 00:00:1785120946.665907  709158 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1785120946.929792  709422 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1785120946.932060  709422 sampler_factory.cc:529] Metal sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKMetalSampler.dylib: dlopen(libLiteRtTopKMetalSampler.dylib, 0x0005): tried: 'libLiteRtTopKMetalSampler.dylib' (no such file), '/private/preboot/Cryptexes/OSlibLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), '/private/preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/3C753825-E16F-40BC-B285-5691CE2D6004/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/3C753825-E16F-40BC-B285-5691CE2D6004/BenchmarkApp.app/Frameworks/CLiteRTLM.framework/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/3C753825-E16F-40BC-B285-5691CE2D6004/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKMetalSampler.dylib' (no such file).
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1785120946.932183  709422 sampler_factory.cc:537] Statically linked LiteRtTopKMetalSampler C API.
+I0000 00:00:1785120951.182480  709158 threadpool.cc:46] ThreadPool 'callback_thread_pool': Shutting down...
+I0000 00:00:1785120951.182492  709425 threadpool.cc:171] ThreadPool 'callback_thread_pool': Worker thread stopped.
+I0000 00:00:1785120951.182509  709158 threadpool.cc:75] ThreadPool 'callback_thread_pool': Shutdown complete.
+I0000 00:00:1785120951.182512  709158 threadpool.cc:46] ThreadPool 'execution_thread_pool': Shutting down...
+I0000 00:00:1785120951.182517  709422 threadpool.cc:171] ThreadPool 'execution_thread_pool': Worker thread stopped.
+I0000 00:00:1785120951.182562  709158 threadpool.cc:75] ThreadPool 'execution_thread_pool': Shutdown complete.
+YARDSTICK_NATIVE_OK prefill_tokens=1024 prefill_tok_s=3881.32 decode_tokens=256 decode_tok_s=60.20 ttft_ms=280.4 init_s=1.74 context_tokens=2048 peak_mb=718 median_mb=663 median_resident_mb=693 samples=53 teardown_footprint_mb=102 harness=2026-07-27-agreed-protocol-r2
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x702468e760, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x702468e710, name=GPU Metal
+The app terminated with the exit code 0.

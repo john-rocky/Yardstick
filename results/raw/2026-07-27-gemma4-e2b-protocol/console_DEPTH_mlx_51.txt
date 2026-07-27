@@ -1,0 +1,24 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-4bit task=long-context-1024-gen256 runs=4 context_tokens=2048
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/4A7C3927-428D-44F6-B6A1-72D707C56A6B/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load complete in 3.17s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=43.65 decode_tok_s_wall=43.48 ttft_ms=1943 prefill_tok_s=577.4 prefill_tok_s_wall=569.8 prompt_tokens=1107 peak_mb=3393 median_mb=3393 median_resident_mb=1162 ctx=2048 tokens=256 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=44.75 decode_tok_s_wall=44.58 ttft_ms=342 prefill_tok_s=3295.7 prefill_tok_s_wall=3237.5 prompt_tokens=1107 peak_mb=3369 median_mb=3369 median_resident_mb=1151 ctx=2048 tokens=256 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=45.64 decode_tok_s_wall=45.46 ttft_ms=533 prefill_tok_s=2121.7 prefill_tok_s_wall=2076.0 prompt_tokens=1107 peak_mb=3369 median_mb=3369 median_resident_mb=1152 ctx=2048 tokens=256 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=45.52 decode_tok_s_wall=45.34 ttft_ms=373 prefill_tok_s=3073.4 prefill_tok_s_wall=2971.2 prompt_tokens=1107 peak_mb=3370 median_mb=3370 median_resident_mb=1152 ctx=2048 tokens=256 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

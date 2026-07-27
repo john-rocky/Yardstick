@@ -109,10 +109,17 @@ public actor MediaPipeRuntime: LLMRuntime {
         public let initTimeSeconds: Double
     }
 
+    /// - Parameter maxNumTokens: the engine's context (KV) budget. Passed **explicitly and
+    ///   without relying on a default** on purpose: `maxNumTokens` is a local patch to the
+    ///   vendored (and gitignored) LiteRT-LM Swift package, so re-vendoring the stock package
+    ///   must break the build here rather than silently reverting the context to the stock
+    ///   `max(prefill, decode) + 32` — 1056 at 1024x256, where the agreed protocol says 2048.
+    ///   See `ios/BenchmarkApp/Vendored-patches/README.md`.
     public func nativeBenchmark(
         _ model: ModelInfo,
         prefillTokens: Int,
-        decodeTokens: Int
+        decodeTokens: Int,
+        maxNumTokens: Int
     ) async throws -> NativeBenchmarkInfo {
         let snapshot = try await HFDownloader.snapshot(for: model, runtime: kind, progress: { _ in })
         let modelFile = try locateModelFile(in: snapshot, expected: model.primaryFile)
@@ -121,6 +128,7 @@ public actor MediaPipeRuntime: LLMRuntime {
             backend: .gpu,
             prefillTokens: prefillTokens,
             decodeTokens: decodeTokens,
+            maxNumTokens: maxNumTokens,
             cacheDir: NSTemporaryDirectory()
         )
         return NativeBenchmarkInfo(

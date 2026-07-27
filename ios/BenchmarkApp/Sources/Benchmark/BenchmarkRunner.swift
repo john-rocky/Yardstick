@@ -51,6 +51,17 @@ final class DownloadActivityScope {
 /// Orchestrates one benchmark run: load model (if needed), drive a task to completion,
 /// gather memory/thermal samples, and produce a `BenchmarkResult`.
 public actor BenchmarkRunner {
+    /// Measurement-contract stamp written into every result. Bump on any change to what a
+    /// recorded field means, so an inherited number can be told apart from a fresh one.
+    /// `2026-07-27-agreed-protocol-r2`: harness wall-clock rates, median/resident memory, and
+    /// a recorded + overridable context budget (`--context-tokens`) — the Gemma-4 spec agreed
+    /// with the LiteRT team. Cells before and after this stamp are not the same measurement.
+    /// `-r2` closes the decode window at the last observed chunk rather than at end-of-stream;
+    /// under `-r1` a draining runtime (LiteRT-LM past its token cap) read 15.8 tok/s on the
+    /// wall-clock column against 55.2 on the engine column. Only throwaway warm-up cells were
+    /// ever captured under `-r1`.
+    static let harnessStamp = "2026-07-27-agreed-protocol-r2"
+
     public enum Phase: Sendable {
         case idle
         case loadingModel(progress: Double)
@@ -70,12 +81,24 @@ public actor BenchmarkRunner {
         public var model: ModelInfo
         public var task: any BenchmarkTask
         public var coldRun: Bool
+        /// Force the runtime's context (KV) budget to exactly this many tokens instead of
+        /// deriving it from prompt + output. The LiteRT team's Gemma-4 protocol pins it at
+        /// 2048; memory cells are meaningless without it, since KV pre-allocation scales
+        /// with the budget. `nil` keeps the derived sizing.
+        public var contextTokens: Int?
 
-        public init(runtime: any LLMRuntime, model: ModelInfo, task: any BenchmarkTask, coldRun: Bool) {
+        public init(
+            runtime: any LLMRuntime,
+            model: ModelInfo,
+            task: any BenchmarkTask,
+            coldRun: Bool,
+            contextTokens: Int? = nil
+        ) {
             self.runtime = runtime
             self.model = model
             self.task = task
             self.coldRun = coldRun
+            self.contextTokens = contextTokens
         }
     }
 
@@ -105,18 +128,31 @@ public actor BenchmarkRunner {
         let baselineMB = MemoryMonitor.footprintMB()
         await thermalSampler.start()
 
+        // Size the runtime's working context to ≈ prompt + output (no-op for dynamic-KV
+        // runtimes). LiteRT-LM pre-allocates a fixed KV and rejects longer prompts, so
+        // long-context tasks must size it to the prompt. ~3 chars/token is a safe
+        // over-estimate (lorem-ish English); over-provisioning KV is harmless, under is fatal.
+        // `--context-tokens` overrides the estimate outright — the agreed protocol pins a
+        // fixed budget so memory is comparable with the model card, and silently widening it
+        // to fit a prompt would put us back off-protocol without saying so.
+        let promptTokenEstimate = configuration.task.prompt.count / 3 + 16
+        let derivedContextTokens =
+            promptTokenEstimate + configuration.task.parameters.maxTokens + 512
+        let contextTokens = configuration.contextTokens ?? derivedContextTokens
+        if let forced = configuration.contextTokens, forced < derivedContextTokens {
+            // Not fatal — a runtime may still fit, and forcing the budget is the point —
+            // but it has to be visible in the log, because the failure mode is an engine
+            // rejecting the prompt several minutes into a cell.
+            print("YARDSTICK_WARN context_tokens_forced=\(forced) below_estimate=\(derivedContextTokens)")
+            fflush(stdout)
+        }
+
         // 1. Load model (if not already loaded).
         var loadTime: Double?
         let currentLoaded = await configuration.runtime.loadedModelId
         if currentLoaded != configuration.model.id {
             emit(.loadingModel(progress: 0))
-            // Size the runtime's working context to ≈ prompt + output (no-op for dynamic-KV
-            // runtimes). LiteRT-LM pre-allocates a fixed KV and rejects longer prompts, so
-            // long-context tasks must size it to the prompt. ~3 chars/token is a safe
-            // over-estimate (lorem-ish English); over-provisioning KV is harmless, under is fatal.
-            let promptTokenEstimate = configuration.task.prompt.count / 3 + 16
-            await configuration.runtime.prepareContext(
-                maxContextTokens: promptTokenEstimate + configuration.task.parameters.maxTokens + 512)
+            await configuration.runtime.prepareContext(maxContextTokens: contextTokens)
             let loadStart = CFAbsoluteTimeGetCurrent()
             // Keep iOS from auto-locking + suspending the URLSession mid-download.
             let scope = await MainActor.run { DownloadActivityScope() }
@@ -144,6 +180,17 @@ public actor BenchmarkRunner {
         var promptTokens = 0        // runtime-reported prompt tokens, summed over calls
         var decodeTime = 0.0        // runtime-reported decode time, summed over calls
         var promptTime = 0.0        // runtime-reported prompt time, summed over calls
+        var wallPromptTime = 0.0    // harness wall-clock: call start -> first chunk
+        // Harness wall-clock decode window: FIRST chunk -> LAST chunk, and the number of
+        // inter-chunk gaps that span. Deliberately not "-> end of stream": MediaPipeRuntime
+        // keeps draining LiteRT-LM's stream after the token cap (abandoning it wedges the
+        // next in-process run for ~10 minutes), and that drain yields nothing but does hold
+        // the stream open — measured 2026-07-27, it dragged a 55.2 tok/s cell to 15.8 on the
+        // wall-clock column while the engine column was unaffected. Ending at the last
+        // observed chunk is both honest and uniform: every arm is timed over the span in
+        // which it actually delivered tokens, with no runtime cooperation required.
+        var wallDecodeTime = 0.0
+        var wallDecodeGaps = 0
         var lastStopReason: GenerationInfo.StopReason = .stop
         var sawInfo = false
         var capturedError: Error?
@@ -151,6 +198,13 @@ public actor BenchmarkRunner {
         let sustainSeconds = configuration.task.sustainSeconds
         repeat {
             let tokensBeforeCall = tokenCount
+            // Wall-clock for THIS call, measured by the harness for every runtime
+            // alike — the engine-reported rates below are not comparable across
+            // arms because only some engines expose their own counters.
+            let callStart = CFAbsoluteTimeGetCurrent()
+            var callFirstTokenAt: CFAbsoluteTime?
+            var callLastTokenAt: CFAbsoluteTime?
+            var callChunks = 0
             let stream = configuration.runtime.generate(
                 prompt: configuration.task.prompt,
                 parameters: configuration.task.parameters
@@ -162,6 +216,11 @@ public actor BenchmarkRunner {
                         if firstTokenAt == nil {
                             firstTokenAt = CFAbsoluteTimeGetCurrent()
                         }
+                        if callFirstTokenAt == nil {
+                            callFirstTokenAt = CFAbsoluteTimeGetCurrent()
+                        }
+                        callLastTokenAt = CFAbsoluteTimeGetCurrent()
+                        callChunks += 1
                         tokenCount += 1
                         // Cap the retained transcript — a 10-minute energy run
                         // would otherwise build a multi-MB string we never use
@@ -186,6 +245,13 @@ public actor BenchmarkRunner {
                 capturedError = error
             }
 
+            let callEnd = CFAbsoluteTimeGetCurrent()
+            wallPromptTime += (callFirstTokenAt ?? callEnd) - callStart
+            if let first = callFirstTokenAt, let last = callLastTokenAt, callChunks >= 2 {
+                wallDecodeTime += last - first
+                wallDecodeGaps += callChunks - 1     // n chunks span n-1 gaps
+            }
+
             // Sustain-loop exit conditions.
             if capturedError != nil { break }
             guard let sustain = sustainSeconds else { break }          // run-once tasks
@@ -203,6 +269,10 @@ public actor BenchmarkRunner {
         await memorySampler.stop()
         await thermalSampler.stop()
         let memoryPeakMB = await memorySampler.peakMB
+        let memoryPeakResident = await memorySampler.peakResidentMB
+        let memoryMedian = await memorySampler.medianMB
+        let memoryMedianResident = await memorySampler.medianResidentMB
+        let memoryFinalResident = await memorySampler.finalResidentMB
         let energy = await energyMonitor.snapshot()
 
         // Refresh battery fields to end-of-run: a launch-then-unplug energy run
@@ -234,6 +304,13 @@ public actor BenchmarkRunner {
         let decodeTokS = Double(genTokens) / effectiveDecodeTime
         let promptTokS = promptTime > 0 ? Double(promptTokens) / promptTime : 0
         let stopReason = (sawInfo ? lastStopReason : .stop).rawValue
+        // Both numerator and denominator are harness-observed: chunks the harness actually
+        // received, over the span it received them in. Mixing a runtime-reported token count
+        // with a harness-measured window would make this neither one thing nor the other.
+        let decodeTokSWall: Double? = (wallDecodeTime > 0 && wallDecodeGaps > 0)
+            ? Double(wallDecodeGaps) / wallDecodeTime : nil
+        let promptTokSWall: Double? = (wallPromptTime > 0 && promptTokens > 0)
+            ? Double(promptTokens) / wallPromptTime : nil
 
         // Energy figures only when a real (>0) battery delta was observed.
         let avgPowerW: Double? = {
@@ -252,6 +329,8 @@ public actor BenchmarkRunner {
             firstTokenLatencyMS: Int(firstTokenLatency.rounded()),
             promptTokensPerSecond: promptTokS,
             decodeTokensPerSecond: decodeTokS,
+            promptTokensPerSecondWallClock: promptTokSWall,
+            decodeTokensPerSecondWallClock: decodeTokSWall,
             promptTokenCount: promptTokens,
             generatedTokenCount: genTokens,
             streamedChunkCount: tokenCount,
@@ -262,6 +341,12 @@ public actor BenchmarkRunner {
             memoryAfterLoadMB: memoryAfterLoad,
             memoryPeakDuringDecodeMB: memoryPeakMB,
             memoryAfterGenerationMB: memoryAfterMB,
+            memoryPeakResidentMB: memoryPeakResident > 0 ? memoryPeakResident : nil,
+            memoryMedianMB: memoryMedian > 0 ? memoryMedian : nil,
+            memoryMedianResidentMB: memoryMedianResident > 0 ? memoryMedianResident : nil,
+            memoryFinalResidentMB: memoryFinalResident > 0 ? memoryFinalResident : nil,
+            contextTokensConfigured: contextTokens,
+            harnessStamp: Self.harnessStamp,
             initialThermalState: ThermalMonitor.describe(await thermalSampler.initialState),
             peakThermalState: ThermalMonitor.describe(await thermalSampler.peakState),
             finalThermalState: ThermalMonitor.describe(await thermalSampler.finalState),

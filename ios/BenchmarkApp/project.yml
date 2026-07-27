@@ -18,7 +18,13 @@ settings:
 packages:
   mlx-swift-lm:
     url: https://github.com/ml-explore/mlx-swift-lm
-    branch: main
+    # Pinned by revision, not `branch: main`. A floating branch is why this checkout and
+    # ~/code/apple-silicon-llm-bench ended up on different loaders (2026-06-09 vs 2026-07-16)
+    # and why Gemma-4-E2B loaded in one and not the other: only the July revision gives
+    # Gemma4Attention the `isKvSharedLayer` branch that skips kProj/vProj/kNorm on the 20
+    # KV-shared layers, which is what the shipped checkpoints expect. A benchmark harness
+    # cannot float its runtime dependency — the runtime IS the thing under measurement.
+    revision: 60bd0d7880c82980f9481f8be78862e9b63c58a3
   swift-huggingface:
     url: https://github.com/huggingface/swift-huggingface
     from: "0.8.1"

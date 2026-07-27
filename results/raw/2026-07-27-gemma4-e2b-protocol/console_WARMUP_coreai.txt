@@ -1,0 +1,7 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=short-chat runs=1 context_tokens=2048
+loc(fused<{call_stack = ["_empty_nn_module_stack_from_metadata_hook$1"], identifiers = ["sym_size_int_178"]}>["torch/fx/passes/runtime_assert.py":24:0, "coreai"("op_id":6068:0), "torch"("op_id":1782:0), "coreai"("op_id":6068:0)]): error: expected AICode versioned location, got: loc(fused<{call_stack = ["_empty_nn_module_stack_from_metadata_hook$1"], identifiers = ["sym_size_int_178"]}>["torch/fx/passes/runtime_assert.py":24:0, "coreai"("op_id":6068:0), "torch"("op_id":1782:0), "coreai"("op_id":6068:0)])
+loc(fused<{call_stack = ["_empty_nn_module_stack_from_metadata_hook$1"], identifiers = ["sym_size_int_178"]}>["torch/fx/passes/runtime_assert.py":24:0, "coreai"("op_id":6068:0), "torch"("op_id":1782:0), "coreai"("op_id":6068:0)]): error: Failed to convert to versioned IR
+LLVM ERROR: cannot unwrap empty `odiec_module_t`
+App terminated due to signal 6.

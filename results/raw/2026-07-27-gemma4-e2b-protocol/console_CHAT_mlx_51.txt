@@ -1,0 +1,20 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-4bit task=short-chat runs=4 context_tokens=2048
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/4A7C3927-428D-44F6-B6A1-72D707C56A6B/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load complete in 3.06s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=48.88 decode_tok_s_wall=48.50 ttft_ms=114 prefill_tok_s=223.5 prefill_tok_s_wall=183.5 prompt_tokens=21 peak_mb=3025 median_mb=3025 median_resident_mb=3186 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=48.46 decode_tok_s_wall=48.08 ttft_ms=75 prefill_tok_s=288.1 prefill_tok_s_wall=280.5 prompt_tokens=21 peak_mb=3026 median_mb=2995 median_resident_mb=2850 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=48.63 decode_tok_s_wall=48.25 ttft_ms=74 prefill_tok_s=289.6 prefill_tok_s_wall=284.8 prompt_tokens=21 peak_mb=2996 median_mb=2996 median_resident_mb=2825 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=48.32 decode_tok_s_wall=47.94 ttft_ms=72 prefill_tok_s=298.2 prefill_tok_s_wall=293.0 prompt_tokens=21 peak_mb=2996 median_mb=2996 median_resident_mb=2801 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.65,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "70905F68-E521-4E60-BE92-50457BD50B18",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+      38.337678412163505,
+      38.32344138661499
+    ],
+    "decodeTokensPerSecond" : 37.37596759023806,
+    "decodeTokensPerSecondWallClock" : 37.87580598710385,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1161,
+    "generatedTokenCount" : 256,
+    "harnessStamp" : "2026-07-27-agreed-protocol-r2",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 25.419950485229492,
+    "interTokenLatencyP95MS" : 29.05905246734619,
+    "interTokenLatencyP99MS" : 39.64996337890625,
+    "memoryAfterGenerationMB" : 238.76980590820312,
+    "memoryAfterLoadMB" : 238.19168090820312,
+    "memoryBaselineMB" : 238.19168090820312,
+    "memoryFinalResidentMB" : 3239.015625,
+    "memoryMedianMB" : 238.76980590820312,
+    "memoryMedianResidentMB" : 3239,
+    "memoryPeakDuringDecodeMB" : 238.78543090820312,
+    "memoryPeakResidentMB" : 3239.015625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1098,
+    "promptTokensPerSecond" : 1057.3736035766622,
+    "promptTokensPerSecondWallClock" : 945.5612756747834,
+    "stopReason" : "length",
+    "streamedChunkCount" : 256,
+    "totalGenerationTimeSeconds" : 7.894352078437805
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M"
+  },
+  "outputSample" : "\n\n1. **On-Device Image Recognition for real-time object identification.** This capability allows the phone to instantly identify objects in the camera feed without needing to upload the video data to ",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "long-context-1024-gen256",
+  "timestamp" : "2026-07-27T03:22:48Z"
+}

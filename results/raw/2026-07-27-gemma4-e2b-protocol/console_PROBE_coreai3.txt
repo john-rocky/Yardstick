@@ -1,0 +1,5 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=short-chat runs=1 context_tokens=2048
+CoreAIRuntime/NDArrayDescriptor.swift:139: Fatal error: Shape at dimension 1 of 8 is not a valid substitution for source shape 1
+App terminated due to signal 5.

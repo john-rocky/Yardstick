@@ -31,6 +31,13 @@ public enum BenchmarkTaskCatalog {
     public static let all: [any BenchmarkTask] = [
         ShortChatTask(),
         LongContextTask(id: "long-context-512", targetTokens: 512),     // context-length sweep within the 4096 ctx ceiling
+        LongContextTask(id: "long-context-1024", targetTokens: 1024, maxTokens: 256),  // p=1024/g=256, one-sentence tail (the 7/18 deep-context cells)
+        // Same p=1024 prefill, but the tail forces the model to fill the 256-token budget.
+        // This is the only cross-arm instrument for the deep-context column: LiteRT-LM's
+        // native benchmark() forces prefill without a prompt, and no other runtime has an
+        // equivalent entry point, so the four remaining arms can only be measured here.
+        LongContextTask(id: "long-context-1024-gen256", targetTokens: 1024, maxTokens: 256,
+                        forceLongOutput: true),
         LongContextTask(),                                              // ~2K
         LongContextTask(id: "long-context-3k", targetTokens: 3072),     // near the 4096 ctx ceiling (room for 128 decode)
         LongContextTask(id: "long-context-8k", targetTokens: 8192),

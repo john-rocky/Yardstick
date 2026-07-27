@@ -1,0 +1,13 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=short-chat runs=4 context_tokens=2048
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=47.22 decode_tok_s_wall=46.87 ttft_ms=488 prefill_tok_s=45.5 prefill_tok_s_wall=43.0 prompt_tokens=21 peak_mb=998 median_mb=686 median_resident_mb=2404 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=47.54 decode_tok_s_wall=47.17 ttft_ms=396 prefill_tok_s=54.2 prefill_tok_s_wall=53.1 prompt_tokens=21 peak_mb=1279 median_mb=827 median_resident_mb=2316 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=46.73 decode_tok_s_wall=46.37 ttft_ms=392 prefill_tok_s=54.6 prefill_tok_s_wall=53.5 prompt_tokens=21 peak_mb=1280 median_mb=873 median_resident_mb=2312 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=44.34 decode_tok_s_wall=43.99 ttft_ms=393 prefill_tok_s=54.5 prefill_tok_s_wall=53.4 prompt_tokens=21 peak_mb=1246 median_mb=756 median_resident_mb=2301 ctx=2048 tokens=128 harness=2026-07-27-agreed-protocol-r2
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

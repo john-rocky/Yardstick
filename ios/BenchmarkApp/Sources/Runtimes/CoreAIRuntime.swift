@@ -254,8 +254,18 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             if let e = tok.eosTokenId { eos.insert(Int32(e)) }
 
             // Trigger kernel compilation up front so it folds into load time.
+            // NOT for Gemma-4 PLE bundles: their decode graphs are S=1-only, and
+            // warmup(queryLength: 8) fatals inside the binary runtime
+            // ("NDArrayDescriptor.swift:139 ... dimension 1 of 8 is not a valid substitution
+            // for source shape 1") — a fatalError, so `try?` cannot catch it. This was the
+            // whole "EngineFactory wall": the engine loads fine, the warmup kills it.
+            // For S=1 graphs the first generate step is the warmup (GemmaPLEDeviceBench rule:
+            // never call engine.warmup on these). Root-caused in the other checkout 2026-07-18;
+            // reproduced here 2026-07-27 and ported.
             step = "warmup"
-            try? await engine.warmup(queryLength: 8, sampling: SamplingConfiguration(temperature: 0))
+            if !spec.folder.hasPrefix("gemma4_") {
+                try? await engine.warmup(queryLength: 8, sampling: SamplingConfiguration(temperature: 0))
+            }
 
             self.engine = engine
             self.tokenizer = tok
@@ -324,7 +334,8 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         var accumIds: [Int] = []
         var emitted = ""
 
-        let stream = try engine.generate(
+        // `InferenceEngine.generate` is `async throws` as of coreai-models bd8dcf7.
+        let stream = try await engine.generate(
             with: inputIds,
             samplingConfiguration: sampling,
             inferenceOptions: options

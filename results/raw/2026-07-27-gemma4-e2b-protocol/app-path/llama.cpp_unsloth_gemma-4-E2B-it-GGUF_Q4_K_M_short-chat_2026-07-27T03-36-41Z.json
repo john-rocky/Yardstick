@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.65,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "058126E7-DFBA-4A5F-B8CF-FB42A189A5E1",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 35.87221662887931,
+    "decodeTokensPerSecondWallClock" : 36.77909060723516,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 115,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-27-agreed-protocol-r2",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 27.79102325439453,
+    "interTokenLatencyP95MS" : 29.22499179840088,
+    "interTokenLatencyP99MS" : 29.409050941467285,
+    "loadTimeSeconds" : 0.70530104637146,
+    "memoryAfterGenerationMB" : 189.80107879638672,
+    "memoryAfterLoadMB" : 191.61355590820312,
+    "memoryBaselineMB" : 14.423606872558594,
+    "memoryFinalResidentMB" : 3193.890625,
+    "memoryMedianMB" : 195.89482879638672,
+    "memoryMedianResidentMB" : 3199.828125,
+    "memoryPeakDuringDecodeMB" : 217.41045379638672,
+    "memoryPeakResidentMB" : 3215.078125,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 12,
+    "promptTokensPerSecond" : 3085.6541703705975,
+    "promptTokensPerSecondWallClock" : 104.02034458065137,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.573278069496155
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M"
+  },
+  "outputSample" : "\n\n---\n\n### On-Device AI Explained Simply\n\nImagine you have a super-smart assistant, like Siri or Google Assistant, but instead of sending all your conversations to the cloud (the internet) to be proce",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-27T03:36:41Z"
+}

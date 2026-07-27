@@ -1,0 +1,18 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-4bit task=short-chat runs=1 context_tokens=2048
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load FAILED: Key language_model.model.layers.15.self_attn.k_norm.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.RMSNorm
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Key language_model.model.layers.15.self_attn.k_norm.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.RMSNorm
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

@@ -59,6 +59,14 @@ public struct Metrics: Codable, Sendable {
     public let firstTokenLatencyMS: Int
     public let promptTokensPerSecond: Double
     public let decodeTokensPerSecond: Double
+    /// End-to-end wall-clock rates measured by the harness itself, for every
+    /// runtime, on the same basis: prompt = call start -> first chunk,
+    /// decode = first chunk -> end of stream. `decodeTokensPerSecond` above
+    /// prefers the engine's own counters where a runtime exposes them
+    /// (LiteRT-LM, MLX), which excludes host-side detokenize/stream cost;
+    /// these two fields are the like-for-like column across all arms.
+    public let promptTokensPerSecondWallClock: Double?
+    public let decodeTokensPerSecondWallClock: Double?
     public let promptTokenCount: Int
     public let generatedTokenCount: Int
     /// Number of `.chunk` (decoded-text) events actually streamed during the
@@ -80,6 +88,27 @@ public struct Metrics: Codable, Sendable {
     public let memoryAfterLoadMB: Double?
     public let memoryPeakDuringDecodeMB: Double
     public let memoryAfterGenerationMB: Double
+    /// Peak `resident_size` over the same window as `memoryPeakDuringDecodeMB`.
+    /// Mapped-but-resident pages (mmap'd weights) land here and not in the
+    /// footprint, so the gap between the two is the mapped share.
+    public let memoryPeakResidentMB: Double?
+    /// Median of the sampled footprints / resident sizes over the same window, plus the
+    /// settled resident size at the end. Peak resident is page-cache noise (66-281%
+    /// run-to-run, measured 2026-07-26); rank on the medians.
+    public let memoryMedianMB: Double?
+    public let memoryMedianResidentMB: Double?
+    public let memoryFinalResidentMB: Double?
+    /// The context (KV) budget this run was actually given, i.e. the value handed to
+    /// `LLMRuntime.prepareContext`. Either the runner's prompt+output estimate or the
+    /// `--context-tokens` override. Recorded because it is not derivable from anything
+    /// else in the row, and a memory cell means nothing without it: the LiteRT card's
+    /// 1,450 MB is at 2048, our pre-2026-07-27 cells sat at ~660-1,849.
+    public let contextTokensConfigured: Int?
+    /// Which measurement contract produced this cell. Bump it whenever the semantics of
+    /// a recorded field change, so an inherited number can be told apart from a fresh one
+    /// — the 92 MB deep-context cell rode five revisions because nothing on it said which
+    /// harness it came from.
+    public let harnessStamp: String?
 
     public let initialThermalState: String
     public let peakThermalState: String
@@ -121,6 +150,8 @@ public struct Metrics: Codable, Sendable {
         firstTokenLatencyMS: Int,
         promptTokensPerSecond: Double,
         decodeTokensPerSecond: Double,
+        promptTokensPerSecondWallClock: Double? = nil,
+        decodeTokensPerSecondWallClock: Double? = nil,
         promptTokenCount: Int,
         generatedTokenCount: Int,
         streamedChunkCount: Int? = nil,
@@ -131,6 +162,12 @@ public struct Metrics: Codable, Sendable {
         memoryAfterLoadMB: Double?,
         memoryPeakDuringDecodeMB: Double,
         memoryAfterGenerationMB: Double,
+        memoryPeakResidentMB: Double? = nil,
+        memoryMedianMB: Double? = nil,
+        memoryMedianResidentMB: Double? = nil,
+        memoryFinalResidentMB: Double? = nil,
+        contextTokensConfigured: Int? = nil,
+        harnessStamp: String? = nil,
         initialThermalState: String,
         peakThermalState: String,
         finalThermalState: String,
@@ -151,6 +188,8 @@ public struct Metrics: Codable, Sendable {
         self.firstTokenLatencyMS = firstTokenLatencyMS
         self.promptTokensPerSecond = promptTokensPerSecond
         self.decodeTokensPerSecond = decodeTokensPerSecond
+        self.promptTokensPerSecondWallClock = promptTokensPerSecondWallClock
+        self.decodeTokensPerSecondWallClock = decodeTokensPerSecondWallClock
         self.promptTokenCount = promptTokenCount
         self.generatedTokenCount = generatedTokenCount
         self.streamedChunkCount = streamedChunkCount
@@ -161,6 +200,12 @@ public struct Metrics: Codable, Sendable {
         self.memoryAfterLoadMB = memoryAfterLoadMB
         self.memoryPeakDuringDecodeMB = memoryPeakDuringDecodeMB
         self.memoryAfterGenerationMB = memoryAfterGenerationMB
+        self.memoryPeakResidentMB = memoryPeakResidentMB
+        self.memoryMedianMB = memoryMedianMB
+        self.memoryMedianResidentMB = memoryMedianResidentMB
+        self.memoryFinalResidentMB = memoryFinalResidentMB
+        self.contextTokensConfigured = contextTokensConfigured
+        self.harnessStamp = harnessStamp
         self.initialThermalState = initialThermalState
         self.peakThermalState = peakThermalState
         self.finalThermalState = finalThermalState

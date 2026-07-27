@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.7,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "814C9962-B497-49B2-B8CF-CE483FC4AC03",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 75.41090028647113,
+    "decodeTokensPerSecondWallClock" : 50.6252745926373,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 5152,
+    "generatedTokenCount" : 3,
+    "harnessStamp" : "2026-07-27-agreed-protocol-r2",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 19.752979278564453,
+    "interTokenLatencyP95MS" : 19.752979278564453,
+    "interTokenLatencyP99MS" : 19.752979278564453,
+    "loadTimeSeconds" : 3.5973340272903442,
+    "memoryAfterGenerationMB" : 512.6598129272461,
+    "memoryAfterLoadMB" : 185.7223129272461,
+    "memoryBaselineMB" : 13.611106872558594,
+    "memoryFinalResidentMB" : 2386.703125,
+    "memoryMedianMB" : 194.7770004272461,
+    "memoryMedianResidentMB" : 2368.578125,
+    "memoryPeakDuringDecodeMB" : 506.3785629272461,
+    "memoryPeakResidentMB" : 2386.703125,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 11,
+    "promptTokensPerSecond" : 2.1356983951783763,
+    "promptTokensPerSecondWallClock" : 2.135238639844107,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 2,
+    "totalGenerationTimeSeconds" : 5.191130995750427
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/gemma4-e2b-gpu",
+    "onDiskSizeMB" : 2048,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "int4 q4_0 (QAT transplant)"
+  },
+  "outputSample" : "<turn|>\n",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-27T05:08:10Z"
+}

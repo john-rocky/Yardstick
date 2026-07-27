@@ -1,0 +1,6 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=short-chat runs=1 context_tokens=2048
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: [loadTokenizer] jsonSerialization(fileURL: file:///var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/Documents/CoreAIModels/gemma4_e2b_gpu/tokenizer/tokenizer.json, message: "JSON parsing failed for file:///var/mobile/Containers/Data/Application/E9A05C38-52D9-4F7C-A3F4-6ADF0891D8A5/Documents/CoreAIModels/gemma4_e2b_gpu/tokenizer/tokenizer.json: yyjson read failed (code 6) at position 0: unexpected character, expected a JSON value. If this is a private model, verify that HF_TOKEN is set.")
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

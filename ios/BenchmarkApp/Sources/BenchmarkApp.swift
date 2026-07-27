@@ -11,6 +11,23 @@ struct BenchmarkApp: App {
     @StateObject private var session = AppSession()
     private let autoRun = HeadlessAutoRun.specFromLaunchArgs()
 
+    init() {
+        // Gemma-4 PLE (S=1 decode graphs): the Core AI binary runtime reads
+        // COREAI_CHUNK_THRESHOLD at its first framework touch, so setting it inside
+        // `loadModel` (where CoreAIRuntime sets it) is too late — the engine has already
+        // chosen S=8 chunked prefill and the load dies with
+        //   NDArrayDescriptor.swift:139: Shape at dimension 1 of 8 is not a valid
+        //   substitution for source shape 1
+        // (reproduced on this device 2026-07-27). GemmaPLEDeviceBench sets it at app start
+        // for exactly this reason. Gated on a gemma4 core-ai headless launch so S=1 stepping
+        // never leaks into another model's prefill measurement.
+        let args = CommandLine.arguments.joined(separator: " ")
+        if args.contains("core-ai") && args.contains("gemma4"),
+           getenv("COREAI_CHUNK_THRESHOLD") == nil {
+            setenv("COREAI_CHUNK_THRESHOLD", "1", 1)
+        }
+    }
+
     var body: some Scene {
         WindowGroup {
             if let autoRun {
@@ -174,6 +191,11 @@ enum HeadlessAutoRun {
         /// runtimes (MLX) stay near their burst rate instead of being dragged into
         /// their long-context regime — a fairer comparison vs SWA runtimes (CoreML).
         var maxTokens: Int?
+        /// `--context-tokens <n>` forces the runtime's context (KV) budget to exactly `n`
+        /// instead of letting the runner derive it from prompt + output. The protocol agreed
+        /// with the LiteRT team pins Gemma-4 at 2048; without it our memory cells sat at
+        /// ~660-1,849 and were not comparable with the model card's 1,450 MB at 2048.
+        var contextTokens: Int?
         /// `--litert-native-benchmark <prefillTokens>x<decodeTokens>` bypasses the
         /// task/runner path and calls LiteRT-LM's own `benchmark` entry point, the
         /// analogue of Cactus's `cactus_benchmark_tokens`. litert-lm only.
@@ -204,13 +226,21 @@ enum HeadlessAutoRun {
         let runs = max(1, Int(value("--runs") ?? "1") ?? 1)
         let sustainSeconds = value("--sustain-seconds").flatMap(Double.init)
         let maxTokens = value("--max-tokens").flatMap(Int.init)
+        // A typo'd context budget must not silently fall back to the derived sizing —
+        // that is the exact failure the flag exists to close.
+        var contextTokens: Int?
+        if let raw = value("--context-tokens") {
+            guard let n = Int(raw), n > 0 else { fatal("bad --context-tokens '\(raw)'") }
+            contextTokens = n
+        }
         let native: (prefill: Int, decode: Int)? = value("--litert-native-benchmark").flatMap {
             let parts = $0.split(separator: "x")
             guard parts.count == 2, let p = Int(parts[0]), let d = Int(parts[1]) else { return nil }
             return (p, d)
         }
         return Spec(runtime: runtime, modelId: modelId, taskId: taskId, runs: runs,
-                    sustainSeconds: sustainSeconds, maxTokens: maxTokens, nativeBenchmark: native)
+                    sustainSeconds: sustainSeconds, maxTokens: maxTokens,
+                    contextTokens: contextTokens, nativeBenchmark: native)
     }
 }
 
@@ -269,7 +299,8 @@ struct HeadlessRunnerView: View {
             return
         }
         if let native = spec.nativeBenchmark {
-            await runNativeBenchmark(runtime: runtime, model: model, spec: native)
+            await runNativeBenchmark(runtime: runtime, model: model, spec: native,
+                                     contextTokensValue: spec.contextTokens)
             return
         }
         guard var task = BenchmarkTaskCatalog.task(for: spec.taskId) else {
@@ -290,24 +321,36 @@ struct HeadlessRunnerView: View {
         }
 
         let sustainNote = task.sustainSeconds.map { " sustain_s=\(Int($0))" } ?? ""
-        await log("YARDSTICK_BEGIN runtime=\(spec.runtime.rawValue) model=\(model.id) task=\(task.id) runs=\(spec.runs)\(sustainNote)")
+        let contextNote = spec.contextTokens.map { " context_tokens=\($0)" } ?? ""
+        await log("YARDSTICK_BEGIN runtime=\(spec.runtime.rawValue) model=\(model.id) task=\(task.id) runs=\(spec.runs)\(sustainNote)\(contextNote)")
         for i in 1...spec.runs {
             let runner = BenchmarkRunner()
             let cold = (await runtime.loadedModelId) != model.id
             do {
                 let result = try await runner.run(
-                    .init(runtime: runtime, model: model, task: task, coldRun: cold)
+                    .init(runtime: runtime, model: model, task: task, coldRun: cold,
+                          contextTokens: spec.contextTokens)
                 )
                 _ = try? await ResultStore.shared.save(result)
+                // The console transcript is the raw record a driver keeps, so it carries the
+                // fields a cell can't be audited without: the context it actually ran at, the
+                // harness wall-clock rates (the only cross-arm-comparable ones), and the median
+                // footprint/resident pair rather than the page-cache-noisy peaks.
                 await log(String(
-                    format: "YARDSTICK_RUN_OK run=%d cold=%d decode_tok_s=%.2f ttft_ms=%d prefill_tok_s=%.1f prompt_tokens=%d peak_mb=%.0f tokens=%d",
+                    format: "YARDSTICK_RUN_OK run=%d cold=%d decode_tok_s=%.2f decode_tok_s_wall=%.2f ttft_ms=%d prefill_tok_s=%.1f prefill_tok_s_wall=%.1f prompt_tokens=%d peak_mb=%.0f median_mb=%.0f median_resident_mb=%.0f ctx=%d tokens=%d harness=%@",
                     i, cold ? 1 : 0,
                     result.metrics.decodeTokensPerSecond,
+                    result.metrics.decodeTokensPerSecondWallClock ?? 0,
                     result.metrics.firstTokenLatencyMS,
                     result.metrics.promptTokensPerSecond,
+                    result.metrics.promptTokensPerSecondWallClock ?? 0,
                     result.metrics.promptTokenCount,
                     result.metrics.memoryPeakDuringDecodeMB,
-                    result.metrics.generatedTokenCount
+                    result.metrics.memoryMedianMB ?? 0,
+                    result.metrics.memoryMedianResidentMB ?? 0,
+                    result.metrics.contextTokensConfigured ?? 0,
+                    result.metrics.generatedTokenCount,
+                    result.metrics.harnessStamp ?? "?"
                 ))
                 // Energy is only present on a real, unplugged battery drop.
                 if let joules = result.metrics.energyJoules {
@@ -340,7 +383,8 @@ struct HeadlessRunnerView: View {
     /// is the only way to get a LiteRT prefill tok/s at a fixed prompt length: the
     /// streaming path leaves the counters unfinalized whenever output is capped.
     private func runNativeBenchmark(
-        runtime: any LLMRuntime, model: ModelInfo, spec: (prefill: Int, decode: Int)
+        runtime: any LLMRuntime, model: ModelInfo, spec: (prefill: Int, decode: Int),
+        contextTokensValue: Int?
     ) async {
         #if canImport(LiteRTLM)
         guard let litert = runtime as? MediaPipeRuntime else {
@@ -348,19 +392,42 @@ struct HeadlessRunnerView: View {
             await finish(5)
             return
         }
-        await log("YARDSTICK_BEGIN native_benchmark model=\(model.id) prefill=\(spec.prefill) decode=\(spec.decode)")
+        // The context length is an independent axis of the agreed protocol (2048 for Gemma-4),
+        // but LiteRT-LM's own `benchmark()` ties it to prefill: without --context-tokens this
+        // runs at max(prefill, decode) + 32 — 1056 at 1024x256. Both paths are allowed; only
+        // one is on-protocol, so the log says which was taken instead of leaving it implicit.
+        let contextTokens = contextTokensValue ?? (max(spec.prefill, spec.decode) + 32)
+        if contextTokensValue == nil {
+            await log("YARDSTICK_WARN native_benchmark context_tokens=\(contextTokens) (litert stock default; agreed protocol is 2048 for gemma-4 — pass --context-tokens)")
+        }
+        await log("YARDSTICK_BEGIN native_benchmark model=\(model.id) prefill=\(spec.prefill) decode=\(spec.decode) context_tokens=\(contextTokens)")
+
+        // Sample memory *during* the benchmark. The published 92 MB deep-context cell was a
+        // single footprint read taken after `benchmark()` returned and released the engine,
+        // which is not the same quantity as the in-run peaks it was tabulated against.
+        let sampler = MemorySampler()
+        await sampler.start()
         do {
             let info = try await litert.nativeBenchmark(
-                model, prefillTokens: spec.prefill, decodeTokens: spec.decode)
+                model, prefillTokens: spec.prefill, decodeTokens: spec.decode,
+                maxNumTokens: contextTokens)
+            await sampler.stop()
+            let peakMB = await sampler.peakMB
+            let medianMB = await sampler.medianMB
+            let medianResidentMB = await sampler.medianResidentMB
+            let samples = await sampler.sampleCount
             await log(String(
-                format: "YARDSTICK_NATIVE_OK prefill_tokens=%d prefill_tok_s=%.2f decode_tokens=%d decode_tok_s=%.2f ttft_ms=%.1f init_s=%.2f footprint_mb=%.0f",
+                format: "YARDSTICK_NATIVE_OK prefill_tokens=%d prefill_tok_s=%.2f decode_tokens=%d decode_tok_s=%.2f ttft_ms=%.1f init_s=%.2f context_tokens=%d peak_mb=%.0f median_mb=%.0f median_resident_mb=%.0f samples=%d teardown_footprint_mb=%.0f harness=%@",
                 info.prefillTokenCount, info.prefillTokensPerSecond,
                 info.decodeTokenCount, info.decodeTokensPerSecond,
                 info.timeToFirstTokenSeconds * 1000, info.initTimeSeconds,
-                MemoryMonitor.footprintMB()
+                contextTokens, peakMB, medianMB, medianResidentMB, samples,
+                MemoryMonitor.footprintMB(),
+                BenchmarkRunner.harnessStamp
             ))
             await finish(0)
         } catch {
+            await sampler.stop()
             await log("YARDSTICK_FATAL native_benchmark_failed \(error.localizedDescription)")
             await finish(6)
         }

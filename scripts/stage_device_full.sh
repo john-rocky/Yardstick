@@ -15,6 +15,11 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DEV="${DEV:-A6F3E849-1947-5202-9AD1-9C881CA58EEF}"
 APP="${APP:-com.example.CoreMLLLMChat}"
 B="$HOME/bench-staging"
+# WARNING (2026-07-27): this pin is for the JUNE mlx-swift-lm only. Once the checkout has
+# Gemma-4 KV sharing, 2c3e507 fails to load ("...layers.15.self_attn.v_proj.weight not found
+# in ...Linear" — an EXTRA key, not a missing one) and the 2026-07-06 re-upload
+# 238767527555cb75a05732a84dff5d6ba0dd6809 is the one that loads. See the revision note in
+# scripts/bench_gemma4_e2b_protocol_iphone.sh before staging E2B for MLX.
 E2B_OLD_REV="2c3e507453b4f218d05fe3cc97bea5c5a654257e"
 
 copy_to(){ xcrun devicectl device copy to --device "$DEV" --domain-type appDataContainer \
