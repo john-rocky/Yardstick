@@ -68,7 +68,7 @@ public actor MediaPipeRuntime: LLMRuntime {
             // The per-run output budget is enforced separately in `runGenerate`.
             let config = try EngineConfig(
                 modelPath: modelFile.path,
-                backend: .gpu,
+                backend: ProcessInfo.processInfo.arguments.contains("--litert-cpu") ? .cpu() : .gpu,
                 maxNumTokens: contextBudget,
                 cacheDir: NSTemporaryDirectory()
             )

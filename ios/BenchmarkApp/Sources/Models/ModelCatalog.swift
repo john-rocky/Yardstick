@@ -531,6 +531,29 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-07-29: LFM2.5 GPU candidates (litert-torch 0.9.2 export, odml.softmax
+        // composite stripped). First hybrid ShortConv graphs expected to run on the
+        // Metal GPU delegate — device gate for the GPU-enabled re-ship.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int4-gpu",
+            displayName: "LFM2.5-1.2B (.litertlm, int4 GPU 0.9.2)",
+            quantization: "INT4 (OCTAV blockwise-32, convs float, int8 embed)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int4-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int8-gpu",
+            displayName: "LFM2.5-1.2B (.litertlm, int8 GPU 0.9.2)",
+            quantization: "INT8 (export-time dynamic, convs included)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int8-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-06-26 supplementary: byte-matched int4 of the litert-community q8 DeepSeek, to measure the
         // int8-vs-delegate split (keep the official q8 row; this is the "LiteRT-could-do-int4" companion).
         ModelInfo(
