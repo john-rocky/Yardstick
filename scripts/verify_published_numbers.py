@@ -202,6 +202,11 @@ def field_kind(field: str) -> str:
         return "duration"
     if "percent" in f or "fraction" in f:
         return "fraction"
+    # Quality-report accuracies ("acc" from the GSM8K parity JSONs) are fractions; without
+    # this the '%' unit gate rejected every GSM8K cell in a document (found 2026-07-29 —
+    # the whole quality column read as untraceable while its reports sat indexed).
+    if f in ("acc", "accuracy", "ok"):
+        return "fraction"
     return "other"
 
 
