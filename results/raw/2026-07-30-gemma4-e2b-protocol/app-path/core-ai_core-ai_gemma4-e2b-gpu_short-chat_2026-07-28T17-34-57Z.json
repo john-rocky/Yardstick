@@ -1,0 +1,69 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "74CF336A-FF0C-4BB7-9D49-9F0BB3A7324A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.95698589263647,
+    "decodeTokensPerSecondWallClock" : 46.59057861619817,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 389,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 21.447062492370605,
+    "interTokenLatencyP95MS" : 23.177027702331543,
+    "interTokenLatencyP99MS" : 23.501038551330566,
+    "memoryAfterGenerationMB" : 741.4724044799805,
+    "memoryAfterLoadMB" : 740.0661544799805,
+    "memoryBaselineMB" : 740.0661544799805,
+    "memoryFinalResidentMB" : 2399.890625,
+    "memoryMedianMB" : 742.8942794799805,
+    "memoryMedianResidentMB" : 2399.609375,
+    "memoryPeakDuringDecodeMB" : 1245.9567794799805,
+    "memoryPeakResidentMB" : 2399.890625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 55.02437854208522,
+    "promptTokensPerSecondWallClock" : 53.999146611212744,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.1147730350494385
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/gemma4-e2b-gpu",
+    "onDiskSizeMB" : 2048,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "int4 q4_0 (QAT transplant)"
+  },
+  "outputSample" : "## What is \"On-Device AI\"? (Simplified Explanation)\n\nImagine you have a smart device (like a phone, a smart speaker, or a smart camera) that can learn and make decisions *without* constantly sending a",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-28T17:34:57Z"
+}

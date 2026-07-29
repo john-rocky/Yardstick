@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "9D6C2B2E-E43F-46C5-823D-353F77A1E563",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 36.059679349684295,
+    "decodeTokensPerSecondWallClock" : 35.77900246554818,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 97,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 27.873992919921875,
+    "interTokenLatencyP95MS" : 28.6409854888916,
+    "interTokenLatencyP99MS" : 28.835058212280273,
+    "memoryAfterGenerationMB" : 4673.380302429199,
+    "memoryAfterLoadMB" : 4673.333427429199,
+    "memoryBaselineMB" : 4673.333427429199,
+    "memoryFinalResidentMB" : 1305.90625,
+    "memoryMedianMB" : 4673.380302429199,
+    "memoryMedianResidentMB" : 1305.90625,
+    "memoryPeakDuringDecodeMB" : 4673.411552429199,
+    "memoryPeakResidentMB" : 1305.90625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 222.64138791326428,
+    "promptTokensPerSecondWallClock" : 215.59240289756102,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.65850293636322
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 (QAT, OptiQ)"
+  },
+  "modelRevision" : "b7a34a6d76bbebebe700ffe68b57c97a4e3c3622",
+  "outputSample" : "Imagine you have a smart device, like your smartphone, a smart speaker, or even a smart camera.\n\n**On-device AI** simply means that the \"brain\" or the \"intelligence\" of the AI lives **right on that de",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-28T10:01:40Z"
+}

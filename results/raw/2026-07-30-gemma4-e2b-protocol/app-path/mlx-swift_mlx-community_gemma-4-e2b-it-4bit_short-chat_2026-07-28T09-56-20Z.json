@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "C1E8DBF3-A56F-4559-ACEF-A80DCBB44D98",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 49.118741269777736,
+    "decodeTokensPerSecondWallClock" : 48.73591740495782,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 70,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 20.479917526245117,
+    "interTokenLatencyP95MS" : 20.91395854949951,
+    "interTokenLatencyP99MS" : 21.12400531768799,
+    "memoryAfterGenerationMB" : 3010.754135131836,
+    "memoryAfterLoadMB" : 3010.722885131836,
+    "memoryBaselineMB" : 3010.722885131836,
+    "memoryFinalResidentMB" : 1380.40625,
+    "memoryMedianMB" : 3010.754135131836,
+    "memoryMedianResidentMB" : 1380.359375,
+    "memoryPeakDuringDecodeMB" : 3010.785385131836,
+    "memoryPeakResidentMB" : 1380.40625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 306.60970787267814,
+    "promptTokensPerSecondWallClock" : 301.44229653674836,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.6829309463500977
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "modelRevision" : "238767527555cb75a05732a84dff5d6ba0dd6809",
+  "outputSample" : "Imagine a computer program that can \"think\" or learn right there on your device, like your smartphone, a smart speaker, or a camera. That's essentially **on-device AI**.\n\nHere's a breakdown using simp",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-28T09:56:20Z"
+}

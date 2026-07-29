@@ -1,0 +1,71 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "1A3F9E44-075C-48B7-91B0-EFA444578565",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 36.420543462796985,
+    "decodeTokensPerSecondWallClock" : 36.13747864991588,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 177,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 19.805073738098145,
+    "interTokenLatencyP95MS" : 22.0719575881958,
+    "interTokenLatencyP99MS" : 23.170948028564453,
+    "loadTimeSeconds" : 2.508328914642334,
+    "memoryAfterGenerationMB" : 620.4589309692383,
+    "memoryAfterLoadMB" : 936.4121932983398,
+    "memoryBaselineMB" : 14.579902648925781,
+    "memoryFinalResidentMB" : 944.625,
+    "memoryMedianMB" : 821.3184204101562,
+    "memoryMedianResidentMB" : 1144.421875,
+    "memoryPeakDuringDecodeMB" : 940.3185119628906,
+    "memoryPeakResidentMB" : 1262.0625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 112.82224854741354,
+    "promptTokensPerSecondWallClock" : 112.68687262188222,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.6931740045547485
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Cactus CQ4)",
+    "hfFilePatterns" : [
+      "config.json"
+    ],
+    "hfRepoId" : "Cactus-Compute\/gemma-4-E2B-it",
+    "id" : "Cactus-Compute\/gemma-4-E2B-it-cq4",
+    "onDiskSizeMB" : 3800,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-e2b-it-cq4",
+    "quantization" : "CQ4 (rotation+codebook PTQ, calibrated)"
+  },
+  "modelRevision" : "b305fe22361c50a28b8705e0d13349e5a93999b9",
+  "outputSample" : "Imagine a smartphone or a mobile device. **On-device AI** means that the AI processing happens *directly on the device itself*, rather than relying on a cloud server.\n\nHere's a breakdown:\n\n### Simple ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "cactus",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-28T17:23:07Z"
+}

@@ -35,7 +35,7 @@ go through it. <!-- derived: 61.1/59.4 -->
 
 ## Energy (defect 5 closed: one session, nominal start enforced, one 600 s window)
 
-n=1 per arm (battery budget; round 2 not captured — disclosed):
+n=1 per arm at this dir's date (round 2 captured 2026-07-29/30 — see `../2026-07-30-gemma4-e2b-protocol/README.md`, which also documents the 5%-step battery-gauge quantization that makes n=2 medians non-rankable on this instrument):
 
 | arm | J/tok | avg W | sustained tok/s | Δbatt |
 |---|--:|--:|--:|--:|
@@ -72,9 +72,9 @@ n=1 per arm (battery budget; round 2 not captured — disclosed):
   lost when the device left WiFi range mid-block (console and on-device store agree: 9 runs
   each). litert's anchor cell is n=8. Options: publish at n=6 disclosed, or re-run A2 whole
   in one sitting; do NOT top up cross-sitting.
-- **E is n=1 per arm** (was n=2 historically): round 2 was cut on battery budget after the
-  gate-cooling doubled the block's wall clock. All seven arms did land round 1 at nominal
-  in one session with one window.
+- **E round 1 is n=1 per arm** (this dir); round 2 landed 2026-07-29/30 (see the 07-30
+  README) completing n=2 — which is what exposed the 5%-step gauge quantization: the
+  cross-round pairs disagree ×~2 wherever the two deltas landed on different steps.
 - llama.cpp chat/depth were not re-run on iPhone (already n=10–12 on-protocol from
   2026-07-27; per the campaign doc, re-running buys nothing).
 - MLX arm lineage: `mlx-community/gemma-4-e2b-it-4bit` @ `2387675…` (July re-upload),
