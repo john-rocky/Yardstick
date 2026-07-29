@@ -57,16 +57,30 @@ closing them, and each one is larger than the deviation that led to it.
 | 5 | **`prepareContext` was implemented by exactly one runtime.** LiteRT-LM sized its KV from the task; **llama.cpp was pinned at `n_ctx = 4096`**; MLX is dynamic-KV. The published memory column therefore compared three arms at three different context budgets, in one column, without saying so. | **partly fixed**: llama.cpp now honours it. MLX allocates what it uses and has no budget to force — that has to be *disclosed*, not fixed. |
 | 6 | **The deep-context cells had no cross-arm instrument.** `benchmark()` forces prefill without a prompt and only LiteRT-LM has it, so it cannot produce the other four arms' cells at all. | **fixed**: `long-context-1024-gen256` runs every arm, LiteRT-LM included, on one instrument. The vendor `benchmark()` number is reported as its own row — card-comparable, not column-comparable. |
 
+| 7 | **The Mac CLI could not express the protocol at all.** `yardstick run` accepted only `--task/--runtime/--model/--output/--warm/--runs`: no `--context-tokens`, no `--litert-native-benchmark`, and not even the `--model-id` spelling the iOS driver uses. Every Mac cell therefore ran at whatever `prepareContext` derived from the prompt — deviation #2 above, fixed on iOS and left open here for months — and no Mac row could ever be card-comparable. | **fixed** 2026-07-28 (`-r3`): all three flags parsed, bad values rejected rather than defaulted, and the native path emits the same `YARDSTICK_NATIVE_OK` line the iPhone driver does so one importer handles both. |
+| 8 | **`--runs 4` measured a run it always discards.** The positional rule keeps runs 2–3, so a 4-run launch and a 3-run launch yield the same two usable runs — the 4th is captured, thrown away, and its heat carried into the next cell. | **fixed**: `RUNS` defaults to 3. This is not a cosmetic change: heat is the binding constraint on how many arms fit in a session, and this returns ~25% of it. |
+| 9 | **Two arms were not runnable in this checkout at all.** The MLX-OptiQ E2B catalog entry and the entire Cactus runtime existed only in `~/code/apple-silicon-llm-bench`. A previous handoff explicitly instructed *not* to port `CactusRuntime` — correct for a memory-only question, wrong for a table. This is why the published table has two MLX rows nine days apart. | **fixed** 2026-07-28: OptiQ catalog entry, `CactusRuntime` + vendored xcframework, `RuntimeKind.cactus`, factory case, and `stage-cactus` all ported. |
+
 Two consequences worth stating plainly:
 
 - **A vendor-`benchmark()` prefill number and a task-prompt prefill number are different
   measurements** and may not share a column. The first is what the model card quotes; the
   second is what the other arms can produce. `scripts/analyze_comparability.py` prints them
   separately for this reason.
-- **LiteRT-LM reports no prompt-token count on the app path** (`promptTokenCount == 0`,
-  measured n=16 on 2026-07-26). It is the only arm whose prefill *must* come from
-  `benchmark()`; for every other arm that entry point does not exist. There is no
-  configuration in which one instrument gives a prefill row for all five arms.
+- **(Superseded 2026-07-28.)** This section previously said LiteRT-LM reports no prompt-token
+  count on the app path and that "there is no configuration in which one instrument gives a
+  prefill row for all five arms". That was a fact about **our harness**, not about LiteRT-LM:
+  `MediaPipeRuntime` discarded the whole per-turn benchmark info whenever a run was capped,
+  and the deep-context task always caps. The prefill turn is recorded at prefill completion
+  (`TimePrefillTurnEnd` in the vendored runtime), so the counters are valid regardless of how
+  decode ends. The fix (keep prefill counters when capped; wall-clock fallback for decode
+  only) is proven on both platforms: capped runs report `promptTokenCount` 1106 on Mac and
+  iPhone (identical tokenizer count; iPhone capped-vs-EOS prefill rates agree within 3.5%,
+  probes of 2026-07-28). The old evidence — "`promptTokenCount == 0`, measured n=16 on
+  2026-07-26" — was itself an artifact of the same bug: all 16 of those runs were capped, so
+  the ≤-r2 harness discarded the counters in every one of them; it never observed an uncapped
+  app-path run. **One instrument now gives the cross-arm prefill row for every arm**;
+  the vendor-`benchmark()` row remains a separate, card-reconciliation-only measurement.
 
 ## Traps that have already cost a day each
 
@@ -136,7 +150,8 @@ arm; the seam only opens on EOS-terminated runs.
 ```
 
 `--runs 4` with run 1 discarded and the median of runs 2–4 is the warm convention (fairness
-rule 2). Both flags exist as of harness stamp `2026-07-27-agreed-protocol-r2`; a result whose
+rule 2). Both flags exist as of harness stamp `2026-07-27-agreed-protocol-r2`, and the Mac CLI
+gained them in `-r3` (2026-07-28); a result whose
 `harnessStamp` is older, or whose `contextTokensConfigured` is null, was captured before the
 protocol was implementable and is not comparable with the card.
 

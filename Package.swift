@@ -21,7 +21,17 @@ let package = Package(
         // Runtime SDKs — keep this list aligned with ios/BenchmarkApp/project.yml.
         // Phase 1 wires the MLX backend only; other runtimes are added in
         // follow-up commits once their Mac toolchain is verified.
-        .package(url: "https://github.com/ml-explore/mlx-swift-lm", branch: "main"),
+        // Pinned to the EXACT revision the iOS app resolved (xcworkspace Package.resolved),
+        // not `branch: "main"`: the two harnesses must share the model loader, and an
+        // unpinned branch let them drift — measured 2026-07-28, the Mac resolution
+        // (5b7e543) failed to load the same two checkpoints (PTQ per_layer_model_projection
+        // shape, OptiQ KV-shared k_norm) that the iOS resolution (60bd0d7) loads and that
+        // the 2026-07-27 iPhone cells were measured on. mlx-swift is pinned alongside it
+        // for the same reason.
+        .package(url: "https://github.com/ml-explore/mlx-swift-lm",
+                 revision: "60bd0d7880c82980f9481f8be78862e9b63c58a3"),
+        .package(url: "https://github.com/ml-explore/mlx-swift",
+                 revision: "0bb916c67f4b9e5c682cbe02a42c701c93ab5021"),
         .package(url: "https://github.com/huggingface/swift-huggingface", from: "0.8.1"),
         .package(url: "https://github.com/huggingface/swift-transformers", from: "1.0.0"),
         // LiteRT-LM ships a binary xcframework. SwiftPM rejects its

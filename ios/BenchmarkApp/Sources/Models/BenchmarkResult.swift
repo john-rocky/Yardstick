@@ -6,6 +6,13 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
     public let device: DeviceSnapshot
     public let runtime: String
     public let model: ModelInfo
+    /// The HF revision (commit hash) the model was actually resolved from, read out of the
+    /// on-device hub cache's `refs/main` at run time. Recorded because it is the one fact
+    /// that cannot be recovered later: the MLX E2B checkpoint question (2c3e507 vs 238767…,
+    /// two uploads under one repo id with different key sets) was unanswerable from stored
+    /// results precisely because nothing recorded it. `nil` for sideloaded bundles whose
+    /// identity is the file itself (LiteRT .litertlm, GGUF, Cactus CQ, Core AI .aimodelc).
+    public let modelRevision: String?
     public let task: String
     public let parameters: GenerationParameters
     public let metrics: Metrics
@@ -17,6 +24,7 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
         device: DeviceSnapshot,
         runtime: String,
         model: ModelInfo,
+        modelRevision: String? = nil,
         task: String,
         parameters: GenerationParameters,
         metrics: Metrics,
@@ -27,6 +35,7 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
         self.device = device
         self.runtime = runtime
         self.model = model
+        self.modelRevision = modelRevision
         self.task = task
         self.parameters = parameters
         self.metrics = metrics

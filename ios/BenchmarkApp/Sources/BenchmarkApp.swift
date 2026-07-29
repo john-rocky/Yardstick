@@ -134,6 +134,10 @@ final class AppSession: ObservableObject {
             // coreai-models Swift package is linked (iOS 27 build) it runs; when
             // it isn't, it returns an unavailable stub.
             return CoreAIRuntime()
+        case .cactus:
+            // CactusRuntime self-reports availability via canImport(cactus):
+            // vendored xcframework present -> runs; absent -> unavailable stub.
+            return CactusRuntime()
         }
     }
 }
@@ -318,6 +322,19 @@ struct HeadlessRunnerView: View {
                 sustainSeconds: spec.sustainSeconds ?? 600,
                 maxTokens: spec.maxTokens ?? 2048
             )
+            // Energy cells must not start throttled (agreed protocol: "not started
+            // throttled"). The 07-19 headline cells both began `fair` and read ~25%
+            // below their own nominal decode rate. Battery-temperature telemetry is a
+            // lagging long-window average, so the gate is the app's own thermal state
+            // at launch — the same field the result JSON records — and it runs BEFORE
+            // the model load spends 600 s of battery on an unrankable cell. The driver
+            // sees the sentinel + exit code, cools, and retries the cell.
+            let thermal = ProcessInfo.processInfo.thermalState
+            if thermal != .nominal {
+                await log("YARDSTICK_THERMAL_DEFER task=energy initial_thermal=\(ThermalMonitor.describe(thermal))")
+                await finish(7)
+                return
+            }
         }
 
         let sustainNote = task.sustainSeconds.map { " sustain_s=\(Int($0))" } ?? ""
@@ -337,7 +354,7 @@ struct HeadlessRunnerView: View {
                 // harness wall-clock rates (the only cross-arm-comparable ones), and the median
                 // footprint/resident pair rather than the page-cache-noisy peaks.
                 await log(String(
-                    format: "YARDSTICK_RUN_OK run=%d cold=%d decode_tok_s=%.2f decode_tok_s_wall=%.2f ttft_ms=%d prefill_tok_s=%.1f prefill_tok_s_wall=%.1f prompt_tokens=%d peak_mb=%.0f median_mb=%.0f median_resident_mb=%.0f ctx=%d tokens=%d harness=%@",
+                    format: "YARDSTICK_RUN_OK run=%d cold=%d decode_tok_s=%.2f decode_tok_s_wall=%.2f ttft_ms=%d prefill_tok_s=%.1f prefill_tok_s_wall=%.1f prompt_tokens=%d peak_mb=%.0f median_mb=%.0f median_resident_mb=%.0f ctx=%d tokens=%d thermal_initial=%@ thermal_final=%@ harness=%@",
                     i, cold ? 1 : 0,
                     result.metrics.decodeTokensPerSecond,
                     result.metrics.decodeTokensPerSecondWallClock ?? 0,
@@ -350,6 +367,8 @@ struct HeadlessRunnerView: View {
                     result.metrics.memoryMedianResidentMB ?? 0,
                     result.metrics.contextTokensConfigured ?? 0,
                     result.metrics.generatedTokenCount,
+                    result.metrics.initialThermalState,
+                    result.metrics.finalThermalState,
                     result.metrics.harnessStamp ?? "?"
                 ))
                 // Energy is only present on a real, unplugged battery drop.

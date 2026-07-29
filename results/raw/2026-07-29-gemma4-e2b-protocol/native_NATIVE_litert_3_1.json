@@ -1,0 +1,36 @@
+{
+  "device": {
+    "modelIdentifier": "iPhone18,1"
+  },
+  "metrics": {
+    "coldRun": null,
+    "contextTokensConfigured": 2048,
+    "decodeTokensPerSecond": 60.59,
+    "energyJoules": null,
+    "firstTokenLatencyMS": 279.3,
+    "generatedTokenCount": 256,
+    "harnessStamp": "2026-07-28-agreed-protocol-r3",
+    "initialThermalState": null,
+    "loadTimeSeconds": 1.73,
+    "memoryMedianMB": 664.0,
+    "memoryMedianResidentMB": 696.0,
+    "memoryPeakDuringDecodeMB": 721.0,
+    "memoryPostTeardownFootprintMB": 103.0,
+    "memorySampleCount": 52,
+    "peakThermalState": null,
+    "promptTokenCount": 1024,
+    "promptTokensPerSecond": 3896.8
+  },
+  "model": {
+    "id": "litert-community/gemma-4-E2B-it-litert-lm"
+  },
+  "outputSample": "",
+  "provenance": {
+    "entryPoint": "LiteRTLM.benchmark()",
+    "importedBy": "scripts/import_native_benchmark.py",
+    "note": "vendor force-prefill entry point; not comparable with task-prompt prefill",
+    "sourceFile": "/Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-29-gemma4-e2b-protocol/console_NATIVE_litert_3.txt"
+  },
+  "runtime": "litert-lm",
+  "task": "native-benchmark-1024x256"
+}

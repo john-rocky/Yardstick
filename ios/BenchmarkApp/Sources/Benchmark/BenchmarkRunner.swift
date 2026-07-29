@@ -60,7 +60,10 @@ public actor BenchmarkRunner {
     /// under `-r1` a draining runtime (LiteRT-LM past its token cap) read 15.8 tok/s on the
     /// wall-clock column against 55.2 on the engine column. Only throwaway warm-up cells were
     /// ever captured under `-r1`.
-    static let harnessStamp = "2026-07-27-agreed-protocol-r2"
+    // `public` because the Mac CLI is a separate module and stamps its own rows with it. The
+    // stamp exists so a result can say which harness produced it — a row that cannot carry it
+    // across the module boundary defeats the purpose.
+    public static let harnessStamp = "2026-07-28-agreed-protocol-r3"
 
     public enum Phase: Sendable {
         case idle
@@ -368,6 +371,7 @@ public actor BenchmarkRunner {
             device: device,
             runtime: configuration.runtime.kind.rawValue,
             model: configuration.model,
+            modelRevision: HFDownloader.resolvedRevision(hfRepoId: configuration.model.hfRepoId),
             task: configuration.task.id,
             parameters: configuration.task.parameters,
             metrics: metrics,

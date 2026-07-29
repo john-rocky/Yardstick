@@ -161,6 +161,20 @@ def main() -> int:
     parser.add_argument("--runtime", default="mlx-swift")
     parser.add_argument("--model", default=None)
     parser.add_argument(
+        "--context-tokens",
+        type=int,
+        default=None,
+        help="Forced context budget passed through to `yardstick run` — the agreed "
+        "protocol pins Gemma-4 at 2048. Without it the cell derives its context from "
+        "the prompt and records no contextTokensConfigured, so it is not card-comparable.",
+    )
+    parser.add_argument(
+        "--runs",
+        type=int,
+        default=None,
+        help="Passed through to `yardstick run --runs` (energy cells use 1).",
+    )
+    parser.add_argument(
         "--output",
         default=None,
         help="Output JSONL. Defaults to results/raw/<device>-<runtime>-<model>-<task>-energy.jsonl.",
@@ -213,6 +227,10 @@ def main() -> int:
     ]
     if args.model:
         yardstick_argv += ["--model", args.model]
+    if args.context_tokens:
+        yardstick_argv += ["--context-tokens", str(args.context_tokens)]
+    if args.runs:
+        yardstick_argv += ["--runs", str(args.runs)]
 
     power_log = tempfile.NamedTemporaryFile(
         prefix="yardstick-power-", suffix=".txt", delete=False

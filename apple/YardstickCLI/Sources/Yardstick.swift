@@ -68,6 +68,13 @@ struct YardstickApp {
         var outputPath: String? = nil
         var coldRun = true
         var runs = 1
+        // The agreed protocol has a context length as an independent axis (2048 for Gemma-4).
+        // Until 2026-07-28 this CLI had no way to express it, so every Mac cell ran at whatever
+        // `prepareContext` derived from the prompt — which is deviation #2 of
+        // methodology/agreed-protocol-gemma4.md, fixed on iOS months earlier and still open
+        // here. A Mac number captured without this flag is not comparable with an iPhone one.
+        var contextTokens: Int? = nil
+        var nativeBenchmark: (prefill: Int, decode: Int)? = nil
 
         var i = 0
         while i < argv.count {
@@ -77,8 +84,29 @@ struct YardstickApp {
                 taskID = argv.value(after: &i)
             case "--runtime":
                 runtimeID = argv.value(after: &i)
-            case "--model":
+            case "--model", "--model-id":
+                // `--model-id` is the spelling the iOS driver uses; accepting both keeps one
+                // protocol expressible by one set of flags on both devices.
                 modelID = argv.value(after: &i)
+            case "--context-tokens":
+                let raw = argv.value(after: &i)
+                guard let n = Int(raw), n > 0 else {
+                    FileHandle.standardError.write(Data("bad --context-tokens '\(raw)'\n".utf8))
+                    exit(2)
+                }
+                contextTokens = n
+            case "--litert-native-benchmark":
+                // `<prefill>x<decode>`, e.g. 1024x256 — LiteRT-LM's own force-prefill entry
+                // point, the method behind the HF model card numbers. No other runtime has it.
+                let raw = argv.value(after: &i)
+                let parts = raw.lowercased().split(separator: "x")
+                guard parts.count == 2, let p = Int(parts[0]), let d = Int(parts[1]),
+                      p > 0, d > 0 else {
+                    FileHandle.standardError.write(Data(
+                        "bad --litert-native-benchmark '\(raw)' — expected <prefill>x<decode>, e.g. 1024x256\n".utf8))
+                    exit(2)
+                }
+                nativeBenchmark = (p, d)
             case "--output":
                 outputPath = argv.value(after: &i)
             case "--warm":
@@ -96,6 +124,16 @@ struct YardstickApp {
         let task = try makeTask(id: taskID)
         let model = try resolveModel(idOrHF: modelID, runtime: runtime)
 
+        // The vendor-benchmark row runs instead of the task, not alongside it: it forces a
+        // prefill with no prompt, so there is no task to run. It is the only row that is
+        // card-comparable, and the only one no other runtime can produce.
+        if let native = nativeBenchmark {
+            try await runNativeBenchmark(runtime: runtime, runtimeID: runtimeID, model: model,
+                                         spec: native, contextTokens: contextTokens,
+                                         outputPath: outputPath)
+            return
+        }
+
         let runner = BenchmarkRunner()
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
@@ -111,7 +149,8 @@ struct YardstickApp {
                 runtime: runtime,
                 model: model,
                 task: task,
-                coldRun: runs > 1 ? (runIndex == 1) : coldRun
+                coldRun: runs > 1 ? (runIndex == 1) : coldRun,
+                contextTokens: contextTokens
             )
 
             FileHandle.standardError.write(Data(
@@ -137,6 +176,60 @@ struct YardstickApp {
                 "yardstick: run=\(runIndex) cold=\(runIndex == 1 && (runs > 1 || coldRun) ? 1 : 0) TTFT=\(m.firstTokenLatencyMS)ms decode=\(String(format: "%.2f", m.decodeTokensPerSecond))tok/s peakMB=\(Int(m.memoryPeakDuringDecodeMB))\n".utf8
             ))
         }
+    }
+
+    /// LiteRT-LM's own `benchmark()` entry point — force-prefill `prefill` tokens with no
+    /// prompt, then decode `decode`. This is the method behind the HF model card's numbers.
+    ///
+    /// `--context-tokens` is not optional in practice even though it is optional here: the
+    /// vendor helper hardcodes `maxNumTokens` to `max(prefill, decode) + 32` — 1056 at
+    /// 1024x256, not the 2048 the Gemma-4 protocol pins. Running without it produces a number
+    /// that looks on-protocol and is not, so the omission is warned about rather than defaulted
+    /// silently.
+    static func runNativeBenchmark(
+        runtime: any LLMRuntime, runtimeID: String, model: ModelInfo,
+        spec: (prefill: Int, decode: Int), contextTokens: Int?, outputPath: String?
+    ) async throws {
+        #if canImport(LiteRTLM)
+        guard let litert = runtime as? MediaPipeRuntime else {
+            throw CLIError.invalidArgument(
+                "--litert-native-benchmark requires --runtime litert-lm (got '\(runtimeID)') — no other runtime has this entry point")
+        }
+        let ctx = contextTokens ?? (max(spec.prefill, spec.decode) + 32)
+        if contextTokens == nil {
+            FileHandle.standardError.write(Data(
+                "yardstick: WARNING native benchmark context_tokens=\(ctx) (litert stock default; the agreed Gemma-4 protocol is 2048 — pass --context-tokens)\n".utf8))
+        }
+        FileHandle.standardError.write(Data(
+            "yardstick: native benchmark model=\(model.id) prefill=\(spec.prefill) decode=\(spec.decode) context_tokens=\(ctx)\n".utf8))
+
+        let info = try await litert.nativeBenchmark(
+            model, prefillTokens: spec.prefill, decodeTokens: spec.decode, maxNumTokens: ctx)
+
+        // Emitted in the same shape the iPhone driver's console lines carry, so
+        // scripts/import_native_benchmark.py can lift Mac and iPhone rows identically.
+        let line = String(
+            format: "YARDSTICK_NATIVE_OK prefill_tokens=%d prefill_tok_s=%.2f decode_tokens=%d decode_tok_s=%.2f ttft_ms=%.1f init_s=%.2f context_tokens=%d harness=%@",
+            info.prefillTokenCount, info.prefillTokensPerSecond,
+            info.decodeTokenCount, info.decodeTokensPerSecond,
+            info.timeToFirstTokenSeconds * 1000, info.initTimeSeconds, ctx,
+            BenchmarkRunner.harnessStamp)
+        print(line)
+        if let outputPath {
+            let handle: FileHandle
+            if !FileManager.default.fileExists(atPath: outputPath) {
+                FileManager.default.createFile(atPath: outputPath, contents: nil)
+            }
+            handle = try FileHandle(forWritingTo: URL(fileURLWithPath: outputPath))
+            try handle.seekToEnd()
+            try handle.write(contentsOf: Data((line + "\n").utf8))
+            try handle.close()
+            FileHandle.standardError.write(Data("yardstick: appended to \(outputPath)\n".utf8))
+        }
+        #else
+        throw CLIError.invalidArgument(
+            "--litert-native-benchmark unavailable: LiteRTLM is not linked into this build")
+        #endif
     }
 
     // MARK: - `yardstick list`

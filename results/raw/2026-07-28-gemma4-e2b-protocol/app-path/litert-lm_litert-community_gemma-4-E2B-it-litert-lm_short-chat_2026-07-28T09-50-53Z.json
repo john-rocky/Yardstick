@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.85,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "AC3B4A71-1D86-4856-9751-66E0FAC20CCF",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 56.741563317408406,
+    "decodeTokensPerSecondWallClock" : 56.299019580384254,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 784,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.247987747192383,
+    "interTokenLatencyP95MS" : 24.834036827087402,
+    "interTokenLatencyP99MS" : 26.04496479034424,
+    "loadTimeSeconds" : 1.1424709558486938,
+    "memoryAfterGenerationMB" : 495.12876892089844,
+    "memoryAfterLoadMB" : 449.34747314453125,
+    "memoryBaselineMB" : 14.470481872558594,
+    "memoryFinalResidentMB" : 677.265625,
+    "memoryMedianMB" : 495.17564392089844,
+    "memoryMedianResidentMB" : 660.25,
+    "memoryPeakDuringDecodeMB" : 553.5193710327148,
+    "memoryPeakResidentMB" : 677.265625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 67.85618560023886,
+    "promptTokensPerSecondWallClock" : 25.495146076629123,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 8.667304992675781
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "INT4 (QAT)"
+  },
+  "outputSample" : "Imagine you have a smart device, like your smartphone, a smart watch, or even a specialized camera.\n\n**On-device AI simply means that the \"brain\" or the intelligence that powers the AI is running *dir",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-28T09:50:53Z"
+}

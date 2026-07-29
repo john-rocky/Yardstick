@@ -139,6 +139,18 @@ public enum ModelCatalog {
             onDiskSizeMB: 1330,
             hfRepoId: "mlx-community/gemma-4-e2b-it-4bit"
         ),
+        // The MLX arm's quality build. It sits beside the PTQ entry above because the two are
+        // read against each other in every cross-runtime table, which only works if both can be
+        // captured in one session — the published table has one row at 2026-07-27 and the other
+        // at 07-19 precisely because this entry was missing from this checkout.
+        ModelInfo(
+            id: "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+            displayName: "Gemma 4 E2B (QAT 4-bit)",
+            quantization: "INT4 (QAT, OptiQ)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 1330,
+            hfRepoId: "mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit"
+        ),
 
         // --- Small — fits 16 GB Mac and iPhone Pro models ---
         ModelInfo(
@@ -1019,6 +1031,47 @@ public enum ModelCatalog {
         ModelInfo(id: "core-ai/gemma4-e4b-gpu", displayName: "Gemma 4 E4B (Core AI, GPU)", quantization: "int4 q4_0 (QAT)", parameterCountB: 4.0, onDiskSizeMB: 5300, hfRepoId: "mlboydaisuke/gemma-4-E4B-CoreAI"),
         // Gemma-4 E2B: mixedbit ffn-fused decode, weights transplanted from litert-community's QAT (iso-int4 with the LiteRT cell).
         ModelInfo(id: "core-ai/gemma4-e2b-gpu", displayName: "Gemma 4 E2B (Core AI, GPU)", quantization: "int4 q4_0 (QAT transplant)", parameterCountB: 2.0, onDiskSizeMB: 2048, hfRepoId: ""),
+    ]
+
+    /// Cactus (`cactus-compute/cactus`) — CQ bundles from `huggingface.co/Cactus-Compute`.
+    /// Each bundle is a zip of a directory (graph + manifest + `config.txt`); the CLI's
+    /// default fetch for `google/gemma-4-E2B-it` is the **CQ4** bundle, so that is the
+    /// deployable-default row. The zips are not per-file downloadable through the HF
+    /// snapshot API in a useful way, so provisioning is sideload-first: unzip the bundle
+    /// and push the directory to `Documents/models/cactus/<repo>/<bundle-dir>/`
+    /// (`HFDownloader.snapshot` short-circuits on a non-empty dir).
+    public static let cactus: [ModelInfo] = [
+        // The bundle their own `cactus benchmark`/`cactus run` downloads by default
+        // (bits=4). Since 2026-07-09 this file is the "locally-built calibrated CQ4
+        // (GPTQ language, FP16 towers)" (their commit title); 07-17 added a
+        // cloud-handoff probe (probe-only change vs those graphs). CQ = Hadamard
+        // rotation + per-group codebook PTQ.
+        ModelInfo(
+            id: "Cactus-Compute/gemma-4-E2B-it-cq4",
+            displayName: "Gemma 4 E2B (Cactus CQ4)",
+            quantization: "CQ4 (rotation+codebook PTQ, calibrated)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 3800,
+            hfRepoId: "Cactus-Compute/gemma-4-E2B-it",
+            hfFilePatterns: ["config.json"],
+            primaryFile: "gemma-4-e2b-it-cq4"
+        ),
+        // The pre-2026-07-09 CQ4 bundle (renamed `-uncalibrated` when the "calibrated"
+        // build replaced it as the default). Same repo, same engine, same format —
+        // but it RETAINS multi-step reasoning where the shipped default does not
+        // (GSM8K n=100 one-harness: uncalibrated 87.0% vs calibrated-default 3.0%,
+        // measured 2026-07-20). Not CLI-fetchable (`-cq<bits>$` filename rule), so
+        // provisioning is manual download + sideload; loads via plain `cactus_init`.
+        ModelInfo(
+            id: "Cactus-Compute/gemma-4-E2B-it-cq4-uncalibrated",
+            displayName: "Gemma 4 E2B (Cactus CQ4, uncalibrated)",
+            quantization: "CQ4 (rotation+codebook PTQ, uncalibrated pre-07-09 build)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 3800,
+            hfRepoId: "Cactus-Compute/gemma-4-E2B-it",
+            hfFilePatterns: ["config.json"],
+            primaryFile: "gemma-4-e2b-it-cq4-uncalibrated"
+        ),
     ]
 
     /// Default model picked when the app first launches.

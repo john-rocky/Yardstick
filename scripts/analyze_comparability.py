@@ -50,19 +50,59 @@ def load(root: Path, since: str | None = None, harness: str | None = None):
     `-r1` measured the decode window through the LiteRT stream drain). Filter on the stamp
     when the mixed-harness banner fires."""
     out = []
-    for p in sorted(root.rglob("*.json")):
+    # Both layouts: the iOS pull is one *.json per run; the Mac CLI writes one *.jsonl per
+    # cell with a row per run. The analyzer read only the former until 2026-07-28, which is
+    # one of the reasons no Mac capture was ever comparability-checked.
+    def rows_of(p: Path):
+        text = p.read_text()
+        if p.suffix == ".jsonl":
+            return [line for line in text.splitlines() if line.strip()]
+        return [text]
+
+    for p in sorted(list(root.rglob("*.json")) + list(root.rglob("*.jsonl"))):
         try:
-            o = json.loads(p.read_text())
+            candidates = rows_of(p)
         except Exception:
             continue
-        if not (isinstance(o, dict) and "metrics" in o):
-            continue
-        if since and (o.get("timestamp") or "") < since:
-            continue
-        if harness and o["metrics"].get("harnessStamp") != harness:
-            continue
-        out.append(o)
+        for line in candidates:
+            try:
+                o = json.loads(line)
+            except Exception:
+                continue
+            if not (isinstance(o, dict) and "metrics" in o):
+                continue
+            if since and (o.get("timestamp") or "") < since:
+                continue
+            if harness and o["metrics"].get("harnessStamp") != harness:
+                continue
+            out.append(o)
     return out
+
+
+def annotate_arms(rows):
+    """Set `_arm` on every row: the runtime name, plus a model disambiguator whenever one
+    runtime carries more than one model in the set. Keying cells on (runtime, task) alone
+    pooled MLX-PTQ and MLX-OptiQ into one `mlx-swift` cell (caught 2026-07-28: the pooled
+    memory row read 18-22% MAD because it mixed a ~3 GB and a ~4.5 GB model, and OptiQ's
+    cells were misread as the thermal tail of MLX launches)."""
+    import os
+    tails = defaultdict(set)
+    for o in rows:
+        mid = ((o.get("model") or {}).get("id")) or "?"
+        o["_mtail"] = mid.rsplit("/", 1)[-1]
+        tails[o.get("runtime", "?")].add(o["_mtail"])
+    for o in rows:
+        rt = o.get("runtime", "?")
+        ts = tails[rt]
+        if len(ts) > 1:
+            pre = os.path.commonprefix(sorted(ts))
+            o["_arm"] = f"{rt}·{o['_mtail'][len(pre):] or o['_mtail']}"
+        else:
+            o["_arm"] = rt
+
+
+def arm_of(o):
+    return o.get("_arm") or o.get("runtime", "?")
 
 
 # Runs inside one `--runs N` launch land seconds apart; launches are separated by the driver's
@@ -87,7 +127,7 @@ def group_launches(rows):
 
     by_cell = defaultdict(list)
     for o in rows:
-        by_cell[(o.get("runtime"), o.get("task"))].append(o)
+        by_cell[(arm_of(o), o.get("task"))].append(o)
 
     for cell_rows in by_cell.values():
         dated = [o for o in cell_rows if ts(o)]
@@ -164,6 +204,7 @@ def main(root: Path, all_thermal: bool, since: str | None, harness: str | None =
     if not rows:
         print(f"no result JSON under {root}")
         return
+    annotate_arms(rows)
     group_launches(rows)
 
     # "not nominal" and "never recorded" are different claims, and only one of them is a
@@ -218,7 +259,7 @@ def main(root: Path, all_thermal: bool, since: str | None, harness: str | None =
     degenerate = []
     for o in rows:
         m = o["metrics"]
-        key = (o.get("runtime", "?"), o.get("task", "?"))
+        key = (arm_of(o), o.get("task", "?"))
         mem[key].append(m)
         # Gate on the PEAK, not just the initial, state. Gating on `initialThermalState` alone
         # passes a run that began nominal and throttled partway through — which is exactly the
@@ -235,7 +276,7 @@ def main(root: Path, all_thermal: bool, since: str | None, harness: str | None =
         budget = ((o.get("parameters") or {}).get("maxTokens")) or 0
         produced = m.get("generatedTokenCount") or 0
         if budget and produced < budget // 4:
-            degenerate.append((o.get("runtime"), o.get("task"), produced, budget))
+            degenerate.append((arm_of(o), o.get("task"), produced, budget))
             if not all_thermal:
                 continue
 
@@ -257,7 +298,7 @@ def main(root: Path, all_thermal: bool, since: str | None, harness: str | None =
         i = o.get("_run_index")
         d = o["metrics"].get("decodeTokensPerSecond")
         if i and d:
-            pos[(o.get("runtime"), o.get("task"))][i].append(d)
+            pos[(arm_of(o), o.get("task"))][i].append(d)
     if any(len(v) > 1 for v in pos.values()):
         print("=" * 104)
         print("RUN POSITION WITHIN LAUNCH — why the warm median drops run 1 and the run-4 tail")
@@ -318,13 +359,13 @@ def main(root: Path, all_thermal: bool, since: str | None, harness: str | None =
           "card; llama.cpp maps the GGUF). A negative one means compressed pages the resident\n"
           "size does not see. Neither column ranks both kinds of runtime fairly on its own.\n")
 
-    lit = [m for (rt, task), ms in mem.items() if rt == "litert-lm" for m in ms]
+    lit = [m for (rt, task), ms in mem.items() if rt.startswith("litert-lm") for m in ms]
     if lit:
         print("=" * 104)
         print("CARD RECONCILIATION — LiteRT-LM footprint vs context budget")
         print("=" * 104)
         for (rt, task), ms in sorted(mem.items()):
-            if rt != "litert-lm":
+            if not rt.startswith("litert-lm"):
                 continue
             f = stat([m.get("memoryMedianMB") or m.get("memoryPeakDuringDecodeMB") for m in ms])
             p = stat([m.get("promptTokenCount") for m in ms])

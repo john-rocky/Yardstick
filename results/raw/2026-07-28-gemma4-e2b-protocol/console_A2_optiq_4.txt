@@ -1,0 +1,8 @@
+ERROR: The device is not able to fulfill the requested usage assertion requirements. (com.apple.dt.CoreDeviceError error 4016 (0xFB0))
+       CurrentlyAssertableStates = (
+       )
+       RequestedDeviceStates = (
+           "com.apple.coredevice.remoteServiceDiscoveryTrustedConnectivityAvailable",
+           "com.apple.coredevice.coreDeviceServicesLoaded",
+           "com.apple.coredevice.powerAssertionTaken"
+       )

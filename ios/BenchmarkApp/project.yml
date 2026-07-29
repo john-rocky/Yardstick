@@ -125,6 +125,14 @@ targets:
         embed: true
         codeSign: true
         optional: true
+      # Cactus engine (cactus-compute/cactus) — static-lib xcframework built from
+      # source by scripts/bootstrap.sh (`bash apple/build.sh` in the clone). The
+      # framework bundles cactus_engine.h + modulemap, so `import cactus` works;
+      # CactusRuntime is canImport-guarded and stubs out when this is absent.
+      - framework: Vendored/cactus-ios.xcframework
+        embed: true
+        codeSign: true
+        optional: true
 
   yardstick:
     type: tool
@@ -157,7 +165,9 @@ targets:
         # Tool targets can't embed frameworks the way .app bundles do; point
         # the runtime linker at the xcframework's macOS slice so the
         # `llama.framework` dylib resolves without `DYLD_FRAMEWORK_PATH`.
-        LD_RUNPATH_SEARCH_PATHS: "$(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64"
+        # `@executable_path` resolves libCLiteRTLM_mac.dylib, which the build copies
+        # into the Products dir beside the binary (dyld abort without it, 2026-07-28).
+        LD_RUNPATH_SEARCH_PATHS: "@executable_path $(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64"
     dependencies:
       - package: mlx-swift-lm
         product: MLXLLM
@@ -169,18 +179,11 @@ targets:
         product: Transformers
       - package: CoreML-LLM
         product: CoreMLLLM
-      - package: executorch
-        product: executorch
-      - package: executorch
-        product: executorch_llm
-      - package: executorch
-        product: backend_xnnpack
-      - package: executorch
-        product: kernels_llm
-      - package: executorch
-        product: kernels_optimized
-      - package: executorch
-        product: kernels_quantized
+      # ExecuTorch dropped (2026-07-28): its xcframework and another binary xcframework both
+      # emit `include/module.modulemap` into the shared Products dir and xcodebuild rejects
+      # the collision ("Multiple commands produce module.modulemap") — the same conflict the
+      # iOS target documents above. ExecuTorch is not an arm in any Mac campaign;
+      # ExecuTorchRuntime falls back to its canImport stub.
       - package: Anemll
         product: AnemllCore
       - package: LiteRT-LM
@@ -189,6 +192,10 @@ targets:
         embed: false
         codeSign: false
         optional: true
+      # No cactus dependency here: cactus-ios.xcframework ships iOS slices only, and
+      # `optional: true` does not make xcodebuild tolerate a missing-platform slice — it
+      # fails the whole macOS build ("no library for this platform", 2026-07-28). The Mac
+      # campaign has no cactus arm and CactusRuntime.swift is not in this target's sources.
 
 # Shared scheme so `xcodebuild -scheme BenchmarkApp` works headlessly (the device
 # bench scripts and Core AI capture drive it via -scheme). Without this block

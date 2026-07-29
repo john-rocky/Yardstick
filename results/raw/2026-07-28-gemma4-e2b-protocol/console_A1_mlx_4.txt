@@ -1,0 +1,21 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-4bit task=long-context-1024-gen256 runs=3 context_tokens=2048
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+[MLX] load starting: mlx-community/gemma-4-e2b-it-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 0% (0/3583086498 bytes)
+[MLX] download progress: 100% (3583086498/3583086498 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/7FC1062A-EFC8-45A8-A454-D174FB1A1730/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-4bit/snapshots/238767527555cb75a05732a84dff5d6ba0dd6809
+[MLX] load complete in 2.22s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=47.67 decode_tok_s_wall=47.48 ttft_ms=383 prefill_tok_s=3106.9 prefill_tok_s_wall=2889.9 prompt_tokens=1107 peak_mb=3412 median_mb=3412 median_resident_mb=3188 ctx=2048 tokens=256 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=47.51 decode_tok_s_wall=47.33 ttft_ms=349 prefill_tok_s=3296.8 prefill_tok_s_wall=3171.0 prompt_tokens=1107 peak_mb=3370 median_mb=3370 median_resident_mb=3161 ctx=2048 tokens=256 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=5.0 joules=2970.0 avg_w=517.02 j_per_tok=11.6016 window_s=6 tokens=256
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2523
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=47.31 decode_tok_s_wall=47.13 ttft_ms=351 prefill_tok_s=3264.8 prefill_tok_s_wall=3155.8 prompt_tokens=1107 peak_mb=3370 median_mb=3370 median_resident_mb=3162 ctx=2048 tokens=256 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

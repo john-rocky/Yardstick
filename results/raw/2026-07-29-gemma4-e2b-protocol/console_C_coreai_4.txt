@@ -1,0 +1,11 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=short-chat runs=3 context_tokens=2048
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=47.25 decode_tok_s_wall=46.88 ttft_ms=473 prefill_tok_s=46.6 prefill_tok_s_wall=44.4 prompt_tokens=21 peak_mb=1014 median_mb=699 median_resident_mb=2418 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=47.43 decode_tok_s_wall=47.06 ttft_ms=396 prefill_tok_s=53.9 prefill_tok_s_wall=53.0 prompt_tokens=21 peak_mb=1275 median_mb=779 median_resident_mb=2411 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=47.17 decode_tok_s_wall=46.80 ttft_ms=388 prefill_tok_s=55.1 prefill_tok_s_wall=54.1 prompt_tokens=21 peak_mb=1247 median_mb=799 median_resident_mb=2397 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

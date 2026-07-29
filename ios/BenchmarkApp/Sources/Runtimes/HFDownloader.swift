@@ -43,6 +43,31 @@ public enum HFDownloader {
         }
     }
 
+    /// The HF revision (commit hash) `hfRepoId` currently resolves to on this device,
+    /// read from the hub cache's `refs/main` — the same file `stage` pins on a sideload.
+    /// Best-effort: `nil` when the model did not come through a hub cache (sideloaded
+    /// .litertlm / GGUF / CQ / .aimodelc bundles, whose identity is the file itself).
+    public static func resolvedRevision(hfRepoId: String) -> String? {
+        let cacheName = "models--" + hfRepoId.replacingOccurrences(of: "/", with: "--")
+        let bases = [
+            FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?
+                .appendingPathComponent("huggingface/hub", isDirectory: true),
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?
+                .appendingPathComponent("huggingface/hub", isDirectory: true),
+            // The Mac CLI's hub cache (python-hf layout) — iOS sandboxing never sees $HOME.
+            FileManager.default.homeDirectoryForCurrentUser
+                .appendingPathComponent(".cache/huggingface/hub", isDirectory: true),
+        ]
+        for base in bases {
+            guard let ref = base?.appendingPathComponent("\(cacheName)/refs/main") else { continue }
+            if let rev = try? String(contentsOf: ref, encoding: .utf8) {
+                let trimmed = rev.trimmingCharacters(in: .whitespacesAndNewlines)
+                if !trimmed.isEmpty { return trimmed }
+            }
+        }
+        return nil
+    }
+
     public static func modelDirectory(runtime: RuntimeKind, hfRepoId: String) -> URL {
         let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return docs

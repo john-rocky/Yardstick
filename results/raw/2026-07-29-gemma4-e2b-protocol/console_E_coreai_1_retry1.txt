@@ -1,0 +1,5 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/gemma4-e2b-gpu task=energy runs=1 sustain_s=600 context_tokens=2048
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2693
+App terminated due to signal 9.

@@ -1,0 +1,9 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=cactus model=Cactus-Compute/gemma-4-E2B-it-cq4 task=energy runs=1 sustain_s=600 context_tokens=2048
+YARDSTICK_WARN context_tokens_forced=2048 below_estimate=2693
+error in connection_block_invoke_2: Connection invalid
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=30.27 decode_tok_s_wall=30.27 ttft_ms=181 prefill_tok_s=263.2 prefill_tok_s_wall=263.0 prompt_tokens=2325 peak_mb=853 median_mb=741 median_resident_mb=1067 ctx=2048 tokens=18123 thermal_initial=nominal thermal_final=serious harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=5.0 joules=2970.0 avg_w=4.89 j_per_tok=0.1639 window_s=608 tokens=18123
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

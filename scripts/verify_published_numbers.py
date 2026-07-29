@@ -36,7 +36,7 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-Source = namedtuple("Source", "value file field runtime task")
+Source = namedtuple("Source", "value file field runtime task model")
 
 # Every numeric metric is indexed, not a hand-picked list. The first cut of this script
 # carried a curated METRIC_FIELDS tuple and omitted `energyJoulesPerTokenDecode` — so it
@@ -87,6 +87,23 @@ RUNTIME_HINTS = {
     "core ai": "core-ai", "coreai": "core-ai", "cactus": "cactus",
 }
 
+# Model context, checked the same way as runtime context. The 2026-07-27 audit traced
+# Gemma-4's prefill 2,307 to a Phi-4-mini TTFT: the runtime preference alone cannot catch a
+# same-runtime different-model coincidence, and unitless table cells give the unit gate
+# nothing to work with. Both doc line and stored model id are normalised (lowercase, no
+# separators) before matching, because the same model is written 'Gemma-4-E2B',
+# 'gemma-4-e2b-it-4bit' and 'gemma4-e2b-gpu' across the corpus.
+MODEL_HINTS = {
+    "gemma4": "gemma4", "e2b": "e2b", "e4b": "e4b", "gemma3": "gemma3",
+    "phi4": "phi4", "deepseek": "deepseek", "tinyswallow": "tinyswallow",
+    "vibethinker": "vibethinker", "qwen3": "qwen3", "0.6b": "0.6b", "1.7b": "1.7b",
+    "llama3": "llama3", "ministral": "ministral",
+}
+
+
+def norm_model(s: str) -> str:
+    return s.lower().replace("-", "").replace("_", "").replace(" ", "")
+
 
 def index_results(roots: list[Path]) -> list[Source]:
     out: list[Source] = []
@@ -117,13 +134,15 @@ def index_results(roots: list[Path]) -> list[Source]:
                     rt = next((v for k, v in RUNTIME_HINTS.items() if k in tag), tag)
                     for k in ("acc", "correct", "n", "ok"):
                         if isinstance(o.get(k), (int, float)):
-                            out.append(Source(float(o[k]), p.name, k, rt, "quality"))
+                            out.append(Source(float(o[k]), p.name, k, rt, "quality", tag))
                     continue
                 rt = o.get("runtime", "?")
                 task = o.get("task", "?")
+                model = o.get("model")
+                model_id = model.get("id", "?") if isinstance(model, dict) else str(model or "?")
                 for field, v in numeric_items(m):
                     if v and field not in SKIP_KEYS:
-                        out.append(Source(v, p.name, field, rt, task))
+                        out.append(Source(v, p.name, field, rt, task, model_id))
     return out
 
 
@@ -198,12 +217,16 @@ def unit_allows(unit: str | None, field: str) -> bool:
 
 
 def trace(value: float, unit: str | None, srcs: list[Source], tol: float, context: str = ""):
-    """Closest match within tolerance. A source whose runtime is named in the same line wins
-    over an equally-close one that is not: a bare value match is easy to get by coincidence
-    across four months of captures, and quoting the right number from the wrong arm is the
-    error this whole exercise is about."""
+    """Closest match within tolerance. A source whose runtime AND model are named in the
+    same line wins over an equally-close one that is not, and a best match that contradicts
+    either named context is reported as a mismatch rather than an `ok`: a bare value match
+    is easy to get by coincidence across four months of captures, and quoting the right
+    number from the wrong arm — or the right arm's other model — is the error this whole
+    exercise is about (the 2,307 -> Phi-4-mini TTFT trace of 2026-07-27)."""
     ctx = context.lower()
+    nctx = norm_model(ctx)
     wanted = {rt for k, rt in RUNTIME_HINTS.items() if k in ctx}
+    mwanted = {tok for k, tok in MODEL_HINTS.items() if norm_model(k) in nctx}
     best = None
     for cand in candidates(value, unit):
         for s in srcs:
@@ -216,12 +239,16 @@ def trace(value: float, unit: str | None, srcs: list[Source], tol: float, contex
             rel = abs(s.value - cand) / abs(s.value)
             if rel > tol:
                 continue
-            score = (0 if (wanted and s.runtime in wanted) else 1, rel)
+            nmodel = norm_model(s.model)
+            score = (0 if (wanted and s.runtime in wanted) else 1,
+                     0 if (mwanted and any(t in nmodel for t in mwanted)) else 1,
+                     rel)
             if best is None or score < best[0]:
                 best = (score, s)
     if best is None:
         return None, False
-    return best[1], bool(wanted) and best[0][0] == 1
+    mismatched = (bool(wanted) and best[0][0] == 1) or (bool(mwanted) and best[0][1] == 1)
+    return best[1], mismatched
 
 
 def main() -> int:
@@ -268,11 +295,12 @@ def main() -> int:
                 if hit and not wrong_arm:
                     if not args.quiet_traced:
                         print(f"  ok    L{lineno:<4} {label:<14} -> {hit.field} "
-                              f"({hit.runtime}/{hit.task}) {hit.file}")
+                              f"({hit.runtime}/{hit.task}/{hit.model}) {hit.file}")
                 elif hit and wrong_arm:
                     failures += 1
                     print(f"  ARM?  L{lineno:<4} {label:<14} only matches {hit.runtime}/"
-                          f"{hit.task} ({hit.file}) — the line names a different runtime")
+                          f"{hit.task}/{hit.model} ({hit.file}) — the line names a "
+                          f"different runtime or model")
                 else:
                     failures += 1
                     ctx = line.strip()[:88]

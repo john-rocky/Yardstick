@@ -92,8 +92,9 @@ public actor MediaPipeRuntime: LLMRuntime {
     /// `prefillTokens` and decodes `decodeTokens` and reports the engine's internal
     /// counters. This is the direct analogue of Cactus's `cactus_benchmark_tokens`,
     /// so the two engines can be compared on their own instruments rather than
-    /// through this app's streaming path — which cannot report a prompt token count
-    /// when generation is capped before EOS (see `runGenerate`).
+    /// through this app's streaming path. It is a card-reconciliation instrument
+    /// (a forced prefill with no prompt), not a cross-runtime one — the cross-arm
+    /// prefill row comes from the task path in `runGenerate`.
     ///
     /// Stands apart from `loadModel`: `benchmark` builds its own `Engine`, so call it
     /// on a runtime with no model loaded.
@@ -205,10 +206,11 @@ public actor MediaPipeRuntime: LLMRuntime {
             }
             // Cap output at the task's token budget so LiteRT-LM is measured over the
             // SAME number of generated tokens as every other runtime (fairness rule 1:
-            // same maxTokens). 0.12/0.13's streaming API has no per-call cap and its
-            // `getBenchmarkInfo` finalizes only on a natural EOS finish, so at the cap
-            // we fall back to chunk-count + wall-clock (the CoreML-style measure) —
-            // see the `capped` branch below.
+            // same maxTokens). 0.12/0.13's streaming API has no per-call cap, so at the
+            // cap the DECODE measure falls back to chunk-count + wall-clock (the
+            // CoreML-style measure) — the engine's own decode turn runs on to the
+            // context bound and covers more tokens than the cap. Prefill counters stay
+            // valid either way; see the `bench` block below.
             // (`conversation.cancel()` is NOT used here: it surfaces as a thrown
             // `CANCELLED` stream error and fails the run. Pure draining is enough —
             // the engine stops at its context bound within a few seconds.)
@@ -223,18 +225,26 @@ public actor MediaPipeRuntime: LLMRuntime {
         let wallGenerate = max(end - (firstTokenAt ?? prefillStart), 0.001)
 
         // Prefer LiteRT-LM's own per-turn counters: real tokenizer token counts
-        // and tok/s for both prefill and decode. We back-derive promptTime /
-        // generateTime so GenerationInfo's computed tok/s == LiteRT's reported
-        // rates exactly. Fall back to chunk-count + wall-clock if the benchmark
-        // info is unavailable (e.g. flag not honored on this build).
-        // Capped mid-turn → LiteRT-LM's per-turn counters aren't finalized; use the
-        // chunk-count + wall-clock fallback. Only an EOS finish yields exact counters.
-        let bench = capped ? nil : (try? conversation.getBenchmarkInfo())
-        let decodeTokens = (bench.map { $0.lastDecodeTokenCount } ?? 0) > 0
-            ? bench!.lastDecodeTokenCount : tokenCount
+        // and tok/s. We back-derive promptTime / generateTime so GenerationInfo's
+        // computed tok/s == LiteRT's reported rates exactly. Fall back to
+        // chunk-count + wall-clock if the benchmark info is unavailable (e.g. flag
+        // not honored on this build).
+        //
+        // Prefill and decode are NOT symmetric under a cap. The prefill turn is
+        // recorded at prefill completion — runtime/core/tasks.cc calls
+        // TimePrefillTurnEnd() right after executor.Prefill() returns, before decode
+        // starts — so where decode is later stopped cannot change it; the counters
+        // are valid for every run. Decode's turn, by contrast, only reflects OUR
+        // measurement window on a natural EOS finish: a capped run drains to the
+        // engine's context bound, so its decode turn covers more tokens than the
+        // cap. Capped → decode falls back to chunk-count + wall-clock.
+        let bench = try? conversation.getBenchmarkInfo()
+        let decodeBench = capped ? nil : bench
+        let decodeTokens = (decodeBench.map { $0.lastDecodeTokenCount } ?? 0) > 0
+            ? decodeBench!.lastDecodeTokenCount : tokenCount
         let promptTokens = bench?.lastPrefillTokenCount ?? 0
         let generateTime: TimeInterval = {
-            if let b = bench, b.lastDecodeTokensPerSecond > 0, b.lastDecodeTokenCount > 0 {
+            if let b = decodeBench, b.lastDecodeTokensPerSecond > 0, b.lastDecodeTokenCount > 0 {
                 return Double(b.lastDecodeTokenCount) / b.lastDecodeTokensPerSecond
             }
             return wallGenerate

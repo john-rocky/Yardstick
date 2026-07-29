@@ -1,0 +1,11 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=cactus model=Cactus-Compute/gemma-4-E2B-it-cq4 task=short-chat runs=3 context_tokens=2048
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=36.33 decode_tok_s_wall=36.04 ttft_ms=184 prefill_tok_s=109.3 prefill_tok_s_wall=108.9 prompt_tokens=20 peak_mb=941 median_mb=622 median_resident_mb=945 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=50.06 decode_tok_s_wall=49.67 ttft_ms=193 prefill_tok_s=103.5 prefill_tok_s_wall=103.4 prompt_tokens=20 peak_mb=627 median_mb=627 median_resident_mb=951 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=50.02 decode_tok_s_wall=49.63 ttft_ms=189 prefill_tok_s=105.8 prefill_tok_s_wall=105.6 prompt_tokens=20 peak_mb=632 median_mb=632 median_resident_mb=956 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-28-agreed-protocol-r3
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

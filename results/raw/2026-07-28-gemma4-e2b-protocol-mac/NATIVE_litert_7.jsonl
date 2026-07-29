@@ -1,0 +1,1 @@
+YARDSTICK_NATIVE_OK prefill_tokens=1024 prefill_tok_s=8192.79 decode_tokens=256 decode_tok_s=155.23 ttft_ms=131.4 init_s=1.01 context_tokens=2048 harness=2026-07-28-agreed-protocol-r3

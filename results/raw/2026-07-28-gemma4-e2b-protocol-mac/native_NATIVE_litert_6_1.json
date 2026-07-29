@@ -1,0 +1,36 @@
+{
+  "device": {
+    "modelIdentifier": "Mac16,9"
+  },
+  "metrics": {
+    "coldRun": null,
+    "contextTokensConfigured": 2048,
+    "decodeTokensPerSecond": 152.79,
+    "energyJoules": null,
+    "firstTokenLatencyMS": 131.6,
+    "generatedTokenCount": 256,
+    "harnessStamp": "2026-07-28-agreed-protocol-r3",
+    "initialThermalState": null,
+    "loadTimeSeconds": 1.02,
+    "memoryMedianMB": null,
+    "memoryMedianResidentMB": null,
+    "memoryPeakDuringDecodeMB": null,
+    "memoryPostTeardownFootprintMB": null,
+    "memorySampleCount": null,
+    "peakThermalState": null,
+    "promptTokenCount": 1024,
+    "promptTokensPerSecond": 8187.22
+  },
+  "model": {
+    "id": "litert-community/gemma-4-E2B-it-litert-lm"
+  },
+  "outputSample": "",
+  "provenance": {
+    "entryPoint": "LiteRTLM.benchmark()",
+    "importedBy": "scripts/import_native_benchmark.py",
+    "note": "vendor force-prefill entry point; not comparable with task-prompt prefill",
+    "sourceFile": "results/raw/2026-07-28-gemma4-e2b-protocol-mac/NATIVE_litert_6.jsonl"
+  },
+  "runtime": "litert-lm",
+  "task": "native-benchmark-1024x256"
+}

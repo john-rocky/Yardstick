@@ -1,0 +1,72 @@
+{
+  "device" : {
+    "batteryLevel" : 0.85,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "8263C54B-0802-4453-8216-D8A677AADE3D",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+      34.7398346793432,
+      34.59894435901395,
+      34.49253675217721
+    ],
+    "decodeTokensPerSecond" : 34.72955197356245,
+    "decodeTokensPerSecondWallClock" : 34.594536968005876,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 425,
+    "generatedTokenCount" : 256,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 28.75697612762451,
+    "interTokenLatencyP95MS" : 29.749035835266113,
+    "interTokenLatencyP99MS" : 30.740976333618164,
+    "memoryAfterGenerationMB" : 5027.47412109375,
+    "memoryAfterLoadMB" : 5027.442848205566,
+    "memoryBaselineMB" : 5027.442848205566,
+    "memoryFinalResidentMB" : 4087,
+    "memoryMedianMB" : 5027.50537109375,
+    "memoryMedianResidentMB" : 4086.984375,
+    "memoryPeakDuringDecodeMB" : 5027.67724609375,
+    "memoryPeakResidentMB" : 4087,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1107,
+    "promptTokensPerSecond" : 2662.64469728445,
+    "promptTokensPerSecondWallClock" : 2601.694472702516,
+    "stopReason" : "length",
+    "streamedChunkCount" : 256,
+    "totalGenerationTimeSeconds" : 7.808247923851013
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 (QAT, OptiQ)"
+  },
+  "modelRevision" : "b7a34a6d76bbebebe700ffe68b57c97a4e3c3622",
+  "outputSample" : "Here are 25 distinct things an on-device AI can do on a phone that a cloud model cannot, based on the general capabilities of modern mobile AI:\n\n1. **Real-time, private voice transcription:** On-devic",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "long-context-1024-gen256",
+  "timestamp" : "2026-07-28T08:43:25Z"
+}

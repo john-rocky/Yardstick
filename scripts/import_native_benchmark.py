@@ -82,15 +82,18 @@ def parse(path: Path):
         }
 
 
-def to_result(rec, source: Path, device_id: str):
+def to_result(rec, source: Path, device_id: str, model_id: str | None):
     f, num = rec["fields"], rec["num"]
     prefill = num("prefill_tokens", int) or rec["prefill_cfg"]
     decode = num("decode_tokens", int) or rec["decode_cfg"]
-    task = f"native-benchmark-{rec['prefill_cfg']}x{rec['decode_cfg']}"
+    # The Mac CLI's `--output` for native mode carries only the NATIVE_OK line — no
+    # YARDSTICK_BEGIN — so the configured sizes fall back to the measured ones (they are
+    # equal whenever the run completed) rather than yielding `native-benchmark-NonexNone`.
+    task = f"native-benchmark-{rec['prefill_cfg'] or prefill}x{rec['decode_cfg'] or decode}"
     return {
         "runtime": "litert-lm",
         "task": task,
-        "model": {"id": rec["model"]},
+        "model": {"id": rec["model"] or model_id},
         "device": {"modelIdentifier": device_id},
         "outputSample": "",
         # Provenance is part of the record, not a comment: this row was lifted from a console
@@ -130,7 +133,15 @@ def to_result(rec, source: Path, device_id: str):
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("logs", nargs="+", type=Path)
-    ap.add_argument("--device", default="iPhone18,1")
+    # Required, no default. The old `default="iPhone18,1"` stamped a Mac capture as an
+    # iPhone the first time this script met Mac logs (2026-07-28) — a silently wrong
+    # device label is the exact class of corruption the audit tooling exists to catch.
+    ap.add_argument("--device", required=True,
+                    help="device model identifier to stamp, e.g. iPhone18,1 or the Mac's "
+                         "`sysctl -n hw.model`")
+    ap.add_argument("--model-id", default=None,
+                    help="model id to stamp when the log has no YARDSTICK_BEGIN line "
+                         "(the Mac CLI's --output carries only the NATIVE_OK line)")
     ap.add_argument("--out", type=Path, default=None,
                     help="output dir (default: alongside each console log)")
     args = ap.parse_args()
@@ -141,7 +152,7 @@ def main() -> int:
             print(f"warn: no such file: {log}", file=sys.stderr)
             continue
         for i, rec in enumerate(parse(log), 1):
-            result = to_result(rec, log, args.device)
+            result = to_result(rec, log, args.device, args.model_id)
             outdir = args.out or log.parent
             outdir.mkdir(parents=True, exist_ok=True)
             stem = log.stem.replace("console_", "")

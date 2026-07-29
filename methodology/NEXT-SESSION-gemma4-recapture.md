@@ -1,4 +1,6 @@
 > **SUPERSEDED 2026-07-27 — kept for provenance, do not act on it.**
+> Current handoff (work from this): `methodology/NEXT-SESSION-fairness-recapture.md`
+> Spec and reasoning: `methodology/CAMPAIGN-gemma4-e2b-full-recapture.md`
 > The re-capture it describes was carried out; results and method are in
 > `results/raw/2026-07-27-gemma4-e2b-protocol/README.md` and
 > `methodology/agreed-protocol-gemma4.md`.

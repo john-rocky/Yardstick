@@ -1,0 +1,6 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=cactus model=Cactus-Compute/gemma-4-E2B-it-cq4 task=short-chat runs=1 context_tokens=2048
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: No Cactus bundle (config.txt) under /var/mobile/Containers/Data/Application/7FC1062A-EFC8-45A8-A454-D174FB1A1730/Library/Caches/huggingface/hub/models--Cactus-Compute--gemma-4-E2B-it/snapshots/b305fe22361c50a28b8705e0d13349e5a93999b9. Sideload the unzipped CQ bundle (e.g. gemma-4-e2b-it-cq4/) into this directory.
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

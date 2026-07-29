@@ -1,0 +1,71 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "2E03E97B-30E8-41D0-B2A1-0E6868DBCE46",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "contextTokensConfigured" : 2048,
+    "decodeRateRollingWindow" : [
+      47.466016437265104
+    ],
+    "decodeTokensPerSecond" : 47.64649585254896,
+    "decodeTokensPerSecondWallClock" : 47.460642087997975,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 376,
+    "generatedTokenCount" : 256,
+    "harnessStamp" : "2026-07-28-agreed-protocol-r3",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 21.033048629760742,
+    "interTokenLatencyP95MS" : 21.52705192565918,
+    "interTokenLatencyP99MS" : 21.799087524414062,
+    "loadTimeSeconds" : 2.0601329803466797,
+    "memoryAfterGenerationMB" : 3398.2073974609375,
+    "memoryAfterLoadMB" : 2980.629135131836,
+    "memoryBaselineMB" : 14.642402648925781,
+    "memoryFinalResidentMB" : 3172.546875,
+    "memoryMedianMB" : 3398.2777099609375,
+    "memoryMedianResidentMB" : 3172.5703125,
+    "memoryPeakDuringDecodeMB" : 3398.3636474609375,
+    "memoryPeakResidentMB" : 3172.6875,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1107,
+    "promptTokensPerSecond" : 3147.560878438359,
+    "promptTokensPerSecondWallClock" : 2946.8841938709484,
+    "stopReason" : "length",
+    "streamedChunkCount" : 256,
+    "totalGenerationTimeSeconds" : 5.756075978279114
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "Q4"
+  },
+  "modelRevision" : "238767527555cb75a05732a84dff5d6ba0dd6809",
+  "outputSample" : "The provided text is placeholder \"Lorem Ipsum\" text and does not contain any functional information about a specific device or AI capabilities. Therefore, I cannot derive 25 distinct, factual capabili",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "long-context-1024-gen256",
+  "timestamp" : "2026-07-28T07:58:08Z"
+}
