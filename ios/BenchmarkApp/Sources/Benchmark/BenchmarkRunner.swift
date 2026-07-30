@@ -60,10 +60,16 @@ public actor BenchmarkRunner {
     /// under `-r1` a draining runtime (LiteRT-LM past its token cap) read 15.8 tok/s on the
     /// wall-clock column against 55.2 on the engine column. Only throwaway warm-up cells were
     /// ever captured under `-r1`.
+    /// `-r3` (2026-07-28): LiteRT prefill counters kept on capped runs (the fix defect 1 of the
+    /// fairness campaign rests on); thermal fields on the console line; modelRevision recorded.
+    /// `-r4` (2026-07-30): energy moves to the battery-TICK-WINDOW basis — J/tok measured
+    /// between 5%-step level transitions, not from start/end deltas (which iOS 27's gauge
+    /// quantizes so coarsely that identical runs read ×2 apart — see EnergyMonitor). Energy
+    /// cells from r3 and r4 are not the same measurement.
     // `public` because the Mac CLI is a separate module and stamps its own rows with it. The
     // stamp exists so a result can say which harness produced it — a row that cannot carry it
     // across the module boundary defeats the purpose.
-    public static let harnessStamp = "2026-07-28-agreed-protocol-r3"
+    public static let harnessStamp = "2026-07-30-agreed-protocol-r4"
 
     public enum Phase: Sendable {
         case idle
@@ -171,9 +177,9 @@ public actor BenchmarkRunner {
         await energyMonitor.start()
 
         // 2. Run generation, accumulating chunks and timing. For sustained /
-        //    energy tasks the runtime is re-prompted until `sustainSeconds` of
-        //    active decode elapses, so a 1%-resolution battery delta can build
-        //    up. Run-once tasks (sustainSeconds == nil) execute the body once.
+        //    energy tasks the runtime is re-prompted until the battery tick
+        //    window completes (two 5%-step transitions) or `sustainSeconds`
+        //    elapses. Run-once tasks (sustainSeconds == nil) execute once.
         let generationStart = CFAbsoluteTimeGetCurrent()
         var firstTokenAt: CFAbsoluteTime?
         var tokenWindow: [(t: CFAbsoluteTime, n: Int)] = []
@@ -259,6 +265,11 @@ public actor BenchmarkRunner {
             if capturedError != nil { break }
             guard let sustain = sustainSeconds else { break }          // run-once tasks
             if tokenCount == tokensBeforeCall { break }                // produced nothing → don't spin
+            // Tick-window early exit: once two full battery ticks (5% steps) have been
+            // observed, the energy window is complete and further sustain only spends
+            // battery and heat. `sustainSeconds` (capped at 1800 by the task default)
+            // remains the upper bound for runs where no window completes.
+            if await energyMonitor.windowComplete() { break }
             if CFAbsoluteTimeGetCurrent() - generationStart >= sustain { break }
             if Task.isCancelled { break }
         } while true
@@ -315,14 +326,19 @@ public actor BenchmarkRunner {
         let promptTokSWall: Double? = (wallPromptTime > 0 && promptTokens > 0)
             ? Double(promptTokens) / wallPromptTime : nil
 
-        // Energy figures only when a real (>0) battery delta was observed.
-        let avgPowerW: Double? = {
-            guard let j = energy.joules, energy.durationSeconds > 0 else { return nil }
-            return j / energy.durationSeconds
-        }()
+        // Energy: the TICK-WINDOW basis (see EnergyMonitor). J/tok comes only from a
+        // completed window — first observed 5%-step transition to the last, tokens counted
+        // inside that span — because start/end level deltas are quantized to 5% on this OS
+        // and swing ×2 between identical runs. A run with no completed window reports nil
+        // rather than a number (the 2026-07-30 rule: never publish an unfinished window).
+        let tick = await energyMonitor.tickWindow()
+        let tickWindowTokens: Int? = tick.map { w in
+            tokenWindow.filter { $0.t >= w.start && $0.t <= w.end }.count
+        }
+        let avgPowerW: Double? = tick.map { $0.joules / max($0.end - $0.start, 1) }
         let energyJPerTok: Double? = {
-            guard let j = energy.joules, genTokens > 0 else { return nil }
-            return j / Double(genTokens)
+            guard let w = tick, let toks = tickWindowTokens, toks > 0 else { return nil }
+            return w.joules / Double(toks)
         }()
 
         let metrics = Metrics(
@@ -357,12 +373,17 @@ public actor BenchmarkRunner {
             interTokenLatencyP50MS: Self.percentileMS(tokenWindow: tokenWindow, percentile: 0.50),
             interTokenLatencyP95MS: Self.percentileMS(tokenWindow: tokenWindow, percentile: 0.95),
             interTokenLatencyP99MS: Self.percentileMS(tokenWindow: tokenWindow, percentile: 0.99),
-            energyJoules: energy.joules,
+            energyJoules: tick?.joules,
             batteryDeltaPercent: energy.batteryDeltaPercent,
             energyJoulesPerToken: energyJPerTok,
             averagePackagePowerW: avgPowerW,
-            energyMeasurementWindowSeconds: energy.joules != nil ? energy.durationSeconds : nil,
-            energySource: energy.joules != nil ? "battery-1pct" : nil
+            energyMeasurementWindowSeconds: tick.map { $0.end - $0.start },
+            energySource: tick != nil ? "battery-tick-window" : nil,
+            energyTickCount: tick?.ticks,
+            energyWindowTokenCount: tickWindowTokens,
+            batteryTickTimestamps: tick.map { w in
+                w.transitionTimes.map { ($0 - generationStart) }
+            }
         )
 
         emit(.done)

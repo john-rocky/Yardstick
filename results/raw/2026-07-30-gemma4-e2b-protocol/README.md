@@ -50,3 +50,35 @@ see the 07-29 README).
   9%, then llamacpp + cactus ×2) — every cell nominal-gated on both sides of the break.
 - The thermal gate deferred 3 cells this round (mlx fair, optiq serious, cactus-shipped
   fair); all re-ran nominal after 600 s cools.
+
+## E-tick block (r4 instrument, 2026-07-30) — the rebuilt energy record
+
+Instrument: battery-TICK-WINDOW (`energySource: battery-tick-window`, harness `-r4`) —
+J/tok measured between 5%-step level transitions, immune to start/end quantization.
+Supervisor-audited probe (litert) adopted as its production cell; per-cell transition
+sequences recorded in the JSONs (below, seconds from generation start). All cells
+2 complete ticks, nominal-gated (the gate deferred 4 of 6 first attempts at `serious`
+after the preceding ~20-min sustain — each re-ran nominal after a 600 s cool).
+
+| arm | J/tok (tick) | avg W | window s | transitions | window tokens |
+|---|--:|--:|--:|---|--:|
+| litert-lm | **0.1468** | 5.36 | 1,108 | 37 / 641 / 1,145 | 40,465 |
+| mlx-PTQ | 0.1821 | 5.22 | 1,138 | 648 / 1,217 / 1,786 | 32,618 |
+| cactus-uncal | 0.2223 | 4.49 | 1,322 | 341 / 971 / 1,663 | 26,718 |
+| cactus-shipped | 0.2262 | 6.56 | 906 | 22 / 432 / 929 | 26,260 |
+| mlx-OptiQ | 0.2312 | 4.18 | 1,421 | 345 / 1,055 / 1,766 | 25,695 |
+| llama.cpp | 0.2596 | 4.60 | 1,291 | 274 / 900 / 1,565 | 22,880 |
+| core-ai | — | — | — | structural (`arm_can_energy`) | — |
+
+Error and rank policy (audit condition 2): tick spacing within one cell varies ~18%
+(the gauge's steps are not equidistant), so a 2-tick cell carries ±~10%; adjacent
+ranks inside ±10% are UNRESOLVED. On that policy:
+**litert 0.147 < mlx 0.182 < { cactus-uncal 0.222 ≈ cactus-shipped 0.226 ≈ OptiQ 0.231 } < llama.cpp 0.260**
+(litert-vs-mlx 24% apart — resolved; the middle three are one unresolved cluster).
+
+Reading, for the write-up (subject to supervisor audit): on the trustworthy instrument
+**LiteRT-LM takes the iPhone energy crown back** — the retired fair-start row had the
+right ranking for the wrong reasons, and the r3 nominal rounds that inverted it were
+5%-quantization artifacts (this dir's table above). The Mac GPU-only column (MLX first)
+is a different OS and instrument and stands unchanged. r3-era energy cells (r3 stamp)
+and r4 tick cells must never pool.

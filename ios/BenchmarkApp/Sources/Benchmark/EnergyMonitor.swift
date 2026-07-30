@@ -6,27 +6,41 @@ import UIKit
 /// Battery-delta-based energy estimation.
 ///
 /// iOS does not expose powermetrics-style energy counters to third-party apps.
-/// What we *can* read is `UIDevice.current.batteryLevel`, which is reported in
-/// 1% steps. We sample at the start and end of a run, take the delta, and
-/// multiply by an estimated whole-pack energy capacity to get joules.
+/// What we *can* read is `UIDevice.current.batteryLevel` — which on iOS 27
+/// is reported in **5% steps** (0.05), not the 1% the pre-2026-07-30 version of
+/// this file assumed. Evidence: across 12 energy cells of the 2026-07-28/29
+/// campaign every whole-run delta read exactly 0, 5 or 10 percent, never in
+/// between, while sustained decode rates reproduced across rounds within 4%
+/// (results/raw/2026-07-30-gemma4-e2b-protocol/README.md). A ~600 s window
+/// whose true drain is ~6–8% therefore quantizes to one step or two by phase,
+/// and any J/tok derived from start/end levels swings ×2 between identical runs.
 ///
-/// Limitations:
-/// - 1% resolution means short runs (< ~30 s on a 0.6 B model) may show 0%
-///   delta. Energy is reported as `nil` in that case.
-/// - Battery capacity is per-device. We use a conservative pack capacity
-///   table keyed off the hardware model identifier; unknown devices fall
-///   back to a 12 Wh estimate.
+/// The fix is the TICK-WINDOW method: poll the level at ~1 Hz during the run,
+/// record every downward level transition, and measure between transitions —
+/// from the first observed tick to the last, the consumed energy is exactly
+/// (tick count × 5% × pack capacity), independent of where the run started
+/// inside a step. `BenchmarkRunner` counts the tokens inside that window and
+/// derives J/tok on a `battery-tick-window` basis; the legacy whole-run delta
+/// fields are still recorded, labeled by `energySource`.
+///
+/// Remaining limitations:
 /// - The number includes display + radios + everything else the OS is doing.
-///   For comparability, run with brightness fixed and Airplane Mode on (the
-///   pre-flight checklist surfaces this).
-///
-/// Despite the limitations the metric is useful: a runtime that drains 0.5%
-/// for the same workload as another that drains 1.5% is meaningfully more
-/// energy-efficient on the same device.
+/// - Pack capacity is a per-device estimate (table below).
+/// - A window needs at least 2 transitions (1 full tick, ~5–10 min of sustained
+///   decode); runs that complete no window report `nil` energy rather than a
+///   fabricated figure.
 public actor EnergyMonitor {
     private(set) var startedAt: CFAbsoluteTime = 0
     private(set) var startBatteryLevel: Float = -1
     private(set) var startThermalState: ProcessInfo.ThermalState = .nominal
+
+    /// Downward battery-level transitions observed by the 1 Hz poll:
+    /// (timestamp, level-after-transition). An upward transition (charging)
+    /// invalidates the window.
+    private(set) var transitions: [(t: CFAbsoluteTime, level: Float)] = []
+    private var lastPolledLevel: Float = -1
+    private var chargingDetected = false
+    private var pollTask: Task<Void, Never>?
 
     public init() {}
 
@@ -39,15 +53,76 @@ public actor EnergyMonitor {
         #endif
         startedAt = CFAbsoluteTimeGetCurrent()
         startThermalState = ProcessInfo.processInfo.thermalState
+        transitions = []
+        lastPolledLevel = startBatteryLevel
+        chargingDetected = false
+        #if canImport(UIKit)
+        pollTask = Task { [weak self] in
+            while !Task.isCancelled {
+                let level = await MainActor.run { UIDevice.current.batteryLevel }
+                await self?.observe(level: level)
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+            }
+        }
+        #endif
     }
 
-    /// Returns (joulesUsed, batteryDeltaPercent, durationSeconds).
-    /// `joulesUsed` is `nil` if no measurable battery drop was observed.
+    private func observe(level: Float) {
+        guard level >= 0 else { return }
+        if lastPolledLevel < 0 { lastPolledLevel = level; return }
+        if level < lastPolledLevel - 0.001 {
+            transitions.append((t: CFAbsoluteTimeGetCurrent(), level: level))
+        } else if level > lastPolledLevel + 0.001 {
+            // Charging mid-run: the tick spacing no longer measures consumption.
+            chargingDetected = true
+        }
+        lastPolledLevel = level
+    }
+
+    public func stopPolling() {
+        pollTask?.cancel()
+        pollTask = nil
+    }
+
+    /// Number of COMPLETE ticks inside the observed window (transitions - 1).
+    public func tickCount() -> Int { max(0, transitions.count - 1) }
+
+    /// The sustain loop exits early once this is true (window complete).
+    public func windowComplete(targetTicks: Int = 2) -> Bool {
+        !chargingDetected && tickCount() >= targetTicks
+    }
+
+    public struct TickWindow: Sendable {
+        public let start: CFAbsoluteTime
+        public let end: CFAbsoluteTime
+        public let ticks: Int
+        public let joules: Double
+        public let transitionTimes: [CFAbsoluteTime]
+    }
+
+    /// The completed measurement window, or nil when fewer than 2 transitions
+    /// were observed (or charging invalidated it). J = ticks × 5% × pack × 3600.
+    public func tickWindow() -> TickWindow? {
+        guard !chargingDetected, transitions.count >= 2 else { return nil }
+        let ticks = transitions.count - 1
+        let joules = Double(ticks) * 0.05 * Self.estimatedBatteryWh() * 3600
+        return TickWindow(
+            start: transitions[0].t,
+            end: transitions[transitions.count - 1].t,
+            ticks: ticks,
+            joules: joules,
+            transitionTimes: transitions.map { $0.t }
+        )
+    }
+
+    /// Legacy whole-run snapshot: (joulesUsed, batteryDeltaPercent, durationSeconds).
+    /// Kept for the fields the schema has always carried; its joules are start/end
+    /// quantized and must not be used for J/tok (see the tick window above).
     public func snapshot() -> (joules: Double?, batteryDeltaPercent: Float, durationSeconds: TimeInterval) {
+        stopPolling()
         let duration = CFAbsoluteTimeGetCurrent() - startedAt
         #if canImport(UIKit)
         let endLevel = UIDevice.current.batteryLevel
-        // batteryLevel is -1 in simulator and on devices that haven't reported yet.
         guard startBatteryLevel >= 0, endLevel >= 0 else {
             return (nil, 0, duration)
         }
@@ -56,7 +131,6 @@ public actor EnergyMonitor {
             return (nil, 0, duration)
         }
         let packWh = Self.estimatedBatteryWh()
-        // 1 Wh = 3600 J. Energy used = packWh * delta_fraction * 3600.
         let joules = Double(packWh) * Double(delta) * 3600
         return (joules, delta * 100, duration)
         #else
@@ -69,7 +143,7 @@ public actor EnergyMonitor {
     /// Numbers are pulled from public battery datasheets / iFixit teardowns
     /// for each device model. New device identifiers fall back to 12 Wh,
     /// which is roughly the iPhone-non-Pro median.
-    private static func estimatedBatteryWh() -> Double {
+    static func estimatedBatteryWh() -> Double {
         let model = hardwareModelIdentifier()
         switch model {
         // iPhone 17 family. Apple publishes mAh, not Wh; we convert at the

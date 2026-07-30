@@ -148,9 +148,21 @@ public struct Metrics: Codable, Sendable {
     public let averagePackagePowerW: Double?
     /// Length of the window the energy figure covers, in seconds.
     public let energyMeasurementWindowSeconds: Double?
-    /// Where the energy number came from: `battery-1pct` (iOS battery-level
-    /// delta) or `powermetrics` (Mac). `nil` when no energy was measured.
+    /// Where the energy number came from: `battery-tick-window` (iOS, measured
+    /// between 5%-step battery-level transitions — the only basis valid for
+    /// J/tok on iOS 27's coarse gauge), `battery-1pct` (legacy pre-r4 rows,
+    /// start/end delta) or `powermetrics` (Mac). `nil` when no energy was
+    /// measured (including when no tick window completed — never fabricated).
     public let energySource: String?
+    /// Number of complete 5% battery steps inside the tick window (≥1; J is
+    /// exactly ticks × 5% × pack capacity).
+    public let energyTickCount: Int?
+    /// Streamed chunks counted inside the tick window — the denominator of
+    /// `energyJoulesPerToken` on the tick basis.
+    public let energyWindowTokenCount: Int?
+    /// Level-transition timestamps, seconds relative to generation start —
+    /// the raw evidence a tick-window cell is audited from.
+    public let batteryTickTimestamps: [Double]?
 
     public init(
         coldRun: Bool,
@@ -189,7 +201,10 @@ public struct Metrics: Codable, Sendable {
         energyJoulesPerToken: Double?,
         averagePackagePowerW: Double? = nil,
         energyMeasurementWindowSeconds: Double? = nil,
-        energySource: String? = nil
+        energySource: String? = nil,
+        energyTickCount: Int? = nil,
+        energyWindowTokenCount: Int? = nil,
+        batteryTickTimestamps: [Double]? = nil
     ) {
         self.coldRun = coldRun
         self.loadTimeSeconds = loadTimeSeconds
@@ -228,5 +243,8 @@ public struct Metrics: Codable, Sendable {
         self.averagePackagePowerW = averagePackagePowerW
         self.energyMeasurementWindowSeconds = energyMeasurementWindowSeconds
         self.energySource = energySource
+        self.energyTickCount = energyTickCount
+        self.energyWindowTokenCount = energyWindowTokenCount
+        self.batteryTickTimestamps = batteryTickTimestamps
     }
 }

@@ -49,15 +49,19 @@ public enum HFDownloader {
     /// .litertlm / GGUF / CQ / .aimodelc bundles, whose identity is the file itself).
     public static func resolvedRevision(hfRepoId: String) -> String? {
         let cacheName = "models--" + hfRepoId.replacingOccurrences(of: "/", with: "--")
-        let bases = [
+        var bases = [
             FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?
                 .appendingPathComponent("huggingface/hub", isDirectory: true),
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?
                 .appendingPathComponent("huggingface/hub", isDirectory: true),
-            // The Mac CLI's hub cache (python-hf layout) — iOS sandboxing never sees $HOME.
-            FileManager.default.homeDirectoryForCurrentUser
-                .appendingPathComponent(".cache/huggingface/hub", isDirectory: true),
         ]
+        #if os(macOS)
+        // The Mac CLI's hub cache (python-hf layout). `homeDirectoryForCurrentUser` does not
+        // exist on iOS — unguarded, this line silently failed the whole iOS build on
+        // 2026-07-30 and an r3 binary got installed while the sources said r4.
+        bases.append(FileManager.default.homeDirectoryForCurrentUser
+            .appendingPathComponent(".cache/huggingface/hub", isDirectory: true))
+        #endif
         for base in bases {
             guard let ref = base?.appendingPathComponent("\(cacheName)/refs/main") else { continue }
             if let rev = try? String(contentsOf: ref, encoding: .utf8) {

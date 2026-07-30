@@ -318,8 +318,11 @@ struct HeadlessRunnerView: View {
         // instead of decaying in their long-context regime — a fair comparison
         // against SWA runtimes (CoreML-LLM) whose context is bounded by design.
         if spec.taskId == "energy" {
+            // Tick-window era (r4): the sustain is an upper BOUND, not the window — the
+            // runner exits early once two 5%-step battery transitions complete the
+            // measurement window. 1800 s gives a slow-draining arm room to finish one.
             task = EnergyTask(
-                sustainSeconds: spec.sustainSeconds ?? 600,
+                sustainSeconds: spec.sustainSeconds ?? 1800,
                 maxTokens: spec.maxTokens ?? 2048
             )
             // Energy cells must not start throttled (agreed protocol: "not started

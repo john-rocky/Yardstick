@@ -1,0 +1,4 @@
+YARDSTICK_THERMAL_DEFER task=energy initial_thermal=serious
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+The app terminated with the exit code 7.
