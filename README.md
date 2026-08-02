@@ -106,10 +106,12 @@ Real LLM inference on a phone — on-device, no server. iPhone 17 Pro, short-cha
 > Full records with per-cell n and number-trace audits:
 > [`results/raw/2026-07-29-gemma4-e2b-protocol/`](results/raw/2026-07-29-gemma4-e2b-protocol/README.md) (iPhone)
 > and [`results/raw/2026-07-28-gemma4-e2b-protocol-mac/`](results/raw/2026-07-28-gemma4-e2b-protocol-mac/README.md) (Mac).
-> **Energy: the previously posted iPhone J/token figures are retired** — iOS 27's battery
-> gauge reports in 5% steps and start/end deltas swing ×2 between identical runs
-> ([evidence](results/raw/2026-07-30-gemma4-e2b-protocol/README.md)); a rebuilt tick-window
-> instrument has re-measured the column and it publishes after audit.
+> **Energy re-published on a rebuilt instrument**: the old J/token figures are retired —
+> iOS 27's battery gauge reports in 5% steps and start/end deltas swing ×2 between identical
+> runs ([evidence](results/raw/2026-07-30-gemma4-e2b-protocol/README.md)). The ◊ column now
+> measures between gauge transitions (tick-window, audited); on it **LiteRT leads iPhone
+> energy** (LiteRT 0.147 vs MLX 0.182) while the Mac's GPU-only powermetrics basis has MLX first —
+> the energy verdict genuinely differs by OS.
 
 ### Gemma 4 E2B — every runtime at its best *available* build (2026-07-18 + Cactus 2026-07-20, iOS 27.0)
 
@@ -119,16 +121,16 @@ The earlier version of this table had each arm on a different checkpoint quality
 
 | Runtime | Build | Decode tok/s | ITL p50 | Mem MB (median fp) | GSM8K | J/tok ◊ |
 |---|---|---:|---:|---:|---:|---:|
-| 🔴 LiteRT-LM | wNa8o8 QAT (official) | **61.1** 🏆 (A2 7/28, n=8) | **16.3 ms** | **497** 🏆 | 86.0% | retired ◊ |
-| 🌵 Cactus ¶ | CQ4 **uncalibrated** (their pre-07-09 build) | 50.6 (7/20 cold ×3 — warm not re-measured) | 19.6 ms (7/20) | 1,061 (7/20, peak basis) | 87.0% | retired ◊ |
-| 🌵 Cactus | **CQ4 as shipped** (`cactus run` default) | 50.0 (C 7/29, n=8) | 19.8 ms | 632 | **3.0%** | retired ◊ |
-| 🟣 MLX-Swift | PTQ 4-bit | 49.1 (A2 7/28, n=6) | 20.5 ms | 3,010 | 84.0% | retired ◊ |
+| 🔴 LiteRT-LM | wNa8o8 QAT (official) | **61.1** 🏆 (A2 7/28, n=8) | **16.3 ms** | **497** 🏆 | 86.0% | **0.147** 🏆 ◊ |
+| 🌵 Cactus ¶ | CQ4 **uncalibrated** (their pre-07-09 build) | 50.6 (7/20 cold ×3 — warm not re-measured) | 19.6 ms (7/20) | 1,061 (7/20, peak basis) | 87.0% | 0.222 ◊ |
+| 🌵 Cactus | **CQ4 as shipped** (`cactus run` default) | 50.0 (C 7/29, n=8) | 19.8 ms | 632 | **3.0%** | 0.226 ◊ |
+| 🟣 MLX-Swift | PTQ 4-bit | 49.1 (A2 7/28, n=6) | 20.5 ms | 3,010 | 84.0% | 0.182 ◊ |
 | 🍎 Core AI ‡ | own int4 (from official QAT q4_0) | 47.1 (C 7/29, n=8) | 21.4 ms | 755 † | 88.0% | — (structural ◊) |
-| 🔵 llama.cpp | Q4_K_M (PTQ) | 38.8 (7/27, n=10) | 24.4 ms (7/27) | 191 † | 76.0% | retired ◊ |
-| 🟣 MLX-Swift | QAT OptiQ int4 | 36.0 (A2 7/28, n=6) | 27.9 ms | 4,592 | **91.0%** 🏆 | retired ◊ |
+| 🔵 llama.cpp | Q4_K_M (PTQ) | 38.8 (7/27, n=10) | 24.4 ms (7/27) | 191 † | 76.0% | 0.260 ◊ |
+| 🟣 MLX-Swift | QAT OptiQ int4 | 36.0 (A2 7/28, n=6) | 27.9 ms | 4,592 | **91.0%** 🏆 | 0.231 ◊ |
 | 🔵 llama.cpp | **official QAT q4_0** | **unloadable** | — | — | — | — |
 
-> ◊ **The energy column is retired pending republication.** The values previously printed here (battery start/end deltas over 600 s sustains) are unreliable on iOS 27: the battery gauge reports in 5% steps and identical runs read ×2 apart ([evidence, all 12 cells](results/raw/2026-07-30-gemma4-e2b-protocol/README.md)). A rebuilt tick-window instrument (r4 harness — J/tok measured between gauge transitions, transition timestamps recorded per cell) has re-measured all arms; the column returns after its audit. Core AI is structurally excluded either way: the equalized per-call budget (2048) exceeds its iOS KV cap (1,024) and the app is jetsammed at setup.
+> ◊ **Tick-window instrument (r4, audited).** iOS 27's battery gauge reports in 5% steps, so start/end deltas swing ×2 between identical runs ([evidence, all 12 retired cells](results/raw/2026-07-30-gemma4-e2b-protocol/README.md)); J/tok here is instead measured **between gauge transitions** (2 complete ticks per cell, transition timestamps in the raw JSONs, nominal-start enforced, unplugged). Steps aren't equidistant, so a cell carries ±~10% — the Cactus-uncal 0.222 / Cactus-shipped 0.226 / MLX-OptiQ 0.231 trio is one **unresolved cluster**; LiteRT < MLX < cluster < llama.cpp are resolved. Core AI is structurally excluded: the equalized per-call budget (2048) exceeds its iOS KV cap (1,024) and the app is jetsammed at setup.
 > † mmap'd weights: clean pages aren't charged to `phys_footprint`, so these cells are not comparable with runtimes that wire their weights — llama.cpp's 191 MB hides 2.9 GB of mmap'd GGUF that shows up in residency (3.1 GB). LiteRT-LM is the only arm under a gigabyte on **both** the footprint and resident columns, which is the honest form of the memory claim.
 > ‡ **Patched engine (reference)**: Apple ships no Gemma-4 bundle and `EngineOptions.staticInputBuffers` is a local engine patch — but the *path* is Apple's standard `EngineFactory`. Its TTFT is the honest cost of S=1 unbatched prefill (Gemma-4's per-layer embeddings force it).
 > ¶ **Cactus row = the build they demoted, because it is their best usable.** On 2026-07-09 Cactus replaced its default CQ4 and renamed the original to `-uncalibrated`. The two are **speed-identical** but the shipped default is reasoning-dead: **GSM8K 3.0%** on the same one-harness protocol, while the demoted build scores **87.0%** — the QAT-class band. Their newer mixed-precision prebuilts (cq3.26/cq2.54) probe at 4%/16% (n=25). Same best-usable rule that puts MLX on OptiQ; the uncalibrated zip is a manual download from the same HF repo. Engine = their Metal GPU default via `cactus_init`/`cactus_complete`, cloud-handoff + telemetry forced off, exact engine-reported token counts. Cross-session ratios go through a same-session LiteRT anchor: at matched conditions Cactus-shipped decodes at **0.84× LiteRT** (block C, 2026-07-29: 50.0 vs 59.4 — re-confirming the 0.83× the 7/20 control measured).
@@ -140,7 +142,7 @@ The earlier version of this table had each arm on a different checkpoint quality
 - **PTQ→QAT re-measured with stored reports: 84.0 → 91.0 (+7 pts)** — supersedes the earlier "78 → 87" claim from the defective-harness era.
 - **Energy (battery-delta, 600 s sustained, unplugged): wNa8o8 wins on-device energy too** — 24 % more tokens on the same 5 % of battery than MLX-PTQ (0.122 vs 0.151 J/tok), *reversing* the Mac result where MLX owns the energy Pareto — and it throttles less (76 % vs 64 % of burst rate retained). Core AI jetsams under the standard deep protocol (its known depth wall — the failed run stays on record per fairness rule #4); measured via a shallow-rep variant (`--max-tokens 192`, depth kept under the wall) it lands at **0.352 J/tok** — a favorable-bias lower bound that still spends ~2.9× LiteRT's energy per token. **llama.cpp is the energy floor at 0.483 J/tok**: it pulls ~2× any other arm's average power (9.8 W), hits the thermal ceiling hardest, and keeps the least of its burst rate under sustained load (54 %, vs LiteRT 76 / OptiQ 67 / MLX-PTQ 64 / Cactus 57 / Core AI 56) — the same 1.9× llama-vs-MLX gap the Mac shows, amplified by the phone's thermal loop. **Cactus lands at 0.322 J/tok** (2026-07-20 capture, 600 s standard deep protocol, 10 % battery in one window at 9.2 W — the second-highest draw; sustained 28.7 tok/s = 57 % of burst; entered the window at `nominal` where the 07-19 arms entered at `fair`, a slightly favorable regime — disclosed): its near-LiteRT burst speed costs 2.6× LiteRT's energy per token. The spread on one phone (0.122 → 0.483, 4.0×) is the campaign's cleanest evidence that *runtime engineering, not silicon, sets the on-device energy bill*.
 
-- **The upset — Gemma 4 E2B (re-verified under the fair protocol):** Google's **LiteRT-LM** (wNa8o8 QAT, GPU, its native `.litertlm`) beats MLX-Swift on decode (61.1 vs 49.1 warm), uses ~6× less memory (497 vs 3,010 MB median footprint — and it is the only arm under 1 GB on the resident column too), **and now wins prefill on the unified instrument** (3,513 vs 3,274 tok/s at p=1024, same task, same session — the old cross-instrument prefill ranking is retired). The purpose-built runtime wins on its own format; the energy axis republishes after the instrument audit.
+- **The upset — Gemma 4 E2B (re-verified under the fair protocol):** Google's **LiteRT-LM** (wNa8o8 QAT, GPU, its native `.litertlm`) beats MLX-Swift on decode (61.1 vs 49.1 warm), uses ~6× less memory (497 vs 3,010 MB median footprint — and it is the only arm under 1 GB on the resident column too), **and now wins prefill on the unified instrument** (3,513 vs 3,274 tok/s at p=1024, same task, same session — the old cross-instrument prefill ranking is retired). The purpose-built runtime wins on its own format — and on the audited tick-window instrument it also leads iPhone energy (0.147 vs 0.182 J/tok; the Mac's GPU-only basis flips to MLX).
 
 ### Qwen 3.5 2B (pre-refresh cells — Debug builds, iOS 26.4.2, 2026-05-28)
 
