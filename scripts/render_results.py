@@ -109,6 +109,14 @@ LOGICAL_MODELS: list[tuple[str, str]] = [
     # Gemma 4
     ("gemma-4-26b-a4b", "Gemma 4 26B-A4B (MoE)"),
     ("gemma-4-31b",     "Gemma 4 31B"),
+    # OptiQ before the generic e2b pattern: MLX has two 4-bit builds of E2B in the table
+    # (quality-best QAT OptiQ vs speed-best PTQ) and they must not pool in the pivots.
+    ("gemma-4-e2b-it-qat-optiq", "Gemma 4 E2B (QAT OptiQ)"),
+    # Cactus ships two CQ4 lineages of E2B (same repo, different files) that must not
+    # pool either: the pre-07-09 "uncalibrated" (the row: GSM8K 87.0) vs the shipped
+    # default "calibrated" (footnote: GSM8K 3.0). Uncal pattern first — it contains cq4.
+    ("gemma-4-e2b-it-cq4-uncal", "Gemma 4 E2B (CQ4 uncalibrated)"),
+    ("gemma-4-e2b-it-cq4",       "Gemma 4 E2B (CQ4 shipped default)"),
     ("gemma-4-e2b",     "Gemma 4 E2B"),
     ("gemma-4-e4b",     "Gemma 4 E4B"),
     ("gemma4-e2b",      "Gemma 4 E2B"),
@@ -193,7 +201,14 @@ class Sample:
 
 def parse_sample(path: Path) -> tuple[RunKey, Sample] | None:
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
+        # Two shapes coexist: pretty-printed single records (import_to_flat) and true
+        # JSONL with appended records (measure_energy passes). Whole-file parse first;
+        # fall back to the last non-empty line.
+        text = path.read_text(encoding="utf-8")
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+            data = json.loads([l for l in text.splitlines() if l.strip()][-1])
     except Exception as exc:
         print(f"warn: skipping {path.name}: {exc}", file=sys.stderr)
         return None

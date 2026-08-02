@@ -1,0 +1,7 @@
+{
+  "tag": "llamacpp-gemma4-e2b-q4km",
+  "n": 100,
+  "correct": 76,
+  "acc": 0.76,
+  "max_tokens": 1024
+}

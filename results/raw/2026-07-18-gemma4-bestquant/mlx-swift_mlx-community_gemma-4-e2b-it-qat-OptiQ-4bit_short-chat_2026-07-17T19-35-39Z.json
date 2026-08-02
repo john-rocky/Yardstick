@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 0.6,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "208E4087-BD41-4AB6-9CE2-8B4C86EAB393",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      19.351592636937028,
+      17.022561579245373
+    ],
+    "decodeTokensPerSecond" : 19.25561112332361,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 650,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 50.882935523986816,
+    "interTokenLatencyP95MS" : 111.19997501373291,
+    "interTokenLatencyP99MS" : 173.23601245880127,
+    "loadTimeSeconds" : 7.983832001686096,
+    "memoryAfterGenerationMB" : 4584.364608764648,
+    "memoryAfterLoadMB" : 4520.348983764648,
+    "memoryBaselineMB" : 14.642379760742188,
+    "memoryPeakDuringDecodeMB" : 4584.489608764648,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 34.18858797826891,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 7.5310810804367065
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 (QAT, OptiQ)"
+  },
+  "outputSample" : "Imagine you have a smart device, like your smartphone, a smart speaker, or even a smart camera.\n\n**On-device AI** simply means that the \"brain\" or the \"intelligence\" of the AI lives **right on that de",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-17T19:35:39Z"
+}

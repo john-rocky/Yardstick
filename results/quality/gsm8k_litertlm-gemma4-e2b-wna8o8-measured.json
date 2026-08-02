@@ -1,0 +1,8 @@
+{
+  "tag": "litertlm-gemma4-e2b-wna8o8-measured",
+  "n": 100,
+  "correct": 86,
+  "acc": 0.86,
+  "max_tokens": 2048,
+  "correction": "2026-07-20: 85->86. extract()'s rstrip('.0') mangled q45's correct '#### 20.00' to '2' (raw output re-verified via litert-mac-verify). The n=250 companion run has the same q44 mangle (215->216/250 = 86.4). Normalizer fixed in scripts/parity_gsm8k.py."
+}

@@ -192,7 +192,33 @@ def main() -> int:
         default=SAMPLE_INTERVAL_MS,
         help=f"powermetrics sampling interval in ms (default {SAMPLE_INTERVAL_MS}).",
     )
+    parser.add_argument(
+        "--cmd",
+        default=None,
+        help="Wrap an arbitrary shell command instead of the yardstick CLI (for engines "
+        "yardstick doesn't drive on the Mac, e.g. Core AI's llm-benchmark). A minimal "
+        "yardstick-shaped record is synthesized so the energy fields and the render "
+        "pipeline work unchanged. Requires --tokens.",
+    )
+    parser.add_argument(
+        "--tokens",
+        type=int,
+        default=None,
+        help="--cmd only: total generated tokens the command produces "
+        "(e.g. llm-benchmark -g 512 -n 3 → 1536). Sets generatedTokenCount → J/token.",
+    )
+    parser.add_argument(
+        "--quant",
+        default=None,
+        help="--cmd only: quantization label for the synthesized record "
+        "(shown in RESULTS.md; include 'patched engine' where it applies).",
+    )
     args = parser.parse_args()
+
+    if args.cmd and args.tokens is None:
+        print("error: --cmd requires --tokens (generated-token count for J/token).",
+              file=sys.stderr)
+        return 2
 
     if os.geteuid() == 0:
         print(
@@ -205,7 +231,7 @@ def main() -> int:
         )
         return 2
 
-    bin_path = locate_yardstick()
+    bin_path = None if args.cmd else locate_yardstick()
 
     output_path = args.output
     if output_path is None:
@@ -218,19 +244,22 @@ def main() -> int:
             / f"{dev_tag}-{args.runtime}-{model_tag}-{args.task}-energy.jsonl"
         )
 
-    yardstick_argv = [
-        str(bin_path),
-        "run",
-        "--task", args.task,
-        "--runtime", args.runtime,
-        "--output", output_path,
-    ]
-    if args.model:
-        yardstick_argv += ["--model", args.model]
-    if args.context_tokens:
-        yardstick_argv += ["--context-tokens", str(args.context_tokens)]
-    if args.runs:
-        yardstick_argv += ["--runs", str(args.runs)]
+    if args.cmd:
+        yardstick_argv = ["/bin/zsh", "-c", args.cmd]
+    else:
+        yardstick_argv = [
+            str(bin_path),
+            "run",
+            "--task", args.task,
+            "--runtime", args.runtime,
+            "--output", output_path,
+        ]
+        if args.model:
+            yardstick_argv += ["--model", args.model]
+        if args.context_tokens:
+            yardstick_argv += ["--context-tokens", str(args.context_tokens)]
+        if args.runs:
+            yardstick_argv += ["--runs", str(args.runs)]
 
     power_log = tempfile.NamedTemporaryFile(
         prefix="yardstick-power-", suffix=".txt", delete=False
@@ -297,6 +326,33 @@ def main() -> int:
     bench = subprocess.run(yardstick_argv)
     end_t = time.monotonic()
     elapsed = end_t - start_t
+
+    if args.cmd:
+        # Synthesize a yardstick-shaped record so the energy patch below (and the
+        # render/chart pipeline) work unchanged. The command's own stdout was shown
+        # live; tokens come from --tokens (the caller knows the -g × -n arithmetic).
+        if bench.returncode != 0:
+            print(f"error: wrapped command exited {bench.returncode}; not writing a record.",
+                  file=sys.stderr)
+            return bench.returncode
+        record = {
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "runtime": args.runtime,
+            "task": args.task,
+            "device": {"buildConfiguration": "Release", "systemName": "macOS"},
+            "model": {
+                "id": args.model or "cmd",
+                "quantization": args.quant or "?",
+                "hfRepoId": "",
+            },
+            "metrics": {
+                "generatedTokenCount": args.tokens,
+                "totalGenerationTimeSeconds": round(elapsed, 3),
+            },
+            "parameters": {"wrappedCommand": args.cmd},
+        }
+        with open(output_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record) + "\n")
 
     # Need `sudo kill` because powermetrics is running as root — the
     # earlier `sudo powermetrics` call will have cached the credential
@@ -452,6 +508,27 @@ def main() -> int:
     if gen_tok > 0:
         metrics["energyJoulesPerToken"] = round(energy_J / gen_tok, 6)
 
+    # Decode-only attribution. The full window includes model load (and, on a first
+    # run, even the HF download), whose share differs wildly per arm — a 3 s load on a
+    # 4 s generation halves the apparent W. powermetrics samples are time-ordered and
+    # generation is the LAST phase of the bench, so the trailing
+    # totalGenerationTimeSeconds worth of samples ≈ the decode phase. Report it as a
+    # separate, per-arm-comparable metric; the full-window numbers stay for continuity.
+    gen_s = float(metrics.get("totalGenerationTimeSeconds") or 0)
+    # +50ms slack: --cmd records store totalGenerationTimeSeconds = round(elapsed, 3), and
+    # the window clip can land elapsed a hair BELOW it — strict <= then skips the decode
+    # fields for exactly the records where decode == the whole window.
+    if gen_tok > 0 and 0 < gen_s <= elapsed + 0.05 and samples_mW:
+        gen_s = min(gen_s, elapsed)
+        n_gen = max(1, int(gen_s / (args.sample_interval_ms / 1000.0)))
+        tail = samples_mW[-n_gen:]
+        if len(tail) >= 4:
+            avg_dec_W = (sum(tail) / len(tail)) / 1000.0
+            dec_J = avg_dec_W * gen_s
+            metrics["averagePackagePowerWDecode"] = round(avg_dec_W, 4)
+            metrics["energyJoulesDecode"] = round(dec_J, 4)
+            metrics["energyJoulesPerTokenDecode"] = round(dec_J / gen_tok, 6)
+
     lines[-1] = json.dumps(last)
     out_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -468,8 +545,12 @@ def main() -> int:
         file=sys.stderr,
     )
     if gen_tok > 0:
+        dec_note = ""
+        if "energyJoulesPerTokenDecode" in metrics:
+            dec_note = (f"  decode-only J/tok={metrics['energyJoulesPerTokenDecode']:.4f} "
+                        f"@ {metrics['averagePackagePowerWDecode']:.2f}W")
         print(
-            f"yardstick-energy: J/tok={energy_J / gen_tok:.4f} (n={gen_tok})",
+            f"yardstick-energy: J/tok={energy_J / gen_tok:.4f} (n={gen_tok}){dec_note}",
             file=sys.stderr,
         )
     return 0

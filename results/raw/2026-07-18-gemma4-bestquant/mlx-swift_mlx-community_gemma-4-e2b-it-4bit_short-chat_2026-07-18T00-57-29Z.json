@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "22F59B3C-0273-483D-9F4B-7B3EAB37DAD7",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.36313864279476,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 262,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 21.47698402404785,
+    "interTokenLatencyP95MS" : 22.74000644683838,
+    "interTokenLatencyP99MS" : 23.06497097015381,
+    "loadTimeSeconds" : 2.381695032119751,
+    "memoryAfterGenerationMB" : 3007.9572143554688,
+    "memoryAfterLoadMB" : 2977.5978393554688,
+    "memoryBaselineMB" : 14.173583984375,
+    "memoryPeakDuringDecodeMB" : 3007.9728393554688,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 89.66612950021124,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.245118021965027
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (PTQ 4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 (PTQ)"
+  },
+  "outputSample" : "Imagine a computer program that can \"think\" or learn right there on your device, like your smartphone, a smart speaker, or a camera. That's essentially **on-device AI**.\n\nHere's a breakdown using simp",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-18T00:57:29Z"
+}

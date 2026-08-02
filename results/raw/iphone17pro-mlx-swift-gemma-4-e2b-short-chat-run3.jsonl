@@ -1,0 +1,60 @@
+{
+  "device": {
+    "batteryLevel": 0.7,
+    "batteryState": "charging",
+    "buildConfiguration": "Release",
+    "initialThermalState": "nominal",
+    "isLowPowerModeEnabled": false,
+    "modelIdentifier": "iPhone18,1",
+    "physicalMemoryMB": 11719,
+    "processorCount": 6,
+    "systemName": "iOS",
+    "systemVersion": "27.0"
+  },
+  "id": "250D19BD-75D0-44EA-AEAA-7C42F810C58C",
+  "metrics": {
+    "batteryDeltaPercent": 0,
+    "coldRun": true,
+    "decodeRateRollingWindow": [],
+    "decodeTokensPerSecond": 45.99617634462144,
+    "finalThermalState": "nominal",
+    "firstTokenLatencyMS": 301,
+    "generatedTokenCount": 128,
+    "initialThermalState": "nominal",
+    "interTokenLatencyP50MS": 21.78800106048584,
+    "interTokenLatencyP95MS": 22.80604839324951,
+    "interTokenLatencyP99MS": 23.61905574798584,
+    "loadTimeSeconds": 2.5570249557495117,
+    "memoryAfterGenerationMB": 3023.3947143554688,
+    "memoryAfterLoadMB": 2976.0353393554688,
+    "memoryBaselineMB": 14.517356872558594,
+    "memoryPeakDuringDecodeMB": 3023.4259643554688,
+    "peakThermalState": "nominal",
+    "promptTokenCount": 21,
+    "promptTokensPerSecond": 76.06050445130764,
+    "stopReason": "length",
+    "streamedChunkCount": 128,
+    "totalGenerationTimeSeconds": 3.29256808757782
+  },
+  "model": {
+    "displayName": "Gemma 4 E2B (PTQ 4-bit)",
+    "hfFilePatterns": [
+      "*"
+    ],
+    "hfRepoId": "mlx-community/gemma-4-e2b-it-4bit",
+    "id": "mlx-community/gemma-4-e2b-it-4bit",
+    "onDiskSizeMB": 1330,
+    "parameterCountB": 2,
+    "primaryFile": "",
+    "quantization": "INT4 (PTQ)"
+  },
+  "outputSample": "Imagine a computer program that can \"think\" or learn right there on your device, like your smartphone, a smart speaker, or a camera. That's essentially **on-device AI**.\n\nHere's a breakdown using simp",
+  "parameters": {
+    "maxTokens": 128,
+    "temperature": 0,
+    "topP": 1
+  },
+  "runtime": "mlx-swift",
+  "task": "short-chat",
+  "timestamp": "2026-07-18T05:16:23Z"
+}

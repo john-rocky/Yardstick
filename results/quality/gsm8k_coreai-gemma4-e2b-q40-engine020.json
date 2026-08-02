@@ -1,0 +1,7 @@
+{
+  "tag": "coreai-gemma4-e2b-q40-engine020",
+  "n": 100,
+  "correct": 88,
+  "acc": 0.88,
+  "max_tokens": 1024
+}

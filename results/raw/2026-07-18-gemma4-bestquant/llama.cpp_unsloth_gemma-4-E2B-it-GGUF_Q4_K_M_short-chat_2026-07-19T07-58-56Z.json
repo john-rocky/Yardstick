@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.55,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "E57D456E-E7E5-48D6-A86F-8C4C0FAB99B0",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 38.29364651230402,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 105,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 25.117039680480957,
+    "interTokenLatencyP95MS" : 28.167009353637695,
+    "interTokenLatencyP99MS" : 28.38897705078125,
+    "loadTimeSeconds" : 0.619439959526062,
+    "memoryAfterGenerationMB" : 232.75420379638672,
+    "memoryAfterLoadMB" : 226.11351013183594,
+    "memoryBaselineMB" : 14.376708984375,
+    "memoryPeakDuringDecodeMB" : 252.62920379638672,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 4633.950006905124,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.5622739791870117
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M (PTQ)"
+  },
+  "outputSample" : "Imagine you have a really smart assistant, like a personal helper, but instead of sending all your information to a giant computer in the cloud (like a big server on the internet), **the smart assista",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-19T07:58:56Z"
+}

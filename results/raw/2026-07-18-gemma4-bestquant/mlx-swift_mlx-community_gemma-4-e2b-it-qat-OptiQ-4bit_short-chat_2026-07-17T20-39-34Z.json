@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "D8C09F91-A80E-49B3-A171-FD46CD010715",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 34.84240886430081,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 196,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 28.800010681152344,
+    "interTokenLatencyP95MS" : 29.675960540771484,
+    "interTokenLatencyP99MS" : 30.593037605285645,
+    "loadTimeSeconds" : 7.912315011024475,
+    "memoryAfterGenerationMB" : 4584.177062988281,
+    "memoryAfterLoadMB" : 4579.317710876465,
+    "memoryBaselineMB" : 14.782958984375,
+    "memoryPeakDuringDecodeMB" : 4643.630210876465,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 127.15021068905932,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 4.094238996505737
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 (QAT, OptiQ)"
+  },
+  "outputSample" : "Imagine you have a smart device, like your smartphone, a smart speaker, or even a smart camera.\n\n**On-device AI** simply means that the \"brain\" or the \"intelligence\" of the AI lives **right on that de",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-17T20:39:34Z"
+}

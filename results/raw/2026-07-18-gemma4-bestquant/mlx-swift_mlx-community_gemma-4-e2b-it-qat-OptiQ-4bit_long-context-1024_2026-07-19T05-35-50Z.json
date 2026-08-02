@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.7,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A2ECE6EB-4805-4FEE-BC93-E39FA25C4AE9",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 35.34997506689797,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 460,
+    "generatedTokenCount" : 30,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 28.272032737731934,
+    "interTokenLatencyP95MS" : 28.63907814025879,
+    "interTokenLatencyP99MS" : 29.137015342712402,
+    "loadTimeSeconds" : 7.495669007301331,
+    "memoryAfterGenerationMB" : 4998.61474609375,
+    "memoryAfterLoadMB" : 4530.427108764648,
+    "memoryBaselineMB" : 14.423583984375,
+    "memoryPeakDuringDecodeMB" : 4998.63037109375,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1082,
+    "promptTokensPerSecond" : 2591.5914887396148,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 30,
+    "totalGenerationTimeSeconds" : 1.533808946609497
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (QAT 4-bit)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "id" : "mlx-community\/gemma-4-e2b-it-qat-OptiQ-4bit",
+    "onDiskSizeMB" : 1330,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 (QAT, OptiQ)"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot is perform real-time, private processing of sensitive data directly on the device.",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "mlx-swift",
+  "task" : "long-context-1024",
+  "timestamp" : "2026-07-19T05:35:50Z"
+}

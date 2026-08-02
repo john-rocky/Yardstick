@@ -1,0 +1,79 @@
+{
+  "mode": "linear-only",
+  "ok": 9,
+  "n": 12,
+  "results": [
+    {
+      "q": 0,
+      "ok": true,
+      "pred": "18",
+      "gold": "18"
+    },
+    {
+      "q": 2,
+      "ok": false,
+      "pred": "",
+      "gold": "70000"
+    },
+    {
+      "q": 3,
+      "ok": true,
+      "pred": "540",
+      "gold": "540"
+    },
+    {
+      "q": 4,
+      "ok": true,
+      "pred": "20",
+      "gold": "20"
+    },
+    {
+      "q": 5,
+      "ok": true,
+      "pred": "64",
+      "gold": "64"
+    },
+    {
+      "q": 10,
+      "ok": true,
+      "pred": "366",
+      "gold": "366"
+    },
+    {
+      "q": 11,
+      "ok": true,
+      "pred": "694",
+      "gold": "694"
+    },
+    {
+      "q": 13,
+      "ok": false,
+      "pred": "",
+      "gold": "18"
+    },
+    {
+      "q": 14,
+      "ok": false,
+      "pred": "20",
+      "gold": "60"
+    },
+    {
+      "q": 15,
+      "ok": true,
+      "pred": "125",
+      "gold": "125"
+    },
+    {
+      "q": 16,
+      "ok": true,
+      "pred": "230",
+      "gold": "230"
+    },
+    {
+      "q": 17,
+      "ok": true,
+      "pred": "57500",
+      "gold": "57500"
+    }
+  ]
+}

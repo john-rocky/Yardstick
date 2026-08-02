@@ -80,8 +80,16 @@ def logical_model(model_id: str) -> str | None:
 def load_runs(device: str, task: str | None = None) -> list[dict]:
     out = []
     for p in sorted(RAW.glob(f"{device}-*.jsonl")):
+        # Two on-disk shapes coexist: pretty-printed single records (multi-line JSON,
+        # the import_to_flat convention) and true JSONL where repeated measure_energy
+        # passes APPEND one-line records. Whole-file parse first; fall back to the last
+        # non-empty line for appended JSONL.
         try:
-            obj = json.loads(p.read_text())
+            text = p.read_text()
+            try:
+                obj = json.loads(text)
+            except json.JSONDecodeError:
+                obj = json.loads([l for l in text.splitlines() if l.strip()][-1])
         except Exception:
             continue
         if task and obj.get("task") != task:
@@ -235,40 +243,65 @@ def chart_itl_jitter():
 
 
 def chart_tradeoff():
+    """M4 Max Gemma-4-E2B: decode speed x decode-window J/token, one point per BUILD.
+
+    2026-07-19 pass only (warm loads, contamination-checked) — older energy rows used a
+    different window convention and session, and cross-session pooling is banned. Prefers
+    energyJoulesPerTokenDecode; falls back to the full-window value (core-ai's --cmd row,
+    where S=1 stepping makes the whole window decode-like — annotated).
+    """
     runs = load_runs("m4max")
-    points: dict[str, tuple[float, float]] = {}
+    CORE_AI = "#65a30d"
+    # (id, label, color, label_offset_pts, ha) — offsets hand-placed so the upper-right
+    # cluster (PTQ/OptiQ/litert/llama within 50 tok/s x 0.08 J/tok) doesn't collide.
+    BUILDS = [
+        ("mlx-community/gemma-4-e2b-it-4bit",            "MLX PTQ 4-bit",     PALETTE["mlx-swift"], (8, 10), "left"),
+        ("mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",  "MLX QAT OptiQ",     PALETTE["mlx-swift"], (-10, 10), "right"),
+        ("litert-community/gemma-4-E2B-it-litert-lm",    "LiteRT wNa8o8 (WebGPU path)", "#e11d48", (12, -2), "left"),
+        ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",           "llama.cpp Q4_K_M",  PALETTE["llama.cpp"], (-10, -24), "right"),
+        ("core-ai/gemma4-e2b-gpu",                       "Core AI own int4\n(patched, S=1 window)", CORE_AI, (8, 10), "left"),
+    ]
+    points: dict[str, tuple[float, float, str, tuple, str]] = {}
     for r in runs:
         m = r.get("metrics") or {}
         if m.get("energySource") != "powermetrics":
             continue
-        if r.get("task") != "sustained-generation":
+        if not str(r.get("timestamp", "")).startswith("2026-07-19"):
             continue
-        rt = r.get("runtime")
-        points[rt] = (m["decodeTokensPerSecond"], m["energyJoulesPerToken"])
+        mid = (r.get("model") or {}).get("id")
+        for bid, label, color, off, ha in BUILDS:
+            if mid == bid:
+                jt = m.get("energyJoulesPerTokenDecode") or m.get("energyJoulesPerToken")
+                tok_s = m.get("decodeTokensPerSecond") or (
+                    (m.get("generatedTokenCount") or 0)
+                    / (m.get("energyMeasurementWindowSeconds") or 1))
+                if jt:
+                    points[label] = (tok_s, jt, color, off, ha)
 
     fig, ax = plt.subplots(figsize=(8.5, 5.5))
-    for rt, (tok_s, j_per_tok) in points.items():
-        ax.scatter(tok_s, j_per_tok, s=240, color=PALETTE[rt], edgecolor="white", linewidth=1.4, zorder=5)
-        ax.annotate(rt,
-                    (tok_s, j_per_tok),
-                    textcoords="offset points",
-                    xytext=(8, 8),
-                    fontsize=11, fontweight="bold", color="#222")
-        ax.annotate(f"{j_per_tok:.2f} J/tok · {tok_s:.0f} tok/s",
-                    (tok_s, j_per_tok),
-                    textcoords="offset points",
-                    xytext=(8, -14),
+    for label, (tok_s, j_per_tok, color, off, ha) in points.items():
+        ax.scatter(tok_s, j_per_tok, s=240, color=color, edgecolor="white",
+                   linewidth=1.4, zorder=5)
+        ax.annotate(label, (tok_s, j_per_tok), textcoords="offset points",
+                    xytext=off, ha=ha, fontsize=10, fontweight="bold", color="#222")
+        ax.annotate(f"{j_per_tok:.3f} J/tok · {tok_s:.0f} tok/s",
+                    (tok_s, j_per_tok), textcoords="offset points",
+                    xytext=(off[0], off[1] - 12 if off[1] <= 0 else -16), ha=ha,
                     fontsize=8.5, color="#555")
 
-    ax.set_xlabel("Decode throughput (tok/s, sustained-512) — right = faster")
-    ax.set_ylabel("Energy per token (J/tok) — down = more efficient")
-    ax.set_title("Throughput × Energy — M4 Max, Gemma 4 E2B (Apple FM uses own model)")
+    ax.set_xlabel("Decode throughput (tok/s) — right = faster")
+    ax.set_ylabel("Energy per token (J/tok, decode window) — down = more efficient")
+    ax.set_title("Throughput × Energy — M4 Max, Gemma 4 E2B, best-available builds (2026-07-19)")
     ax.invert_yaxis()
-    ax.set_xlim(0, max(p[0] for p in points.values()) * 1.2)
-    ax.set_ylim(max(p[1] for p in points.values()) * 1.15, 0)
+    ax.set_xlim(0, max((pt[0] for pt in points.values()), default=1) * 1.28)
+    ax.set_ylim(max((pt[1] for pt in points.values()), default=1) * 1.18, 0)
+    ax.grid(True, alpha=0.25)
+    ax.set_axisbelow(True)
     fig.text(0.5, -0.02,
-             "Apple FM owns the efficiency Pareto frontier; MLX-Swift owns throughput. No runtime is Pareto-dominant.",
+             "MLX owns the Mac energy Pareto (fastest AND most efficient). Mac LiteRT runs the WebGPU→Metal path — "
+             "a different efficiency class from the iPhone's native path; the int8-activation energy question needs the iPhone battery bench.",
              ha="center", fontsize=8.5, color="#555")
+    plt.tight_layout()
     plt.savefig(OUT / "tradeoff.png")
     plt.close(fig)
     print(f"wrote {OUT / 'tradeoff.png'}")
@@ -279,69 +312,102 @@ def chart_tradeoff():
 # ------------------------------------------------------------------ #
 
 def chart_iphone():
+    """Gemma 4 E2B — every runtime at its best AVAILABLE build (2026-07-18 session).
+
+    Three panels (one measure per axis — never dual-axis): decode, peak memory, GSM8K.
+    Bar rows are fixed across panels, sorted by decode. Color follows the RUNTIME entity
+    (both MLX builds share the MLX violet; the PTQ build carries a hatch as the secondary
+    encoding). Palette adjacency validated (dataviz six checks): the sky-blue contrast
+    WARN is relieved by direct value labels on every bar + the README table view.
+    GSM8K constants come from the cross-runtime harness reports
+    (hf-to-litertlm/reports/parity/, n=100, one identical protocol per row).
+    """
     runs = load_runs("iphone17pro", task="short-chat")
-    models = ["Qwen 3.5 2B", "Gemma 4 E2B"]
-    # litert-lm first to spotlight the Gemma upset; no LiteRT Qwen bar captured yet
-    # (Qwen3-0.6B .litertlm is wired — its device run is pending).
-    runtimes = ["litert-lm", "mlx-swift", "llama.cpp", "coreml-llm"]
-    rt_label = {"litert-lm": "LiteRT-LM", "mlx-swift": "MLX-Swift",
-                "llama.cpp": "llama.cpp", "coreml-llm": "CoreML/ANE"}
-    color = {"litert-lm": "#e11d48", "mlx-swift": PALETTE["mlx-swift"],
-             "llama.cpp": PALETTE["llama.cpp"], "coreml-llm": PALETTE["coreml-llm"]}
+
+    CORE_AI = "#65a30d"   # lime — distinct from every neighbour (validated)
+    CACTUS = "#0f766e"    # deep teal — adjacency re-validated 2026-07-20 (worst pair vs lime ΔE 19.9)
+    ROWS = [
+        # (model.id, label, color, hatch, gsm8k, mem_note, j_per_tok, jtok_note)
+        ("litert-community/gemma-4-E2B-it-litert-lm",
+         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 86.0, "", 0.122, ""),
+        ("Cactus-Compute/gemma-4-E2B-it-cq4-uncalibrated",
+         "Cactus ¶\nCQ4 uncalibrated (pre-07-09)", CACTUS, None, 87.0, "", 0.322, ""),
+        ("mlx-community/gemma-4-e2b-it-4bit",
+         "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//", 84.0, "", 0.151, ""),
+        ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",
+         "llama.cpp\nQ4_K_M (PTQ)", PALETTE["llama.cpp"], None, 76.0, "†", 0.483, ""),
+        ("mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
+         "MLX-Swift\nQAT OptiQ int4", PALETTE["mlx-swift"], None, 91.0, "", 0.207, ""),
+        ("core-ai/gemma4-e2b-gpu",
+         "Core AI ‡\nown int4 (QAT q4_0)", CORE_AI, None, 88.0, "†", 0.352, "◊"),
+    ]
 
     dec: dict = {}
     mem: dict = {}
     for r in runs:
-        lm = logical_model(r["model"]["id"])
-        rt = r["runtime"]
-        if lm not in models or rt not in runtimes:
-            continue
-        dec.setdefault((lm, rt), []).append(r["metrics"]["decodeTokensPerSecond"])
-        mem.setdefault((lm, rt), []).append(r["metrics"]["memoryPeakDuringDecodeMB"])
+        mid = r["model"]["id"]
+        dec.setdefault(mid, []).append(r["metrics"]["decodeTokensPerSecond"])
+        mem.setdefault(mid, []).append(r["metrics"]["memoryPeakDuringDecodeMB"])
 
-    xs = list(range(len(models)))
-    width = 0.20
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4.8))
+    labels = [row[1] for row in ROWS]
+    colors = [row[2] for row in ROWS]
+    hatches = [row[3] for row in ROWS]
+    dec_v = [median(dec.get(row[0], [])) or 0 for row in ROWS]
+    mem_v = [median(mem.get(row[0], [])) or 0 for row in ROWS]
+    gsm_v = [row[4] for row in ROWS]
+    mem_note = [row[5] for row in ROWS]
+    jt_v = [row[6] for row in ROWS]
+    jt_note = [row[7] for row in ROWS]
 
-    def grouped(ax, data, fmt, title, ylab):
-        ax.grid(False)
-        labelled: set = set()
-        for i, rt in enumerate(runtimes):
-            for j, m in enumerate(models):
-                vals = data.get((m, rt))
-                if not vals:
-                    continue  # e.g. no LiteRT Qwen row captured yet (Qwen3-0.6B coming)
-                y = median(vals)
-                x = xs[j] + (i - 1.5) * width
-                ax.bar([x], [y], width,
-                       label=(rt_label[rt] if rt not in labelled else None),
-                       color=color[rt], edgecolor="white", linewidth=0.6)
-                labelled.add(rt)
-                ax.text(x, y, fmt.format(y), ha="center", va="bottom",
-                        fontsize=10, fontweight="bold")
-        ax.set_xticks(xs)
-        ax.set_xticklabels(models, fontsize=11)
-        ax.set_title(title, fontsize=12.5, fontweight="bold", pad=10)
-        ax.set_ylabel(ylab)
-        ax.grid(True, axis="y", alpha=0.3)
+    ys = list(range(len(ROWS)))[::-1]  # top row first
+    fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(15.5, 4.6),
+                                             gridspec_kw={"width_ratios": [1.3, 1, 1, 1]})
+
+    def hbars(ax, vals, fmt, title, notes=None):
+        for y, v, c, h in zip(ys, vals, colors, hatches):
+            ax.barh([y], [v], 0.62, color=c, hatch=h, edgecolor="white", linewidth=0.8)
+            note = (notes[ys.index(y)] if notes else "")
+            ax.text(v, y, " " + fmt.format(v) + note, va="center", ha="left",
+                    fontsize=10, fontweight="bold", color="#222")
+        ax.set_yticks(ys)
+        ax.set_title(title, fontsize=12, fontweight="bold", pad=8)
+        ax.grid(True, axis="x", alpha=0.25)
         ax.set_axisbelow(True)
-        ax.margins(y=0.22)
+        ax.margins(x=0.22)
+        ax.spines[["top", "right"]].set_visible(False)
 
-    grouped(ax1, dec, "{:.0f}", "Decode throughput   ↑ better", "tok/s")
-    grouped(ax2, mem, "{:.0f}", "Peak memory   ↓ better", "MB")
-    ax1.legend(frameon=False, loc="upper right", fontsize=10, ncol=3,
-               bbox_to_anchor=(1.0, 1.0))
+    hbars(ax1, dec_v, "{:.1f}", "Decode tok/s   ↑ better")
+    ax1.set_yticklabels(labels, fontsize=9.5)
+    # the unloadable row is a result, not an omission — keep it visible
+    ax1.text(0.02, -0.72, "official QAT q4_0 GGUF: unloadable (llama.cpp vocab assert)",
+             fontsize=8.5, color="#888", style="italic")
+    ax1.set_ylim(-1.05, len(ROWS) - 0.4)
+
+    hbars(ax2, mem_v, "{:.0f}", "Peak memory MB   ↓ better", notes=mem_note)
+    ax2.set_yticklabels([])
+    ax2.set_ylim(-1.05, len(ROWS) - 0.4)
+
+    hbars(ax3, gsm_v, "{:.1f}", "GSM8K % (n=100)   ↑ better")
+    ax3.set_yticklabels([])
+    ax3.set_xlim(0, 100)
+    ax3.set_ylim(-1.05, len(ROWS) - 0.4)
+
+    hbars(ax4, jt_v, "{:.3f}", "Energy J/token   ↓ better", notes=jt_note)
+    ax4.set_yticklabels([])
+    ax4.set_ylim(-1.05, len(ROWS) - 0.4)
+
     fig.suptitle(
-        "On-device LLM — iPhone 17 Pro (A19 Pro) · 4-bit · short-chat · median of 3 cold runs",
-        fontsize=12.5, fontweight="bold", y=1.03,
-    )
-    fig.text(0.5, -0.03,
-             "Decode: LiteRT-LM wins Gemma, MLX wins Qwen  ·  Memory: CoreML/ANE as low as 241 MB (Qwen, ~5× leaner)  ·  LiteRT-LM Qwen3 row coming; CoreML/ANE trades speed for memory",
+        "Gemma 4 E2B on iPhone 17 Pro (A19 Pro) — every runtime at its best available build"
+        " · short-chat, median of 3 thermal-nominal cold runs · 2026-07-18 (Cactus 07-20, anchor-bridged)",
+        fontsize=12, fontweight="bold", y=1.04)
+    fig.text(0.5, -0.06,
+             "† mmap'd weights (not comparable with wired-memory rows)   ·   ‡ patched engine (reference): Apple ships no Gemma-4 bundle"
+             "   ·   ◊ shallow-rep lower bound (depth wall)   ·   GSM8K on M4 Max, one harness per row   ·   J/tok = battery-delta, 600 s sustained, unplugged",
              ha="center", fontsize=8.5, color="#666")
     plt.tight_layout()
-    plt.savefig(OUT / "iphone_decode_mem.png")
+    plt.savefig(OUT / "iphone_gemma4_bestavailable.png")
     plt.close(fig)
-    print(f"wrote {OUT / 'iphone_decode_mem.png'}")
+    print(f"wrote {OUT / 'iphone_gemma4_bestavailable.png'}")
 
 
 # ------------------------------------------------------------------ #
@@ -453,8 +519,113 @@ def chart_iphone_tradeoff():
     print(f"wrote {OUT / 'iphone_tradeoff.png'}")
 
 
+
+
+# ------------------------------------------------------------------ #
+#  Chart — thinking mode: the quality crown flips
+# ------------------------------------------------------------------ #
+
+def chart_thinking():
+    """GSM8K thinking OFF vs ON per arm. LiteRT's lockout is drawn as a labeled empty
+    slot — the absence is the finding, not a missing measurement. Time-to-answer
+    annotated under the ON bars (thinking ~820 tok / measured decode)."""
+    CORE_AI = "#65a30d"
+    CACTUS = "#0f766e"
+    arms = [
+        ("Core AI\nown int4",  CORE_AI,             88.0, 92.0, "~75 s/answer ②"),
+        ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"], 91.0, 90.0, "~24 s/answer"),
+        ("Cactus\nCQ4 uncalibrated", CACTUS,         87.0, 87.0, "~12 s/answer (est.)"),
+        ("LiteRT-LM\nwNa8o8",  "#e11d48",            86.0, None, "locked out ①"),
+    ]
+    x = list(range(len(arms)))
+    w = 0.36
+    fig, ax = plt.subplots(figsize=(8.6, 4.4))
+    for i, (label, color, off, on, note) in enumerate(arms):
+        ax.bar(i - w/2, off, w, color=color, alpha=0.45, edgecolor="white", linewidth=0.8)
+        ax.text(i - w/2, off, f"{off:.0f}", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#222")
+        if on is not None:
+            ax.bar(i + w/2, on, w, color=color, edgecolor="white", linewidth=0.8)
+            ax.text(i + w/2, on, f"{on:.0f}", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#222")
+            delta = on - off
+            ax.annotate(f"{'+' if delta >= 0 else ''}{delta:.0f}", (i + w/2, on - 7),
+                        ha="center", fontsize=10.5, fontweight="bold", color="white")
+        else:
+            ax.bar(i + w/2, 92, w, fill=False, edgecolor="#bbb", linestyle="--", linewidth=1.2)
+            ax.text(i + w/2, 46, "no thinking\ntoggle in the\npublic API", ha="center", va="center",
+                    fontsize=8.5, color="#666", style="italic")
+        ax.text(i, -20.5, note, ha="center", fontsize=8.5, color="#555")
+    ax.set_xticks(x)
+    ax.set_xticklabels([a[0] for a in arms], fontsize=10)
+    ax.set_ylabel("GSM8K % (n=100)")
+    ax.set_ylim(0, 104)
+    ax.grid(True, axis="y", alpha=0.25); ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    from matplotlib.patches import Patch
+    ax.legend(handles=[Patch(facecolor="#888", alpha=0.45, label="thinking OFF"),
+                       Patch(facecolor="#888", label="thinking ON")],
+              frameon=False, loc="lower right", fontsize=9)
+    ax.set_title("Thinking flips the quality crown — Gemma 4 E2B, iPhone-relevant builds",
+                 fontsize=12.5, fontweight="bold", pad=10)
+    fig.text(0.5, -0.05,
+             "① no toggle in LiteRT-LM's API; <|think|> marker injection is sanitized (verified two ways)"
+             "   ·   ② decode collapses 34.2→11.7 tok/s at thinking depth on iPhone (only runtime that degrades with depth)"
+             "   ·   Core AI 92.0 equals the bf16 anchor",
+             ha="center", fontsize=8.5, color="#666")
+    plt.tight_layout()
+    plt.savefig(OUT / "iphone_gemma4_thinking.png")
+    plt.close(fig)
+    print(f"wrote {OUT / 'iphone_gemma4_thinking.png'}")
+
+
+# ------------------------------------------------------------------ #
+#  Chart — deep context (p=1024): a three-orders memory gradient
+# ------------------------------------------------------------------ #
+
+def chart_deepcontext():
+    """Peak memory to hold a 1,024-token context, log scale — the axis where the arms
+    separate by orders of magnitude. Decode-at-depth stays flat on every surviving arm,
+    so it rides along as a bar label, not a second axis."""
+    CORE_AI = "#65a30d"
+    rows = [
+        ("LiteRT-LM  wNa8o8",      "#e11d48",            92,   "decode ~56 tok/s", ""),
+        ("llama.cpp  Q4_K_M",      PALETTE["llama.cpp"], 300,  "decode 33.9 tok/s", " †"),
+        ("Cactus  CQ4 uncalibrated", "#0f766e",          1068, "decode 40.3 tok/s", ""),
+        ("MLX  PTQ 4-bit",         PALETTE["mlx-swift"], 3387, "decode 47.6 tok/s", "", "//"),
+        ("MLX  QAT OptiQ",         PALETTE["mlx-swift"], 4999, "decode 35.1 tok/s", "", None),
+    ]
+    rows = [r if len(r) == 6 else (*r, None) for r in rows]
+    fig, ax = plt.subplots(figsize=(8.6, 4.0))
+    ys = list(range(len(rows) + 1))[::-1]
+    for y, (label, color, mem, note, dag, hatch) in zip(ys[:len(rows)], rows):
+        ax.barh([y], [mem], 0.6, color=color, hatch=hatch, edgecolor="white", linewidth=0.8)
+        ax.text(mem * 1.12, y, f"{mem:,} MB{dag}   ·   {note}", va="center", fontsize=9.5, color="#222")
+    y_dead = ys[len(rows)]
+    ax.barh([y_dead], [6440], 0.6, fill=False, edgecolor=CORE_AI, linestyle="--", linewidth=1.4)
+    ax.text(6440 * 0.96, y_dead, "jetsam @ depth 384 — cannot finish  ", va="center", ha="right",
+            fontsize=9.5, color=CORE_AI, fontweight="bold")
+    ax.set_yticks(ys)
+    ax.set_yticklabels([r[0] for r in rows] + ["Core AI  own int4 ‡"], fontsize=10)
+    ax.set_xscale("log")
+    ax.set_xlim(50, 30000)
+    ax.set_xlabel("Peak memory for a 1,024-token context (MB, log scale)   ↓ better")
+    ax.grid(True, axis="x", alpha=0.25); ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_title("Deep context is a memory story, not a speed story — Gemma 4 E2B, iPhone 17 Pro (p=1024/g=256)",
+                 fontsize=12, fontweight="bold", pad=10)
+    fig.text(0.5, -0.06,
+             "decode-at-depth stays flat on every surviving runtime (MLX 46.4→47.6, OptiQ 34.8→35.1 vs their short-chat rates)"
+             "   ·   † mmap'd weights   ·   ‡ patched engine (reference); dashed bar = ~6.44 GB jetsam ceiling",
+             ha="center", fontsize=8.5, color="#666")
+    plt.tight_layout()
+    plt.savefig(OUT / "iphone_gemma4_deepcontext.png")
+    plt.close(fig)
+    print(f"wrote {OUT / 'iphone_gemma4_deepcontext.png'}")
+
+
 def main():
     chart_iphone()
+    chart_thinking()
+    chart_deepcontext()
     chart_iphone_energy()
     chart_iphone_tradeoff()
     chart_decode_tok_per_s()

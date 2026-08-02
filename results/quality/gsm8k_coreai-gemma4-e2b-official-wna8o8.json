@@ -1,0 +1,7 @@
+{
+  "tag": "coreai-gemma4-e2b-official-wna8o8",
+  "n": 100,
+  "correct": 48,
+  "acc": 0.48,
+  "max_tokens": 1024
+}

@@ -1,0 +1,79 @@
+{
+  "mode": "baseline-fp16",
+  "ok": 2,
+  "n": 12,
+  "results": [
+    {
+      "q": 0,
+      "ok": false,
+      "pred": "26",
+      "gold": "18"
+    },
+    {
+      "q": 2,
+      "ok": false,
+      "pred": "120000",
+      "gold": "70000"
+    },
+    {
+      "q": 3,
+      "ok": false,
+      "pred": "180",
+      "gold": "540"
+    },
+    {
+      "q": 4,
+      "ok": false,
+      "pred": "",
+      "gold": "20"
+    },
+    {
+      "q": 5,
+      "ok": false,
+      "pred": "48.00",
+      "gold": "64"
+    },
+    {
+      "q": 10,
+      "ok": false,
+      "pred": "246",
+      "gold": "366"
+    },
+    {
+      "q": 11,
+      "ok": true,
+      "pred": "694",
+      "gold": "694"
+    },
+    {
+      "q": 13,
+      "ok": false,
+      "pred": "1",
+      "gold": "18"
+    },
+    {
+      "q": 14,
+      "ok": false,
+      "pred": "25",
+      "gold": "60"
+    },
+    {
+      "q": 15,
+      "ok": false,
+      "pred": "",
+      "gold": "125"
+    },
+    {
+      "q": 16,
+      "ok": false,
+      "pred": "150",
+      "gold": "230"
+    },
+    {
+      "q": 17,
+      "ok": true,
+      "pred": "57500",
+      "gold": "57500"
+    }
+  ]
+}

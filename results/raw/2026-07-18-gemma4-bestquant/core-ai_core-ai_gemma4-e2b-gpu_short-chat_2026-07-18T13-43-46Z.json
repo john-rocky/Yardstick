@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "D7C4AB48-F597-4EEB-BA48-9D2AFDEC295A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 37.55725409571839,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 9258,
+    "generatedTokenCount" : 5,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 30.447006225585938,
+    "interTokenLatencyP95MS" : 42.81198978424072,
+    "interTokenLatencyP99MS" : 42.81198978424072,
+    "loadTimeSeconds" : 3.8977620601654053,
+    "memoryAfterGenerationMB" : 217.31620025634766,
+    "memoryAfterLoadMB" : 206.92557525634766,
+    "memoryBaselineMB" : 13.407981872558594,
+    "memoryPeakDuringDecodeMB" : 222.22245025634766,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 11,
+    "promptTokensPerSecond" : 1.188442976020675,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 4,
+    "totalGenerationTimeSeconds" : 9.596537947654724
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlboydaisuke\/gemma-4-E2B-CoreAI",
+    "id" : "core-ai\/gemma4-e2b-gpu",
+    "onDiskSizeMB" : 2048,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "int4 q4_0 (QAT, own export)"
+  },
+  "outputSample" : "<turn|><turn|><turn|>\n",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-18T13:43:46Z"
+}

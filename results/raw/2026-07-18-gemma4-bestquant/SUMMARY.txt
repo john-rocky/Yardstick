@@ -1,0 +1,243 @@
+Gemma-4-E2B iPhone best-quant rerun — 2026-07-18 (JST small hours; file timestamps are UTC)
+==========================================================================================
+Device: iPhone 17 Pro (iPhone18,1), iOS 27.0, Release build, bundle id override
+com.daisukemajima.llmbench (canonical id unregisterable). Task: short-chat, 128 tokens,
+temperature 0. Protocol: 3 cold runs per arm, median; quality task once per arm.
+Why this rerun exists: the published README table had each arm on a different checkpoint
+(MLX and llama.cpp on PTQ); this rerun puts EVERY ARM ON ITS BEST AVAILABLE QUANT
+(commit 0e83b7d labels, 9917c5a build fixes, 20d6b2a script traps).
+
+RESULT — full best-available table (updated 2026-07-18 evening with all arms + GSM8K)
+-------------------------------------------------------------------------------------
+Decode/ITL/memory: iPhone 17 Pro, median of 3 nominal colds (this session).
+GSM8K n=100: M4 Max, same harness/protocol for every row (greedy, thinking-off,
+max_tokens 1024, same extractor) — quality is a property of the weights, measured
+where every arm can run them.
+
+arm         quant                 decode tok/s (3 cold)   ITL p50   peak MB   GSM8K
+litert-lm   wNa8o8 QAT (official) 52.7  (51.7/52.7/53.7)  17.4 ms     487     86.0%
+mlx-swift   PTQ 4bit              46.4  (49.4/46.4/46.0)  21.5 ms   ~3,010    84.0%
+llama.cpp   Q4_K_M (PTQ)          37.6  (37.8/37.6/37.5)  25.5 ms     253*    76.0%
+mlx-swift   QAT OptiQ int4        34.8  (34.3/34.8/35.1)  29.0 ms   ~4,650    91.0%
+core-ai †   own int4 (q4_0)       34.2  (23.4/34.2/35.0)  29.0 ms    ~553*    88.0%
+llama.cpp   official QAT q4_0     UNLOADABLE              —         —         —
+
+† patched engine (reference): EngineOptions.staticInputBuffers is a local patch (not in
+  Apple's released coreai-models), and Apple ships no Gemma-4 bundle (own export). The
+  engine PATH is Apple's standard EngineFactory — the "sub-API runner" story was wrong,
+  see the misdiagnosis note below. TTFT is its real cost: ~5.1 s at a 19-token prompt
+  (S=1 unbatched prefill, ~3.7 tok/s — the PLE prefill wall, exactly as on Mac). Its
+  memory is mmap'd-weights footprint (same caveat as llama.cpp's *). The 23.4 first
+  capture is first-touch page-fault depressed; median carries.
+
+* llama.cpp mmaps weights; phys_footprint does not charge clean mmap'd pages, so its
+  "memory" is not comparable with runtimes that wire weights. Footnote it, don't rank it.
+
+Reading of the table (each claim same-session / same-harness):
+- The decode+memory upset SURVIVES: LiteRT beats every loadable arm on decode and beats the
+  non-mmap arms on memory by 6-9.5x.
+- QUALITY goes to MLX-OptiQ: 91.0% — +6 pts over the wNa8o8 LiteRT ships, at 0.66x its
+  decode speed. Nearest-quality framing: LiteRT 85.0 vs MLX-PTQ 84.0 -> LiteRT is 1.14x
+  faster at matched quality with 6x less memory.
+- The PTQ->QAT quality gap re-measured with stored reports: 84.0 -> 91.0 (+7 pts; the old
+  "78 -> 87, 9 pts" claim came from the defective harness era — supersede it).
+- llama.cpp: google/gemma-4-E2B-it-qat-q4_0-gguf aborts in llama_vocab::impl::load —
+  "load: empty token at index 237922" then GGML_ASSERT(id_to_token.size()==token_to_id.size()).
+  Reproduced: on-device vendored b8999, macOS brew 8680, macOS latest release b10064
+  (2026-07-17). unsloth Q4_K_M (PTQ) loads fine => defect is in this file's conversion.
+  The official-QAT row therefore reads "unloadable" — that is the measurement. Its usable
+  fallback (Q4_K_M) is also the QUALITY floor of the table at 76.0%.
+- On-device quality-task answers (sanity only): litert 9/9 correct; both MLX quants ~8/9;
+  llama Q4_K_M 6/8 post-fix (42/Tokyo/cold/7/0.9/blue; drops merci + 56 — a quant
+  behavior, not degeneracy). The EMPTY output this note originally flagged was the
+  adapter template bug, root-caused + fixed 2026-07-19 — see the dated section below.
+- core-ai row — the "EngineFactory wall" was a MISDIAGNOSIS (root-caused + fixed 2026-07-18,
+  commit 21404c6). Three real causes, none of them the engine path:
+    1. our own warmup(queryLength: 8) after createEngine — S=1-only graph => binary-layer
+       NDArrayDescriptor fatal that `try?` cannot catch (this WAS the whole "wall"; the
+       community-bench 07-14 note misattributed the same crash to EngineFactory);
+    2. gemma-4 ships its chat template as a separate chat_template.jinja, which
+       swift-transformers does not read => raw-encode prompt => degenerate "<turn|>" output;
+       fixed by inlining a minimal template into the bundle's tokenizer_config.json
+       (canonical bundle under leaderboard/models/ patched too; the HF-published
+       mlboydaisuke/gemma-4-E2B-CoreAI copy still needs the same fix);
+    3. COREAI_CHUNK_THRESHOLD=1 set at app init (gated to gemma4 core-ai launches).
+  GemmaPLEDeviceBench itself uses the SAME official EngineFactory + engine.generate — the
+  "low-level PreparedModel runner" description was wrong. So the row's provenance is: Apple's
+  standard engine path + two local additions (staticInputBuffers patch, own export).
+GSM8K reports: ~/code/hf-to-litertlm/reports/parity/gsm8k_{mlx-gemma4-e2b-qat-optiq4,
+mlx-gemma4-e2b-ptq4,llamacpp-gemma4-e2b-q4km}.json (new, this session) alongside the
+existing litert 85.0 / core-ai 88.0 / wna8o8-on-fp16 48.0 reports.
+
+Thermal audit (fairness rules: cold runs at initialThermalState=nominal)
+------------------------------------------------------------------------
+- litert-lm captures: all nominal (clean first time).
+- mlx-swift: first 3 captures ran right after the ~3 GB HF download; thermal fair/fair/serious,
+  decode 29.2/19.3/35.9 — EXCLUDED from the median. Re-captured with cooling waits until
+  3× nominal->nominal (21:02–21:08 UTC files): 34.3/34.8/35.1. The fair-state runs cluster at
+  33.3–35.2, so contamination mostly hit the two immediately-post-download runs.
+- Median-of-3-nominal is the headline; all 15 raw JSONs (including excluded runs) are in this
+  directory for the audit trail.
+
+Operational notes (for the next rerun)
+--------------------------------------
+- First-launch model downloads outlive the committed script's fixed 150 s sleeps; use a
+  download-aware poll on Documents/results, or pre-sideload.
+- google/* repos are license-gated; the app's anonymous download gets nothing. The gguf was
+  sideloaded to Documents/models/llama.cpp/google__gemma-4-E2B-it-qat-q4_0-gguf/
+  (HFDownloader.snapshot() short-circuits on a non-empty dir).
+- LiteRT first-ever load builds caches (~112 s); subsequent cold loads 1.4–3.6 s.
+- litert quality answers: 42/Tokyo/Cold/Seven/Merci/56/0.9/0.11/blue (all correct).
+  mlx quality output had 8 of the 9 items (0.11 missing; stopped at 20 tokens).
+
+Mac (M4 Max) energy — 2026-07-19, decode-window J/token (second pass, warm loads)
+---------------------------------------------------------------------------------
+Contamination check: every arm's decode tok/s in pass 2 >= pass 1 (no GPU contention;
+a concurrent export session was suspected but did not bite). Pass-1 rows are polluted
+(llama window = its own gguf download; OptiQ window = cold 4.3 GB load) — superseded.
+
+arm         build             J/tok(decode)   W(decode)   decode tok/s
+mlx-swift   PTQ 4-bit             0.090         14.6         177.8     <- efficiency + speed king on Mac
+mlx-swift   QAT OptiQ int4        0.106         14.6         149.5     (+18% J/tok buys +7 GSM8K pts)
+litert-lm   wNa8o8 (WebGPU!)      0.154         22.2         155.0
+llama.cpp   Q4_K_M                0.170         20.5         127.1
+core-ai     own int4 (patched)   ~0.33*         18.9          53 eff   * S=1 stepping makes the whole
+                                                                          window decode-like; full-window
+                                                                          0.356 minus ~load; upper bound
+
+Reading:
+- On the Mac, MLX owns the energy Pareto (lowest J/tok at the highest speed).
+- The litert number does NOT answer the "does wNa8o8's int8 activation path also win
+  energy?" question: Mac LiteRT runs the WebGPU->Metal path, a different efficiency class
+  from the iPhone's native path where wNa8o8 wins speed/memory. The iPhone battery-delta
+  bench (part 2) is where that question gets its real answer.
+- Core AI pays its S=1 wall in energy too on Mac: ~2.2x MLX's J/tok at 0.3x the speed.
+powermetrics = whole-system; run on an idle desktop; rows live in
+results/raw/m4max-*-sustained-energy.jsonl (pass 2 = the 01:5x UTC records).
+
+iPhone energy — 2026-07-19, battery-delta (part 2: the int8-activation energy answer)
+-------------------------------------------------------------------------------------
+Protocol: unplugged, Wi-Fi-driven, 600 s sustained decode per arm, 1%-step battery API
+(energySource battery-1pct), 300 s cooldowns. Both captured arms happened to burn exactly
+5% in their 600 s window -> identical joules (2,970 J), so the cleanest framing is tokens
+per charge. Sustained regime: both arms entered at thermal "fair" and peaked "serious" —
+that IS the sustained operating point; regime held equal across arms.
+
+arm         build            J/tok    tokens in 600s   sustained tok/s (vs burst)
+litert-lm   wNa8o8 (native)  0.122       24,336          40.3  (76% of 52.7)
+mlx-swift   PTQ 4-bit        0.151       19,640          29.6  (64% of 46.4)
+mlx-swift   QAT OptiQ        0.207       14,336          23.3  (67% of 34.8)   <- the +7-GSM8K-pt build costs +37% J/tok on device
+core-ai     own int4         0.352*      8,448          19.0  (56% of 34.2)  *shallow-rep
+llama.cpp   Q4_K_M           0.483      12,288          20.2  (54% of 37.6)   <- 2026-07-19 post-fix capture
+                             10% battery in ONE 608 s window (5,940 J, 9.8 W avg — ~2x any
+                             other arm's draw; 6 x 2048-token calls, no early EOS). The
+                             energy floor of the table: 4.0x LiteRT, 3.2x MLX-PTQ J/tok, and
+                             the worst throttle retention (54%). Direction matches the Mac
+                             (llama 0.170 = 1.9x MLX there); the phone's thermal ceiling
+                             amplifies it — more W -> serious sooner -> fewer tok/s -> worse
+                             J/tok. Same fair-entry regime as the other captured arms.
+
+ANSWER: on its native iPhone path, wNa8o8/LiteRT wins energy too — 24% more tokens on the
+same 5% of battery (0.122 vs 0.151 J/tok) — REVERSING the Mac result (Mac: MLX 0.090 vs
+litert-WebGPU 0.154). The co-designed weights+runtime package holds all three of
+speed / memory / energy on device; quality remains MLX-OptiQ's (91.0 vs 85.0).
+LiteRT also throttles less under sustained load (76% vs 64% of burst rate retained),
+consistent with the README's throttling section.
+
+core-ai row, standard (deep) protocol: SIGKILL (jetsam) reproduced down to
+--sustain-seconds 30. Cause is the known depth wall (report 注4: working set +0.25 GB
+@depth128, +1.06 @256, +3.47 @512 -> kill): EnergyTask decodes to maxTokens=2048 per rep,
+far past the ~depth-400 kill line. That failed-run finding stands (fairness rule 4).
+The 0.352 number comes from the SHALLOW-REP variant (--max-tokens 192/rep — the CLI knob
+already existed for exactly this) which keeps depth < the wall. Shallow attention is
+CHEAPER per token, so 0.352 is a favorable-bias lower bound — and core-ai still uses ~2.9x
+litert's deep-protocol energy per token (8,448 vs 24,336 tokens on the same 5% of battery).
+The planned litert-shallow calibration bridge was skipped (battery hit 15%); it can only
+push core-ai's deep-equivalent HIGHER, so the ranking is settled without it. Optional
+refinement: run litert-lm energy --max-tokens 192 at >40% battery and compute
+core-ai_deep-equiv = 0.352 x (0.122 / litert_shallow).
+
+
+Deep-context p=1024/g=256 fill (2026-07-19, nominal x3 medians, long-context-1024 task)
+---------------------------------------------------------------------------------------
+mlx-swift PTQ:   prefill 2,307  decode 47.6  peak 3,387 MB   (decode flat vs 46.4 burst)
+mlx-swift OptiQ: prefill 2,592  decode 35.1  peak 4,999 MB   (flat vs 34.8)
+llama.cpp Q4_K_M: prefill 1,053  decode 33.9  peak 300 MB    (2026-07-19 post-fix,
+  33.68/34.17/33.85 — 90% of its 37.6 burst; the earlier 1,040/EMPTY captures were the
+  adapter template bug, see the dated section below)
+The deep-context story is the 3-orders memory gradient: LiteRT 92 MB / MLX 3.4-5.0 GB /
+core-ai dead — decode-at-depth is flat on every surviving arm, and llama.cpp's mmap'd
+300 MB is the smallest phys_footprint of any arm that survives depth (same non-comparable
+caveat as its short-chat cell).
+
+
+llama.cpp adapter empty-output bug — ROOT-CAUSED + FIXED (2026-07-19)
+---------------------------------------------------------------------
+Symptom: zero tokens on every task except short-chat (prefill ran; stopReason "stop").
+Root cause chain, proven on the Mac CLI (same adapter binary) then on device:
+  1. The adapter wraps prompts via llama_chat_apply_template, which pattern-matches the
+     template SOURCE — it does not run Jinja. unsloth's gemma-4 template is 18.8 KB of
+     macro indirection with NO literal turn-marker anywhere, so it comes back
+     unrecognized (-1) and the adapter silently fell back to the BARE prompt on every
+     task (recorded prompt_tokens prove it: short-chat 12 = bare+BOS exactly).
+  2. gemma-4 also RENAMED the turn markers: <|turn>role ... <turn|> (ids 105/106), and
+     <turn|> IS the EOS. Untemplated, the instruction-tuned model treats a
+     complete-looking prompt (quality's 9-question block, long-context's 1,073-token
+     document, energy's essay brief) as a finished turn and samples <turn|> as the FIRST
+     token -> 0 tokens, "stop". short-chat's bare one-liner invites continuation ->
+     it alone "worked" (as an untemplated completion at that).
+Fix (LlamaCppRuntime.swift): when the stored template is rejected, detect the family by
+vocab probe (turn marker tokenizes to a single special token only in its own family) and
+render gemma-4's markup directly (<|turn>user\n...<turn|>\n<|turn>model\n; single BOS via
+tokenize(addBOS:), matching the template's {{ bos_token }}). Also fixed in the same pass:
+KV cache now cleared per generate() call (energy's re-prompt loop and --runs N reused the
+context with stale cells at overlapping positions), and the sampler is built per call from
+task parameters (quality now actually runs greedy; the old load-time chain was a fixed
+temp 0.7 that ignored GenerationParameters).
+Validation: Mac quality/short-chat/long-context all decode (quality 42/Tokyo/cold/7/0.9/
+blue); device quality 134 prompt tokens templated + same answers; device long-context
+33.68/34.17/33.85; device multi-call preflight (energy --sustain-seconds 45 --max-tokens
+128) = 10 calls x 128 tokens, KV clear proven on the production path. Post-fix templated
+short-chat sanity n=3: 38.29/36.31/32.66 (median 36.31 vs published 37.6 from 07-18 —
+same session-noise band, so the published short-chat/ITL cells stand unchanged; the
+07-19 re-captures are on record). Preflight energy records (08-05-04Z, 08-06-11Z) are
+validation runs, not measurements — excluded from cells. The 600 s standard-protocol
+energy capture followed (08-21-57Z): 0.483 J/tok — the iPhone energy table above.
+
+Thinking mode (2026-07-19 evening)
+----------------------------------
+GSM8K n=100, thinking ON (same harness; mlx via enable_thinking, core-ai via llm-runner
+--raw-tokens template bypass; median think length ~820 tok):
+  core-ai own int4   92.0  (+4.0 vs off — new campaign quality high, equals the bf16 anchor)
+  mlx OptiQ          90.0  (-1.0 vs off — thinking gains nothing for the QAT'd build)
+  litert wNa8o8      NOT MEASURABLE — no thinking toggle in the public API; <|think|> marker
+                     injection inside user text is sanitized/inert (plain + turn-closing
+                     probes). The wNa8o8 3-crown sweep is a thinking-OFF story.
+iPhone thinking feasibility (patched app, energy task --max-tokens 480, n=3):
+  Core AI COMPLETES a thinking-length decode (depth ~550) — the depth-wall extrapolation
+  ("cannot think") was WRONG — but decode collapses 34.2 -> 11.7 tok/s (2.9x) at 4.2 GB
+  peak (7.6x short-chat). Only Core AI degrades with depth (MLX 47.6/35.1 and LiteRT ~56
+  stay flat at depth ~1082). Depth ~2048 still jetsams: one thinking answer yes (~75 s),
+  multi-turn thinking chat no. Reports: gsm8k_{mlx-gemma4-e2b-optiq4,coreai-gemma4-e2b-q40}-thinking.json
+
+
+Scoring-normalization postmortem (2026-07-20, flagged by a brief-review session)
+--------------------------------------------------------------------------------
+Two scoring defects found and fixed BEFORE publication; every stored per-question record
+was re-scored with float-canonical normalization ('26.00' == '26'):
+1. The fake-quant harnesses' norm() only rstrip'd trailing dots -> every n=100 run
+   under-scored: fp16 46->48 (now EXACTLY Core AI's 48), linear-only 82->88,
+   linear+kv 83->89, +pleproj 86. The clamp therefore recovers the ENTIRE fp16 gap
+   (48 -> 88-89, at/above the true int8 path) — the finding got stronger.
+2. The canonical harness's extract() rstrip(".0") stripped CHARACTERS, mangling
+   trailing-zero integers ('20.00' -> '2'). Log audit of every table arm: one confirmed
+   hit — LiteRT q45's correct '#### 20.00' scored wrong; raw output re-verified ->
+   **LiteRT GSM8K = 86.0, not 85.0** (n=250 companion has the same q44 mangle; 86.4).
+   All other table arms' logs show no mangle signature (the pred=2500/7000-style items
+   are genuine model errors — rstrip cannot produce those strings).
+   ±1 disclosed, not re-run (source artifacts gone / env friction): wna8o8-on-fp16 48
+   (q5 shows the signature; possibly 49) and cactus-think 87 (q45 signature; possibly 88).
+   Neither moves any claim.
+Downstream deltas applied: README/report tables (LiteRT 86.0), OptiQ lead +6->+5 pts,
+cactus-vs-litert quality 87-vs-86, note-2 fake-quant ladder 48/88/89/86 with
+full-gap-recovery prose. Normalizers fixed in all four harness scripts.

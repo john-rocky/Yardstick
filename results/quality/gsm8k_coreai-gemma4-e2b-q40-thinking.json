@@ -1,0 +1,7 @@
+{
+  "tag": "coreai-gemma4-e2b-q40-thinking",
+  "n": 100,
+  "correct": 92,
+  "acc": 0.92,
+  "max_tokens": 2048
+}

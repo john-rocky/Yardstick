@@ -1,20 +1,19 @@
-name: RESULTS.md is rendered
+name: data pipeline
 
 on:
   pull_request:
     paths:
-      - "results/raw/**"
-      - "scripts/render_results.py"
+      - "results/**"
+      - "scripts/**"
       - "RESULTS.md"
+      - "evaldata/**"
+      - ".github/workflows/results-rendered.yml"
   push:
     branches: [main]
-    paths:
-      - "results/raw/**"
-      - "scripts/render_results.py"
-      - "RESULTS.md"
 
 jobs:
   render-check:
+    name: RESULTS.md is rendered
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,5 +21,40 @@ jobs:
         with:
           python-version: "3.11"
       - name: render_results.py --check
+        run: python scripts/render_results.py --check
+
+  scripts-compile:
+    name: every script parses
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: py_compile all python scripts
+        run: python -m py_compile scripts/*.py results/raw/*/import_to_flat.py 2>/dev/null || python -m py_compile scripts/*.py
+      - name: bash -n all shell scripts
+        run: for f in scripts/*.sh ios/BenchmarkApp/scripts/*.sh; do bash -n "$f" || exit 1; done
+
+  charts:
+    name: charts regenerate from raw
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install matplotlib
+      - name: generate_charts.py runs clean against results/raw
         run: |
-          python scripts/render_results.py --check
+          python scripts/generate_charts.py
+          test -s docs/charts/iphone_gemma4_bestavailable.png
+          test -s docs/charts/iphone_gemma4_thinking.png
+          test -s docs/charts/iphone_gemma4_deepcontext.png
+
+  # NOTE: no Xcode build job — the app/tool require the iOS 27 / macOS 27 SDK (Xcode 27
+  # beta), which GitHub-hosted macOS runners do not ship. Build reproducibility is instead
+  # verified manually per the clean-clone procedure in README ("Running on iPhone/Mac");
+  # last verified 2026-07-19 (stock, unsigned, BUILD SUCCEEDED). Revisit when Xcode 27
+  # reaches hosted runners or a self-hosted mac runner exists (see
+  # methodology/continuous-benchmarking-proposal.md).
