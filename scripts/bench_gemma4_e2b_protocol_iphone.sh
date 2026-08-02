@@ -97,6 +97,11 @@ GGUF_FILE="gemma-4-E2B-it-Q4_K_M.gguf"
 COREAI_ID="core-ai/gemma4-e2b-gpu"
 HUB="Library/Caches/huggingface/hub"
 
+# NOTE: never pipe `have` into `grep -q` while pipefail is set. Big listings (the cactus
+# bundle is ~1,500 files, well past the 64 KB pipe buffer) make devicectl take SIGPIPE when
+# grep -q exits at first match, and pipefail then reports the check as FAILED — a present
+# model reads as MISSING (cost three phone-chain relaunches on 07-29). Plain `grep` (which
+# drains the stream) or a `case "$(have …)" in *pat*)` substring check are both safe.
 have() { xcrun devicectl device info files --device "$DEV" --domain-type appDataContainer \
   --domain-identifier "$APP" --subdirectory "$1" 2>/dev/null; }
 copy_to() { xcrun devicectl device copy to --device "$DEV" --domain-type appDataContainer \
@@ -179,6 +184,20 @@ cmd_install() {
     -skipPackagePluginValidation -skipMacroValidation \
     PRODUCT_BUNDLE_IDENTIFIER="$APP" DEVELOPMENT_TEAM=MFN25KNUGJ CODE_SIGN_STYLE=Automatic \
     build 2>&1 | grep -E "error:|BUILD (SUCCEEDED|FAILED)"
+  # Refuse to install a product whose harness stamp is not the source's. This function has
+  # no set -e: on 2026-07-30 an iOS-unavailable API (homeDirectoryForCurrentUser) failed the
+  # build, the install step then pushed the STALE r3 .app still sitting in DerivedData, and
+  # only the stamp on the warmup console caught it — a device sitting later. Check the
+  # binary, not the build log.
+  local src_stamp
+  src_stamp="$(sed -n 's/.*harnessStamp = "\([^"]*\)".*/\1/p' \
+    "$REPO/ios/BenchmarkApp/Sources/Benchmark/BenchmarkRunner.swift" | head -1)"
+  # (plain grep, not -q: strings output is way past the 64 KB pipe buffer — see the have() note)
+  if [ -n "$src_stamp" ] && ! strings "$DD/Build/Products/Release-iphoneos/BenchmarkApp.app/BenchmarkApp" \
+      2>/dev/null | grep -F "$src_stamp" >/dev/null; then
+    echo "REFUSING install: source stamp '$src_stamp' not found in the built binary (stale build?)"
+    return 1
+  fi
   xcrun devicectl device install app --device "$DEV" \
     "$DD/Build/Products/Release-iphoneos/BenchmarkApp.app" 2>&1 | grep -iE "bundleID|error"
   echo "NOTE: kernel caches are now cold-on-disk. Run 'warmup' before 'run'."
