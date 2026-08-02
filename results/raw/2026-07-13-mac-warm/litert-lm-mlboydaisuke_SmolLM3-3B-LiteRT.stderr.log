@@ -1,0 +1,2 @@
+yardstick: run 1/5 task=short-chat runtime=litert-lm model=mlboydaisuke/SmolLM3-3B-LiteRT
+error: modelNotInCatalog("mlboydaisuke/SmolLM3-3B-LiteRT")

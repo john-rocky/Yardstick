@@ -1,0 +1,13 @@
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-4bit task=cactus-parity runs=4
+[MLX] load FAILED: Key language_model.model.layers.15.self_attn.v_proj.weight not found in Gemma4Model.Gemma4TextModel.Gemma4TextModelInner.Gemma4DecoderLayer.Gemma4Attention.Linear
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Key language_model.model.layers.15.self_attn.v_proj.weight not found
+YARDSTICK_ALL_DONE
+# mlx-swift-lm cannot load the CURRENT mlx-community/gemma-4-e2b-it-4bit. That repo was
+# re-uploaded 2026-07-06 ("Re-upload MLX conversion from google/gemma-4-E2B-it@70af34e2"): the
+# prior revision (2c3e507, 2026-05-19) materialised k_proj/v_proj on all 35 layers (2649 tensors);
+# the current one carries them only on layers 0-15 and shares KV from layer 16 (2511 tensors,
+# verified against both revisions' model.safetensors.index.json). mlx-swift-lm's Gemma4Attention
+# builds k_proj/v_proj on every layer and does not skip the KV-shared ones, so it fails at layer 15.
+# Reproduced on the app's resolved main (b95dc78), the Package.resolved pin (5b7e543), and the
+# macOS CLI. This repo's earlier iPhone MLX number (decode 46.2 tok/s, 2026-06-17) was on the prior
+# revision. Python mlx-lm loads the current repo fine (the arm that scored 78% on the GSM8K gate).

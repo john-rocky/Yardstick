@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A8F81BFA-1C94-4AF3-8DBC-7F60BBED3E24",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 79.63532077907708,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 257,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 11.277914047241211,
+    "interTokenLatencyP95MS" : 11.84999942779541,
+    "interTokenLatencyP99MS" : 13.596057891845703,
+    "loadTimeSeconds" : 2.4380980730056763,
+    "memoryAfterGenerationMB" : 174.01820373535156,
+    "memoryAfterLoadMB" : 187.65882873535156,
+    "memoryBaselineMB" : 14.579833984375,
+    "memoryPeakDuringDecodeMB" : 196.87757873535156,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 22,
+    "promptTokensPerSecond" : 86.28971935523991,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.06734299659729
+  },
+  "model" : {
+    "displayName" : "OLMo-2-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/olmo2-1b-gpu",
+    "onDiskSizeMB" : 806,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI means AI that is processed and executed on a device or chip on your device (like your phone or computer) without needing to send data to a cloud. This approach reduces the need for data t",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:02:21Z"
+}

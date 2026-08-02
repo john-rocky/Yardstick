@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "3845F4F2-4AB8-420C-9085-65E2B6874E74",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 29.165931770132516,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 926,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 34.54291820526123,
+    "interTokenLatencyP95MS" : 36.592960357666016,
+    "interTokenLatencyP99MS" : 37.457942962646484,
+    "loadTimeSeconds" : 8.418591976165771,
+    "memoryAfterGenerationMB" : 443.33145904541016,
+    "memoryAfterLoadMB" : 551.3628921508789,
+    "memoryBaselineMB" : 14.829879760742188,
+    "memoryPeakDuringDecodeMB" : 721.3941650390625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 22.496652960777283
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (.litertlm)",
+    "hfFilePatterns" : [
+      "TinySwallow-1.5B-Instruct.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/TinySwallow-1.5B-Instruct",
+    "id" : "litert-community\/TinySwallow-1.5B-Instruct",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "TinySwallow-1.5B-Instruct.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-23T10:05:30Z"
+}

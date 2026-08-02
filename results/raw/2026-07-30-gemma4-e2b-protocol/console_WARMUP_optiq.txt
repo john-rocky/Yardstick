@@ -1,0 +1,21 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit task=short-chat runs=2 context_tokens=2048
+[MLX] load starting: mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/5254582836 bytes)
+[MLX] download progress: 0% (0/5254582836 bytes)
+[MLX] download progress: 100% (5254582836/5254582836 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/A79724E9-0390-4FFD-98FA-74AFC65D82B5/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-qat-OptiQ-4bit/snapshots/b7a34a6d76bbebebe700ffe68b57c97a4e3c3622
+[HubBridge] download id=mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/5254582836 bytes)
+[MLX] download progress: 0% (0/5254582836 bytes)
+[MLX] download progress: 100% (5254582836/5254582836 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/A79724E9-0390-4FFD-98FA-74AFC65D82B5/Library/Caches/huggingface/hub/models--mlx-community--gemma-4-e2b-it-qat-OptiQ-4bit/snapshots/b7a34a6d76bbebebe700ffe68b57c97a4e3c3622
+[MLX] load complete in 6.97s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=36.15 decode_tok_s_wall=35.87 ttft_ms=216 prefill_tok_s=112.3 prefill_tok_s_wall=97.2 prompt_tokens=21 peak_mb=4598 median_mb=4598 median_resident_mb=3855 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=36.06 decode_tok_s_wall=35.78 ttft_ms=96 prefill_tok_s=224.0 prefill_tok_s_wall=218.5 prompt_tokens=21 peak_mb=4598 median_mb=4598 median_resident_mb=3859 ctx=2048 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

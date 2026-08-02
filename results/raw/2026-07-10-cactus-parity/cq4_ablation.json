@@ -1,0 +1,98 @@
+{
+  "bundle": "/private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/gemma-4-e2b-it-cq4",
+  "rendered_prompt": "<bos><|turn>user\nHi<turn|>\n<|turn>model\n",
+  "harness_ablations": [
+    {
+      "variant": "baseline (as scored)",
+      "decode_tokens": 1024,
+      "terminated": false,
+      "has_marker": false,
+      "chars": 3851,
+      "correct": false,
+      "tail": "Let's assume $N_{April} = 48$.\nThe total sales are $\\frac{1}{2}$ times the number.\n\n# Final Answer based on the structure:\nIf we assume that"
+    },
+    {
+      "variant": "gemma stop sequence",
+      "decode_tokens": 1024,
+      "terminated": false,
+      "has_marker": false,
+      "chars": 3851,
+      "correct": false,
+      "tail": "Let's assume $N_{April} = 48$.\nThe total sales are $\\frac{1}{2}$ times the number.\n\n# Final Answer based on the structure:\nIf we assume that"
+    },
+    {
+      "variant": "no stop sequences",
+      "decode_tokens": 1024,
+      "terminated": false,
+      "has_marker": false,
+      "chars": 3851,
+      "correct": false,
+      "tail": "Let's assume $N_{April} = 48$.\nThe total sales are $\\frac{1}{2}$ times the number.\n\n# Final Answer based on the structure:\nIf we assume that"
+    },
+    {
+      "variant": "thinking disabled",
+      "decode_tokens": 1024,
+      "terminated": false,
+      "has_marker": false,
+      "chars": 3851,
+      "correct": false,
+      "tail": "Let's assume $N_{April} = 48$.\nThe total sales are $\\frac{1}{2}$ times the number.\n\n# Final Answer based on the structure:\nIf we assume that"
+    },
+    {
+      "variant": "cactus's own system prompt",
+      "decode_tokens": 1024,
+      "terminated": false,
+      "has_marker": false,
+      "chars": 4393,
+      "correct": false,
+      "tail": "\n# Final Answer Calculation: The final answer is proportional to the sum of the two months.\n\nThe prompt implies a specific quantity for each"
+    },
+    {
+      "variant": "1.5x the token budget",
+      "decode_tokens": 1536,
+      "terminated": false,
+      "has_marker": false,
+      "chars": 5741,
+      "correct": false,
+      "tail": "(as implied by the prompt structure).\nThe total sales are $\\frac{1}{2}$ times the number.\n\n# Final Answer based on the structure:\nIf we must"
+    }
+  ],
+  "failure_localisation": [
+    {
+      "probe": "bare arithmetic",
+      "gold": "42",
+      "decode_tokens": 40,
+      "terminated": true,
+      "correct": true,
+      "chars": 90,
+      "head": "To find the answer, we add the numbers:\n\n$$17 + 25 = 42$$\n\n**Calculation:**\n$17 + 25 = 42$"
+    },
+    {
+      "probe": "one-step word problem",
+      "gold": "24",
+      "decode_tokens": 128,
+      "terminated": true,
+      "correct": true,
+      "chars": 446,
+      "head": "Here's how to solve the problem:\n\n1. **Total apples:** 48\n2. **Half are red:** This implies that half of the total number is red.\n\n**Calculation:**\nIf the box has 48 apples, and half of them are red, "
+    },
+    {
+      "probe": "two-step, no CoT suffix",
+      "gold": "72",
+      "decode_tokens": 768,
+      "terminated": false,
+      "correct": false,
+      "chars": 3393,
+      "head": "Here's how to solve the problem:\n\n**1. Clips sold in April:**\nNatalia sold clips to 48 friends in April. This implies that she sold a certain number of clips, but the prompt doesn't explicitly state *"
+    },
+    {
+      "probe": "two-step, plain step-by-step",
+      "gold": "72",
+      "decode_tokens": 547,
+      "terminated": true,
+      "correct": false,
+      "chars": 2320,
+      "head": "Here is the step-by-step thinking process:\n\n**Step 1: Calculate sales in April.**\nNatalia sold clips to 48 friends in April. This implies that she sold a certain number of clips based on this quantity"
+    }
+  ]
+}

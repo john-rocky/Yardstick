@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F4DE1728-78FF-49EE-9BDD-5257A8C1A9F9",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.22236824081772,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 611,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 21.46601676940918,
+    "interTokenLatencyP95MS" : 23.193001747131348,
+    "interTokenLatencyP99MS" : 23.275017738342285,
+    "memoryAfterGenerationMB" : 852.0504837036133,
+    "memoryAfterLoadMB" : 626.3781051635742,
+    "memoryBaselineMB" : 626.3781051635742,
+    "memoryPeakDuringDecodeMB" : 1025.0035400390625,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 15.313968062400818
+  },
+  "model" : {
+    "displayName" : "DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/DeepSeek-R1-1.5B-int4-BOCTAV4",
+    "id" : "own\/DeepSeek-R1-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB" : 1024,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample" : "<think>\nOkay, so I'm trying to understand what on-device AI means. I've heard the term before, but I'm not exactly sure what it entails. Let me break it down.\n\nFirst, AI stands for Artificial Intellig",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-24T19:06:41Z"
+}

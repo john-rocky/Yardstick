@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "47392430-2732-4EE6-B070-C551FA32947F",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      17.472809343304508,
+      17.45767179333621
+    ],
+    "decodeTokensPerSecond" : 17.452670234079452,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 2244,
+    "generatedTokenCount" : 107,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 57.43896961212158,
+    "interTokenLatencyP95MS" : 58.793067932128906,
+    "interTokenLatencyP99MS" : 59.567928314208984,
+    "memoryAfterGenerationMB" : 2477.5995330810547,
+    "memoryAfterLoadMB" : 2477.2401580810547,
+    "memoryBaselineMB" : 2477.2401580810547,
+    "memoryPeakDuringDecodeMB" : 3456.568328857422,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 14,
+    "promptTokensPerSecond" : 20.786656154557697,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 106,
+    "totalGenerationTimeSeconds" : 8.317916989326477
+  },
+  "model" : {
+    "displayName" : "Phi-4-mini (.litertlm, own int4 BOCTAV4-128)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/Phi-4-mini-int4-BOCTAV4-128",
+    "id" : "own\/Phi-4-mini-int4-BOCTAV4-128",
+    "onDiskSizeMB" : 2200,
+    "parameterCountB" : 3.8,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope)"
+  },
+  "outputSample" : "\"On-device AI\" refers to artificial intelligence technology that is embedded directly on a user's electronic device, like a smartphone or a computer. This means the AI is running locally on the device",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-24T19:14:31Z"
+}

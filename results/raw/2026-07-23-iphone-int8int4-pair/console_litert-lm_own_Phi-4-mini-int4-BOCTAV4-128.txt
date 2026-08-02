@@ -1,0 +1,11 @@
+ERROR: The application failed to launch. (com.apple.dt.CoreDeviceError error 10002 (0x2712))
+       BundleIdentifier = com.example.CoreMLLLMChat
+       ----------------------------------------
+           The request to open "com.example.CoreMLLLMChat" failed. (FBSOpenApplicationServiceErrorDomain error 1 (0x01))
+           NSLocalizedFailureReason = The request was denied by service delegate (SBMainWorkspace) for reason: Locked ("Unable to launch com.example.CoreMLLLMChat because the device was not, or could not be, unlocked").
+           FBSOpenApplicationRequestID = 0x3739
+           BSErrorCodeDescription = RequestDenied
+       ----------------------------------------
+               The operation couldn’t be completed. Unable to launch com.example.CoreMLLLMChat because the device was not, or could not be, unlocked. (FBSOpenApplicationErrorDomain error 7 (0x07))
+               BSErrorCodeDescription = Locked
+               NSLocalizedFailureReason = Unable to launch com.example.CoreMLLLMChat because the device was not, or could not be, unlocked.

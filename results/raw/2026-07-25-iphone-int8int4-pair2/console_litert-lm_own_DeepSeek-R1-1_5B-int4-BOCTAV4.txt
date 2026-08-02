@@ -1,0 +1,268 @@
+Launched application with com.example.CoreMLLLMChat bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=litert-lm model=own/DeepSeek-R1-1.5B-int4-BOCTAV4 task=short-chat runs=4
+I0000 00:00:1784919965.683265   52024 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1784919965.683379   52024 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1784919965.683525   52024 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1784919965.683537   52024 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1784919965.683539   52024 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1784919965.683540   52024 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1784919965.683562   52024 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1784919965.683564   52024 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1784919965.683565   52024 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1784919965.683566   52024 litert_lm_loader.cc:265] section_end_offset: 16950
+I0000 00:00:1784919965.683574   52024 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1784919965.683575   52024 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1784919965.683576   52024 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1784919965.683577   52024 litert_lm_loader.cc:265] section_end_offset: 2174935
+I0000 00:00:1784919965.683605   52024 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1784919965.683616   52024 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1784919965.683618   52024 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1784919965.683618   52024 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1784919965.683619   52024 litert_lm_loader.cc:265] section_end_offset: 1110537568
+I0000 00:00:1784919965.684002   52024 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1784919965.684011   52024 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1784919965.684014   52024 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1784919965.684014   52024 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1784919965.684016   52024 litert_lm_loader.cc:227] minor_version: 5
+I0000 00:00:1784919965.684016   52024 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1784919965.684017   52024 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1784919965.684018   52024 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1784919965.684019   52024 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1784919965.684020   52024 litert_lm_loader.cc:265] section_end_offset: 16950
+I0000 00:00:1784919965.684020   52024 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1784919965.684022   52024 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1784919965.684050   52024 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1784919965.684051   52024 litert_lm_loader.cc:265] section_end_offset: 2174935
+I0000 00:00:1784919965.684052   52024 litert_lm_loader.cc:105] model_type: tf_lite_prefill_decode
+I0000 00:00:1784919965.684053   52024 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1784919965.684054   52024 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1784919965.684055   52024 litert_lm_loader.cc:264] section_begin_offset: 2179072
+I0000 00:00:1784919965.684055   52024 litert_lm_loader.cc:265] section_end_offset: 1110537568
+I0000 00:00:1784919965.684430   52024 engine_advanced_impl.cc:252] New model files have LlmModelType, loading tokenizer asynchronously
+W0000 00:00:1784919965.684455   52024 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1784919965.684465   52024 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1784919965.684466   52024 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1784919965.684467   52024 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1784919965.684530   52024 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1784919965.684535   52024 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 672
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: /private/var/mobile/Containers/Data/Application/984B6240-D000-433C-8381-B5D66A2DBF05/tmp/
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /var/mobile/Containers/Data/Application/984B6240-D000-433C-8381-B5D66A2DBF05/Documents/models/litert-lm/own__DeepSeek-R1-1.5B-int4-BOCTAV4/model.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: MessageLite at 0x16f3c1620  BenchmarkParams: MessageLite at 0x16f3c15f8  VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1784919965.684986   52024 model_resources_litert_lm.cc:67] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1784919965.684989   52024 model_resources_litert_lm.cc:68] litert model size: 1108358496
+INFO: [environment.cc:30] Creating LiteRT environment with options
+W0000 00:00:1784919965.684996   52040 litert_lm_loader.cc:289] Section not found: 
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x146fe2a30, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x146fe2c10, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1476aa1c0, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1476aa3a0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1784919965.715828   52024 executor_settings_base.cc:397] File does not exist: /private/var/mobile/Containers/Data/Application/984B6240-D000-433C-8381-B5D66A2DBF05/tmp/model.litertlm_1784009430_1110537568_mldrift_program_cache.bin Cleaning stale caches.
+I0000 00:00:1784919965.716145   52024 executor_settings_base.cc:408] Deleted 1 stale cache files.
+I0000 00:00:1784919965.716231   52024 executor_settings_base.cc:351] Deleted 0 stale cache files.
+I0000 00:00:1784919965.716242   52024 litert_compiled_model_executor_utils.cc:518] Setting serialization dir: /private/var/mobile/Containers/Data/Application/984B6240-D000-433C-8381-B5D66A2DBF05/tmp
+INFO: [compiled_model.cc:797] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1784919965.723664   52024 delegate_metal.mm:88] Created a Metal device.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1784919969.679610   52024 delegate_kernel.cc:297] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1784919969.679630   52024 delegate_kernel.cc:816] Initializing Metal-based API from serialized data.
+I0000 00:00:1784919971.200948   52024 delegate_kernel.cc:297] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1784919971.200980   52024 delegate_kernel.cc:816] Initializing Metal-based API from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7064c11ef0, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7064c12080, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+W0000 00:00:1784919971.329040   52024 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1784919971.329050   52024 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+I0000 00:00:1784919971.329051   52024 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1784919971.329053   52024 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1784919971.329055   52024 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1784919971.329056   52024 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+I0000 00:00:1784919971.329057   52024 model_resources_litert_lm.cc:67] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1784919971.329058   52024 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1784919971.329059   52024 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1784919971.329059   52024 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+I0000 00:00:1784919971.329169   52024 model_resources_litert_lm.cc:67] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1784919971.329171   52024 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1784919971.329173   52024 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1784919971.329174   52024 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+I0000 00:00:1784919971.329175   52024 model_resources_litert_lm.cc:67] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1784919971.329176   52024 model_resources_litert_lm.cc:68] litert model size: 0
+W0000 00:00:1784919971.329195   52024 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1784919971.329196   52024 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1784919971.329197   52024 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1784919971.329233   52024 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1784919971.330338   52024 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1784919971.330346   52024 engine_settings.cc:443] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 672
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: /private/var/mobile/Containers/Data/Application/984B6240-D000-433C-8381-B5D66A2DBF05/tmp/
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /var/mobile/Containers/Data/Application/984B6240-D000-433C-8381-B5D66A2DBF05/Documents/models/litert-lm/own__DeepSeek-R1-1.5B-int4-BOCTAV4/model.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: true
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: true
+hint_waiting_for_completion: false
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+
+  LlmMetadata: MessageLite at 0x16f3c1620  BenchmarkParams: MessageLite at 0x16f3c15f8  VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1784919971.330413   52024 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1784919971.330417   52024 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1784919971.331700   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331705   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331706   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331707   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331707   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331708   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331709   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331778   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331780   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331782   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331783   52024 stop_token_detector.cc:64] Stop token sequence {151643} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331783   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331784   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919971.331789   52024 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+I0000 00:00:1784919971.333937   52024 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1784919971.587679   52496 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1784919971.591251   52496 sampler_factory.cc:529] Metal sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKMetalSampler.dylib: dlopen(libLiteRtTopKMetalSampler.dylib, 0x0005): tried: 'libLiteRtTopKMetalSampler.dylib' (no such file), '/private/preboot/Cryptexes/OSlibLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), '/private/preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/D4FCDC49-E6D9-4704-BE1C-A3055BFBFBDA/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/D4FCDC49-E6D9-4704-BE1C-A3055BFBFBDA/BenchmarkApp.app/Frameworks/CLiteRTLM.framework/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/D4FCDC49-E6D9-4704-BE1C-A3055BFBFBDA/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKMetalSampler.dylib' (no such file).
+=== Source Location Trace: === 
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1784919971.591381   52496 sampler_factory.cc:537] Statically linked LiteRtTopKMetalSampler C API.
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=45.78 ttft_ms=280 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1117 tokens=128
+I0000 00:00:1784919986.134626   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134660   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134665   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134668   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134671   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134673   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134676   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop tokenYARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+ sequence.
+I0000 00:00:1784919986.134732   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134740   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134743   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134746   52024 stop_token_detector.cc:64] Stop token sequence {151643} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134749   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134751   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784919986.134766   52024 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=46.22 ttft_ms=611 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1025 tokens=128
+I0000 00:00:1784920001.656023   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656058   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656064   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656067   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656071   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656074   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656077   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop tokenYARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+ sequence.
+I0000 00:00:1784920001.656128   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656139   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656143   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656147   52021 stop_token_detector.cc:64] Stop token sequence {151643} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656150   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656153   52021 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920001.656170   52021 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=44.49 ttft_ms=668 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1204 tokens=128
+I0000 00:00:1784920017.451040   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451073   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451078   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451082   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451085   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451088   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451091   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop tokenYARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+ sequence.
+I0000 00:00:1784920017.451147   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451157   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451161   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451165   52024 stop_token_detector.cc:64] Stop token sequence {151643} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451168   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451171   52024 stop_token_detector.cc:64] Stop token sequence {-1} already exists. Skipping adding the stop token sequence.
+I0000 00:00:1784920017.451185   52024 model_data_processor_factory.cc:408] Creating Qwen3DataProcessor
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=42.84 ttft_ms=666 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1260 tokens=128
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7064c12080, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7064c11ef0, name=GPU Metal
+The app terminated with the exit code 0.

@@ -1,0 +1,30 @@
+Backend: Metal GPU
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ Running Benchmark                                                                    ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════╗
+║  LLM BENCHMARK (1k prefill / 100 decode) ║
+╚══════════════════════════════════════════╝
+├─ Prompt tokens: 1000 (rendered 1221, truncated)
+├─ Decode tokens: 100
+[RAWJSON run=0] {"success":true,"time_to_first_token_ms":1288.19,"total_time_ms":4800.52,"prefill_tps":776.31,"prefill_compute_tps":776.31,"prefill_prepare_tps":776.29,"ttft_prompt_tps":776.28,"cache_prime_ms":1288.17,"cache_prime_compute_ms":1288.14,"cache_state_copy_ms":0.03,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":28.19,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":929.02,"ram_usage_mb":627.21}
+├─ Warmup: prefill_tps=776.31 decode_tps=28.19
+[RAWJSON run=1] {"success":true,"time_to_first_token_ms":1342.04,"total_time_ms":3952.00,"prefill_tps":745.14,"prefill_compute_tps":745.14,"prefill_prepare_tps":745.14,"ttft_prompt_tps":745.14,"cache_prime_ms":1342.03,"cache_prime_compute_ms":1342.02,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":37.93,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":638.02,"ram_usage_mb":638.01}
+[RAWJSON run=2] {"success":true,"time_to_first_token_ms":1421.90,"total_time_ms":4059.39,"prefill_tps":703.30,"prefill_compute_tps":703.30,"prefill_prepare_tps":703.30,"ttft_prompt_tps":703.29,"cache_prime_ms":1421.87,"cache_prime_compute_ms":1421.87,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":37.54,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":648.87,"ram_usage_mb":648.87}
+[RAWJSON run=3] {"success":true,"time_to_first_token_ms":1462.18,"total_time_ms":4409.15,"prefill_tps":683.92,"prefill_compute_tps":683.92,"prefill_prepare_tps":683.92,"ttft_prompt_tps":683.91,"cache_prime_ms":1462.16,"cache_prime_compute_ms":1462.15,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":33.59,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":659.54,"ram_usage_mb":659.54}
+
+[Mean of 3 runs]
+├─ prefill_tps            710.79 tok/s
+├─ decode_tps              36.35 tok/s
+├─ peak_ram               648.81 MB
+├─ prefill_prep_tps       710.79 tok/s
+├─ ttft_prompt_tps        710.78 tok/s
+├─ cache_copy               0.01 ms
+├─ ttft                  1408.71 ms
+└─ Status: PASSED ✓
+✓ PASS │ llm_benchmark            
+────────────────────────────────────────────────────────────────────────────────────────
+✓ All 1 tests passed!
+

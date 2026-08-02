@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "1F9431AD-2A37-4CCA-8AC4-C6450DE08941",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 46.786397065743984,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1074,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 21.152019500732422,
+    "interTokenLatencyP95MS" : 22.80890941619873,
+    "interTokenLatencyP99MS" : 23.168087005615234,
+    "loadTimeSeconds" : 1.9282029867172241,
+    "memoryAfterGenerationMB" : 629.5179977416992,
+    "memoryAfterLoadMB" : 648.7993392944336,
+    "memoryBaselineMB" : 14.861083984375,
+    "memoryPeakDuringDecodeMB" : 807.3149871826172,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 7.132840991020203
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (.litertlm, own int4 BOCTAV4)",
+    "hfFilePatterns" : [
+      "*.litertlm"
+    ],
+    "hfRepoId" : "own\/TinySwallow-1.5B-int4-BOCTAV4",
+    "id" : "own\/TinySwallow-1.5B-int4-BOCTAV4",
+    "onDiskSizeMB" : 1024,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "model.litertlm",
+    "quantization" : "INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed)"
+  },
+  "outputSample" : "Think of on-device AI as AI that runs directly on the device where the AI is needed, rather than being sent to a server for processing. \n\n**Here's a simple analogy:**\n\nImagine you want to play a game ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-23T10:09:55Z"
+}

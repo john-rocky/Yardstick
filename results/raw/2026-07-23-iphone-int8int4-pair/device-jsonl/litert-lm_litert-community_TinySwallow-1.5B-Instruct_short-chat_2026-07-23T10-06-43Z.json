@@ -1,0 +1,66 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "82B07F46-C59B-4D33-A4FE-1CE6722096D2",
+  "metrics" : {
+    "averagePackagePowerW" : 118.4616547344419,
+    "batteryDeltaPercent" : 5.000001,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 27.68225352042958,
+    "energyJoules" : 2970.00070810318,
+    "energyJoulesPerToken" : 23.203130532056093,
+    "energyMeasurementWindowSeconds" : 25.071409940719604,
+    "energySource" : "battery-1pct",
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1081,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 36.123037338256836,
+    "interTokenLatencyP95MS" : 40.04096984863281,
+    "interTokenLatencyP99MS" : 41.16499423980713,
+    "memoryAfterGenerationMB" : 896.1290893554688,
+    "memoryAfterLoadMB" : 896.0978393554688,
+    "memoryBaselineMB" : 896.0978393554688,
+    "memoryPeakDuringDecodeMB" : 1103.1915893554688,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 25.071405053138733
+  },
+  "model" : {
+    "displayName" : "TinySwallow-1.5B (.litertlm)",
+    "hfFilePatterns" : [
+      "TinySwallow-1.5B-Instruct.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/TinySwallow-1.5B-Instruct",
+    "id" : "litert-community\/TinySwallow-1.5B-Instruct",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 1.5,
+    "primaryFile" : "TinySwallow-1.5B-Instruct.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-23T10:06:43Z"
+}

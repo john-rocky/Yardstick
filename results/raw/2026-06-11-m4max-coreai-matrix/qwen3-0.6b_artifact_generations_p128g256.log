@@ -1,0 +1,13 @@
+=== exports/qwen3_0_6b_dynamic
+Prompt:     17349.631 tokens/sec
+Generation: 1116.242 tokens/sec
+÷¨5P)/D%Y°í.ôÈ
+=== exports/apple_bench/qwen3_0_6b_4bit_dynamic
+Prompt:     6666.764 tokens/sec
+Generation: 499.550 tokens/sec
+àZÙ	<eà©ÈX“ì
+=== exports/apple_bench_pristine/qwen3_0_6b_uvrepro
+Prompt:     6675.944 tokens/sec
+Generation: 503.887 tokens/sec
+Ïä*ØŽ¦yî!Á:Î¯®
+TRIPLEDONE

@@ -1,0 +1,16 @@
+=== mlx-community/Qwen3-0.6B-4bit (free 15G) ===
+Averages: prompt_tps=9366.022, generation_tps=432.258, peak_memory=0.918
+(cache cleaned)
+=== mlx-community/Qwen3-4B-4bit (free 15G) ===
+Averages: prompt_tps=1495.241, generation_tps=145.814, peak_memory=2.993
+(cache cleaned)
+=== mlx-community/gemma-3-4b-it-4bit (free 15G) ===
+Averages: prompt_tps=1631.156, generation_tps=136.301, peak_memory=3.275
+(cache cleaned)
+=== mlx-community/Mistral-7B-Instruct-v0.3-4bit (free 15G) ===
+Averages: prompt_tps=917.932, generation_tps=97.546, peak_memory=4.673
+(cache cleaned)
+=== mlx-community/Qwen3-8B-4bit (free 15G) ===
+Averages: prompt_tps=825.138, generation_tps=89.990, peak_memory=5.217
+(cache cleaned)
+MLXSWEEPDONE

@@ -1,0 +1,64 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "AFF827E1-54B7-4960-A96B-5E0BC0098219",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      11.121931981637871,
+      11.069729485607636,
+      10.92299056725665,
+      10.57052570629665
+    ],
+    "decodeTokensPerSecond" : 10.802955785808217,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 2385,
+    "generatedTokenCount" : 89,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 90.94107151031494,
+    "interTokenLatencyP95MS" : 104.24697399139404,
+    "interTokenLatencyP99MS" : 106.06801509857178,
+    "memoryAfterGenerationMB" : 2502.8351669311523,
+    "memoryAfterLoadMB" : 2502.8507919311523,
+    "memoryBaselineMB" : 2502.8507919311523,
+    "memoryPeakDuringDecodeMB" : 3467.2570877075195,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 18,
+    "promptTokensPerSecond" : 48.58588094299797,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 88,
+    "totalGenerationTimeSeconds" : 10.535185933113098
+  },
+  "model" : {
+    "displayName" : "Phi-4-mini (.litertlm)",
+    "hfFilePatterns" : [
+      "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/Phi-4-mini-instruct",
+    "id" : "litert-community\/Phi-4-mini-instruct",
+    "onDiskSizeMB" : 3600,
+    "parameterCountB" : 3.8,
+    "primaryFile" : "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence technology that is installed directly on a device, such as a smartphone, tablet, or computer, rather than being run on a remote server or cloud-based sys",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-23T10:23:24Z"
+}

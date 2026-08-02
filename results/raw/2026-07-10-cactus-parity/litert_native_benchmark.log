@@ -1,0 +1,4 @@
+YARDSTICK_BEGIN native_benchmark model=litert-community/gemma-4-E2B-it-litert-lm prefill=1000 decode=100
+YARDSTICK_NATIVE_OK prefill_tokens=1000 prefill_tok_s=3501.89 decode_tokens=32 decode_tok_s=56.46 ttft_ms=303.3 init_s=4.50 footprint_mb=107
+YARDSTICK_NATIVE_OK prefill_tokens=1000 prefill_tok_s=4171.41 decode_tokens=32 decode_tok_s=57.74 ttft_ms=257.0 init_s=3.57 footprint_mb=96
+YARDSTICK_NATIVE_OK prefill_tokens=1000 prefill_tok_s=4007.81 decode_tokens=32 decode_tok_s=56.39 ttft_ms=267.2 init_s=1.89 footprint_mb=106

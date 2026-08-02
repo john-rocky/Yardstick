@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "B950DA4E-BDE8-46CA-8863-1BA857B7330A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 89.51249262115499,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 165,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 10.798931121826172,
+    "interTokenLatencyP95MS" : 12.533068656921387,
+    "interTokenLatencyP99MS" : 16.058921813964844,
+    "loadTimeSeconds" : 92.75640404224396,
+    "memoryAfterGenerationMB" : 1607.925048828125,
+    "memoryAfterLoadMB" : 1502.3000259399414,
+    "memoryBaselineMB" : 14.548606872558594,
+    "memoryPeakDuringDecodeMB" : 1608.425048828125,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 22,
+    "promptTokensPerSecond" : 143.52537464099092,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.7972079515457153
+  },
+  "model" : {
+    "displayName" : "OLMo-2-1B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/olmo2-1b-ane",
+    "onDiskSizeMB" : 1100,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "On-device AI means AI that is processed and performed on the device itself, rather than in a remote server or cloud. This term is often used to describe AI that is processed on the device that perform",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:07:05Z"
+}

@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "ABA2238A-E353-41A2-9E82-2FD4D835CF3C",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      21.267605700503406,
+      17.59790247519511
+    ],
+    "decodeTokensPerSecond" : 20.49374202718177,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 300,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 54.13103103637695,
+    "interTokenLatencyP95MS" : 79.34093475341797,
+    "interTokenLatencyP99MS" : 92.69499778747559,
+    "loadTimeSeconds" : 1.3827459812164307,
+    "memoryAfterGenerationMB" : 298.26893615722656,
+    "memoryAfterLoadMB" : 208.87828826904297,
+    "memoryBaselineMB" : 14.329833984375,
+    "memoryPeakDuringDecodeMB" : 368.69081115722656,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 259,
+    "promptTokensPerSecond" : 885.5093649673801,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 6.746222972869873
+  },
+  "model" : {
+    "displayName" : "SmolLM3-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/smollm3-3b-gpu",
+    "onDiskSizeMB" : 1600,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "<think>\nOkay, so I need to explain what on-device AI means in simple terms. Let me start by breaking down the term. \"On-device\" probably refers to the device itself, like a smartphone or a computer. \"",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:04:04Z"
+}

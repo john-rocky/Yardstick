@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "2CF4CC18-B1F9-4227-904B-29DA821A98A4",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 57.344531156326404,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 319,
+    "generatedTokenCount" : 33,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 17.38297939300537,
+    "interTokenLatencyP95MS" : 17.859935760498047,
+    "interTokenLatencyP99MS" : 17.871975898742676,
+    "memoryAfterGenerationMB" : 679.1133270263672,
+    "memoryAfterLoadMB" : 704.8320999145508,
+    "memoryBaselineMB" : 704.8320999145508,
+    "memoryPeakDuringDecodeMB" : 704.9570999145508,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 1022,
+    "promptTokensPerSecond" : 3449.556148108145,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 32,
+    "totalGenerationTimeSeconds" : 0.8770619630813599
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "INT4 (QAT)"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot is perform complex tasks with low latency and high privacy by processing data directly on the device.",
+  "parameters" : {
+    "maxTokens" : 100,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "cactus-parity",
+  "timestamp" : "2026-07-10T02:15:59Z"
+}

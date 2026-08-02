@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F2CED8F3-CC24-4201-801B-0BB7E5956F12",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 30.496194514573997,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 273,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 27.86397933959961,
+    "interTokenLatencyP95MS" : 44.93105411529541,
+    "interTokenLatencyP99MS" : 67.92700290679932,
+    "loadTimeSeconds" : 174.74636101722717,
+    "memoryAfterGenerationMB" : 2523.00479888916,
+    "memoryAfterLoadMB" : 2551.03604888916,
+    "memoryBaselineMB" : 14.439208984375,
+    "memoryPeakDuringDecodeMB" : 2611.6923217773438,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 48,
+    "promptTokensPerSecond" : 197.7497926258794,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 4.671839952468872
+  },
+  "model" : {
+    "displayName" : "Llama-3.2-3B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/llama-3.2-3b-ane",
+    "onDiskSizeMB" : 2300,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "\"On-device\" refers to a technology approach where artificial intelligence (AI) is processed and executed directly on the device itself, rather than on a central server or cloud.\n\nIn simple terms, \"on-",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:10:26Z"
+}

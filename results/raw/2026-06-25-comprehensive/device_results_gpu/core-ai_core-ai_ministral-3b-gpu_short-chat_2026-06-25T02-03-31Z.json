@@ -1,0 +1,64 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "88744734-AE2D-43E9-BFCF-72302CE00708",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      19.267932093573865,
+      16.632373985318004,
+      15.068474966866114
+    ],
+    "decodeTokensPerSecond" : 18.24969460528801,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 734,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 59.733033180236816,
+    "interTokenLatencyP95MS" : 82.74900913238525,
+    "interTokenLatencyP99MS" : 88.76991271972656,
+    "loadTimeSeconds" : 1.9202979803085327,
+    "memoryAfterGenerationMB" : 525.9878463745117,
+    "memoryAfterLoadMB" : 258.36280059814453,
+    "memoryBaselineMB" : 14.486083984375,
+    "memoryPeakDuringDecodeMB" : 1459.2378463745117,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 551,
+    "promptTokensPerSecond" : 764.3488552766614,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 7.955916047096252
+  },
+  "model" : {
+    "displayName" : "Ministral-3-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/ministral-3b-gpu",
+    "onDiskSizeMB" : 1800,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI is a way to use artificial intelligence (AI) **right on your phone, tablet, or computer**, without sending your data to the cloud (a remote server). Here’s a simple breakdown:\n\n### **What",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:03:31Z"
+}

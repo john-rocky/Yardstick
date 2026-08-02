@@ -1,0 +1,15 @@
+yardstick: run 1/5 task=short-chat runtime=mlx-swift model=mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_DeepSeek-R1-Distill-Qwen-1_5B-4bit.jsonl
+yardstick: run=1 cold=1 TTFT=591ms decode=330.82tok/s peakMB=1248
+yardstick: run 2/5 task=short-chat runtime=mlx-swift model=mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_DeepSeek-R1-Distill-Qwen-1_5B-4bit.jsonl
+yardstick: run=2 cold=0 TTFT=15ms decode=330.33tok/s peakMB=1249
+yardstick: run 3/5 task=short-chat runtime=mlx-swift model=mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_DeepSeek-R1-Distill-Qwen-1_5B-4bit.jsonl
+yardstick: run=3 cold=0 TTFT=18ms decode=331.58tok/s peakMB=1249
+yardstick: run 4/5 task=short-chat runtime=mlx-swift model=mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_DeepSeek-R1-Distill-Qwen-1_5B-4bit.jsonl
+yardstick: run=4 cold=0 TTFT=17ms decode=333.96tok/s peakMB=1249
+yardstick: run 5/5 task=short-chat runtime=mlx-swift model=mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_DeepSeek-R1-Distill-Qwen-1_5B-4bit.jsonl
+yardstick: run=5 cold=0 TTFT=18ms decode=335.39tok/s peakMB=1249

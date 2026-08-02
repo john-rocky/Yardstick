@@ -1,0 +1,36 @@
+session 2026-07-23 16:31:25 int8int4-pair
+--- phase 0: backing up DeepSeek own-int4 from device (only copy) ---
+  backed up: 1.0G
+--- phase 1: push (USB required) ---
+  pushing 1.7G -> litert-community__DeepSeek-R1-Distill-Qwen-1.5B/DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm
+  OK on device: own__DeepSeek-R1-1.5B-int4-BOCTAV4/model.litertlm
+  pushing 1.5G -> litert-community__TinySwallow-1.5B-Instruct/TinySwallow-1.5B-Instruct.litertlm
+  OK on device: own__TinySwallow-1.5B-int4-BOCTAV4/model.litertlm
+  pushing 1.5G -> litert-community__VibeThinker-1.5B/VibeThinker-1.5B.litertlm
+  OK on device: own__VibeThinker-1.5B-int4-BOCTAV4/model.litertlm
+  pushing 3.6G -> litert-community__Phi-4-mini-instruct/Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm
+  OK on device: own__Phi-4-mini-int4-BOCTAV4-128/model.litertlm
+--- phase 2: waiting for UNPLUG (pull the cable now) ---
+18:17:54 unplugged; settling 300s
+--- phase 3: cells (pairs interleaved, 180s gaps) ---
+=== 2026-07-23 18:22:54 START litert-community/DeepSeek-R1-Distill-Qwen-1.5B ===
+=== 2026-07-23 18:24:43 END litert-community/DeepSeek-R1-Distill-Qwen-1.5B exit=0 run_ok=4 ===
+=== 2026-07-23 18:27:43 START own/DeepSeek-R1-1.5B-int4-BOCTAV4 ===
+=== 2026-07-23 18:28:47 END own/DeepSeek-R1-1.5B-int4-BOCTAV4 exit=1 run_ok=0 ===
+=== 2026-07-23 18:31:47 START litert-community/TinySwallow-1.5B-Instruct ===
+=== 2026-07-23 18:31:47 END litert-community/TinySwallow-1.5B-Instruct exit=1 run_ok=0 ===
+=== 2026-07-23 19:04:57 START litert-community/TinySwallow-1.5B-Instruct ===
+=== 2026-07-23 19:06:44 END litert-community/TinySwallow-1.5B-Instruct exit=0 run_ok=4 ===
+=== 2026-07-23 19:09:44 START own/TinySwallow-1.5B-int4-BOCTAV4 ===
+=== 2026-07-23 19:10:17 END own/TinySwallow-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+=== 2026-07-23 19:13:17 START litert-community/VibeThinker-1.5B ===
+=== 2026-07-23 19:15:03 END litert-community/VibeThinker-1.5B exit=0 run_ok=4 ===
+=== 2026-07-23 19:18:03 START own/VibeThinker-1.5B-int4-BOCTAV4 ===
+=== 2026-07-23 19:19:11 END own/VibeThinker-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+=== 2026-07-23 19:22:11 START litert-community/Phi-4-mini-instruct ===
+=== 2026-07-23 19:23:25 END litert-community/Phi-4-mini-instruct exit=0 run_ok=4 ===
+=== 2026-07-23 19:26:25 START own/Phi-4-mini-int4-BOCTAV4-128 ===
+=== 2026-07-23 19:26:38 END own/Phi-4-mini-int4-BOCTAV4-128 exit=1 run_ok=0 ===
+19:26:38 cell failed -> tunnel recovery + retry
+19:31:53 TUNNEL TIMEOUT
+=== ABORT: tunnel gone at own/Phi-4-mini-int4-BOCTAV4-128 ===

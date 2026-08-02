@@ -44,3 +44,13 @@ results/raw/local-*
 # Python
 __pycache__/
 *.pyc
+
+# Full-device result dumps pulled during finalize: 800+ historical files per pull,
+# every one already committed in its own campaign dir. Swept into commits by accident
+# twice (07-29, 07-30) before this line existed. The curated per-campaign app-path/
+# subset is what gets committed.
+results/raw/**/pulled/
+
+# Raw campaign records override the global *.log ignore — a stored log IS the measurement
+# (rule 5 in CLAUDE.md). Does not re-include pulled/ (an ignored dir stays ignored whole).
+!results/raw/**/*.log

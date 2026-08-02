@@ -1,0 +1,4 @@
+Launched application with com.iosllmbenchmark.benchmarkapp bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_FATAL model=litert-local/llama-3.2-3b not_in_catalog runtime=litert-lm
+The app terminated with the exit code 3.

@@ -1,0 +1,61 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "9AC833B4-6D80-42F5-B6AB-C33DC72E9EB3",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 24.706893454090274,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 41407,
+    "generatedTokenCount" : 15,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 40.69209098815918,
+    "interTokenLatencyP95MS" : 41.185975074768066,
+    "interTokenLatencyP99MS" : 41.185975074768066,
+    "memoryAfterGenerationMB" : 1604.8474502563477,
+    "memoryAfterLoadMB" : 1604.5037002563477,
+    "memoryBaselineMB" : 1604.5037002563477,
+    "memoryPeakDuringDecodeMB" : 1605.3474502563477,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 15,
+    "totalGenerationTimeSeconds" : 42.01448702812195
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (CoreML, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "mlboydaisuke\/gemma-4-E2B-coreml",
+    "id" : "coreml-llm\/gemma4-e2b",
+    "onDiskSizeMB" : 5400,
+    "parameterCountB" : 2,
+    "primaryFile" : "",
+    "quantization" : "INT4 palettized"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot.",
+  "parameters" : {
+    "maxTokens" : 100,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "coreml-llm",
+  "task" : "cactus-parity",
+  "timestamp" : "2026-07-10T03:45:23Z"
+}

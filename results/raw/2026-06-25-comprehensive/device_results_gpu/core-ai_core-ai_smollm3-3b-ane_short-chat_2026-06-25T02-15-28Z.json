@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "98D8BDEC-7321-4C12-AD56-3AA989B04E84",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      20.4075488015347,
+      16.59307375691892
+    ],
+    "decodeTokensPerSecond" : 19.03379120607865,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 431,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 66.14100933074951,
+    "interTokenLatencyP95MS" : 68.95101070404053,
+    "interTokenLatencyP99MS" : 72.85606861114502,
+    "loadTimeSeconds" : 5.2757240533828735,
+    "memoryAfterGenerationMB" : 2218.8482513427734,
+    "memoryAfterLoadMB" : 2236.926399230957,
+    "memoryBaselineMB" : 14.407981872558594,
+    "memoryPeakDuringDecodeMB" : 2277.285774230957,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 259,
+    "promptTokensPerSecond" : 651.170954708294,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 7.367502927780151
+  },
+  "model" : {
+    "displayName" : "SmolLM3-3B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/smollm3-3b-ane",
+    "onDiskSizeMB" : 2300,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "I'll make sure to simplify the explanation of \"on-device AI\" while providing the accurate understanding of the term.\n\non-device AI means that the AI model, or the machine learning model, is trained an",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:15:28Z"
+}

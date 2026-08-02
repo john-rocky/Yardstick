@@ -1,0 +1,69 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "02C4ED5F-112A-4035-8EBC-8132D8B15C99",
+  "metrics" : {
+    "averagePackagePowerW" : 281.0234921454791,
+    "batteryDeltaPercent" : 5.000001,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+      11.277910082922864,
+      10.984459815281758,
+      10.56994555094964,
+      10.391706144934542
+    ],
+    "decodeTokensPerSecond" : 10.805937146113148,
+    "energyJoules" : 2970.00070810318,
+    "energyJoulesPerToken" : 33.37079447306944,
+    "energyMeasurementWindowSeconds" : 10.568513989448547,
+    "energySource" : "battery-1pct",
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 2417,
+    "generatedTokenCount" : 89,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 89.24698829650879,
+    "interTokenLatencyP95MS" : 100.83901882171631,
+    "interTokenLatencyP99MS" : 196.5780258178711,
+    "memoryAfterGenerationMB" : 2501.5226669311523,
+    "memoryAfterLoadMB" : 1495.8956756591797,
+    "memoryBaselineMB" : 1495.8956756591797,
+    "memoryPeakDuringDecodeMB" : 3519.3977127075195,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 18,
+    "promptTokensPerSecond" : 50.35359412765195,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 88,
+    "totalGenerationTimeSeconds" : 10.568503975868225
+  },
+  "model" : {
+    "displayName" : "Phi-4-mini (.litertlm)",
+    "hfFilePatterns" : [
+      "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/Phi-4-mini-instruct",
+    "id" : "litert-community\/Phi-4-mini-instruct",
+    "onDiskSizeMB" : 3600,
+    "parameterCountB" : 3.8,
+    "primaryFile" : "Phi-4-mini-instruct_multi-prefill-seq_q8_ekv4096.litertlm",
+    "quantization" : "INT8"
+  },
+  "outputSample" : "On-device AI refers to artificial intelligence technology that is installed directly on a device, such as a smartphone, tablet, or computer, rather than being run on a remote server or cloud-based sys",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-23T10:23:03Z"
+}

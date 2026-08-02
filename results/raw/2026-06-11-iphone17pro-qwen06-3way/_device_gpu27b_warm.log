@@ -1,0 +1,14 @@
+Launched application with com.coreai.pipelinedbench bundle identifier.
+Waiting for the application to terminate…
+model dir: qwen06_gpu27b
+loading engine...
+engine loaded in 0.071s
+warmup trial...
+benchmarking p=512 g=1024 n=5
+trial 1: prompt 1343.3 tok/s, gen 52.63 tok/s
+trial 2: prompt 1363.3 tok/s, gen 52.45 tok/s
+trial 3: prompt 1359.9 tok/s, gen 52.46 tok/s
+trial 4: prompt 1354.2 tok/s, gen 52.49 tok/s
+trial 5: prompt 1354.2 tok/s, gen 52.52 tok/s
+STATS model=qwen3_0_6b_4bit_dynamic p=512 g=1024 n=5 prompt_tps=1355.0 gen_tps=52.51 load_s=0.071 footprint_gb=0.47
+App terminated due to signal 15.

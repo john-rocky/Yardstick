@@ -1,0 +1,24 @@
+YARDSTICK_BEGIN runtime=litert-lm model=litert-community/gemma-4-E2B-it-litert-lm task=cactus-parity runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=41.38 ttft_ms=754 prefill_tok_s=1894.0 prompt_tokens=1022 peak_mb=719 tokens=33
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=57.34 ttft_ms=319 prefill_tok_s=3449.6 prompt_tokens=1022 peak_mb=705 tokens=33
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=56.95 ttft_ms=321 prefill_tok_s=3434.2 prompt_tokens=1022 peak_mb=679 tokens=33
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=57.54 ttft_ms=321 prefill_tok_s=3430.3 prompt_tokens=1022 peak_mb=680 tokens=33
+YARDSTICK_BEGIN runtime=coreml-llm model=coreml-llm/gemma4-e2b task=cactus-parity runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=33.40 ttft_ms=30603 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1659 tokens=15
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=30.11 ttft_ms=30484 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1679 tokens=15
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=24.52 ttft_ms=37526 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1828 tokens=15
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=24.71 ttft_ms=41407 prefill_tok_s=0.0 prompt_tokens=0 peak_mb=1605 tokens=15
+YARDSTICK_BEGIN runtime=llama.cpp model=unsloth/gemma-4-E2B-it-GGUF/Q4_K_M task=cactus-parity runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=0.00 ttft_ms=0 prefill_tok_s=2000.2 prompt_tokens=1014 peak_mb=302 tokens=0
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=0.00 ttft_ms=0 prefill_tok_s=1983.3 prompt_tokens=1014 peak_mb=282 tokens=0
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=0.00 ttft_ms=0 prefill_tok_s=1981.6 prompt_tokens=1014 peak_mb=276 tokens=0
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=0.00 ttft_ms=0 prefill_tok_s=2004.7 prompt_tokens=1014 peak_mb=277 tokens=0
+# llama.cpp prefills the 1014-token prompt fine (~1990 tok/s warm) but greedily samples an EOG
+# token immediately, so decode is 0. Not a length threshold: the 543-token long-context-512
+# prompt does the same, while short-chat's 12-token prompt generates 128 tokens at 37.5 tok/s.
+# Suspected llama.cpp/Gemma-4 chat-template or special-token mismatch in the unsloth GGUF.
+# Orthogonal to this comparison; decode is reported N/A rather than 0.
+# Two real adapter bugs were fixed while finding this (both in LlamaCppRuntime):
+#   - the KV cache was never cleared between generate() calls, so run 2+ of any --runs N task
+#     died with "llama_decode (prefill) failed";
+#   - the sampler chain was hardcoded to temp 0.7 / top-p 0.9, ignoring the task's greedy request.

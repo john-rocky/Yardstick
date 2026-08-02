@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "917BA84D-7310-4AFE-B584-9FEBC4C96C24",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 55.06780913175085,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 330,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 9.567975997924805,
+    "interTokenLatencyP95MS" : 11.507987976074219,
+    "interTokenLatencyP99MS" : 191.25401973724365,
+    "loadTimeSeconds" : 4.4062769412994385,
+    "memoryAfterGenerationMB" : 339.6587829589844,
+    "memoryAfterLoadMB" : 385.8775100708008,
+    "memoryBaselineMB" : 14.267333984375,
+    "memoryPeakDuringDecodeMB" : 394.3619079589844,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 103.73281215124256,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.858889937400818
+  },
+  "model" : {
+    "displayName" : "Gemma3-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/gemma3-1b-gpu",
+    "onDiskSizeMB" : 574,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "Okay, let's break down \"on-device AI\" in simple terms.\n\n**Imagine this:** You're using a smartphone or a computer, and it's learning and acting on your data *without* needing to connect to the interne",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T01:53:43Z"
+}

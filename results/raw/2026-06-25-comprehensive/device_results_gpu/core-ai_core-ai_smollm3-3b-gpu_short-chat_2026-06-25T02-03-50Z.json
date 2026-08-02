@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "D58447D2-3F72-4E83-88EE-EB888DAC81F1",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      22.054182894959308
+    ],
+    "decodeTokensPerSecond" : 21.391467939827468,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 553,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 41.532039642333984,
+    "interTokenLatencyP95MS" : 83.61208438873291,
+    "interTokenLatencyP99MS" : 100.15904903411865,
+    "loadTimeSeconds" : 6.51855993270874,
+    "memoryAfterGenerationMB" : 301.01893615722656,
+    "memoryAfterLoadMB" : 259.62831115722656,
+    "memoryBaselineMB" : 14.532981872558594,
+    "memoryPeakDuringDecodeMB" : 430.40956115722656,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 259,
+    "promptTokensPerSecond" : 479.2684543712673,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 6.740631937980652
+  },
+  "model" : {
+    "displayName" : "SmolLM3-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/smollm3-3b-gpu",
+    "onDiskSizeMB" : 1600,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "<think>\nOkay, so I need to explain what on-device AI means in simple terms. Let me start by breaking down the term. \"On-device\" probably refers to the device itself, like a smartphone or a computer. \"",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:03:50Z"
+}

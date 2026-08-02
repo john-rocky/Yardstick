@@ -1,0 +1,58 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "5C3A9293-D08B-4214-9D69-1FCA3FBBABC4",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 0,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 0,
+    "generatedTokenCount" : 0,
+    "initialThermalState" : "fair",
+    "memoryAfterGenerationMB" : 276.5355453491211,
+    "memoryAfterLoadMB" : 276.1449203491211,
+    "memoryBaselineMB" : 276.1449203491211,
+    "memoryPeakDuringDecodeMB" : 276.5355453491211,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 1014,
+    "promptTokensPerSecond" : 1966.1336251312327,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 0,
+    "totalGenerationTimeSeconds" : 1.08188796043396
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M"
+  },
+  "outputSample" : "",
+  "parameters" : {
+    "maxTokens" : 100,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "cactus-parity",
+  "timestamp" : "2026-07-10T03:56:16Z"
+}

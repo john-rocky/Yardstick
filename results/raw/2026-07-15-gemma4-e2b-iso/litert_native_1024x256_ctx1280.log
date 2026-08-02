@@ -1,0 +1,3 @@
+run1: YARDSTICK_NATIVE_OK prefill_tokens=1024 prefill_tok_s=2799.28 decode_tokens=256 decode_tok_s=51.59 ttft_ms=385.2 init_s=4.70 footprint_mb=98
+run2: YARDSTICK_NATIVE_OK prefill_tokens=1024 prefill_tok_s=3249.44 decode_tokens=256 decode_tok_s=50.33 ttft_ms=335.0 init_s=2.25 footprint_mb=96
+run3: YARDSTICK_NATIVE_OK prefill_tokens=1024 prefill_tok_s=3084.53 decode_tokens=256 decode_tok_s=49.05 ttft_ms=352.4 init_s=2.34 footprint_mb=97

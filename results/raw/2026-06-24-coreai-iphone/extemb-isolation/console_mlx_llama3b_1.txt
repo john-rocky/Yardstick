@@ -1,0 +1,4 @@
+Launched application with com.iosllmbenchmark.benchmarkapp bundle identifier.
+Waiting for the application to terminate…
+App terminated due to signal 15.
+WARNING: Failed to forward Continued: 19 to remote process: Failed to send signal 19 to process 10,145.

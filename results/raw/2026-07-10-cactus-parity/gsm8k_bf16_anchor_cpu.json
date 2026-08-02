@@ -1,0 +1,814 @@
+{
+  "backend": "bf16",
+  "tag": "bf16_anchor_cpu",
+  "n": 100,
+  "correct": 92,
+  "accuracy_pct": 92.0,
+  "empty_outputs": 0,
+  "max_tokens": 1024,
+  "elapsed_seconds": 2421.3,
+  "path": "google/gemma-4-E2B-it",
+  "cactus_backend": null,
+  "rows": [
+    {
+      "pred": "18",
+      "gold": "18",
+      "ok": true,
+      "chars": 1004,
+      "has_marker": true,
+      "tail": "= Remaining eggs $\\times$ Price per egg\n    Total earnings = $9 \\times \\$2 = \\$18$.\n\nThe amount Janet makes every day at the farmers' market is $\\$18$.\n\n#### 18"
+    },
+    {
+      "pred": "3",
+      "gold": "3",
+      "ok": true,
+      "chars": 665,
+      "has_marker": true,
+      "tail": " bolts and the white fiber bolts.\n    *   Total bolts = Bolts of blue fiber + Bolts of white fiber\n    *   Total bolts = $2 + 1$\n    *   Total bolts = 3\n\n#### 3"
+    },
+    {
+      "pred": "70000",
+      "gold": "70000",
+      "ok": true,
+      "chars": 1147,
+      "has_marker": true,
+      "tail": "alue of the house minus the total amount Josh invested.\nProfit = Final value - Total investment\nProfit = $\\$200,000 - \\$130,000$\nProfit = $\\$70,000$\n\n#### 70000"
+    },
+    {
+      "pred": "540",
+      "gold": "540",
+      "ok": true,
+      "chars": 1003,
+      "has_marker": true,
+      "tail": "Multiply the total number of sprints by the distance per sprint:\n    $9 \\text{ sprints} \\times 60 \\text{ meters/sprint} = 540 \\text{ meters per week}$\n\n#### 540"
+    },
+    {
+      "pred": "20",
+      "gold": "20",
+      "ok": true,
+      "chars": 1490,
+      "has_marker": true,
+      "tail": "text{ cup/chicken}$\nTotal feed for the final meal = $1.0 \\text{ cup/chicken} \\times 20 \\text{ chickens} = 20 \\text{ cups}$. This confirms the result.)*\n\n#### 20"
+    },
+    {
+      "pred": "5",
+      "gold": "64",
+      "ok": false,
+      "chars": 995,
+      "has_marker": true,
+      "tail": "  Total Cost = (Cost of the first glass) + (Cost of the remaining 15 glasses)\n    *   Total Cost = $\\$5.00 + \\$45.00$\n    *   Total Cost = $\\$50.00$\n\n#### 50.00"
+    },
+    {
+      "pred": "260",
+      "gold": "260",
+      "ok": true,
+      "chars": 848,
+      "has_marker": true,
+      "tail": "arleston, and Seattle have together.\nTotal sheep = Toulouse sheep + Charleston sheep + Seattle sheep\nTotal sheep = $160 + 80 + 20$\nTotal sheep = $260$\n\n#### 260"
+    },
+    {
+      "pred": "120",
+      "gold": "160",
+      "ok": false,
+      "chars": 1751,
+      "has_marker": true,
+      "tail": "nd minutes (optional, but good for context).**\n\n*   120 minutes = 2 hours.\n\nThe question asks for the total load (time) it takes to download the file.\n\n#### 120"
+    },
+    {
+      "pred": "180",
+      "gold": "45",
+      "ok": false,
+      "chars": 3569,
+      "has_marker": false,
+      "tail": "from home = $135 \\text{ miles}$ (if the 180 miles was irrelevant to the final position relative to home).\n\nGiven the ambiguity, the most standard interpretation"
+    },
+    {
+      "pred": "460",
+      "gold": "460",
+      "ok": true,
+      "chars": 1181,
+      "has_marker": true,
+      "tail": "t{hour} = \\$60$\n\n**7. Calculate the total earnings for the week:**\nTotal earnings = Regular pay + Overtime pay\nTotal earnings = $\\$400 + \\$60 = \\$460$\n\n#### 460"
+    },
+    {
+      "pred": "366",
+      "gold": "366",
+      "ok": true,
+      "chars": 1213,
+      "has_marker": true,
+      "tail": "oads in Month 1 + Downloads in Month 2 + Downloads in Month 3\nTotal Downloads = $60 + 180 + 126$\nTotal Downloads = $240 + 126$\nTotal Downloads = $366$\n\n#### 366"
+    },
+    {
+      "pred": "694",
+      "gold": "694",
+      "ok": true,
+      "chars": 1017,
+      "has_marker": true,
+      "tail": "donuts + Cost of mini cupcakes + Cost of mini cheesecakes\n* Total cost = $\\$204 + \\$160 + \\$330$\n* Total cost = $\\$364 + \\$330$\n* Total cost = $\\$694$\n\n#### 694"
+    },
+    {
+      "pred": "12",
+      "gold": "13",
+      "ok": false,
+      "chars": 1586,
+      "has_marker": true,
+      "tail": "\\$7.50 = \\$82.50$ (Still a loss of $\\$90 - \\$82.50 = \\$7.50$)\n*   After 12 years: $12 \\times \\$7.50 = \\$90.00$ (The initial cost is recovered exactly.)\n\n#### 12"
+    },
+    {
+      "pred": "18",
+      "gold": "18",
+      "ok": true,
+      "chars": 2451,
+      "has_marker": true,
+      "tail": " = 5$. Remaining: $10 - 5 = 5$.\nMelanie has 5 vacuum cleaners left, which matches the problem statement.\n\nThe initial number of vacuum cleaners was 18.\n\n#### 18"
+    },
+    {
+      "pred": "60",
+      "gold": "60",
+      "ok": true,
+      "chars": 1890,
+      "has_marker": true,
+      "tail": " - Jazz percentage\n   Hip-hop percentage = $80\\% - 20\\% = 60\\%$ of the total students.\n\n(Check: Contemporary (20%) + Jazz (20%) + Hip-Hop (60%) = 100%)\n\n#### 60"
+    },
+    {
+      "pred": "125",
+      "gold": "125",
+      "ok": true,
+      "chars": 1464,
+      "has_marker": true,
+      "tail": "termine the maximum profit:**\n\nThe maximum profit the merchant can achieve is the profit from choosing the jewelry.\n\n$$\\text{Maximum Profit} = \\$125$$\n\n#### 125"
+    },
+    {
+      "pred": "230",
+      "gold": "230",
+      "ok": true,
+      "chars": 861,
+      "has_marker": true,
+      "tail": "Total distance = $230 \\text{ miles}$\n\n**Conclusion:**\nSince both trains followed the identical route, the distance covered by each train is 230 miles.\n\n#### 230"
+    },
+    {
+      "pred": "57500",
+      "gold": "57500",
+      "ok": true,
+      "chars": 1002,
+      "has_marker": true,
+      "tail": " Total weekly earnings $\\times$ Number of weeks per year\n*   Annual salary: $\\$1150/\\text{week} \\times 50 \\text{ weeks/year} = \\$57,500$\n\n**Answer:**\n#### 57500"
+    },
+    {
+      "pred": "7",
+      "gold": "7",
+      "ok": true,
+      "chars": 733,
+      "has_marker": true,
+      "tail": "r dozen\nNumber of dozens = $84 / 12$\n\nTo perform the division:\n$84 \\div 12 = 7$ (Since $12 \\times 7 = 84$)\n\nClaire will eat 7 dozens of eggs in 4 weeks.\n\n#### 7"
+    },
+    {
+      "pred": "6",
+      "gold": "6",
+      "ok": true,
+      "chars": 1454,
+      "has_marker": true,
+      "tail": "m}} = \\frac{6 \\text{ miles}}{1 \\text{ hour}} = 6 \\text{ mph}$$\n\n**Answer:** Marissa needs to walk the remaining distance at a speed of 6 miles per hour.\n\n#### 6"
+    },
+    {
+      "pred": "15",
+      "gold": "15",
+      "ok": true,
+      "chars": 2601,
+      "has_marker": true,
+      "tail": "volume remaining is $9 \\text{ L} + 15 \\text{ L} = 24$ liters, which confirms the total volume. The total water in the remaining 24 liters is 15 liters.\n\n#### 15"
+    },
+    {
+      "pred": "14",
+      "gold": "14",
+      "ok": true,
+      "chars": 1424,
+      "has_marker": true,
+      "tail": "he son = $37 - 23 = 14$ years.\nSince the question asks how many years ago the son was born, this is the same as the time elapsed since the son's birth.\n\n#### 14"
+    },
+    {
+      "pred": "7",
+      "gold": "7",
+      "ok": true,
+      "chars": 860,
+      "has_marker": true,
+      "tail": "al DVDs sold = (DVDs from group 1) + (DVDs from group 2) + (DVDs from group 3)\n    *   Total DVDs sold = $3 + 4 + 0$\n    *   Total DVDs sold = $7$ DVDs.\n\n#### 7"
+    },
+    {
+      "pred": "8",
+      "gold": "8",
+      "ok": true,
+      "chars": 853,
+      "has_marker": true,
+      "tail": "imeters shorter the candle will be after burning during that time, which is equal to the total amount melted.\n\nThe candle will be 8 centimeters shorter.\n\n#### 8"
+    },
+    {
+      "pred": "26",
+      "gold": "26",
+      "ok": true,
+      "chars": 1131,
+      "has_marker": true,
+      "tail": "rice = Original Price - Discount Amount = $\\$26.00 - \\$6.50 = \\$19.50$\nThis matches the price Kyle paid.\n\nThe original price of the book was $\\$26.00$.\n\n#### 26"
+    },
+    {
+      "pred": "2",
+      "gold": "2",
+      "ok": true,
+      "chars": 2016,
+      "has_marker": true,
+      "tail": "$4 \\times \\$1.50 = \\$6.00$\nPizza: $2 \\times \\$8.50 = \\$17.00$\nTotal: $\\$12.00 + \\$15.00 + \\$6.00 + \\$17.00 = \\$50.00$\nThe total matches the amount paid.\n\n#### 2"
+    },
+    {
+      "pred": "243",
+      "gold": "243",
+      "ok": true,
+      "chars": 1013,
+      "has_marker": true,
+      "tail": " $\\$49.50 + \\$67.50 = \\$117.00$\n* Then, add the cost of shoes: $\\$117.00 + \\$126.00 = \\$243.00$\n\nMishka spent $\\$243.00$ on all the clothing items.\n\n#### 243.00"
+    },
+    {
+      "pred": "16",
+      "gold": "16",
+      "ok": true,
+      "chars": 894,
+      "has_marker": true,
+      "tail": " $4 \\text{ cartons} \\times \\$4.00/\\text{carton} = \\$16.00$\n\n**Answer:**\nThe total amount Cynthia will spend on ice cream after 60 days is $\\$16.00$.\n\n#### 16.00"
+    },
+    {
+      "pred": "25",
+      "gold": "25",
+      "ok": true,
+      "chars": 1305,
+      "has_marker": true,
+      "tail": "top to the end: $60 - 45 = 15$ miles (This matches the problem statement).\n\nThe distance Henry traveled between his first and second stops is 25 miles.\n\n#### 25"
+    },
+    {
+      "pred": "104",
+      "gold": "104",
+      "ok": true,
+      "chars": 1324,
+      "has_marker": true,
+      "tail": "4 - 5 = 99$.\n    The cost of the heels is $\\$33 + (2 \\times 33) = 33 + 66 = 99$.\n    The costs match the condition.\n\nThe cost of the boots is $\\$104$.\n\n#### 104"
+    },
+    {
+      "pred": "109",
+      "gold": "109",
+      "ok": true,
+      "chars": 1009,
+      "has_marker": true,
+      "tail": ")\n\n**5. Calculate Allen's age 10 years from now:**\nAllen's age in 10 years = Allen's current age + 10\nAllen's age in 10 years = $99 + 10 = 109$ years.\n\n#### 109"
+    },
+    {
+      "pred": "80",
+      "gold": "80",
+      "ok": true,
+      "chars": 1044,
+      "has_marker": true,
+      "tail": "ess 3\nSum of guesses = $80 + 60 + 100 = 240$\n\nAverage = $\\frac{\\text{Sum of guesses}}{\\text{Number of guesses}}$\nAverage = $\\frac{240}{3}$\nAverage = 80\n\n#### 80"
+    },
+    {
+      "pred": "35",
+      "gold": "35",
+      "ok": true,
+      "chars": 684,
+      "has_marker": true,
+      "tail": "al time per day) $\\times$ (Number of days in a week)\nTotal time per week = $5$ hours/day $\\times 7$ days/week\nTotal time per week = $35$ hours per week\n\n#### 35"
+    },
+    {
+      "pred": "70",
+      "gold": "70",
+      "ok": true,
+      "chars": 1272,
+      "has_marker": true,
+      "tail": "ere are 30 more gold coins than silver coins:\n$$G - S = 70 - 40 = 30$$\nThis condition is also correct.\n\nThe question asks for the number of gold coins.\n\n#### 70"
+    },
+    {
+      "pred": "23",
+      "gold": "23",
+      "ok": true,
+      "chars": 680,
+      "has_marker": true,
+      "tail": "els than Aaron.\n   Siobhan's jewels = (Aaron's jewels) - 2\n   Siobhan's jewels = $25 - 2 = 23$\n\nThe question asks for the number of jewels Siobhan has.\n\n#### 23"
+    },
+    {
+      "pred": "9",
+      "gold": "9",
+      "ok": true,
+      "chars": 1244,
+      "has_marker": true,
+      "tail": "es and the points scored in the second 20 minutes.\nTotal points = Points (first 20 min) + Points (second 20 min)\nTotal points = $4 + 5$\nTotal points = 9\n\n#### 9"
+    },
+    {
+      "pred": "75",
+      "gold": "75",
+      "ok": true,
+      "chars": 1119,
+      "has_marker": true,
+      "tail": "es$ (Cost per bundle)\nTotal cost = $15 \\times \\$5.00 = \\$75.00$.\n\n**Step 4: State the final answer.**\nTerry spends $\\$75.00$ on yogurt over 30 days.\n\n#### 75.00"
+    },
+    {
+      "pred": "0",
+      "gold": "2",
+      "ok": false,
+      "chars": 3231,
+      "has_marker": true,
+      "tail": "d by the initial action (selling all of them).\n\n**Conclusion based on the explicit action described:** John plans to sell *all* his toys (13 Lego sets).\n\n#### 0"
+    },
+    {
+      "pred": "10",
+      "gold": "10",
+      "ok": true,
+      "chars": 1211,
+      "has_marker": true,
+      "tail": "hours.\n\nSpeed = $\\frac{\\text{Total Distance}}{\\text{Total Time}}$\nSpeed = $\\frac{60 \\text{ miles}}{6 \\text{ hours}}$\nSpeed = $10$ miles per hour (mph).\n\n#### 10"
+    },
+    {
+      "pred": "18",
+      "gold": "18",
+      "ok": true,
+      "chars": 1961,
+      "has_marker": true,
+      "tail": " \\text{ miles}$\n\n(Note: The information about skipping at 3 mph was extraneous to the final calculation, as the time spent skipping was not specified.)\n\n#### 18"
+    },
+    {
+      "pred": "8",
+      "gold": "8",
+      "ok": true,
+      "chars": 642,
+      "has_marker": true,
+      "tail": "times as old as Ben's iPhone.\n   Brandon's iPhone age = $4 \\times (\\text{Ben's iPhone age})$\n   Brandon's iPhone age = $4 \\times 2$ years = 8 years old.\n\n#### 8"
+    },
+    {
+      "pred": "200",
+      "gold": "200",
+      "ok": true,
+      "chars": 1508,
+      "has_marker": true,
+      "tail": "ge, the javelin will land at $1000 + 200 = 1200$ feet, which is exactly the maximum distance she can throw with the gemstone, thus hitting the dragon.\n\n#### 200"
+    },
+    {
+      "pred": "26",
+      "gold": "26",
+      "ok": true,
+      "chars": 982,
+      "has_marker": true,
+      "tail": "ces) = $40 - 14 = 26$.\nSince each pie started with 8 pieces, the total number of pieces taken is $26$.\n\nThe number of pieces taken by the guests is 26.\n\n#### 26"
+    },
+    {
+      "pred": "48",
+      "gold": "48",
+      "ok": true,
+      "chars": 2114,
+      "has_marker": true,
+      "tail": "er gram)\nGrams allowed = $200 \\text{ calories} / (250/60) \\text{ calories/g} = 200 \\times (60/250) = 200 \\times (6/25) = 8 \\times 6 = 48 \\text{ grams}$\n\n#### 48"
+    },
+    {
+      "pred": "2",
+      "gold": "20",
+      "ok": false,
+      "chars": 1257,
+      "has_marker": true,
+      "tail": "Total Revenue minus Total Cost.\n$$\\text{Net Profit} = \\text{Total Revenue} - \\text{Total Cost}$$\n$$\\text{Net Profit} = \\$40.00 - \\$20.00 = \\$20.00$$\n\n#### 20.00"
+    },
+    {
+      "pred": "104",
+      "gold": "104",
+      "ok": true,
+      "chars": 1319,
+      "has_marker": true,
+      "tail": "lculate the total time spent writing:**\nTotal time = Total articles $\\times$ Time per article\nTotal time = $26 \\times 4$ hours\nTotal time = 104 hours.\n\n#### 104"
+    },
+    {
+      "pred": "163",
+      "gold": "163",
+      "ok": true,
+      "chars": 1524,
+      "has_marker": true,
+      "tail": "t{ (purchased)} = 243$ notes.\n*   Notes used at work = 220.\n*   Remaining notes = $243 - 220 = 23$.\nThis matches the information given in the problem.\n\n#### 163"
+    },
+    {
+      "pred": "800",
+      "gold": "800",
+      "ok": true,
+      "chars": 1529,
+      "has_marker": true,
+      "tail": "tal amount spent on all ties.**\nTotal spent = (Total cost of blue ties) + (Total cost of red ties)\nTotal spent = $\\$200 + \\$600$\nTotal spent = $\\$800$\n\n#### 800"
+    },
+    {
+      "pred": "8",
+      "gold": "8",
+      "ok": true,
+      "chars": 923,
+      "has_marker": true,
+      "tail": "}$\n* Number of pieces = $\\frac{48 \\text{ inches}}{6 \\text{ inches/piece}}$\n* Number of pieces = $8$\n\n**4. Conclusion:**\nTracy obtained 8 pieces of wire.\n\n#### 8"
+    },
+    {
+      "pred": "30",
+      "gold": "30",
+      "ok": true,
+      "chars": 1253,
+      "has_marker": true,
+      "tail": "irst)*\n*Occupied units = $\\frac{3}{4} \\times 120 = 3 \\times 30 = 90$ units.*\n*Unoccupied units = Total units - Occupied units = $120 - 90 = 30$ units.*\n\n#### 30"
+    },
+    {
+      "pred": "294",
+      "gold": "294",
+      "ok": true,
+      "chars": 889,
+      "has_marker": true,
+      "tail": "nings per day} \\times \\text{Days per week}$$\n$$\\text{Earnings per week} = \\$42 \\times 7$$\n$$42 \\times 7 = 294$$\n\nLloyd makes $\\$294$ on eggs per week.\n\n#### 294"
+    },
+    {
+      "pred": "5",
+      "gold": "5",
+      "ok": true,
+      "chars": 803,
+      "has_marker": true,
+      "tail": "e return journey.**\nTime = Distance / Speed\nTime (return) = $30 \\text{ miles} / 6 \\text{ mph} = 5$ hours.\n\n**Answer:** It takes Tom 5 hours to get back.\n\n#### 5"
+    },
+    {
+      "pred": "15",
+      "gold": "15",
+      "ok": true,
+      "chars": 1367,
+      "has_marker": true,
+      "tail": " per toy)\n$\\frac{15}{2} = N \\times \\frac{1}{2}$\n\nTo solve for $N$, multiply both sides by 2:\n$15 = N \\times 1$\n$N = 15$\n\nUriah needs to remove 15 toys.\n\n#### 15"
+    },
+    {
+      "pred": "40",
+      "gold": "40",
+      "ok": true,
+      "chars": 1387,
+      "has_marker": true,
+      "tail": "venue (Thursday) and the lower revenue (Friday).\n\nDifference = Revenue on Thursday - Revenue on Friday\nDifference = $\\$520 - \\$480$\nDifference = $\\$40$\n\n#### 40"
+    },
+    {
+      "pred": "40",
+      "gold": "40",
+      "ok": true,
+      "chars": 939,
+      "has_marker": true,
+      "tail": "ber of kittens to the total number of new kittens.\n    *   Total kittens = Initial kittens + New kittens\n    *   Total kittens = $7 + 33 = 40$ kittens.\n\n#### 40"
+    },
+    {
+      "pred": "14",
+      "gold": "14",
+      "ok": true,
+      "chars": 591,
+      "has_marker": true,
+      "tail": "bag.\nNumber of bags = Total remaining lollipops / Lollipops per bag\nNumber of bags = $28 / 2$\nNumber of bags = $14$\n\n**Answer:** Jean can fill 14 bags.\n\n#### 14"
+    },
+    {
+      "pred": "3",
+      "gold": "3",
+      "ok": true,
+      "chars": 645,
+      "has_marker": true,
+      "tail": "y / Cost per trip\n    Number of trips = $\\$42 / \\$14$\n\n4.  **Perform the division:**\n    $42 \\div 14 = 3$\n\nPeter can go to the movies 3 times this week.\n\n#### 3"
+    },
+    {
+      "pred": "83",
+      "gold": "83",
+      "ok": true,
+      "chars": 1551,
+      "has_marker": true,
+      "tail": "\nTotal weight = $3755 \\text{ pounds} + 1245 \\text{ pounds} = 5000 \\text{ pounds}$.\nSince 5000 pounds is equal to the limit, this is the maximum number.\n\n#### 83"
+    },
+    {
+      "pred": "57",
+      "gold": "57",
+      "ok": true,
+      "chars": 900,
+      "has_marker": true,
+      "tail": " Add the tip:**\nStephen added a $\\$4.00$ tip.\nFinal price = Total after delivery fees + Tip\nFinal price = $\\$53.00 + \\$4.00$\nFinal price = $\\$57.00$\n\n#### 57.00"
+    },
+    {
+      "pred": "187",
+      "gold": "187",
+      "ok": true,
+      "chars": 666,
+      "has_marker": true,
+      "tail": "and the scattered fruit.\n    Total raspberries = Total fruit in clusters + Individual scattered fruit\n    Total raspberries = $120 + 67 = 187$ fruits.\n\n#### 187"
+    },
+    {
+      "pred": "17",
+      "gold": "17",
+      "ok": true,
+      "chars": 1299,
+      "has_marker": true,
+      "tail": "est are good.\" If we consider the bad, unripe, and sour oranges as the defined non-good ones, then $25 - (1 + 5 + 2) = 17$. This confirms the result.)*\n\n#### 17"
+    },
+    {
+      "pred": "1430",
+      "gold": "1430",
+      "ok": true,
+      "chars": 1026,
+      "has_marker": true,
+      "tail": " 110% of the pre-insurance cost:\nTotal amount paid = $\\$1300 \\times (1 + 0.10)$\nTotal amount paid = $\\$1300 \\times 1.10$\nTotal amount paid = $\\$1430$\n\n#### 1430"
+    },
+    {
+      "pred": "52500",
+      "gold": "25000",
+      "ok": false,
+      "chars": 2074,
+      "has_marker": true,
+      "tail": "e *average pension over the 30 years*, the calculation would be different, but \"annual pension\" usually refers to the rate applicable at that time.)\n\n#### 52500"
+    },
+    {
+      "pred": "1596",
+      "gold": "1596",
+      "ok": true,
+      "chars": 1151,
+      "has_marker": true,
+      "tail": "r the year:**\nTotal amount paid = Cost for the first half + Cost for the second half\nTotal amount paid = $\\$840 + \\$756$\nTotal amount paid = $\\$1596$\n\n#### 1596"
+    },
+    {
+      "pred": "300",
+      "gold": "300",
+      "ok": true,
+      "chars": 1756,
+      "has_marker": true,
+      "tail": "ethod), and the tank holds 12 gallons:\n$$\\text{Total distance} = 12 \\text{ gallons} \\times 25 \\frac{\\text{miles}}{\\text{gallon}} = 300 \\text{ miles}$$\n\n#### 300"
+    },
+    {
+      "pred": "36",
+      "gold": "36",
+      "ok": true,
+      "chars": 1100,
+      "has_marker": true,
+      "tail": "$9 \\text{ hours/week} \\times 4 \\text{ weeks} = 36 \\text{ hours}$\n\n**Final Answer:**\nThe total time Jim spends on TV and reading in 4 weeks is 36 hours.\n\n#### 36"
+    },
+    {
+      "pred": "0",
+      "gold": "48",
+      "ok": false,
+      "chars": 2315,
+      "has_marker": true,
+      "tail": " coach for School 1, School 2, School 3, and School 4.\n\n5.  **Conclusion:** The set of people who have been sent by *all* four schools is the empty set.\n\n#### 0"
+    },
+    {
+      "pred": "595",
+      "gold": "595",
+      "ok": true,
+      "chars": 1031,
+      "has_marker": true,
+      "tail": "lculate the total number of gems:**\nTotal gems = Diamonds + Rubies + Emeralds\nTotal gems = $175 + 140 + 280$\nTotal gems = $315 + 280$\nTotal gems = 595\n\n#### 595"
+    },
+    {
+      "pred": "36",
+      "gold": "36",
+      "ok": true,
+      "chars": 775,
+      "has_marker": true,
+      "tail": "mber of teachers = $\\frac{\\text{Total number of students}}{\\text{Students per teacher}}$\nNumber of teachers = $\\frac{180}{5}$\nNumber of teachers = $36$\n\n#### 36"
+    },
+    {
+      "pred": "60",
+      "gold": "60",
+      "ok": true,
+      "chars": 1064,
+      "has_marker": true,
+      "tail": "ance, the total amount is $\\$60 + \\$40 = \\$100$. This matches the information given in the problem.\n\nThe amount of money Bailey started with is $\\$60$.\n\n#### 60"
+    },
+    {
+      "pred": "7425",
+      "gold": "7425",
+      "ok": true,
+      "chars": 1441,
+      "has_marker": true,
+      "tail": "tively, using multiplication:\n   495\n$\\times$ 15\n-----\n  2475 (495 $\\times$ 5)\n 4950 (495 $\\times$ 10)\n-----\n 7425\n\nJudy makes $\\$7,425$ in one week.\n\n#### 7425"
+    },
+    {
+      "pred": "60",
+      "gold": "60",
+      "ok": true,
+      "chars": 793,
+      "has_marker": true,
+      "tail": "s = Instructions for Recipe 1 + Instructions for Recipe 2\nTotal instructions = $20 + 40 = 60$\n\n**Answer:** Kelian has to read 60 instructions in total.\n\n#### 60"
+    },
+    {
+      "pred": "221",
+      "gold": "221",
+      "ok": true,
+      "chars": 800,
+      "has_marker": true,
+      "tail": "raised:**\n* Total money raised = (Money from brownies) + (Money from cheesecakes)\n* Total money raised = $\\$129 + \\$92$\n* Total money raised = $\\$221$\n\n#### 221"
+    },
+    {
+      "pred": "255",
+      "gold": "255",
+      "ok": true,
+      "chars": 1182,
+      "has_marker": true,
+      "tail": "to pay}}{\\text{Number of months}}$$\n$$\\text{Monthly payment} = \\frac{\\$765}{3} = \\$255$$\n\n**Answer:**\nShiela will pay $\\$255$ each month for 3 months.\n\n#### 255"
+    },
+    {
+      "pred": "88",
+      "gold": "88",
+      "ok": true,
+      "chars": 1532,
+      "has_marker": true,
+      "tail": "from petunias + Revenue from begonias\nTotal earnings = $\\$36.00 + \\$18.00 + \\$34.00$\nTotal earnings = $\\$54.00 + \\$34.00$\nTotal earnings = $\\$88.00$\n\n#### 88.00"
+    },
+    {
+      "pred": "60",
+      "gold": "60",
+      "ok": true,
+      "chars": 1944,
+      "has_marker": true,
+      "tail": "}{-1/2} = \\frac{128(-15/16)}{-1/2} = \\frac{-128 \\times 15 / 16}{-1/2} = \\frac{-8 \\times 15}{-1/2} = \\frac{-120}{-1/2} = 240$.\nAverage = $240 / 4 = 60$.\n\n#### 60"
+    },
+    {
+      "pred": "5",
+      "gold": "5",
+      "ok": true,
+      "chars": 1471,
+      "has_marker": true,
+      "tail": "g contains 110 cups.\n* Number of bags = $\\frac{\\text{Total cups needed}}{\\text{Cups per bag}}$\n* Number of bags = $\\frac{550}{110}$\n* Number of bags = 5\n\n#### 5"
+    },
+    {
+      "pred": "100",
+      "gold": "100",
+      "ok": true,
+      "chars": 943,
+      "has_marker": true,
+      "tail": "ymond and David do:**\nDifference = Raymond's laundry - David's laundry\nDifference = $200 \\text{ pounds} - 100 \\text{ pounds}$\nDifference = 100 pounds.\n\n#### 100"
+    },
+    {
+      "pred": "6",
+      "gold": "6",
+      "ok": true,
+      "chars": 1316,
+      "has_marker": true,
+      "tail": " rate: $18 \\times \\$0.50 = \\$9.00$.\n*   Cost for 18 flowers at the worse rate: $6 \\times \\$2.50 = \\$15.00$.\n*   Savings: $\\$15.00 - \\$9.00 = \\$6.00$.\n\n#### 6.00"
+    },
+    {
+      "pred": "70",
+      "gold": "70",
+      "ok": true,
+      "chars": 945,
+      "has_marker": true,
+      "tail": "00\\% - 30\\% = 70\\%$ of the original price.\nFinal Cost = Original Cost $\\times$ (1 - Discount Rate)\nFinal Cost = $\\$100 \\times 0.70$\nFinal Cost = $\\$70$\n\n#### 70"
+    },
+    {
+      "pred": "10",
+      "gold": "10",
+      "ok": true,
+      "chars": 1279,
+      "has_marker": true,
+      "tail": "nt distributed.\nWater left = Initial total water - Total water distributed\nWater left = $24 \\text{ liters} - 14 \\text{ liters}$\nWater left = 10 liters.\n\n#### 10"
+    },
+    {
+      "pred": "17",
+      "gold": "17",
+      "ok": true,
+      "chars": 697,
+      "has_marker": true,
+      "tail": "tion:** Charlie used 28 stickers to decorate a greeting card.\n   * Calculation: $45 - 28 = 17$\n   * Current stickers: 17\n\nCharlie has 17 stickers left.\n\n#### 17"
+    },
+    {
+      "pred": "623",
+      "gold": "623",
+      "ok": true,
+      "chars": 762,
+      "has_marker": true,
+      "tail": "ounds} (\\text{Grace}) + 498 \\text{ pounds} (\\text{Alex}) = 623 \\text{ pounds}$\n\n**Final Answer:**\nThe combined weight of Grace and Alex is 623 pounds.\n\n#### 623"
+    },
+    {
+      "pred": "600",
+      "gold": "600",
+      "ok": true,
+      "chars": 804,
+      "has_marker": true,
+      "tail": "60 + 40 = 600$\n\nAlternatively:\n$75 \\times 8 = (100 - 25) \\times 8 = (100 \\times 8) - (25 \\times 8) = 800 - 200 = 600$.\n\nThere are 600 thorns in total.\n\n#### 600"
+    },
+    {
+      "pred": "15",
+      "gold": "15",
+      "ok": true,
+      "chars": 1141,
+      "has_marker": true,
+      "tail": "and losses: $W - L = 15 - 7 = 8$. (They won 8 more than they lost, which is correct)\n\nThe question asks for the number of games they won, which is $W$.\n\n#### 15"
+    },
+    {
+      "pred": "44",
+      "gold": "44",
+      "ok": true,
+      "chars": 1131,
+      "has_marker": true,
+      "tail": " vacations is extra detail that describes the structure of the quilt but does not change the total count of blocks, as each vacation yields one block.)\n\n#### 44"
+    },
+    {
+      "pred": "22",
+      "gold": "22",
+      "ok": true,
+      "chars": 3148,
+      "has_marker": true,
+      "tail": "imes 4 = 6$.\nTotal = $4 + 12 + 6 = 22$.\n\nThis interpretation is consistent and yields a clear numerical answer based on the relative changes described.\n\n#### 22"
+    },
+    {
+      "pred": "9360",
+      "gold": "9360",
+      "ok": true,
+      "chars": 2913,
+      "has_marker": true,
+      "tail": "previous year's salary. The phrasing \"increasing the salaries... by 10% of the initial salary every year\" strongly suggests the fixed amount method.)\n\n#### 9360"
+    },
+    {
+      "pred": "8000",
+      "gold": "8000",
+      "ok": true,
+      "chars": 989,
+      "has_marker": true,
+      "tail": "mbined total is $80,000 + 8,000 = 88,000$. This matches the given information.\n\nThe question asks for the number of copies Harald sold, which is $H$.\n\n#### 8000"
+    },
+    {
+      "pred": "24",
+      "gold": "24",
+      "ok": true,
+      "chars": 1623,
+      "has_marker": true,
+      "tail": "l cost of the gift bags.**\nEach gift bag costs $\\$2$.\nTotal cost = Total number of gift bags $\\times$ Cost per bag\nTotal cost = $12 \\times \\$2 = \\$24$.\n\n#### 24"
+    },
+    {
+      "pred": "225",
+      "gold": "225",
+      "ok": true,
+      "chars": 1113,
+      "has_marker": true,
+      "tail": "s + Total for children\nTotal needed = $200 \\text{ lbs} + 25 \\text{ lbs} = 225 \\text{ lbs}$\n\n**Answer:** Ted needs to bring 225 pounds of potato salad.\n\n#### 225"
+    },
+    {
+      "pred": "28",
+      "gold": "28",
+      "ok": true,
+      "chars": 712,
+      "has_marker": true,
+      "tail": "al number of pets:**\n   Total pets = Jan's pets + Marcia's pets + Cindy's pets\n   Total pets = $18 + 6 + 4$\n   Total pets = $24 + 4$\n   Total pets = 28\n\n#### 28"
+    },
+    {
+      "pred": "4",
+      "gold": "4",
+      "ok": true,
+      "chars": 854,
+      "has_marker": true,
+      "tail": "Amy (9) is 2 years younger than Corey (11). James (10) is 1 year younger than Corey (11). All conditions are met.)\n\nThe question asks for Jackson's age.\n\n#### 4"
+    },
+    {
+      "pred": "36",
+      "gold": "36",
+      "ok": true,
+      "chars": 689,
+      "has_marker": true,
+      "tail": ")$\n$G_{new} = 40 \\times 0.90$\n$G_{new} = 36$ seconds.\n\n**3. Final Answer.**\n\nGerald can run the 400-meter hurdles in 36 seconds with his improved diet.\n\n#### 36"
+    },
+    {
+      "pred": "348",
+      "gold": "348",
+      "ok": true,
+      "chars": 1129,
+      "has_marker": true,
+      "tail": "ternatively, using the combined total from Step 3:\nTotal pets = (Combined dogs and cats) + Number of rabbits\nTotal pets = $180 + 168$\nTotal pets = 348\n\n#### 348"
+    },
+    {
+      "pred": "40",
+      "gold": "40",
+      "ok": true,
+      "chars": 1329,
+      "has_marker": true,
+      "tail": "n $1 - \\frac{2}{3} = \\frac{1}{3}$ of the girls are not in the Girl Scout.*\nNumber of girls not in the Girl Scout = $\\frac{1}{3} \\times 120 = 40$ girls.\n\n#### 40"
+    },
+    {
+      "pred": "3",
+      "gold": "3",
+      "ok": true,
+      "chars": 1222,
+      "has_marker": true,
+      "tail": "}$ of Harry's total sleep.\nDifference = $\\frac{1}{3} \\times 9$\nDifference = $\\frac{9}{3}$\nDifference = 3 hours.\n\n---\nBoth methods yield the same result.\n\n#### 3"
+    },
+    {
+      "pred": "12",
+      "gold": "12",
+      "ok": true,
+      "chars": 1229,
+      "has_marker": true,
+      "tail": "es.\nTotal number of tomatoes = Number of cans $\\times$ Number of tomatoes per can\nTotal number of tomatoes = $4 \\times 3$\nTotal number of tomatoes = 12\n\n#### 12"
+    },
+    {
+      "pred": "5",
+      "gold": "5",
+      "ok": true,
+      "chars": 1671,
+      "has_marker": true,
+      "tail": "otal cars accounted for: $25 + 5 = 30$ (Matches the original total)\n\nThe number of cars that drove through the traffic jam in the first 15 minutes is 5.\n\n#### 5"
+    },
+    {
+      "pred": "58",
+      "gold": "58",
+      "ok": true,
+      "chars": 1655,
+      "has_marker": true,
+      "tail": "added:** She received 18 new plants.\n5. **Total remaining:** Plants remaining on ledges + New plants\n   Total remaining = $40 + 18 = 58$ potted plants.\n\n#### 58"
+    }
+  ]
+}

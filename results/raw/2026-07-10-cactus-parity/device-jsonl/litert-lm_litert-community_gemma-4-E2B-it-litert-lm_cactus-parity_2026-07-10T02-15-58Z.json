@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 1,
+    "batteryState" : "full",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "CB04F3F1-BB9B-412D-B3A9-9216FB530D3C",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 41.378583949623454,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 754,
+    "generatedTokenCount" : 33,
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 17.38595962524414,
+    "interTokenLatencyP95MS" : 24.33192729949951,
+    "interTokenLatencyP99MS" : 30.109047889709473,
+    "loadTimeSeconds" : 6.1431649923324585,
+    "memoryAfterGenerationMB" : 704.4414749145508,
+    "memoryAfterLoadMB" : 434.5507583618164,
+    "memoryBaselineMB" : 15.876731872558594,
+    "memoryPeakDuringDecodeMB" : 719.0039749145508,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 1022,
+    "promptTokensPerSecond" : 1893.9955522609341,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 32,
+    "totalGenerationTimeSeconds" : 1.3502330780029297
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "INT4 (QAT)"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot is perform complex tasks with low latency and high privacy by processing data directly on the device.",
+  "parameters" : {
+    "maxTokens" : 100,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "cactus-parity",
+  "timestamp" : "2026-07-10T02:15:58Z"
+}

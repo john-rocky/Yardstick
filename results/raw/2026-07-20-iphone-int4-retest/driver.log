@@ -1,0 +1,17 @@
+=== 2026-07-20 10:57:20 START own/DeepSeek-R1-1.5B-int4-BOCTAV4 ===
+        "CurrentCapacity": 43,
+    "CurrentCapacity": 43,
+=== 2026-07-20 10:58:32 END own/DeepSeek-R1-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+=== 2026-07-20 10:59:32 START own/TinySwallow-1.5B-int4-BOCTAV4 ===
+        "CurrentCapacity": 43,
+    "CurrentCapacity": 43,
+=== 2026-07-20 11:00:06 END own/TinySwallow-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+=== 2026-07-20 11:01:06 START own/VibeThinker-1.5B-int4-BOCTAV4 ===
+        "CurrentCapacity": 44,
+    "CurrentCapacity": 44,
+=== 2026-07-20 11:02:23 END own/VibeThinker-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+=== 2026-07-20 11:03:23 START own/Phi-4-mini-int4-BOCTAV4-128 ===
+        "CurrentCapacity": 45,
+    "CurrentCapacity": 45,
+=== 2026-07-20 11:04:06 END own/Phi-4-mini-int4-BOCTAV4-128 exit=0 run_ok=4 ===
+=== 2026-07-20 11:05:06 ALL DONE ===

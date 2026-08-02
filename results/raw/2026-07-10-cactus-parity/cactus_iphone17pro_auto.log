@@ -1,0 +1,44 @@
+Backend 'auto' unavailable; using default
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ Running Benchmark                                                                    ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════╗
+║  LLM BENCHMARK (1k prefill / 100 decode) ║
+╚══════════════════════════════════════════╝
+├─ Prompt tokens: 1000 (rendered 1221, truncated)
+├─ Decode tokens: 100
+[RAWJSON run=0] {"success":true,"time_to_first_token_ms":1308.47,"total_time_ms":4795.15,"prefill_tps":764.31,"prefill_compute_tps":764.31,"prefill_prepare_tps":764.29,"ttft_prompt_tps":764.25,"cache_prime_ms":1308.40,"cache_prime_compute_ms":1308.36,"cache_state_copy_ms":0.04,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":28.39,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":811.47,"ram_usage_mb":629.51}
+├─ Warmup: prefill_tps=764.31 decode_tps=28.39
+[RAWJSON run=1] {"success":true,"time_to_first_token_ms":1362.88,"total_time_ms":4018.96,"prefill_tps":733.77,"prefill_compute_tps":733.77,"prefill_prepare_tps":733.76,"ttft_prompt_tps":733.74,"cache_prime_ms":1362.85,"cache_prime_compute_ms":1362.82,"cache_state_copy_ms":0.03,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":37.27,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":640.33,"ram_usage_mb":640.29}
+[RAWJSON run=2] {"success":true,"time_to_first_token_ms":1432.57,"total_time_ms":4256.51,"prefill_tps":698.06,"prefill_compute_tps":698.06,"prefill_prepare_tps":698.05,"ttft_prompt_tps":698.05,"cache_prime_ms":1432.56,"cache_prime_compute_ms":1432.55,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":35.06,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":651.19,"ram_usage_mb":651.19}
+[RAWJSON run=3] {"success":true,"time_to_first_token_ms":1464.81,"total_time_ms":4167.14,"prefill_tps":682.69,"prefill_compute_tps":682.69,"prefill_prepare_tps":682.68,"ttft_prompt_tps":682.68,"cache_prime_ms":1464.81,"cache_prime_compute_ms":1464.80,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":36.64,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":661.85,"ram_usage_mb":661.85}
+
+[Mean of 3 runs]
+├─ prefill_tps            704.84 tok/s
+├─ decode_tps              36.32 tok/s
+├─ peak_ram               651.12 MB
+├─ prefill_prep_tps       704.83 tok/s
+├─ ttft_prompt_tps        704.82 tok/s
+├─ cache_copy               0.02 ms
+├─ ttft                  1420.09 ms
+└─ Status: PASSED ✓
+✓ PASS │ llm_benchmark            
+
+╔══════════════════════════════════════════╗
+║  VLM BENCHMARK (image embed / decode)    ║
+╚══════════════════════════════════════════╝
+├─ Warmup: image_embed=1249.75ms (dim 1536)
+├─ Warmup: audio_embed=960.77ms (dim 1536)
+├─ Warmup: decode_tps=41.93 (decode_tokens=100)
+
+[Mean of 3 runs]
+├─ image_embed            532.52 ms
+├─ audio_embed            228.77 ms
+├─ decode_tps              38.88 tok/s
+└─ Status: PASSED ✓
+✓ PASS │ vlm_benchmark            
+────────────────────────────────────────────────────────────────────────────────────────
+✓ All 2 tests passed!
+

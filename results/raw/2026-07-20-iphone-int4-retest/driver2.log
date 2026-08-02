@@ -1,0 +1,19 @@
+11:06:46 temp=33C
+11:08:46 temp=33C
+11:10:46 temp=33C
+11:12:47 temp=33C
+11:14:47 temp=33C
+11:16:48 temp=33C
+11:18:48 temp=33C
+11:20:48 temp=33C
+11:22:49 temp=33C
+11:24:49 temp=33C
+11:26:50 temp=33C
+11:28:50 temp=33C
+11:30:50 temp=33C
+11:32:51 temp=33C
+11:34:51 temp=33C
+11:36:51 COOL_TIMEOUT (proceeding anyway)
+=== 2026-07-20 11:36:51 START own/TinySwallow-1.5B-int4-BOCTAV4 ===
+=== 2026-07-20 11:37:26 END own/TinySwallow-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+11:37:26 temp=33C

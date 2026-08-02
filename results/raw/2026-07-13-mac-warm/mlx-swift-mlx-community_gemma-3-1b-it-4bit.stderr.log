@@ -1,0 +1,15 @@
+yardstick: run 1/5 task=short-chat runtime=mlx-swift model=mlx-community/gemma-3-1b-it-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_gemma-3-1b-it-4bit.jsonl
+yardstick: run=1 cold=1 TTFT=808ms decode=328.41tok/s peakMB=1105
+yardstick: run 2/5 task=short-chat runtime=mlx-swift model=mlx-community/gemma-3-1b-it-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_gemma-3-1b-it-4bit.jsonl
+yardstick: run=2 cold=0 TTFT=156ms decode=328.04tok/s peakMB=1106
+yardstick: run 3/5 task=short-chat runtime=mlx-swift model=mlx-community/gemma-3-1b-it-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_gemma-3-1b-it-4bit.jsonl
+yardstick: run=3 cold=0 TTFT=132ms decode=328.32tok/s peakMB=1107
+yardstick: run 4/5 task=short-chat runtime=mlx-swift model=mlx-community/gemma-3-1b-it-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_gemma-3-1b-it-4bit.jsonl
+yardstick: run=4 cold=0 TTFT=161ms decode=328.32tok/s peakMB=1107
+yardstick: run 5/5 task=short-chat runtime=mlx-swift model=mlx-community/gemma-3-1b-it-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_gemma-3-1b-it-4bit.jsonl
+yardstick: run=5 cold=0 TTFT=154ms decode=327.72tok/s peakMB=1107

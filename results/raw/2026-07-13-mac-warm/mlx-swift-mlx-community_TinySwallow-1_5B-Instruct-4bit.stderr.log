@@ -1,0 +1,15 @@
+yardstick: run 1/5 task=short-chat runtime=mlx-swift model=mlx-community/TinySwallow-1.5B-Instruct-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_TinySwallow-1_5B-Instruct-4bit.jsonl
+yardstick: run=1 cold=1 TTFT=43ms decode=328.76tok/s peakMB=1196
+yardstick: run 2/5 task=short-chat runtime=mlx-swift model=mlx-community/TinySwallow-1.5B-Instruct-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_TinySwallow-1_5B-Instruct-4bit.jsonl
+yardstick: run=2 cold=0 TTFT=24ms decode=327.94tok/s peakMB=1196
+yardstick: run 3/5 task=short-chat runtime=mlx-swift model=mlx-community/TinySwallow-1.5B-Instruct-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_TinySwallow-1_5B-Instruct-4bit.jsonl
+yardstick: run=3 cold=0 TTFT=26ms decode=327.34tok/s peakMB=1197
+yardstick: run 4/5 task=short-chat runtime=mlx-swift model=mlx-community/TinySwallow-1.5B-Instruct-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_TinySwallow-1_5B-Instruct-4bit.jsonl
+yardstick: run=4 cold=0 TTFT=25ms decode=328.63tok/s peakMB=1197
+yardstick: run 5/5 task=short-chat runtime=mlx-swift model=mlx-community/TinySwallow-1.5B-Instruct-4bit
+yardstick: appended to /Users/majimadaisuke/downloads/ios-llm-benchmark/results/raw/2026-07-13-mac-warm/mlx-swift-mlx-community_TinySwallow-1_5B-Instruct-4bit.jsonl
+yardstick: run=5 cold=0 TTFT=25ms decode=328.00tok/s peakMB=1196

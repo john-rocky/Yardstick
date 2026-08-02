@@ -1,0 +1,20 @@
+session 2026-07-25 03:45:52 pair2 (DeepSeek + Phi pairs, q8 re-captured same-day)
+--- waiting for UNPLUG (set Auto-Lock=Never first, then pull the cable) ---
+03:56:24 unplugged; settling 300s
+=== 2026-07-25 04:01:24 START litert-community/DeepSeek-R1-Distill-Qwen-1.5B ===
+=== 2026-07-25 04:03:05 END litert-community/DeepSeek-R1-Distill-Qwen-1.5B exit=0 run_ok=4 ===
+=== 2026-07-25 04:06:05 START own/DeepSeek-R1-1.5B-int4-BOCTAV4 ===
+=== 2026-07-25 04:07:15 END own/DeepSeek-R1-1.5B-int4-BOCTAV4 exit=0 run_ok=4 ===
+=== 2026-07-25 04:10:15 START litert-community/Phi-4-mini-instruct ===
+=== 2026-07-25 04:10:59 END litert-community/Phi-4-mini-instruct exit=0 run_ok=4 ===
+=== 2026-07-25 04:13:59 START own/Phi-4-mini-int4-BOCTAV4-128 ===
+=== 2026-07-25 04:14:40 END own/Phi-4-mini-int4-BOCTAV4-128 exit=0 run_ok=4 ===
+--- nominal retake: cooling 1500s ---
+=== 2026-07-25 04:17:40 PAIR2 SESSION DONE ===
+=== 2026-07-25 04:42:07 START litert-community/DeepSeek-R1-Distill-Qwen-1.5B ===
+=== 2026-07-25 04:42:19 END litert-community/DeepSeek-R1-Distill-Qwen-1.5B exit=1 run_ok=0 ===
+04:42:19 attempt 1 failed for litert-community/DeepSeek-R1-Distill-Qwen-1.5B; waiting 60s (no killall)
+=== 2026-07-25 04:43:19 START litert-community/DeepSeek-R1-Distill-Qwen-1.5B ===
+=== 2026-07-25 04:43:45 END litert-community/DeepSeek-R1-Distill-Qwen-1.5B exit=1 run_ok=0 ===
+04:43:45 attempt 2 failed for litert-community/DeepSeek-R1-Distill-Qwen-1.5B; waiting 60s (no killall)
+=== 2026-07-25 04:44:45 START litert-community/DeepSeek-R1-Distill-Qwen-1.5B ===

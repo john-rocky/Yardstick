@@ -1,0 +1,63 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A0DD6C2B-E223-4205-9C99-6C3141CEB30C",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      19.50702319501745,
+      15.885655961981916
+    ],
+    "decodeTokensPerSecond" : 18.74381600361029,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 65,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 55.45496940612793,
+    "interTokenLatencyP95MS" : 107.60998725891113,
+    "interTokenLatencyP99MS" : 128.7100315093994,
+    "loadTimeSeconds" : 1.0925190448760986,
+    "memoryAfterGenerationMB" : 207.78458404541016,
+    "memoryAfterLoadMB" : 272.11270904541016,
+    "memoryBaselineMB" : 14.470458984375,
+    "memoryPeakDuringDecodeMB" : 287.30020904541016,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 48,
+    "promptTokensPerSecond" : 790.9304167452385,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 7.09450101852417
+  },
+  "model" : {
+    "displayName" : "Llama-3.2-3B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/llama-3.2-3b-gpu",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 3,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic)"
+  },
+  "outputSample" : "On-device AI is a type of artificial intelligence (AI) that runs directly on a device, such as a smartphone or a computer. This means that the AI algorithms and models are stored and executed on the d",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:05:02Z"
+}

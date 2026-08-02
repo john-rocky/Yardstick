@@ -1,0 +1,12 @@
+=== compile ANE bundle (neural-engine, h18p) ===
+Compiling h18p: 1 of 1
+assembled: metadata.json
+tokenizer
+vibethinker_1_5b_ios_pure4bit.h18p.aimodelc
+=== side-load → Documents/CoreAIModels/vibethinker_1_5b_ane ===
+Extended Attributes: [:]
+=== run core-ai/vibethinker-1.5b-ane 3x ===
+  VibeThinker-ANE run1 :: YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=71.53
+  VibeThinker-ANE run2 :: YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=69.92
+  VibeThinker-ANE run3 :: YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=72.23
+VIBETHINKER_ANE_DONE

@@ -1,0 +1,86 @@
+Model:                /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/gemma-4-e2b-it-cq4
+Bundle:               /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/gemma-4-e2b-it-cq4
+Transcription model:  /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/parakeet-tdt-0.6b-v3-cq4
+Transcription bundle: /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/parakeet-tdt-0.6b-v3-cq4
+Backend:              
+[ 18%] Built target cactus_kernels
+[ 37%] Built target cactus_graph
+[ 56%] Built target cactus_engine
+[ 56%] Built target cactus_engine_bundle
+[ 59%] Built target test_model_loading
+[ 62%] Built target test_curl
+[ 65%] Built target test_embed
+[ 67%] Built target transcribe
+[ 70%] Built target test_index
+[ 73%] Built target test_needle
+[ 76%] Built target test_stream_transcribe
+[ 79%] Built target test_rag
+[ 82%] Built target test_stt
+[ 85%] Built target test_vlm
+[ 88%] Built target test_benchmark
+[ 91%] Built target test_telemetry
+[ 94%] Built target test_llm
+[ 97%] Built target test_kv_compress
+[100%] Built target run
+
+╔══════════════════════════════════════════════════════════════════════════════════════╗
+║ Running Benchmark                                                                    ║
+╚══════════════════════════════════════════════════════════════════════════════════════╝
+
+╔══════════════════════════════════════════╗
+║  LLM BENCHMARK (1k prefill / 100 decode) ║
+╚══════════════════════════════════════════╝
+├─ Prompt tokens: 1000 (rendered 1221, truncated)
+├─ Decode tokens: 100
+[RAWJSON run=0] {"success":true,"time_to_first_token_ms":376.15,"total_time_ms":1089.03,"prefill_tps":2658.88,"prefill_compute_tps":2658.88,"prefill_prepare_tps":2658.81,"ttft_prompt_tps":2658.51,"cache_prime_ms":376.11,"cache_prime_compute_ms":376.10,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":138.87,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":1411.55,"ram_usage_mb":1411.55}
+├─ Warmup: prefill_tps=2658.88 decode_tps=138.87
+[RAWJSON run=1] {"success":true,"time_to_first_token_ms":367.71,"total_time_ms":1070.10,"prefill_tps":2719.70,"prefill_compute_tps":2719.70,"prefill_prepare_tps":2719.62,"ttft_prompt_tps":2719.50,"cache_prime_ms":367.70,"cache_prime_compute_ms":367.69,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":140.95,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":1422.52,"ram_usage_mb":1422.52}
+[RAWJSON run=2] {"success":true,"time_to_first_token_ms":364.32,"total_time_ms":1061.86,"prefill_tps":2745.01,"prefill_compute_tps":2745.01,"prefill_prepare_tps":2744.94,"ttft_prompt_tps":2744.82,"cache_prime_ms":364.31,"cache_prime_compute_ms":364.30,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":141.93,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":1433.38,"ram_usage_mb":1433.40}
+[RAWJSON run=3] {"success":true,"time_to_first_token_ms":363.61,"total_time_ms":1061.43,"prefill_tps":2750.44,"prefill_compute_tps":2750.44,"prefill_prepare_tps":2750.36,"ttft_prompt_tps":2750.23,"cache_prime_ms":363.59,"cache_prime_compute_ms":363.58,"cache_state_copy_ms":0.01,"cache_prime_tokens":1000,"first_decode_ms":0.00,"first_token_from_prefill":true,"prefill_padding_tokens":0,"prefill_scalar_tail_tokens":1,"prefill_tail_chunk_tokens":103,"prefill_tail_padding_tokens":24,"decode_tps":141.87,"prompt_tokens":1000,"completion_tokens":100,"completion_token_ids":[236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236828,578,236743,236770,236770,236819,236761,236778,236800,236828,236810,236771,236761,5774,236743,236800,236819,578,236743,236770,236770,236825,236761,236778,236800,236828,236810,236771,236761,5774,236743,107,2100,236743,236812,236771,578,236743,236770,236770,236800,236761,236771,236819,236832,236778,236812,236771,236761,108,1018,35434,53121,669,3847,1262,12205,496,7501,529,5683,2979,236764,72139,506,3759,529,874,2160,236795,568,14762,236768,653,3361,17047,236761,108,6481,236789,236751,18840,506,3904,236787,107,818,7501,5072,531],"peak_ram_usage_mb":1444.07,"ram_usage_mb":1444.07}
+
+[Mean of 3 runs]
+├─ prefill_tps           2738.38 tok/s
+├─ decode_tps             141.58 tok/s
+├─ peak_ram              1433.32 MB
+├─ prefill_prep_tps      2738.31 tok/s
+├─ ttft_prompt_tps       2738.18 tok/s
+├─ cache_copy               0.01 ms
+├─ ttft                   365.21 ms
+└─ Status: PASSED ✓
+✓ PASS │ llm_benchmark            
+
+╔══════════════════════════════════════════╗
+║  VLM BENCHMARK (image embed / decode)    ║
+╚══════════════════════════════════════════╝
+├─ Warmup: image_embed=360.21ms (dim 1536)
+├─ Warmup: audio_embed=228.03ms (dim 1536)
+├─ Warmup: decode_tps=155.53 (decode_tokens=100)
+
+[Mean of 3 runs]
+├─ image_embed            142.43 ms
+├─ audio_embed             93.03 ms
+├─ decode_tps             155.19 tok/s
+└─ Status: PASSED ✓
+✓ PASS │ vlm_benchmark            
+
+╔══════════════════════════════════════════╗
+║  TRANSCRIBE BENCHMARK (audio embed / stt)║
+╚══════════════════════════════════════════╝
+├─ Warmup: audio_embed=225.91ms (dim 1024)
+├─ Warmup: transcribe=153.68ms decode_tps=8900000.00
+
+[Mean of 3 runs]
+├─ audio_embed            165.05 ms
+├─ transcribe_total       152.41 ms
+├─ decode_tps         9289562.29 tok/s
+└─ Status: PASSED ✓
+✓ PASS │ transcribe_benchmark     
+────────────────────────────────────────────────────────────────────────────────────────
+✓ All 3 tests passed!
+
+
+Fetching Cactus-Compute/gemma-4-E2B-it [cq4] @ v2.0.1
+Ready at /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/gemma-4-e2b-it-cq4
+
+Fetching Cactus-Compute/parakeet-tdt-0.6b-v3 [cq4] @ v2.0
+Ready at /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/3bc1c707-b155-4c17-a5c3-ae27ebc228ee/scratchpad/cactus/weights/parakeet-tdt-0.6b-v3-cq4

@@ -1,0 +1,62 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "serious",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11718,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "E1A860B0-A0AF-46B0-B2FB-3E94AF78BC65",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 95.60743160555106,
+    "finalThermalState" : "serious",
+    "firstTokenLatencyMS" : 48,
+    "generatedTokenCount" : 128,
+    "initialThermalState" : "serious",
+    "interTokenLatencyP50MS" : 10.422110557556152,
+    "interTokenLatencyP95MS" : 10.85507869720459,
+    "interTokenLatencyP99MS" : 13.919949531555176,
+    "loadTimeSeconds" : 0.8787729740142822,
+    "memoryAfterGenerationMB" : 1608.5968780517578,
+    "memoryAfterLoadMB" : 1541.1749801635742,
+    "memoryBaselineMB" : 14.407958984375,
+    "memoryPeakDuringDecodeMB" : 1608.9093780517578,
+    "peakThermalState" : "serious",
+    "promptTokenCount" : 22,
+    "promptTokensPerSecond" : 480.44344129354397,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.5882350206375122
+  },
+  "model" : {
+    "displayName" : "OLMo-2-1B (Core AI, ANE)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/olmo2-1b-ane",
+    "onDiskSizeMB" : 1100,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "4-bit palettized (uniform g32)"
+  },
+  "outputSample" : "On-device AI means AI that is processed and performed on the device itself, rather than in a remote server or cloud. This term is often used to describe AI that is processed on the device that perform",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "task" : "short-chat",
+  "timestamp" : "2026-06-25T02:07:21Z"
+}

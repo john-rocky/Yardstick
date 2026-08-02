@@ -1,0 +1,9 @@
+Fetching 12 files:   0%|          | 0/12 [00:00<?, ?it/s]Fetching 12 files: 100%|██████████| 12/12 [00:00<00:00, 36927.11it/s]
+Running warmup..
+Timing with prompt_tokens=512, generation_tokens=1024, batch_size=1.
+Trial 1:  prompt_tps=1516.042, generation_tps=100.049, peak_memory=14.611, total_time=10.645
+Trial 2:  prompt_tps=1531.166, generation_tps=100.365, peak_memory=14.611, total_time=10.614
+Trial 3:  prompt_tps=1527.125, generation_tps=100.252, peak_memory=14.611, total_time=10.625
+Trial 4:  prompt_tps=1531.795, generation_tps=99.983, peak_memory=14.611, total_time=10.654
+Trial 5:  prompt_tps=1532.386, generation_tps=100.167, peak_memory=14.611, total_time=10.638
+Averages: prompt_tps=1527.703, generation_tps=100.163, peak_memory=14.611

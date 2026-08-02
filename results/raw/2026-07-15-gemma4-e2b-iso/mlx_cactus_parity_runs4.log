@@ -1,0 +1,4 @@
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=47.01 ttft_ms=1189 prefill_tok_s=878.5 prompt_tokens=1023 peak_mb=5498 tokens=15
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=46.65 ttft_ms=1161 prefill_tok_s=897.1 prompt_tokens=1023 peak_mb=5498 tokens=15
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=46.39 ttft_ms=1152 prefill_tok_s=897.0 prompt_tokens=1023 peak_mb=5499 tokens=15
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=46.61 ttft_ms=1155 prefill_tok_s=894.5 prompt_tokens=1023 peak_mb=5499 tokens=15
