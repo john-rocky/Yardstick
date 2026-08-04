@@ -117,14 +117,14 @@ def render(theme: dict) -> Path:
     text(ix, TOP - 0.048, "Decode  tok/s", size=15)
     text(CX[0] + CW - 0.024, TOP - 0.048, "warm, n≥6", size=11, color=T["DIM"], ha="right")
     bars(ix, ROWS_TOP, iw, [
-        ("LiteRT-LM",    L,  None, 61.1, "61.1", "wNa8o8 QAT · n=8"),
+        ("LiteRT-LM",    L,  None, 62.1, "62.1", "wNa8o8 QAT · v0.15.0"),
         ("Cactus uncal", CA, None, 50.6, "50.6", "7/20 cold ×3"),
         ("Cactus ship",  CA, H,    50.0, "50.0", "GSM8K 3% — reasoning-dead"),
         ("MLX PTQ",      M,  None, 49.1, "49.1", "n=6"),
         ("Core AI",      C,  None, 47.1, "47.1", "patched engine (ref)"),
         ("llama.cpp",    LL, None, 38.8, "38.8", "Q4_K_M · 7/27 n=10"),
         ("MLX OptiQ",    M,  H,    36.0, "36.0", "GSM8K 91% — quality build"),
-    ], vmax=61.1, gap=ROW_GAP, bar_h=BAR_H, label_w=LBL_W)
+    ], vmax=62.1, gap=ROW_GAP, bar_h=BAR_H, label_w=LBL_W)
 
     # --- card 2: memory
     ix = CX[1] + 0.024
@@ -132,7 +132,7 @@ def render(theme: dict) -> Path:
     text(CX[1] + CW - 0.024, TOP - 0.048, "median charged footprint", size=11,
          color=T["DIM"], ha="right")
     bars(ix, ROWS_TOP, iw, [
-        ("LiteRT-LM",    L,  None,  497, "497", "<1 GB on residency too"),
+        ("LiteRT-LM",    L,  None,  488, "488", "<1 GB on residency too · 8/4"),
         ("Cactus uncal", CA, None, 1061, "1,061", "7/20, peak basis"),
         ("Cactus ship",  CA, H,     632, "632", None),
         ("MLX PTQ",      M,  None, 3010, "3,010", None),
@@ -157,17 +157,22 @@ def render(theme: dict) -> Path:
     ], vmax=0.260, gap=ROW_GAP, bar_h=BAR_H, label_w=LBL_W)
 
     # ------------------------------------------------------------- footer
-    text(0.035, 0.082,
+    text(0.035, 0.104,
          "energy: measured BETWEEN 5%-step battery-gauge transitions (iOS 27 quantizes "
          "start/end deltas ×2 — old J/tok figures retired)",
          size=10.5, color=T["DIM"])
-    text(0.035, 0.060,
+    text(0.035, 0.082,
          "▾ 0.222/0.226/0.231 are one unresolved cluster (±10%) · † mmap'd weights: the "
          "footprint hides file-backed pages · hatch = second build of the same runtime",
          size=10.5, color=T["DIM"])
-    text(0.035, 0.038,
+    text(0.035, 0.060,
          "Core AI decode = patched engine reference (Apple ships no Gemma-4 bundle) · "
          "GSM8K n=100, one Mac harness for every row",
+         size=10.5, color=T["DIM"])
+    text(0.035, 0.038,
+         "LiteRT-LM row re-captured 2026-08-04 on the v0.15.0 release (same instrument, "
+         "n=8; cross-sitting drift via the LiteRT anchor: +1.6%) · other arms 7/27\u201330, "
+         "builds unchanged",
          size=10.5, color=T["DIM"])
     text(0.035, 0.013,
          "full tables, raw logs, per-cell transition timestamps, repro:  "

@@ -44,6 +44,7 @@ results/raw/local-*
 # Python
 __pycache__/
 *.pyc
+.venv-litert015/
 
 # Full-device result dumps pulled during finalize: 800+ historical files per pull,
 # every one already committed in its own campaign dir. Swept into commits by accident

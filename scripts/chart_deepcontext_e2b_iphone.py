@@ -138,7 +138,7 @@ text(CX1 + CW - 0.028, TOP - 0.048, "what jetsam bills the app", size=12,
 text(ix, TOP - 0.082, "phys_footprint — dirty + compressed pages", size=11.5, color=DIM)
 
 y = TOP - 0.170
-bar_row(ix, y, "LiteRT-LM", LITERT, 732, "732 MB", "n=24, MAD 0%")
+bar_row(ix, y, "LiteRT-LM", LITERT, 751, "751 MB", "n=8 · 8/4 v0.15.0 (7/27: 732)")
 bar_row(ix, y - GAP, "llama.cpp", LLAMA, 239, "239 MB",
         "n=20, MAD 0%  ·  smallest here, largest on the right", ACCENT)
 bar_row(ix, y - 2 * GAP, "MLX", MLX, 3367, "3,367 MB", "n=8, MAD 0%")
@@ -156,7 +156,7 @@ text(ix, TOP - 0.082, "resident_size — counts mapped weights the footprint doe
      size=11.5, color=DIM)
 
 y = TOP - 0.170
-bar_row(ix, y, "LiteRT-LM", LITERT, 849, "849 MB", "n=24, MAD 0%")
+bar_row(ix, y, "LiteRT-LM", LITERT, 849, "849 MB", "n=24, MAD 0% · 7/27 sitting ‡")
 bar_row(ix, y - GAP, "llama.cpp", LLAMA, 3165, "3,165 MB",
         "n=20, MAD 0%  ·  2.9 GB of GGUF, mapped not wired", ACCENT)
 absent_row(ix, y - 2 * GAP, "MLX", MLX, "no rankable median")
@@ -180,29 +180,44 @@ text(CX1 + 0.028, 0.204,
      size=12.5, color=ACCENT)
 
 # ---------------------------------------------------------------- footnotes
-text(0.035, 0.138,
+text(0.035, 0.163,
      "Method  ·  one session, one device, unplugged, harness 2026-07-27-agreed-protocol-r2. "
      "Context forced to 2,048 tokens on every cell — but a forced context is a ceiling, not "
      "an occupancy:",
      size=11.5, color=DIM)
-text(0.035, 0.116,
-     "LiteRT-LM grows into its KV, so the same arm reads 497 MB at a 21-token prompt and "
-     "732 MB at 1,098. A memory figure needs its prompt length quoted with it.",
+text(0.035, 0.144,
+     "LiteRT-LM grows into its KV, so the same arm reads 488 MB at a short prompt and "
+     "751 MB at 1,081 (8/4, v0.15.0). A memory figure needs its prompt length quoted with it.",
      size=11.5, color=DIM)
-text(0.035, 0.088,
+text(0.035, 0.125,
      "n and spread  ·  footprint n=24 (LiteRT-LM) / 20 (llama.cpp) / 8 (MLX), MAD 0% on all "
      "three. Medians over runs 2–3 of each launch; run 1 is cold and",
      size=11.5, color=DIM)
-text(0.035, 0.066,
+text(0.035, 0.106,
      "run 4+ is a thermally degraded tail, dropped by position for every arm alike. MLX and "
      "Core AI are below the protocol's n>=7 — both only became runnable late in the session.",
      size=11.5, color=DIM)
-text(0.035, 0.044,
+text(0.035, 0.049,
+     "\u2021 residency is a function of ambient memory pressure, not just the app: a "
+     "fresh-boot sitting reads high, a busy mid-campaign sitting reads low (8/4 v0.15.0 "
+     "sitting: 996 MB — still under a gigabyte).",
+     size=11.5, color=DIM)
+text(0.035, 0.030,
+     "Why only LiteRT-LM swings: its mapped per-layer-embedding table is sparsely read "
+     "(one row per token) so its pages are evictable; llama.cpp's GGUF is touched every "
+     "token, so its residency stays pinned.",
+     size=11.5, color=DIM)
+text(0.035, 0.011,
+     "Same-day interleaved 0.14-vs-0.15 A/B (rebooted phone, n=4 each): residency 1,541 vs "
+     "984 MB — v0.15 keeps ~36% less resident; footprint 812 vs 704. Raw: "
+     "results/raw/2026-08-04-litert-resident-ab/.",
+     size=11.5, color=DIM)
+text(0.035, 0.087,
      "Core AI's short-chat footprint swings 686 to 873 MB inside a single launch, so it "
      "carries no rankable median either.",
      size=11.5, color=DIM)
 
-text(0.035, 0.016,
+text(0.035, 0.068,
      "raw logs, per-run JSON, method and the failures behind it:  "
      "results/raw/2026-07-27-gemma4-e2b-protocol/",
      size=12, color=MUTED)

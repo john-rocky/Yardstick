@@ -1,0 +1,14 @@
+Benchmarking model: gemma-4-E2B-it.litertlm (/Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--gemma-4-E2B-it-litert-lm/snapshots/9262660a1676eed6d0c477ab1a86344430854664/gemma-4-E2B-it.litertlm)
+Backend                    : gpu
+Number of tokens in prefill: 1024
+Number of tokens in decode : 256
+Max number of tokens       : 2048
+Cache                      : no
+Speculative decoding       : auto
+Running warmup..
+Running iteration 1 of 1..
+----- Results -----
+Prefill speed:        8044.92 tokens/s
+Decode speed:         159.29 tokens/s
+Init time:            1.4306 s
+Time to first token:  0.1336 s

@@ -1,0 +1,7 @@
+{
+  "tag": "litert-gemma4-e2b-v0150-ctx4096-off",
+  "n": 100,
+  "correct": 89,
+  "acc": 0.89,
+  "max_tokens": 4096
+}

@@ -1,0 +1,75 @@
+tee: /Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-08-04-litert-0150-iphone/drive.log: No such file or directory
+
+=== short-chat OFF x8 [15:38:55]
+
+=== short-chat OFF 1/8 [15:38:55]
+
+=== short-chat OFF 2/8 [15:40:56]
+
+=== short-chat OFF 3/8 [15:42:56]
+
+=== short-chat OFF 4/8 [15:44:57]
+
+=== short-chat OFF 5/8 [15:46:57]
+
+=== short-chat OFF 6/8 [15:48:57]
+
+=== short-chat OFF 7/8 [15:50:58]
+
+=== short-chat OFF 8/8 [15:52:58]
+
+=== long-context-1024 OFF x8 [15:54:58]
+
+=== long-context-1024 OFF 1/8 [15:54:58]
+
+=== long-context-1024 OFF 2/8 [15:57:59]
+
+=== long-context-1024 OFF 3/8 [16:00:59]
+
+=== long-context-1024 OFF 4/8 [16:03:59]
+
+=== long-context-1024 OFF 5/8 [16:07:00]
+
+=== long-context-1024 OFF 6/8 [16:10:00]
+
+=== long-context-1024 OFF 7/8 [16:13:00]
+
+=== long-context-1024 OFF 8/8 [16:16:01]
+
+=== short-chat THINKING x4 (max-tokens 1400) [16:19:01]
+
+=== thinking 1/4 [16:19:01]
+
+=== thinking 2/4 [16:21:32]
+
+=== thinking 3/4 [16:24:02]
+
+=== thinking 4/4 [16:26:32]
+
+=== pull results [16:29:03]
+File received from Device
+/Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-08-04-litert-0150-iphone/pulled
+
+=== done — raw in /Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-08-04-litert-0150-iphone/pulled [16:29:05]
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T06-55-04Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T06-58-03Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T07-01-03Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T07-04-03Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T07-07-03Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T07-10-04Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T07-13-05Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_long-context-1024_2026-08-04T07-16-04Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-28-58Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-31-19Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-39-02Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-41-01Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-43-01Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-45-01Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-47-02Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-49-02Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-51-02Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T06-53-03Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T07-19-49Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T07-22-17Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T07-24-47Z.json
+litert-lm_litert-community_gemma-4-E2B-it-litert-lm_short-chat_2026-08-04T07-27-19Z.json

@@ -526,16 +526,16 @@ def chart_iphone_tradeoff():
 # ------------------------------------------------------------------ #
 
 def chart_thinking():
-    """GSM8K thinking OFF vs ON per arm. LiteRT's lockout is drawn as a labeled empty
-    slot — the absence is the finding, not a missing measurement. Time-to-answer
-    annotated under the ON bars (thinking ~820 tok / measured decode)."""
+    """GSM8K thinking OFF vs ON per arm. The LiteRT-LM pair is the 2026-08-04 v0.15.0
+    capture (toggle shipped in 0.15; same-build pair, same yardstick — the v0.13.1 OFF
+    row was 86.0, disclosed in footnote ①). Time-to-answer annotated under the ON bars."""
     CORE_AI = "#65a30d"
     CACTUS = "#0f766e"
     arms = [
         ("Core AI\nown int4",  CORE_AI,             88.0, 92.0, "~75 s/answer ②"),
         ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"], 91.0, 90.0, "~24 s/answer"),
         ("Cactus\nCQ4 uncalibrated", CACTUS,         87.0, 87.0, "~12 s/answer (est.)"),
-        ("LiteRT-LM\nwNa8o8",  "#e11d48",            86.0, None, "locked out ①"),
+        ("LiteRT-LM\nwNa8o8",  "#e11d48",            89.0, 92.0, "~43 s/answer measured ①"),
     ]
     x = list(range(len(arms)))
     w = 0.36
@@ -563,13 +563,17 @@ def chart_thinking():
     from matplotlib.patches import Patch
     ax.legend(handles=[Patch(facecolor="#888", alpha=0.45, label="thinking OFF"),
                        Patch(facecolor="#888", label="thinking ON")],
-              frameon=False, loc="lower right", fontsize=9)
+              frameon=False, loc="upper center", ncol=2, fontsize=9,
+              bbox_to_anchor=(0.5, 1.005))
     ax.set_title("Thinking flips the quality crown — Gemma 4 E2B, iPhone-relevant builds",
                  fontsize=12.5, fontweight="bold", pad=10)
     fig.text(0.5, -0.05,
-             "① no toggle in LiteRT-LM's API; <|think|> marker injection is sanitized (verified two ways)"
-             "   ·   ② decode collapses 34.2→11.7 tok/s at thinking depth on iPhone (only runtime that degrades with depth)"
-             "   ·   Core AI 92.0 equals the bf16 anchor",
+             "① LiteRT-LM pair captured 8/4 on the v0.15.0 release (toggle shipped in 0.15; "
+             "same build, same yardstick; the v0.13.1 OFF row read 86.0)",
+             ha="center", fontsize=8.5, color="#666")
+    fig.text(0.5, -0.115,
+             "② decode collapses 34.2→11.7 tok/s at thinking depth on iPhone (only runtime "
+             "that degrades with depth)   ·   Core AI and LiteRT-LM 92.0 equal the bf16 anchor",
              ha="center", fontsize=8.5, color="#666")
     plt.tight_layout()
     plt.savefig(OUT / "iphone_gemma4_thinking.png")
