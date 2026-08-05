@@ -69,6 +69,8 @@ Blocking gaps:
    and the harness contract (`harnessStamp`) but not the engine build (tag/commit/
    checksum) that produced the row. The v0.13.1→v0.15.0 re-measure had to reconstruct
    build identity from prose. This structurally blocks ③ (regression tracking).
+   **→ FIXED 2026-08-05** for rows from new builds — see fix 5 below. Pre-stamp rows
+   stay `nil` (honest absence; never backfilled by guessing).
 3. **No accumulation layer.** `results/summary/` exists and is EMPTY. RESULTS.md is
    semi-generated markdown (`import_warm_campaign.py`); campaigns are keyed by
    prose READMEs; there is no queryable all-runs table (csv/parquet/sqlite).
@@ -102,6 +104,18 @@ Blocking gaps:
    under the historical `~/code/apple-silicon-llm-bench` clone (gaps ①-2/①-3).
 5. **Engine version at runtime**: stamp the vendored tag into the app at build time
    (Info.plist → result JSON) so every future row carries its engine identity.
+   **→ LANDED 2026-08-05**: `ios/BenchmarkApp/scripts/stamp_engine_pins.sh` (a build
+   phase on both targets + bootstrap step 8) reads the **observed** vendored state —
+   `git describe` of each Vendored/ clone, the CLiteRTLM binaryTarget zip+checksum
+   from LiteRT-LM's Package.swift, a sidecar tag written next to llama.xcframework at
+   download — into the `BenchEnginePins` Info.plist key; `BenchmarkResult` records the
+   arm-under-test's pin as `engineVersion`/`engineArtifact` (schema v1) and
+   `build_summary.py` surfaces both as columns. Observed state, not env defaults,
+   because both drift the moment you look: the local v0.13.1 LiteRT clone ships
+   **v0.13.0** engine zips (repo tag ≠ binary), and the local coreai-models symlink
+   sat at `0.2.1-zoo+static-inputs-patch` while the lockfile said 0.2.0. Mac CLI has
+   no Info.plist: set `BENCH_ENGINE_PINS_FILE=ios/BenchmarkApp/Vendored/engine-pins.json`
+   (written by the same script). Unreadable pin ⇒ omitted ⇒ row records nil.
 
 Items 1+3 are pure additions (no re-measurement); 2 is a repo-surgery task; 4–5 are
 small. ③ (regression automation) becomes a loop over `reproduce` + schema diffing once

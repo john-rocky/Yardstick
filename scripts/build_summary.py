@@ -72,6 +72,8 @@ def build_device():
             "campaign": rel(os.path.dirname(os.path.dirname(f))),
             "timestamp": d.get("timestamp"),
             "runtime": d.get("runtime"),
+            "engine_version": d.get("engineVersion"),
+            "engine_artifact": d.get("engineArtifact"),
             "model_id": model.get("id"),
             "quantization": model.get("quantization"),
             "task": d.get("task"),
@@ -113,8 +115,10 @@ def main():
             f"time with `python3 scripts/build_summary.py`.\n\n"
             f"- `quality.csv` — {qn} GSM8K report rows (all historical schema variants normalized)\n"
             f"- `device-runs.csv` — {dn} per-run device records (speed / memory / energy cells)\n\n"
-            "Engine version is absent from pre-v1 rows (see the gap audit); new writers must\n"
-            "emit `schema/result.v1.json` so the column can be joined from data, not prose.\n"
+            "Engine version is absent from pre-v1 rows (see the gap audit). Builds from\n"
+            "2026-08-05 onward stamp `engineVersion`/`engineArtifact` into every device row\n"
+            "(`stamp_engine_pins.sh` -> Info.plist -> BenchmarkResult), surfaced here as\n"
+            "`engine_version`/`engine_artifact`; new writers must emit `schema/result.v1.json`.\n"
         )
     print(f"wrote {qp} ({qn} rows)")
     print(f"wrote {dp} ({dn} rows)")

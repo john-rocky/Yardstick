@@ -5,6 +5,18 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
     public let timestamp: Date
     public let device: DeviceSnapshot
     public let runtime: String
+    /// The engine build that produced this row (schema v1 `engineVersion`): the vendored
+    /// runtime's tag/commit as OBSERVED at build time by `scripts/stamp_engine_pins.sh`
+    /// (via the `BenchEnginePins` Info.plist key — see `EnginePins`). `nil` on rows from
+    /// builds that predate the stamp (pre-2026-08-05) or when the pin could not be read.
+    /// Recorded because the v0.13.1→v0.15.0 re-measure had to reconstruct build identity
+    /// from prose READMEs — engine identity must be data, not prose.
+    public let engineVersion: String?
+    /// Artifact identity when the engine is a prebuilt binary (schema v1 `engineArtifact`),
+    /// e.g. "CLiteRTLM.xcframework.zip@v0.13.0 sha256:af23c77b…". Kept separate from
+    /// `engineVersion` because the binary can lag the repo tag (the v0.13.1 LiteRT-LM
+    /// checkout ships v0.13.0 engine zips).
+    public let engineArtifact: String?
     public let model: ModelInfo
     /// The HF revision (commit hash) the model was actually resolved from, read out of the
     /// on-device hub cache's `refs/main` at run time. Recorded because it is the one fact
@@ -23,6 +35,8 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
         timestamp: Date = Date(),
         device: DeviceSnapshot,
         runtime: String,
+        engineVersion: String? = nil,
+        engineArtifact: String? = nil,
         model: ModelInfo,
         modelRevision: String? = nil,
         task: String,
@@ -34,6 +48,8 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
         self.timestamp = timestamp
         self.device = device
         self.runtime = runtime
+        self.engineVersion = engineVersion
+        self.engineArtifact = engineArtifact
         self.model = model
         self.modelRevision = modelRevision
         self.task = task

@@ -73,6 +73,11 @@
       }
     }
   },
+  "engine_version_stamping": {
+    "since": "2026-08-05",
+    "mechanism": "ios/BenchmarkApp/scripts/stamp_engine_pins.sh (xcodegen postBuildScripts on both targets + bootstrap step 8) records the OBSERVED vendored state — git describe of each Vendored/ clone, the CLiteRTLM binaryTarget zip+checksum from LiteRT-LM's Package.swift, the llama.xcframework.tag sidecar — into the BenchEnginePins Info.plist key and Vendored/engine-pins.json; BenchmarkResult carries the arm-under-test's pin as engineVersion/engineArtifact (schema v1). Observed state, not env defaults: requested tags and vendored reality drift (v0.13.1 clone ships v0.13.0 engine zips). Mac yardstick CLI: BENCH_ENGINE_PINS_FILE=ios/BenchmarkApp/Vendored/engine-pins.json. Unreadable pin => omitted => row records nil, never a guess.",
+    "note": "this lockfile remains the per-capture pin REGISTRY (what should be vendored); the stamp is the per-row WITNESS (what actually was) — regression tracking (condition 3) joins rows on the witness"
+  },
   "external_instruments_not_yet_in_repo": {
     "coreai-llm-runner": "parity_gsm8k.py --which coreai shells to COREAI_RUNNER (default ~/code/coreai/coreai-models/.build/release/llm-runner); gemma-4 PLE bundles additionally need the unpublished COREAI_STATIC_INPUTS engine patch — best-effort until Apple publishes it",
     "coreai-thinking-tokenizer": "--which coreai --thinking renders prompts with the HF tokenizer at ~/code/litertlm-convert/src_models/gemma-4-E2B-it-qat-mobile-transformers",

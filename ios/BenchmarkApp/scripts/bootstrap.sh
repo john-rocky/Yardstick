@@ -43,6 +43,9 @@ if [ ! -d "${LLAMA_FRAMEWORK}" ]; then
         exit 1
     fi
     rm -rf "${UNPACK_DIR}"
+    # Sidecar tag: the xcframework carries no version marker inside, and the tag is the
+    # only fact stamp_engine_pins.sh can put in a row's engineVersion without guessing.
+    echo "${LLAMA_TAG}" > "${LLAMA_FRAMEWORK}.tag"
     echo "  -> ${LLAMA_FRAMEWORK}"
 else
     echo "${LLAMA_FRAMEWORK} already present."
@@ -161,6 +164,12 @@ if command -v xcodegen >/dev/null 2>&1; then
         echo "BenchmarkApp.xcodeproj already present (set REGEN_XCODEPROJ=1 to force regen)."
     fi
 fi
+
+# 8. Record the observed engine pins (git state of the Vendored/ clones, the CLiteRTLM
+#    binaryTarget zip, the llama sidecar tag) into Vendored/engine-pins.json. A build
+#    phase re-runs this and stamps the app's Info.plist, so every result row carries
+#    engineVersion/engineArtifact (schema v1; continuous-bench condition 3).
+./scripts/stamp_engine_pins.sh
 
 cat <<'EOF'
 

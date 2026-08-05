@@ -22,6 +22,7 @@
 		2E8B509B84C74A6A850BF4D4 /* LLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CEC963B0C412A01CB78853 /* LLMRuntime.swift */; };
 		2EC1A49EB3F96A59AD0345D1 /* HFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5235B8E78B06C2870291FF5 /* HFDownloader.swift */; };
 		3265BD866E12254B5F9D02D5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6340DF01289DE1C8F23AA39 /* AboutView.swift */; };
+		332744C4895797A9BCFD1AA0 /* EnginePins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A32EC132BC74A7B98B4FED /* EnginePins.swift */; };
 		365ACCF96B78A7F412A50860 /* BenchmarkRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C069A3D837A8C235381A361 /* BenchmarkRunner.swift */; };
 		38D2EEF177543768A564B297 /* RuntimeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A2757B6113092D68EC4F94 /* RuntimeKind.swift */; };
 		3C7056AF1BA49ED29DEFDB81 /* MLXVLM in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6E7223F8169CD107D2EDA9 /* MLXVLM */; };
@@ -88,6 +89,7 @@
 		D2F11BBCDAC07C3A8753D1E2 /* HFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5235B8E78B06C2870291FF5 /* HFDownloader.swift */; };
 		D9E40CE90A81EE9B5AADCFAF /* LLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CEC963B0C412A01CB78853 /* LLMRuntime.swift */; };
 		E3720048DBF575F5136F3EA8 /* MLXBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB25DA3940385A8468CDF86C /* MLXBridges.swift */; };
+		E800E9A6585DFC895B78F7F6 /* EnginePins.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A32EC132BC74A7B98B4FED /* EnginePins.swift */; };
 		E89444AEBDBF1290A74FE5D7 /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = 5EDC2498FDF127EF2101F26B /* MLXLMCommon */; };
 		EC039C8FC4A2DF68CE274F17 /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39105E2687FD536226E700E /* llama.xcframework */; };
 		ECE0002D82147918AAACF0BB /* CactusRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E844209F2F8C874E8500C7 /* CactusRuntime.swift */; };
@@ -161,6 +163,7 @@
 		B39105E2687FD536226E700E /* llama.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = llama.xcframework; path = Vendored/llama.xcframework; sourceTree = "<group>"; };
 		B83851AB7C32EB65D8796EF6 /* VLMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMRuntime.swift; sourceTree = "<group>"; };
 		CEA1B238D711053DA4ECB95A /* CameraVLMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVLMView.swift; sourceTree = "<group>"; };
+		D6A32EC132BC74A7B98B4FED /* EnginePins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnginePins.swift; sourceTree = "<group>"; };
 		D8186947B5D5C5B90DB7A09B /* MLXVLMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXVLMRuntime.swift; sourceTree = "<group>"; };
 		DB25DA3940385A8468CDF86C /* MLXBridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXBridges.swift; sourceTree = "<group>"; };
 		DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainedGenerationTask.swift; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 			children = (
 				2F6CAC41B79737975D3977D7 /* BenchmarkResult.swift */,
 				6978D6BB9139052EA83F5605 /* DeviceSnapshot.swift */,
+				D6A32EC132BC74A7B98B4FED /* EnginePins.swift */,
 				5883E0764831A0D390331F81 /* ModelCatalog.swift */,
 				43A2757B6113092D68EC4F94 /* RuntimeKind.swift */,
 				319BAA8C87D996DE5E74350D /* VLMRunResult.swift */,
@@ -397,6 +401,7 @@
 			buildPhases = (
 				0F7BC198E17A99BFCD70CD5D /* Sources */,
 				22B82BB1F5AA82CDB9BEFA8E /* Frameworks */,
+				3356AC2DB9C03CE68BC51ACF /* Stamp engine pins */,
 			);
 			buildRules = (
 			);
@@ -423,6 +428,7 @@
 				3FD4CC6E4A78856193CB9416 /* Resources */,
 				668F86EAD167B762194D6424 /* Frameworks */,
 				10BCDBA5A045D65FA04D7AA8 /* Embed Frameworks */,
+				B1C1A48CDC9FB2E5F3119D46 /* Stamp engine pins */,
 			);
 			buildRules = (
 			);
@@ -502,6 +508,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3356AC2DB9C03CE68BC51ACF /* Stamp engine pins */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Stamp engine pins";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/scripts/stamp_engine_pins.sh\"";
+		};
+		B1C1A48CDC9FB2E5F3119D46 /* Stamp engine pins */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Stamp engine pins";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/scripts/stamp_engine_pins.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0F7BC198E17A99BFCD70CD5D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -519,6 +566,7 @@
 				F4803995ED52DD8969723131 /* CoreMLRuntime.swift in Sources */,
 				87EB333EA85EDBC955A75984 /* DeviceSnapshot.swift in Sources */,
 				A90EA00E6A6DB24DE1E8ABBE /* EnergyMonitor.swift in Sources */,
+				E800E9A6585DFC895B78F7F6 /* EnginePins.swift in Sources */,
 				584FCFB61598A0F55B3649E2 /* ExecuTorchRuntime.swift in Sources */,
 				D2F11BBCDAC07C3A8753D1E2 /* HFDownloader.swift in Sources */,
 				2E8B509B84C74A6A850BF4D4 /* LLMRuntime.swift in Sources */,
@@ -564,6 +612,7 @@
 				1E92F72A316E9C57829D3371 /* CoreMLVLMRuntime.swift in Sources */,
 				52F23D827122805FEDBBDA29 /* DeviceSnapshot.swift in Sources */,
 				7D5DFD2C5ADA523317036D0C /* EnergyMonitor.swift in Sources */,
+				332744C4895797A9BCFD1AA0 /* EnginePins.swift in Sources */,
 				40D04B05A0566F3D0E326DB7 /* ExecuTorchRuntime.swift in Sources */,
 				2EC1A49EB3F96A59AD0345D1 /* HFDownloader.swift in Sources */,
 				A09211745827F71359B56AF8 /* HistoryView.swift in Sources */,

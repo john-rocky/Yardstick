@@ -114,6 +114,16 @@ targets:
         # with: SWIFT_ACTIVE_COMPILATION_CONDITIONS="$(inherited) COREAI_STATIC_INPUTS"
         # See methodology/core-ai-arm-provenance.md.
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited)"
+    postBuildScripts:
+      # Stamp the OBSERVED engine pins (git state of Vendored/ clones, the CLiteRTLM
+      # binaryTarget zip+checksum, the llama sidecar tag) into the built product's
+      # Info.plist as `BenchEnginePins`, so every BenchmarkResult records
+      # engineVersion/engineArtifact (schema v1; continuous-bench condition 3).
+      # Observed state, not env defaults: a stale Vendored/ clone under a changed
+      # LITERTLM_TAG must not mislabel rows. Re-runs every build by design.
+      - name: Stamp engine pins
+        script: '"$SRCROOT/scripts/stamp_engine_pins.sh"'
+        basedOnDependencyAnalysis: false
     dependencies:
       - package: mlx-swift-lm
         product: MLXLLM
@@ -189,6 +199,12 @@ targets:
         # next to the tool binary in Products/Release — without it the litert dylib only
         # resolves when the binary happens to run from a directory on the llama rpath.
         LD_RUNPATH_SEARCH_PATHS: "@executable_path $(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64"
+    postBuildScripts:
+      # Tool targets have no Info.plist; this refreshes Vendored/engine-pins.json so the
+      # CLI can stamp rows via BENCH_ENGINE_PINS_FILE (see EnginePins.swift).
+      - name: Stamp engine pins
+        script: '"$SRCROOT/scripts/stamp_engine_pins.sh"'
+        basedOnDependencyAnalysis: false
     dependencies:
       - package: mlx-swift-lm
         product: MLXLLM

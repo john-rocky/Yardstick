@@ -391,6 +391,8 @@ public actor BenchmarkRunner {
         return BenchmarkResult(
             device: device,
             runtime: configuration.runtime.kind.rawValue,
+            engineVersion: EnginePins.version(for: configuration.runtime.kind),
+            engineArtifact: EnginePins.artifact(for: configuration.runtime.kind),
             model: configuration.model,
             modelRevision: HFDownloader.resolvedRevision(hfRepoId: configuration.model.hfRepoId),
             task: configuration.task.id,
