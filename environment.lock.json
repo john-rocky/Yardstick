@@ -1,0 +1,63 @@
+{
+  "lockfile_schema": 1,
+  "description": "Machine-readable pin registry: every engine, instrument, and model behind the published tables, plus the per-capture overrides. Continuous-bench condition 1 (one-command reproduction). Update this file in the same commit as any capture that changes a pin.",
+  "updated": "2026-08-05",
+  "arms": {
+    "litert-lm": {
+      "source": "https://github.com/google-ai-edge/LiteRT-LM",
+      "vendored_via": "ios/BenchmarkApp/scripts/bootstrap.sh (LITERTLM_TAG; local SwiftPM package, engine = release binaryTarget)",
+      "default_tag": "v0.13.1",
+      "captures": {
+        "2026-07 campaign rows": { "tag": "v0.13.1" },
+        "2026-08-04 v0.15.0 re-measure": {
+          "tag": "v0.15.0",
+          "artifacts": {
+            "CLiteRTLM.xcframework.zip": "sha256:d6ccf6b54362d894ff71a7580c7e446d36767dab908aecfbb16ffca0fa0bc59b",
+            "CLiteRTLM_mac.xcframework.zip": "sha256:d23cf189ce8f6bb2556c0a023805e245d1ec862434e501eb60f353488033c1b5"
+          }
+        }
+      }
+    },
+    "llama.cpp": {
+      "source": "https://github.com/ggml-org/llama.cpp",
+      "artifact": "llama-b8999-xcframework.zip (release binary)",
+      "tag": "b8999"
+    },
+    "mlx-swift-lm": {
+      "source": "https://github.com/ml-explore/mlx-swift-examples",
+      "pinned_by": "revision in ios/BenchmarkApp/project.yml (floating-branch incident documented there)",
+      "revision": "60bd0d7880c82980f9481f8be78862e9b63c58a3"
+    },
+    "coreai-models": {
+      "source": "https://github.com/apple/coreai-models",
+      "tag": "0.2.0",
+      "caveat": "PLE models (Gemma-4 E2B/E4B) additionally require the unpublished local patch coreai-pipelined-static-inputs.patch (COREAI_STATIC_INPUTS) — this arm is NOT independently reproducible yet; see gap audit."
+    },
+    "cactus": {
+      "source": "https://github.com/cactus-compute/cactus",
+      "commit": "1ace6d78",
+      "built": "from source into cactus-ios.xcframework by bootstrap.sh"
+    }
+  },
+  "python_instruments": {
+    "litert-pip-0.15": {
+      "purpose": "released-artifact cross-validation + 0.14-vs-0.15 version-delta CLI (2026-08-04 rows)",
+      "packages": { "litert-lm": "0.15.0", "litert-lm-api": "0.15.0", "litert-lm-builder": "0.15.0" }
+    },
+    "litert-pip-0.14-contrast": {
+      "purpose": "0.14 side of the same-instrument delta and resident A/B",
+      "packages": { "litert-lm": "0.14.0" }
+    }
+  },
+  "models": {
+    "litert-community/gemma-4-E2B-it-litert-lm": {
+      "file": "gemma-4-E2B-it.litertlm",
+      "hf_revision": "9262660a1676eed6d0c477ab1a86344430854664",
+      "note": "the June snapshot used unchanged across v0.13.1 and v0.15.0 rows; its template carries the enable_thinking branch"
+    }
+  },
+  "external_instruments_not_yet_in_repo": {
+    "litert-mac-verify": "Mac GSM8K quality instrument (the yardstick behind 86.0/88.0/89.0/92.0 rows) — lives at ~/code/litert-mac-verify, builds against the swift-litert-lm fork; vendoring is fix #2 of the gap audit",
+    "swift-litert-lm-fork": "local fork pinned to the release binaryTargets (v0.15.0 as of 2026-08-04) with the maxNumImages patch"
+  }
+}

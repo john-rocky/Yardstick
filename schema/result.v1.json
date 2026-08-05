@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/john-rocky/apple-silicon-llm-bench/schema/result.v1.json",
+  "title": "Benchmark run record v1",
+  "description": "Target schema for every per-run record (device speed/memory/energy cells AND host-side quality reports). Existing files predate this schema and are normalized into results/summary/ by scripts/build_summary.py; new writers must emit these fields natively. Continuous-bench condition 2.",
+  "type": "object",
+  "required": ["schemaVersion", "runtime", "model", "task", "timestamp"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "runtime": { "type": "string", "description": "arm id, e.g. litert-lm / mlx-swift / llama.cpp / core-ai / cactus" },
+    "engineVersion": {
+      "type": "string",
+      "description": "REQUIRED for new rows (absent in pre-v1 records): the engine build that produced this row — tag, commit, or package version (e.g. v0.15.0, b8999, 60bd0d78). The v0.13.1-to-v0.15.0 re-measure had to reconstruct this from prose; never again."
+    },
+    "engineArtifact": { "type": "string", "description": "checksum or artifact name when the engine is a prebuilt binary" },
+    "model": {
+      "type": "object",
+      "required": ["id", "quantization"],
+      "properties": {
+        "id": { "type": "string", "description": "hf repo id or catalog id" },
+        "hfRevision": { "type": "string" },
+        "quantization": { "type": "string", "description": "rule 5: the recipe, visible per row" },
+        "file": { "type": "string" }
+      }
+    },
+    "task": { "type": "string", "description": "short-chat / long-context-1024 / energy / gsm8k / ..." },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "device": {
+      "type": "object",
+      "properties": {
+        "modelIdentifier": { "type": "string" },
+        "systemVersion": { "type": "string" },
+        "batteryState": { "type": "string" },
+        "batteryLevel": { "type": "number" }
+      }
+    },
+    "conditions": {
+      "type": "object",
+      "description": "everything a fairness reviewer asks first",
+      "properties": {
+        "contextBudget": { "type": "integer" },
+        "maxOutputTokens": { "type": "integer" },
+        "sampler": { "type": "string" },
+        "thinking": { "type": "boolean" },
+        "warm": { "type": "boolean" },
+        "thermalInitial": { "type": "string" },
+        "thermalFinal": { "type": "string" },
+        "unplugged": { "type": "boolean" }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "axis values; only the ones the task measures",
+      "properties": {
+        "decodeTokensPerSecond": { "type": "number" },
+        "decodeTokensPerSecondWallClock": { "type": "number" },
+        "prefillTokensPerSecond": { "type": "number" },
+        "promptTokenCount": { "type": "integer" },
+        "generatedTokenCount": { "type": "integer" },
+        "firstTokenLatencyMS": { "type": "number" },
+        "memoryMedianFootprintMB": { "type": "number" },
+        "memoryMedianResidentMB": { "type": "number" },
+        "energyJoulesPerToken": { "type": "number" },
+        "gsm8kAccuracy": { "type": "number" },
+        "gsm8kN": { "type": "integer" }
+      }
+    },
+    "harnessStamp": { "type": "string", "description": "measurement-contract id (+suffixes like +litert-thinking)" },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "rawLog": { "type": "string", "description": "repo-relative path to the raw log (rule 5)" },
+        "campaign": { "type": "string", "description": "results/raw/<campaign-dir>" }
+      }
+    }
+  }
+}
