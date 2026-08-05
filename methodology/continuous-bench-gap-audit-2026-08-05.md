@@ -47,6 +47,12 @@ Blocking gaps:
 3. **User-specific absolute paths in drivers**: HF-cache snapshot paths hardcoded
    (`gsm8k_litert_pip_thinking.py`, `bench_litert_015_mac_speed.sh`), device UDID and
    `DEVELOPMENT_TEAM` baked into scripts. Nothing a second machine can run unedited.
+   **→ PARTIALLY FIXED 2026-08-05** (the two named drivers): HF-cache path honors
+   `HF_HOME` with `LITERTLM_BUNDLE` override, venv CLIs overridable
+   (`LITERT_CLI_014/015`), and the speed driver's OUT no longer points at the
+   historical `~/code/apple-silicon-llm-bench` clone — it defaults to a date-stamped
+   dir in THIS repo (published campaign dirs can't be clobbered by a re-run).
+   Device UDID / `DEVELOPMENT_TEAM` in the iPhone drivers remain.
 4. **Pinned defaults drift from published rows.** bootstrap defaults to `v0.13.1` while
    the 8/4 rows were captured at `v0.15.0` via env override — the override is recorded
    only in prose READMEs. There is no lockfile stating "these exact versions produced

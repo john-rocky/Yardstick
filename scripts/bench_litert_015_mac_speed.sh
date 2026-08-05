@@ -7,13 +7,26 @@
 # NOTE: this is a VERSION-DELTA instrument, not the xcodebuild yardstick — 0.15 has no
 # xcframework release assets, so the pip CLI is the only instrument that runs both sides.
 set -u
-BUNDLE="$HOME/.cache/huggingface/hub/models--litert-community--gemma-4-E2B-it-litert-lm/snapshots/9262660a1676eed6d0c477ab1a86344430854664/gemma-4-E2B-it.litertlm"
-OUT="$HOME/code/apple-silicon-llm-bench/results/raw/2026-08-04-litert-015-mac-speed"
+# Every path is env-overridable (continuous-bench gap 1-3); defaults resolve inside THIS
+# repo and the standard HF cache. The 2026-08-04 capture predates this fix — it wrote to
+# the historical clone (~/code/apple-silicon-llm-bench) and its records were imported to
+# results/raw/2026-08-04-litert-015-mac-speed/. OUT is date-stamped so a re-run can
+# never clobber a published campaign dir.
+REPO="$(cd "$(dirname "$0")/.." && pwd)"
+HF_HOME="${HF_HOME:-$HOME/.cache/huggingface}"
+BUNDLE="${LITERTLM_BUNDLE:-$HF_HOME/hub/models--litert-community--gemma-4-E2B-it-litert-lm/snapshots/9262660a1676eed6d0c477ab1a86344430854664/gemma-4-E2B-it.litertlm}"
+OUT="${OUT:-$REPO/results/raw/$(date +%Y-%m-%d)-litert-015-mac-speed}"
 CSV="$OUT/summary.csv"
+if [ ! -f "$BUNDLE" ]; then
+  echo "ERROR: bundle not found: $BUNDLE (set LITERTLM_BUNDLE or fetch the pinned snapshot — environment.lock.json -> models)" >&2
+  exit 1
+fi
 mkdir -p "$OUT"
 echo "version,p,d,round,prefill_tps,decode_tps,init_s,ttft_s" > "$CSV"
 
-declare -A CLI=( [014]="$HOME/venvs/lt092run/bin/litert-lm" [015]="$HOME/venvs/lt0150run/bin/litert-lm" )
+# venv CLIs: observed specs live in tools/python-envs/ (lt092run = the 0.14 side,
+# lt0150run = the 0.15 side; see environment.lock.json -> python_instruments).
+declare -A CLI=( [014]="${LITERT_CLI_014:-$HOME/venvs/lt092run/bin/litert-lm}" [015]="${LITERT_CLI_015:-$HOME/venvs/lt0150run/bin/litert-lm}" )
 CONFIGS=("64 256" "256 256" "1024 256")
 
 thermal_gate() {

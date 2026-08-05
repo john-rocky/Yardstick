@@ -84,10 +84,10 @@ TABLES = {
         "commands": ["scripts/bench_litert_015_mac_speed.sh"],
         "mode": "passthrough",
         "script": "scripts/bench_litert_015_mac_speed.sh",
-        "notes": "KNOWN GAP (audit 1-2/1-3): the two pip venvs are user-local (~/venvs/lt092run, "
-                 "lt0150run — no in-repo spec yet), and the script hardcodes the HF-cache snapshot "
-                 "path plus an OUT dir under ~/code/apple-silicon-llm-bench (the historical clone). "
-                 "Edit those lines on a second machine until the path fix lands.",
+        "notes": "Venv specs are in-tree (tools/python-envs/lt092run|lt0150run.requirements.txt; "
+                 "audit 1-2 fixed 2026-08-05) and every path is env-overridable (LITERT_CLI_014/"
+                 "LITERT_CLI_015, LITERTLM_BUNDLE, OUT — audit 1-3). OUT defaults to a date-stamped "
+                 "dir in THIS repo, so a re-run never clobbers the published 2026-08-04 campaign.",
     },
     ("iphone", "litert-0150"): {
         "desc": "LiteRT-LM v0.15.0 iPhone re-measure (decode/prefill vs the v0.13.1 rows)",

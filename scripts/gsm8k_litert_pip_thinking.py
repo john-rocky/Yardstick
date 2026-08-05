@@ -28,9 +28,14 @@ spec.loader.exec_module(pg)
 import litert_lm
 from litert_lm import interfaces
 
-BUNDLE = os.path.expanduser(
-    "~/.cache/huggingface/hub/models--litert-community--gemma-4-E2B-it-litert-lm/"
-    "snapshots/9262660a1676eed6d0c477ab1a86344430854664/gemma-4-E2B-it.litertlm")
+# Env-overridable (continuous-bench gap 1-3): LITERTLM_BUNDLE points at the model;
+# the default is the pinned snapshot (environment.lock.json -> models) in the standard
+# HF cache, honoring HF_HOME on machines that relocate it.
+HF_HOME = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
+BUNDLE = os.environ.get("LITERTLM_BUNDLE", os.path.join(
+    HF_HOME, "hub", "models--litert-community--gemma-4-E2B-it-litert-lm",
+    "snapshots", "9262660a1676eed6d0c477ab1a86344430854664",
+    "gemma-4-E2B-it.litertlm"))
 REPORTS = os.path.join(YARD, "results", "quality")
 MAX_TOKENS = 2048
 N = int(os.environ.get("GSM8K_N", "100"))
