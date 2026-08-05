@@ -38,6 +38,12 @@ Blocking gaps:
 2. **No Python environment spec.** No requirements.txt / pyproject anywhere; the venvs
    used for published numbers (`.venv-litert015` = litert-lm-api 0.15.0, the 0.14
    contrast venv) are ad-hoc and undocumented in-tree.
+   **→ FIXED 2026-08-05**: observed `pip freeze` snapshots committed at
+   `tools/python-envs/` for all three venvs behind published rows (`.venv-litert015`,
+   `~/venvs/lt0150run`, `~/venvs/lt092run` — the last turned out to be the 0.14
+   contrast AND the litert-torch-0.9.1 conversion env in one), each registered in
+   `environment.lock.json → python_instruments` with python version + spec path;
+   recreate commands in the README there.
 3. **User-specific absolute paths in drivers**: HF-cache snapshot paths hardcoded
    (`gsm8k_litert_pip_thinking.py`, `bench_litert_015_mac_speed.sh`), device UDID and
    `DEVELOPMENT_TEAM` baked into scripts. Nothing a second machine can run unedited.

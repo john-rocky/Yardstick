@@ -41,12 +41,26 @@
   },
   "python_instruments": {
     "litert-pip-0.15": {
-      "purpose": "released-artifact cross-validation + 0.14-vs-0.15 version-delta CLI (2026-08-04 rows)",
+      "purpose": "0.15 side of the same-instrument version delta + resident A/B (litert-lm CLI; bench_litert_015_mac_speed.sh, 2026-08-04 rows)",
+      "venv": "~/venvs/lt0150run",
+      "python": "3.14.6",
+      "spec": "tools/python-envs/lt0150run.requirements.txt",
       "packages": { "litert-lm": "0.15.0", "litert-lm-api": "0.15.0", "litert-lm-builder": "0.15.0" }
     },
     "litert-pip-0.14-contrast": {
       "purpose": "0.14 side of the same-instrument delta and resident A/B",
-      "packages": { "litert-lm": "0.14.0" }
+      "venv": "~/venvs/lt092run",
+      "python": "3.10.13",
+      "spec": "tools/python-envs/lt092run.requirements.txt",
+      "packages": { "litert-lm": "0.14.0", "litert-lm-api": "0.14.0", "litert-lm-builder": "0.14.0" },
+      "note": "despite the name, doubles as the conversion env: litert-torch 0.9.1 (release — the version int4 conversion requires) + ai-edge-litert 2.1.6; the 83-package freeze in the spec is the observed truth"
+    },
+    "litert-api-015-crossvalidation": {
+      "purpose": "gsm8k_litert_pip_thinking.py — released 0.15.0 dylib reproduces the ctx4096 yardstick pair (89/92) per-question",
+      "venv": ".venv-litert015 (repo root, git-ignored)",
+      "python": "3.14.6",
+      "spec": "tools/python-envs/venv-litert015.requirements.txt",
+      "packages": { "litert-lm-api": "0.15.0" }
     }
   },
   "models": {
