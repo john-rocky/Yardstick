@@ -1,0 +1,13 @@
+{
+  "pins" : [
+    {
+      "identity" : "swift-litert-lm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/john-rocky/swift-litert-lm.git",
+      "state" : {
+        "revision" : "e4e48d9d8df9abfa0d1180b8c0305a3b0d16d25d"
+      }
+    }
+  ],
+  "version" : 2
+}

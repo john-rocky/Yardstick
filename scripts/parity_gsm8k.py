@@ -12,7 +12,9 @@ Arms and their external prerequisites (env-overridable):
   --which coreai   : COREAI_RUNNER=<path to llm-runner> (Apple coreai-models build;
                      gemma-4 PLE bundles need the patched engine — see
                      methodology/core-ai-arm-provenance.md — and --raw-dir)
-  --which int4     : litert-mac-verify at ~/code/litert-mac-verify (VERIFY constant)
+  --which int4     : tools/litert-mac-verify (in-repo; build once with
+                     `swift build --package-path tools/litert-mac-verify -c release`,
+                     or point LITERT_MAC_VERIFY at another build)
   --which cactus   : a cactus checkout (see methodology/cactus-arm-session.md); FFI dylib
 Reports land in results/quality/ (GSM8K_REPORTS to override).
 
@@ -47,7 +49,9 @@ if not _scipy_healthy():
     _opt.linear_sum_assignment = lambda *a, **k: None
     sys.modules["scipy.optimize"] = _opt
 
-VERIFY = os.path.expanduser("~/code/litert-mac-verify/.build/release/litert-mac-verify")
+VERIFY = os.environ.get("LITERT_MAC_VERIFY", str(
+    Path(__file__).resolve().parent.parent / "tools" / "litert-mac-verify"
+    / ".build" / "release" / "litert-mac-verify"))
 DATA = os.environ.get("GSM8K_DATA", str(Path(__file__).resolve().parent.parent / "evaldata" / "gsm8k_test.jsonl"))
 COT = ("\n\nSolve this step by step. After your reasoning, write the final answer on its own "
        "line in the exact form:\n#### <number>")
@@ -278,13 +282,19 @@ def run_cactus(qs, bundle, max_tokens, cactus_repo=None, backend="metal", thinki
     return c
 
 
-def run_litertlm(qs, litertlm, max_tokens, greedy=False):
+def run_litertlm(qs, litertlm, max_tokens, greedy=False, thinking=False):
+    """LiteRT arm via tools/litert-mac-verify (the published rows' exact Swift surface).
+    NOTE: for this arm --max-tokens is the TOTAL context (EngineConfig maxNumTokens), not
+    a generation budget — undersizing corrupts output. The 2026-08-04 thinking pair used
+    4096 (2048 starves the ~800-token thinking trace; see the raw README)."""
     c = 0
     for i, (q, gold) in enumerate(qs):
         try:
             cmd = [VERIFY, litertlm, q + COT, "--max-tokens", str(max_tokens)]
             if greedy:
                 cmd.append("--greedy")
+            if thinking:
+                cmd.append("--thinking")
             p = subprocess.run(cmd, capture_output=True, text=True, timeout=400)
             m = re.search(r"^OUTPUT: \[(.*)\]$", p.stdout + "\n" + p.stderr, re.M)
             txt = m.group(1).replace("⏎", "\n") if m else ""
@@ -327,7 +337,8 @@ def main():
                        thinking=args.thinking)
         tag = args.tag or "cactus"
     else:
-        c = run_litertlm(qs, args.litertlm, args.max_tokens, args.greedy)
+        c = run_litertlm(qs, args.litertlm, args.max_tokens, args.greedy,
+                         thinking=args.thinking)
         tag = args.tag or os.path.basename(os.path.dirname(args.litertlm))
     acc = c / len(qs)
     print(f"== {tag}: {c}/{len(qs)} = {100*acc:.1f}%   ({time.time()-t:.0f}s)")

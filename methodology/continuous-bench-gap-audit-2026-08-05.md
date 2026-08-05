@@ -26,6 +26,15 @@ Blocking gaps:
    published 86.0 row and the 8/4 thinking pair (89.0/92.0). The Mac instrument
    (litert-mac-verify + the swift-litert-lm fork it builds against) must be vendored,
    submoduled, or published.
+   **→ LiteRT yardstick part FIXED 2026-08-05**: litert-mac-verify vendored at
+   `tools/litert-mac-verify/`, its engine dependency pinned by exact revision to the
+   now-published fork state (`john-rocky/swift-litert-lm@e4e48d9d`, tag
+   `yardstick-2026-08-04` — the previously-uncommitted v0.15.0 + ThinkingConfig
+   instrument), `VERIFY` made repo-relative (`LITERT_MAC_VERIFY` to override), and
+   `--thinking` threaded through `run_litertlm` (the capture-time modification the
+   raw README describes had never landed in the script). Clean-clone verified.
+   The coreai / bf16-tokenizer / cactus arms remain external
+   (`environment.lock.json` → `external_instruments_not_yet_in_repo`).
 2. **No Python environment spec.** No requirements.txt / pyproject anywhere; the venvs
    used for published numbers (`.venv-litert015` = litert-lm-api 0.15.0, the 0.14
    contrast venv) are ad-hoc and undocumented in-tree.

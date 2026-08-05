@@ -56,8 +56,26 @@
       "note": "the June snapshot used unchanged across v0.13.1 and v0.15.0 rows; its template carries the enable_thinking branch"
     }
   },
+  "quality_instruments": {
+    "litert-mac-verify": {
+      "path": "tools/litert-mac-verify",
+      "purpose": "Mac GSM8K quality instrument — the yardstick surface behind the LiteRT rows (v0.13.1 86.0; v0.15.0 88.0 at ctx2048, 89.0/92.0 off/thinking at ctx4096)",
+      "build": "swift build --package-path tools/litert-mac-verify -c release",
+      "override_env": "LITERT_MAC_VERIFY",
+      "depends_on": {
+        "swift-litert-lm": {
+          "source": "https://github.com/john-rocky/swift-litert-lm",
+          "revision": "e4e48d9d8df9abfa0d1180b8c0305a3b0d16d25d",
+          "tag": "yardstick-2026-08-04",
+          "branch": "bench/v0.15.0-thinking",
+          "note": "official v0.15.0 release binaryTargets (zips + checksums as under arms.litert-lm captures) + official Swift wrapper re-vendored at the tag (ThinkingConfig) + LiteRTChat thinking passthrough. The v0.13.1-era 86.0 row's instrument state = fork main@c8eae63 (pre-ThinkingConfig; see tools/litert-mac-verify/README.md)."
+        }
+      }
+    }
+  },
   "external_instruments_not_yet_in_repo": {
-    "litert-mac-verify": "Mac GSM8K quality instrument (the yardstick behind 86.0/88.0/89.0/92.0 rows) — lives at ~/code/litert-mac-verify, builds against the swift-litert-lm fork; vendoring is fix #2 of the gap audit",
-    "swift-litert-lm-fork": "local fork pinned to the release binaryTargets (v0.15.0 as of 2026-08-04) with the maxNumImages patch"
+    "coreai-llm-runner": "parity_gsm8k.py --which coreai shells to COREAI_RUNNER (default ~/code/coreai/coreai-models/.build/release/llm-runner); gemma-4 PLE bundles additionally need the unpublished COREAI_STATIC_INPUTS engine patch — best-effort until Apple publishes it",
+    "coreai-thinking-tokenizer": "--which coreai --thinking renders prompts with the HF tokenizer at ~/code/litertlm-convert/src_models/gemma-4-E2B-it-qat-mobile-transformers",
+    "cactus-checkout": "--which cactus needs a cactus checkout with a built engine dylib (methodology/cactus-arm-session.md)"
   }
 }
