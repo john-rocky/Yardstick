@@ -103,7 +103,10 @@ COREAI_TAG="${COREAI_TAG:-0.2.0}"
 # "cannot find type 'StaticInputBuffer' in scope".
 # Prefer a local patched checkout (what project.yml's comment assumes); fall back to the public
 # tag so the other arms still build, and say so loudly rather than failing 200 lines later.
-COREAI_LOCAL="${COREAI_LOCAL:-$HOME/code/coreai/coreai-models}"
+# Default = the dedicated 0.2.0+patch checkout, NOT ~/code/coreai/coreai-models — that one is a
+# shared working checkout other sessions move under us (observed 2026-08-05 at 0.2.1-zoo while
+# the lockfile pins 0.2.0; see CLAUDE.md "Arms").
+COREAI_LOCAL="${COREAI_LOCAL:-$HOME/code/coreai-models-020-bench}"
 if [ ! -e "${COREAI_DIR}" ]; then
     if [ -d "${COREAI_LOCAL}" ] && grep -qrs "public struct StaticInputBuffer" "${COREAI_LOCAL}/swift/Sources"; then
         echo "Linking coreai-models -> ${COREAI_LOCAL} (patched: has StaticInputBuffer)"
