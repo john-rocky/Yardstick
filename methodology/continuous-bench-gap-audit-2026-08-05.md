@@ -93,6 +93,13 @@ Blocking gaps:
    `results/summary/all-runs.csv` (the empty dir finally earns its name).
 4. **Entrypoint**: `./reproduce <platform> <table>` mapping each published table to the
    exact pinned command (starts as a thin wrapper over the existing protocol scripts).
+   **→ LANDED 2026-08-05** (`./reproduce` at repo root): 6 tables registered
+   (mac gsm8k-e2b-yardstick / mac+iphone e2b-protocol / mac litert-015-speed /
+   iphone litert-0150 / iphone litert-resident-ab), each with prerequisite checks and
+   the pinned command list; `--run` executes (yardstick) or forwards to the protocol
+   script (staged captures). Known gaps are surfaced in the entries themselves —
+   e.g. litert-015-speed still hardcodes `~/venvs/lt{092,0150}run` and an OUT dir
+   under the historical `~/code/apple-silicon-llm-bench` clone (gaps ①-2/①-3).
 5. **Engine version at runtime**: stamp the vendored tag into the app at build time
    (Info.plist → result JSON) so every future row carries its engine identity.
 
