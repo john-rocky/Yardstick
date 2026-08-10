@@ -8,7 +8,12 @@ On-device / on-Mac measurements. Each row is a `(runtime, model, device, task, b
 > (Mac M4 Max + iPhone 17 Pro, **40 decode cells**): full tables, methodology & findings in
 > [`docs/litert-community-vs-mlx-coreai.md`](docs/litert-community-vs-mlx-coreai.md); raw rows in
 > [`results/raw/2026-06-24-litert-community-crossframework/`](results/raw/2026-06-24-litert-community-crossframework/decode-cells.jsonl).
-> Headline: **Core AI ≈ MLX ≫ LiteRT-LM on Apple GPU**, and it holds on-device (MLX ≈ 1.6–2.7× LiteRT iso-int4).
+> Headline: **Core AI ≈ MLX ≫ LiteRT-LM on Apple GPU** for **generic (non-Gemma) architectures**, on-device
+> too (MLX ≈ 1.6–2.7× LiteRT iso-int4). **On Gemma the ranking inverts** — Google's first-class kernels are
+> the deciding factor, not the runtime in the abstract. Same-session iPhone pairs, warm, each within one
+> capture window (2026-08-11 audit): Gemma-4-E2B **LiteRT 60.0 > MLX 48.9**; Qwen3-1.7B **MLX 60.4 >
+> LiteRT 48.2**. Never quote either ranking as "runtime X is faster" without naming the model — and never
+> pair the June cold cells with July/August ones (cross-session drift on this device is 20–30%).
 > Three LiteRT-LM findings filed (externalize_embedder iOS load bug · ship int4 not int8 for community
 > DeepSeek/Phi · "Gemma gets first-class kernels, generic path doesn't"), plus a Core AI text-only-Gemma3
 > wrapper fix.

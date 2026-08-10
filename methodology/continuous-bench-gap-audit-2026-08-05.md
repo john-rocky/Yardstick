@@ -128,6 +128,12 @@ Blocking gaps:
    sat at `0.2.1-zoo+static-inputs-patch` while the lockfile said 0.2.0. Mac CLI has
    no Info.plist: set `BENCH_ENGINE_PINS_FILE=ios/BenchmarkApp/Vendored/engine-pins.json`
    (written by the same script). Unreadable pin ⇒ omitted ⇒ row records nil.
+   **Verified**: script standalone + build-phase plist mode (on a copied Info.plist),
+   `swiftc -typecheck` of the Models layer, `plutil -lint` of the regenerated pbxproj.
+   **NOT yet verified (2026-08-11)**: a real `xcodebuild` device build — i.e. that the
+   phase fires in Xcode's own environment and the key reaches the installed app, and
+   that a device run therefore emits `engineVersion` in its JSON. Confirm on the next
+   device session before quoting engine identity from a captured row.
 
 Items 1+3 are pure additions (no re-measurement); 2 is a repo-surgery task; 4–5 are
 small. ③ (regression automation) becomes a loop over `reproduce` + schema diffing once
