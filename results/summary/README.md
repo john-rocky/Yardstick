@@ -12,3 +12,8 @@ Engine version is absent from pre-v1 rows (see the gap audit). Builds from
 2026-08-05 onward stamp `engineVersion`/`engineArtifact` into every device row
 (`stamp_engine_pins.sh` -> Info.plist -> BenchmarkResult), surfaced here as
 `engine_version`/`engine_artifact`; new writers must emit `schema/result.v1.json`.
+
+Release-regression diffing over this layer: `scripts/regression_diff.py`
+(quality joins on tag; device cells join on device/runtime/model/task/cold-warm
+with rule-3/rule-4/cross-session guardrails). The capture+diff loop is
+`./reproduce <platform> <table> --regress` (continuous-bench condition 3).

@@ -25,9 +25,17 @@ def rel(p):
     return os.path.relpath(p, ROOT)
 
 
+QUALITY_EXTRA = ["schema_version", "timestamp", "runtime", "thinking",
+                 "engine_version", "engine_artifact"]
+
+
 def build_quality():
     rows = []
-    for f in sorted(glob.glob(os.path.join(ROOT, "results", "quality", "*.json"))):
+    # regression/*/ holds re-captures made by `./reproduce ... --regress` (condition 3);
+    # they accumulate alongside the published reports, distinguished by `source`.
+    files = (glob.glob(os.path.join(ROOT, "results", "quality", "*.json"))
+             + glob.glob(os.path.join(ROOT, "results", "quality", "regression", "*", "*.json")))
+    for f in sorted(files):
         d = json.load(open(f))
         if "mode" in d and "results" in d:  # fakequant harness variant
             rows.append({
@@ -37,6 +45,7 @@ def build_quality():
                 "max_tokens": None, "runtime_build": None, "backend": None,
                 "bundle": None, "has_correction_note": "rescored" in d,
                 "gen_tokens_median": None, "decode_tps_median": None,
+                **{k: None for k in QUALITY_EXTRA},
             })
             continue
         rows.append({
@@ -48,6 +57,12 @@ def build_quality():
             "has_correction_note": bool(d.get("correction") or d.get("note")),
             "gen_tokens_median": d.get("gen_tokens_median"),
             "decode_tps_median": d.get("decode_tps_median"),
+            "schema_version": d.get("schemaVersion"),
+            "timestamp": d.get("timestamp"),
+            "runtime": d.get("runtime"),
+            "thinking": d.get("conditions", {}).get("thinking"),
+            "engine_version": d.get("engineVersion"),
+            "engine_artifact": d.get("engineArtifact"),
         })
     path = os.path.join(OUT, "quality.csv")
     with open(path, "w", newline="") as fh:
@@ -118,7 +133,11 @@ def main():
             "Engine version is absent from pre-v1 rows (see the gap audit). Builds from\n"
             "2026-08-05 onward stamp `engineVersion`/`engineArtifact` into every device row\n"
             "(`stamp_engine_pins.sh` -> Info.plist -> BenchmarkResult), surfaced here as\n"
-            "`engine_version`/`engine_artifact`; new writers must emit `schema/result.v1.json`.\n"
+            "`engine_version`/`engine_artifact`; new writers must emit `schema/result.v1.json`.\n\n"
+            "Release-regression diffing over this layer: `scripts/regression_diff.py`\n"
+            "(quality joins on tag; device cells join on device/runtime/model/task/cold-warm\n"
+            "with rule-3/rule-4/cross-session guardrails). The capture+diff loop is\n"
+            "`./reproduce <platform> <table> --regress` (continuous-bench condition 3).\n"
         )
     print(f"wrote {qp} ({qn} rows)")
     print(f"wrote {dp} ({dn} rows)")

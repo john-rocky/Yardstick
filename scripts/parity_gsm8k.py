@@ -304,6 +304,47 @@ def run_litertlm(qs, litertlm, max_tokens, greedy=False, thinking=False):
         print(f"  q {i+1}/{len(qs)} {'OK' if ok else '..'} pred={norm(extract(txt))} gold={norm(gold)}", flush=True)
     return c
 
+def observed_litert_instrument_pin():
+    """Engine identity behind the litert arm, read from the instrument ACTUALLY invoked:
+    the swift-litert-lm revision in the Package.resolved of the package VERIFY was built
+    from (walk up from the binary), plus the engine binaryTarget zip named in the resolved
+    checkout's Package.swift. An external LITERT_MAC_VERIFY with no package alongside
+    yields (None, None) — the report records nothing, never a guess."""
+    p = Path(VERIFY).resolve()
+    for parent in p.parents:
+        res = parent / "Package.resolved"
+        if not res.exists():
+            continue
+        try:
+            pins = json.load(open(res)).get("pins", [])
+        except Exception:
+            return None, None
+        for pin in pins:
+            if pin.get("identity") == "swift-litert-lm":
+                rev = pin.get("state", {}).get("revision", "")
+                if not rev:
+                    return None, None
+                version = f"swift-litert-lm@{rev[:8]}"
+                artifact = None
+                pkg = parent / ".build" / "checkouts" / "swift-litert-lm" / "Package.swift"
+                if pkg.exists():
+                    text = pkg.read_text()
+                    # the fork interpolates `let liteRTLMVersion = "vX.Y.Z"` into the
+                    # binaryTarget URLs — resolve it, and take the checksum that follows
+                    # the mac zip's URL line
+                    zipver = re.search(r'let\s+liteRTLMVersion\s*=\s*"([^"]+)"', text)
+                    csum = re.search(
+                        r'CLiteRTLM_mac\.xcframework\.zip[^)]*?checksum:\s*"([0-9a-f]+)"',
+                        text, re.S)
+                    if zipver:
+                        artifact = f"CLiteRTLM_mac.xcframework.zip@{zipver.group(1)}"
+                        if csum:
+                            artifact += f" sha256:{csum.group(1)}"
+                return version, artifact
+        return None, None
+    return None, None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n", type=int, default=150)
@@ -342,10 +383,43 @@ def main():
         tag = args.tag or os.path.basename(os.path.dirname(args.litertlm))
     acc = c / len(qs)
     print(f"== {tag}: {c}/{len(qs)} = {100*acc:.1f}%   ({time.time()-t:.0f}s)")
-    os.makedirs(os.environ.get("GSM8K_REPORTS", "results/quality"), exist_ok=True)
-    json.dump({"tag": tag, "n": len(qs), "correct": c, "acc": acc, "max_tokens": args.max_tokens},
-              open(os.path.join(os.environ.get("GSM8K_REPORTS", "results/quality"), f"gsm8k_{tag}.json"), "w"), indent=2)
+    # schema/result.v1.json natively (continuous-bench condition 2); the pre-v1 keys
+    # (tag/n/correct/acc/max_tokens) stay so existing readers keep working. `max_tokens`
+    # is TOTAL context for the litert arm and a generation budget everywhere else
+    # (fairness rule 3) — conditions records it under the correct name per arm.
+    model_arg = {"bf16": args.hf, "mlx": args.mlx_path, "coreai": args.bundle,
+                 "cactus": args.bundle, "int4": args.litertlm}[args.which]
+    report = {
+        "schemaVersion": 1,
+        "tag": tag, "n": len(qs), "correct": c, "acc": acc, "max_tokens": args.max_tokens,
+        "runtime": {"int4": "litert-lm", "mlx": "mlx-swift", "coreai": "core-ai",
+                    "cactus": "cactus", "bf16": "transformers-bf16"}[args.which],
+        "task": "gsm8k",
+        "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "model": {
+            "id": os.environ.get("GSM8K_MODEL_ID") or str(model_arg),
+            "quantization": os.environ.get("GSM8K_QUANT",
+                                           "unrecorded (set GSM8K_QUANT)"),
+        },
+        "conditions": {
+            ("contextBudget" if args.which == "int4" else "maxOutputTokens"): args.max_tokens,
+            "thinking": bool(args.thinking),
+        },
+        "metrics": {"gsm8kAccuracy": acc, "gsm8kN": len(qs)},
+    }
+    if model_arg and os.path.exists(str(model_arg)):
+        report["model"]["file"] = os.path.basename(str(model_arg).rstrip("/"))
+    if args.which == "int4":
+        if args.greedy:
+            report["conditions"]["sampler"] = "greedy"
+        ver, art = observed_litert_instrument_pin()
+        if ver:
+            report["engineVersion"] = ver
+        if art:
+            report["engineArtifact"] = art
     outdir = os.environ.get("GSM8K_REPORTS", "results/quality")
+    os.makedirs(outdir, exist_ok=True)
+    json.dump(report, open(os.path.join(outdir, f"gsm8k_{tag}.json"), "w"), indent=2)
     print(f"   wrote {outdir}/gsm8k_{tag}.json")
 
 if __name__ == "__main__":

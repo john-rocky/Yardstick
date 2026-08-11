@@ -11,12 +11,20 @@ the pinned ones and checks prerequisites.
   ./reproduce <platform> <table> --run [args...]
                                    execute (exec-style entries run their command list;
                                    passthrough entries forward args to the protocol script)
+  ./reproduce <platform> <table> --regress
+                                   condition-3 loop (exec-style entries only): re-capture
+                                   into results/quality/regression/<date>-<table>/ —
+                                   published reports are never clobbered — then diff
+                                   against the published rows via scripts/regression_diff.py
+                                   (exit 1 on a REGRESSION verdict). Typical use: bump the
+                                   instrument pin, then run this.
 
 Pins live in environment.lock.json; drivers in scripts/; raw provenance in results/raw/.
 """
 import os
 import subprocess
 import sys
+import time
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -164,21 +172,38 @@ def main():
     plat, name = args[0], args[1]
     t = TABLES[(plat, name)]
     run = len(args) > 2 and args[2] == "--run"
+    regress = len(args) > 2 and args[2] == "--regress"
     ok = show(plat, name, t)
-    if not run:
+    if not (run or regress):
         return 0
     if not ok:
-        print("\nrefusing --run: prerequisites missing (see above)", file=sys.stderr)
+        print(f"\nrefusing {args[2]}: prerequisites missing (see above)", file=sys.stderr)
         return 1
     os.chdir(ROOT)
+    if regress and t["mode"] != "exec":
+        print("\n--regress only drives exec-style tables; device tables are staged "
+              "captures — run the protocol script, then diff the campaigns with\n"
+              "  python3 scripts/regression_diff.py device --baseline campaign:<old> "
+              "--candidate campaign:<new>", file=sys.stderr)
+        return 2
     if t["mode"] == "exec":
         env = dict(os.environ, MODEL=os.environ.get("MODEL", DEFAULT_E2B))
+        if regress:
+            outdir = os.path.join("results", "quality", "regression",
+                                  f"{time.strftime('%Y-%m-%d', time.gmtime())}-{name}")
+            env["GSM8K_REPORTS"] = outdir
+            print(f"\nregression capture -> {outdir} (published reports stay untouched)")
         for c in t["commands"]:
             print(f"\n>>> {c}", flush=True)
             r = subprocess.run(["bash", "-c", c], env=env)
             if r.returncode != 0:
                 print(f"command failed ({r.returncode}); stopping", file=sys.stderr)
                 return r.returncode
+        if regress:
+            cmd = [sys.executable, "scripts/regression_diff.py", "quality",
+                   "--candidate-dir", outdir]
+            print(f"\n>>> {' '.join(cmd)}", flush=True)
+            return subprocess.run(cmd).returncode
         return 0
     extra = args[3:]
     if not extra:
