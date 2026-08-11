@@ -182,7 +182,7 @@ cmd_install() {
   xcodebuild -project "$REPO/ios/BenchmarkApp/BenchmarkApp.xcodeproj" -scheme BenchmarkApp \
     -configuration Release -destination "platform=iOS,id=$ECID" -derivedDataPath "$DD" \
     -skipPackagePluginValidation -skipMacroValidation \
-    PRODUCT_BUNDLE_IDENTIFIER="$APP" DEVELOPMENT_TEAM=MFN25KNUGJ CODE_SIGN_STYLE=Automatic \
+    PRODUCT_BUNDLE_IDENTIFIER="$APP" DEVELOPMENT_TEAM="${DEVELOPMENT_TEAM:-MFN25KNUGJ}" CODE_SIGN_STYLE=Automatic \
     build 2>&1 | grep -E "error:|BUILD (SUCCEEDED|FAILED)"
   # Refuse to install a product whose harness stamp is not the source's. This function has
   # no set -e: on 2026-07-30 an iOS-unavailable API (homeDirectoryForCurrentUser) failed the

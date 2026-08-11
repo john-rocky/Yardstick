@@ -14,13 +14,21 @@
 # Auto-Lock Never, no other use during the run (~75 min).
 #
 # Usage: scripts/bench_litert_0150_iphone.sh [UDID]
+#   Off this machine: BENCH_UDID (or arg 1) selects the device — see
+#   `xcrun devicectl list devices`. OUT overrides the output dir; the default is
+#   date-stamped so a re-run can never clobber the published 2026-08-04 campaign
+#   (results/raw/2026-08-04-litert-0150-iphone).
 set -euo pipefail
 
-UDID="${1:-A6F3E849-1947-5202-9AD1-9C881CA58EEF}"   # DaisukeのiPhone (iPhone 17 Pro)
+UDID="${1:-${BENCH_UDID:-A6F3E849-1947-5202-9AD1-9C881CA58EEF}}"
 BUNDLE_ID="com.daisukemajima.llmbench"
 MODEL="litert-community/gemma-4-E2B-it-litert-lm"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-OUT="$REPO/results/raw/2026-08-04-litert-0150-iphone"
+OUT="${OUT:-$REPO/results/raw/$(date +%Y-%m-%d)-litert-0150-iphone}"
+xcrun devicectl list devices 2>/dev/null | grep -q "$UDID" || {
+  echo "device $UDID not visible — pass a UDID or set BENCH_UDID (xcrun devicectl list devices)" >&2
+  exit 1
+}
 mkdir -p "$OUT"
 
 log(){ printf '\n=== %s [%s]\n' "$*" "$(date +%H:%M:%S)"; }
