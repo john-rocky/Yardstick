@@ -103,6 +103,15 @@ def median(values: list[float]) -> float | None:
     return statistics.median(xs) if xs else None
 
 
+def gsm8k(tag: str) -> float:
+    """Accuracy (%) straight from the audited harness report
+    results/quality/gsm8k_<tag>.json — charts read the report, never a transcribed
+    constant (gap audit 2-4): a missing report fails loudly instead of a chart
+    silently drifting from the data behind it."""
+    d = json.loads((REPO / "results" / "quality" / f"gsm8k_{tag}.json").read_text())
+    return d["acc"] * 100
+
+
 # ------------------------------------------------------------------ #
 #  Chart 1 — decode tok/s, 3 runtimes × 5 models, M4 Max, short-chat
 # ------------------------------------------------------------------ #
@@ -319,27 +328,34 @@ def chart_iphone():
     (both MLX builds share the MLX violet; the PTQ build carries a hatch as the secondary
     encoding). Palette adjacency validated (dataviz six checks): the sky-blue contrast
     WARN is relieved by direct value labels on every bar + the README table view.
-    GSM8K constants come from the cross-runtime harness reports
-    (hf-to-litertlm/reports/parity/, n=100, one identical protocol per row).
+    GSM8K comes from the in-repo harness reports (results/quality/, n=100, one identical
+    protocol per row) and J/tok from the battery-1pct energy runs — looked up, not
+    transcribed (gap audit 2-4).
     """
     runs = load_runs("iphone17pro", task="short-chat")
 
     CORE_AI = "#65a30d"   # lime — distinct from every neighbour (validated)
     CACTUS = "#0f766e"    # deep teal — adjacency re-validated 2026-07-20 (worst pair vs lime ΔE 19.9)
     ROWS = [
-        # (model.id, label, color, hatch, gsm8k, mem_note, j_per_tok, jtok_note)
+        # (model.id, label, color, hatch, gsm8k report tag, mem_note, jtok_note)
         ("litert-community/gemma-4-E2B-it-litert-lm",
-         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None, 86.0, "", 0.122, ""),
+         "LiteRT-LM\nwNa8o8 QAT (official)", "#e11d48", None,
+         "litertlm-gemma4-e2b-wna8o8-measured", "", ""),
         ("Cactus-Compute/gemma-4-E2B-it-cq4-uncalibrated",
-         "Cactus ¶\nCQ4 uncalibrated (pre-07-09)", CACTUS, None, 87.0, "", 0.322, ""),
+         "Cactus ¶\nCQ4 uncalibrated (pre-07-09)", CACTUS, None,
+         "cactus-gemma4-e2b-cq4-uncalibrated", "", ""),
         ("mlx-community/gemma-4-e2b-it-4bit",
-         "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//", 84.0, "", 0.151, ""),
+         "MLX-Swift\nPTQ 4-bit", PALETTE["mlx-swift"], "//",
+         "mlx-gemma4-e2b-ptq4", "", ""),
         ("unsloth/gemma-4-E2B-it-GGUF/Q4_K_M",
-         "llama.cpp\nQ4_K_M (PTQ)", PALETTE["llama.cpp"], None, 76.0, "†", 0.483, ""),
+         "llama.cpp\nQ4_K_M (PTQ)", PALETTE["llama.cpp"], None,
+         "llamacpp-gemma4-e2b-q4km", "†", ""),
         ("mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit",
-         "MLX-Swift\nQAT OptiQ int4", PALETTE["mlx-swift"], None, 91.0, "", 0.207, ""),
+         "MLX-Swift\nQAT OptiQ int4", PALETTE["mlx-swift"], None,
+         "mlx-gemma4-e2b-qat-optiq4", "", ""),
         ("core-ai/gemma4-e2b-gpu",
-         "Core AI ‡\nown int4 (QAT q4_0)", CORE_AI, None, 88.0, "†", 0.352, "◊"),
+         "Core AI ‡\nown int4 (QAT q4_0)", CORE_AI, None,
+         "coreai-gemma4-e2b-q40-engine020", "†", "◊"),
     ]
 
     dec: dict = {}
@@ -348,16 +364,21 @@ def chart_iphone():
         mid = r["model"]["id"]
         dec.setdefault(mid, []).append(r["metrics"]["decodeTokensPerSecond"])
         mem.setdefault(mid, []).append(r["metrics"]["memoryPeakDuringDecodeMB"])
+    erg: dict = {}
+    for r in load_runs("iphone17pro", task="energy"):
+        m = r.get("metrics") or {}
+        if m.get("energySource") == "battery-1pct" and m.get("energyJoulesPerToken"):
+            erg.setdefault(r["model"]["id"], []).append(m["energyJoulesPerToken"])
 
     labels = [row[1] for row in ROWS]
     colors = [row[2] for row in ROWS]
     hatches = [row[3] for row in ROWS]
     dec_v = [median(dec.get(row[0], [])) or 0 for row in ROWS]
     mem_v = [median(mem.get(row[0], [])) or 0 for row in ROWS]
-    gsm_v = [row[4] for row in ROWS]
+    gsm_v = [gsm8k(row[4]) for row in ROWS]
     mem_note = [row[5] for row in ROWS]
-    jt_v = [row[6] for row in ROWS]
-    jt_note = [row[7] for row in ROWS]
+    jt_v = [median(erg.get(row[0], [])) or 0 for row in ROWS]
+    jt_note = [row[6] for row in ROWS]
 
     ys = list(range(len(ROWS)))[::-1]  # top row first
     fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(15.5, 4.6),
@@ -531,11 +552,19 @@ def chart_thinking():
     row was 86.0, disclosed in footnote ①). Time-to-answer annotated under the ON bars."""
     CORE_AI = "#65a30d"
     CACTUS = "#0f766e"
-    arms = [
-        ("Core AI\nown int4",  CORE_AI,             88.0, 92.0, "~75 s/answer ②"),
-        ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"], 91.0, 90.0, "~24 s/answer"),
-        ("Cactus\nCQ4 uncalibrated", CACTUS,         87.0, 87.0, "~12 s/answer (est.)"),
-        ("LiteRT-LM\nwNa8o8",  "#e11d48",            89.0, 92.0, "~43 s/answer measured ①"),
+    arms = [  # (label, color, OFF report tag, ON report tag, note)
+        ("Core AI\nown int4",  CORE_AI,
+         gsm8k("coreai-gemma4-e2b-q40-engine020"),
+         gsm8k("coreai-gemma4-e2b-q40-thinking"), "~75 s/answer ②"),
+        ("MLX\nQAT OptiQ",     PALETTE["mlx-swift"],
+         gsm8k("mlx-gemma4-e2b-qat-optiq4"),
+         gsm8k("mlx-gemma4-e2b-optiq4-thinking"), "~24 s/answer"),
+        ("Cactus\nCQ4 uncalibrated", CACTUS,
+         gsm8k("cactus-gemma4-e2b-cq4-uncalibrated"),
+         gsm8k("cactus-gemma4-e2b-cq4-uncal-thinking"), "~12 s/answer (est.)"),
+        ("LiteRT-LM\nwNa8o8",  "#e11d48",
+         gsm8k("litert-gemma4-e2b-v0150-ctx4096-off"),
+         gsm8k("litert-gemma4-e2b-v0150-ctx4096-thinking"), "~43 s/answer measured ①"),
     ]
     x = list(range(len(arms)))
     w = 0.36
