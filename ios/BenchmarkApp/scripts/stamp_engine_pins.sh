@@ -3,12 +3,14 @@
 # for — so every benchmark row can carry the engine build that produced it
 # (schema/result.v1.json engineVersion / engineArtifact; continuous-bench condition 3).
 #
-# Two outputs, recomputed on every invocation:
-#   1. Vendored/engine-pins.json          — for the Mac yardstick CLI
-#                                           (BENCH_ENGINE_PINS_FILE points here)
-#   2. built product's Info.plist         — key `BenchEnginePins`, when invoked as an
-#                                           Xcode build phase (TARGET_BUILD_DIR +
-#                                           INFOPLIST_PATH set; app target only)
+# ONE output, recomputed on every invocation: Vendored/engine-pins.json.
+# The app bundles it as a resource (declared output of a pre-build phase, consumed by
+# Copy Bundle Resources — see project.yml); the Mac yardstick CLI points
+# BENCH_ENGINE_PINS_FILE at it. This script deliberately does NOT touch the built
+# product: the first design stamped an Info.plist key post-build, and an undeclared
+# in-place mutation is invisible to the build graph — on incremental builds it ran
+# after ProcessInfoPlistFile (key silently dropped) or after codesign (signature
+# invalidated, install rejected with 0xe8008001). Both observed 2026-08-13.
 #
 # Why observed state: a Vendored/ clone survives a changed LITERTLM_TAG (bootstrap skips
 # existing dirs), and the binaryTarget zip inside LiteRT-LM's Package.swift can lag the
@@ -115,13 +117,3 @@ PINS_JSON="{${ENTRIES}}"
 # rather than producing rows with silently broken provenance.
 printf '%s\n' "${PINS_JSON}" | /usr/bin/python3 -m json.tool > "${V}/engine-pins.json"
 echo "engine pins -> ${V}/engine-pins.json"
-
-# Build-phase mode: stamp the processed Info.plist of the app target. Tool targets
-# (yardstick) have no Info.plist and only refresh the json above.
-if [ -n "${TARGET_BUILD_DIR:-}" ] && [ -n "${INFOPLIST_PATH:-}" ]; then
-    PLIST="${TARGET_BUILD_DIR}/${INFOPLIST_PATH}"
-    if [ -f "${PLIST}" ]; then
-        plutil -replace BenchEnginePins -json "${PINS_JSON}" "${PLIST}"
-        echo "stamped BenchEnginePins -> ${PLIST}"
-    fi
-fi

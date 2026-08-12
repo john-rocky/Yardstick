@@ -101,6 +101,7 @@
 		FA911A2CDFA67C2099693800 /* ModelCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E0764831A0D390331F81 /* ModelCatalog.swift */; };
 		FC109CE8470E795A439D5F24 /* BenchmarkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4731FE59D60EC52D5D775053 /* BenchmarkApp.swift */; };
 		FCB55FD5BA55D670179B2DD0 /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = F096C2521A8E6BB4A3275B51 /* Transformers */; };
+		FD472C7A475508332AAD7441 /* engine-pins.json in Resources */ = {isa = PBXBuildFile; fileRef = FF8062F74731AF194BC948D6 /* engine-pins.json */; };
 		FDB9A3ACB956F700E71E93E4 /* BenchmarkRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C069A3D837A8C235381A361 /* BenchmarkRunner.swift */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		FC7B6B97C8F1331B7F122CF4 /* ResultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
 		FCADC364D9871831E17D1318 /* LongContextTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongContextTask.swift; sourceTree = "<group>"; };
 		FF66B5ACD9BD34F3F9940141 /* BenchmarkApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BenchmarkApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF8062F74731AF194BC948D6 /* engine-pins.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "engine-pins.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +227,14 @@
 				3D1A95AD68FB592E643E5CD3 /* yardstick */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1C9370B9B57E9AD09E329CD6 /* Vendored */ = {
+			isa = PBXGroup;
+			children = (
+				FF8062F74731AF194BC948D6 /* engine-pins.json */,
+			);
+			path = Vendored;
 			sourceTree = "<group>";
 		};
 		361192F50EA1839D0510D905 /* Vision */ = {
@@ -314,6 +324,7 @@
 				EABA9F7F2D274F6F7C3ACD9F /* ios-llm-benchmark */,
 				ABFC6F14C1F48FC1603B0D4B /* Packages */,
 				56D8CF71830F92F55D511138 /* Sources */,
+				1C9370B9B57E9AD09E329CD6 /* Vendored */,
 				48DCBE35C783F3731505CB3A /* Frameworks */,
 				0CCB397A556F53A8910A2C24 /* Products */,
 			);
@@ -399,9 +410,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B3AC2AA499FC39BCA8D344C /* Build configuration list for PBXNativeTarget "yardstick" */;
 			buildPhases = (
+				3356AC2DB9C03CE68BC51ACF /* Stamp engine pins */,
 				0F7BC198E17A99BFCD70CD5D /* Sources */,
 				22B82BB1F5AA82CDB9BEFA8E /* Frameworks */,
-				3356AC2DB9C03CE68BC51ACF /* Stamp engine pins */,
 			);
 			buildRules = (
 			);
@@ -424,11 +435,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6ED2A461277853EE475B0FBB /* Build configuration list for PBXNativeTarget "BenchmarkApp" */;
 			buildPhases = (
+				B1C1A48CDC9FB2E5F3119D46 /* Stamp engine pins */,
 				A775D74AB52D913CF28B5944 /* Sources */,
 				3FD4CC6E4A78856193CB9416 /* Resources */,
 				668F86EAD167B762194D6424 /* Frameworks */,
 				10BCDBA5A045D65FA04D7AA8 /* Embed Frameworks */,
-				B1C1A48CDC9FB2E5F3119D46 /* Stamp engine pins */,
 			);
 			buildRules = (
 			);
@@ -503,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				112E2A29A4EEA42B9F7D6444 /* Assets.xcassets in Resources */,
+				FD472C7A475508332AAD7441 /* engine-pins.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +554,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(SRCROOT)/Vendored/engine-pins.json",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

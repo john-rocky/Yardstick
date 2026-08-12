@@ -73,6 +73,15 @@ targets:
     deploymentTarget: "27.0"
     sources:
       - path: Sources
+      # Observed engine pins, bundled as a resource so EnginePins can read them at run
+      # time. Written by scripts/stamp_engine_pins.sh (bootstrap step 8 + the pre-build
+      # phase below, whose declared output orders it before Copy Bundle Resources).
+      # A resource is signed like any other file — unlike the first design's post-build
+      # Info.plist mutation, which raced ProcessInfoPlistFile/codesign (2026-08-13).
+      # optional: the file does not exist on a clean clone until bootstrap/first build.
+      - path: Vendored/engine-pins.json
+        buildPhase: resources
+        optional: true
     info:
       path: Sources/Info.plist
       properties:
@@ -114,16 +123,24 @@ targets:
         # with: SWIFT_ACTIVE_COMPILATION_CONDITIONS="$(inherited) COREAI_STATIC_INPUTS"
         # See methodology/core-ai-arm-provenance.md.
         SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited)"
-    postBuildScripts:
-      # Stamp the OBSERVED engine pins (git state of Vendored/ clones, the CLiteRTLM
-      # binaryTarget zip+checksum, the llama sidecar tag) into the built product's
-      # Info.plist as `BenchEnginePins`, so every BenchmarkResult records
+    preBuildScripts:
+      # Regenerate the OBSERVED engine pins (git state of Vendored/ clones, the CLiteRTLM
+      # binaryTarget zip+checksum, the llama sidecar tag) so every BenchmarkResult records
       # engineVersion/engineArtifact (schema v1; continuous-bench condition 3).
       # Observed state, not env defaults: a stale Vendored/ clone under a changed
       # LITERTLM_TAG must not mislabel rows. Re-runs every build by design.
+      #
+      # The json is a DECLARED OUTPUT: that edge orders this script before the
+      # Copy Bundle Resources task that ships it. Do not go back to mutating the
+      # built product post-build — an undeclared in-place edit is invisible to the
+      # build graph, and on incremental builds it ran after ProcessInfoPlistFile
+      # (key dropped) or after codesign (0xe8008001 at install). Both observed
+      # 2026-08-13.
       - name: Stamp engine pins
         script: '"$SRCROOT/scripts/stamp_engine_pins.sh"'
         basedOnDependencyAnalysis: false
+        outputFiles:
+          - $(SRCROOT)/Vendored/engine-pins.json
     dependencies:
       - package: mlx-swift-lm
         product: MLXLLM
@@ -199,9 +216,11 @@ targets:
         # next to the tool binary in Products/Release — without it the litert dylib only
         # resolves when the binary happens to run from a directory on the llama rpath.
         LD_RUNPATH_SEARCH_PATHS: "@executable_path $(SRCROOT)/Vendored/llama.xcframework/macos-arm64_x86_64"
-    postBuildScripts:
-      # Tool targets have no Info.plist; this refreshes Vendored/engine-pins.json so the
-      # CLI can stamp rows via BENCH_ENGINE_PINS_FILE (see EnginePins.swift).
+    preBuildScripts:
+      # Tool targets bundle no resources; this refreshes Vendored/engine-pins.json so the
+      # CLI can stamp rows via BENCH_ENGINE_PINS_FILE (see EnginePins.swift). No declared
+      # output here: the app target already claims that node, and this phase has no
+      # in-build consumer to order against.
       - name: Stamp engine pins
         script: '"$SRCROOT/scripts/stamp_engine_pins.sh"'
         basedOnDependencyAnalysis: false

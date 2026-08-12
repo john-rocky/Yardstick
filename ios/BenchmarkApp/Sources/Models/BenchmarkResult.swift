@@ -2,6 +2,10 @@ import Foundation
 
 public struct BenchmarkResult: Codable, Sendable, Identifiable {
     public let id: UUID
+    /// schema/result.v1.json `schemaVersion`. Optional so pre-v1 JSON still decodes;
+    /// every row this build writes carries 1 (verified missing from device rows on
+    /// 2026-08-13 — fix 3 had landed engineVersion/engineArtifact without it).
+    public let schemaVersion: Int?
     public let timestamp: Date
     public let device: DeviceSnapshot
     public let runtime: String
@@ -32,6 +36,7 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
 
     public init(
         id: UUID = UUID(),
+        schemaVersion: Int? = 1,
         timestamp: Date = Date(),
         device: DeviceSnapshot,
         runtime: String,
@@ -45,6 +50,7 @@ public struct BenchmarkResult: Codable, Sendable, Identifiable {
         outputSample: String
     ) {
         self.id = id
+        self.schemaVersion = schemaVersion
         self.timestamp = timestamp
         self.device = device
         self.runtime = runtime

@@ -151,17 +151,23 @@ Blocking gaps:
    (written by the same script). Unreadable pin ⇒ omitted ⇒ row records nil.
    **Verified**: script standalone + build-phase plist mode (on a copied Info.plist),
    `swiftc -typecheck` of the Models layer, `plutil -lint` of the regenerated pbxproj.
-   **Build-side verified 2026-08-11**: a real `xcodebuild` Release device build
-   (the documented CLAUDE.md invocation) succeeds, the 'Stamp engine pins' phase fires
-   in Xcode's own environment before codesign, and the built app's Info.plist carries
-   `BenchEnginePins` with the expected observed content (litert-lm repo `v0.13.1` /
-   engine zip `v0.13.0`, core-ai `0.2.0+static-inputs-patch`, llama `b8999`,
-   mlx `60bd0d78`, cactus honestly `unrecorded`); `codesign --verify` passes on the
-   stamped app. **Still unverified**: that a captured device row emits
-   `engineVersion` in its JSON (the EnginePins→BenchmarkResult path is typechecked,
-   not yet executed on device — the bench iPhone was unavailable 2026-08-11).
-   Confirm on the next device session before quoting engine identity from a
-   captured row.
+   **→ VERIFIED ON DEVICE 2026-08-13, after a design revision the verification forced.**
+   The original post-build Info.plist mutation was racy: an undeclared in-place edit
+   is invisible to the build graph, so on incremental rebuilds it ran after
+   `ProcessInfoPlistFile` regenerated the plist (key silently dropped from the
+   installed app — a run emitted `engineVersion: nil`) and, when codesign did not
+   re-run at all, it invalidated the previous signature (install rejected,
+   `0xe8008001`). Both failure modes observed on real builds 2026-08-13; the
+   2026-08-11 full-build success had been lucky ordering. Revised mechanism: the
+   script is now a PRE-build phase whose declared output `Vendored/engine-pins.json`
+   orders it before Copy Bundle Resources; the app ships the json as a signed
+   resource and `EnginePins` reads it from the bundle (env override for the Mac CLI
+   unchanged). `BenchmarkResult` additionally gained the `schemaVersion: 1` field the
+   fix-3 wording had promised but never landed. End-to-end proof on iPhone 17 Pro:
+   `mlx-swift_mlx-community_Qwen3-0.6B-4bit_short-chat_2026-08-12T18-35-17Z.json`
+   carries `schemaVersion: 1` and `engineVersion: 60bd0d78…` (the observed mlx pin);
+   an incremental rebuild + reinstall cycle — the one that broke the plist design —
+   passes codesign and installs cleanly.
 
 Items 1+3 are pure additions (no re-measurement); 2 is a repo-surgery task; 4–5 are
 small. ③ (regression automation) becomes a loop over `reproduce` + schema diffing once

@@ -87,6 +87,7 @@ def build_device():
             "campaign": rel(os.path.dirname(os.path.dirname(f))),
             "timestamp": d.get("timestamp"),
             "runtime": d.get("runtime"),
+            "schema_version": d.get("schemaVersion"),
             "engine_version": d.get("engineVersion"),
             "engine_artifact": d.get("engineArtifact"),
             "model_id": model.get("id"),
@@ -131,9 +132,10 @@ def main():
             f"- `quality.csv` — {qn} GSM8K report rows (all historical schema variants normalized)\n"
             f"- `device-runs.csv` — {dn} per-run device records (speed / memory / energy cells)\n\n"
             "Engine version is absent from pre-v1 rows (see the gap audit). Builds from\n"
-            "2026-08-05 onward stamp `engineVersion`/`engineArtifact` into every device row\n"
-            "(`stamp_engine_pins.sh` -> Info.plist -> BenchmarkResult), surfaced here as\n"
-            "`engine_version`/`engine_artifact`; new writers must emit `schema/result.v1.json`.\n\n"
+            "2026-08-13 onward stamp `engineVersion`/`engineArtifact` into every device row\n"
+            "(`stamp_engine_pins.sh` -> bundled engine-pins.json -> BenchmarkResult),\n"
+            "surfaced here as `engine_version`/`engine_artifact`; new writers must emit\n"
+            "`schema/result.v1.json`.\n\n"
             "Release-regression diffing over this layer: `scripts/regression_diff.py`\n"
             "(quality joins on tag; device cells join on device/runtime/model/task/cold-warm\n"
             "with rule-3/rule-4/cross-session guardrails). The capture+diff loop is\n"

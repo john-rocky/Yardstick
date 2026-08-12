@@ -9,9 +9,10 @@ time with `python3 scripts/build_summary.py`.
 - `device-runs.csv` — 398 per-run device records (speed / memory / energy cells)
 
 Engine version is absent from pre-v1 rows (see the gap audit). Builds from
-2026-08-05 onward stamp `engineVersion`/`engineArtifact` into every device row
-(`stamp_engine_pins.sh` -> Info.plist -> BenchmarkResult), surfaced here as
-`engine_version`/`engine_artifact`; new writers must emit `schema/result.v1.json`.
+2026-08-13 onward stamp `engineVersion`/`engineArtifact` into every device row
+(`stamp_engine_pins.sh` -> bundled engine-pins.json -> BenchmarkResult),
+surfaced here as `engine_version`/`engine_artifact`; new writers must emit
+`schema/result.v1.json`.
 
 Release-regression diffing over this layer: `scripts/regression_diff.py`
 (quality joins on tag; device cells join on device/runtime/model/task/cold-warm
