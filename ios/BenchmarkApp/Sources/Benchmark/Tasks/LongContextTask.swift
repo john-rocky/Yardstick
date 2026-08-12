@@ -23,9 +23,19 @@ public struct LongContextTask: BenchmarkTask {
     ///   - targetTokens: approximate prompt length to build toward.
     ///   - maxTokens: decode budget after prefill (held equal across the sweep so
     ///     decode-rate-at-depth is comparable).
-    public init(id: String = "long-context", targetTokens: Int = 2048, maxTokens: Int = 128) {
+    /// When true the prompt asks for a long enumerated answer instead of one sentence.
+    ///
+    /// The one-sentence tail was fine for prefill but silently broke decode-at-depth: every
+    /// arm hit EOS after 15-33 tokens (measured 2026-07-26), so "decode tok/s at p=1024" was
+    /// a rate computed over a couple of dozen tokens and swung 30-38% run to run. A task that
+    /// wants a decode rate has to keep the model generating for the whole budget.
+    private let forceLongOutput: Bool
+
+    public init(id: String = "long-context", targetTokens: Int = 2048, maxTokens: Int = 128,
+                forceLongOutput: Bool = false) {
         self.id = id
         self.blocks = max(1, targetTokens / Self.tokensPerBlock)
+        self.forceLongOutput = forceLongOutput
         let approx = targetTokens >= 1000 ? "~\(targetTokens / 1000)K" : "~\(targetTokens)"
         self.title = "Long-context prefill (\(approx) tok)"
         self.summary = "\(approx)-token prompt, \(maxTokens)-token output. "
@@ -44,7 +54,15 @@ public struct LongContextTask: BenchmarkTask {
         for index in 0 ..< blocks {
             pieces.append("[\(index)] \(lorem)")
         }
-        pieces.append("\n\nFinish with one sentence: what on-device AI lets a phone do that a cloud model cannot.")
+        if forceLongOutput {
+            // Enumerated, self-continuing instruction: the model keeps producing until the
+            // token budget stops it, which is what makes decode-at-depth measurable.
+            pieces.append("\n\nUsing the passage above as context, list 25 distinct things "
+                + "on-device AI lets a phone do that a cloud model cannot. Number every item "
+                + "and give each one two full sentences of explanation. Do not stop early.")
+        } else {
+            pieces.append("\n\nFinish with one sentence: what on-device AI lets a phone do that a cloud model cannot.")
+        }
         return pieces.joined(separator: "\n")
     }
 }

@@ -67,6 +67,9 @@ targets:
     deploymentTarget: "27.0"
     sources:
       - path: Sources
+      # Probe images for the vision grounding gate (see SafetyClassifyTask).
+      - path: Resources
+        buildPhase: resources
     info:
       path: Sources/Info.plist
       properties:

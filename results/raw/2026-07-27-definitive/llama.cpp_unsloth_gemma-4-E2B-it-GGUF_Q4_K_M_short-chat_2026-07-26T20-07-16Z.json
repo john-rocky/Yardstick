@@ -1,0 +1,69 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "0DDC4FB7-A092-46F2-85A4-1E5428D63AE1",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 39.25666357461342,
+    "decodeTokensPerSecondWallClock" : 40.47296545517987,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 104,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 24.07705783843994,
+    "interTokenLatencyP95MS" : 27.821063995361328,
+    "interTokenLatencyP99MS" : 28.32198143005371,
+    "loadTimeSeconds" : 3.108260989189148,
+    "memoryAfterGenerationMB" : 223.3323516845703,
+    "memoryAfterLoadMB" : 211.98851013183594,
+    "memoryBaselineMB" : 14.423583984375,
+    "memoryFinalResidentMB" : 3152.640625,
+    "memoryMedianMB" : 229.5511016845703,
+    "memoryMedianResidentMB" : 3158.640625,
+    "memoryPeakDuringDecodeMB" : 241.7386016845703,
+    "memoryPeakResidentMB" : 3170.4375,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 4950.491590439658,
+    "promptTokensPerSecondWallClock" : 192.70224171260088,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.4667439460754395
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M (PTQ)"
+  },
+  "outputSample" : "Imagine you have a really smart assistant, like a personal helper, but instead of sending all your information to a giant computer in the cloud (like a big server on the internet), **the smart assista",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-26T20:07:16Z"
+}

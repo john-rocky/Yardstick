@@ -278,13 +278,15 @@ def run_cactus(qs, bundle, max_tokens, cactus_repo=None, backend="metal", thinki
     return c
 
 
-def run_litertlm(qs, litertlm, max_tokens, greedy=False):
+def run_litertlm(qs, litertlm, max_tokens, greedy=False, thinking=False):
     c = 0
     for i, (q, gold) in enumerate(qs):
         try:
             cmd = [VERIFY, litertlm, q + COT, "--max-tokens", str(max_tokens)]
             if greedy:
                 cmd.append("--greedy")
+            if thinking:
+                cmd.append("--thinking")
             p = subprocess.run(cmd, capture_output=True, text=True, timeout=400)
             m = re.search(r"^OUTPUT: \[(.*)\]$", p.stdout + "\n" + p.stderr, re.M)
             txt = m.group(1).replace("⏎", "\n") if m else ""
@@ -327,7 +329,7 @@ def main():
                        thinking=args.thinking)
         tag = args.tag or "cactus"
     else:
-        c = run_litertlm(qs, args.litertlm, args.max_tokens, args.greedy)
+        c = run_litertlm(qs, args.litertlm, args.max_tokens, args.greedy, thinking=args.thinking)
         tag = args.tag or os.path.basename(os.path.dirname(args.litertlm))
     acc = c / len(qs)
     print(f"== {tag}: {c}/{len(qs)} = {100*acc:.1f}%   ({time.time()-t:.0f}s)")

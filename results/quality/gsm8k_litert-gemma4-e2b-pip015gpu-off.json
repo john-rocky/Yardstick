@@ -1,0 +1,14 @@
+{
+  "tag": "litert-gemma4-e2b-pip015gpu-off",
+  "n": 100,
+  "correct": 89,
+  "acc": 0.89,
+  "max_output_tokens": 2048,
+  "runtime_build": "litert-lm-api 0.15.0 (PyPI wheel macosx_12_0_arm64, uploaded 2026-08-03)",
+  "backend": "gpu",
+  "bundle": "litert-community/gemma-4-E2B-it-litert-lm @ 9262660",
+  "sampler": "greedy (top_k=1, top_p=1.0, temperature=0.0)",
+  "note": "released-artifact thinking pair; pip dylib, not the Swift xcframework surface of the v0.13.1 table row",
+  "gen_tokens_median": 362.0,
+  "decode_tps_median": 155.46368752125957
+}

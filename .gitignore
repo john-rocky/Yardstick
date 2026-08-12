@@ -44,3 +44,6 @@ results/raw/local-*
 # Python
 __pycache__/
 *.pyc
+
+# Xcode DerivedData relocated into the project dir (build artifacts, ~3.7 GB)
+.dd/

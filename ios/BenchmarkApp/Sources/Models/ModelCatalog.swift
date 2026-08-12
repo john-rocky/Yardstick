@@ -531,6 +531,19 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-01: Nanbeige4.2-3B — looped transformer (num_loops=2, 44 KV slots),
+        // converted for litert-lm issue #3021. CPU backend only (--litert-cpu) and
+        // sampled decode only (--litert-temp 0.6 --litert-topk 20): greedy collapses.
+        ModelInfo(
+            id: "litert-local/nanbeige4.2-3b",
+            displayName: "Nanbeige4.2-3B (.litertlm, local int4)",
+            quantization: "INT4 (OCTAV blockwise-32, int8 embed, ekv4096)",
+            parameterCountB: 4.2,
+            onDiskSizeMB: 2460,
+            hfRepoId: "litert-local/Nanbeige4.2-3B",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-07-29: LFM2.5 GPU candidates (litert-torch 0.9.2 export, odml.softmax
         // composite stripped). First hybrid ShortConv graphs expected to run on the
         // Metal GPU delegate — device gate for the GPU-enabled re-ship.
@@ -551,6 +564,161 @@ public enum ModelCatalog {
             parameterCountB: 1.2,
             onDiskSizeMB: 1247,
             hfRepoId: "litert-local/LFM2.5-1.2B-int8-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-05: LFM2.5 0.15-repaired ships (published litert-community files,
+        // ExecutorMetadataProto appended) + a litert-torch-main re-export carrying the
+        // DUS-folder fix (1ed2caaaf) — Metal delegate re-gate on the v0.15.0 xcframework.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int4-0150fix",
+            displayName: "LFM2.5-1.2B (.litertlm, int4 0150fix published)",
+            quantization: "INT4 (OCTAV blockwise-32, convs float, int8 embed, +exec metadata)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int4-0150fix",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int8-0150fix",
+            displayName: "LFM2.5-1.2B (.litertlm, int8 0150fix published)",
+            quantization: "INT8 (export-time dynamic, convs included, +exec metadata)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int8-0150fix",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-wi8-main",
+            displayName: "LFM2.5-1.2B (.litertlm, wi8 litert-torch-main re-export)",
+            quantization: "INT8 (export-time dynamic, DUS-fold fix, composite stripped)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-wi8-main",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-12: converter-0.3.1 re-export (odml.softmax composite kept) —
+        // reference arm for the v0.16.0 Metal delegate re-gate.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-wi8-conv031",
+            displayName: "LFM2.5-1.2B (.litertlm, wi8 converter-0.3.1 re-export)",
+            quantization: "INT8 (export-time dynamic, composite kept, +exec metadata)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-wi8-conv031",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-05: Granite-4.0-h (Mamba2 hybrid) device gate — CPU backend only
+        // (--litert-cpu): the GPU delegate rejects the scan graph (SLICE rank > 4).
+        // Requires the v0.15.0 runtime (ExecutorMetadataProto state wiring).
+        ModelInfo(
+            id: "litert-local/granite4h-350m-int8",
+            displayName: "Granite-4.0-h-350m (.litertlm, int8 wi8fc)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata)",
+            parameterCountB: 0.35,
+            onDiskSizeMB: 436,
+            hfRepoId: "litert-local/Granite-4.0-h-350m-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/granite4h-350m-fp16",
+            displayName: "Granite-4.0-h-350m (.litertlm, fp16 no-BOS)",
+            quantization: "FP16 (float-casting linears+embed, convs/SSM fp32, no start_token)",
+            parameterCountB: 0.35,
+            onDiskSizeMB: 723,
+            hfRepoId: "litert-local/Granite-4.0-h-350m-fp16",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/granite4h-1b-int8",
+            displayName: "granite-4.0-h-1b (.litertlm, int8 wi8fc shipped)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1629,
+            hfRepoId: "litert-local/granite-4.0-h-1b-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-10: LFM2.5-2.6B (ShortConv hybrid, thinking) device gate — CPU backend
+        // (--litert-cpu; family iOS Metal NO-GO). v0.15.0 runtime required (exec metadata).
+        // int8 is the >2GiB single-section mmap wall test; int4-b32 is the iPhone candidate.
+        ModelInfo(
+            id: "litert-local/lfm26-int8-v2",
+            displayName: "LFM2.5-2.6B (.litertlm, int8 v2 think-prefill)",
+            quantization: "INT8 (export-time dynamic, convs included, +exec metadata)",
+            parameterCountB: 2.6,
+            onDiskSizeMB: 2736,
+            hfRepoId: "litert-local/LFM2.5-2.6B-int8-v2",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm26-int4-v2",
+            displayName: "LFM2.5-2.6B (.litertlm, int4-b32 v2 think-prefill)",
+            quantization: "INT4 (OCTAV blockwise-32 + zero-scale fix, convs float, int8 embed, +exec metadata)",
+            parameterCountB: 2.6,
+            onDiskSizeMB: 1588,
+            hfRepoId: "litert-local/LFM2.5-2.6B-int4-v2",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-10: Shieldstral-1.0-3B (Ministral3 dense text lane) device gate.
+        // Not a chat model — a single-token yes/no safety classifier, so the useful
+        // tasks are `safety-unsafe` / `safety-safe`, whose prompts are complete
+        // <Instruct>/<Query>/<Document> bodies; the bundle's own template supplies the
+        // fixed system prompt. int4-b32 (1.82 GiB main section) is the phone candidate;
+        // int8 (3.33 GiB) is a section-size wall test, expected to fail to map.
+        ModelInfo(
+            id: "litert-local/shieldstral-3b-int4",
+            displayName: "Shieldstral-1.0-3B (.litertlm, int4-b32 text)",
+            quantization: "INT4 (OCTAV blockwise-32, int8 embed, externalised embedder, ekv4096)",
+            parameterCountB: 3.4,
+            onDiskSizeMB: 2249,
+            hfRepoId: "litert-local/Shieldstral-1.0-3B-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/shieldstral-3b-int8",
+            displayName: "Shieldstral-1.0-3B (.litertlm, int8 text)",
+            quantization: "INT8 (export-time dynamic, externalised embedder, ekv4096)",
+            parameterCountB: 3.4,
+            onDiskSizeMB: 3794,
+            hfRepoId: "litert-local/Shieldstral-1.0-3B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-11: Shieldstral multimodal build (pixtral tower, static 560x560,
+        // marker embeddings folded into the adapter). Run with --litert-vision so the
+        // vision executor is actually loaded — without it Engine and Conversation both
+        // succeed and only the first image message fails.
+        ModelInfo(
+            id: "litert-local/shieldstral-3b-vision-int4",
+            displayName: "Shieldstral-1.0-3B (.litertlm, int4 text+image)",
+            quantization: "INT4 decoder (OCTAV b32) + INT8 pixtral tower, static 560, ekv4096",
+            parameterCountB: 3.8,
+            onDiskSizeMB: 2783,
+            hfRepoId: "litert-local/Shieldstral-1.0-3B-vision-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-07: Qwen3.5-0.8B (GatedDeltaNet hybrid) device gate — CPU backend only
+        // (--litert-cpu): the GPU delegate rejects the graph. v0.15.0 runtime required
+        // (ExecutorMetadataProto state wiring). File == the shipped litert-community
+        // bundle after the <|im_end|> stop-token fix.
+        ModelInfo(
+            id: "litert-local/qwen35-08b-int8",
+            displayName: "Qwen3.5-0.8B (.litertlm, int8 wi8fc shipped)",
+            quantization: "INT8 (post-hoc weight-only, convs/delta-rule float, +exec metadata)",
+            parameterCountB: 0.8,
+            onDiskSizeMB: 978,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-int8",
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),

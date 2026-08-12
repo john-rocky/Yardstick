@@ -51,6 +51,11 @@ final class DownloadActivityScope {
 /// Orchestrates one benchmark run: load model (if needed), drive a task to completion,
 /// gather memory/thermal samples, and produce a `BenchmarkResult`.
 public actor BenchmarkRunner {
+    /// Measurement-contract stamp written into every result. Bump on any change to what a
+    /// recorded field means: 2026-07-26 added harness wall-clock rates and median-resident
+    /// memory, so cells before and after this date are not the same measurement.
+    static let harnessStamp = "2026-07-26-comparability"
+
     public enum Phase: Sendable {
         case idle
         case loadingModel(progress: Double)
@@ -144,6 +149,8 @@ public actor BenchmarkRunner {
         var promptTokens = 0        // runtime-reported prompt tokens, summed over calls
         var decodeTime = 0.0        // runtime-reported decode time, summed over calls
         var promptTime = 0.0        // runtime-reported prompt time, summed over calls
+        var wallPromptTime = 0.0    // harness wall-clock: call start -> first chunk
+        var wallDecodeTime = 0.0    // harness wall-clock: first chunk -> end of stream
         var lastStopReason: GenerationInfo.StopReason = .stop
         var sawInfo = false
         var capturedError: Error?
@@ -151,7 +158,28 @@ public actor BenchmarkRunner {
         let sustainSeconds = configuration.task.sustainSeconds
         repeat {
             let tokensBeforeCall = tokenCount
-            let stream = configuration.runtime.generate(
+            // Wall-clock for THIS call, measured by the harness for every runtime
+            // alike — the engine-reported rates below are not comparable across
+            // arms because only some engines expose their own counters.
+            let callStart = CFAbsoluteTimeGetCurrent()
+            var callFirstTokenAt: CFAbsoluteTime?
+            // A task carrying an image drives the vision path. Resolve the bundled
+            // resource to an absolute path (the LiteRT-LM Swift API takes a path);
+            // if it is missing, fail loudly rather than silently running text-only —
+            // a vision task that quietly degrades to text would still post a result.
+            let imagePath: String? = configuration.task.imageResource.map { name in
+                guard let url = Bundle.main.url(forResource: name, withExtension: "png") else {
+                    fatalError("vision task \(configuration.task.id): missing bundled image \(name).png")
+                }
+                return url.path
+            }
+            let stream = imagePath.map { path in
+                configuration.runtime.generate(
+                    prompt: configuration.task.prompt,
+                    imagePath: path,
+                    parameters: configuration.task.parameters
+                )
+            } ?? configuration.runtime.generate(
                 prompt: configuration.task.prompt,
                 parameters: configuration.task.parameters
             )
@@ -161,6 +189,9 @@ public actor BenchmarkRunner {
                     case .chunk(let text):
                         if firstTokenAt == nil {
                             firstTokenAt = CFAbsoluteTimeGetCurrent()
+                        }
+                        if callFirstTokenAt == nil {
+                            callFirstTokenAt = CFAbsoluteTimeGetCurrent()
                         }
                         tokenCount += 1
                         // Cap the retained transcript — a 10-minute energy run
@@ -186,6 +217,10 @@ public actor BenchmarkRunner {
                 capturedError = error
             }
 
+            let callEnd = CFAbsoluteTimeGetCurrent()
+            wallPromptTime += (callFirstTokenAt ?? callEnd) - callStart
+            wallDecodeTime += callEnd - (callFirstTokenAt ?? callEnd)
+
             // Sustain-loop exit conditions.
             if capturedError != nil { break }
             guard let sustain = sustainSeconds else { break }          // run-once tasks
@@ -198,6 +233,10 @@ public actor BenchmarkRunner {
         await memorySampler.stop()
         await thermalSampler.stop()
         let memoryPeakMB = await memorySampler.peakMB
+        let memoryPeakResident = await memorySampler.peakResidentMB
+        let memoryMedian = await memorySampler.medianMB
+        let memoryMedianResident = await memorySampler.medianResidentMB
+        let memoryFinalResident = await memorySampler.finalResidentMB
         let energy = await energyMonitor.snapshot()
 
         // Refresh battery fields to end-of-run: a launch-then-unplug energy run
@@ -229,6 +268,9 @@ public actor BenchmarkRunner {
         let decodeTokS = Double(genTokens) / effectiveDecodeTime
         let promptTokS = promptTime > 0 ? Double(promptTokens) / promptTime : 0
         let stopReason = (sawInfo ? lastStopReason : .stop).rawValue
+        let decodeTokSWall: Double? = wallDecodeTime > 0 ? Double(genTokens) / wallDecodeTime : nil
+        let promptTokSWall: Double? = (wallPromptTime > 0 && promptTokens > 0)
+            ? Double(promptTokens) / wallPromptTime : nil
 
         // Energy figures only when a real (>0) battery delta was observed.
         let avgPowerW: Double? = {
@@ -247,6 +289,8 @@ public actor BenchmarkRunner {
             firstTokenLatencyMS: Int(firstTokenLatency.rounded()),
             promptTokensPerSecond: promptTokS,
             decodeTokensPerSecond: decodeTokS,
+            promptTokensPerSecondWallClock: promptTokSWall,
+            decodeTokensPerSecondWallClock: decodeTokSWall,
             promptTokenCount: promptTokens,
             generatedTokenCount: genTokens,
             streamedChunkCount: tokenCount,
@@ -257,6 +301,15 @@ public actor BenchmarkRunner {
             memoryAfterLoadMB: memoryAfterLoad,
             memoryPeakDuringDecodeMB: memoryPeakMB,
             memoryAfterGenerationMB: memoryAfterMB,
+            memoryPeakResidentMB: memoryPeakResident > 0 ? memoryPeakResident : nil,
+            memoryMedianMB: memoryMedian > 0 ? memoryMedian : nil,
+            memoryMedianResidentMB: memoryMedianResident > 0 ? memoryMedianResident : nil,
+            memoryFinalResidentMB: memoryFinalResident > 0 ? memoryFinalResident : nil,
+            // Decode-under-thinking is a different measurement contract for the cell;
+            // record it in the stamp so the raw JSON says which mode produced it.
+            harnessStamp: Self.harnessStamp
+                + (ProcessInfo.processInfo.arguments.contains("--litert-thinking")
+                    ? "+litert-thinking" : ""),
             initialThermalState: ThermalMonitor.describe(await thermalSampler.initialState),
             peakThermalState: ThermalMonitor.describe(await thermalSampler.peakState),
             finalThermalState: ThermalMonitor.describe(await thermalSampler.finalState),

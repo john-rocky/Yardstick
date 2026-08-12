@@ -50,19 +50,54 @@ public enum MemoryMonitor {
 }
 
 /// Records peak physical footprint across a sliding window.
+///
+/// Also samples `resident_size` in the same tick. The two answer different
+/// questions and a benchmark needs both: `phys_footprint` is what jetsam
+/// charges the process and it does **not** count clean file-backed pages, so a
+/// runtime that memory-maps its weights (LiteRT-LM maps its embedding tables,
+/// llama.cpp maps the whole GGUF) reads far lower than one that wires them.
+/// `resident_size` counts those mapped pages while they are resident, so the gap
+/// between the two reads how much of a runtime's footprint is mapped rather than
+/// wired — the asymmetry that makes a raw footprint column non-comparable across
+/// runtimes. Take that gap from `medianResidentMB - medianMB`, never from the
+/// peaks: mapped pages fault in and out, so peak resident is page-cache noise
+/// (66-281% run-to-run, measured 2026-07-26).
 public actor MemorySampler {
     private(set) var peakMB: Double = 0
+    private(set) var peakResidentMB: Double = 0
+    private var footprintSamples: [Double] = []
+    private var residentSamples: [Double] = []
     private var task: Task<Void, Never>?
 
     public init() {}
 
+    /// Median of the sampled footprints — steadier than the peak when a run has a brief
+    /// allocation spike.
+    public var medianMB: Double { Self.median(footprintSamples) }
+
+    /// Median of the sampled resident sizes. **Use this, not `peakResidentMB`.** Resident
+    /// size counts mapped-and-resident file pages, which the kernel faults in and evicts
+    /// under memory pressure, so the instantaneous peak is dominated by page-cache noise:
+    /// measured 2026-07-26, peak resident swung 66% (LiteRT-LM) and 281% (MLX) across three
+    /// identical runs while the footprint held to ~1%.
+    public var medianResidentMB: Double { Self.median(residentSamples) }
+
+    /// Last sample taken — the settled value at the end of the window.
+    public var finalResidentMB: Double { residentSamples.last ?? 0 }
+
+    public var sampleCount: Int { footprintSamples.count }
+
     public func start(intervalMS: Int = 100) {
         stop()
+        footprintSamples.removeAll()
+        residentSamples.removeAll()
         peakMB = MemoryMonitor.footprintMB()
+        peakResidentMB = MemoryMonitor.residentMB()
         task = Task { [weak self] in
             while !Task.isCancelled {
-                let current = MemoryMonitor.footprintMB()
-                await self?.bump(current)
+                let footprint = MemoryMonitor.footprintMB()
+                let resident = MemoryMonitor.residentMB()
+                await self?.record(footprint: footprint, resident: resident)
                 try? await Task.sleep(nanoseconds: UInt64(intervalMS) * 1_000_000)
             }
         }
@@ -73,7 +108,16 @@ public actor MemorySampler {
         task = nil
     }
 
-    private func bump(_ value: Double) {
-        if value > peakMB { peakMB = value }
+    private func record(footprint: Double, resident: Double) {
+        if footprint > peakMB { peakMB = footprint }
+        if resident > peakResidentMB { peakResidentMB = resident }
+        footprintSamples.append(footprint)
+        residentSamples.append(resident)
+    }
+
+    private static func median(_ xs: [Double]) -> Double {
+        guard !xs.isEmpty else { return 0 }
+        let s = xs.sorted()
+        return s.count % 2 == 1 ? s[s.count / 2] : (s[s.count / 2 - 1] + s[s.count / 2]) / 2
     }
 }

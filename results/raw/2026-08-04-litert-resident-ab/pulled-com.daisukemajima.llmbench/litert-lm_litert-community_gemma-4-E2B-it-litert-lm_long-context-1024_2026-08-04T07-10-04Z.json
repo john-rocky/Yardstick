@@ -1,0 +1,69 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "072368A0-2DDB-40B4-8119-799B16BE3DD3",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 58.09076340983641,
+    "decodeTokensPerSecondWallClock" : 60.93665318237561,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 334,
+    "generatedTokenCount" : 33,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.830086708068848,
+    "interTokenLatencyP95MS" : 17.624974250793457,
+    "interTokenLatencyP99MS" : 17.707109451293945,
+    "loadTimeSeconds" : 2.1818519830703735,
+    "memoryAfterGenerationMB" : 754.5667495727539,
+    "memoryAfterLoadMB" : 404.73844146728516,
+    "memoryBaselineMB" : 14.611129760742188,
+    "memoryFinalResidentMB" : 1000.375,
+    "memoryMedianMB" : 754.5511245727539,
+    "memoryMedianResidentMB" : 995.828125,
+    "memoryPeakDuringDecodeMB" : 754.5667495727539,
+    "memoryPeakResidentMB" : 1000.375,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1081,
+    "promptTokensPerSecond" : 3546.938978045114,
+    "promptTokensPerSecondWallClock" : 3236.0419339700916,
+    "stopReason" : "stop",
+    "streamedChunkCount" : 32,
+    "totalGenerationTimeSeconds" : 1.0777390003204346
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "wNa8o8 (int2\/int4\/int8 + int8 activations, QAT)"
+  },
+  "outputSample" : "What on-device AI lets a phone do that a cloud model cannot is perform complex tasks with low latency and high privacy by processing data directly on the device.",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "long-context-1024",
+  "timestamp" : "2026-08-04T07:10:04Z"
+}

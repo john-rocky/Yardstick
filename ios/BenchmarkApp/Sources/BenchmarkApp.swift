@@ -282,6 +282,11 @@ struct HeadlessRunnerView: View {
                 maxTokens: spec.maxTokens ?? 2048
             )
         }
+        // short-chat honors --max-tokens too: the decode-under-thinking cell needs
+        // a thinking-length budget (~500+ tok), not the default 128 cap.
+        if spec.taskId == "short-chat", let maxTokens = spec.maxTokens {
+            task = ShortChatTask(maxTokens: maxTokens)
+        }
 
         let sustainNote = task.sustainSeconds.map { " sustain_s=\(Int($0))" } ?? ""
         await log("YARDSTICK_BEGIN runtime=\(spec.runtime.rawValue) model=\(model.id) task=\(task.id) runs=\(spec.runs)\(sustainNote)")

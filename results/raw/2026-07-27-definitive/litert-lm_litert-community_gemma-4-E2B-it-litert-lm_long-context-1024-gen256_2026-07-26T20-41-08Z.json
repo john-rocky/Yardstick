@@ -1,0 +1,68 @@
+{
+  "device" : {
+    "batteryLevel" : 0.9,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "784E75E3-DDD3-4578-B86C-BD8F786F7A6A",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 56.513438458515346,
+    "decodeTokensPerSecondWallClock" : 56.51362584815822,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1033,
+    "generatedTokenCount" : 256,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.71004295349121,
+    "interTokenLatencyP95MS" : 23.975014686584473,
+    "interTokenLatencyP99MS" : 25.050997734069824,
+    "loadTimeSeconds" : 1.1655299663543701,
+    "memoryAfterGenerationMB" : 785.4101104736328,
+    "memoryAfterLoadMB" : 449.83189392089844,
+    "memoryBaselineMB" : 14.814231872558594,
+    "memoryFinalResidentMB" : 775.75,
+    "memoryMedianMB" : 785.6444854736328,
+    "memoryMedianResidentMB" : 764.375,
+    "memoryPeakDuringDecodeMB" : 833.7851333618164,
+    "memoryPeakResidentMB" : 775.75,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 256,
+    "totalGenerationTimeSeconds" : 5.772627949714661
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "wNa8o8 (int2\/int4\/int8 + int8 activations, QAT)"
+  },
+  "outputSample" : "Here are 25 distinct things an on-device AI on a phone can do that a cloud model cannot, based on the general capabilities of on-device processing versus cloud processing:\n\n1. **Real-time, low-latency",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "long-context-1024-gen256",
+  "timestamp" : "2026-07-26T20:41:08Z"
+}

@@ -22,9 +22,11 @@
 		2DCF41D723588916BF29D8F0 /* LiteRTLM in Frameworks */ = {isa = PBXBuildFile; productRef = 33E0A67472EF0169CD621D55 /* LiteRTLM */; };
 		2E8B509B84C74A6A850BF4D4 /* LLMRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CEC963B0C412A01CB78853 /* LLMRuntime.swift */; };
 		2EC1A49EB3F96A59AD0345D1 /* HFDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5235B8E78B06C2870291FF5 /* HFDownloader.swift */; };
+		313292716A96217ECE1E25EE /* SafetyClassifyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EC78F33B91A776F1CF195 /* SafetyClassifyTask.swift */; };
 		3265BD866E12254B5F9D02D5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6340DF01289DE1C8F23AA39 /* AboutView.swift */; };
 		365ACCF96B78A7F412A50860 /* BenchmarkRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C069A3D837A8C235381A361 /* BenchmarkRunner.swift */; };
 		38D2EEF177543768A564B297 /* RuntimeKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A2757B6113092D68EC4F94 /* RuntimeKind.swift */; };
+		3A9DD273D6901367ED966D74 /* probe_text.png in Resources */ = {isa = PBXBuildFile; fileRef = C3E1F9CAB968C58C189E57F0 /* probe_text.png */; };
 		3C7056AF1BA49ED29DEFDB81 /* MLXVLM in Frameworks */ = {isa = PBXBuildFile; productRef = 2D6E7223F8169CD107D2EDA9 /* MLXVLM */; };
 		3E842913FD7699AD530BCBFF /* HuggingFace in Frameworks */ = {isa = PBXBuildFile; productRef = E1EE00212151957A2CF0EA1A /* HuggingFace */; };
 		4093906B51F58C8ECBC1A23B /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39105E2687FD536226E700E /* llama.xcframework */; };
@@ -90,8 +92,10 @@
 		EC039C8FC4A2DF68CE274F17 /* llama.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B39105E2687FD536226E700E /* llama.xcframework */; };
 		ECE0002D82147918AAACF0BB /* CactusRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E844209F2F8C874E8500C7 /* CactusRuntime.swift */; };
 		ECED951E4D6726C5E7EB6241 /* ANEResidency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944939C99194A89ED89B0BE /* ANEResidency.swift */; };
+		F212AE0904E7536C3C2D34A4 /* SafetyClassifyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08EC78F33B91A776F1CF195 /* SafetyClassifyTask.swift */; };
 		F2D07CAE8B4C83B85D291512 /* CameraVLMTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE59486A9C2FDFB6D3AB40E9 /* CameraVLMTask.swift */; };
 		F4803995ED52DD8969723131 /* CoreMLRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571463D6F5C7502E074043E5 /* CoreMLRuntime.swift */; };
+		F76349C5F4689B889FCAAB7B /* probe_notext.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BCF3DFC5D9FF13D75934A9 /* probe_notext.png */; };
 		F84F57B0E92BA4F495124514 /* CoreAIRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BAA10AA9E8F7A0B65E0E9F /* CoreAIRuntime.swift */; };
 		F988FED25E1B2247D3B696D8 /* LlamaCppRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F54149AFF1D39F2B9377885 /* LlamaCppRuntime.swift */; };
 		FA911A2CDFA67C2099693800 /* ModelCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5883E0764831A0D390331F81 /* ModelCatalog.swift */; };
@@ -156,12 +160,15 @@
 		AD978FB1DEA49377A28D581F /* CoreMLVLMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLVLMRuntime.swift; sourceTree = "<group>"; };
 		B39105E2687FD536226E700E /* llama.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = llama.xcframework; path = Vendored/llama.xcframework; sourceTree = "<group>"; };
 		B83851AB7C32EB65D8796EF6 /* VLMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLMRuntime.swift; sourceTree = "<group>"; };
+		C3E1F9CAB968C58C189E57F0 /* probe_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = probe_text.png; sourceTree = "<group>"; };
 		CEA1B238D711053DA4ECB95A /* CameraVLMView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVLMView.swift; sourceTree = "<group>"; };
+		D08EC78F33B91A776F1CF195 /* SafetyClassifyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyClassifyTask.swift; sourceTree = "<group>"; };
 		D8186947B5D5C5B90DB7A09B /* MLXVLMRuntime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXVLMRuntime.swift; sourceTree = "<group>"; };
 		DB25DA3940385A8468CDF86C /* MLXBridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLXBridges.swift; sourceTree = "<group>"; };
 		DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SustainedGenerationTask.swift; sourceTree = "<group>"; };
 		EE59486A9C2FDFB6D3AB40E9 /* CameraVLMTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraVLMTask.swift; sourceTree = "<group>"; };
 		F132FE97843937145D4C57C4 /* Yardstick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Yardstick.swift; sourceTree = "<group>"; };
+		F2BCF3DFC5D9FF13D75934A9 /* probe_notext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = probe_notext.png; sourceTree = "<group>"; };
 		F5235B8E78B06C2870291FF5 /* HFDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HFDownloader.swift; sourceTree = "<group>"; };
 		F5A53FFB38F5191EA948C20E /* LiteRT-LM */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "LiteRT-LM"; path = "Vendored/LiteRT-LM"; sourceTree = SOURCE_ROOT; };
 		F6CCE863246D4DF67FA309E1 /* QualityTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityTask.swift; sourceTree = "<group>"; };
@@ -252,6 +259,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		51A4598590D06F271412DD21 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2BCF3DFC5D9FF13D75934A9 /* probe_notext.png */,
+				C3E1F9CAB968C58C189E57F0 /* probe_text.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		56D8CF71830F92F55D511138 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -307,6 +323,7 @@
 			children = (
 				9372C441F73994925B104453 /* apple-silicon-llm-bench */,
 				ABFC6F14C1F48FC1603B0D4B /* Packages */,
+				51A4598590D06F271412DD21 /* Resources */,
 				56D8CF71830F92F55D511138 /* Sources */,
 				48DCBE35C783F3731505CB3A /* Frameworks */,
 				0CCB397A556F53A8910A2C24 /* Products */,
@@ -357,6 +374,7 @@
 				1124C321F63E5E0AEEF8902E /* AppLifecycleTask.swift */,
 				FCADC364D9871831E17D1318 /* LongContextTask.swift */,
 				F6CCE863246D4DF67FA309E1 /* QualityTask.swift */,
+				D08EC78F33B91A776F1CF195 /* SafetyClassifyTask.swift */,
 				3B472A5B7142B5A088948C3E /* ShortChatTask.swift */,
 				DDC21ED32AE3215BD9BAB3DC /* SustainedGenerationTask.swift */,
 			);
@@ -485,6 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				112E2A29A4EEA42B9F7D6444 /* Assets.xcassets in Resources */,
+				F76349C5F4689B889FCAAB7B /* probe_notext.png in Resources */,
+				3A9DD273D6901367ED966D74 /* probe_text.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +539,7 @@
 				54A24EF1C659F98597A290C6 /* QualityTask.swift in Sources */,
 				9FB0903D22C954FDEB555847 /* ResultStore.swift in Sources */,
 				38D2EEF177543768A564B297 /* RuntimeKind.swift in Sources */,
+				F212AE0904E7536C3C2D34A4 /* SafetyClassifyTask.swift in Sources */,
 				872536C8C78AE6942338D99A /* ShortChatTask.swift in Sources */,
 				296689A741B674A7612FC0ED /* SustainedGenerationTask.swift in Sources */,
 				4C7A81F47EB282F5B3B84166 /* ThermalMonitor.swift in Sources */,
@@ -568,6 +589,7 @@
 				80170DFF4FA2267ACB91DC3D /* RootView.swift in Sources */,
 				C3077165679D541B3891953F /* RunView.swift in Sources */,
 				969557357BB859074D8D1B5C /* RuntimeKind.swift in Sources */,
+				313292716A96217ECE1E25EE /* SafetyClassifyTask.swift in Sources */,
 				9C5DF4C1C1EF300A1B21B367 /* ShortChatTask.swift in Sources */,
 				CE55A5633E945419992D1CC8 /* SustainedGenerationTask.swift in Sources */,
 				9CF9A0FAC7BDA40ADA7B7D86 /* ThermalMonitor.swift in Sources */,

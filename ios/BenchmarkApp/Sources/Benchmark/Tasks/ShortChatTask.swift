@@ -7,7 +7,11 @@ public struct ShortChatTask: BenchmarkTask {
 
     public let prompt = "Explain what on-device AI means in simple terms."
 
-    public let parameters = GenerationParameters(maxTokens: 128, temperature: 0.0, topP: 1.0)
+    public let parameters: GenerationParameters
 
-    public init() {}
+    /// `maxTokens` is overridable so the thinking cell can measure decode over a
+    /// thinking-length generation (~500+ tok) instead of capping mid-thought at 128.
+    public init(maxTokens: Int = 128) {
+        parameters = GenerationParameters(maxTokens: maxTokens, temperature: 0.0, topP: 1.0)
+    }
 }

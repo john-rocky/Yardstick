@@ -1,0 +1,11 @@
+{
+  "tag": "litert-gemma4-e2b-maincpu-thinking",
+  "n": 100,
+  "correct": 90,
+  "acc": 0.9,
+  "max_tokens": 2048,
+  "runtime_build": "litert-lm main d98e1872 + thinking-flag CLI patch",
+  "backend": "cpu",
+  "note": "controlled OFF/ON pair on one build; not comparable 1:1 with the v0.13.1 GPU table rows",
+  "gen_tokens_median": 824.5
+}

@@ -622,10 +622,87 @@ def chart_deepcontext():
     print(f"wrote {OUT / 'iphone_gemma4_deepcontext.png'}")
 
 
+# ------------------------------------------------------------------ #
+#  Chart — Mac (M4 Max): the prefill cliff, and the energy ranking flip
+# ------------------------------------------------------------------ #
+
+def chart_mac():
+    """Two things the Mac says that the phone doesn't. Left: prompt batching either
+    exists or it doesn't — MLX/LiteRT prefill ~50x their decode rate, Core AI 1.09x
+    (Gemma-4's per-layer embeddings force S=1 on every Core AI path we could build).
+    Right: the energy ranking inverts between the two machines."""
+    CORE_AI = "#65a30d"
+    LITERT = "#e11d48"
+    fig, (axl, axr) = plt.subplots(1, 2, figsize=(11.4, 4.2),
+                                   gridspec_kw={"width_ratios": [1.45, 1]})
+
+    # --- left: prefill throughput, log scale, ratio annotated ---------
+    rows = [
+        ("MLX\nQ4_0 g32",        PALETTE["mlx-swift"], 8505, 171.3, "49.7x its decode rate"),
+        ("LiteRT-LM\nwNa8o8 *",  LITERT,               7305, 153.2, "47.7x its decode rate"),
+        ("Core AI\nQ4_0 g32",    CORE_AI,               82.4, 75.9, "1.09x its decode rate"),
+    ]
+    ys = list(range(len(rows)))[::-1]
+    for y, (label, color, pf, dec, note) in zip(ys, rows):
+        axl.barh([y], [pf], 0.55, color=color, edgecolor="white", linewidth=0.8)
+        axl.text(pf * 1.15, y, f"{pf:,.0f} tok/s   ·   {note}", va="center",
+                 fontsize=9.5, color="#222")
+    axl.set_yticks(ys)
+    axl.set_yticklabels([r[0] for r in rows], fontsize=10)
+    axl.set_xscale("log")
+    axl.set_xlim(30, 60000)
+    axl.set_xlabel("Prefill tok/s at p=1024 (log scale)   → better")
+    axl.grid(True, axis="x", alpha=0.25); axl.set_axisbelow(True)
+    axl.spines[["top", "right"]].set_visible(False)
+    axl.set_title("Prompt batching is binary", fontsize=12, fontweight="bold", pad=10)
+    axl.text(115, ys[-1] + 0.34, "no prompt batching — prefill runs at decode speed",
+             fontsize=8.5, color=CORE_AI, fontweight="bold", va="center")
+
+    # --- right: J/tok, Mac vs iPhone, the ranking inverts -------------
+    pairs = [
+        ("MLX  PTQ 4-bit", PALETTE["mlx-swift"], 0.090, 0.151),
+        ("LiteRT-LM",      LITERT,               0.154, 0.122),
+    ]
+    x = [0, 1]
+    w = 0.32
+    for i, (label, color, mac, phone) in enumerate(pairs):
+        axr.bar(i - w/2, mac, w, color=color, alpha=0.45, edgecolor="white", linewidth=0.8)
+        axr.bar(i + w/2, phone, w, color=color, edgecolor="white", linewidth=0.8)
+        axr.text(i - w/2, mac + 0.004, f"{mac:.3f}", ha="center", fontsize=9.5,
+                 fontweight="bold", color="#222")
+        axr.text(i + w/2, phone + 0.004, f"{phone:.3f}", ha="center", fontsize=9.5,
+                 fontweight="bold", color="#222")
+    axr.set_xticks(x)
+    axr.set_xticklabels([p[0] for p in pairs], fontsize=10)
+    axr.set_ylabel("J / token   ↓ lower is better")
+    axr.set_ylim(0, 0.20)
+    axr.grid(True, axis="y", alpha=0.25); axr.set_axisbelow(True)
+    axr.spines[["top", "right"]].set_visible(False)
+    axr.set_title("The energy ranking inverts", fontsize=12, fontweight="bold", pad=10)
+    from matplotlib.patches import Patch
+    axr.legend(handles=[Patch(facecolor="#888", alpha=0.45, label="Mac M4 Max"),
+                        Patch(facecolor="#888", label="iPhone 17 Pro")],
+               frameon=False, loc="upper left", fontsize=9)
+
+    fig.suptitle("Gemma 4 E2B on Mac (M4 Max), p=1024 / g=256 — and what changes on the phone",
+                 fontsize=12.5, fontweight="bold", y=1.02)
+    fig.text(0.5, -0.07,
+             "MLX and Core AI run the same checkpoint (our own Q4_0 g32 export), measured back-to-back on one idle machine; median of 3"
+             "   ·   * LiteRT's row is a different checkpoint (wNa8o8/int8): a product comparison, not a runtime comparison"
+             "\nMac energy uses the community builds and LiteRT's WebGPU path, so it is a separate capture from the Mac speed table"
+             "   ·   iPhone J/tok is the canonical on-device energy (battery-delta, 600 s sustained, unplugged)",
+             ha="center", fontsize=8.5, color="#666")
+    plt.tight_layout()
+    plt.savefig(OUT / "mac_gemma4_e2b.png")
+    plt.close(fig)
+    print(f"wrote {OUT / 'mac_gemma4_e2b.png'}")
+
+
 def main():
     chart_iphone()
     chart_thinking()
     chart_deepcontext()
+    chart_mac()
     chart_iphone_energy()
     chart_iphone_tradeoff()
     chart_decode_tok_per_s()
