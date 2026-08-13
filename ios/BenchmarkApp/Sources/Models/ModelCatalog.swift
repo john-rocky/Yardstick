@@ -722,6 +722,18 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-13: Qwen3.5-4B, same gated-delta v4 rail as the 0.8B (rank<=4 chunk
+        // kernel, concat pads, fp32act declared). Needs the increased-memory entitlement.
+        ModelInfo(
+            id: "litert-local/qwen35-4b-int8",
+            displayName: "Qwen3.5-4B (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/delta-rule float, +exec metadata, fp32act)",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 4561,
+            hfRepoId: "litert-local/Qwen3.5-4B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-13: FalconH1 all-hybrid (parallel attn+SSM every layer) - first of its
         // arch; fp32act declared in the bundle for GPU.
         ModelInfo(
