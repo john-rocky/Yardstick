@@ -722,6 +722,41 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-13: FalconH1 all-hybrid (parallel attn+SSM every layer) - first of its
+        // arch; fp32act declared in the bundle for GPU.
+        ModelInfo(
+            id: "litert-local/falconh1-05b-int8",
+            displayName: "Falcon-H1-0.5B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 0.5,
+            onDiskSizeMB: 650,
+            hfRepoId: "litert-local/Falcon-H1-0.5B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-13: FalconH1 1.5B sibling (same driver/patch as the 0.5B).
+        ModelInfo(
+            id: "litert-local/falconh1-15b-int8",
+            displayName: "Falcon-H1-1.5B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1646,
+            hfRepoId: "litert-local/Falcon-H1-1.5B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-13: NemotronH hybrid (24 mamba + 24 mlp + 4 attn) - first of its arch;
+        // fp32act declared for GPU.
+        ModelInfo(
+            id: "litert-local/nemotronh-4b-int8",
+            displayName: "Nemotron-H-4B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 4672,
+            hfRepoId: "litert-local/Nemotron-H-4B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-06-26 supplementary: byte-matched int4 of the litert-community q8 DeepSeek, to measure the
         // int8-vs-delegate split (keep the official q8 row; this is the "LiteRT-could-do-int4" companion).
         ModelInfo(
@@ -859,6 +894,32 @@ public enum ModelCatalog {
             parameterCountB: 3.0,
             onDiskSizeMB: 1900,
             hfRepoId: "litert-local/SmolLM3-3B",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // Mamba2 hybrid — the GPU-enabled export (rank<=4 SSD scan, keepdim pad
+        // guard, prefer_activation_type=fp32). Metal is the point of this entry:
+        // the shipped granite is CPU-only because the delegate refused 97% of
+        // the graph.
+        // gated-delta hybrid — the GPU-enabled v4 export (rank<=4 chunk kernel,
+        // PADs replaced by concat, prefer_activation_type=fp32).
+        ModelInfo(
+            id: "litert-local/qwen35-08b-gpu",
+            displayName: "Qwen3.5-0.8B (.litertlm, gated-delta hybrid, local int8)",
+            quantization: "INT8",
+            parameterCountB: 0.8,
+            onDiskSizeMB: 919,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/granite4h-1b-gpu",
+            displayName: "Granite-4.0-h-1B (.litertlm, Mamba2 hybrid, local int8)",
+            quantization: "INT8",
+            parameterCountB: 1.6,
+            onDiskSizeMB: 1606,
+            hfRepoId: "litert-local/Granite-4.0-h-1B-gpu",
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
