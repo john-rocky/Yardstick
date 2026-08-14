@@ -780,6 +780,18 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-14: Zamba2 shared-attention hybrid (32 mamba + 6 tied-transformer
+        // positions with per-position LoRA) - first of its arch; fp32act declared for GPU.
+        ModelInfo(
+            id: "litert-local/zamba2-12b-int8",
+            displayName: "Zamba2-1.2B-instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1364,
+            hfRepoId: "litert-local/Zamba2-1.2B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-13: NemotronH hybrid (24 mamba + 24 mlp + 4 attn) - first of its arch;
         // fp32act declared for GPU.
         ModelInfo(
