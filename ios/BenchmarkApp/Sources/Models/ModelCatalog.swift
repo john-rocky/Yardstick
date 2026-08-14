@@ -734,6 +734,18 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-14: Qwen3.5-2B, same gated-delta v4 rail; ratio-1 heads (no interleave
+        // rewrite traced) and the full prefill ladder (int8 ~2.1 GB fits the RAM budget).
+        ModelInfo(
+            id: "litert-local/qwen35-2b-int8",
+            displayName: "Qwen3.5-2B (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/delta-rule float, +exec metadata, fp32act)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 2117,
+            hfRepoId: "litert-local/Qwen3.5-2B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-13: FalconH1 all-hybrid (parallel attn+SSM every layer) - first of its
         // arch; fp32act declared in the bundle for GPU.
         ModelInfo(
@@ -754,6 +766,17 @@ public enum ModelCatalog {
             parameterCountB: 1.5,
             onDiskSizeMB: 1646,
             hfRepoId: "litert-local/Falcon-H1-1.5B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-14: FalconH1 3B sibling (same driver/patch as the 0.5B/1.5B).
+        ModelInfo(
+            id: "litert-local/falconh1-3b-int8",
+            displayName: "Falcon-H1-3B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 3.0,
+            onDiskSizeMB: 3229,
+            hfRepoId: "litert-local/Falcon-H1-3B-int8",
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
