@@ -115,6 +115,29 @@ TABLES = {
         "mode": "passthrough",
         "script": "scripts/bench_litert_resident_ab_iphone.sh",
     },
+    ("mac", "muse-glimmer-30b-3way"): {
+        "desc": "Muse-Glimmer-30B text decoder — Core AI vs MLX vs ExecuTorch, M4 Max, interleaved",
+        "published": "raw + summary: results/raw/2026-08-15-muse-glimmer-30b-3way/",
+        "rows": "decode tok/s, 192 greedy tokens, 2 prompts x 2 rounds per arm (fairness rule 11)",
+        "prereqs": [
+            ("driver", "scripts/bench_muse_glimmer_3way_mac.sh"),
+            ("Core AI llm-runner ($CA_RUNNER; fork build, NOT the pinned 0.2.0 arm — see capture ENV.md)",
+             "~/code/coreai/coreai-models/.build/release/llm-runner"),
+            ("Core AI bundle ($CA_BUNDLE; HF mlboydaisuke/Muse-Glimmer-30B-CoreAI)",
+             "~/code/coreai/coreai-models/exports/muse_glimmer_30b_decode_int4hu_block32_sym"),
+            ("ExecuTorch solo_runner ($ET_SOLO; pytorch/executorch @ abc5586 "
+             "+ patches/executorch-abc5586-empty-data-path.diff)",
+             "~/code/et-pr/executorch/cmake-out/examples/models/muse-glimmer/solo_runner"),
+        ],
+        "commands": ["scripts/bench_muse_glimmer_3way_mac.sh"],
+        "mode": "passthrough",
+        "script": "scripts/bench_muse_glimmer_3way_mac.sh",
+        "notes": "Every path is env-overridable (CA_RUNNER/CA_BUNDLE/ET_SOLO/ET_PTE/ET_TOK/MLX_PY/"
+                 "MLX_MODEL/N/COOL/OUT); OUT defaults to a date-stamped -rerun dir, so the published "
+                 "capture is never clobbered. MLX side needs mlx-vlm (spec: tools/python-envs/"
+                 "mlx-vlm-muse.requirements.txt — mlx-lm has no muse_glimmer). Engine states are "
+                 "external checkouts, reconstructable from the patches/ files named in the prereqs.",
+    },
 }
 
 

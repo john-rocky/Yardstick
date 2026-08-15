@@ -1,0 +1,22 @@
+protocol: 192 new tokens, greedy, batch 1, interleaved A/B/A/B, 45s cooldown between runs
+=== prompt 1
+  round 1
+    ET  Decode: 192 tokens in 9947.0 ms (19.3 tok/s)
+    CA  Generation: 11837.1ms, 192 tokens, 16.2 tokens/sec
+  round 2
+    ET  Decode: 192 tokens in 9732.0 ms (19.7 tok/s)
+    CA  Generation: 6972.7ms, 192 tokens, 27.5 tokens/sec
+=== prompt 2
+  round 1
+    ET  Decode: 192 tokens in 8007.0 ms (24.0 tok/s)
+    CA  Generation: 7034.0ms, 192 tokens, 27.3 tokens/sec
+  round 2
+    ET  Decode: 192 tokens in 8018.0 ms (23.9 tok/s)
+    CA  Generation: 6999.8ms, 192 tokens, 27.4 tokens/sec
+=== prompt 3
+  round 1
+    ET  Decode: 1 tokens in 43.0 ms (23.3 tok/s)
+    CA  Generation: 6934.0ms, 192 tokens, 27.7 tokens/sec
+  round 2
+    ET  Decode: 1 tokens in 43.0 ms (23.3 tok/s)
+    CA  Generation: 6925.2ms, 192 tokens, 27.7 tokens/sec

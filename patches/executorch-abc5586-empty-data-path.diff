@@ -1,0 +1,119 @@
+From fd3ef18d18b5b8547c441ec11ef393275fa50bac Mon Sep 17 00:00:00 2001
+From: john-rocky <rockyshikoku@gmail.com>
+Date: Fri, 14 Aug 2026 15:30:23 +0900
+Subject: [PATCH] Treat an empty LLM data path as absent
+
+LlmModuleConfig's builder defaulted dataPath to "", and create_text_llm_runner
+takes any value the optional holds -- including the empty string -- so an
+Android caller that never asked for a data file still reached the loader with
+"". The load then failed on `Failed to open : No such file or directory`, and
+because LlmModule.load() surfaces that through a native exception, the process
+aborted rather than returning the error.
+
+The builder default is now null, and both runner factories ignore an empty
+path, so a caller in any language whose "no value" is an empty string lands on
+the no-data-file branch instead of a failed mmap.
+---
+ .../pytorch/executorch/LlmModuleConfigTest.kt | 50 +++++++++++++++++++
+ .../extension/llm/LlmModuleConfig.kt          |  2 +-
+ extension/llm/runner/llm_runner_helper.cpp    |  7 ++-
+ 3 files changed, 56 insertions(+), 3 deletions(-)
+ create mode 100644 extension/android/executorch_android/src/androidTest/java/org/pytorch/executorch/LlmModuleConfigTest.kt
+
+diff --git a/extension/android/executorch_android/src/androidTest/java/org/pytorch/executorch/LlmModuleConfigTest.kt b/extension/android/executorch_android/src/androidTest/java/org/pytorch/executorch/LlmModuleConfigTest.kt
+new file mode 100644
+index 0000000..abd0c33
+--- /dev/null
++++ b/extension/android/executorch_android/src/androidTest/java/org/pytorch/executorch/LlmModuleConfigTest.kt
+@@ -0,0 +1,50 @@
++/*
++ * Copyright (c) Meta Platforms, Inc. and affiliates.
++ * All rights reserved.
++ *
++ * This source code is licensed under the BSD-style license found in the
++ * LICENSE file in the root directory of this source tree.
++ */
++package org.pytorch.executorch
++
++import androidx.test.ext.junit.runners.AndroidJUnit4
++import org.junit.Assert.assertEquals
++import org.junit.Assert.assertNull
++import org.junit.Test
++import org.junit.runner.RunWith
++import org.pytorch.executorch.extension.llm.LlmModuleConfig
++
++/** Tests for [LlmModuleConfig]. */
++@RunWith(AndroidJUnit4::class)
++class LlmModuleConfigTest {
++
++  @Test
++  fun testDataPathDefaultsToNull() {
++    // An empty default reaches the runner as a real path, which then fails to open and takes the
++    // whole load down. Absent has to be null.
++    val config =
++        LlmModuleConfig.create().modulePath("/model.pte").tokenizerPath("/tokenizer.json").build()
++    assertNull(config.dataPath)
++  }
++
++  @Test
++  fun testDataPathRoundTrips() {
++    val config =
++        LlmModuleConfig.create()
++            .modulePath("/model.pte")
++            .tokenizerPath("/tokenizer.json")
++            .dataPath("/weights.ptd")
++            .build()
++    assertEquals("/weights.ptd", config.dataPath)
++  }
++
++  @Test
++  fun testDefaults() {
++    val config =
++        LlmModuleConfig.create().modulePath("/model.pte").tokenizerPath("/tokenizer.json").build()
++    assertEquals("/model.pte", config.modulePath)
++    assertEquals("/tokenizer.json", config.tokenizerPath)
++    assertEquals(LlmModuleConfig.MODEL_TYPE_TEXT, config.modelType)
++    assertEquals(LlmModuleConfig.LOAD_MODE_MMAP, config.loadMode)
++  }
++}
+diff --git a/extension/android/executorch_android/src/main/java/org/pytorch/executorch/extension/llm/LlmModuleConfig.kt b/extension/android/executorch_android/src/main/java/org/pytorch/executorch/extension/llm/LlmModuleConfig.kt
+index 2d65633..c88680d 100644
+--- a/extension/android/executorch_android/src/main/java/org/pytorch/executorch/extension/llm/LlmModuleConfig.kt
++++ b/extension/android/executorch_android/src/main/java/org/pytorch/executorch/extension/llm/LlmModuleConfig.kt
+@@ -65,7 +65,7 @@ private constructor(
+     private var modulePath: String? = null
+     private var tokenizerPath: String? = null
+     private var temperature: Float = 0.8f
+-    private var dataPath: String? = ""
++    private var dataPath: String? = null
+     private var modelType: Int = MODEL_TYPE_TEXT
+     private var numBos: Int = 0
+     private var numEos: Int = 0
+diff --git a/extension/llm/runner/llm_runner_helper.cpp b/extension/llm/runner/llm_runner_helper.cpp
+index 277e42b..105b3f0 100644
+--- a/extension/llm/runner/llm_runner_helper.cpp
++++ b/extension/llm/runner/llm_runner_helper.cpp
+@@ -189,7 +189,10 @@ std::unique_ptr<TextLLMRunner> create_text_llm_runner(
+     float temperature,
+     const std::string& method_name,
+     Module::LoadMode load_mode) {
+-  if (data_path.has_value()) {
++  // An empty path is not a path. Callers that build the optional from a
++  // language whose "no value" is an empty string would otherwise reach the
++  // loader with "", which fails to open and takes the whole load down with it.
++  if (data_path.has_value() && !data_path.value().empty()) {
+     std::vector<std::string> data_files;
+     data_files.push_back(data_path.value());
+     return create_text_llm_runner(
+@@ -355,7 +358,7 @@ std::unique_ptr<MultimodalRunner> create_multimodal_runner(
+ 
+   // Create the Module
+   std::unique_ptr<Module> module;
+-  if (data_path.has_value()) {
++  if (data_path.has_value() && !data_path.value().empty()) {
+     module = std::make_unique<Module>(model_path, data_path.value(), load_mode);
+   } else {
+     module = std::make_unique<Module>(model_path, load_mode);
+-- 
+2.50.1 (Apple Git-155)
+

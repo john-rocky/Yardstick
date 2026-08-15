@@ -1,7 +1,7 @@
 {
   "lockfile_schema": 1,
   "description": "Machine-readable pin registry: every engine, instrument, and model behind the published tables, plus the per-capture overrides. Continuous-bench condition 1 (one-command reproduction). Update this file in the same commit as any capture that changes a pin.",
-  "updated": "2026-08-05",
+  "updated": "2026-08-15",
   "arms": {
     "litert-lm": {
       "source": "https://github.com/google-ai-edge/LiteRT-LM",
@@ -31,7 +31,23 @@
     "coreai-models": {
       "source": "https://github.com/apple/coreai-models",
       "tag": "0.2.0",
-      "caveat": "PLE models (Gemma-4 E2B/E4B) additionally require the unpublished local patch coreai-pipelined-static-inputs.patch (COREAI_STATIC_INPUTS) — this arm is NOT independently reproducible yet; see gap audit."
+      "caveat": "PLE models (Gemma-4 E2B/E4B) additionally require the unpublished local patch coreai-pipelined-static-inputs.patch (COREAI_STATIC_INPUTS) — this arm is NOT independently reproducible yet; see gap audit.",
+      "captures": {
+        "2026-08-15 muse-glimmer-30b 3-way (Mac)": {
+          "source": "https://github.com/john-rocky/coreai-models",
+          "branch": "zoo-0.2",
+          "commit": "58aab35",
+          "session_diff": "patches/coreai-models-58aab35-muse-bench-session.diff",
+          "note": "fork engine, NOT the pinned 0.2.0 arm — 0.2.0 neither builds/runs on macOS 27.0 26A5406e (FM ABI) nor supports muse_glimmer; labelled 'fork engine (reference)' per methodology/core-ai-arm-provenance.md. See results/raw/2026-08-15-muse-glimmer-30b-3way/ENV.md."
+        }
+      }
+    },
+    "executorch": {
+      "source": "https://github.com/pytorch/executorch",
+      "commit": "abc5586",
+      "patch": "patches/executorch-abc5586-empty-data-path.diff",
+      "built": "cmake solo_runner (examples/models/muse-glimmer, Metal backend)",
+      "note": "muse-glimmer-30b 3-way capture only (2026-08-15); Meta's own example runner per fairness rule 10"
     },
     "cactus": {
       "source": "https://github.com/cactus-compute/cactus",
@@ -55,6 +71,13 @@
       "packages": { "litert-lm": "0.14.0", "litert-lm-api": "0.14.0", "litert-lm-builder": "0.14.0" },
       "note": "despite the name, doubles as the conversion env: litert-torch 0.9.1 (release — the version int4 conversion requires) + ai-edge-litert 2.1.6; the 83-package freeze in the spec is the observed truth"
     },
+    "mlx-vlm-muse": {
+      "purpose": "MLX arm of the muse-glimmer-30b 3-way (mlx_vlm.generate; mlx-lm 0.31.3 has no muse_glimmer)",
+      "venv": "session venv (not retained)",
+      "python": "3.14",
+      "spec": "tools/python-envs/mlx-vlm-muse.requirements.txt",
+      "packages": { "mlx-vlm": "0.6.13", "mlx": "0.32.0", "transformers": "5.15.0" }
+    },
     "litert-api-015-crossvalidation": {
       "purpose": "gsm8k_litert_pip_thinking.py — released 0.15.0 dylib reproduces the ctx4096 yardstick pair (89/92) per-question",
       "venv": ".venv-litert015 (repo root, git-ignored)",
@@ -68,6 +91,20 @@
       "file": "gemma-4-E2B-it.litertlm",
       "hf_revision": "9262660a1676eed6d0c477ab1a86344430854664",
       "note": "the June snapshot used unchanged across v0.13.1 and v0.15.0 rows; its template carries the enable_thinking branch"
+    },
+    "mlboydaisuke/Muse-Glimmer-30B-CoreAI": {
+      "file": "muse_glimmer_30b_decode_int4hu_block32_sym/",
+      "hf_revision": "dcda323073af4570eb178c2b645ff12616f258df",
+      "note": "self-made export (int4hu, 16.35 GB) — disclosure in results/raw/2026-08-15-muse-glimmer-30b-3way/ENV.md; export script public (john-rocky/coreai-model-zoo @ a11f0f8, branch muse-glimmer-30b) but authoring deps unpushed, so not yet third-party rebuildable"
+    },
+    "mlx-community/Muse-Glimmer-30B-4bit": {
+      "hf_revision": "3e7677d7a40d348a3daba263a2b1c0aa41910710",
+      "note": "community 4-bit, 18 GB (muse-glimmer 3-way MLX arm)"
+    },
+    "meta-models/Muse-Glimmer-30B-ExecuTorch-PTE": {
+      "file": "muse-glimmer-k-quant-17G-128K-text-solo-metal/muse-glimmer-k-quant-17G-128K-text-solo-metal.pte",
+      "hf_revision": "fc6fa93cdefeddc93abd7abf883e99279af7ea51",
+      "note": "Meta's official k-quant Metal artifact, 17.9 GB (muse-glimmer 3-way ExecuTorch arm)"
     }
   },
   "quality_instruments": {

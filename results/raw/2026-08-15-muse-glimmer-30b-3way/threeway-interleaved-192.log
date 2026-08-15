@@ -1,0 +1,23 @@
+protocol: 192 new tokens, greedy, batch 1, interleaved CA/ET/MLX, 45s cooldown between runs
+=== prompt 1
+  round 1
+    CA   Generation: 6969.2ms, 192 tokens, 27.5 tokens/sec
+    ET   Decode: 192 tokens in 7991.0 ms (24.0 tok/s)
+    MLX  Prompt: 77 tokens, 128.476 tokens-per-sec
+    MLX  Generation: 192 tokens, 27.180 tokens-per-sec
+  round 2
+    CA   Generation: 7074.8ms, 192 tokens, 27.1 tokens/sec
+    ET   Decode: 192 tokens in 8061.0 ms (23.8 tok/s)
+    MLX  Prompt: 77 tokens, 129.277 tokens-per-sec
+    MLX  Generation: 192 tokens, 27.378 tokens-per-sec
+=== prompt 2
+  round 1
+    CA   Generation: 6971.4ms, 192 tokens, 27.5 tokens/sec
+    ET   Decode: 192 tokens in 7965.0 ms (24.1 tok/s)
+    MLX  Prompt: 81 tokens, 136.034 tokens-per-sec
+    MLX  Generation: 192 tokens, 27.502 tokens-per-sec
+  round 2
+    CA   Generation: 6960.9ms, 192 tokens, 27.6 tokens/sec
+    ET   Decode: 192 tokens in 7981.0 ms (24.1 tok/s)
+    MLX  Prompt: 81 tokens, 135.767 tokens-per-sec
+    MLX  Generation: 192 tokens, 27.366 tokens-per-sec

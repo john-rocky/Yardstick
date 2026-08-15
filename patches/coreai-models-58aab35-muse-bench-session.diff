@@ -1,0 +1,49 @@
+diff --git a/swift/Sources/CoreAILanguageModels/Bundle/LanguageConfig.swift b/swift/Sources/CoreAILanguageModels/Bundle/LanguageConfig.swift
+index 71d5461..15ab366 100644
+--- a/swift/Sources/CoreAILanguageModels/Bundle/LanguageConfig.swift
++++ b/swift/Sources/CoreAILanguageModels/Bundle/LanguageConfig.swift
+@@ -126,7 +126,7 @@ public struct LanguageConfig: Codable, Sendable, Equatable {
+         // 3. Check added_tokens_decoder for turn-ending special tokens
+         //    (e.g. Gemma's <end_of_turn> ID 106, Qwen's <|im_end|>)
+         //    Only include tokens whose content matches known turn-ending patterns.
+-        let turnEndPatterns = ["end_of_turn", "im_end", "eot_id"]
++        let turnEndPatterns = ["end_of_turn", "im_end", "eot_id", "endoftext", "eot_token"]
+         if let addedTokens = json["added_tokens_decoder"] as? [String: Any] {
+             for (idString, value) in addedTokens {
+                 guard let dict = value as? [String: Any],
+@@ -141,6 +141,18 @@ public struct LanguageConfig: Codable, Sendable, Equatable {
+             }
+         }
+ 
++        // 4. Check for turn-ending tokens in in top level of config
++        for turnEndPattern in turnEndPatterns {
++            if let eotToken = json[turnEndPattern] as? String {
++                if let id = tokenizer.convertTokenToId(eotToken) {
++                    let id32 = Int32(id)
++                    if id32 != mainEos {
++                        result.insert(id32)
++                    }
++                }
++            }
++        }
++
+         return Array(result)
+     }
+ }
+diff --git a/swift/Sources/CoreAILanguageModels/LanguageModel/CoreAILanguageModel.swift b/swift/Sources/CoreAILanguageModels/LanguageModel/CoreAILanguageModel.swift
+index 3fd4ef2..0eeae31 100644
+--- a/swift/Sources/CoreAILanguageModels/LanguageModel/CoreAILanguageModel.swift
++++ b/swift/Sources/CoreAILanguageModels/LanguageModel/CoreAILanguageModel.swift
+@@ -48,7 +48,11 @@ public struct CoreAILanguageModel: LanguageModel {
+         if supportsToolCalling { caps.append(.toolCalling) }
+         if supportsReasoning { caps.append(.reasoning) }
+         if engine.supportsLogits { caps.append(.guidedGeneration) }
+-        return LanguageModelCapabilities(capabilities: caps)
++        // Xcode 27 beta 5 dropped the `capabilities:` label from this initializer.
++        // The prebuilt CLI tools still reference the old mangled symbol, which is
++        // why they die in dyld against the current OS seed — see the FM beta ABI
++        // churn note; rebuild after any seed bump.
++        return LanguageModelCapabilities(caps)
+     }
+ 
+     public var executorConfiguration: CoreAIExecutor.Configuration {

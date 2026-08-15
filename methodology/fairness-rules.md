@@ -71,3 +71,27 @@ Any of these can change measured throughput by 30%+. Hiding them lets a runtime 
 ## 10. Prefer the official runtime SDK
 
 When multiple integration paths exist (e.g., the runtime's own Swift package vs. a community wrapper), prefer the official one and note the version. Wrapper-induced overhead is a real concern but should be documented separately, not silently included.
+
+## 11. Interleave arms; never run one arm's block, then the next
+
+Run order is a hardware-state variable, and rule 9 (disclose hardware state) is not enough to
+neutralize it — disclosing thermal state does not stop order from deciding the result. A
+large model heats the GPU within seconds, and absolute decode tok/s on a Mac swings ~30% with
+thermal state, so block ordering measures the order, not the engines.
+
+Worked example (2026-08-15, Muse-Glimmer-30B on M4 Max —
+`results/raw/2026-08-15-muse-glimmer-30b-3way/`): a block-ordered first attempt had
+ExecuTorch decaying **23.5 → 17.4 tok/s inside its own block**, and Core AI — the block that
+went second, on the GPU the first block had heated — read **15.6–20.7 against its own true
+~27.4**. Both arms were wrong, in opposite directions, and the per-trial spread check catches
+only the arm whose spread is wide, not the one that is uniformly depressed.
+
+Therefore:
+
+- **Interleave arms per prompt** (A/B/…/A/B), never block per arm.
+- **Cool down between every run** (tens of seconds for a 30B-class model on a Mac; §2's
+  ≥100 s guard for warm campaigns).
+- **Publish every round**, so the reader can see the order effects that remain.
+- First-position cache effects are real too: the first run after another arm has pulled a
+  multi-GB model through the page cache can read far below true (measured: 16.2 vs 27.4).
+  Discard such a round only on the strength of the following rounds, and say so in the table.

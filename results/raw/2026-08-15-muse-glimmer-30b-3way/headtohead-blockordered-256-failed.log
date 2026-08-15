@@ -1,0 +1,21 @@
+=== ExecuTorch (Meta's own Metal build) ===
+--- prompt 1
+Prefill: 21 tokens in 1318.0 ms (15.9 tok/s)
+Decode: 256 tokens in 10904.0 ms (23.5 tok/s)
+--- prompt 2
+Prefill: 25 tokens in 175.0 ms (142.9 tok/s)
+Decode: 203 tokens in 11678.0 ms (17.4 tok/s)
+--- prompt 3
+Prefill: 17 tokens in 258.0 ms (65.9 tok/s)
+Decode: 1 tokens in 71.0 ms (14.1 tok/s)
+
+=== Core AI (this port) ===
+--- prompt 1
+Prompt:     823.6ms, 76 tokens, 92.3 tokens/sec
+Generation: 13967.5ms, 256 tokens, 18.3 tokens/sec
+--- prompt 2
+Prompt:     1193.7ms, 80 tokens, 67.0 tokens/sec
+Generation: 16370.5ms, 256 tokens, 15.6 tokens/sec
+--- prompt 3
+Prompt:     660.4ms, 72 tokens, 109.0 tokens/sec
+Generation: 12358.7ms, 256 tokens, 20.7 tokens/sec
