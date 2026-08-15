@@ -780,6 +780,18 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-15: FalconH1 1.5B-Deep - same driver/patch, deepest shape in the
+        // family (66 all-hybrid layers -> 264 state buffers).
+        ModelInfo(
+            id: "litert-local/falcon-deep-int8",
+            displayName: "Falcon-H1-1.5B-Deep-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1748,
+            hfRepoId: "litert-local/Falcon-H1-1.5B-Deep-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-14: Zamba2 shared-attention hybrid (32 mamba + 6 tied-transformer
         // positions with per-position LoRA) - first of its arch; fp32act declared for GPU.
         ModelInfo(
