@@ -1,12 +1,16 @@
 # Environment stamp — 2026-08-15 Muse-Glimmer-30B text decoder, Mac 3-way
 
-Core AI vs MLX vs ExecuTorch (Metal), MacBook Pro M4 Max. Summary + how-to-read: `README.md`
+Core AI vs MLX vs ExecuTorch (Metal), Mac Studio M4 Max. Summary + how-to-read: `README.md`
 in this directory. Pins are mirrored in `environment.lock.json` (capture
 "2026-08-15 muse-glimmer-30b 3-way").
 
 ## Hardware / OS / toolchain
 
-- Apple M4 Max (40-core GPU), 128 GB RAM
+- Mac Studio (Mac16,9), Apple M4 Max (40-core GPU), 128 GB RAM — chassis verified via
+  `system_profiler` (the session notes said "MacBook Pro"; that was wrong). All three arms
+  ran on this one machine, so the chassis does not differentiate the table; it matters only
+  against figures measured elsewhere (e.g. Meta's published numbers are from a MacBook —
+  same chip bin, different sustained cooling — and are deliberately not carried here).
 - macOS 27.0 (26A5406e) — verified via `sw_vers` on the capture day
 - Toolchain as observed on the capture day: Xcode 26.1.1 (17B100), Apple Swift 6.2.1
   (swift-driver 1.127.14.1), the only Xcode installed. The session notes that forced the
