@@ -57,3 +57,48 @@ prompt 3 despite `--ignore_eos=true` (runner behaviour; not counted as a win for
 ```bash
 ./reproduce mac muse-glimmer-30b-3way          # prereq check + pinned command
 ```
+
+## Quality — GSM8K, same 100 questions (added 2026-08-17)
+
+Greedy, scored by [`scripts/parity_gsm8k.py`](../../../scripts/parity_gsm8k.py) — **that file
+was not modified.** The harness here imports its question set, CoT suffix, extractor and
+scoring, and adds the two arms it lacks: ExecuTorch through Meta's own `solo_runner`, and MLX
+through `mlx_vlm` (`mlx_lm` raises `Model type muse_glimmer not supported`).
+Harness: [`gsm8k-3way-harness.py`](gsm8k-3way-harness.py) ·
+raw: [`gsm8k-100q-twopass.log`](gsm8k-100q-twopass.log) ·
+per-question: [`gsm8k-100q-twopass.json`](gsm8k-100q-twopass.json).
+
+| arm | weights | GSM8K/100 | rescued | still capped | median gen tokens |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **Core AI** `int4hu` | 16.35 GB | **98** | 32 | 3 | 532 |
+| **ExecuTorch** `k-quant-17G` | 17.9 GB | **97** | 14 | 1 | 326 |
+| **MLX** 4-bit | 18 GB | **95** | 26 | 2 | 453 |
+
+**Reading:** three questions apart is not resolvable at n=100. This says "no arm is
+meaningfully worse", not "Core AI wins". Its value is that the speed table above compares
+three different weights and Core AI's is the smallest — the obvious objection is that some of
+the speed is just fewer bytes, and this is the measurement that answers it.
+
+### Two-pass budget — a fairness rule this result depends on
+
+`llm-runner`'s wall time on this bundle is `5 s + 0.037 × max_tokens`, **independent of tokens
+actually generated**: it steps to the budget after the stop token halts output. ExecuTorch
+does not do this. So a single budget wide enough for the longest answer taxes every question
+on one arm only.
+
+Pass 1 ran at 700, pass 2 re-ran only the questions that hit it, at 2048. **This changes the
+result, not just the runtime:** Core AI scores **87** at a flat 700 and **98** after the
+un-truncated re-run. A truncated answer is not blank — `extract()` falls back to "the last
+number in the text", so it scores a number lifted from mid-reasoning, usually wrong and
+occasionally right by accident.
+
+Truncation rates differ per arm (32 / 26 / 14), so one fixed budget penalises whichever arm
+reasons longer, and the quality column silently becomes a verbosity column.
+
+**Residue:** 3 / 1 / 2 questions (Core AI / ExecuTorch / MLX) still hit 2048 and are scored
+from truncated output. Core AI and MLX also emit visibly longer answers than ExecuTorch for
+the same questions — unexplained, and not visible in the score.
+
+**Not measured:** speculative decoding on any arm. Core AI has an n-gram result (36.7 tok/s,
+no drafter) but mlx-vlm ships `--draft-kind {dflash,eagle3,mtp}` and ExecuTorch ships DFlash,
+so a speculative row needs all three or none.
