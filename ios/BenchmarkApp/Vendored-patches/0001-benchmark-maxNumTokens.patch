@@ -1,33 +1,25 @@
+diff --git a/swift/Benchmark.swift b/swift/Benchmark.swift
+index a08eeca..b417eee 100644
 --- a/swift/Benchmark.swift
 +++ b/swift/Benchmark.swift
-@@ -49,6 +49,13 @@
- ///   - backend: The backend to use for the engine.
- ///   - prefillTokens: The number of tokens to prefill.
- ///   - decodeTokens: The number of tokens to decode.
-+///   - maxNumTokens: The engine's context (KV) budget. Defaults to the stock
-+///     `max(prefill, decode) + 32`. **LOCAL PATCH** (yardstick, 2026-07-27) — not upstream.
-+///     See `ios/BenchmarkApp/Vendored-patches/`. The context length is a benchmark variable
-+///     the LiteRT team pins independently of prefill/decode (2048 for Gemma-4), and KV
-+///     pre-allocation scales with it, so memory is not comparable without setting it; the
-+///     stock signature ties it to prefill and gives 1056 at 1024x256. `initializeForBenchmark`
-+///     is module-internal, so this cannot be expressed from outside the package.
- ///   - cacheDir: The directory for placing cache files. Set to ":nocache" to disable caching.
- /// - Returns: The benchmark info.
- /// - Throws: A `LiteRTLMError` if the engine fails to initialize or generate benchmark info.
-@@ -57,6 +64,7 @@
-   backend: Backend,
+@@ -62,6 +62,11 @@ public func benchmark(
+   audioBackend: Backend? = nil,
    prefillTokens: Int = 256,
    decodeTokens: Int = 256,
++  // LOCAL PATCH (yardstick; Vendored-patches/0001-benchmark-maxNumTokens.patch
++  // re-applied to v0.16.0): the context budget is a benchmark variable the
++  // LiteRT team pins independently of prefill/decode (2048 for Gemma-4); the
++  // stock signature derives it and cannot express the protocol.
 +  maxNumTokens: Int? = nil,
-   cacheDir: String? = nil
+   cacheDir: String? = nil,
+   prompt: String = "How are you"
  ) async throws -> BenchmarkInfo {
-   ExperimentalFlags.optIntoExperimentalAPIs()
-@@ -71,7 +79,7 @@
-   let engineConfig = try EngineConfig(
-     modelPath: modelPath,
+@@ -79,7 +84,7 @@ public func benchmark(
      backend: backend,
--    maxNumTokens: max(prefillTokens, decodeTokens) + 32,
-+    maxNumTokens: maxNumTokens ?? (max(prefillTokens, decodeTokens) + 32),
+     visionBackend: visionBackend,
+     audioBackend: audioBackend,
+-    maxNumTokens: prefillTokens + decodeTokens + 32,
++    maxNumTokens: maxNumTokens ?? (prefillTokens + decodeTokens + 32),
      cacheDir: cacheDir
    )
    let engine = Engine(engineConfig: engineConfig)

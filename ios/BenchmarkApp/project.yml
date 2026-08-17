@@ -28,11 +28,15 @@ packages:
   mlx-swift:
     url: https://github.com/ml-explore/mlx-swift
     # Transitive pin, same reason as mlx-swift-lm above but one level deeper:
-    # mlx-swift-lm declares mlx-swift with a `from:` range, and on 2026-08-11
-    # resolution floated to 0.31.6, whose Package.swift needs Swift tools 6.3
-    # (installed toolchain: 6.2.1) — every xcodebuild/SPM build died in
-    # dependency resolution. 0.31.4 is the newest tools-5.12 release.
-    exactVersion: 0.31.4
+    # mlx-swift-lm declares mlx-swift with a `from:` range. 0.31.6 is the
+    # version the 2026-08-11 builds actually resolved (workspace state), and
+    # mlx-swift-lm@60bd0d78 does not compile below 0.31.5 (maskFill /
+    # greatestFiniteMagnitudeArray). NOTE the toolchain coupling: 0.31.5+
+    # manifests need Swift tools 6.3, i.e. Xcode 27 beta — Xcode 26.1.1
+    # (Swift 6.2.1) cannot even resolve this graph. Build with
+    # DEVELOPER_DIR=/Applications/Xcode-27*.app/Contents/Developer if
+    # xcode-select points at a stable Xcode.
+    exactVersion: 0.31.6
   swift-huggingface:
     url: https://github.com/huggingface/swift-huggingface
     from: "0.8.1"

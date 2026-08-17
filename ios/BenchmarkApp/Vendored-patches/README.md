@@ -9,8 +9,9 @@ cd ios/BenchmarkApp/Vendored/LiteRT-LM
 patch -p1 < ../../Vendored-patches/0001-benchmark-maxNumTokens.patch
 ```
 
-Baseline: LiteRT-LM **v0.13.0** — the version `Vendored/LiteRT-LM/Package.swift` pins its
-`CLiteRTLM.xcframework` binary target to. Each patch is a diff against the same tag's
+Baseline: LiteRT-LM **v0.16.0** (regenerated 2026-08-17 from the v0.16.0 re-vendor; the
+original patch was against v0.13.0 and no longer applied — the upstream signature gained
+visionBackend/audioBackend/prompt parameters). Each patch is a diff against the same tag's
 `swift/` sources on GitHub, so `patch` applying cleanly is itself the check that the vendored
 tree is that version and otherwise unmodified.
 
