@@ -80,6 +80,19 @@ def ensure_model(model_id, file_hint, runtime, serial):
     file the iOS catalog pins (ModelCatalog primaryFile) — picking one by
     sort order would silently measure a different recipe.
     """
+    # file= may be a LOCAL PATH (side-loaded artifact — e.g. a conversion that
+    # is not published on HF, like the litert-local LFM/MiniCPM bundles): push
+    # it directly, no download. Everything else resolves through the HF hub.
+    if file_hint and os.path.exists(os.path.expanduser(file_hint)):
+        local = os.path.expanduser(file_hint)
+        dev_path = f"{DEV_DIR}/models/{model_id.replace('/', '_')}_{os.path.basename(local)}"
+        have = subprocess.run(["adb"] + (["-s", serial] if serial else []) +
+                              ["shell", f"ls {dev_path}"], capture_output=True, text=True)
+        if have.returncode != 0:
+            adb(["shell", "mkdir", "-p", f"{DEV_DIR}/models"], serial)
+            print(f"pushing local {os.path.basename(local)} …", file=sys.stderr)
+            adb(["push", local, dev_path], serial, timeout=1800)
+        return dev_path, local
     from huggingface_hub import hf_hub_download, list_repo_files
     if file_hint:
         fname = file_hint
@@ -312,6 +325,7 @@ def main():
 ANDROID_QUANT_LABELS = {
     "qwen3_0_6b_mixed_int4.litertlm": "INT4 (mixed, blockwise gs32)",
     "gemma-4-E2B-it.litertlm": "wNa8o8 (int2/int4/int8 + int8 activations, QAT)",
+    "DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm": "INT8",
 }
 
 
