@@ -21,29 +21,31 @@ evaluating extending it into continuous, automated competitive benchmarking:
 
 ## Rules that produce wrong numbers when broken
 
-1. **State the quantization for every arm, in the table.** Each arm runs at *its own best
+Code cites these by slug (methodology/fairness-rules.md has a different, 11-rule numbering; the slug table there maps both).
+
+1. **State the quantization for every arm, in the table.** (slug: `quant-per-arm-rule`) Each arm runs at *its own best
    available* build; that is a fair and useful comparison — but only if the recipe is visible.
    Audited 2026-07-17: the published Gemma-4-E2B table crowned LiteRT 🏆 while **MLX ran PTQ and
    llama.cpp ran a third-party PTQ**, and LiteRT ran its best. The trophy was measuring who had
    the better checkpoint. Google ships an official QAT build for every one of these ecosystems —
    use it. PTQ→QAT alone is worth ~9 points of GSM8K on MLX (78 → 87).
-2. **"int4" is not a spec.** Google publishes four QAT checkpoints for Gemma-4. LiteRT's
+2. **"int4" is not a spec.** (slug: `quant-label-rule`) Google publishes four QAT checkpoints for Gemma-4. LiteRT's
    `.litertlm` is the **wNa8o8 mobile schema** (2-bit decode layers, optimized KV cache, static
    int8 activations) — a co-designed weights+runtime package, not a bit width. It does **not
    transfer**: the same weights score 85% on LiteRT and 48% on any fp16-activation runtime
    (verified — two independent implementations return identical wrong answers). Never label it
    "INT4 (QAT)"; never rank it against uniform-int4 arms as if the delta were runtime speed.
    Details: `coreai-models-community/knowledge/gemma4-wna8o8-requires-int8-activations.md`.
-3. **Never mix modes or budgets across arms.** `max_tokens` means a *generation budget* for
+3. **Never mix modes or budgets across arms.** (slug: `budget-mode-rule`) `max_tokens` means a *generation budget* for
    MLX/Core AI but *total context* for `litert-mac-verify` — and undersizing that one **corrupts**
    output instead of truncating. Chat templates differ on thinking-mode defaults (HF renders
    thinking ON; swift-transformers OFF). Probe one item through every arm and compare prompt/output
    token counts before trusting a run. Checklist:
    `coreai-models-community/knowledge/cross-runtime-quality-benchmarking.md`.
-4. **Decode trials must agree within a few percent.** GPU contention roughly halves decode and
+4. **Decode trials must agree within a few percent.** (slug: `spread-rule`) GPU contention roughly halves decode and
    the only tell is per-trial spread (measured: 72.7/117.9/72.4 contended vs 171.3/171.6/171.0
    idle). Quote the spread; if it's wide, throw the number out.
-5. **A number without a stored report is not a measurement.** `results/raw/*.jsonl` already
+5. **A number without a stored report is not a measurement.** (slug: `stored-report-rule`) `results/raw/*.jsonl` already
    records `hfRepoId` + `quantization` per run — keep it that way, and surface them in tables.
 
 ## Build

@@ -5,9 +5,9 @@ The v0.13.1->v0.15.0 re-measure was done by hand; this is the reusable half of i
 given two capture sets, join comparable cells and report deltas WITH the repo's
 fairness rules applied as code, not discipline:
 
-  rule 3   a budget/mode mismatch (max_tokens, thinking) is NOT a comparison —
+  budget-mode-rule   a budget/mode mismatch (max_tokens, thinking) is NOT a comparison —
            such pairs are marked NOT-COMPARABLE, never scored.
-  rule 4   per-side trial spread is quoted; spread beyond --spread-limit makes the
+  spread-rule        per-side trial spread is quoted; spread beyond --spread-limit makes the
            cell UNRELIABLE (throw the number out, don't average it away).
   session  device cells captured on different days are INFO-ONLY: same binary,
            same pins measured 126-133 tok/s in June and 159-180 in July
@@ -74,12 +74,12 @@ def compare_quality_pair(base, cand, threshold_pts):
     """One verdict line for a (baseline row, candidate row) pair from quality.csv."""
     problems, cautions = [], []
     if base["max_tokens"] != cand["max_tokens"]:
-        problems.append(f"max_tokens {base['max_tokens']} vs {cand['max_tokens']} (rule 3)")
+        problems.append(f"max_tokens {base['max_tokens']} vs {cand['max_tokens']} (budget-mode-rule)")
     # thinking blocks only when BOTH sides recorded it and they differ; pre-v1 reports
     # never recorded it (the tag suffix carried the mode), so absence is noted, not fatal
     bt, ct = base.get("thinking") or "", cand.get("thinking") or ""
     if bt and ct and bt != ct:
-        problems.append(f"thinking {bt} vs {ct} (rule 3)")
+        problems.append(f"thinking {bt} vs {ct} (budget-mode-rule)")
     elif bt != ct:
         cautions.append("thinking unrecorded on one side (pre-v1 report)")
     if problems:
@@ -171,10 +171,10 @@ def select(rows, sel):
 
 
 # quantization is deliberately NOT in the join key: it is a prose label and this repo
-# has corrected it in place ("INT4 (QAT)" -> "wNa8o8 (...)" for the SAME artifact, rule 2
+# has corrected it in place ("INT4 (QAT)" -> "wNa8o8 (...)" for the SAME artifact, quant-label-rule
 # audit); model_id carries the recipe when it genuinely differs. A label mismatch is
 # surfaced on the output line instead. cold_run IS in the key: cold and warm are
-# different published cells, and pooling them inflates spread past rule 4.
+# different published cells, and pooling them inflates spread past the spread-rule.
 GROUP = ("device", "runtime", "model_id", "task", "cold_run")
 
 
@@ -239,7 +239,7 @@ def run_device(args):
             b_dates = {d for _, d in b_cells[key] if d}
             c_dates = {d for _, d in c_cells[key] if d}
             if bs > args.spread_limit or cs > args.spread_limit:
-                # rule 4: contention halves decode and the only tell is spread
+                # spread-rule: contention halves decode and the only tell is spread
                 print(f"UNRELIABLE       {label}  {note}  [spread > {args.spread_limit:.0f}% — throw out]")
                 continue
             if b_dates and c_dates and b_dates.isdisjoint(c_dates):
@@ -277,7 +277,7 @@ def main():
     ap.add_argument("--threshold-pct", type=float, default=5.0,
                     help="device: median delta (%%) treated as real")
     ap.add_argument("--spread-limit", type=float, default=5.0,
-                    help="device: per-side trial spread (%%) beyond which a cell is UNRELIABLE (rule 4)")
+                    help="device: per-side trial spread (%%) beyond which a cell is UNRELIABLE (spread-rule)")
     ap.add_argument("--no-rebuild", action="store_true",
                     help="skip regenerating results/summary/ first")
     args = ap.parse_args()

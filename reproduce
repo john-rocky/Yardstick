@@ -59,7 +59,7 @@ TABLES = {
         "notes": "Other arms of the same table (mlx / coreai / cactus / bf16) run through the same "
                  "scripts/parity_gsm8k.py protocol but still need external checkouts — see "
                  "environment.lock.json external_instruments_not_yet_in_repo. Rule: --max-tokens "
-                 "is TOTAL context for this arm (fairness-rules rule 3).",
+                 "is TOTAL context for this arm (budget-mode-rule; slug table in fairness-rules.md).",
     },
     ("mac", "e2b-protocol"): {
         "desc": "Gemma-4-E2B Mac speed/energy table under the agreed protocol",
@@ -118,7 +118,7 @@ TABLES = {
     ("mac", "muse-glimmer-30b-3way"): {
         "desc": "Muse-Glimmer-30B text decoder — Core AI vs MLX vs ExecuTorch, M4 Max, interleaved",
         "published": "raw + summary: results/raw/2026-08-15-muse-glimmer-30b-3way/",
-        "rows": "decode tok/s, 192 greedy tokens, 2 prompts x 2 rounds per arm (fairness rule 11)",
+        "rows": "decode tok/s, 192 greedy tokens, 2 prompts x 2 rounds per arm (fairness §11 interleave-arms)",
         "prereqs": [
             ("driver", "scripts/bench_muse_glimmer_3way_mac.sh"),
             ("Core AI llm-runner ($CA_RUNNER; fork build, NOT the pinned 0.2.0 arm — see capture ENV.md)",

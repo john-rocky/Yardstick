@@ -138,7 +138,7 @@ def main():
             "`schema/result.v1.json`.\n\n"
             "Release-regression diffing over this layer: `scripts/regression_diff.py`\n"
             "(quality joins on tag; device cells join on device/runtime/model/task/cold-warm\n"
-            "with rule-3/rule-4/cross-session guardrails). The capture+diff loop is\n"
+            "with budget-mode-rule/spread-rule/cross-session guardrails). The capture+diff loop is\n"
             "`./reproduce <platform> <table> --regress` (continuous-bench condition 3).\n"
         )
     print(f"wrote {qp} ({qn} rows)")
