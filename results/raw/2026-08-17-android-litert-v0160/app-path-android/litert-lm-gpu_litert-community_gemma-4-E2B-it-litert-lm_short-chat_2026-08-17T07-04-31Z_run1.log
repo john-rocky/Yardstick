@@ -1,0 +1,209 @@
+INFO: Loaded OpenCL library with dlopen.
+VmRSS:	 1312424 kB
+VmRSS:	 1691540 kB
+VmRSS:	 1691540 kB
+VmRSS:	 1691540 kB
+VmRSS:	 1691540 kB
+VmRSS:	 1691540 kB
+VmRSS:	 1691540 kB
+VmRSS:	  922448 kB
+VmRSS:	  591820 kB
+VmRSS:	  605744 kB
+VmRSS:	  619668 kB
+VmRSS:	  629208 kB
+VmRSS:	  643136 kB
+VmRSS:	  657304 kB
+VmRSS:	  666576 kB
+VmRSS:	  680456 kB
+VmRSS:	  690044 kB
+VmRSS:	  703920 kB
+VmRSS:	  713180 kB
+VmRSS:	  727340 kB
+VmRSS:	  736640 kB
+VmRSS:	  711960 kB
+VmRSS:	  760156 kB
+VmRSS:	  769444 kB
+VmRSS:	  783448 kB
+VmRSS:	  792748 kB
+VmRSS:	  806904 kB
+VmRSS:	  816120 kB
+VmRSS:	  830148 kB
+VmRSS:	  822048 kB
+VmRSS:	  853088 kB
+VmRSS:	  827020 kB
+VmRSS:	  869480 kB
+VmRSS:	  941504 kB
+VmRSS:	 1010680 kB
+VmRSS:	 1086556 kB
+VmRSS:	 1121756 kB
+VmRSS:	 1147072 kB
+VmRSS:	 1157436 kB
+VmRSS:	 1160788 kB
+VmRSS:	 1169024 kB
+VmRSS:	 1084368 kB
+VmRSS:	 1242272 kB
+VmRSS:	 1297804 kB
+VmRSS:	 1910688 kB
+VmRSS:	 1924296 kB
+VmRSS:	 1968288 kB
+VmRSS:	 2012824 kB
+VmRSS:	 2054392 kB
+input_prompt: Explain what on-device AI means in simple terms.
+VmRSS:	 2291156 kB
+VmRSS:	 2319064 kB
+Imagine a computer or aVmRSS:	 2324660 kB
+ device (like your phoneVmRSS:	 2327284 kB
+, a smart watchVmRSS:	 2330436 kB
+, or a camera)VmRSS:	 2332052 kB
+ that has a **smallVmRSS:	 2334040 kB
+, smart brain builtVmRSS:	 2337176 kB
+ right inside it**, insteadVmRSS:	 2338668 kB
+ of needing to sendVmRSS:	 2341240 kB
+ all the information to aVmRSS:	 2343164 kB
+ giant, faraway computer (VmRSS:	 2346164 kB
+like a cloud serverVmRSS:	 2347100 kB
+) to do the thinkingVmRSS:	 2348152 kB
+.
+
+**On-VmRSS:	 2347776 kB
+device AI simply means thatVmRSS:	 2347776 kB
+ the Artificial IntelligenceVmRSS:	 2353268 kB
+ (the smart thinking partVmRSS:	 2353028 kB
+) happens directly on theVmRSS:	 2354608 kB
+ device you are usingVmRSS:	 2356028 kB
+.**
+
+Here’sVmRSS:	 2358464 kB
+ a breakdown using simpleVmRSS:	 2361296 kB
+ analogies:
+
+###VmRSS:	 2363084 kB
+ 1. The OldVmRSS:	 2363928 kB
+ Way (Cloud AI)VmRSS:	 2367184 kB
+
+
+* **AnalogyVmRSS:	 2369348 kB
+:** Asking a librarianVmRSS:	 2375412 kB
+ (the Cloud ServerVmRSS:	 2381096 kB
+) to answer every singleVmRSS:	 2380272 kB
+ question in the world.VmRSS:	 2381928 kB
+
+* **How itVmRSS:	 2381984 kB
+ works:** You take aVmRSS:	 2382108 kB
+ picture of a cat,VmRSS:	 2381876 kB
+ send that picture overVmRSS:	 2382392 kB
+ the internet to a massiveVmRSS:	 2384112 kB
+ data center, the serverVmRSS:	 2383648 kB
+ runs the AI to tellVmRSS:	 2384436 kB
+ you, "That isVmRSS:	 2384436 kB
+ a cat," and sendsVmRSS:	 2384208 kB
+ the answer back toVmRSS:	 2387288 kB
+ you.
+* **VmRSS:	 2386776 kB
+Pros:** The server isVmRSS:	 2388820 kB
+ super powerful.
+*VmRSS:	 2389024 kB
+ **Cons:** It takesVmRSS:	 2389076 kB
+ time (lag),VmRSS:	 2391868 kB
+ requires a stable internetVmRSS:	 2392936 kB
+ connection, and you haveVmRSS:	 2393000 kB
+ to worry about privacy (VmRSS:	 2396904 kB
+your data is traveling).VmRSS:	 2398288 kB
+
+
+### 2VmRSS:	 2399128 kB
+. The New Way (VmRSS:	 2398600 kB
+On-Device AI)VmRSS:	 2398340 kB
+
+
+* **AnalVmRSS:	 2398600 kB
+ogy:** Having a veryVmRSS:	 2400760 kB
+ smart assistant (the AIVmRSS:	 2400504 kB
+) built directly intoVmRSS:	 2401292 kB
+ your pocket or your watchVmRSS:	 2403576 kB
+ that can understand things instantlyVmRSS:	 2404204 kB
+, even when you areVmRSS:	 2403828 kB
+ offline.
+*VmRSS:	 2406388 kB
+ **How it works:**VmRSS:	 2406128 kB
+ The AI model isVmRSS:	 2406912 kB
+ shrunk down and optimized toVmRSS:	 2408832 kB
+ run directly on theVmRSS:	 2409116 kB
+ device. When you takeVmRSS:	 2409116 kB
+ a picture of a catVmRSS:	 2409116 kB
+, the AI analyzes theVmRSS:	 2410492 kB
+ image *immediately*VmRSS:	 2413056 kB
+ on your phone, andVmRSS:	 2413056 kB
+ it tells you, "VmRSS:	 2413080 kB
+That is a cat,"VmRSS:	 2412820 kB
+ without ever needing toVmRSS:	 2413636 kB
+ send the picture to theVmRSS:	 2413640 kB
+ internet.
+* **VmRSS:	 2412852 kB
+Pros:**
+    *VmRSS:	 2412856 kB
+ **Speed:** ItVmRSS:	 2413644 kB
+'s instant.
+VmRSS:	 2414560 kB
+    * **PrivacyVmRSS:	 2417880 kB
+:** Your personal data staysVmRSS:	 2418496 kB
+ on your device.
+VmRSS:	 2418000 kB
+    * **OfflineVmRSS:	 2421332 kB
+ Use:** It works evenVmRSS:	 2421156 kB
+ without Wi-Fi orVmRSS:	 2420852 kB
+ data.
+*VmRSS:	 2421344 kB
+ **Cons:** The AIVmRSS:	 2421380 kB
+ might be slightly less powerfulVmRSS:	 2420916 kB
+ than the absolute biggest modelsVmRSS:	 2420980 kB
+ available on the internet.VmRSS:	 2420980 kB
+
+
+### Simple Summary
+
+VmRSS:	 2423140 kB
+**On-device AIVmRSS:	 2422880 kB
+ is about moving theVmRSS:	 2423340 kB
+ "brain" of theVmRSS:	 2423140 kB
+ smart technology from the internetVmRSS:	 2423140 kB
+ to the device itself.**VmRSS:	 2423140 kB
+
+
+It makes AI:VmRSS:	 2422880 kB
+
+* **FasterVmRSS:	 2426204 kB
+**
+* **More PrivateVmRSS:	 2425184 kB
+**
+* **More ReliableVmRSS:	 2425700 kB
+ (works offline)**VmRSS:	 2432084 kB
+
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.23 ms
+    - Init Executor: 29223.81 ms
+    - Init LLM metadata: 0.38 ms
+    - Init Model assets: 0.05 ms
+    - Init Tokenizer: 192.61 ms
+    - Init Total: 29224.61 ms
+--------------------------------------------------
+  Time to first token: 0.51 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 20 tokens in 390.21635ms duration.
+      Prefill Speed: 51.25 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 458 tokens in 55.907867784s duration.
+      Decode Speed: 8.19 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 20.874us, 1 tokens
+    Turn 2: 374.593us, 19 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+VmRSS:	 1128016 kB
+EXIT_CODE=0

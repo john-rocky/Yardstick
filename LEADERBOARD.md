@@ -8,11 +8,11 @@ Regenerate: `python3 scripts/build_summary.py && python3 scripts/render_leaderbo
 
 <!-- BEGIN GENERATED: scripts/render_leaderboard.py -->
 
-Generated from `results/summary/*.csv` (latest capture 2026-08-04) by `scripts/render_leaderboard.py` — do not edit inside the markers.
+Generated from `results/summary/*.csv` (latest capture 2026-08-17) by `scripts/render_leaderboard.py` — do not edit inside the markers.
 
 Headline task: **short-chat**, warm = median of same-session warm runs (cold-warm-split); other tasks and full history: RESULTS.md. Rows sort by warm decode; the recipe (quantization, engine build) is part of every row — a faster number under a different recipe is a different deployment profile, not a win.
 
-† = quantization label carries the audited in-place correction (Gemma-4 `.litertlm` is the wNa8o8 mobile schema; early rows recorded "INT4 (QAT)" — quant-label-rule).
+† = quantization label carries the audited in-place correction (Gemma-4 `.litertlm` is the wNa8o8 mobile schema; early rows recorded "INT4 (QAT)" — quant-label-rule). mem MB = phys_footprint on Apple rows, RSS on Android rows (no footprint equivalent; methodology/android.md).
 
 ## mac
 
@@ -217,5 +217,25 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 - `core-ai core-ai/phi-4-mini-gpu short-chat` — partial-rotary-unsupported
 - `core-ai core-ai/qwen3-1.7b-ane short-chat` — invoke-fail-bd71203
+
+## android
+
+### Pixel 8a
+
+**Qwen 3 0.6B**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| llama.cpp | `unsloth/Qwen3-0.6B-GGUF` | Q4_K_M | b8999 | — | 29.7 | 221.4 | — | 1253.5 | — | 2026-08-17 |
+| litert-lm-gpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | — | 15.2 | 41.5 | 550.0 | 764.6 | — | 2026-08-17 |
+| litert-lm-cpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | — | 14.3 | 9.8 | 2110.0 | 1084.4 | — | 2026-08-17 |
+
+<details><summary>single-arm cells (no cross-runtime comparison)</summary>
+
+| model | runtime | artifact | quant | engine | warm tok/s | cold tok/s | captured |
+|---|---|---|---|---|---|---|---|
+| Gemma 4 E2B | litert-lm-gpu | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | — | 8.4 | 2026-08-17 |
+
+</details>
 
 <!-- END GENERATED: scripts/render_leaderboard.py -->

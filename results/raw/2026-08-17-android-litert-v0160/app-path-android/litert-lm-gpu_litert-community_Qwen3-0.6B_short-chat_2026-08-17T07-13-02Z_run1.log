@@ -1,0 +1,109 @@
+INFO: Loaded OpenCL library with dlopen.
+VmRSS:	  771408 kB
+VmRSS:	  771408 kB
+VmRSS:	  771408 kB
+VmRSS:	  495884 kB
+VmRSS:	  562856 kB
+VmRSS:	  628104 kB
+VmRSS:	  693272 kB
+VmRSS:	  750472 kB
+VmRSS:	  933380 kB
+VmRSS:	 1109400 kB
+VmRSS:	 1253776 kB
+VmRSS:	 1098676 kB
+input_prompt: Explain what on-device AI means in simple terms.
+VmRSS:	 1346908 kB
+<think>
+VmRSS:	 1353652 kB
+Okay, so the user wants a simple explanationVmRSS:	 1353400 kB
+ of on-device AI. Let me startVmRSS:	 1353660 kB
+ by recalling what on-device AI is. FromVmRSS:	 1353652 kB
+ what I remember, it's a type ofVmRSS:	 1353660 kB
+ AI that runs on a device, not inVmRSS:	 1353660 kB
+ the cloud. But I might be mixing itVmRSS:	 1353400 kB
+ up with something else. Wait, maybe itVmRSS:	 1353400 kB
+'s similar to neural networks, but withVmRSS:	 1353660 kB
+ a twist.
+
+On-device AI, I thinkVmRSS:	 1353400 kB
+, means that the AI model is trainedVmRSS:	 1353924 kB
+ on the device's own data, not storedVmRSS:	 1353396 kB
+ in the cloud. So, it's likeVmRSS:	 1353400 kB
+ a model that's built on the device itselfVmRSS:	 1353400 kB
+. For example, if I have aVmRSS:	 1353860 kB
+ smartphone with a neural network, the AI on-deviceVmRSS:	 1353400 kB
+ would use the data I've already seen onVmRSS:	 1353664 kB
+ my device, not the data stored in myVmRSS:	 1353404 kB
+ phone. That makes sense because it's localVmRSS:	 1353404 kB
+ processing.
+
+But wait, how does that workVmRSS:	 1353404 kB
+? If it's local, then theVmRSS:	 1353928 kB
+ model is trained on the device's data.VmRSS:	 1353916 kB
+ So, for instance, if I use aVmRSS:	 1353668 kB
+ neural network on my phone, the modelVmRSS:	 1353932 kB
+ is built on my device's data, notVmRSS:	 1353668 kB
+ the cloud. That's a key point.VmRSS:	 1353664 kB
+ So, on-device AI is about using localVmRSS:	 1353404 kB
+ data to train models, not cloud dataVmRSS:	 1353724 kB
+. That's the basic idea.
+
+I shouldVmRSS:	 1353200 kB
+ check if there's a common misconception here.VmRSS:	 1353460 kB
+ Maybe some people confuse it with cloud-basedVmRSS:	 1353200 kB
+ models. But no, on-device AI isVmRSS:	 1353200 kB
+ about local data processing. So, the explanationVmRSS:	 1353200 kB
+ should be straightforward: using device data toVmRSS:	 1353200 kB
+ train models locally, not cloud.
+</think>
+
+VmRSS:	 1353460 kB
+On-device AI refers to a type of AIVmRSS:	 1353460 kB
+ (artificial intelligence) that operates locally onVmRSS:	 1353460 kB
+ a device, rather than being stored inVmRSS:	 1353720 kB
+ the cloud. Here's a simple breakdown:
+
+VmRSS:	 1353196 kB
+- **Local Processing**: The AI modelVmRSS:	 1353500 kB
+ is trained using data already available on the deviceVmRSS:	 1353724 kB
+, not the data stored in the cloud.
+VmRSS:	 1353724 kB
+- **No Cloud Dependency**: It doesn'tVmRSS:	 1353708 kB
+ rely on external cloud services or APIs, makingVmRSS:	 1353720 kB
+ it more privacy-friendly and efficient for real-timeVmRSS:	 1353456 kB
+ applications.
+
+For example, if you have a smartphoneVmRSS:	 1353200 kB
+ with a neural network, the AI onVmRSS:	 1353460 kB
+-device would use the data you've already encounteredVmRSS:	 1353200 kB
+ on your device, not the data stored inVmRSS:	 1353460 kB
+ your phone, which is typically cloud-based.VmRSS:	 1353200 kB
+ This approach improves performance and privacy.
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.03 ms
+    - Init Executor: 7750.47 ms
+    - Init LLM metadata: 0.04 ms
+    - Init Model assets: 0.04 ms
+    - Init Tokenizer: 580.87 ms
+    - Init Total: 7750.74 ms
+--------------------------------------------------
+  Time to first token: 0.55 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 20 tokens in 482.029093ms duration.
+      Prefill Speed: 41.49 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 441 tokens in 29.040112848s duration.
+      Decode Speed: 15.19 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 121.378us, 1 tokens
+    Turn 2: 231.73us, 19 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+VmRSS:	 1331936 kB
+EXIT_CODE=0

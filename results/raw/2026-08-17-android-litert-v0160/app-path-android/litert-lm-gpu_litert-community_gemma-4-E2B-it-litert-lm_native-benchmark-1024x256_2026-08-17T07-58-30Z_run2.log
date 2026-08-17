@@ -1,0 +1,288 @@
+VmRSS:	 1489116 kB
+VmRSS:	 1675236 kB
+VmRSS:	 1675236 kB
+VmRSS:	 1675236 kB
+VmRSS:	 1675236 kB
+VmRSS:	 1675236 kB
+VmRSS:	 1675236 kB
+VmRSS:	  594416 kB
+VmRSS:	  580036 kB
+VmRSS:	  593804 kB
+VmRSS:	  602988 kB
+VmRSS:	  617004 kB
+VmRSS:	  614680 kB
+VmRSS:	  589768 kB
+VmRSS:	  654024 kB
+VmRSS:	  667868 kB
+VmRSS:	  677316 kB
+VmRSS:	  691072 kB
+VmRSS:	  664392 kB
+VmRSS:	  714368 kB
+VmRSS:	  723552 kB
+VmRSS:	  737308 kB
+VmRSS:	  732640 kB
+VmRSS:	  760536 kB
+VmRSS:	  774384 kB
+VmRSS:	  783816 kB
+VmRSS:	  797588 kB
+VmRSS:	  806764 kB
+VmRSS:	  820780 kB
+VmRSS:	  834548 kB
+VmRSS:	  843724 kB
+VmRSS:	  841912 kB
+VmRSS:	  934940 kB
+VmRSS:	 1037176 kB
+VmRSS:	 1134068 kB
+VmRSS:	 1145636 kB
+VmRSS:	 1166016 kB
+VmRSS:	 1747964 kB
+VmRSS:	 1775280 kB
+VmRSS:	 1802928 kB
+VmRSS:	 1853820 kB
+VmRSS:	 1892440 kB
+VmRSS:	 2177896 kB
+VmRSS:	 2177704 kB
+VmRSS:	 2189068 kB
+VmRSS:	 2189316 kB
+VmRSS:	 2189564 kB
+VmRSS:	 2189308 kB
+VmRSS:	 2188644 kB
+VmRSS:	 2189048 kB
+VmRSS:	 2189308 kB
+VmRSS:	 2189048 kB
+VmRSS:	 2189048 kB
+VmRSS:	 2189048 kB
+VmRSS:	 2189048 kB
+VmRSS:	 2189840 kB
+VmRSS:	 2189052 kB
+VmRSS:	 2189312 kB
+VmRSS:	 2189840 kB
+VmRSS:	 2190072 kB
+VmRSS:	 2189304 kB
+VmRSS:	 2189304 kB
+VmRSS:	 2189304 kB
+VmRSS:	 2189044 kB
+VmRSS:	 2189304 kB
+VmRSS:	 2189044 kB
+VmRSS:	 2189304 kB
+VmRSS:	 2189044 kB
+VmRSS:	 2189832 kB
+VmRSS:	 2189304 kB
+VmRSS:	 2189012 kB
+VmRSS:	 2189800 kB
+VmRSS:	 2189012 kB
+VmRSS:	 2189792 kB
+VmRSS:	 2189268 kB
+VmRSS:	 2189268 kB
+VmRSS:	 2189804 kB
+VmRSS:	 2189808 kB
+VmRSS:	 2189808 kB
+VmRSS:	 2189280 kB
+VmRSS:	 2189528 kB
+VmRSS:	 2189532 kB
+VmRSS:	 2189020 kB
+VmRSS:	 2189020 kB
+VmRSS:	 2188752 kB
+VmRSS:	 2189808 kB
+VmRSS:	 2189500 kB
+VmRSS:	 2189020 kB
+VmRSS:	 2189020 kB
+VmRSS:	 2189020 kB
+VmRSS:	 2189020 kB
+VmRSS:	 2188672 kB
+VmRSS:	 2189536 kB
+VmRSS:	 2189808 kB
+VmRSS:	 2189808 kB
+VmRSS:	 2189808 kB
+VmRSS:	 2076540 kB
+===ENGINE_OUTPUT===
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786953454.769920   25728 litert_lm_lib.cc:499] Choose backend: gpu
+I0000 00:00:1786953454.770599   25728 litert_lm_lib.cc:652] executor_settings: backend: GPU
+backend_config:
+max_top_k: 64
+
+max_tokens: 1280
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /data/local/tmp/llmbench/models/litert-community_gemma-4-E2B-it-litert-lm_gemma-4-E2B-it.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+attention_mask_settings:
+attention_mask_policy: Causal
+local_attention_mask_policy: Not set
+sliding_window_size: Not set
+advanced_settings: prefill_batch_sizes: [1024]
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+gpu_enable_metal_residency_set: false
+is_benchmark: true
+enable_profiling: false
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: Not set
+hint_waiting_for_completion: Not set
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: Not set
+error_on_invalid_sampled_token_id: false
+
+
+I0000 00:00:1786953454.770678   25728 litert_lm_lib.cc:659] vision_executor_settings: not set
+I0000 00:00:1786953454.770690   25728 litert_lm_lib.cc:665] audio_executor_settings: not set
+I0000 00:00:1786953454.770704   25728 litert_lm_lib.cc:688] Creating engine
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000077b9c9e770, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000077b9c9dff0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+W0000 00:00:1786953454.866646   25728 magic_number_configs_helper.cc:337] Too many prefill batch sizes=1 for magic numbers of prefill lengths=0. 1 small prefill batch sizes won't be used.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000077b9ca0270, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000077b9c9f190, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+W0000 00:00:1786953454.867319   25728 litert_lm_loader.cc:291] Section not found: 	
+W0000 00:00:1786953454.867380   25728 litert_lm_loader.cc:291] Section not found: 	
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=976, num_signatures=4
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=0, num_tensors=2703, num_inputs=35, num_outputs=32, num_ops=2068
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=1, num_tensors=1454, num_inputs=35, num_outputs=30, num_ops=1107
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=2, num_tensors=1454, num_inputs=35, num_outputs=30, num_ops=1107
+INFO: [magic_number_utils.cc:109]   signature=verify, subgraph_index=3, num_tensors=2887, num_inputs=35, num_outputs=32, num_ops=2243
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=32003, target_number=1280, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 439 tensors of signature decode have been updated for magic number  32003 to target number 1280
+INFO: [magic_number_utils.cc:536] 271 tensors of signature prefill_1024 have been updated for magic number  32003 to target number 1280
+INFO: [magic_number_utils.cc:536] 270 tensors of signature prefill_128 have been updated for magic number  32003 to target number 1280
+INFO: [magic_number_utils.cc:536] 444 tensors of signature verify have been updated for magic number  32003 to target number 1280
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1786953454.988067   25728 delegate_opencl.cc:603] options->hint_waiting_for_completion: false
+I0000 00:00:1786953454.988225   25728 delegate_opencl.cc:605] options->kernel_batch_size: -1
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: Loaded OpenCL library with dlopen.
+INFO: [gpu_environment.cc:220] Created OpenCL device from provided device id and platform id.
+INFO: [gpu_environment.cc:283] Reusing provided EGL environment.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+VERBOSE: Replacing 2068 out of 2068 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (decode).
+W0000 00:00:1786953455.054791   25728 gpu_model_builder.cc:4299] Weights preparation on Gpu is disabled for PowerVR, Broadcom, Mali GPUs and non-OpenCL/WebGPU/Metal backends.
+I0000 00:00:1786953476.018681   25728 delegate_kernel.cc:325] Total 32 external tensors are used for delegate inputs and outputs
+I0000 00:00:1786953476.018819   25728 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 1107 out of 1107 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (prefill_1024).
+I0000 00:00:1786953477.283899   25728 delegate_kernel.cc:325] Total 31 external tensors are used for delegate inputs and outputs
+I0000 00:00:1786953477.284019   25728 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 1107 out of 1107 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 2 (prefill_128).
+I0000 00:00:1786953478.548026   25728 delegate_kernel.cc:325] Total 31 external tensors are used for delegate inputs and outputs
+I0000 00:00:1786953478.548096   25728 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 2243 out of 2243 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 3 (verify).
+I0000 00:00:1786953479.162043   25728 delegate_kernel.cc:325] Total 32 external tensors are used for delegate inputs and outputs
+I0000 00:00:1786953479.162117   25728 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000077ba4328d0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000077ba430d10, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:109]   signature=embedder, subgraph_index=0, num_tensors=16, num_inputs=1, num_outputs=1, num_ops=8
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=32003, target_number=1280, signature_prefix=null
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+WARNING: [compiled_model.cc:951] You should provide the `DispatchLibraryDir` option to use NPU.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 2 out of 8 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 2 partitions for subgraph 0 (main).
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:109]   signature=eoa, subgraph_index=0, num_tensors=1, num_inputs=0, num_outputs=1, num_ops=0
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=32003, target_number=1280, signature_prefix=null
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+WARNING: [compiled_model.cc:951] You should provide the `DispatchLibraryDir` option to use NPU.
+INFO: [compiled_model.cc:1666] Tracked constant output tensor eoa_embedding with locked address
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:109]   signature=eoi, subgraph_index=0, num_tensors=1, num_inputs=0, num_outputs=1, num_ops=0
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=32003, target_number=1280, signature_prefix=null
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+WARNING: [compiled_model.cc:951] You should provide the `DispatchLibraryDir` option to use NPU.
+INFO: [compiled_model.cc:1666] Tracked constant output tensor eoi_embedding with locked address
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=1, num_signatures=1
+INFO: [magic_number_utils.cc:109]   signature=per_layer_embedder, subgraph_index=0, num_tensors=83, num_inputs=1, num_outputs=1, num_ops=42
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=32003, target_number=1280, signature_prefix=null
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+WARNING: [compiled_model.cc:951] You should provide the `DispatchLibraryDir` option to use NPU.
+VERBOSE: Replacing 1 out of 42 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 2 partitions for subgraph 0 (main).
+I0000 00:00:1786953480.236822   25728 litert_lm_lib.cc:856] Creating conversation
+W0000 00:00:1786953480.239225   25728 mel_filterbank.cc:137] Missing 10 bands  starting at 0 in mel-frequency design. Perhaps too many channels or not enough frequency resolution in spectrum. (fft_length: 257 sample_rate: 16000 mel_channel_count: 128 lower_frequency_limit: 0 upper_frequency_limit: 8000
+I0000 00:00:1786953480.239470   25728 litert_lm_lib.cc:868] Running single-turn conversation
+W0000 00:00:1786953481.119631   25728 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [runtime/executor/llm_litert_compiled_model_executor.cc:1655]
+└ ERROR: [external/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+external/litert/litert/cc/litert_macros.h:547
+
+W0000 00:00:1786953481.261371   25728 sampler_factory.cc:401] OpenCL sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [runtime/components/sampler_factory.cc:317]
+└ Could not load shared library libLiteRtTopKOpenClSampler.so: dlopen failed: cannot locate symbol "kLiteRtRuntimeBuiltin" referenced by "/data/local/tmp/llmbench/libLiteRtTopKOpenClSampler.so"....
+=== Source Location Trace: ===
+external/litert/litert/cc/litert_macros.h:573
+
+W0000 00:00:1786953481.271042   25728 sampler_factory.cc:484] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [runtime/components/sampler_factory.cc:317]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.so: dlopen failed: cannot locate symbol "kLiteRtRuntimeBuiltin" referenced by "/data/local/tmp/llmbench/libLiteRtTopKWebGpuSampler.so"....
+=== Source Location Trace: ===
+external/litert/litert/cc/litert_macros.h:573
+
+W0000 00:00:1786953481.271336   25728 sampler_factory.cc:764] GPU sampler unavailable. Falling back to CPU sampling. To use GPU sampling, please make sure libLiteRtTopKWebGpuSampler.so or libLiteRtTopKOpenClSampler.so is available at LD_LIBRARY_PATH on device. You can find the shared library under prebuilt/
+W0000 00:00:1786953511.635339   25728 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [runtime/executor/llm_litert_compiled_model_executor.cc:1655]
+└ ERROR: [external/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+external/litert/litert/cc/litert_macros.h:547
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.29 ms
+    - Init Executor: 25462.27 ms
+    - Init LLM metadata: 0.07 ms
+    - Init Model assets: 0.10 ms
+    - Init Tokenizer: 282.83 ms
+    - Init Total: 25465.96 ms
+--------------------------------------------------
+  Time to first token: 1.00 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 1024 tokens in 879.170818ms duration.
+      Prefill Speed: 1164.73 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 256 tokens in 30.51530397s duration.
+      Decode Speed: 8.39 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 1 turns):
+    Turn 1: 52.002us, 1024 tokens
+--------------------------------------------------
+--------------------------------------------------
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000077b9c9f190, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000077b9ca0270, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000077ba430d10, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000077ba4328d0, name=LiteRT GPU
+EXIT_CODE=0

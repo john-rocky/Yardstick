@@ -1,0 +1,1 @@
+llama.cpp unsloth/Qwen3-0.6B-GGUF short-chat rc=1

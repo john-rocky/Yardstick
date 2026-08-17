@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "b7a136f5-23c2-49f0-a051-87f7a6c7d259",
+  "runtime": "llama.cpp",
+  "engineVersion": "b8999",
+  "engineArtifact": "a84df7c76613fdcf291bdb2d4e0dddc4a41f0d6901552908ba640fe93fbd4753",
+  "model": {
+    "id": "unsloth/Qwen3-0.6B-GGUF",
+    "quantization": "Q4_K_M",
+    "file": "unsloth_Qwen3-0.6B-GGUF_Qwen3-0.6B-Q4_K_M.gguf",
+    "sha256": "ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a"
+  },
+  "task": "short-chat",
+  "timestamp": "2026-08-17T07:54:25Z",
+  "device": {
+    "modelIdentifier": "Pixel 8a",
+    "systemName": "Android",
+    "systemVersion": "16",
+    "securityPatch": "2026-05-05",
+    "soc": "Tensor G3",
+    "product": "akita",
+    "batteryLevel": 1.0,
+    "batteryState": "charging"
+  },
+  "conditions": {
+    "sampler": "greedy",
+    "cpuAffinity": "taskset f0",
+    "contextTokens": 4096,
+    "chatMode": "single-turn template default (-st)",
+    "thermalRawStatus": 0,
+    "thermalRawStatusFinal": 0,
+    "screen": "on-usb",
+    "elapsedSeconds": 6.5,
+    "exitCode": 0
+  },
+  "metrics": {
+    "promptTokensPerSecond": 222.7,
+    "decodeTokensPerSecond": 29.7,
+    "coldRun": true,
+    "harnessStamp": "2026-08-android-cli-v1",
+    "initialThermalState": "nominal",
+    "finalThermalState": "nominal",
+    "memoryMedianResidentMB": 1253.58203125
+  },
+  "provenance": {
+    "rawLog": "llama.cpp_unsloth_Qwen3-0.6B-GGUF_short-chat_2026-08-17T07-54-25Z_run2.log",
+    "harness": "android/bench/run_cell.py"
+  }
+}

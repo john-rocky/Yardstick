@@ -1,0 +1,112 @@
+VmRSS:	  178632 kB
+VmRSS:	  142968 kB
+input_prompt: Explain what on-device AI means in simple terms.
+VmRSS:	  618380 kB
+VmRSS:	  853932 kB
+VmRSS:	 1026456 kB
+VmRSS:	 1192432 kB
+VmRSS:	 1374872 kB
+VmRSS:	 1567320 kB
+VmRSS:	 1773300 kB
+VmRSS:	 1846684 kB
+<think>
+Okay, so the user wants a simple explanation of on-device AI.VmRSS:	 1932780 kB
+ Let me start by recalling what on-device AI is. From what I remember, it's about using AI modelsVmRSS:	 1938156 kB
+ that are pre-trained on specific data, not just the data they're trained on. So,VmRSS:	 1942904 kB
+ like, if you have a model trained on a dataset, but you don't have access toVmRSS:	 1947080 kB
+ the actual data, you can't use it. That makes me think of things likeVmRSS:	 1951828 kB
+ image recognition or voice analysis.
+
+Wait, maybe the example with a smartphone?VmRSS:	 1955492 kB
+ Like, a smartphone has a model that can recognize images, but the dataVmRSS:	 1959476 kB
+ it's trained on is in a different location. So, the modelVmRSS:	 1962768 kB
+ can't be used to analyze the images in real time without theVmRSS:	 1965592 kB
+ data. That's a bit more about the data itself than just theVmRSS:	 1968976 kB
+ model. So, on-device AI is about using models thatVmRSS:	 1971704 kB
+ are already trained on specific data, but the model itself doesnVmRSS:	 1974660 kB
+'t require that data to function.
+
+I should also thinkVmRSS:	 1977300 kB
+ about real-world applications. Like, a device can recognizeVmRSS:	 1980284 kB
+ a specific image, but the model is trained on data fromVmRSS:	 1982760 kB
+ a different location. So, the model can be usedVmRSS:	 1984900 kB
+ to analyze that image, but not the data.VmRSS:	 1988216 kB
+ That's how on-device AI works. So, theVmRSS:	 1990544 kB
+ key is that the model is not "trained onVmRSS:	 1992304 kB
+" the data, but rather the data isVmRSS:	 1995624 kB
+ used to train it. Hmm, that'sVmRSS:	 1997208 kB
+ a bit different from what I initially thought.VmRSS:	 1999808 kB
+ Let me check my memory again. Oh,VmRSS:	 2000904 kB
+ right, it's about the model not needingVmRSS:	 2004188 kB
+ the data to function, but theVmRSS:	 2004788 kB
+ data is part of the system. SoVmRSS:	 2006640 kB
+, it's like a model that'sVmRSS:	 2009388 kB
+ already trained on some data, but youVmRSS:	 2011324 kB
+ can use it in a different contextVmRSS:	 2013476 kB
+, not just with the data.
+
+VmRSS:	 2014264 kB
+So, putting it all together,VmRSS:	 2016692 kB
+ on-device AI is about using modelsVmRSS:	 2018196 kB
+ that are trained on specific data,VmRSS:	 2020024 kB
+ but the models themselves don't requireVmRSS:	 2021520 kB
+ that data to work. So,VmRSS:	 2023028 kB
+ they can be used in different scenariosVmRSS:	 2024620 kB
+ without needing the data. ThatVmRSS:	 2025612 kB
+'s how it's explained. LetVmRSS:	 2025984 kB
+ me make sure I'm not mixingVmRSS:	 2028884 kB
+ it up with something else.VmRSS:	 2030600 kB
+ Like, maybe it's notVmRSS:	 2031696 kB
+ about data but about the model'sVmRSS:	 2032836 kB
+ performance. For example, aVmRSS:	 2035824 kB
+ model trained on a dataset canVmRSS:	 2035668 kB
+ be used to analyze a differentVmRSS:	 2038576 kB
+ dataset. That's how it'sVmRSS:	 2038652 kB
+ explained. Yeah, IVmRSS:	 2041336 kB
+ think that's it.
+</think>
+
+VmRSS:	 2042428 kB
+On-device AI refers toVmRSS:	 2042464 kB
+ using AI models that are alreadyVmRSS:	 2044600 kB
+ trained on specific data, butVmRSS:	 2046660 kB
+ not needing that data to functionVmRSS:	 2047892 kB
+. For example, aVmRSS:	 2050944 kB
+ smartphone with an image recognition modelVmRSS:	 2052036 kB
+ can analyze images from a differentVmRSS:	 2052456 kB
+ location, using the model'sVmRSS:	 2052704 kB
+ pre-trained knowledge without relying onVmRSS:	 2056208 kB
+ the original data. ThisVmRSS:	 2056428 kB
+ allows the model to be usedVmRSS:	 2057164 kB
+ in different contexts, justVmRSS:	 2059988 kB
+ like a model trained on aVmRSS:	 2060716 kB
+ dataset can be used toVmRSS:	 2061664 kB
+ analyze another dataset.
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.07 ms
+    - Init Executor: 1503.97 ms
+    - Init LLM metadata: 0.86 ms
+    - Init Model assets: 2.16 ms
+    - Init Tokenizer: 801.61 ms
+    - Init Total: 1508.25 ms
+--------------------------------------------------
+  Time to first token: 3.94 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 20 tokens in 3.868820396s duration.
+      Prefill Speed: 5.17 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 556 tokens in 38.826963723s duration.
+      Decode Speed: 14.32 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 120.606us, 1 tokens
+    Turn 2: 206.177us, 19 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+VmRSS:	 1565384 kB
+EXIT_CODE=0

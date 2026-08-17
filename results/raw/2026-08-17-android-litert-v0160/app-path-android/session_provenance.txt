@@ -1,0 +1,2 @@
+session start 2026-08-17 15:18:02 cells=matrices/release-regression-litert.cells cooldown=120s
+session start 2026-08-17 15:18:24 cells=matrices/release-regression-litert.cells cooldown=120s

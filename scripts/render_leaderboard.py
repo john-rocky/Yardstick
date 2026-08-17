@@ -79,7 +79,11 @@ def arm_row(rows):
     prefill = [v for v in prefill if v]
     ttft = [fnum(r["ttft_ms"]) for r in sess]
     ttft = [v for v in ttft if v]
-    mem = [fnum(r["mem_footprint_median_mb"]) for r in sess]
+    # iOS rows carry phys_footprint; android rows only RSS (no Android
+    # equivalent of footprint — never fabricated). Same column, semantics
+    # disclosed in the header note.
+    mem = [fnum(r["mem_footprint_median_mb"]) or fnum(r["mem_resident_median_mb"])
+           for r in sess]
     mem = [v for v in mem if v]
     quants, qcorr = set(), False
     for r in sess:
@@ -165,7 +169,8 @@ def generate():
         "",
         "† = quantization label carries the audited in-place correction "
         "(Gemma-4 `.litertlm` is the wNa8o8 mobile schema; early rows recorded "
-        "\"INT4 (QAT)\" — quant-label-rule).",
+        "\"INT4 (QAT)\" — quant-label-rule). mem MB = phys_footprint on Apple rows, "
+        "RSS on Android rows (no footprint equivalent; methodology/android.md).",
         "",
     ]
     for plat in ("mac", "ios", "android"):
