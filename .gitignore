@@ -55,3 +55,4 @@ results/raw/**/pulled/
 # Raw campaign records override the global *.log ignore — a stored log IS the measurement
 # (rule 5 in CLAUDE.md). Does not re-include pulled/ (an ignored dir stays ignored whole).
 !results/raw/**/*.log
+android/bin/

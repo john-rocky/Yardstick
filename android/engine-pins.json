@@ -1,0 +1,25 @@
+{
+  "llama.cpp": {
+    "b8999": {
+      "artifact": "llama-b8999-bin-android-arm64.tar.gz",
+      "llama_bench_sha256": "abb8870353a06bb464c0730fcf31cb569b4e9d70859a80a9bfd083be85e26f7c",
+      "llama_cli_sha256": "a84df7c76613fdcf291bdb2d4e0dddc4a41f0d6901552908ba640fe93fbd4753"
+    }
+  },
+  "litert-lm": {
+    "v0.16.0": {
+      "requested_tag": "v0.16.0",
+      "observed": "v0.16.0",
+      "litert_lm_main_sha256": "37d6b9d65fbbb11331873fabf097bf2488324f96797ab4d08f09b336d5b1898d",
+      "so_files": {
+        "libGemmaModelConstraintProvider.so": "d305460ed571ba0e527f9f75e34de4d8b13d5d6af906431c36d04795f14411ca",
+        "libLiteRtGpuAccelerator.so": "1287e5ae01666a605f2bc5d72453f32cf4a294ef38acabb86cd61140207e41c3",
+        "libLiteRtOpenClAccelerator.so": "dfdcb6a551dc78a9dab88883ad6e8e2d9b090ecda383a5cea3731c6b9561d244",
+        "libLiteRtTopKOpenClSampler.so": "4404dc68786460602685cab62ddfa29035e9cfc38bb4550dec15abaaa1302a82",
+        "libLiteRtTopKWebGpuSampler.so": "c52a1cf69a92a2d2c4d3c08f5c087d1eb405f709af61c3312b215221135e18db",
+        "libLiteRtWebGpuAccelerator.so": "acf02905cd1d7b7d1f0f70a6d885ddbd392c0c69a99b92834da7e26d6859abcf",
+        "libwebgpu_dawn.so": "3b2a53de934efabce2efb5e9f703a7bd6b63a5814b2f8f0c7ed610cabf53b147"
+      }
+    }
+  }
+}

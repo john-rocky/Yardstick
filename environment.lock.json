@@ -8,7 +8,9 @@
       "vendored_via": "ios/BenchmarkApp/scripts/bootstrap.sh (LITERTLM_TAG; local SwiftPM package, engine = release binaryTarget)",
       "default_tag": "v0.13.1",
       "captures": {
-        "2026-07 campaign rows": { "tag": "v0.13.1" },
+        "2026-07 campaign rows": {
+          "tag": "v0.13.1"
+        },
         "2026-08-04 v0.15.0 re-measure": {
           "tag": "v0.15.0",
           "artifacts": {
@@ -16,12 +18,26 @@
             "CLiteRTLM_mac.xcframework.zip": "sha256:d23cf189ce8f6bb2556c0a023805e245d1ec862434e501eb60f353488033c1b5"
           }
         }
+      },
+      "android": {
+        "built_by": "android/scripts/build_litert_lm_main.sh (bazel + NDK r28b+; releases ship no Android binary, verified v0.14-v0.16)",
+        "macos_host_flag": "--enable_platform_specific_config (rules_rust E0463 otherwise; google-ai-edge/LiteRT-LM#3247)",
+        "tag_built": "v0.16.0",
+        "observed": "v0.16.0",
+        "litert_lm_main_sha256": "37d6b9d65fbbb11331873fabf097bf2488324f96797ab4d08f09b336d5b1898d",
+        "gpu_so_count": 7
       }
     },
     "llama.cpp": {
       "source": "https://github.com/ggml-org/llama.cpp",
       "artifact": "llama-b8999-xcframework.zip (release binary)",
-      "tag": "b8999"
+      "tag": "b8999",
+      "android": {
+        "artifact": "llama-b8999-bin-android-arm64.tar.gz",
+        "note": "official release binary at the same tag as the Apple arm (official-sdk rule); CPU-only — GPU needs a custom NDK build (phase 2, disclosed n/a)",
+        "llama_bench_sha256": "abb8870353a06bb464c0730fcf31cb569b4e9d70859a80a9bfd083be85e26f7c",
+        "llama_cli_sha256": "a84df7c76613fdcf291bdb2d4e0dddc4a41f0d6901552908ba640fe93fbd4753"
+      }
     },
     "mlx-swift-lm": {
       "source": "https://github.com/ml-explore/mlx-swift-examples",
@@ -52,7 +68,11 @@
     "cactus": {
       "source": "https://github.com/cactus-compute/cactus",
       "commit": "1ace6d78",
-      "built": "from source into cactus-ios.xcframework by bootstrap.sh"
+      "built": "from source into cactus-ios.xcframework by bootstrap.sh",
+      "android": {
+        "status": "planned",
+        "note": "phase-2 slot at the same pinned commit; the driver reports 'not built' so the table row exists with a reason (failed-runs-stay)"
+      }
     }
   },
   "python_instruments": {
@@ -61,14 +81,22 @@
       "venv": "~/venvs/lt0150run",
       "python": "3.14.6",
       "spec": "tools/python-envs/lt0150run.requirements.txt",
-      "packages": { "litert-lm": "0.15.0", "litert-lm-api": "0.15.0", "litert-lm-builder": "0.15.0" }
+      "packages": {
+        "litert-lm": "0.15.0",
+        "litert-lm-api": "0.15.0",
+        "litert-lm-builder": "0.15.0"
+      }
     },
     "litert-pip-0.14-contrast": {
       "purpose": "0.14 side of the same-instrument delta and resident A/B",
       "venv": "~/venvs/lt092run",
       "python": "3.10.13",
       "spec": "tools/python-envs/lt092run.requirements.txt",
-      "packages": { "litert-lm": "0.14.0", "litert-lm-api": "0.14.0", "litert-lm-builder": "0.14.0" },
+      "packages": {
+        "litert-lm": "0.14.0",
+        "litert-lm-api": "0.14.0",
+        "litert-lm-builder": "0.14.0"
+      },
       "note": "despite the name, doubles as the conversion env: litert-torch 0.9.1 (release — the version int4 conversion requires) + ai-edge-litert 2.1.6; the 83-package freeze in the spec is the observed truth"
     },
     "mlx-vlm-muse": {
@@ -76,14 +104,20 @@
       "venv": "session venv (not retained)",
       "python": "3.14",
       "spec": "tools/python-envs/mlx-vlm-muse.requirements.txt",
-      "packages": { "mlx-vlm": "0.6.13", "mlx": "0.32.0", "transformers": "5.15.0" }
+      "packages": {
+        "mlx-vlm": "0.6.13",
+        "mlx": "0.32.0",
+        "transformers": "5.15.0"
+      }
     },
     "litert-api-015-crossvalidation": {
       "purpose": "gsm8k_litert_pip_thinking.py — released 0.15.0 dylib reproduces the ctx4096 yardstick pair (89/92) per-question",
       "venv": ".venv-litert015 (repo root, git-ignored)",
       "python": "3.14.6",
       "spec": "tools/python-envs/venv-litert015.requirements.txt",
-      "packages": { "litert-lm-api": "0.15.0" }
+      "packages": {
+        "litert-lm-api": "0.15.0"
+      }
     }
   },
   "models": {
