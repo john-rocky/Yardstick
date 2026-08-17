@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "muse3way-mlx-p2r1",
+  "runtime": "mlx-vlm",
+  "engineVersion": "mlx-vlm 0.6.13 / mlx 0.32.0",
+  "model": {
+    "id": "mlx-community/Muse-Glimmer-30B-4bit",
+    "hfRevision": "3e7677d",
+    "quantization": "community 4-bit"
+  },
+  "task": "decode-192-greedy",
+  "timestamp": "2026-08-15",
+  "device": {
+    "modelIdentifier": "Mac16,9",
+    "systemName": "macOS",
+    "systemVersion": "27.0",
+    "osBuild": "26A5406e"
+  },
+  "conditions": {
+    "sampler": "greedy",
+    "maxOutputTokens": 192,
+    "interleaved": true,
+    "cooldownSeconds": 45,
+    "position": "p2r1"
+  },
+  "metrics": {
+    "decodeTokensPerSecond": 27.502,
+    "generatedTokenCount": 192,
+    "coldRun": true,
+    "harnessStamp": "2026-08-15-muse-3way-log-import",
+    "promptTokenCount": 81,
+    "promptTokensPerSecond": 136.034
+  },
+  "provenance": {
+    "rawLog": "threeway-interleaved-192.log",
+    "note": "synthesized from the CLI log by import_to_flat.py; thermal/battery not instrumented at capture (ENV.md); Core AI arm = fork engine (reference), not pinned 0.2.0"
+  }
+}

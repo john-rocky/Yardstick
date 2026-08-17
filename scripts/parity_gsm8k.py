@@ -386,7 +386,7 @@ def main():
     # schema/result.v1.json natively (continuous-bench condition 2); the pre-v1 keys
     # (tag/n/correct/acc/max_tokens) stay so existing readers keep working. `max_tokens`
     # is TOTAL context for the litert arm and a generation budget everywhere else
-    # (fairness rule 3) — conditions records it under the correct name per arm.
+    # (budget-mode-rule) — conditions records it under the correct name per arm.
     model_arg = {"bf16": args.hf, "mlx": args.mlx_path, "coreai": args.bundle,
                  "cactus": args.bundle, "int4": args.litertlm}[args.which]
     report = {

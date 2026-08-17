@@ -5,6 +5,12 @@ condition 2: machine-readable accumulation, kept separate from the raw logs).
 Inputs (read-only):
   results/quality/*.json                 six historical schema variants (see gap audit)
   results/raw/**/app-path*/*.json        device per-run records (BenchmarkResult shape)
+  results/raw/**/device-jsonl/*.json     warm-matrix campaign pulls (same shape)
+  results/raw/*.jsonl                    flat records behind RESULTS.md (same shape;
+                                         single pretty JSON or one record per line)
+
+Duplicate records (a campaign pull later imported to a flat file) are dropped by
+record UUID, campaign shapes winning over flat.
 
 Outputs (overwritten each run — derived data, raw stays canonical):
   results/summary/quality.csv
@@ -26,7 +32,8 @@ def rel(p):
 
 
 QUALITY_EXTRA = ["schema_version", "timestamp", "runtime", "thinking",
-                 "engine_version", "engine_artifact"]
+                 "engine_version", "engine_artifact",
+                 "model_id", "model_quantization"]
 
 
 def build_quality():
@@ -63,6 +70,12 @@ def build_quality():
             "thinking": d.get("conditions", {}).get("thinking"),
             "engine_version": d.get("engineVersion"),
             "engine_artifact": d.get("engineArtifact"),
+            # v1 reports carry model identity (parity_gsm8k.py emits model.id /
+            # model.quantization) — the quality<->speed join key is
+            # (model_id, runtime, thinking). Pre-v1 rows stay empty: tag prose is
+            # not decoded by guessing.
+            "model_id": d.get("model", {}).get("id"),
+            "model_quantization": d.get("model", {}).get("quantization"),
         })
     path = os.path.join(OUT, "quality.csv")
     with open(path, "w", newline="") as fh:
@@ -71,20 +84,77 @@ def build_quality():
     return path, len(rows)
 
 
-def build_device():
-    rows = []
-    for f in sorted(glob.glob(os.path.join(ROOT, "results", "raw", "**", "app-path*", "*.json"),
-                              recursive=True)):
+def platform_of(d):
+    """ios / mac / android, from the record itself (never from file paths)."""
+    dev = d.get("device", {})
+    sysname = (dev.get("systemName") or "").lower()
+    if sysname.startswith("ios"):
+        return "ios"
+    if sysname.startswith("mac"):
+        return "mac"
+    if sysname.startswith("android"):
+        return "android"
+    mi = dev.get("modelIdentifier") or ""
+    if mi.startswith(("iPhone", "iPad")):
+        return "ios"
+    if mi.startswith("Mac"):
+        return "mac"
+    return d.get("platform") or ""
+
+
+def iter_device_records():
+    """Yield (path, record) across the three raw shapes, campaign shapes first
+    so UUID dedup drops the flat re-imports, not the campaign originals."""
+    seen_ids = set()
+    campaign_files = sorted(
+        glob.glob(os.path.join(ROOT, "results", "raw", "**", "app-path*", "*.json"),
+                  recursive=True)
+        + glob.glob(os.path.join(ROOT, "results", "raw", "**", "device-jsonl", "*.json"),
+                    recursive=True))
+    for f in campaign_files:
         try:
             d = json.load(open(f))
         except Exception:
             continue
+        rid = d.get("id")
+        if rid:
+            if rid in seen_ids:
+                continue
+            seen_ids.add(rid)
+        yield f, d
+    for f in sorted(glob.glob(os.path.join(ROOT, "results", "raw", "*.jsonl"))):
+        txt = open(f).read().strip()
+        if not txt:
+            continue
+        try:
+            records = [json.loads(txt)]           # single pretty-printed record
+        except json.JSONDecodeError:
+            try:
+                records = [json.loads(line) for line in txt.splitlines() if line.strip()]
+            except json.JSONDecodeError:
+                continue
+        for d in records:
+            rid = d.get("id")
+            if rid:
+                if rid in seen_ids:
+                    continue
+                seen_ids.add(rid)
+            yield f, d
+
+
+def build_device():
+    rows = []
+    for f, d in iter_device_records():
         m, dev, model = d.get("metrics", {}), d.get("device", {}), d.get("model", {})
         if not m:
             continue
+        parent = os.path.dirname(f)
+        campaign = ("flat" if os.path.basename(parent) == "raw"
+                    else rel(os.path.dirname(parent)))
         rows.append({
             "source": rel(f),
-            "campaign": rel(os.path.dirname(os.path.dirname(f))),
+            "campaign": campaign,
+            "platform": platform_of(d),
             "timestamp": d.get("timestamp"),
             "runtime": d.get("runtime"),
             "schema_version": d.get("schemaVersion"),

@@ -6,7 +6,7 @@ for querying, regression tracking, and leaderboard export — regenerate any
 time with `python3 scripts/build_summary.py`.
 
 - `quality.csv` — 31 GSM8K report rows (all historical schema variants normalized)
-- `device-runs.csv` — 398 per-run device records (speed / memory / energy cells)
+- `device-runs.csv` — 1033 per-run device records (speed / memory / energy cells)
 
 Engine version is absent from pre-v1 rows (see the gap audit). Builds from
 2026-08-13 onward stamp `engineVersion`/`engineArtifact` into every device row
@@ -16,5 +16,5 @@ surfaced here as `engine_version`/`engine_artifact`; new writers must emit
 
 Release-regression diffing over this layer: `scripts/regression_diff.py`
 (quality joins on tag; device cells join on device/runtime/model/task/cold-warm
-with rule-3/rule-4/cross-session guardrails). The capture+diff loop is
+with budget-mode-rule/spread-rule/cross-session guardrails). The capture+diff loop is
 `./reproduce <platform> <table> --regress` (continuous-bench condition 3).
