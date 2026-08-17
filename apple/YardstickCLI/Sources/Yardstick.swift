@@ -49,7 +49,16 @@ struct YardstickApp {
         case "run":
             try await runCommand(Array(argv.dropFirst()))
         case "list":
-            listCatalog()
+            if argv.dropFirst().contains("--json") {
+                listCatalogJSON()
+            } else {
+                listCatalog()
+            }
+        case "version":
+            // The only reliable probe of build flavor: the SPM build compiles out
+            // four runtimes (YARDSTICK_SPM) but `list` prints all of them statically.
+            // Runners hard-fail on spm-lite (scripts/bench_matrix_mac.sh).
+            print("yardstick flavor=\(buildFlavor) harness=\(BenchmarkRunner.harnessStamp)")
         case "--help", "-h", "help":
             printUsage()
         default:
@@ -232,7 +241,47 @@ struct YardstickApp {
         #endif
     }
 
+    static var buildFlavor: String {
+        #if YARDSTICK_SPM
+        return "spm-lite"
+        #else
+        return "full"
+        #endif
+    }
+
     // MARK: - `yardstick list`
+
+    /// Machine-readable catalog for cell-file preflight (scripts/validate_cells.py
+    /// --catalog). Keys are RuntimeKind raw values, matching the cells grammar.
+    static func listCatalogJSON() {
+        var models: [String: [[String: String]]] = [:]
+        for (kind, catalog) in [
+            (RuntimeKind.mlxSwift, ModelCatalog.mlx),
+            (RuntimeKind.coreMLLLM, ModelCatalog.coreML),
+            (RuntimeKind.executorch, ModelCatalog.executorch),
+            (RuntimeKind.llamaCpp, ModelCatalog.llamaCpp),
+            (RuntimeKind.anemll, ModelCatalog.anemll),
+            (RuntimeKind.appleFM, ModelCatalog.appleFM),
+            (RuntimeKind.mediaPipe, ModelCatalog.liteRTLM),
+            (RuntimeKind.coreAI, ModelCatalog.coreAI),
+            (RuntimeKind.cactus, ModelCatalog.cactus),
+        ] {
+            models[kind.rawValue] = catalog.map {
+                ["id": $0.id, "hfRepoId": $0.hfRepoId,
+                 "quantization": $0.quantization, "displayName": $0.displayName]
+            }
+        }
+        let payload: [String: Any] = [
+            "flavor": buildFlavor,
+            "harness": BenchmarkRunner.harnessStamp,
+            "tasks": BenchmarkTaskCatalog.all.map { $0.id },
+            "models": models,
+        ]
+        let data = try! JSONSerialization.data(
+            withJSONObject: payload, options: [.prettyPrinted, .sortedKeys])
+        FileHandle.standardOutput.write(data)
+        FileHandle.standardOutput.write(Data("\n".utf8))
+    }
 
     static func listCatalog() {
         print("Available runtimes (Mac CLI):")
