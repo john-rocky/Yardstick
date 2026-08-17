@@ -5,7 +5,10 @@ on:
     paths:
       - "results/**"
       - "scripts/**"
+      - "matrices/**"
+      - "android/**"
       - "RESULTS.md"
+      - "LEADERBOARD.md"
       - "evaldata/**"
       - ".github/workflows/results-rendered.yml"
   push:
@@ -22,6 +25,40 @@ jobs:
           python-version: "3.11"
       - name: render_results.py --check
         run: python scripts/render_results.py --check
+
+  cells-valid:
+    name: matrix cell files validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/validate_cells.py matrices/*.cells
+      - name: regression matrices carry anchors
+        run: python scripts/validate_cells.py --require-anchor matrices/release-regression-*.cells matrices/anchors.cells
+
+  summary-fresh:
+    name: results/summary matches the raw tree
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/build_summary.py
+      - name: committed CSVs are current
+        run: git diff --exit-code results/summary/
+
+  leaderboard-check:
+    name: LEADERBOARD.md is rendered
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python scripts/render_leaderboard.py --check
 
   scripts-compile:
     name: every script parses
