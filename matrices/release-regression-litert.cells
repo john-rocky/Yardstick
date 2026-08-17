@@ -1,0 +1,30 @@
+# Cells re-measured when a LiteRT-LM release ships (./bench regress ... --engine litert-lm).
+# Anchors are NON-litert arms where one exists, so anchor normalization is not
+# confounded by the engine under test (matrices/README.md).
+# Android note: litert backend is set per cell (backend=cpu|gpu); the driver
+# records the arm as litert-lm-<backend> so cpu/gpu rows never pool.
+
+# --- anchors ---
+ios mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat anchor=1 runs=3
+mac mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat anchor=1 runs=3
+android llama.cpp unsloth/Qwen3-0.6B-GGUF short-chat anchor=1 runs=3 file=Qwen3-0.6B-Q4_K_M.gguf
+
+# --- litert-lm cells under test: iPhone ---
+ios litert-lm litert-community/Qwen3-0.6B short-chat
+ios litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat cooldown=300
+ios litert-lm litert-community/gemma-4-E2B-it-litert-lm long-context-1024-gen256 cooldown=300
+ios litert-lm litert-community/Qwen3-4B short-chat cooldown=300
+
+# --- litert-lm cells under test: Mac ---
+mac litert-lm litert-community/Qwen3-0.6B short-chat
+mac litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat
+mac litert-lm litert-community/gemma-4-E2B-it-litert-lm long-context-1024-gen256
+
+# --- litert-lm cells under test: Android (Pixel 8a) ---
+android litert-lm litert-community/Qwen3-0.6B short-chat backend=cpu
+android litert-lm litert-community/Qwen3-0.6B short-chat backend=gpu
+android litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat backend=gpu cooldown=300
+android litert-lm litert-community/gemma-4-E2B-it-litert-lm native-benchmark-1024x256 backend=gpu
+
+# --- energy (manual only: unplugged, <=90%, Auto-Lock Never) ---
+ios litert-lm litert-community/gemma-4-E2B-it-litert-lm energy manual=1

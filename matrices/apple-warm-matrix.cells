@@ -1,0 +1,60 @@
+# Standing iPhone warm matrix (migrated from scripts/cells_full_warm_matrix.txt,
+# which stays frozen as provenance for the device-return campaign).
+# Grammar: matrices/README.md. Ordering: light -> heavy; >=3B cells cooldown=300.
+# PRECONDITIONS (methodology/warm-full-matrix-prep.md): plugged, <=90% batt,
+# Auto-Lock Never, stage script run for side-loaded bundles (local=1 cells).
+
+# --- Qwen3 ladder ---
+ios mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat anchor=1
+ios litert-lm litert-community/Qwen3-0.6B short-chat
+ios core-ai core-ai/qwen3-0.6b-ane short-chat local=1
+ios core-ai core-ai/qwen3-0.6b-gpu short-chat local=1
+ios mlx-swift mlx-community/Qwen3-1.7B-4bit short-chat
+ios litert-lm litert-local/qwen3-1.7b-int4 short-chat local=1
+ios core-ai core-ai/qwen3-1.7b-ane short-chat local=1 exclude=invoke-fail-bd71203
+ios core-ai core-ai/qwen3-1.7b-gpu short-chat local=1
+ios mlx-swift mlx-community/Qwen3-4B-4bit short-chat cooldown=300
+ios litert-lm litert-community/Qwen3-4B short-chat cooldown=300
+ios core-ai core-ai/qwen3-4b-ane short-chat cooldown=300 local=1
+ios core-ai core-ai/qwen3-4b-gpu short-chat cooldown=300 local=1
+
+# --- Gemma-4-E2B (mlx needs OLD-revision cache staged) ---
+ios litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat cooldown=300
+ios mlx-swift mlx-community/gemma-4-e2b-it-4bit short-chat cooldown=300
+
+# --- cross-framework fleet (Core AI = ct041 lineage bundles) ---
+ios mlx-swift mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit short-chat
+ios litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B short-chat
+ios core-ai core-ai/deepseek-r1-1.5b-ane short-chat local=1
+ios core-ai core-ai/deepseek-r1-1.5b-gpu short-chat local=1
+ios mlx-swift mlx-community/gemma-3-1b-it-4bit short-chat
+ios litert-lm litert-community/Gemma3-1B-IT short-chat
+ios core-ai core-ai/gemma3-1b-gpu short-chat local=1
+ios mlx-swift mlx-community/TinySwallow-1.5B-Instruct-4bit short-chat
+ios litert-lm litert-community/TinySwallow-1.5B-Instruct short-chat
+ios core-ai core-ai/tinyswallow-1.5b-ane short-chat local=1
+ios core-ai core-ai/tinyswallow-1.5b-gpu short-chat local=1
+# VibeThinker/OLMo-2: no mlx-community repo (June finding) — no MLX cell.
+ios litert-lm litert-community/VibeThinker-1.5B short-chat
+ios core-ai core-ai/vibethinker-1.5b-ane short-chat local=1
+ios core-ai core-ai/vibethinker-1.5b-gpu short-chat local=1
+ios litert-lm litert-local/olmo2-1b short-chat local=1
+ios core-ai core-ai/olmo2-1b-ane short-chat local=1
+ios core-ai core-ai/olmo2-1b-gpu short-chat local=1
+ios mlx-swift mlx-community/Llama-3.2-3B-Instruct-4bit short-chat cooldown=300
+ios litert-lm litert-local/llama32-3b short-chat cooldown=300 local=1
+ios core-ai core-ai/llama-3.2-3b-ane short-chat cooldown=300 local=1
+ios core-ai core-ai/llama-3.2-3b-gpu short-chat cooldown=300 local=1
+ios mlx-swift mlx-community/SmolLM3-3B-4bit short-chat cooldown=300
+ios litert-lm litert-local/smollm3-3b short-chat cooldown=300 local=1
+ios core-ai core-ai/smollm3-3b-ane short-chat cooldown=300 local=1
+ios core-ai core-ai/smollm3-3b-gpu short-chat cooldown=300 local=1
+ios litert-lm litert-local/ministral3-3b short-chat cooldown=300 local=1
+ios core-ai core-ai/ministral-3b-gpu short-chat cooldown=300 local=1
+ios mlx-swift mlx-community/Phi-4-mini-instruct-4bit short-chat cooldown=300
+ios litert-lm litert-community/Phi-4-mini-instruct short-chat cooldown=300
+# Phi-4-mini Core AI: both compute units are a documented architectural wall (partial rotary).
+ios core-ai core-ai/phi-4-mini-gpu short-chat local=1 exclude=partial-rotary-unsupported
+
+# NOTE: litert cells can stall ~10 min between runs (teardown); runners keep
+# CELL_TIMEOUT=3600 for files containing litert-lm cells.
