@@ -134,8 +134,13 @@ def engine_command(runtime, backend, model_dev, task, prompt_dev, budget, max_to
             p, d = task[len("native-benchmark-"):].split("x")
             return (f"./llama-bench -m {model_dev} -t 4 -p {p} -n {d} -o json"), \
                 "llama-bench", "n/a (llama-bench)", "llama-bench-managed"
+        # -st (single-turn): b8999's llama-cli REJECTS --no-conversation ("not
+        # supported") and then loops forever echoing "> " on stdin EOF —
+        # measured as a silent 1800 s hang. Single-turn chat runs the template
+        # once and exits; the model's template defaults apply (Qwen3: thinking
+        # ON), disclosed via conditions.chatMode.
         return (f"./llama-cli -m {model_dev} -t 4 -c {ctx} -f {prompt_dev} "
-                f"-n {max_tokens or budget} --temp 0 --top-p 1 -no-cnv"), \
+                f"-n {max_tokens or budget} --temp 0 --top-p 1 -st"), \
             "llama-cli", "greedy", ctx
     raise SystemExit(f"unknown android runtime {runtime!r}")
 
@@ -146,11 +151,15 @@ def run_once(cmd, binname, serial, timeout):
     $! is the backgrounded subshell, not the engine (measured: sampling it
     reads ~1.7 MB forever) — resolve the real pid with pgrep -n on the binary
     name and sample that."""
-    shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. taskset f0 {cmd} & pid=$!; "
+    # Engine output goes to an on-device file, cat'ed AFTER wait: a backgrounded
+    # engine's stdout is block-buffered and its exit-time flush races the adb
+    # pty teardown — a 7-minute gemma GPU run lost its entire BenchmarkInfo
+    # that way (EXIT_CODE=0, zero engine lines) while short runs got lucky.
+    shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. taskset f0 {cmd} >run_out.txt 2>&1 </dev/null & pid=$!; "
              f"sleep 1; epid=$(pgrep -n -f {binname}); [ -z \"$epid\" ] && epid=$pid; "
              "while kill -0 $pid 2>/dev/null; do "
-             "grep VmRSS /proc/$epid/status 2>/dev/null; sleep 0.5; done; wait $pid; "
-             "echo EXIT_CODE=$?")
+             "grep VmRSS /proc/$epid/status 2>/dev/null; sleep 0.5; done; wait $pid; ec=$?; "
+             "echo ===ENGINE_OUTPUT===; cat run_out.txt; echo EXIT_CODE=$ec")
     out = adb(["shell", shell], serial, timeout=timeout)
     rss_kb = [int(x) for x in
               (line.split()[1] for line in out.splitlines() if line.startswith("VmRSS"))]
@@ -259,6 +268,9 @@ def main():
                        "batteryState": batt["batteryState"]},
             "conditions": {"sampler": sampler, "cpuAffinity": "taskset f0",
                            "contextTokens": ctx_note,
+                           **({"chatMode": "single-turn template default (-st)"}
+                              if args.runtime == "llama.cpp"
+                              and not args.task.startswith("native-") else {}),
                            "thermalRawStatus": raw_status,
                            "thermalRawStatusFinal": end_status,
                            "screen": "on-usb", "elapsedSeconds": round(elapsed, 1),

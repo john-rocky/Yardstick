@@ -16,7 +16,12 @@ RE_PREFILL_TOKENS = re.compile(r"Prefill Turn \d+: Processed (\d+) tokens")
 RE_DECODE_TOKENS = re.compile(r"Decode Turn \d+: Processed (\d+) tokens")
 RE_PEAK_MEM = re.compile(r"[Pp]eak memory.*?([\d.]+) *(MB|GB|bytes)")
 
-# llama-cli perf lines (b8999)
+# llama-cli perf lines. b8999's -st mode prints the bracket summary
+# "[ Prompt: 217.7 t/s | Generation: 20.6 t/s ]" (no token counts — those stay
+# absent); the llama_perf_context_print form is kept as a fallback for other
+# builds.
+RE_LLAMA_BRACKET = re.compile(
+    r"\[ Prompt: ([\d.]+) t/s \| Generation: ([\d.]+) t/s \]")
 RE_LLAMA_PROMPT = re.compile(
     r"prompt eval time =\s*[\d.]+ ms /\s*(\d+) tokens.*?([\d.]+) tokens per second")
 RE_LLAMA_EVAL = re.compile(
@@ -57,6 +62,11 @@ def parse_litert(text):
 def parse_llama_cli(text):
     """llama-cli perf print -> metrics dict. No TTFT (absent, not derived)."""
     m = {}
+    b = RE_LLAMA_BRACKET.search(text)
+    if b:
+        m["promptTokensPerSecond"] = float(b.group(1))
+        m["decodeTokensPerSecond"] = float(b.group(2))
+        return m
     p = RE_LLAMA_PROMPT.search(text)
     if p:
         m["promptTokenCount"] = int(p.group(1))
