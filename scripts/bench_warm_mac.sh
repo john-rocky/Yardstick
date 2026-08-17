@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# SUPERSEDED (2026-08-17) by scripts/bench_matrix_mac.sh + matrices/*.cells for
+# new campaigns. NOTE: this script uses the SPM yardstick (.build/release),
+# which compiles OUT llama-cpp/coreml/executorch/anemll (flavor spm-lite) —
+# fine for the mlx/litert arrays below, silently wrong for anything else.
+# The matrix runner refuses spm-lite; prefer it.
+#
 # Mac M4 Max warm sweep — REPO harness (`yardstick run --runs N`), fairness §2.
 # One JSONL per (runtime, model) with N runs (run 1 cold, 2..N warm, coldRun-flagged).
 # GPU must be idle (no other GPU work / browser automation). Results stay local;

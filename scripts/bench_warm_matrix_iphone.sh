@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# FROZEN (2026-08-17): provenance for the published warm-matrix campaigns. New
+# campaigns use scripts/bench_matrix_iphone.sh + matrices/*.cells (adds task
+# column, per-cell overrides, anchors, exclusions). Do not extend this script.
+#
 # Warm-matrix driver for iPhone 17 Pro — fixes the two v1 defects that made the
 # 2026-07-13 Tier-1 capture unusable (results/raw/2026-07-13-iphone-warm-partial/):
 #   1. device-jsonl copy-back (v1 kept console only; the app's per-run JSON under

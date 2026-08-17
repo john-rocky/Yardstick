@@ -87,6 +87,11 @@ def validate_file(path, catalog=None, require_anchor=False):
             if opts.get("backend") and plat != "android":
                 errors.append(f"{where}: backend= is android-only "
                               "(Apple arms encode backend in the model id)")
+            if opts.get("max-tokens") and plat == "mac":
+                errors.append(f"{where}: the Mac CLI has no --max-tokens flag "
+                              "(BenchmarkRunner.Configuration carries no budget "
+                              "override) — encode the budget in the task id "
+                              "(e.g. long-context-1024-gen256)")
             key = (plat, rt, mid, task, opts.get("backend", ""))
             if key in seen:
                 errors.append(f"{where}: duplicate cell (first at line {seen[key]})")
