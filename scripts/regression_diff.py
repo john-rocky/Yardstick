@@ -235,26 +235,28 @@ def load_anchor_cells(path):
 
 
 def anchor_median(side_cells, anchors, device, cold_run, exclude_runtime, spread_limit):
-    """Median of a session-anchor cell within one selection, preferring an anchor
-    whose runtime differs from the engine under test (an anchor measured by the
-    engine being bumped is confounded). Returns (median, label) or (None, why)."""
-    best_confounded = None
+    """Median of a session-anchor cell within one selection. An anchor is
+    usable only if (a) its runtime is not the engine under test — an anchor
+    measured by the engine being bumped moves WITH the engine and normalizes
+    the change away (first Mac run proved it: the litert anchor improved 14%
+    and every mlx cell read a phantom -12%) — and (b) it has n>=2 within
+    the spread gate (an n=1 anchor passes the spread check trivially and a
+    single noisy cold value multiplies into every verdict; measured: a 31ms
+    -> 611ms cold-TTFT anchor stamped +1620% on an actually-flat cell).
+    Returns (median, label) or (None, why)."""
     for rt, mid, task in anchors:
+        if rt == exclude_runtime:
+            continue
         key = (device, rt, mid, task, cold_run)
         vals = [v for v, _ in side_cells.get(key, [])]
-        if not vals:
+        if len(vals) < 2:
             continue
         med = statistics.median(vals)
-        spread = (max(vals) - min(vals)) / med * 100 if med and len(vals) > 1 else 0.0
+        spread = (max(vals) - min(vals)) / med * 100 if med else 0.0
         if spread > spread_limit:
             continue  # an unreliable anchor normalizes nothing (spread-rule)
-        label = f"{rt} {mid} {task}"
-        if rt != exclude_runtime:
-            return med, label
-        best_confounded = (med, label + " [CONFOUNDED: anchor runtime == engine under test]")
-    if best_confounded:
-        return best_confounded
-    return None, "no usable anchor in this selection"
+        return med, f"{rt} {mid} {task}"
+    return None, "no usable anchor (need n>=2, in-spread, runtime != engine under test)"
 
 
 def run_device(args):
@@ -309,10 +311,24 @@ def run_device(args):
                 # instead — cross-session ratios are only ever computed through
                 # anchors (continuous-benchmarking-proposal §2) — while still
                 # printing the raw numbers.
-                ba, ba_label = anchor_median(b_cells, anchors, key[0], key[-1],
-                                             key[1], args.spread_limit) if anchors else (None, "no --anchors")
-                ca, ca_label = anchor_median(c_cells, anchors, key[0], key[-1],
-                                             key[1], args.spread_limit) if anchors else (None, "no --anchors")
+                # Only the arm under test earns an anchor-normalized verdict:
+                # other arms' engines are identical on both sides, so their
+                # cross-session raw delta IS the session-drift signal (they are
+                # anchors in spirit) — scoring them through another arm's
+                # anchor manufactures phantom verdicts.
+                eut = args.engine_under_test
+                if anchors and (eut is None or key[1] == eut):
+                    excl = eut if eut else key[1]
+                    ba, ba_label = anchor_median(b_cells, anchors, key[0], key[-1],
+                                                 excl, args.spread_limit)
+                    ca, ca_label = anchor_median(c_cells, anchors, key[0], key[-1],
+                                                 excl, args.spread_limit)
+                elif anchors:
+                    ba, ba_label = None, f"arm not under test ({eut}) — raw cross-session is the drift signal"
+                    ca, ca_label = None, ba_label
+                else:
+                    ba, ba_label = None, "no --anchors"
+                    ca, ca_label = None, ba_label
                 if ba and ca:
                     ndelta = ((cm / ca) / (bm / ba) - 1) * 100
                     worse = ndelta < -args.threshold_pct if higher_is_better else ndelta > args.threshold_pct
@@ -369,6 +385,10 @@ def main():
     ap.add_argument("--anchors",
                     help="cells file whose anchor=1 cells normalize cross-session "
                          "device pairs (e.g. matrices/anchors.cells)")
+    ap.add_argument("--engine-under-test",
+                    help="runtime id whose release is being tested (e.g. litert-lm): "
+                         "only its cells get anchor-normalized verdicts, and anchors "
+                         "measured by it are excluded; other arms stay INFO-ONLY")
     ap.add_argument("--json-out",
                     help="write per-cell machine verdicts (regression_report.py "
                          "persists these as verdicts.json)")

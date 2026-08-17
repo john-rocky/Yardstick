@@ -68,6 +68,20 @@ public struct DeviceSnapshot: Codable, Sendable {
     }
 
     private static func hardwareModelIdentifier() -> String {
+        // utsname().machine is the device identifier on iOS ("iPhone18,1") but
+        // just the ISA on macOS ("arm64" — every Mac pools into one row).
+        // hw.model gives the Mac identifier ("Mac16,9").
+        #if os(macOS)
+        var size = 0
+        sysctlbyname("hw.model", nil, &size, nil, 0)
+        if size > 0 {
+            var buf = [CChar](repeating: 0, count: size)
+            if sysctlbyname("hw.model", &buf, &size, nil, 0) == 0 {
+                let model = String(cString: buf)
+                if !model.isEmpty { return model }
+            }
+        }
+        #endif
         var systemInfo = utsname()
         uname(&systemInfo)
         let mirror = Mirror(reflecting: systemInfo.machine)

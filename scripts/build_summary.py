@@ -84,6 +84,15 @@ def build_quality():
     return path, len(rows)
 
 
+# Historical flat-file device labels -> hardware identifiers, so label-space
+# rows and identifier-space rows of the SAME machine join. Factual basis, not
+# guesswork: the author's "m4max" machine was chassis-verified as a Mac Studio
+# Mac16,9 via system_profiler on 2026-08-15
+# (results/raw/2026-08-15-muse-glimmer-30b-3way/ENV.md). m3air (a MacBook Air,
+# different machine) is deliberately NOT aliased.
+DEVICE_ALIASES = {"m4max": "Mac16,9"}
+
+
 def platform_of(d):
     """ios / mac / android, from the record itself (never from file paths)."""
     dev = d.get("device", {})
@@ -122,7 +131,11 @@ def iter_device_records():
                 continue
             seen_ids.add(rid)
         yield f, d
-    for f in sorted(glob.glob(os.path.join(ROOT, "results", "raw", "*.jsonl"))):
+    # flat top-level jsonl (RESULTS.md pipeline) + campaign-dir jsonl (the Mac
+    # matrix/protocol runners append one JSONL per cell inside the campaign dir)
+    jsonl_files = (sorted(glob.glob(os.path.join(ROOT, "results", "raw", "*.jsonl")))
+                   + sorted(glob.glob(os.path.join(ROOT, "results", "raw", "*", "*.jsonl"))))
+    for f in jsonl_files:
         txt = open(f).read().strip()
         if not txt:
             continue
@@ -139,12 +152,21 @@ def iter_device_records():
                 if rid in seen_ids:
                     continue
                 seen_ids.add(rid)
+            # Some older campaign jsonls record device as a bare label string —
+            # normalize to the dict shape, keeping the label as the identifier.
+            if isinstance(d.get("device"), str):
+                d["device"] = {"modelIdentifier": d["device"]}
             # Early flat Mac records carry the degenerate modelIdentifier
-            # "arm64" (all Macs would pool). The flat-filename convention
-            # (<device>-<rest>, same rule render_results.py uses) carries the
-            # real label — restore it from there, never by guessing.
+            # "arm64" (all Macs would pool). The flat TOP-LEVEL filename
+            # convention (<device>-<rest>, same rule render_results.py uses)
+            # carries the real label — restore it from there, never by
+            # guessing. Campaign-dir jsonl names start with the runtime, so
+            # the restore is scoped to flat files only; a degenerate campaign
+            # row keeps "arm64" honestly (fixed at the writer: DeviceSnapshot
+            # now records hw.model on macOS).
             dev = d.setdefault("device", {})
-            if dev.get("modelIdentifier") in ("arm64", "", None):
+            if (dev.get("modelIdentifier") in ("arm64", "", None)
+                    and os.path.basename(os.path.dirname(f)) == "raw"):
                 label = os.path.basename(f).split("-", 1)[0]
                 if label:
                     dev["modelIdentifier"] = label
@@ -158,8 +180,12 @@ def build_device():
         if not m:
             continue
         parent = os.path.dirname(f)
-        campaign = ("flat" if os.path.basename(parent) == "raw"
-                    else rel(os.path.dirname(parent)))
+        if os.path.basename(parent) == "raw":
+            campaign = "flat"                       # results/raw/x.jsonl
+        elif os.path.basename(os.path.dirname(parent)) == "raw":
+            campaign = rel(parent)                  # results/raw/<campaign>/x.jsonl
+        else:
+            campaign = rel(os.path.dirname(parent))  # .../<campaign>/app-path*/x.json
         rows.append({
             "source": rel(f),
             "campaign": campaign,
@@ -186,7 +212,8 @@ def build_device():
             "thermal_final": m.get("finalThermalState"),
             "battery_state": dev.get("batteryState"),
             "cold_run": m.get("coldRun"),
-            "device": dev.get("modelIdentifier"),
+            "device": DEVICE_ALIASES.get(dev.get("modelIdentifier"),
+                                         dev.get("modelIdentifier")),
             "os_version": dev.get("systemVersion"),
         })
     rows.sort(key=lambda r: (r["campaign"], r["timestamp"] or ""))

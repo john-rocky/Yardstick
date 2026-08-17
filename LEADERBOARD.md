@@ -16,13 +16,13 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 ## mac
 
-### Mac M4 Max
+### Mac Studio (M4 Max)
 
 **Gemma 4 E2B**
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
-| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT)† | pre-stamp | 155.9 | 133.0 | — | 37.0 | — | — | 2026-07-13 |
+| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | 156.0 | 128.9 | 797.9 | 41.0 | 677.8 | — | 2026-08-17 |
 | mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | pre-stamp | — | 185.4 | 446.5 | 68.0 | — | — | 2026-05-16 |
 | llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | pre-stamp | — | 119.2 | 2143.6 | 41.0 | — | — | 2026-05-17 |
 | coreml-llm | `coreml-llm/gemma4-e2b` | INT4 palettized | pre-stamp | — | 32.9 | — | 525.0 | — | — | 2026-05-17 |
@@ -46,8 +46,8 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
-| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | pre-stamp | 553.8 | 561.6 | 1687.2 | 12.0 | — | — | 2026-07-13 |
-| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | pre-stamp | 270.4 | 271.1 | — | 47.0 | — | — | 2026-07-13 |
+| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 60bd0d7880c82980f9481f8be78862e9b63c58a3 | 555.9 | 556.0 | 2018.9 | 10.0 | 646.5 | — | 2026-08-17 |
+| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 309.9 | 311.3 | 566.9 | 59.0 | 795.4 | — | 2026-08-17 |
 
 **Qwen 3 1.7B**
 
@@ -117,6 +117,25 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | own/Phi-4-mini-int4-BOCTAV4-128 | litert-lm | `own/Phi-4-mini-int4-BOCTAV4-128` | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | pre-stamp | 85.4 | 83.5 | 2026-07-14 |
 | own/TinySwallow-1.5B-int4-BOCTAV4 | litert-lm | `own/TinySwallow-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 137.2 | 136.4 | 2026-07-14 |
 | own/VibeThinker-1.5B-int4-BOCTAV4 | litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 137.4 | 137.4 | 2026-07-14 |
+
+</details>
+
+### arm64
+
+**Gemma 4 E2B**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | pre-stamp | 196.9 | 197.9 | 626.1 | 34.0 | 2890.9 | — | 2026-07-27 |
+| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT)† | pre-stamp | 154.3 | 155.4 | 771.0 | 34.0 | 682.0 | — | 2026-07-27 |
+| llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | pre-stamp | 149.2 | 149.4 | 7484.8 | 34.5 | 362.2 | — | 2026-07-27 |
+
+<details><summary>single-arm cells (no cross-runtime comparison)</summary>
+
+| model | runtime | artifact | quant | engine | warm tok/s | cold tok/s | captured |
+|---|---|---|---|---|---|---|---|
+| Gemma 4 E2B (QAT OptiQ) | mlx-swift | `mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit` | INT4 (QAT, OptiQ) | pre-stamp | 164.7 | 165.7 | 2026-07-27 |
+| SmolLM 3B | litert-lm | `litert-local/smollm3-3b` | INT4 | pre-stamp | 67.3 | — | 2026-07-13 |
 
 </details>
 

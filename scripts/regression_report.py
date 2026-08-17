@@ -40,7 +40,8 @@ def main():
     os.makedirs(outdir, exist_ok=True)
 
     cmd = [sys.executable, os.path.join(ROOT, "scripts", "regression_diff.py"),
-           *args.diff_args, "--json-out", os.path.join(outdir, "verdicts.json")]
+           *args.diff_args, "--engine-under-test", args.engine,
+           "--json-out", os.path.join(outdir, "verdicts.json")]
     with open(os.path.join(outdir, "invocation.txt"), "w") as fh:
         fh.write(" ".join(cmd) + "\n")
 

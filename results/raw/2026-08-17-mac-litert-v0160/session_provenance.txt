@@ -1,0 +1,5 @@
+ProductName:		macOS
+ProductVersion:		27.0
+BuildVersion:		26A5406e
+session start 2026-08-17 17:59:29
+cells: matrices/release-regression-litert.cells

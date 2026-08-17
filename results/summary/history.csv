@@ -1,4 +1,18 @@
 report,mode,verdict,cell,metric,base_median,cand_median,raw_delta_pct,normalized_delta_pct,anchor_cell,baseline,candidate
+2026-08-17-litert-lm-v0.16.0-mac,device,IMPROVED,"Mac16,9 litert-lm litert-community/Qwen3-0.6B short-chat warm",decode_tps,270.434,309.879,14.59,14.15,mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 litert-lm litert-community/Qwen3-0.6B short-chat cold",decode_tps,271.128,311.293,14.81,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,OK,"Mac16,9 litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat warm",decode_tps,155.93,155.99,0.04,-0.34,mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat cold",decode_tps,133.0,128.879,-3.1,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat warm",decode_tps,553.753,555.881,0.38,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat cold",decode_tps,561.596,555.98,-1.0,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,UNRELIABLE,"Mac16,9 mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat warm",prefill_tps,1740.949,2037.939,17.06,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat cold",prefill_tps,31.326,611.107,1850.8,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,UNRELIABLE,"Mac16,9 litert-lm litert-community/Qwen3-0.6B short-chat warm",ttft_ms,46.5,59.0,26.88,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 litert-lm litert-community/Qwen3-0.6B short-chat cold",ttft_ms,64.0,194.0,203.12,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,UNRELIABLE,"Mac16,9 litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat warm",ttft_ms,37.0,40.0,8.11,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat cold",ttft_ms,337.0,331.0,-1.78,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,UNRELIABLE,"Mac16,9 mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat warm",ttft_ms,11.5,10.0,-13.04,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
+2026-08-17-litert-lm-v0.16.0-mac,device,INFO-ONLY,"Mac16,9 mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat cold",ttft_ms,613.0,35.0,-94.29,,,campaign:flat,campaign:2026-08-17-mac-litert-v0160
 2026-08-17-litert-lm-v0.16.0,device,UNRELIABLE,Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold,decode_tps,11.38,14.38,26.36,,,engine:v0.15.0,engine:v0.16.0
 2026-08-17-litert-lm-v0.16.0,device,OK,Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold,decode_tps,15.18,15.23,0.33,,,engine:v0.15.0,engine:v0.16.0
 2026-08-17-litert-lm-v0.16.0,device,UNRELIABLE,Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold,prefill_tps,8.27,9.78,18.26,,,engine:v0.15.0,engine:v0.16.0
