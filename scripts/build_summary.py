@@ -188,9 +188,43 @@ def build_device():
     return path, len(rows)
 
 
+def build_history():
+    """Flatten results/regression-reports/*/verdicts.json into history.csv —
+    the per-cell verdict series behind release-over-release tracking. The
+    committed verdicts.json files are the canon; this is derived."""
+    rows = []
+    for f in sorted(glob.glob(os.path.join(ROOT, "results", "regression-reports",
+                                           "*", "verdicts.json"))):
+        report = os.path.basename(os.path.dirname(f))
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        for v in d.get("verdicts", []):
+            anchor = v.get("anchor") or {}
+            rows.append({
+                "report": report, "mode": v.get("mode"), "verdict": v.get("verdict"),
+                "cell": v.get("cell"), "metric": v.get("metric"),
+                "base_median": v.get("base_median"), "cand_median": v.get("cand_median"),
+                "raw_delta_pct": v.get("raw_delta_pct"),
+                "normalized_delta_pct": anchor.get("normalized_delta_pct"),
+                "anchor_cell": anchor.get("cell"),
+                "baseline": d.get("baseline"), "candidate": d.get("candidate"),
+            })
+    path = os.path.join(OUT, "history.csv")
+    fields = ["report", "mode", "verdict", "cell", "metric", "base_median",
+              "cand_median", "raw_delta_pct", "normalized_delta_pct",
+              "anchor_cell", "baseline", "candidate"]
+    with open(path, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=fields)
+        w.writeheader(); w.writerows(rows)
+    return path, len(rows)
+
+
 def main():
     qp, qn = build_quality()
     dp, dn = build_device()
+    hp, hn = build_history()
     readme = os.path.join(OUT, "README.md")
     with open(readme, "w") as fh:
         fh.write(
@@ -200,7 +234,9 @@ def main():
             "for querying, regression tracking, and leaderboard export — regenerate any\n"
             f"time with `python3 scripts/build_summary.py`.\n\n"
             f"- `quality.csv` — {qn} GSM8K report rows (all historical schema variants normalized)\n"
-            f"- `device-runs.csv` — {dn} per-run device records (speed / memory / energy cells)\n\n"
+            f"- `device-runs.csv` — {dn} per-run device records (speed / memory / energy cells)\n"
+            f"- `history.csv` — {hn} regression verdicts flattened from "
+            "`results/regression-reports/*/verdicts.json`\n\n"
             "Engine version is absent from pre-v1 rows (see the gap audit). Builds from\n"
             "2026-08-13 onward stamp `engineVersion`/`engineArtifact` into every device row\n"
             "(`stamp_engine_pins.sh` -> bundled engine-pins.json -> BenchmarkResult),\n"
@@ -213,6 +249,7 @@ def main():
         )
     print(f"wrote {qp} ({qn} rows)")
     print(f"wrote {dp} ({dn} rows)")
+    print(f"wrote {hp} ({hn} rows)")
     print(f"wrote {readme}")
 
 

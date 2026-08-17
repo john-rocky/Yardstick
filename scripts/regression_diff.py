@@ -103,6 +103,14 @@ def compare_quality_pair(base, cand, threshold_pts):
     return "OK", note
 
 
+RECORDS = []  # machine verdicts, written by --json-out
+
+
+def record(mode, verdict, label, note, **extra):
+    RECORDS.append({"mode": mode, "verdict": verdict, "cell": label,
+                    "note": note, **extra})
+
+
 def run_quality(args):
     rows = load_csv("quality.csv")
     pairs = []
@@ -147,6 +155,7 @@ def run_quality(args):
     for base, cand in pairs:
         if base is None:
             print(f"NO-BASELINE      {cand['tag']}  (no published row with this tag)")
+            record("quality", "NO-BASELINE", cand["tag"], "no published row with this tag")
             continue
         verdict, note = compare_quality_pair(base, cand, args.threshold_points)
         eng = ""
@@ -154,6 +163,13 @@ def run_quality(args):
             eng = f"  [{base.get('engine_version') or 'pre-stamp'} -> " \
                   f"{cand.get('engine_version') or 'pre-stamp'}]"
         print(f"{verdict:16} {cand['tag']}  {note}{eng}")
+        record("quality", verdict, cand["tag"], note,
+               metric="gsm8k_acc",
+               base_acc=base.get("acc"), cand_acc=cand.get("acc"),
+               base_n=base.get("n"), cand_n=cand.get("n"),
+               base_engine=base.get("engine_version") or None,
+               cand_engine=cand.get("engine_version") or None,
+               model_id=cand.get("model_id") or None)
         if verdict == "REGRESSION":
             worst = 1
     return worst
@@ -205,6 +221,42 @@ def fmt_key(key):
     return " ".join(parts)
 
 
+def load_anchor_cells(path):
+    """anchor=1 lines of a cells file -> [(runtime, model_id, task)]."""
+    anchors = []
+    for raw in open(path):
+        line = raw.split("#", 1)[0].strip()
+        if not line:
+            continue
+        parts = line.split()
+        if len(parts) >= 4 and "anchor=1" in parts[4:]:
+            anchors.append((parts[1], parts[2], parts[3]))
+    return anchors
+
+
+def anchor_median(side_cells, anchors, device, cold_run, exclude_runtime, spread_limit):
+    """Median of a session-anchor cell within one selection, preferring an anchor
+    whose runtime differs from the engine under test (an anchor measured by the
+    engine being bumped is confounded). Returns (median, label) or (None, why)."""
+    best_confounded = None
+    for rt, mid, task in anchors:
+        key = (device, rt, mid, task, cold_run)
+        vals = [v for v, _ in side_cells.get(key, [])]
+        if not vals:
+            continue
+        med = statistics.median(vals)
+        spread = (max(vals) - min(vals)) / med * 100 if med and len(vals) > 1 else 0.0
+        if spread > spread_limit:
+            continue  # an unreliable anchor normalizes nothing (spread-rule)
+        label = f"{rt} {mid} {task}"
+        if rt != exclude_runtime:
+            return med, label
+        best_confounded = (med, label + " [CONFOUNDED: anchor runtime == engine under test]")
+    if best_confounded:
+        return best_confounded
+    return None, "no usable anchor in this selection"
+
+
 def run_device(args):
     rows = load_csv("device-runs.csv")
     base_rows, cand_rows = select(rows, args.baseline), select(rows, args.candidate)
@@ -214,8 +266,12 @@ def run_device(args):
         return 2
     worst = 0
     b_quants, c_quants = quants(base_rows), quants(cand_rows)
+    anchors = load_anchor_cells(args.anchors) if args.anchors else []
     any_common = False
+    # ttft/memory: lower is better; both were columns without a diff until 2026-08-17
     for metric, higher_is_better in (("decode_tps", True), ("prefill_tps", True),
+                                     ("ttft_ms", False),
+                                     ("mem_footprint_median_mb", False),
                                      ("energy_j_per_tok", False)):
         b_cells, c_cells = cells(base_rows, metric), cells(cand_rows, metric)
         common = sorted(set(b_cells) & set(c_cells))
@@ -238,19 +294,49 @@ def run_device(args):
                          f"{'/'.join(sorted(c_quants.get(key, set())))}]")
             b_dates = {d for _, d in b_cells[key] if d}
             c_dates = {d for _, d in c_cells[key] if d}
+            base_rec = dict(metric=metric, base_median=round(bm, 3),
+                            cand_median=round(cm, 3), base_n=len(bv), cand_n=len(cv),
+                            base_spread_pct=round(bs, 1), cand_spread_pct=round(cs, 1),
+                            raw_delta_pct=round(delta, 2))
             if bs > args.spread_limit or cs > args.spread_limit:
                 # spread-rule: contention halves decode and the only tell is spread
                 print(f"UNRELIABLE       {label}  {note}  [spread > {args.spread_limit:.0f}% — throw out]")
+                record("device", "UNRELIABLE", label, note, **base_rec)
                 continue
             if b_dates and c_dates and b_dates.isdisjoint(c_dates):
-                # different sittings: device-state drift dwarfs engine deltas
-                print(f"INFO-ONLY        {label}  {note}  [cross-session — do not pool; "
-                      f"use a same-session A/B for a verdict]")
+                # Different sittings: device-state drift (16-25% across days) dwarfs
+                # engine deltas. With --anchors, score the ANCHOR-NORMALIZED delta
+                # instead — cross-session ratios are only ever computed through
+                # anchors (continuous-benchmarking-proposal §2) — while still
+                # printing the raw numbers.
+                ba, ba_label = anchor_median(b_cells, anchors, key[0], key[-1],
+                                             key[1], args.spread_limit) if anchors else (None, "no --anchors")
+                ca, ca_label = anchor_median(c_cells, anchors, key[0], key[-1],
+                                             key[1], args.spread_limit) if anchors else (None, "no --anchors")
+                if ba and ca:
+                    ndelta = ((cm / ca) / (bm / ba) - 1) * 100
+                    worse = ndelta < -args.threshold_pct if higher_is_better else ndelta > args.threshold_pct
+                    better = ndelta > args.threshold_pct if higher_is_better else ndelta < -args.threshold_pct
+                    verdict = "REGRESSION" if worse else ("IMPROVED" if better else "OK")
+                    anote = (f"{note}  [anchor-normalized {ndelta:+.1f}% via {ba_label}; "
+                             f"raw cross-session delta is informational]")
+                    print(f"{verdict:16} {label}  {anote}")
+                    record("device", verdict, label, anote, **base_rec,
+                           anchor={"base_median": round(ba, 3), "cand_median": round(ca, 3),
+                                   "cell": ba_label, "normalized_delta_pct": round(ndelta, 2)})
+                    if worse:
+                        worst = 1
+                else:
+                    print(f"INFO-ONLY        {label}  {note}  [cross-session — do not pool; "
+                          f"anchor unavailable ({ba_label if not ba else ca_label}); "
+                          f"use a same-session A/B for a verdict]")
+                    record("device", "INFO-ONLY", label, note, **base_rec)
                 continue
             worse = delta < -args.threshold_pct if higher_is_better else delta > args.threshold_pct
             better = delta > args.threshold_pct if higher_is_better else delta < -args.threshold_pct
             verdict = "REGRESSION" if worse else ("IMPROVED" if better else "OK")
             print(f"{verdict:16} {label}  {note}")
+            record("device", verdict, label, note, **base_rec)
             if worse:
                 worst = 1
     if not any_common:
@@ -280,15 +366,33 @@ def main():
                     help="device: per-side trial spread (%%) beyond which a cell is UNRELIABLE (spread-rule)")
     ap.add_argument("--no-rebuild", action="store_true",
                     help="skip regenerating results/summary/ first")
+    ap.add_argument("--anchors",
+                    help="cells file whose anchor=1 cells normalize cross-session "
+                         "device pairs (e.g. matrices/anchors.cells)")
+    ap.add_argument("--json-out",
+                    help="write per-cell machine verdicts (regression_report.py "
+                         "persists these as verdicts.json)")
     args = ap.parse_args()
     if not args.no_rebuild:
         rebuild_summary()
     if args.mode == "quality":
-        return run_quality(args)
-    if not (args.baseline and args.candidate):
-        print("device mode needs --baseline and --candidate selectors", file=sys.stderr)
-        return 2
-    return run_device(args)
+        rc = run_quality(args)
+    else:
+        if not (args.baseline and args.candidate):
+            print("device mode needs --baseline and --candidate selectors", file=sys.stderr)
+            return 2
+        rc = run_device(args)
+    if args.json_out:
+        os.makedirs(os.path.dirname(os.path.abspath(args.json_out)), exist_ok=True)
+        payload = {"mode": args.mode, "baseline": args.baseline or args.baseline_tag,
+                   "candidate": args.candidate or args.candidate_tag or args.candidate_dir,
+                   "thresholds": {"points": args.threshold_points,
+                                  "pct": args.threshold_pct,
+                                  "spread_limit": args.spread_limit},
+                   "exit_code": rc, "verdicts": RECORDS}
+        json.dump(payload, open(args.json_out, "w"), indent=2)
+        print(f"\nwrote {args.json_out} ({len(RECORDS)} verdicts)")
+    return rc
 
 
 if __name__ == "__main__":
