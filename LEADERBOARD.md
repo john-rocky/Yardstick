@@ -227,8 +227,8 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
 | llama.cpp | `unsloth/Qwen3-0.6B-GGUF` | Q4_K_M | b8999 | — | 29.7 | 221.4 | — | 1253.5 | — | 2026-08-17 |
-| litert-lm-gpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | — | 15.2 | 41.5 | 550.0 | 764.6 | — | 2026-08-17 |
-| litert-lm-cpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | — | 14.3 | 9.8 | 2110.0 | 1084.4 | — | 2026-08-17 |
+| litert-lm-gpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.15.0 / v0.16.0 | — | 15.2 | 41.6 | 550.0 | 1144.3 | — | 2026-08-17 |
+| litert-lm-cpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.15.0 / v0.16.0 | — | 14.3 | 9.5 | 2180.0 | 1296.4 | — | 2026-08-17 |
 
 <details><summary>single-arm cells (no cross-runtime comparison)</summary>
 

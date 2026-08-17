@@ -1,0 +1,150 @@
+VmRSS:	  362604 kB
+VmRSS:	  407784 kB
+VmRSS:	  449292 kB
+VmRSS:	  486176 kB
+VmRSS:	  520552 kB
+VmRSS:	  554000 kB
+VmRSS:	  591156 kB
+VmRSS:	 1091088 kB
+VmRSS:	 1180924 kB
+VmRSS:	 1321544 kB
+VmRSS:	 1328120 kB
+VmRSS:	 1328052 kB
+VmRSS:	 1328052 kB
+VmRSS:	 1328316 kB
+VmRSS:	 1327788 kB
+VmRSS:	 1328312 kB
+VmRSS:	 1327792 kB
+VmRSS:	 1328092 kB
+VmRSS:	 1328316 kB
+VmRSS:	 1327792 kB
+VmRSS:	 1328316 kB
+VmRSS:	 1327792 kB
+VmRSS:	 1327792 kB
+VmRSS:	 1328052 kB
+VmRSS:	 1328052 kB
+VmRSS:	 1328052 kB
+VmRSS:	 1328052 kB
+VmRSS:	 1327792 kB
+VmRSS:	 1327792 kB
+VmRSS:	 1328308 kB
+VmRSS:	 1327784 kB
+VmRSS:	 1328308 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1328332 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1328332 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1328328 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1328332 kB
+VmRSS:	 1328332 kB
+VmRSS:	 1328068 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1328068 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1328332 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1327956 kB
+VmRSS:	 1327808 kB
+VmRSS:	 1327788 kB
+VmRSS:	 1328064 kB
+VmRSS:	 1327804 kB
+VmRSS:	 1328064 kB
+VmRSS:	 1327804 kB
+VmRSS:	 1327804 kB
+VmRSS:	 1327784 kB
+VmRSS:	 1196928 kB
+===ENGINE_OUTPUT===
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007a4d9160d0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007a4d915cb0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007a4d9278f0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007a4d927e30, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [compiled_model.cc:813] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1786953908.618789   26941 delegate_opencl.cc:593] options->hint_waiting_for_completion: false
+I0000 00:00:1786953908.618926   26941 delegate_opencl.cc:595] options->kernel_batch_size: -1
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: Loaded OpenCL library with dlopen.
+INFO: [gpu_environment.cc:220] Created OpenCL device from provided device id and platform id.
+INFO: [gpu_environment.cc:283] Reusing provided EGL environment.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+VERBOSE: Replacing 1361 out of 1361 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (main).
+W0000 00:00:1786953908.681660   26941 gpu_model_builder.cc:4294] Weights preparation on Gpu is disabled for PowerVR, Broadcom, Mali GPUs and non-OpenCL/WebGPU/Metal backends.
+I0000 00:00:1786953913.194258   26941 delegate_kernel.cc:310] Total 57 external tensors are used for delegate inputs and outputs
+I0000 00:00:1786953913.194601   26941 delegate_kernel.cc:862] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1786953913.370662   26941 delegate_kernel.cc:760] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 1312 out of 1312 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (main).
+I0000 00:00:1786953913.991049   26941 delegate_kernel.cc:310] Total 58 external tensors are used for delegate inputs and outputs
+I0000 00:00:1786953913.991138   26941 delegate_kernel.cc:862] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1786953914.048995   26941 delegate_kernel.cc:760] Initialized InferenceContext from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007a4dd93670, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007a4dd94030, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Explain what on-device AI means in simple terms.
+<think>
+Okay, so the user wants a simple explanation of on-device AI. Let me start by recalling what on-device AI is. From what I remember, it's a type of AI that runs on a device, not in the cloud. But I might be mixing it up with something else. Wait, maybe it's similar to neural networks, but with a twist.
+
+On-device AI, I think, means that the AI model is trained on the device's own data, not stored in the cloud. So, it's like a model that's built on the device itself. For example, if I have a smartphone with a neural network, the AI on-device would use the data I've already seen on my device, not the data stored in my phone. That makes sense because it's local processing.
+
+But wait, how does that work? If it's local, then the model is trained on the device's data. So, for instance, if I use a neural network on my phone, the model is built on my device's data, not the cloud. That's a key point. So, on-device AI is about using local data to train models, not cloud data. That's the basic idea.
+
+I should check if there's a common misconception here. Maybe some people confuse it with cloud-based models. But no, on-device AI is about local data processing. So, the explanation should be straightforward: using device data to train models locally, not cloud.
+</think>
+
+On-device AI refers to a type of AI (artificial intelligence) that operates locally on a device, rather than being stored in the cloud. Here's a simple breakdown:
+
+- **Local Processing**: The AI model is trained using data already available on the device, not the data stored in the cloud.
+- **No Cloud Dependency**: It doesn't rely on external cloud services or APIs, making it more privacy-friendly and efficient for real-time applications.
+
+For example, if you have a smartphone with a neural network, the AI on-device would use the data you've already encountered on your device, not the data stored in your phone, which is typically cloud-based. This approach improves performance and privacy.
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.03 ms
+    - Init Executor: 5881.29 ms
+    - Init LLM metadata: 0.05 ms
+    - Init Model assets: 0.04 ms
+    - Init Tokenizer: 651.82 ms
+    - Init Total: 5881.62 ms
+--------------------------------------------------
+  Time to first token: 0.55 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 20 tokens in 485.893799ms duration.
+      Prefill Speed: 41.16 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 441 tokens in 29.277197646s duration.
+      Decode Speed: 15.06 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 121.5us, 1 tokens
+    Turn 2: 253.866us, 19 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007a4d927e30, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007a4d9278f0, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007a4dd94030, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007a4dd93670, name=LiteRT GPU
+EXIT_CODE=0

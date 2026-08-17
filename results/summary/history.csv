@@ -1,1 +1,7 @@
 report,mode,verdict,cell,metric,base_median,cand_median,raw_delta_pct,normalized_delta_pct,anchor_cell,baseline,candidate
+2026-08-17-litert-lm-v0.16.0,device,UNRELIABLE,Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold,decode_tps,11.38,14.38,26.36,,,engine:v0.15.0,engine:v0.16.0
+2026-08-17-litert-lm-v0.16.0,device,OK,Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold,decode_tps,15.18,15.23,0.33,,,engine:v0.15.0,engine:v0.16.0
+2026-08-17-litert-lm-v0.16.0,device,UNRELIABLE,Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold,prefill_tps,8.27,9.78,18.26,,,engine:v0.15.0,engine:v0.16.0
+2026-08-17-litert-lm-v0.16.0,device,OK,Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold,prefill_tps,41.63,41.49,-0.34,,,engine:v0.15.0,engine:v0.16.0
+2026-08-17-litert-lm-v0.16.0,device,UNRELIABLE,Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold,ttft_ms,2510.0,2110.0,-15.94,,,engine:v0.15.0,engine:v0.16.0
+2026-08-17-litert-lm-v0.16.0,device,OK,Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold,ttft_ms,550.0,550.0,0.0,,,engine:v0.15.0,engine:v0.16.0

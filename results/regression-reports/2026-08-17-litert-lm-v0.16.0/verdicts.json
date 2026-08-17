@@ -1,0 +1,97 @@
+{
+  "mode": "device",
+  "baseline": "engine:v0.15.0",
+  "candidate": "engine:v0.16.0",
+  "thresholds": {
+    "points": 3.0,
+    "pct": 5.0,
+    "spread_limit": 5.0
+  },
+  "exit_code": 0,
+  "verdicts": [
+    {
+      "mode": "device",
+      "verdict": "UNRELIABLE",
+      "cell": "Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold",
+      "note": "11.4 (n=3, spread 20%) -> 14.4 (n=5, spread 8%)  +26.4%",
+      "metric": "decode_tps",
+      "base_median": 11.38,
+      "cand_median": 14.38,
+      "base_n": 3,
+      "cand_n": 5,
+      "base_spread_pct": 20.2,
+      "cand_spread_pct": 7.5,
+      "raw_delta_pct": 26.36
+    },
+    {
+      "mode": "device",
+      "verdict": "OK",
+      "cell": "Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold",
+      "note": "15.2 (n=3, spread 2%) -> 15.2 (n=3, spread 1%)  +0.3%",
+      "metric": "decode_tps",
+      "base_median": 15.18,
+      "cand_median": 15.23,
+      "base_n": 3,
+      "cand_n": 3,
+      "base_spread_pct": 2.2,
+      "cand_spread_pct": 0.5,
+      "raw_delta_pct": 0.33
+    },
+    {
+      "mode": "device",
+      "verdict": "UNRELIABLE",
+      "cell": "Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold",
+      "note": "8.3 (n=3, spread 30%) -> 9.8 (n=5, spread 53%)  +18.3%",
+      "metric": "prefill_tps",
+      "base_median": 8.27,
+      "cand_median": 9.78,
+      "base_n": 3,
+      "cand_n": 5,
+      "base_spread_pct": 30.0,
+      "cand_spread_pct": 52.8,
+      "raw_delta_pct": 18.26
+    },
+    {
+      "mode": "device",
+      "verdict": "OK",
+      "cell": "Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold",
+      "note": "41.6 (n=3, spread 2%) -> 41.5 (n=3, spread 4%)  -0.3%",
+      "metric": "prefill_tps",
+      "base_median": 41.63,
+      "cand_median": 41.49,
+      "base_n": 3,
+      "cand_n": 3,
+      "base_spread_pct": 2.4,
+      "cand_spread_pct": 3.8,
+      "raw_delta_pct": -0.34
+    },
+    {
+      "mode": "device",
+      "verdict": "UNRELIABLE",
+      "cell": "Pixel 8a litert-lm-cpu litert-community/Qwen3-0.6B short-chat cold",
+      "note": "2510.0 (n=3, spread 23%) -> 2110.0 (n=5, spread 91%)  -15.9%",
+      "metric": "ttft_ms",
+      "base_median": 2510.0,
+      "cand_median": 2110.0,
+      "base_n": 3,
+      "cand_n": 5,
+      "base_spread_pct": 23.1,
+      "cand_spread_pct": 91.5,
+      "raw_delta_pct": -15.94
+    },
+    {
+      "mode": "device",
+      "verdict": "OK",
+      "cell": "Pixel 8a litert-lm-gpu litert-community/Qwen3-0.6B short-chat cold",
+      "note": "550.0 (n=3, spread 2%) -> 550.0 (n=3, spread 4%)  +0.0%",
+      "metric": "ttft_ms",
+      "base_median": 550.0,
+      "cand_median": 550.0,
+      "base_n": 3,
+      "cand_n": 3,
+      "base_spread_pct": 1.8,
+      "cand_spread_pct": 3.6,
+      "raw_delta_pct": 0.0
+    }
+  ]
+}

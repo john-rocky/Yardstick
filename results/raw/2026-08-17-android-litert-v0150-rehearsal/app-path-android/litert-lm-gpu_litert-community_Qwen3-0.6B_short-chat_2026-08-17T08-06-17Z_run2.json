@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "a04a210b-84bc-4e12-bd0c-716fcd0f0894",
+  "runtime": "litert-lm-gpu",
+  "engineVersion": "v0.15.0",
+  "engineArtifact": "793dbab001f01db3403d3f2cfebfc7806373d37133d1c1073fae8f1c93252987",
+  "model": {
+    "id": "litert-community/Qwen3-0.6B",
+    "quantization": "INT4 (mixed, blockwise gs32)",
+    "file": "litert-community_Qwen3-0.6B_qwen3_0_6b_mixed_int4.litertlm",
+    "sha256": "b1baab462f6be49d70eada79d715c2c52cd9ece0cad00bddf6a2c097d23498e9"
+  },
+  "task": "short-chat",
+  "timestamp": "2026-08-17T08:06:17Z",
+  "device": {
+    "modelIdentifier": "Pixel 8a",
+    "systemName": "Android",
+    "systemVersion": "16",
+    "securityPatch": "2026-05-05",
+    "soc": "Tensor G3",
+    "product": "akita",
+    "batteryLevel": 1.0,
+    "batteryState": "charging"
+  },
+  "conditions": {
+    "sampler": "engine-default",
+    "cpuAffinity": "taskset f0",
+    "contextTokens": "bundle-default",
+    "thermalRawStatus": 0,
+    "thermalRawStatusFinal": 0,
+    "screen": "on-usb",
+    "elapsedSeconds": 33.5,
+    "exitCode": 0
+  },
+  "metrics": {
+    "firstTokenLatencyMS": 550.0,
+    "promptTokensPerSecond": 41.63,
+    "decodeTokensPerSecond": 15.18,
+    "promptTokenCount": 20,
+    "generatedTokenCount": 441,
+    "coldRun": true,
+    "harnessStamp": "2026-08-android-cli-v1",
+    "initialThermalState": "nominal",
+    "finalThermalState": "nominal",
+    "memoryMedianResidentMB": 1296.4765625
+  },
+  "provenance": {
+    "rawLog": "litert-lm-gpu_litert-community_Qwen3-0.6B_short-chat_2026-08-17T08-06-17Z_run2.log",
+    "harness": "android/bench/run_cell.py"
+  }
+}
