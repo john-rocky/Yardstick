@@ -101,9 +101,16 @@ def push_prompt(task, serial):
     return dev_path, budget
 
 
-def engine_command(runtime, backend, model_dev, task, prompt_dev, budget, max_tokens):
-    """The on-device command line for one run. Returns (cmd, sampler_note)."""
+DEFAULT_LLAMA_CTX = 4096  # llama-cli otherwise defaults to the model's TRAINING
+# context (Qwen3: 40960) — measured 4.8 GB RSS for a 0.6B Q4 before this pin.
+
+
+def engine_command(runtime, backend, model_dev, task, prompt_dev, budget, max_tokens,
+                   context_tokens):
+    """The on-device command line for one run. Returns (cmd, binname, sampler, ctx_note)."""
     if runtime.startswith("litert-lm"):
+        ctx = f" --max_num_tokens={context_tokens}" if context_tokens else ""
+        ctx_note = context_tokens or "bundle-default"
         if task.startswith("native-benchmark-"):
             # ONLY advanced_main consumes the benchmark token counts (verified
             # in v0.16.0 sources AND on device: the plain main ran its default
@@ -111,30 +118,38 @@ def engine_command(runtime, backend, model_dev, task, prompt_dev, budget, max_to
             p, d = task[len("native-benchmark-"):].split("x")
             core = (f"./litert_lm_advanced_main --backend={backend} --model_path={model_dev} "
                     f"--benchmark --benchmark_prefill_tokens={p} "
-                    f"--benchmark_decode_tokens={d} --async=false")
-        else:
-            core = (f"./litert_lm_main --backend={backend} --model_path={model_dev} "
-                    f"--input_prompt_file={prompt_dev} "
-                    f"--max_output_tokens={max_tokens or budget} --async=false")
+                    f"--benchmark_decode_tokens={d} --async=false{ctx}")
+            return core, "litert_lm_advanced_main", "engine-default", ctx_note
+        core = (f"./litert_lm_main --backend={backend} --model_path={model_dev} "
+                f"--input_prompt_file={prompt_dev} "
+                f"--max_output_tokens={max_tokens or budget} --async=false{ctx}")
         # no temperature/top-p flags exist -> engine-default sampling, disclosed
-        return core, "engine-default"
+        return core, "litert_lm_main", "engine-default", ctx_note
     if runtime == "llama.cpp":
         # -t matches the taskset f0 mask (4 mid cores): llama-bench defaults to
         # 9 threads, which busy-poll against a 4-core mask and hang (measured:
         # >5 min without output; -t 4 completes in seconds).
+        ctx = context_tokens or DEFAULT_LLAMA_CTX
         if task.startswith("native-benchmark-"):
             p, d = task[len("native-benchmark-"):].split("x")
-            return (f"./llama-bench -m {model_dev} -t 4 -p {p} -n {d} -o json"), "n/a (llama-bench)"
-        return (f"./llama-cli -m {model_dev} -t 4 -f {prompt_dev} -n {max_tokens or budget} "
-                f"--temp 0 --top-p 1 -no-cnv"), "greedy"
+            return (f"./llama-bench -m {model_dev} -t 4 -p {p} -n {d} -o json"), \
+                "llama-bench", "n/a (llama-bench)", "llama-bench-managed"
+        return (f"./llama-cli -m {model_dev} -t 4 -c {ctx} -f {prompt_dev} "
+                f"-n {max_tokens or budget} --temp 0 --top-p 1 -no-cnv"), \
+            "llama-cli", "greedy", ctx
     raise SystemExit(f"unknown android runtime {runtime!r}")
 
 
-def run_once(cmd, serial, timeout):
-    """One engine process with an RSS sampler wrapped around it on-device."""
+def run_once(cmd, binname, serial, timeout):
+    """One engine process with an RSS sampler wrapped around it on-device.
+
+    $! is the backgrounded subshell, not the engine (measured: sampling it
+    reads ~1.7 MB forever) — resolve the real pid with pgrep -n on the binary
+    name and sample that."""
     shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. taskset f0 {cmd} & pid=$!; "
+             f"sleep 1; epid=$(pgrep -n -f {binname}); [ -z \"$epid\" ] && epid=$pid; "
              "while kill -0 $pid 2>/dev/null; do "
-             "grep VmRSS /proc/$pid/status 2>/dev/null; sleep 0.5; done; wait $pid; "
+             "grep VmRSS /proc/$epid/status 2>/dev/null; sleep 0.5; done; wait $pid; "
              "echo EXIT_CODE=$?")
     out = adb(["shell", shell], serial, timeout=timeout)
     rss_kb = [int(x) for x in
@@ -155,6 +170,7 @@ def main():
     ap.add_argument("--task", required=True)
     ap.add_argument("--runs", type=int, default=3)
     ap.add_argument("--max-tokens", type=int, default=None)
+    ap.add_argument("--context-tokens", type=int, default=None)
     ap.add_argument("--out", required=True)
     ap.add_argument("--serial", default=None)
     ap.add_argument("--first-ever", action="store_true",
@@ -178,8 +194,9 @@ def main():
     prompt_dev = budget = None
     if not args.task.startswith("native-benchmark-"):
         prompt_dev, budget = push_prompt(args.task, args.serial)
-    cmd, sampler = engine_command(args.runtime, args.backend, model_dev, args.task,
-                                  prompt_dev, budget, args.max_tokens)
+    cmd, binname, sampler, ctx_note = engine_command(
+        args.runtime, args.backend, model_dev, args.task,
+        prompt_dev, budget, args.max_tokens, args.context_tokens)
 
     os.makedirs(args.out, exist_ok=True)
     dev = device_info(args.serial)
@@ -189,7 +206,7 @@ def main():
         raw_status, thermal_name = thermal_status(args.serial)
         batt = battery(args.serial)
         t0 = time.time()
-        console, exit_code, rss_mb = run_once(cmd, args.serial, args.timeout)
+        console, exit_code, rss_mb = run_once(cmd, binname, args.serial, args.timeout)
         elapsed = time.time() - t0
 
         if args.runtime == "llama.cpp" and args.task.startswith("native-benchmark-"):
@@ -241,6 +258,7 @@ def main():
             "device": {**dev, "batteryLevel": batt["batteryLevel"],
                        "batteryState": batt["batteryState"]},
             "conditions": {"sampler": sampler, "cpuAffinity": "taskset f0",
+                           "contextTokens": ctx_note,
                            "thermalRawStatus": raw_status,
                            "thermalRawStatusFinal": end_status,
                            "screen": "on-usb", "elapsedSeconds": round(elapsed, 1),
@@ -258,12 +276,26 @@ def main():
     return 0 if ok == args.runs else 1
 
 
+# Exact labels for known artifacts — same strings as the iOS ModelCatalog, so
+# the same artifact never carries two labels across platforms (quant-label-rule:
+# a bare "int4" is not a spec). Adding a model to android cells => add its
+# label here (docs/OPERATIONS.md, add-a-model).
+ANDROID_QUANT_LABELS = {
+    "qwen3_0_6b_mixed_int4.litertlm": "INT4 (mixed, blockwise gs32)",
+    "gemma-4-E2B-it.litertlm": "wNa8o8 (int2/int4/int8 + int8 activations, QAT)",
+}
+
+
 def guess_quant(dev_path):
-    """Label from the artifact filename only — no inference beyond what the
-    name states; the leaderboard shows 'unrecorded' otherwise (quant-per-arm-rule)."""
-    base = os.path.basename(dev_path).lower()
-    for pat in ("q4_k_m", "q8_0", "int8", "int4", "f16", "fp16"):
-        if pat in base:
+    """Exact label for known artifacts; otherwise only what the filename
+    states (GGUF quant suffixes ARE specs), else 'unrecorded'."""
+    base = os.path.basename(dev_path)
+    for known, label in ANDROID_QUANT_LABELS.items():
+        if base.endswith(known):
+            return label
+    low = base.lower()
+    for pat in ("q4_k_m", "q8_0", "f16", "fp16"):
+        if pat in low:
             return pat.upper() if pat.startswith("q") else pat
     return "unrecorded (artifact name carries no quant label)"
 

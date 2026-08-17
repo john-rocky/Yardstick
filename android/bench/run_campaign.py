@@ -72,6 +72,8 @@ def run_cell_once(cell, out_dir, runs):
         cmd += ["--file", cell["opts"]["file"]]
     if cell["opts"].get("max-tokens"):
         cmd += ["--max-tokens", cell["opts"]["max-tokens"]]
+    if cell["opts"].get("context-tokens"):
+        cmd += ["--context-tokens", cell["opts"]["context-tokens"]]
     if SERIAL:
         cmd += ["--serial", SERIAL]
     print(f"\n=== {cell['runtime']}{'/' + cell['opts'].get('backend', '') if cell['opts'].get('backend') else ''} "
