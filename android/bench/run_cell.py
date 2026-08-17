@@ -46,6 +46,24 @@ def load_pins():
     return json.load(open(p)) if os.path.exists(p) else {}
 
 
+def observed_engine(binname, pins, serial):
+    """Stamp the OBSERVED on-device binary, matched by sha256 against the pins
+    registry — never 'the newest pin' (registry/witness rule: the binary that
+    is on the device is the one that measured the row; during an A/B rehearsal
+    two tags alternate on the same device)."""
+    out = adb(["shell", f"sha256sum {DEV_DIR}/{binname}"], serial)
+    sha = out.split()[0]
+    key_by_bin = {"litert_lm_main": ("litert-lm", "litert_lm_main_sha256"),
+                  "litert_lm_advanced_main": ("litert-lm", "litert_lm_advanced_main_sha256"),
+                  "llama-cli": ("llama.cpp", "llama_cli_sha256"),
+                  "llama-bench": ("llama.cpp", "llama_bench_sha256")}
+    engine, field = key_by_bin[binname]
+    for tag, entry in pins.get(engine, {}).items():
+        if entry.get(field) == sha:
+            return tag, sha
+    return f"unknown (on-device {binname} sha unmatched in android/engine-pins.json)", sha
+
+
 def sha256_file(path):
     h = hashlib.sha256()
     with open(path, "rb") as fh:
@@ -155,11 +173,15 @@ def run_once(cmd, binname, serial, timeout):
     # engine's stdout is block-buffered and its exit-time flush races the adb
     # pty teardown — a 7-minute gemma GPU run lost its entire BenchmarkInfo
     # that way (EXIT_CODE=0, zero engine lines) while short runs got lucky.
-    shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. taskset f0 {cmd} >run_out.txt 2>&1 </dev/null & pid=$!; "
+    # Absolute paths only: `cd X && engine & rest` backgrounds the WHOLE
+    # `cd && engine` list in mksh, so `rest` never inherits the cd (measured:
+    # cat looked for run_out.txt in the wrong cwd while the engine ran fine).
+    shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. taskset f0 {cmd} "
+             f">{DEV_DIR}/run_out.txt 2>&1 </dev/null & pid=$!; "
              f"sleep 1; epid=$(pgrep -n -f {binname}); [ -z \"$epid\" ] && epid=$pid; "
              "while kill -0 $pid 2>/dev/null; do "
              "grep VmRSS /proc/$epid/status 2>/dev/null; sleep 0.5; done; wait $pid; ec=$?; "
-             "echo ===ENGINE_OUTPUT===; cat run_out.txt; echo EXIT_CODE=$ec")
+             f"echo ===ENGINE_OUTPUT===; cat {DEV_DIR}/run_out.txt; echo EXIT_CODE=$ec")
     out = adb(["shell", shell], serial, timeout=timeout)
     rss_kb = [int(x) for x in
               (line.split()[1] for line in out.splitlines() if line.startswith("VmRSS"))]
@@ -192,12 +214,6 @@ def main():
     arm = f"litert-lm-{args.backend}" if args.runtime == "litert-lm" else "llama.cpp"
 
     pins = load_pins()
-    if args.runtime == "litert-lm":
-        tag, entry = sorted(pins.get("litert-lm", {}).items())[-1] if pins.get("litert-lm") else (None, {})
-        engine_version, engine_artifact = tag, entry.get("litert_lm_main_sha256")
-    else:
-        tag, entry = sorted(pins.get("llama.cpp", {}).items())[-1] if pins.get("llama.cpp") else (None, {})
-        engine_version, engine_artifact = tag, entry.get("llama_bench_sha256" if args.task.startswith("native-") else "llama_cli_sha256")
 
     model_dev, model_local = ensure_model(args.model_id, args.file, args.runtime, args.serial)
     prompt_dev = budget = None
@@ -206,6 +222,7 @@ def main():
     cmd, binname, sampler, ctx_note = engine_command(
         args.runtime, args.backend, model_dev, args.task,
         prompt_dev, budget, args.max_tokens, args.context_tokens)
+    engine_version, engine_artifact = observed_engine(binname, pins, args.serial)
 
     os.makedirs(args.out, exist_ok=True)
     dev = device_info(args.serial)
