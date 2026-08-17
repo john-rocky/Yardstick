@@ -435,14 +435,18 @@ Yardstick/
 │   └── YardstickCLI/          Mac command-line runner
 ├── ios/
 │   └── BenchmarkApp/          On-device iOS app (`.xcodeproj`)
+├── android/                   adb-driven Android lane (LiteRT-LM, llama.cpp; Pixel 8a)
 ├── runtimes/                  Per-runtime notes (adapters, gotchas, version pins)
 ├── devices/                   Per-device pages (chip, RAM, OS, build, signing)
 ├── methodology/               How we measure each axis fairly
+├── matrices/                  Standing matrix cell files (./bench matrix|regress)
 ├── models/                    Curated model catalog
-├── prompts/                   Standardized prompts per task
+├── prompts/                   Standardized prompts per task (text/ = canonical bytes)
 └── results/
     ├── raw/                   JSONL dumps per run
-    └── (summary tables generated into RESULTS.md)
+    ├── summary/               machine-readable accumulation (build_summary.py)
+    ├── regression-reports/    release-over-release verdicts (regression_report.py)
+    └── (tables generated into RESULTS.md + LEADERBOARD.md)
 ```
 
 ## Running on Mac (CLI)
@@ -517,6 +521,13 @@ Devices we'd love numbers for:
 | ExecuTorch | ✅ | ⏸ | Build path is clean; current ET-community models ship SentencePiece `tokenizer.model` but ET's `hf_tokenizer.cpp` expects HF-format `tokenizer.json`. Needs a model with HF tokenizer or an ET-side SentencePiece adapter. |
 | ANEMLL | ✅ | ⏸ | Build path is clean; `swift-huggingface.HFDownloader` fails on `.mlmodelc/` directory-shaped HF repos. Needs upstream downloader work. |
 | LiteRT-LM | ✅ | ⏸ | `google-ai-edge/LiteRT-LM` v0.12.0 ships `ios-arm64` + `macos-arm64` slices, wired via SPM (product `LiteRTLM`, macOS 12+). Build path clean; M4 Max run pending. Watch the package's `-all_load` for duplicate-symbol clashes with the vendored `llama`/`executorch` static libs (fall back to scoped `-force_load`). |
+
+## Operating this repo continuously
+
+Standing-matrix runs, release regressions, and the add-a-model / add-an-arm /
+add-a-device runbooks live in [`docs/OPERATIONS.md`](docs/OPERATIONS.md) —
+entrypoint `./bench` (`matrix` / `regress` / `release-watch`), current
+standings in [`LEADERBOARD.md`](LEADERBOARD.md).
 
 ## Roadmap
 
