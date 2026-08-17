@@ -148,6 +148,8 @@ def list_tables():
         print(f"  ./reproduce {plat} {name}")
         print(f"      {t['desc']}")
     print("\npins: environment.lock.json · fairness: methodology/fairness-rules.md")
+    print("forward-looking runs (standing matrix / release regression): ./bench — this "
+          "registry stays published-tables-only")
 
 
 def check_prereq(label, path):

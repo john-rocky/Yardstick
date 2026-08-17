@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""bench — the operations entrypoint for the standing matrix.
+
+  ./bench matrix  <cells-file> [--platform mac|iphone|android] [--campaign NAME]
+  ./bench regress <cells-file> --engine <arm> [--version vX] --baseline <selector>
+                  [--platform ...] [--campaign NAME]
+  ./bench release-watch
+
+`./reproduce` stays what it is — the backward-looking "published table ->
+pinned command" registry; this file is the forward-looking driver. matrix =
+validate -> platform runners -> build_summary -> render_results ->
+render_leaderboard. regress = matrix into a fresh campaign, then
+regression_report (exit 1 on REGRESSION). manual=1 cells (energy) are never
+run here — the unplug discipline is a human step (docs/OPERATIONS.md).
+"""
+import argparse
+import datetime
+import os
+import subprocess
+import sys
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+PY = sys.executable
+
+RUNNERS = {  # platform -> (runner argv builder)
+    "mac": lambda cells: [os.path.join(ROOT, "scripts", "bench_matrix_mac.sh"), "run", cells],
+    "iphone": lambda cells: [os.path.join(ROOT, "scripts", "bench_matrix_iphone.sh"), "run", cells],
+    "android": lambda cells: [PY, os.path.join(ROOT, "android", "bench", "run_campaign.py"), cells],
+}
+# cells-file platform tokens -> runner names (ios cells run on the iphone runner)
+PLATFORM_TOKEN = {"mac": "mac", "iphone": "ios", "android": "android"}
+
+
+def run(cmd, env=None):
+    print(f"\n$ {' '.join(cmd)}")
+    e = dict(os.environ)
+    if env:
+        e.update(env)
+    return subprocess.call(cmd, env=e)
+
+
+def cells_platforms(cells_file):
+    """Which platform tokens actually appear in the file (comments stripped)."""
+    toks = set()
+    for raw in open(cells_file):
+        line = raw.split("#", 1)[0].strip()
+        if line:
+            toks.add(line.split()[0])
+    return toks
+
+
+def postprocess():
+    rc = run([PY, os.path.join(ROOT, "scripts", "build_summary.py")])
+    rc |= run([PY, os.path.join(ROOT, "scripts", "render_results.py")])
+    rc |= run([PY, os.path.join(ROOT, "scripts", "render_leaderboard.py")])
+    return rc
+
+
+def do_matrix(args):
+    if run([PY, os.path.join(ROOT, "scripts", "validate_cells.py"), args.cells]):
+        return 2
+    present = cells_platforms(args.cells)
+    campaign = args.campaign or f"{datetime.date.today().isoformat()}-matrix"
+    rc = 0
+    for runner_name in (args.platform or ["mac", "iphone", "android"]):
+        token = PLATFORM_TOKEN[runner_name]
+        if token not in present:
+            continue
+        # serialized on purpose: one queue per session; never overlap device work
+        rc |= run(RUNNERS[runner_name](args.cells),
+                  env={"CAMPAIGN": f"{campaign}-{token}"})
+    rc |= postprocess()
+    return rc
+
+
+def do_regress(args):
+    campaign = args.campaign or f"{datetime.date.today().isoformat()}-regress-{args.engine}"
+    m = argparse.Namespace(cells=args.cells, platform=args.platform, campaign=campaign)
+    rc = do_matrix(m)
+    if rc:
+        print(f"capture finished with rc={rc} — diff runs anyway (failed cells "
+              "stay visible; failed-runs-stay)", file=sys.stderr)
+    report_cmd = [PY, os.path.join(ROOT, "scripts", "regression_report.py"),
+                  "--engine", args.engine, "--version", args.version or "current",
+                  "device",
+                  "--baseline", args.baseline,
+                  "--candidate", f"campaign:{campaign}",
+                  "--anchors", os.path.join(ROOT, "matrices", "anchors.cells")]
+    return run(report_cmd)
+
+
+def main():
+    ap = argparse.ArgumentParser(prog="bench", description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    m = sub.add_parser("matrix", help="run a cells file end to end")
+    m.add_argument("cells")
+    m.add_argument("--platform", action="append", choices=list(RUNNERS))
+    m.add_argument("--campaign")
+
+    r = sub.add_parser("regress", help="re-capture a cells file and diff vs a baseline")
+    r.add_argument("cells")
+    r.add_argument("--engine", required=True, help="arm under test (report naming + anchor confound check)")
+    r.add_argument("--version", help="candidate engine version label")
+    r.add_argument("--baseline", required=True, help="campaign:<substr> or engine:<prefix>")
+    r.add_argument("--platform", action="append", choices=list(RUNNERS))
+    r.add_argument("--campaign")
+
+    sub.add_parser("release-watch", help="compare upstream releases vs environment.lock.json pins")
+
+    args = ap.parse_args()
+    if args.cmd == "matrix":
+        return do_matrix(args)
+    if args.cmd == "regress":
+        return do_regress(args)
+    return run([PY, os.path.join(ROOT, "scripts", "release_watch.py")])
+
+
+if __name__ == "__main__":
+    sys.exit(main())
