@@ -21,6 +21,21 @@
         "libLiteRtWebGpuAccelerator.so": "acf02905cd1d7b7d1f0f70a6d885ddbd392c0c69a99b92834da7e26d6859abcf",
         "libwebgpu_dawn.so": "3b2a53de934efabce2efb5e9f703a7bd6b63a5814b2f8f0c7ed610cabf53b147"
       }
+    },
+    "v0.15.0": {
+      "requested_tag": "v0.15.0",
+      "observed": "v0.15.0",
+      "litert_lm_main_sha256": "793dbab001f01db3403d3f2cfebfc7806373d37133d1c1073fae8f1c93252987",
+      "litert_lm_advanced_main_sha256": "2479a2c852d346ccfda4d22d7f67f5edf99e8d903aad3fb4e5fd1fbeb492f9df",
+      "so_files": {
+        "libGemmaModelConstraintProvider.so": "1c111ed437e6d1f60ac55cb601c3081f79eea90d48d348acc2c82f749deff264",
+        "libLiteRtGpuAccelerator.so": "4ea3b45818a9b6ff043aa55309a721084d53accdf2a8171107d66f6b11840c78",
+        "libLiteRtOpenClAccelerator.so": "1970ee1b0e64ef3bde3184e95c6895f97464409ab0a3e071ce93c89f96bd3126",
+        "libLiteRtTopKOpenClSampler.so": "83bdf0019160c93a624d22bd618e5856e0b61e7cc8390b54ef22338f1ab9a62d",
+        "libLiteRtTopKWebGpuSampler.so": "444fcfd1eb10816e90b65131e92303261e0c8c936c221355f220827f36c5b072",
+        "libLiteRtWebGpuAccelerator.so": "aa3b4237d6d17ecadf420eb7719a908aeddf0a2c5eecf60167a39e2c1d316f20",
+        "libwebgpu_dawn.so": "267e882f5c879840f3b30f244500ff88b1cfe514d97632c2362270e1215961ae"
+      }
     }
   }
 }

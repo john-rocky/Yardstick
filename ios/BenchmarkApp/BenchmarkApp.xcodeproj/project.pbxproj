@@ -491,6 +491,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6ABDBD1AD4883A8815094867 /* XCRemoteSwiftPackageReference "executorch" */,
+				F4CB86B74D22AB24126489EC /* XCRemoteSwiftPackageReference "mlx-swift" */,
 				222066378580FE50F7021006 /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
 				80DD55C85D3764D0D34ECC4E /* XCRemoteSwiftPackageReference "swift-huggingface" */,
 				3CA1B107F9BEE92DC4D9485E /* XCRemoteSwiftPackageReference "swift-transformers" */,
@@ -954,6 +955,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.8.1;
+			};
+		};
+		F4CB86B74D22AB24126489EC /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift";
+			requirement = {
+				kind = exactVersion;
+				version = 0.31.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

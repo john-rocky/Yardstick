@@ -25,6 +25,14 @@ packages:
     # KV-shared layers, which is what the shipped checkpoints expect. A benchmark harness
     # cannot float its runtime dependency — the runtime IS the thing under measurement.
     revision: 60bd0d7880c82980f9481f8be78862e9b63c58a3
+  mlx-swift:
+    url: https://github.com/ml-explore/mlx-swift
+    # Transitive pin, same reason as mlx-swift-lm above but one level deeper:
+    # mlx-swift-lm declares mlx-swift with a `from:` range, and on 2026-08-11
+    # resolution floated to 0.31.6, whose Package.swift needs Swift tools 6.3
+    # (installed toolchain: 6.2.1) — every xcodebuild/SPM build died in
+    # dependency resolution. 0.31.4 is the newest tools-5.12 release.
+    exactVersion: 0.31.4
   swift-huggingface:
     url: https://github.com/huggingface/swift-huggingface
     from: "0.8.1"
