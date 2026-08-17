@@ -51,12 +51,17 @@ echo "== bazel build (android_arm64) — first build takes 10-20 min"
 # rules_rust tool crates (thiserror etc.) fail with E0463 "can't find crate for
 # thiserror_impl" because .bazelrc's `build:android` disables the host's
 # build:macos config. Upstream: google-ai-edge/LiteRT-LM#3247.
+# Both binaries: plain main runs prompt tasks (benchmark reporting is on by
+# default); ONLY advanced_main consumes --benchmark_prefill_tokens /
+# --benchmark_decode_tokens (verified in v0.16.0 sources — the plain main
+# silently runs its default prompt instead), so synthetic PxD rows need it.
 (cd "$SRC" && bazelisk build --config=android_arm64 --enable_platform_specific_config \
-  //runtime/engine:litert_lm_main)
+  //runtime/engine:litert_lm_main //runtime/engine:litert_lm_advanced_main)
 
 mkdir -p "$OUT"
 cp -f "$SRC/bazel-bin/runtime/engine/litert_lm_main" "$OUT/litert_lm_main"
-chmod +x "$OUT/litert_lm_main"
+cp -f "$SRC/bazel-bin/runtime/engine/litert_lm_advanced_main" "$OUT/litert_lm_advanced_main"
+chmod +x "$OUT/litert_lm_main" "$OUT/litert_lm_advanced_main"
 
 # GPU backend needs the accelerator .so set next to the binary on device
 # (LD_LIBRARY_PATH=.). Ship whatever this tag provides.
@@ -80,6 +85,7 @@ def sha(p):
     return hashlib.sha256(open(p, "rb").read()).hexdigest()
 entry = {"requested_tag": tag, "observed": observed,
          "litert_lm_main_sha256": sha(os.path.join(out, "litert_lm_main")),
+         "litert_lm_advanced_main_sha256": sha(os.path.join(out, "litert_lm_advanced_main")),
          "so_files": {f: sha(os.path.join(out, f))
                        for f in sorted(os.listdir(out)) if f.endswith(".so")}}
 pins.setdefault("litert-lm", {})[tag] = entry

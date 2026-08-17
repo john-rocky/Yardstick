@@ -25,7 +25,9 @@
         "tag_built": "v0.16.0",
         "observed": "v0.16.0",
         "litert_lm_main_sha256": "37d6b9d65fbbb11331873fabf097bf2488324f96797ab4d08f09b336d5b1898d",
-        "gpu_so_count": 7
+        "gpu_so_count": 7,
+        "litert_lm_advanced_main_sha256": "e5de2d9054695632c24dd3342c03cdb9afc15d15ce4c7628779ce9b083e27fde",
+        "note_advanced_main": "synthetic PxD rows need litert_lm_advanced_main — only it consumes --benchmark_prefill/decode_tokens (verified in source AND on device: plain main ran its ~20-token default prompt regardless of the flags)"
       }
     },
     "llama.cpp": {

@@ -21,10 +21,10 @@ mac litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat
 mac litert-lm litert-community/gemma-4-E2B-it-litert-lm long-context-1024-gen256
 
 # --- litert-lm cells under test: Android (Pixel 8a) ---
-android litert-lm litert-community/Qwen3-0.6B short-chat backend=cpu
-android litert-lm litert-community/Qwen3-0.6B short-chat backend=gpu
-android litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat backend=gpu cooldown=300
-android litert-lm litert-community/gemma-4-E2B-it-litert-lm native-benchmark-1024x256 backend=gpu
+android litert-lm litert-community/Qwen3-0.6B short-chat backend=cpu file=qwen3_0_6b_mixed_int4.litertlm
+android litert-lm litert-community/Qwen3-0.6B short-chat backend=gpu file=qwen3_0_6b_mixed_int4.litertlm
+android litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat backend=gpu cooldown=300 file=gemma-4-E2B-it.litertlm
+android litert-lm litert-community/gemma-4-E2B-it-litert-lm native-benchmark-1024x256 backend=gpu file=gemma-4-E2B-it.litertlm
 
 # --- energy (manual only: unplugged, <=90%, Auto-Lock Never) ---
 ios litert-lm litert-community/gemma-4-E2B-it-litert-lm energy manual=1

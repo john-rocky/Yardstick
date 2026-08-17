@@ -11,6 +11,7 @@
       "requested_tag": "v0.16.0",
       "observed": "v0.16.0",
       "litert_lm_main_sha256": "37d6b9d65fbbb11331873fabf097bf2488324f96797ab4d08f09b336d5b1898d",
+      "litert_lm_advanced_main_sha256": "e5de2d9054695632c24dd3342c03cdb9afc15d15ce4c7628779ce9b083e27fde",
       "so_files": {
         "libGemmaModelConstraintProvider.so": "d305460ed571ba0e527f9f75e34de4d8b13d5d6af906431c36d04795f14411ca",
         "libLiteRtGpuAccelerator.so": "1287e5ae01666a605f2bc5d72453f32cf4a294ef38acabb86cd61140207e41c3",

@@ -11,8 +11,9 @@ import re
 RE_TTFT = re.compile(r"Time to first token: ([\d.]+) s")
 RE_PREFILL = re.compile(r"Prefill Speed: ([\d.]+) tokens/sec")
 RE_DECODE = re.compile(r"Decode Speed: ([\d.]+) tokens/sec")
-RE_PREFILL_TOKENS = re.compile(r"Prefill Turn \d+: (\d+) tokens")
-RE_DECODE_TOKENS = re.compile(r"Decode Turn \d+: (\d+) tokens")
+# real v0.16.0 device output: "Prefill Turn 1: Processed 20 tokens in 764.48ms duration."
+RE_PREFILL_TOKENS = re.compile(r"Prefill Turn \d+: Processed (\d+) tokens")
+RE_DECODE_TOKENS = re.compile(r"Decode Turn \d+: Processed (\d+) tokens")
 RE_PEAK_MEM = re.compile(r"[Pp]eak memory.*?([\d.]+) *(MB|GB|bytes)")
 
 # llama-cli perf lines (b8999)

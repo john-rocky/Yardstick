@@ -55,19 +55,25 @@ def sha256_file(path):
 
 
 def ensure_model(model_id, file_hint, runtime, serial):
-    """HF-download (host cache) then adb-push once; returns (device_path, local_path)."""
+    """HF-download (host cache) then adb-push once; returns (device_path, local_path).
+
+    file= is REQUIRED when the repo holds more than one artifact: the quant
+    variant is part of arm identity, and the Android arm must run the same
+    file the iOS catalog pins (ModelCatalog primaryFile) — picking one by
+    sort order would silently measure a different recipe.
+    """
     from huggingface_hub import hf_hub_download, list_repo_files
     if file_hint:
         fname = file_hint
     else:
         files = list_repo_files(model_id)
-        if runtime.startswith("litert-lm"):
-            cands = [f for f in files if f.endswith(".litertlm")]
-        else:
-            cands = [f for f in files if f.endswith(".gguf") and "Q4_K_M" in f]
-        if not cands:
-            raise SystemExit(f"no artifact in {model_id} for {runtime} — pass file= in the cell")
-        fname = sorted(cands)[0]
+        ext = ".litertlm" if runtime.startswith("litert-lm") else ".gguf"
+        cands = [f for f in files if f.endswith(ext)]
+        if len(cands) != 1:
+            raise SystemExit(
+                f"{model_id} holds {len(cands)} {ext} artifacts — pass file= in the "
+                f"cell (match the iOS ModelCatalog primaryFile):\n  " + "\n  ".join(sorted(cands)))
+        fname = cands[0]
     local = hf_hub_download(model_id, fname)
     dev_path = f"{DEV_DIR}/models/{model_id.replace('/', '_')}_{fname}"
     have = subprocess.run(["adb"] + (["-s", serial] if serial else []) +
@@ -99,8 +105,11 @@ def engine_command(runtime, backend, model_dev, task, prompt_dev, budget, max_to
     """The on-device command line for one run. Returns (cmd, sampler_note)."""
     if runtime.startswith("litert-lm"):
         if task.startswith("native-benchmark-"):
+            # ONLY advanced_main consumes the benchmark token counts (verified
+            # in v0.16.0 sources AND on device: the plain main ran its default
+            # ~20-token prompt regardless of the flags).
             p, d = task[len("native-benchmark-"):].split("x")
-            core = (f"./litert_lm_main --backend={backend} --model_path={model_dev} "
+            core = (f"./litert_lm_advanced_main --backend={backend} --model_path={model_dev} "
                     f"--benchmark --benchmark_prefill_tokens={p} "
                     f"--benchmark_decode_tokens={d} --async=false")
         else:
@@ -110,10 +119,13 @@ def engine_command(runtime, backend, model_dev, task, prompt_dev, budget, max_to
         # no temperature/top-p flags exist -> engine-default sampling, disclosed
         return core, "engine-default"
     if runtime == "llama.cpp":
+        # -t matches the taskset f0 mask (4 mid cores): llama-bench defaults to
+        # 9 threads, which busy-poll against a 4-core mask and hang (measured:
+        # >5 min without output; -t 4 completes in seconds).
         if task.startswith("native-benchmark-"):
             p, d = task[len("native-benchmark-"):].split("x")
-            return (f"./llama-bench -m {model_dev} -p {p} -n {d} -o json"), "n/a (llama-bench)"
-        return (f"./llama-cli -m {model_dev} -f {prompt_dev} -n {max_tokens or budget} "
+            return (f"./llama-bench -m {model_dev} -t 4 -p {p} -n {d} -o json"), "n/a (llama-bench)"
+        return (f"./llama-cli -m {model_dev} -t 4 -f {prompt_dev} -n {max_tokens or budget} "
                 f"--temp 0 --top-p 1 -no-cnv"), "greedy"
     raise SystemExit(f"unknown android runtime {runtime!r}")
 
