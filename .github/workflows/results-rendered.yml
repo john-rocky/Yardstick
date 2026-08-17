@@ -70,8 +70,10 @@ jobs:
           python-version: "3.11"
       - name: py_compile all python scripts
         run: python -m py_compile scripts/*.py results/raw/*/import_to_flat.py 2>/dev/null || python -m py_compile scripts/*.py
+      - name: py_compile android drivers + bench entrypoint
+        run: python -m py_compile android/bench/*.py bench
       - name: bash -n all shell scripts
-        run: for f in scripts/*.sh ios/BenchmarkApp/scripts/*.sh; do bash -n "$f" || exit 1; done
+        run: for f in scripts/*.sh android/scripts/*.sh ios/BenchmarkApp/scripts/*.sh; do bash -n "$f" || exit 1; done
 
   charts:
     name: charts regenerate from raw
