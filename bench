@@ -51,7 +51,9 @@ def cells_platforms(cells_file):
 
 def postprocess():
     rc = run([PY, os.path.join(ROOT, "scripts", "build_summary.py")])
-    rc |= run([PY, os.path.join(ROOT, "scripts", "render_results.py")])
+    rr = os.path.join(ROOT, "scripts", "render_results.py")
+    if os.path.exists(rr):  # archive repo only; the harness repo has no RESULTS.md
+        rc |= run([PY, rr])
     rc |= run([PY, os.path.join(ROOT, "scripts", "render_leaderboard.py")])
     return rc
 

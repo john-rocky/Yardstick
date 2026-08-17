@@ -524,10 +524,14 @@ Devices we'd love numbers for:
 
 ## Operating this repo continuously
 
-Standing-matrix runs, release regressions, and the add-a-model / add-an-arm /
-add-a-device runbooks live in [`docs/OPERATIONS.md`](docs/OPERATIONS.md) —
-entrypoint `./bench` (`matrix` / `regress` / `release-watch`), current
-standings in [`LEADERBOARD.md`](LEADERBOARD.md).
+**The standing-benchmark harness now lives in its own repo:
+[edge-llm-bench](https://github.com/john-rocky/edge-llm-bench)** — carved out
+2026-08-17 with the v0.15.0 → v0.16.0 regression run as its founding
+baseline. That repo is canonical for the harness going forward; this one
+remains the measurement archive (published tables, full raw history, the
+`./reproduce` registry). The harness copy here still works — runbooks in
+[`docs/OPERATIONS.md`](docs/OPERATIONS.md), entrypoint `./bench`, standings
+in [`LEADERBOARD.md`](LEADERBOARD.md).
 
 ## Roadmap
 

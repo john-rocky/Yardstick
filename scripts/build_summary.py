@@ -78,8 +78,14 @@ def build_quality():
             "model_quantization": d.get("model", {}).get("quantization"),
         })
     path = os.path.join(OUT, "quality.csv")
+    # a fresh checkout (e.g. the carved-out harness repo) starts with no
+    # quality reports — emit a header-only csv instead of crashing
+    fields = list(rows[0].keys()) if rows else (
+        ["source", "tag", "n", "correct", "acc", "max_tokens", "runtime_build",
+         "backend", "bundle", "has_correction_note", "gen_tokens_median",
+         "decode_tps_median"] + QUALITY_EXTRA)
     with open(path, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
+        w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader(); w.writerows(rows)
     return path, len(rows)
 
