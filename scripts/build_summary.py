@@ -139,6 +139,15 @@ def iter_device_records():
                 if rid in seen_ids:
                     continue
                 seen_ids.add(rid)
+            # Early flat Mac records carry the degenerate modelIdentifier
+            # "arm64" (all Macs would pool). The flat-filename convention
+            # (<device>-<rest>, same rule render_results.py uses) carries the
+            # real label — restore it from there, never by guessing.
+            dev = d.setdefault("device", {})
+            if dev.get("modelIdentifier") in ("arm64", "", None):
+                label = os.path.basename(f).split("-", 1)[0]
+                if label:
+                    dev["modelIdentifier"] = label
             yield f, d
 
 
