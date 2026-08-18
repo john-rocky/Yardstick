@@ -12,9 +12,25 @@ THERMAL_NAMES = {0: "nominal", 1: "light", 2: "moderate", 3: "severe",
                  4: "critical", 5: "emergency", 6: "shutdown"}
 
 
-def adb(args, serial=None, timeout=30):
+def adb(args, serial=None, timeout=30, retries=3):
+    """adb with transient-drop tolerance: a USB renegotiation mid-campaign
+    (measured: the probe between two cells) used to kill the whole run. On
+    failure, wait for the device to re-enumerate and retry; only after
+    `retries` consecutive failures does the error propagate."""
     cmd = ["adb"] + (["-s", serial] if serial else []) + args
-    return subprocess.check_output(cmd, text=True, timeout=timeout)
+    last = None
+    for attempt in range(retries):
+        try:
+            return subprocess.check_output(cmd, text=True, errors="replace",
+                                           timeout=timeout)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as e:
+            last = e
+            wait = ["adb"] + (["-s", serial] if serial else []) + ["wait-for-device"]
+            try:
+                subprocess.run(wait, timeout=60, check=False)
+            except subprocess.TimeoutExpired:
+                pass
+    raise last
 
 
 def getprop(name, serial=None):

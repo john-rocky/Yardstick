@@ -86,12 +86,7 @@ def ensure_model(model_id, file_hint, runtime, serial):
     if file_hint and os.path.exists(os.path.expanduser(file_hint)):
         local = os.path.expanduser(file_hint)
         dev_path = f"{DEV_DIR}/models/{model_id.replace('/', '_')}_{os.path.basename(local)}"
-        have = subprocess.run(["adb"] + (["-s", serial] if serial else []) +
-                              ["shell", f"ls {dev_path}"], capture_output=True, text=True)
-        if have.returncode != 0:
-            adb(["shell", "mkdir", "-p", f"{DEV_DIR}/models"], serial)
-            print(f"pushing local {os.path.basename(local)} …", file=sys.stderr)
-            adb(["push", local, dev_path], serial, timeout=1800)
+        push_verified(local, dev_path, serial)
         return dev_path, local
     from huggingface_hub import hf_hub_download, list_repo_files
     if file_hint:
@@ -107,13 +102,27 @@ def ensure_model(model_id, file_hint, runtime, serial):
         fname = cands[0]
     local = hf_hub_download(model_id, fname)
     dev_path = f"{DEV_DIR}/models/{model_id.replace('/', '_')}_{fname}"
-    have = subprocess.run(["adb"] + (["-s", serial] if serial else []) +
-                          ["shell", f"ls {dev_path}"], capture_output=True, text=True)
-    if have.returncode != 0:
-        adb(["shell", "mkdir", "-p", f"{DEV_DIR}/models"], serial)
-        print(f"pushing {fname} …", file=sys.stderr)
-        adb(["push", local, dev_path], serial, timeout=1800)
+    push_verified(local, dev_path, serial)
     return dev_path, local
+
+
+def push_verified(local, dev_path, serial):
+    """Push unless the on-device file already matches the LOCAL SIZE. A bare
+    existence check kept a truncated file forever after a mid-push USB drop
+    (measured: 188 MB of a 1.8 GB .litertlm -> every run died on bad magic)."""
+    want = os.path.getsize(local)
+    have = subprocess.run(["adb"] + (["-s", serial] if serial else []) +
+                          ["shell", f"stat -c %s {dev_path}"],
+                          capture_output=True, text=True)
+    if have.returncode == 0 and have.stdout.strip() == str(want):
+        return
+    adb(["shell", "mkdir", "-p", f"{DEV_DIR}/models"], serial)
+    print(f"pushing {os.path.basename(local)} ({want >> 20} MB) …", file=sys.stderr)
+    adb(["push", local, dev_path], serial, timeout=1800)
+    out = adb(["shell", f"stat -c %s {dev_path}"], serial).strip()
+    if out != str(want):
+        raise SystemExit(f"push verification failed: device has {out} bytes, "
+                         f"local is {want} — check the USB connection")
 
 
 def push_prompt(task, serial):
@@ -326,6 +335,12 @@ ANDROID_QUANT_LABELS = {
     "qwen3_0_6b_mixed_int4.litertlm": "INT4 (mixed, blockwise gs32)",
     "gemma-4-E2B-it.litertlm": "wNa8o8 (int2/int4/int8 + int8 activations, QAT)",
     "DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm": "INT8",
+    # litert-community filename recipe descriptors, kept verbatim (a bare
+    # "int4" is not a spec; the descriptor is exactly what the repo states)
+    "minicpm_wi4b32_wi8_afp32.litertlm": "wi4b32_wi8_afp32",
+    "minicpm_wi4b32_wi8_afp32_gpu_opt.litertlm": "wi4b32_wi8_afp32 (gpu-opt)",
+    "LFM2.5-1.2B-Instruct_int4.litertlm": "int4 (litert-community descriptor)",
+    "LFM2.5-1.2B-Instruct_int4_gpu.litertlm": "int4_gpu (litert-community descriptor)",
 }
 
 
