@@ -101,6 +101,24 @@ def ensure_model(model_id, file_hint, runtime, serial):
                 f"cell (match the iOS ModelCatalog primaryFile):\n  " + "\n  ".join(sorted(cands)))
         fname = cands[0]
     local = hf_hub_download(model_id, fname)
+    # Guard against cache poisoning: a DIFFERENT downloader's interrupted
+    # attempt can leave a truncated blob that hf_hub_download then trusts
+    # (measured: 188 MB of a 1833 MB .litertlm, planted by the Mac app's
+    # HubBridge — both platforms then failed on 'bad magic' / engine-create,
+    # which read as an engine incompatibility until the size was checked).
+    declared = None
+    try:
+        from huggingface_hub import HfApi
+        info = HfApi().model_info(model_id, files_metadata=True)
+        declared = next((f.size for f in info.siblings if f.rfilename == fname), None)
+    except Exception:
+        pass  # offline etc. — proceed on the cached file
+    if declared and os.path.getsize(local) != declared:
+        print(f"cached {fname} is {os.path.getsize(local)} bytes, HF declares "
+              f"{declared} — re-downloading (poisoned cache)", file=sys.stderr)
+        local = hf_hub_download(model_id, fname, force_download=True)
+        if os.path.getsize(local) != declared:
+            raise SystemExit(f"{fname}: size still mismatched after re-download")
     dev_path = f"{DEV_DIR}/models/{model_id.replace('/', '_')}_{fname}"
     push_verified(local, dev_path, serial)
     return dev_path, local

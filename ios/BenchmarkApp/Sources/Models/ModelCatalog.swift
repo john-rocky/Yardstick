@@ -494,15 +494,29 @@ public enum ModelCatalog {
             hfFilePatterns: ["LFM2.5-350M_int4_ekv1024.litertlm"],
             primaryFile: "LFM2.5-350M_int4_ekv1024.litertlm"
         ),
+        // MiniCPM/LFM went PUBLIC on litert-community in 2026-08 (the "not on
+        // litert-community" note above predates that) — prefer the published
+        // artifacts; the local conversions stay only where no public equivalent
+        // exists (LFM2.5-350M chat).
         ModelInfo(
-            id: "litert-local/minicpm5-1b",
-            displayName: "MiniCPM5-1B (.litertlm, local)",
-            quantization: "INT4 (ekv1024)",
+            id: "litert-community/MiniCPM5-1B",
+            displayName: "MiniCPM5-1B (.litertlm)",
+            quantization: "wi4b32_wi8_afp32 (gpu-opt)",
             parameterCountB: 1.0,
-            onDiskSizeMB: 532,
-            hfRepoId: "litert-local/MiniCPM5-1B",
-            hfFilePatterns: ["MiniCPM5-1B_int4_ekv1024.litertlm"],
-            primaryFile: "MiniCPM5-1B_int4_ekv1024.litertlm"
+            onDiskSizeMB: 793,
+            hfRepoId: "litert-community/MiniCPM5-1B",
+            hfFilePatterns: ["minicpm_wi4b32_wi8_afp32_gpu_opt.litertlm"],
+            primaryFile: "minicpm_wi4b32_wi8_afp32_gpu_opt.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-community/LFM2.5-1.2B-Instruct",
+            displayName: "LFM2.5-1.2B-Instruct (.litertlm)",
+            quantization: "int4_gpu (litert-community descriptor)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-community/LFM2.5-1.2B-Instruct",
+            hfFilePatterns: ["LFM2.5-1.2B-Instruct_int4_gpu.litertlm"],
+            primaryFile: "LFM2.5-1.2B-Instruct_int4_gpu.litertlm"
         ),
         // Qwen3-1.7B — litert-community has NO 1.7B (only 0.6B/4B/8B/14B), so these are
         // OUR own conversions (scripts/export_coreai_qwen3.sh has the Core AI side; the

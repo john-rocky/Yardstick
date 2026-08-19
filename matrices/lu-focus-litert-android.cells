@@ -1,0 +1,9 @@
+# LiteRT team's focus models (LFM2.5 / MiniCPM) on Pixel 8a — now measurable
+# straight from litert-community (published 2026-08; the older litert-local
+# side-load path is no longer needed for these). Per-backend artifacts as the
+# repos intend; quant labels carry the filename recipe descriptors verbatim.
+
+android litert-lm litert-community/MiniCPM5-1B short-chat backend=cpu file=minicpm_wi4b32_wi8_afp32.litertlm
+android litert-lm litert-community/MiniCPM5-1B short-chat backend=gpu file=minicpm_wi4b32_wi8_afp32_gpu_opt.litertlm
+android litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat backend=cpu file=LFM2.5-1.2B-Instruct_int4.litertlm
+android litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat backend=gpu file=LFM2.5-1.2B-Instruct_int4_gpu.litertlm
