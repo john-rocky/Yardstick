@@ -694,6 +694,20 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-19: North-Micro-Vision-Instruct (CohereLabs 2.48B VLM) fast_vlm build —
+        // Cohere2-rehosted wi8 decoder + fp16 vision (deepstack folded into the single
+        // image embedding). Run with --litert-vision for the vision tasks (fast_vlm
+        // creates the vision executor only when a backend is named for it).
+        ModelInfo(
+            id: "litert-local/northmv-wi8",
+            displayName: "North-Micro-Vision-Instruct (.litertlm, wi8 + fp16 vision)",
+            quantization: "INT8 decoder (dynamic wi8) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 2.48,
+            onDiskSizeMB: 3480,
+            hfRepoId: "litert-local/North-Micro-Vision-Instruct-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-11: Shieldstral multimodal build (pixtral tower, static 560x560,
         // marker embeddings folded into the adapter). Run with --litert-vision so the
         // vision executor is actually loaded — without it Engine and Conversation both
