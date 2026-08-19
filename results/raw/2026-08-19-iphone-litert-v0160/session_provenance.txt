@@ -1,0 +1,8 @@
+    • OS Build Update: 24A5418b
+    • OS Version: 27.0
+session start 2026-08-19 11:02:10
+cells: matrices/release-regression-litert.cells
+    • OS Build Update: 24A5418b
+    • OS Version: 27.0
+session start 2026-08-19 12:38:59
+cells: /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/426d0833-f8ae-42f7-aab0-8f4d53c8cb4e/scratchpad/iphone-remaining.cells

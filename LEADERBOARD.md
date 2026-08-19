@@ -8,7 +8,7 @@ Regenerate: `python3 scripts/build_summary.py && python3 scripts/render_leaderbo
 
 <!-- BEGIN GENERATED: scripts/render_leaderboard.py -->
 
-Generated from `results/summary/*.csv` (latest capture 2026-08-17) by `scripts/render_leaderboard.py` — do not edit inside the markers.
+Generated from `results/summary/*.csv` (latest capture 2026-08-19) by `scripts/render_leaderboard.py` — do not edit inside the markers.
 
 Headline task: **short-chat**, warm = median of same-session warm runs (cold-warm-split); other tasks and full history: RESULTS.md. Rows sort by warm decode; the recipe (quantization, engine build) is part of every row — a faster number under a different recipe is a different deployment profile, not a win.
 
@@ -147,18 +147,18 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
+| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | 51.0 ⚠spread 21% | 55.4 | 408.7 | 80.5 | 479.7 | — | 2026-08-19 |
 | mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | pre-stamp | 46.8 | 44.1 | 189.4 | 217.0 | 3013.0 | — | 2026-07-30 |
 | llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | pre-stamp | 39.1 | 38.5 | 1710.5 | 108.0 | 201.3 | — | 2026-07-30 |
-| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | pre-stamp | — | 29.2 | 732.9 | 94.5 | 489.1 | — | 2026-08-04 |
 | core-ai | `core-ai/gemma4-e2b-gpu` | int4 q4_0 (QAT transplant) | pre-stamp | — | 46.9 | 43.3 | 508.0 | 690.1 | — | 2026-07-30 |
 
 **Qwen 3 0.6B**
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
-| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | pre-stamp | 166.9 ⚠spread 11% | 171.8 | 500.5 | 39.0 | — | — | 2026-07-13 |
+| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 60bd0d7880c82980f9481f8be78862e9b63c58a3 | 171.6 | 172.6 | 453.9 | 46.0 | 478.9 | — | 2026-08-19 |
 | core-ai | `core-ai/qwen3-0.6b-ane-june` | mixed 4/8-bit (June static export) | pre-stamp | 122.4 | 124.9 | 675.6 | 29.0 | — | — | 2026-07-13 |
-| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | pre-stamp | 119.4 | 119.8 | — | 356.0 | — | — | 2026-07-13 |
+| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 121.5 | 122.5 | 185.5 | 151.5 | 458.7 | — | 2026-08-19 |
 | core-ai | `core-ai/qwen3-0.6b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 116.9 | 118.7 | 697.3 | 28.5 | — | — | 2026-07-13 |
 | coreml-llm | `coreml-llm/qwen3-0.6b` | INT8 palettized | pre-stamp | — | 37.8 | 33.2 | 572.0 | — | — | 2026-06-17 |
 | core-ai | `core-ai/qwen3-0.6b-gpu` | INT4 (dynamic) | pre-stamp | — | 193.3 | 1699.9 | 16.0 | — | — | 2026-06-18 |
@@ -214,7 +214,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | pre-stamp | 30.1 | 31.1 | 2026-07-24 |
 | litert-community/Gemma3-1B-IT | litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | pre-stamp | 72.1 | 72.7 | 2026-07-13 |
 | litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 11.6 | 11.4 | 2026-07-24 |
-| litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | pre-stamp | 17.9 | 24.2 | 2026-07-14 |
+| litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 16.1 | 23.1 | 2026-08-19 |
 | litert-community/TinySwallow-1.5B-Instruct | litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | pre-stamp | 29.4 | 29.2 | 2026-07-23 |
 | litert-community/VibeThinker-1.5B | litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | pre-stamp | 29.3 | 30.6 | 2026-07-23 |
 | litert-local/llama32-3b | litert-lm | `litert-local/llama32-3b` | INT4 | pre-stamp | 18.2 | 19.2 | 2026-07-13 |

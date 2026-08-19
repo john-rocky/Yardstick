@@ -1,0 +1,1 @@
+CELL_SKIP litert-lm litert-community/gemma-4-E2B-it-litert-lm energy reason=manual

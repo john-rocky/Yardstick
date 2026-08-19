@@ -1,0 +1,74 @@
+{
+  "device" : {
+    "batteryLevel" : 0.3,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineArtifact" : "CLiteRTLM.xcframework.zip@v0.16.0 sha256:4e0f683da07566ee79c143d2d58d387f77052b0e6a41562c969e5d2728fc9f4b",
+  "engineVersion" : "v0.16.0",
+  "id" : "C382DD59-E1D4-489C-843A-4C7AAE32FEBC",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "contextTokensConfigured" : 672,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 55.13847367326451,
+    "decodeTokensPerSecondWallClock" : 54.7082718390284,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 129,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.79205894470215,
+    "interTokenLatencyP95MS" : 24.206995964050293,
+    "interTokenLatencyP99MS" : 27.13298797607422,
+    "loadTimeSeconds" : 196.25174605846405,
+    "memoryAfterGenerationMB" : 477.7851333618164,
+    "memoryAfterLoadMB" : 408.4725646972656,
+    "memoryBaselineMB" : 15.439231872558594,
+    "memoryFinalResidentMB" : 1443.640625,
+    "memoryMedianMB" : 477.7538833618164,
+    "memoryMedianResidentMB" : 1427.6640625,
+    "memoryPeakDuringDecodeMB" : 510.3007583618164,
+    "memoryPeakResidentMB" : 1443.640625,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 226.17259805435927,
+    "promptTokensPerSecondWallClock" : 155.2373638209163,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 9.073333978652954
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "wNa8o8 (int2\/int4\/int8 + int8 activations, QAT)"
+  },
+  "modelRevision" : "6b78abd019e61a1ca4cbe3b212d2c9ce8ff38a94",
+  "outputSample" : "Imagine you have a super-smart computer brain that lives **right on your own device**, like your smartphone, tablet, or even a smart watch, instead of needing to send everything to a giant, faraway se",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-19T02:14:39Z"
+}

@@ -194,11 +194,22 @@ def select(rows, sel):
 GROUP = ("device", "runtime", "model_id", "task", "cold_run")
 
 
+# fairness-rules §2 thermal guard, applied as code: only runs that STARTED at
+# nominal are comparable. The runners record hot runs (failed-runs-stay) and
+# mark the cell THERMAL_FAIL, but a differ that pooled them anyway turned a
+# clean nominal warm set into "spread 21%, UNRELIABLE" (measured 2026-08-19:
+# 4 nominal + 5 fair runs of the same cell). Rows with no thermal field
+# (pre-thermal writers, Mac CLI) pass through unchanged.
+NOMINAL_STATES = ("nominal", "")
+
+
 def cells(rows, metric):
     out = {}
     for r in rows:
         v = r.get(metric)
         if not v or float(v) == 0.0:  # a 0 tok/s field is an unmeasured axis, not a datum
+            continue
+        if (r.get("thermal_initial") or "") not in NOMINAL_STATES:
             continue
         out.setdefault(tuple(r[k] for k in GROUP), []).append(
             (float(v), (r["timestamp"] or "")[:10]))
@@ -296,6 +307,16 @@ def run_device(args):
                          f"{'/'.join(sorted(c_quants.get(key, set())))}]")
             b_dates = {d for _, d in b_cells[key] if d}
             c_dates = {d for _, d in c_cells[key] if d}
+            # no-cherry-pick rule: a verdict needs n>=MIN_N per side; a single
+            # run (or two survivors of a thermally-failed cell) is a data point,
+            # not a verdict — printed INFO-ONLY, never scored
+            if len(bv) < args.min_n or len(cv) < args.min_n:
+                print(f"INFO-ONLY        {label}  {note}  [n<{args.min_n} on a side — "
+                      f"no verdict (no-cherry-pick)]")
+                record("device", "INFO-ONLY", label, note, metric=metric,
+                       base_median=round(bm, 3), cand_median=round(cm, 3),
+                       base_n=len(bv), cand_n=len(cv), raw_delta_pct=round(delta, 2))
+                continue
             base_rec = dict(metric=metric, base_median=round(bm, 3),
                             cand_median=round(cm, 3), base_n=len(bv), cand_n=len(cv),
                             base_spread_pct=round(bs, 1), cand_spread_pct=round(cs, 1),
@@ -378,6 +399,8 @@ def main():
                     help="quality: accuracy delta (points) treated as real (default 3 ~ 1sd at n=100)")
     ap.add_argument("--threshold-pct", type=float, default=5.0,
                     help="device: median delta (%%) treated as real")
+    ap.add_argument("--min-n", type=int, default=3,
+                    help="device: minimum runs per side for a scored verdict (no-cherry-pick)")
     ap.add_argument("--spread-limit", type=float, default=5.0,
                     help="device: per-side trial spread (%%) beyond which a cell is UNRELIABLE (spread-rule)")
     ap.add_argument("--no-rebuild", action="store_true",

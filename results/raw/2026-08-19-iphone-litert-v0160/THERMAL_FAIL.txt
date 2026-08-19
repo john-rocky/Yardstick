@@ -1,0 +1,4 @@
+THERMAL_FAIL litert-lm litert-community/gemma-4-E2B-it-litert-lm short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/gemma-4-E2B-it-litert-lm long-context-1024-gen256 (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/gemma-4-E2B-it-litert-lm long-context-1024-gen256 (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/Qwen3-4B short-chat (kept both captures; exclude from warm table)
