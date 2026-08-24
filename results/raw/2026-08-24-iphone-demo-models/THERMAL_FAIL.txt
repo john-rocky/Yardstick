@@ -1,0 +1,2 @@
+THERMAL_FAIL litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/MiniCPM5-1B short-chat (kept both captures; exclude from warm table)

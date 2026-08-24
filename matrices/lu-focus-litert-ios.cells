@@ -1,0 +1,14 @@
+# LiteRT team's focus models (LFM2.5 / MiniCPM) + DeepSeek-R1 on iPhone 17 Pro —
+# the iOS leg of the model-agnostic demo (Pixel leg: lu-focus-litert-android.cells).
+# Catalog entries pin the same litert-community artifacts as the Android leg
+# (gpu-opt file where one is published); backend is the litert-lm iOS default (GPU Metal).
+#
+# LFM2.5 is a structural exclusion, not a gap: engine creation fails on iPhone
+# (v0.16.0) — the Metal delegate kernel rejects an implicit half4*float4 conversion
+# in the delegated portion (104/542 ops) AND the CPU fallback fails
+# DYNAMIC_UPDATE_SLICE prepare (update > operand after the ctx=672 magic-number
+# rewrite). Stored report: results/raw/2026-08-24-iphone-demo-models/
+# console_litert-lm_litert-community_LFM2_5-1_2B-Instruct_short-chat.txt.
+ios litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B short-chat runs=3
+ios litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat runs=3 exclude=engine-create-fail-metal-half4-float4-dus-shape
+ios litert-lm litert-community/MiniCPM5-1B short-chat runs=3

@@ -1,0 +1,255 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=litert-lm model=litert-community/LFM2.5-1.2B-Instruct task=short-chat runs=3
+W0000 00:00:1787555093.388350 1801994 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787555093.388419 1802941 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787555093.388478 1801994 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787555093.388484 1801994 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787555093.388488 1801994 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x114625270, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1146251d0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1146253b0, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x114625f90, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=672, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_512 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_256 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_128 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_64 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_32 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_16 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_8 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_4 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_2 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 672
+INFO: [compiled_model.cc:833] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1787555093.476634 1801994 delegate_metal.mm:89] Created a Metal device.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+I0000 00:00:1787555093.476838 1801994 gpu_backend_metal.mm:105] Metal Residency Set successfully enabled and added to Command Queue.
+ERROR: Following operations are not supported by GPU delegate:
+DYNAMIC_UPDATE_SLICE: Updated_slice shape must be less or equal to the array to update, but they are updated_slice: [18102464], array_to_update: [1867264]
+DYNAMIC_UPDATE_SLICE: Updated_slice shape must be less or equal to the array to update, but they are updated_slice: [18641024], array_to_update: [1864672]
+104 operations will run on the GPU, and the remaining 438 operations will run on the CPU.
+I0000 00:00:1787555094.100938 1801994 delegate_kernel.cc:330] Total 4 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787555094.100954 1801994 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+E0000 00:00:1787555094.312956 1801994 delegate_metal.mm:126] Failed to create DelegateKernelLiteRtMetal: INTERNAL: newLibraryWithSource: program_source:34:28: error: implicit conversions between vector types ('half4' (vector of 4 'half' values) and 'float4' (vector of 4 'float' values)) are not permitted
+  interm_value_link1 = src * second_value;}
+                           ^
+
+=== Source Location Trace: ===
+third_party/ml_drift/metal/common.mm:152
+third_party/ml_drift/metal/common.mm:297
+third_party/ml_drift/metal/compute_task.mm:176
+third_party/ml_drift/metal/inference_context.mm:277
+third_party/ml_drift/metal/inference_context.mm:142
+third_party/odml/litert/ml_drift/delegate/gpu_backend_metal_litert.mm:143
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:890
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:815
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:909
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:335
+third_party/odml/litert/ml_drift/delegate/delegate_kernel_litert.cc:144
+ERROR: Failed to initialize kernel.
+ERROR: third_party/tensorflow/lite/kernels/dynamic_update_slice.cc:65 SizeOfDimension(update, i) <= SizeOfDimension(operand, i) was not true.
+ERROR: Node number 100 (DYNAMIC_UPDATE_SLICE) failed to prepare.
+I0000 00:00:1787555094.319285 1801994 delegate_metal.mm:76] Destroyed the Metal environment.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x114625f90, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x1146253b0, name=GPU Metal
+E0000 00:00:1787555094.328160 1801994 engine.cc:777] Failed to create engine: UNKNOWN: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor_factory.cc:230]
+└ ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:2134]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_compiled_model.h:1895]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:565
+third_party/odml/litert_lm/runtime/core/engine_advanced_impl.cc:325
+YARDSTICK_RUN_FAIL run=1 error=Model load failed: Failed to create engine.
+W0000 00:00:1787555094.637344 1801988 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787555094.637373 1801988 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787555094.637378 1801988 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787555094.637383 1801988 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787555094.637391 1802974 litert_lm_loader.cc:291] Section not found: 
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x114624dc0, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1146256d0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=672, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_512 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_256 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_128 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_64 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_32 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_16 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_8 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_4 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_2 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 672
+INFO: [compiled_model.cc:833] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1787555094.691732 1801988 delegate_metal.mm:89] Created a Metal device.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+I0000 00:00:1787555094.691970 1801988 gpu_backend_metal.mm:105] Metal Residency Set successfully enabled and added to Command Queue.
+ERROR: Following operations are not supported by GPU delegate:
+DYNAMIC_UPDATE_SLICE: Updated_slice shape must be less or equal to the array to update, but they are updated_slice: [18102464], array_to_update: [1867264]
+DYNAMIC_UPDATE_SLICE: Updated_slice shape must be less or equal to the array to update, but they are updated_slice: [18641024], array_to_update: [1864672]
+104 operations will run on the GPU, and the remaining 438 operations will run on the CPU.
+I0000 00:00:1787555094.801623 1801988 delegate_kernel.cc:330] Total 4 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787555094.801635 1801988 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+E0000 00:00:1787555094.853927 1801988 delegate_metal.mm:126] Failed to create DelegateKernelLiteRtMetal: INTERNAL: newLibraryWithSource: program_source:34:28: error: implicit conversions between vector types ('half4' (vector of 4 'half' values) and 'float4' (vector of 4 'float' values)) are not permitted
+  interm_value_link1 = src * second_value;}
+                           ^
+
+=== Source Location Trace: ===
+third_party/ml_drift/metal/common.mm:152
+third_party/ml_drift/metal/common.mm:297
+third_party/ml_drift/metal/compute_task.mm:176
+third_party/ml_drift/metal/inference_context.mm:277
+third_party/ml_drift/metal/inference_context.mm:142
+third_party/odml/litert/ml_drift/delegate/gpu_backend_metal_litert.mm:143
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:890
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:815
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:909
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:335
+third_party/odml/litert/ml_drift/delegate/delegate_kernel_litert.cc:144
+ERROR: Failed to initialize kernel.
+ERROR: third_party/tensorflow/lite/kernels/dynamic_update_slice.cc:65 SizeOfDimension(update, i) <= SizeOfDimension(operand, i) was not true.
+ERROR: Node number 100 (DYNAMIC_UPDATE_SLICE) failed to prepare.
+I0000 00:00:1787555094.855276 1801988 delegate_metal.mm:76] Destroyed the Metal environment.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x1146256d0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x114624dc0, name=GPU Metal
+E0000 00:00:1787555094.860384 1801988 engine.cc:777] Failed to create engine: UNKNOWN: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor_factory.cc:230]
+└ ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:2134]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_compiled_model.h:1895]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:565
+third_party/odml/litert_lm/runtime/core/engine_advanced_impl.cc:325
+YARDSTICK_RUN_FAIL run=2 error=Model load failed: Failed to create engine.
+W0000 00:00:1787555095.157615 1801999 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787555095.157643 1801999 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787555095.157648 1801999 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787555095.157653 1801999 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787555095.161482 1802990 litert_lm_loader.cc:291] Section not found: 
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x114627cf0, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x114625e00, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=672, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_512 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_256 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_128 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_64 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_32 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_16 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_8 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_4 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_2 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 672
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 672
+INFO: [compiled_model.cc:833] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1787555095.209966 1801999 delegate_metal.mm:89] Created a Metal device.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+I0000 00:00:1787555095.210159 1801999 gpu_backend_metal.mm:105] Metal Residency Set successfully enabled and added to Command Queue.
+ERROR: Following operations are not supported by GPU delegate:
+DYNAMIC_UPDATE_SLICE: Updated_slice shape must be less or equal to the array to update, but they are updated_slice: [18102464], array_to_update: [1867264]
+DYNAMIC_UPDATE_SLICE: Updated_slice shape must be less or equal to the array to update, but they are updated_slice: [18641024], array_to_update: [1864672]
+104 operations will run on the GPU, and the remaining 438 operations will run on the CPU.
+I0000 00:00:1787555095.320161 1801999 delegate_kernel.cc:330] Total 4 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787555095.320172 1801999 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+E0000 00:00:1787555095.371785 1801999 delegate_metal.mm:126] Failed to create DelegateKernelLiteRtMetal: INTERNAL: newLibraryWithSource: program_source:34:28: error: implicit conversions between vector types ('half4' (vector of 4 'half' values) and 'float4' (vector of 4 'float' values)) are not permitted
+  interm_value_link1 = src * second_value;}
+                           ^
+
+=== Source Location Trace: ===
+third_party/ml_drift/metal/common.mm:152
+third_party/ml_drift/metal/common.mm:297
+third_party/ml_drift/metal/compute_task.mm:176
+third_party/ml_drift/metal/inference_context.mm:277
+third_party/ml_drift/metal/inference_context.mm:142
+third_party/odml/litert/ml_drift/delegate/gpu_backend_metal_litert.mm:143
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:890
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:815
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:909
+third_party/odml/litert/ml_drift/delegate/delegate_kernel.cc:335
+third_party/odml/litert/ml_drift/delegate/delegate_kernel_litert.cc:144
+ERROR: Failed to initialize kernel.
+ERROR: third_party/tensorflow/lite/kernels/dynamic_update_slice.cc:65 SizeOfDimension(update, i) <= SizeOfDimension(operand, i) was not true.
+ERROR: Node number 100 (DYNAMIC_UPDATE_SLICE) failed to prepare.
+I0000 00:00:1787555095.373047 1801999 delegate_metal.mm:76] Destroyed the Metal environment.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x114625e00, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x114627cf0, name=GPU Metal
+E0000 00:00:1787555095.375668 1801999 engine.cc:777] Failed to create engine: UNKNOWN: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor_factory.cc:230]
+└ ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:2134]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_compiled_model.h:1895]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:565
+third_party/odml/litert_lm/runtime/core/engine_advanced_impl.cc:325
+YARDSTICK_RUN_FAIL run=3 error=Model load failed: Failed to create engine.
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

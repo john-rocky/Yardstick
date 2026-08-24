@@ -8,7 +8,7 @@ Regenerate: `python3 scripts/build_summary.py && python3 scripts/render_leaderbo
 
 <!-- BEGIN GENERATED: scripts/render_leaderboard.py -->
 
-Generated from `results/summary/*.csv` (latest capture 2026-08-19) by `scripts/render_leaderboard.py` — do not edit inside the markers.
+Generated from `results/summary/*.csv` (latest capture 2026-08-24) by `scripts/render_leaderboard.py` — do not edit inside the markers.
 
 Headline task: **short-chat**, warm = median of same-session warm runs (cold-warm-split); other tasks and full history: RESULTS.md. Rows sort by warm decode; the recipe (quantization, engine build) is part of every row — a faster number under a different recipe is a different deployment profile, not a win.
 
@@ -211,8 +211,9 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | core-ai/tinyswallow-1.5b-gpu | core-ai | `core-ai/tinyswallow-1.5b-gpu` | INT4 (dynamic) | pre-stamp | — | 69.7 | 2026-07-14 |
 | core-ai/vibethinker-1.5b-ane | core-ai | `core-ai/vibethinker-1.5b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 72.3 | 66.8 | 2026-07-13 |
 | core-ai/vibethinker-1.5b-gpu | core-ai | `core-ai/vibethinker-1.5b-gpu` | INT4 (dynamic) | pre-stamp | — | 71.0 | 2026-07-14 |
-| litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | pre-stamp | 30.1 | 31.1 | 2026-07-24 |
+| litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | 26.7 | 31.2 | 2026-08-24 |
 | litert-community/Gemma3-1B-IT | litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | pre-stamp | 72.1 | 72.7 | 2026-07-13 |
+| litert-community/MiniCPM5-1B | litert-lm | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | 34.9 | 36.3 | 2026-08-24 |
 | litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 11.6 | 11.4 | 2026-07-24 |
 | litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 16.1 | 23.1 | 2026-08-19 |
 | litert-community/TinySwallow-1.5B-Instruct | litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | pre-stamp | 29.4 | 29.2 | 2026-07-23 |
@@ -236,6 +237,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 - `core-ai core-ai/phi-4-mini-gpu short-chat` — partial-rotary-unsupported
 - `core-ai core-ai/qwen3-1.7b-ane short-chat` — invoke-fail-bd71203
+- `litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat` — engine-create-fail-metal-half4-float4-dus-shape
 
 ## android
 
