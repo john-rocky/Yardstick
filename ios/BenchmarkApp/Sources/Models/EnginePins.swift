@@ -25,7 +25,13 @@ public enum EnginePins {
     }
 
     public static func artifact(for kind: RuntimeKind) -> String? {
-        pins[kind.rawValue]?["artifact"]
+        // One pins file feeds both platforms, but LiteRT-LM's package links a different
+        // binaryTarget per platform (CLiteRTLM on iOS, CLiteRTLM_mac on macOS) — the row
+        // must name the zip THIS binary linked, not the first one in Package.swift.
+        #if os(macOS)
+        if let mac = pins[kind.rawValue]?["artifact_mac"] { return mac }
+        #endif
+        return pins[kind.rawValue]?["artifact"]
     }
 
     private static let pins: [String: [String: String]] = {

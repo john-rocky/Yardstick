@@ -24,11 +24,14 @@ V="Vendored"
 mkdir -p "${V}"
 
 ENTRIES=""
-add_pin() {  # add_pin <runtime-id (RuntimeKind rawValue)> <version> [artifact]
-    local id="$1" ver="$2" art="${3:-}"
+add_pin() {  # add_pin <runtime-id (RuntimeKind rawValue)> <version> [artifact] [artifact_mac]
+    local id="$1" ver="$2" art="${3:-}" art_mac="${4:-}"
     local e="\"${id}\": {\"version\": \"${ver}\""
     if [ -n "${art}" ]; then
         e="${e}, \"artifact\": \"${art}\""
+    fi
+    if [ -n "${art_mac}" ]; then
+        e="${e}, \"artifact_mac\": \"${art_mac}\""
     fi
     e="${e}}"
     if [ -n "${ENTRIES}" ]; then
@@ -38,22 +41,33 @@ add_pin() {  # add_pin <runtime-id (RuntimeKind rawValue)> <version> [artifact]
     fi
 }
 
-# litert-lm — repo pin from the vendored clone's git state; the engine binary is the
-# CLiteRTLM binaryTarget zip its Package.swift resolves (version + checksum from there).
-if [ -d "${V}/LiteRT-LM/.git" ]; then
-    LITERT_VER="$(git -C "${V}/LiteRT-LM" describe --tags --always 2>/dev/null || true)"
-    LITERT_URL="$(grep -F 'CLiteRTLM.xcframework.zip' "${V}/LiteRT-LM/Package.swift" 2>/dev/null | grep -o 'https[^"]*' | head -1 || true)"
-    LITERT_SUM="$(grep -F -A1 'CLiteRTLM.xcframework.zip' "${V}/LiteRT-LM/Package.swift" 2>/dev/null | sed -n 's/.*checksum: *"\([0-9a-f]*\)".*/\1/p' | head -1 || true)"
-    LITERT_ART=""
-    if [ -n "${LITERT_URL}" ]; then
-        ZIPVER="$(printf '%s' "${LITERT_URL}" | sed -n 's#.*/download/\([^/]*\)/.*#\1#p')"
-        LITERT_ART="CLiteRTLM.xcframework.zip@${ZIPVER}"
-        if [ -n "${LITERT_SUM}" ]; then
-            LITERT_ART="${LITERT_ART} sha256:${LITERT_SUM}"
+# litert-lm — repo pin from the vendored clone's git state; the engine binaries are the
+# binaryTarget zips its Package.swift resolves (version + checksum from there). The
+# package declares TWO: CLiteRTLM (linked on iOS) and CLiteRTLM_mac (linked on macOS,
+# platform condition on the wrapper target). Both are recorded — `artifact` for iOS,
+# `artifact_mac` for the Mac yardstick — because this one file feeds both consumers.
+# Before 2026-08-24 only the iOS zip was read, so mac v0.16.0 rows stamped the wrong
+# artifact (disclosed in environment.lock.json).
+extract_binary_target() {  # extract_binary_target <zip-name> -> "name@tag sha256:..." or ""
+    local zip="$1" url sum art=""
+    url="$(grep -F "${zip}" "${V}/LiteRT-LM/Package.swift" 2>/dev/null | grep -o 'https[^"]*' | head -1 || true)"
+    sum="$(grep -F -A1 "${zip}" "${V}/LiteRT-LM/Package.swift" 2>/dev/null | sed -n 's/.*checksum: *"\([0-9a-f]*\)".*/\1/p' | head -1 || true)"
+    if [ -n "${url}" ]; then
+        art="${zip}@$(printf '%s' "${url}" | sed -n 's#.*/download/\([^/]*\)/.*#\1#p')"
+        if [ -n "${sum}" ]; then
+            art="${art} sha256:${sum}"
         fi
     fi
+    printf '%s' "${art}"
+}
+if [ -d "${V}/LiteRT-LM/.git" ]; then
+    LITERT_VER="$(git -C "${V}/LiteRT-LM" describe --tags --always 2>/dev/null || true)"
+    # grep -F 'CLiteRTLM.xcframework.zip' cannot match the _mac lines: "_mac" sits
+    # between the two fixed strings, so the two extractions stay disjoint.
+    LITERT_ART="$(extract_binary_target 'CLiteRTLM.xcframework.zip')"
+    LITERT_ART_MAC="$(extract_binary_target 'CLiteRTLM_mac.xcframework.zip')"
     if [ -n "${LITERT_VER}" ]; then
-        add_pin "litert-lm" "${LITERT_VER}" "${LITERT_ART}"
+        add_pin "litert-lm" "${LITERT_VER}" "${LITERT_ART}" "${LITERT_ART_MAC}"
     fi
 fi
 

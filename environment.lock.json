@@ -1,7 +1,7 @@
 {
   "lockfile_schema": 1,
   "description": "Machine-readable pin registry: every engine, instrument, and model behind the published tables, plus the per-capture overrides. Continuous-bench condition 1 (one-command reproduction). Update this file in the same commit as any capture that changes a pin.",
-  "updated": "2026-08-15",
+  "updated": "2026-08-24",
   "arms": {
     "litert-lm": {
       "source": "https://github.com/google-ai-edge/LiteRT-LM",
@@ -17,6 +17,14 @@
             "CLiteRTLM.xcframework.zip": "sha256:d6ccf6b54362d894ff71a7580c7e446d36767dab908aecfbb16ffca0fa0bc59b",
             "CLiteRTLM_mac.xcframework.zip": "sha256:d23cf189ce8f6bb2556c0a023805e245d1ec862434e501eb60f353488033c1b5"
           }
+        },
+        "2026-08-17..19 v0.16.0 captures (mac 08-17/18, iphone 08-19)": {
+          "tag": "v0.16.0",
+          "artifacts": {
+            "CLiteRTLM.xcframework.zip": "sha256:4e0f683da07566ee79c143d2d58d387f77052b0e6a41562c969e5d2728fc9f4b",
+            "CLiteRTLM_mac.xcframework.zip": "sha256:3ae6c876abd74614b1869bfc40cb4d0b892981363564740268b1f8ac5cf895a4"
+          },
+          "note": "Registered 2026-08-24, after the fact, from the v0.16.0 Package.swift binaryTarget checksums (SwiftPM checksum = zip sha256); the iOS value matches every stamped row. DISCLOSURE: mac rows in 2026-08-17-mac-litert-v0160 and 2026-08-18-matrix-mac stamped engineArtifact with the iOS zip — stamp_engine_pins.sh read only the CLiteRTLM target while the mac binary links CLiteRTLM_mac (platform condition in the package). Stamper fixed 2026-08-24; published rows stay as captured."
         }
       },
       "android": {
