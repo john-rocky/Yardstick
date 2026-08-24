@@ -1,0 +1,73 @@
+{
+  "device" : {
+    "batteryLevel" : 0.55,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineArtifact" : "CLiteRTLM.xcframework.zip@v0.16.0 sha256:4e0f683da07566ee79c143d2d58d387f77052b0e6a41562c969e5d2728fc9f4b",
+  "engineVersion" : "v0.16.0",
+  "id" : "E7692413-C74C-4889-9DC1-F08D535154C3",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 672,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 36.02440236948599,
+    "decodeTokensPerSecondWallClock" : 80.04144366424694,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 602502,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 11.76905632019043,
+    "interTokenLatencyP95MS" : 23.375988006591797,
+    "interTokenLatencyP99MS" : 24.322986602783203,
+    "memoryAfterGenerationMB" : 307.9087371826172,
+    "memoryAfterLoadMB" : 255.9086456298828,
+    "memoryBaselineMB" : 255.9086456298828,
+    "memoryFinalResidentMB" : 205.328125,
+    "memoryMedianMB" : 336.4399871826172,
+    "memoryMedianResidentMB" : 201.078125,
+    "memoryPeakDuringDecodeMB" : 378.9868850708008,
+    "memoryPeakResidentMB" : 520.328125,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 195.2808736522593,
+    "promptTokensPerSecondWallClock" : 0.033194884384877534,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 607.7383259534836
+  },
+  "model" : {
+    "displayName" : "MiniCPM5-1B (.litertlm)",
+    "hfFilePatterns" : [
+      "minicpm_wi4b32_wi8_afp32_gpu_opt.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/MiniCPM5-1B",
+    "id" : "litert-community\/MiniCPM5-1B",
+    "onDiskSizeMB" : 793,
+    "parameterCountB" : 1,
+    "primaryFile" : "minicpm_wi4b32_wi8_afp32_gpu_opt.litertlm",
+    "quantization" : "wi4b32_wi8_afp32 (gpu-opt)"
+  },
+  "modelRevision" : "8025a9864a6fc31aa2e29db19e5f1a0e4802a4df",
+  "outputSample" : "\n\n**On-device AI** is a simple way to think about **AI that runs directly on your phone, computer, or smart device, without needing to send your data to a cloud server.**\n\nThink of it like this:\n\n*   ",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-24T12:41:40Z"
+}

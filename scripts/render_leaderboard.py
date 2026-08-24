@@ -22,6 +22,7 @@ import argparse
 import csv
 import glob
 import os
+import re
 import statistics
 import sys
 
@@ -58,12 +59,32 @@ def device_name(model_identifier):
     return DEVICE_DISPLAY.get(model_identifier, model_identifier)
 
 
+_VERSION_TAG = re.compile(r"^v?\d+(\.\d+)+$")
+
+
 def latest_session(rows):
-    """Rows of the newest capture date for one (device, runtime, model) cell —
-    cross-session pooling is invalid (iphone-session-variance)."""
-    dates = [(r["timestamp"] or "")[:10] for r in rows]
-    newest = max(d for d in dates) if dates else ""
-    return [r for r, d in zip(rows, dates) if d == newest], newest
+    """Rows of the newest capture SESSION for one (device, runtime, model) cell —
+    cross-session pooling is invalid (iphone-session-variance). A session is a
+    campaign dir (one sitting), not a calendar date: two sittings on one day
+    must not pool (2026-08-24, a fair-thermal morning + a nominal evening
+    retake of MiniCPM produced a fictitious pooled warm median under the old
+    date key). Date remains the key for legacy flat rows with no campaign.
+
+    Engine first, then time: a regression pair re-measures the OLD engine
+    after the new one (the v0.15.0 baseline rehearsal ran after the v0.16.0
+    capture), so pure timestamp order would crown the baseline. When every
+    engine string in the cell is a comparable version tag, the newest engine
+    wins before the newest session; hash/opaque engines keep timestamp order."""
+    engines = {r["engine_version"] or "" for r in rows}
+    if len(engines) > 1 and all(_VERSION_TAG.match(e) for e in engines):
+        top = max(engines, key=lambda e: [int(x) for x in re.findall(r"\d+", e)])
+        rows = [r for r in rows if (r["engine_version"] or "") == top]
+
+    def skey(r):
+        return r["campaign"] or (r["timestamp"] or "")[:10]
+    newest = max(rows, key=lambda r: r["timestamp"] or "")
+    sess = [r for r in rows if skey(r) == skey(newest)]
+    return sess, max((r["timestamp"] or "")[:10] for r in sess)
 
 
 def arm_row(rows):
