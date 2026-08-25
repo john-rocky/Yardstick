@@ -5,10 +5,11 @@
 # First used: Galaxy S26, 2026-08-25.
 
 android llama.cpp unsloth/Qwen3-0.6B-GGUF short-chat anchor=1 runs=3 file=Qwen3-0.6B-Q4_K_M.gguf
-android litert-lm litert-community/Qwen3-0.6B short-chat anchor=1 runs=3 file=qwen3_0_6b_mixed_int4.litertlm
+android litert-lm litert-community/Qwen3-0.6B short-chat anchor=1 runs=3 backend=gpu file=qwen3_0_6b_mixed_int4.litertlm
 
+# (the gpu Qwen3-0.6B cell is the litert anchor row above — anchor doubles as
+# the measurement, same as the llama anchor in release-regression-litert.cells)
 android litert-lm litert-community/Qwen3-0.6B short-chat backend=cpu file=qwen3_0_6b_mixed_int4.litertlm
-android litert-lm litert-community/Qwen3-0.6B short-chat backend=gpu file=qwen3_0_6b_mixed_int4.litertlm
 
 android litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B short-chat backend=cpu file=DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm
 android litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B short-chat backend=gpu file=DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm

@@ -87,6 +87,11 @@ def validate_file(path, catalog=None, require_anchor=False):
             if opts.get("backend") and plat != "android":
                 errors.append(f"{where}: backend= is android-only "
                               "(Apple arms encode backend in the model id)")
+            if plat == "android" and rt == "litert-lm" and not opts.get("backend"):
+                errors.append(f"{where}: android litert-lm needs backend=cpu|gpu "
+                              "(arm identity; run_cell refuses it — the anchors.cells "
+                              "android litert row shipped without one and had never "
+                              "actually run until the S26 first session hit it)")
             if opts.get("max-tokens") and plat == "mac":
                 errors.append(f"{where}: the Mac CLI has no --max-tokens flag "
                               "(BenchmarkRunner.Configuration carries no budget "
