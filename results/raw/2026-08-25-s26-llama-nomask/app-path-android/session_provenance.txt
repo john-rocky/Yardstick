@@ -1,0 +1,1 @@
+session start 2026-08-25 17:19:11 cells=/private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/ed76902f-477a-46b6-99ae-38e771d86c2f/scratchpad/s26-llama-nomask.cells cooldown=120s

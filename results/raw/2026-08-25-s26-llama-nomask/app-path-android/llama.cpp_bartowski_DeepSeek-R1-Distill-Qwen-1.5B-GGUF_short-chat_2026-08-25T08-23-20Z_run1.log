@@ -1,0 +1,48 @@
+VmRSS:	 1759164 kB
+VmRSS:	 2023904 kB
+VmRSS:	 2024032 kB
+VmRSS:	 2024016 kB
+VmRSS:	 2024004 kB
+VmRSS:	 2023992 kB
+===ENGINE_OUTPUT===
+load_backend: loaded RPC backend from /data/local/tmp/llmbench/libggml-rpc.so
+load_backend: loaded CPU backend from /data/local/tmp/llmbench/libggml-cpu-android_armv9.2_2.so
+
+Loading model... |-\|/-\|/-\|/ 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8999-b97ebdc98
+model      : bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> Explain what on-device AI means in simple terms.
+
+|- [Start thinking]
+
+Okay, so I need to explain what on-device AI is in simple terms. Hmm, I'm not entirely sure what they mean by that. Let me think about this. I know AI stands for Artificial Intelligence, which is about machines learning and replicating human intelligence. So, on-device AI must be something that happens on a single device.
+
+Maybe it's about a single computer or phone? Like, maybe a machine learning model is trained on that device. I've heard about AI models being trained on specific devices, like smartphones or tablets. But how does that work? Do they just copy the model's code or something?common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+common_memory_breakdown_print: |   - Host               |                 1287 =   869 +     112 +     305                |
+common_memory_breakdown_print: |   - CPU_REPACK         |                  934 =   934 +       0 +       0                |
+
+
+[ Prompt: 136.6 t/s | Generation: 50.6 t/s ]
+
+Exiting...
+EXIT_CODE=0

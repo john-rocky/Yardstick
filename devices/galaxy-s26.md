@@ -21,12 +21,15 @@
   this repo's pinned artifact, and the LiteRT NPU path is Early Access
   Program only, so LiteRT rows here are cpu/gpu and the NPU row stays n/a
   with that reason.
-- ⚠ llama.cpp arm, first-session caveat (2026-08-25): do not quote this
-  device's llama.cpp numbers until diagnosed. Qwen3-0.6B declined
-  16.7→15.7→12.8 tok/s across three back-to-back nominal runs (Pixel 8a:
-  30.1 — a flagship losing to a mid-range on the same official b8999 arm64
-  binary), and DeepSeek-R1-1.5B landed at Pixel parity (9.1 vs 9.2) while
-  every litert-lm cell on this device gains 2-4x. Suspects: scheduler /
-  taskset interaction on this core layout, or ggml CPU-variant dispatch.
-  The rows stay (stored-report-rule) with their conditions recorded.
+- CPU affinity choice: **this device runs unmasked** (`BENCH_CPU_MASK=`,
+  recorded per run as `conditions.cpuAffinity: none`). The lane's default
+  `taskset f0` was tuned on the Pixel 8a's four contiguous mid cores; here it
+  spans the perf/prime cluster boundary and collapses ggml's thread sync —
+  llama.cpp Qwen3-0.6B measured 15.0 tok/s under f0 vs 105.6 unmasked on the
+  same binary (six probes:
+  `results/raw/2026-08-25-s26-llama-affinity-probes/NOTES.md`). The
+  2026-08-25-s26-first-session llama rows were captured under f0 and are
+  superseded by 2026-08-25-s26-llama-nomask (Qwen3-0.6B ~104, DeepSeek-R1
+  ~47 tok/s, all nominal); they stay in raw with their conditions recorded.
+  litert-lm cells are unaffected (litert_lm_main manages its own threads).
 - Build/run: `android/README.md` (engine acquisition, driver, campaign runner).

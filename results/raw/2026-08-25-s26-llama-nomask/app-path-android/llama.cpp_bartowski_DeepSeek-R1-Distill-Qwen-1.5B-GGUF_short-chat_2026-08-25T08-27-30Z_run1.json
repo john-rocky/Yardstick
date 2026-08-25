@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "a281c4cc-38f7-49a5-800c-283c88505b53",
+  "runtime": "llama.cpp",
+  "engineVersion": "b8999",
+  "engineArtifact": "a84df7c76613fdcf291bdb2d4e0dddc4a41f0d6901552908ba640fe93fbd4753",
+  "model": {
+    "id": "bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF",
+    "quantization": "Q4_K_M",
+    "file": "bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf",
+    "sha256": "1741e5b2d062b07acf048bf0d2c514dadf2a48f94e2b4aa0cfe069af3838ee2f"
+  },
+  "task": "short-chat",
+  "timestamp": "2026-08-25T08:27:30Z",
+  "device": {
+    "modelIdentifier": "SM-S942Q",
+    "systemName": "Android",
+    "systemVersion": "16",
+    "securityPatch": "2026-06-05",
+    "soc": "SM8850",
+    "product": "m1q",
+    "batteryLevel": 1.0,
+    "batteryState": "charging"
+  },
+  "conditions": {
+    "sampler": "greedy",
+    "cpuAffinity": "none",
+    "contextTokens": 4096,
+    "chatMode": "single-turn template default (-st)",
+    "thermalRawStatus": 0,
+    "thermalRawStatusFinal": 0,
+    "screen": "on-usb",
+    "elapsedSeconds": 4.2,
+    "exitCode": 0
+  },
+  "metrics": {
+    "promptTokensPerSecond": 143.8,
+    "decodeTokensPerSecond": 46.9,
+    "coldRun": true,
+    "harnessStamp": "2026-08-android-cli-v1",
+    "initialThermalState": "nominal",
+    "finalThermalState": "nominal",
+    "memoryMedianResidentMB": 1976.908203125
+  },
+  "provenance": {
+    "rawLog": "llama.cpp_bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_short-chat_2026-08-25T08-27-30Z_run1.log",
+    "harness": "android/bench/run_cell.py"
+  }
+}

@@ -1,0 +1,39 @@
+load_backend: loaded RPC backend from /data/local/tmp/llmbench/libggml-rpc.so
+load_backend: loaded CPU backend from /data/local/tmp/llmbench/libggml-cpu-android_armv9.2_2.so
+
+Loading model... |-\|/-\| 
+
+
+▄▄ ▄▄
+██ ██
+██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄
+██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██
+██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀
+                                    ██    ██
+                                    ▀▀    ▀▀
+
+build      : b8999-b97ebdc98
+model      : unsloth_Qwen3-0.6B-GGUF_Qwen3-0.6B-Q4_K_M.gguf
+modalities : text
+
+available commands:
+  /exit or Ctrl+C     stop or exit
+  /regen              regenerate the last response
+  /clear              clear the chat history
+  /read <file>        add a text file
+  /glob <pattern>     add text files using globbing pattern
+
+
+> Explain what on-device AI means in simple terms.
+
+| [Start thinking]
+Okay, the user is asking for an explanation of on-device AI in simple terms. Let me start by recalling what I know about AI. On-device AI refers to AI models that run on the user's device rather than on a server or cloud. So, the main idea is that instead of sending data to a remote server, the AI processes it directly on the device.
+
+Wait, but I should make sure I'm not mixing this up with other terms. Maybe the user is confused between on-device and off-device AI. Let me think. On-device AI is when the AI is trained and deployed on the user's device.common_memory_breakdown_print: | memory breakdown [MiB] | total   free    self   model   context   compute    unaccounted |
+common_memory_breakdown_print: |   - Host               |                 1127 =   370 +     448 +     308                |
+common_memory_breakdown_print: |   - CPU_REPACK         |                  372 =   372 +       0 +       0                |
+
+
+[ Prompt: 336.8 t/s | Generation: 39.6 t/s ]
+
+Exiting...

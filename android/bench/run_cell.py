@@ -15,8 +15,9 @@ Design decisions (methodology/android.md):
   - the recorded runtime is litert-lm-<backend> / llama.cpp — backend is part
     of arm identity (the join key has no backend column; same convention as
     core-ai's -ane/-gpu model ids).
-  - taskset f0 pins to the big cores (upstream recommendation), recorded in
-    conditions.
+  - CPU affinity: BENCH_CPU_MASK (default f0 — upstream recommendation, tuned
+    on Pixel 8a; empty = no taskset). Recorded per run in conditions; the mask
+    is a per-device choice, see CPU_MASK below and devices/*.md.
   - RSS is sampled from /proc/<pid>/status (VmRSS) by an on-device loop ->
     memoryMedianResidentMB; iOS phys_footprint has no Android equivalent and
     is never fabricated.
@@ -39,6 +40,14 @@ import parsers  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DEV_DIR = "/data/local/tmp/llmbench"
 HARNESS_STAMP = "2026-08-android-cli-v1"
+# CPU affinity mask for the engine process. "f0" (the upstream recommendation,
+# tuned on Pixel 8a's 4 contiguous mid cores) is NOT device-neutral: on the
+# Galaxy S26 (6 perf + 2 prime, no little cores) f0 spans the cluster boundary
+# and collapses ggml's thread sync — 15 tok/s vs 105.6 unmasked on the same
+# binary/model (probes: results/raw/2026-08-25-s26-llama-affinity-probes/).
+# Empty string = no taskset. The actual value is recorded per run in
+# conditions.cpuAffinity either way; devices/*.md states each device's choice.
+CPU_MASK = os.environ.get("BENCH_CPU_MASK", "f0")
 
 
 def load_pins():
@@ -216,7 +225,8 @@ def run_once(cmd, binname, serial, timeout):
     # Absolute paths only: `cd X && engine & rest` backgrounds the WHOLE
     # `cd && engine` list in mksh, so `rest` never inherits the cd (measured:
     # cat looked for run_out.txt in the wrong cwd while the engine ran fine).
-    shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. taskset f0 {cmd} "
+    taskset_prefix = f"taskset {CPU_MASK} " if CPU_MASK else ""
+    shell = (f"cd {DEV_DIR} && LD_LIBRARY_PATH=. {taskset_prefix}{cmd} "
              f">{DEV_DIR}/run_out.txt 2>&1 </dev/null & pid=$!; "
              f"sleep 1; epid=$(pgrep -n -f {binname}); [ -z \"$epid\" ] && epid=$pid; "
              "while kill -0 $pid 2>/dev/null; do "
@@ -323,7 +333,8 @@ def main():
             "timestamp": iso,
             "device": {**dev, "batteryLevel": batt["batteryLevel"],
                        "batteryState": batt["batteryState"]},
-            "conditions": {"sampler": sampler, "cpuAffinity": "taskset f0",
+            "conditions": {"sampler": sampler,
+                           "cpuAffinity": f"taskset {CPU_MASK}" if CPU_MASK else "none",
                            "contextTokens": ctx_note,
                            **({"chatMode": "single-turn template default (-st)"}
                               if args.runtime == "llama.cpp"
