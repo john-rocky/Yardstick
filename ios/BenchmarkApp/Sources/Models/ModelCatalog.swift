@@ -952,6 +952,20 @@ public enum ModelCatalog {
         ),
         // litert-local SIDE-LOAD entries (placed on device at
         // Documents/models/litert-lm/<hfRepoId "/"→"__">/model.litertlm).
+        // S1-mini (superwhisper Qwen3-0.6B finetune, ASR-transcript normalizer) —
+        // our int8 conversion; template bakes the required system prompt, greedy by
+        // design. Gate = exact-match vs the Mac bundle on the same prompt, not the
+        // 8-question score (it normalizes questions instead of answering them).
+        ModelInfo(
+            id: "litert-local/s1-mini-int8",
+            displayName: "S1-mini (.litertlm, local int8)",
+            quantization: "INT8 (dynamic_wi8_afp32)",
+            parameterCountB: 0.6,
+            onDiskSizeMB: 656,
+            hfRepoId: "litert-local/S1-mini-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         ModelInfo(
             id: "litert-local/olmo2-1b",
             displayName: "OLMo-2-1B (.litertlm, local int4)",
