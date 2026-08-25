@@ -27,6 +27,7 @@ DEVICE_DISPLAY = {
     # modelIdentifier keys (campaign-shaped records carry the identifier, not a label)
     "Mac16,9": "Mac Studio (M4 Max)",
     "iPhone18,1": "iPhone 17 Pro",
+    "SM-S942Q": "Galaxy S26",
 }
 
 

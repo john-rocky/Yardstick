@@ -237,7 +237,6 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 - `core-ai core-ai/phi-4-mini-gpu short-chat` — partial-rotary-unsupported
 - `core-ai core-ai/qwen3-1.7b-ane short-chat` — invoke-fail-bd71203
-- `litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat` — engine-create-fail-metal-half4-float4-dus-shape
 
 ## android
 
