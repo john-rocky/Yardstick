@@ -707,6 +707,22 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-25: Qwen3.5-2B VISION leg — the shipped litert-community/Qwen3.5-2B is
+        // the TEXT half of an official VLM checkpoint; this is the same gated-delta hybrid
+        // decoder plus its own 24-layer ViT (no deepstack), wired to fast_vlm at static 512.
+        // Run with --litert-vision (fast_vlm builds the vision executor only when a backend
+        // is named for it). fp16 vision is the desktop/iPhone build; an int8-vision variant
+        // exists for Mali, which reboots on fp16 vision.
+        ModelInfo(
+            id: "litert-local/qwen35vl-2b-wi8",
+            displayName: "Qwen3.5-2B-VL (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 2.27,
+            onDiskSizeMB: 3239,
+            hfRepoId: "litert-local/Qwen3.5-2B-VL-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-19: North-Micro-Vision-Instruct (CohereLabs 2.48B VLM) fast_vlm build —
         // Cohere2-rehosted wi8 decoder + fp16 vision (deepstack folded into the single
         // image embedding). Run with --litert-vision for the vision tasks (fast_vlm
