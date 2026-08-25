@@ -1,0 +1,677 @@
+VmRSS:	  281080 kB
+VmRSS:	  265664 kB
+VmRSS:	  269844 kB
+VmRSS:	  403080 kB
+VmRSS:	 1075860 kB
+VmRSS:	 1080852 kB
+VmRSS:	 1241660 kB
+VmRSS:	 1242080 kB
+VmRSS:	 1242504 kB
+VmRSS:	 1242932 kB
+===ENGINE_OUTPUT===
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f142069b0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f14206b90, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f142068f0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f14208150, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=869, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=869, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=870, num_inputs=25, num_outputs=22, num_ops=579
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=4096, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_512 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_256 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_128 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_64 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_32 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_16 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_8 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_4 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 46 tensors of signature prefill_2 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 4096
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache build for '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache' started.
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 0 (prefill_1024).
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 1 (prefill_512).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 2 (prefill_256).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 3 (prefill_128).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 4 (prefill_64).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 5 (prefill_32).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 6 (prefill_16).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 7 (prefill_8).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 8 (prefill_4).
+VERBOSE: Replacing 480 out of 579 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 91 partitions for subgraph 9 (prefill_2).
+VERBOSE: Replacing 439 out of 501 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 88 partitions for subgraph 10 (prefill_1).
+VERBOSE: Replacing 455 out of 519 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 92 partitions for subgraph 11 (decode).
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_LFM2.5-1.2B-Instruct_LFM2.5-1.2B-Instruct_int4.litertlm_1787026108_736015744.xnnpack_cache'.
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 12 (odml.rms_norm.impl).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 13 (odml.rms_norm.impl_0).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 14 (odml.rms_norm.impl_1).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 15 (odml.rms_norm.impl_2).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 16 (odml.rms_norm.impl_3).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 17 (odml.rms_norm.impl_4).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 18 (odml.rms_norm.impl_5).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 19 (odml.rms_norm.impl_6).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 20 (odml.rms_norm.impl_7).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 21 (odml.rms_norm.impl_8).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 22 (odml.rms_norm.impl_9).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 23 (odml.rms_norm.impl_10).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 24 (odml.rms_norm.impl_11).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 25 (odml.rms_norm.impl_12).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 26 (odml.rms_norm.impl_13).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 27 (odml.rms_norm.impl_14).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 28 (odml.rms_norm.impl_15).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 29 (odml.rms_norm.impl_16).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 30 (odml.rms_norm.impl_17).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 31 (odml.rms_norm.impl_18).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 32 (odml.rms_norm.impl_19).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 33 (odml.rms_norm.impl_20).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 34 (odml.rms_norm.impl_21).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 35 (odml.rms_norm.impl_22).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 36 (odml.rms_norm.impl_23).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 37 (odml.rms_norm.impl_24).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 38 (odml.rms_norm.impl_25).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 39 (odml.rms_norm.impl_26).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 40 (odml.rms_norm.impl_27).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 41 (odml.rms_norm.impl_28).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 42 (odml.rms_norm.impl_29).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 43 (odml.rms_norm.impl_30).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 44 (odml.rms_norm.impl_31).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 45 (odml.rms_norm.impl_32).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 46 (odml.rms_norm.impl_33).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 47 (odml.rms_norm.impl_34).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 48 (odml.rms_norm.impl_35).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 49 (odml.rms_norm.impl_36).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 50 (odml.rms_norm.impl_37).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 51 (odml.rms_norm.impl_38).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 52 (odml.rms_norm.impl_39).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 53 (odml.rms_norm.impl_40).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 54 (odml.rms_norm.impl_41).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 55 (odml.rms_norm.impl_42).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 56 (odml.rms_norm.impl_43).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 57 (odml.rms_norm.impl_44).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 58 (odml.rms_norm.impl_45).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 59 (odml.rms_norm.impl_46).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 60 (odml.rms_norm.impl_47).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 61 (odml.rms_norm.impl_48).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 62 (odml.rms_norm.impl_49).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 63 (odml.rms_norm.impl_50).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 64 (odml.rms_norm.impl_51).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 65 (odml.rms_norm.impl_52).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 66 (odml.rms_norm.impl_53).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 67 (odml.rms_norm.impl_54).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 68 (odml.rms_norm.impl_55).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 69 (odml.rms_norm.impl_56).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 70 (odml.rms_norm.impl_57).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 71 (odml.rms_norm.impl_58).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 72 (odml.rms_norm.impl_59).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 73 (odml.rms_norm.impl_60).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 74 (odml.rms_norm.impl_61).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 75 (odml.rms_norm.impl_62).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 76 (odml.rms_norm.impl_63).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 77 (odml.rms_norm.impl_64).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 78 (odml.rms_norm.impl_65).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 79 (odml.rms_norm.impl_66).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 80 (odml.rms_norm.impl_67).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 81 (odml.rms_norm.impl_68).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 82 (odml.rms_norm.impl_69).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 83 (odml.rms_norm.impl_70).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 84 (odml.rms_norm.impl_71).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 85 (odml.rms_norm.impl_72).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 86 (odml.rms_norm.impl_73).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 87 (odml.rms_norm.impl_74).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 88 (odml.rms_norm.impl_75).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 89 (odml.rms_norm.impl_76).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 90 (odml.rms_norm.impl_77).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 91 (odml.rms_norm.impl_78).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 92 (odml.rms_norm.impl_79).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 93 (odml.rms_norm.impl_80).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 94 (odml.rms_norm.impl_81).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 95 (odml.rms_norm.impl_82).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 96 (odml.rms_norm.impl_83).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 97 (odml.rms_norm.impl_84).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 98 (odml.rms_norm.impl_85).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 99 (odml.rms_norm.impl_86).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 100 (odml.rms_norm.impl_87).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 101 (odml.rms_norm.impl_88).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 102 (odml.rms_norm.impl_89).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 103 (odml.rms_norm.impl_90).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 104 (odml.rms_norm.impl_91).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 105 (odml.rms_norm.impl_92).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 106 (odml.rms_norm.impl_93).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 107 (odml.rms_norm.impl_94).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 108 (odml.rms_norm.impl_95).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 109 (odml.rms_norm.impl_96).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 110 (odml.rms_norm.impl_97).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 111 (odml.rms_norm.impl_98).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 112 (odml.rms_norm.impl_99).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 113 (odml.rms_norm.impl_100).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 114 (odml.rms_norm.impl_101).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 115 (odml.rms_norm.impl_102).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 116 (odml.rms_norm.impl_103).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 117 (odml.rms_norm.impl_104).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 118 (odml.rms_norm.impl_105).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 119 (odml.rms_norm.impl_106).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 120 (odml.rms_norm.impl_107).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 121 (odml.rms_norm.impl_108).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 122 (odml.rms_norm.impl_109).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 123 (odml.rms_norm.impl_110).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 124 (odml.rms_norm.impl_111).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 125 (odml.rms_norm.impl_112).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 126 (odml.rms_norm.impl_113).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 127 (odml.rms_norm.impl_114).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 128 (odml.rms_norm.impl_115).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 129 (odml.rms_norm.impl_116).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 130 (odml.rms_norm.impl_117).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 131 (odml.rms_norm.impl_118).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 132 (odml.rms_norm.impl_119).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 133 (odml.rms_norm.impl_120).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 134 (odml.rms_norm.impl_121).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 135 (odml.rms_norm.impl_122).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 136 (odml.rms_norm.impl_123).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 137 (odml.rms_norm.impl_124).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 138 (odml.rms_norm.impl_125).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 139 (odml.rms_norm.impl_126).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 140 (odml.rms_norm.impl_127).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 141 (odml.rms_norm.impl_128).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 142 (odml.rms_norm.impl_129).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 143 (odml.rms_norm.impl_130).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 144 (odml.rms_norm.impl_131).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 145 (odml.rms_norm.impl_132).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 146 (odml.rms_norm.impl_133).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 147 (odml.rms_norm.impl_134).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 148 (odml.rms_norm.impl_135).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 149 (odml.rms_norm.impl_136).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 150 (odml.rms_norm.impl_137).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 151 (odml.rms_norm.impl_138).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 152 (odml.rms_norm.impl_139).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 153 (odml.rms_norm.impl_140).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 154 (odml.rms_norm.impl_141).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 155 (odml.rms_norm.impl_142).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 156 (odml.rms_norm.impl_143).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 157 (odml.rms_norm.impl_144).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 158 (odml.rms_norm.impl_145).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 159 (odml.rms_norm.impl_146).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 160 (odml.rms_norm.impl_147).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 161 (odml.rms_norm.impl_148).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 162 (odml.rms_norm.impl_149).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 163 (odml.rms_norm.impl_150).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 164 (odml.rms_norm.impl_151).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 165 (odml.rms_norm.impl_152).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 166 (odml.rms_norm.impl_153).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 167 (odml.rms_norm.impl_154).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 168 (odml.rms_norm.impl_155).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 169 (odml.rms_norm.impl_156).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 170 (odml.rms_norm.impl_157).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 171 (odml.rms_norm.impl_158).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 172 (odml.rms_norm.impl_159).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 173 (odml.rms_norm.impl_160).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 174 (odml.rms_norm.impl_161).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 175 (odml.rms_norm.impl_162).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 176 (odml.rms_norm.impl_163).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 177 (odml.rms_norm.impl_164).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 178 (odml.rms_norm.impl_165).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 179 (odml.rms_norm.impl_166).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 180 (odml.rms_norm.impl_167).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 181 (odml.rms_norm.impl_168).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 182 (odml.rms_norm.impl_169).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 183 (odml.rms_norm.impl_170).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 184 (odml.rms_norm.impl_171).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 185 (odml.rms_norm.impl_172).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 186 (odml.rms_norm.impl_173).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 187 (odml.rms_norm.impl_174).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 188 (odml.rms_norm.impl_175).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 189 (odml.rms_norm.impl_176).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 190 (odml.rms_norm.impl_177).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 191 (odml.rms_norm.impl_178).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 192 (odml.rms_norm.impl_179).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 193 (odml.rms_norm.impl_180).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 194 (odml.rms_norm.impl_181).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 195 (odml.rms_norm.impl_182).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 196 (odml.rms_norm.impl_183).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 197 (odml.rms_norm.impl_184).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 198 (odml.rms_norm.impl_185).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 199 (odml.rms_norm.impl_186).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 200 (odml.rms_norm.impl_187).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 201 (odml.rms_norm.impl_188).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 202 (odml.rms_norm.impl_189).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 203 (odml.rms_norm.impl_190).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 204 (odml.rms_norm.impl_191).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 205 (odml.rms_norm.impl_192).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 206 (odml.rms_norm.impl_193).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 207 (odml.rms_norm.impl_194).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 208 (odml.rms_norm.impl_195).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 209 (odml.rms_norm.impl_196).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 210 (odml.rms_norm.impl_197).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 211 (odml.rms_norm.impl_198).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 212 (odml.rms_norm.impl_199).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 213 (odml.rms_norm.impl_200).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 214 (odml.rms_norm.impl_201).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 215 (odml.rms_norm.impl_202).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 216 (odml.rms_norm.impl_203).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 217 (odml.rms_norm.impl_204).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 218 (odml.rms_norm.impl_205).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 219 (odml.rms_norm.impl_206).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 220 (odml.rms_norm.impl_207).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 221 (odml.rms_norm.impl_208).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 222 (odml.rms_norm.impl_209).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 223 (odml.rms_norm.impl_210).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 224 (odml.rms_norm.impl_211).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 225 (odml.rms_norm.impl_212).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 226 (odml.rms_norm.impl_213).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 227 (odml.rms_norm.impl_214).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 228 (odml.rms_norm.impl_215).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 229 (odml.rms_norm.impl_216).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 230 (odml.rms_norm.impl_217).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 231 (odml.rms_norm.impl_218).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 232 (odml.rms_norm.impl_219).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 233 (odml.rms_norm.impl_220).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 234 (odml.rms_norm.impl_221).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 235 (odml.rms_norm.impl_222).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 236 (odml.rms_norm.impl_223).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 237 (odml.rms_norm.impl_224).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 238 (odml.rms_norm.impl_225).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 239 (odml.rms_norm.impl_226).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 240 (odml.rms_norm.impl_227).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 241 (odml.rms_norm.impl_228).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 242 (odml.rms_norm.impl_229).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 243 (odml.rms_norm.impl_230).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 244 (odml.rms_norm.impl_231).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 245 (odml.rms_norm.impl_232).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 246 (odml.rms_norm.impl_233).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 247 (odml.rms_norm.impl_234).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 248 (odml.rms_norm.impl_235).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 249 (odml.rms_norm.impl_236).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 250 (odml.rms_norm.impl_237).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 251 (odml.rms_norm.impl_238).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 252 (odml.rms_norm.impl_239).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 253 (odml.rms_norm.impl_240).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 254 (odml.rms_norm.impl_241).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 255 (odml.rms_norm.impl_242).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 256 (odml.rms_norm.impl_243).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 257 (odml.rms_norm.impl_244).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 258 (odml.rms_norm.impl_245).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 259 (odml.rms_norm.impl_246).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 260 (odml.rms_norm.impl_247).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 261 (odml.rms_norm.impl_248).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 262 (odml.rms_norm.impl_249).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 263 (odml.rms_norm.impl_250).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 264 (odml.rms_norm.impl_251).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 265 (odml.rms_norm.impl_252).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 266 (odml.rms_norm.impl_253).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 267 (odml.rms_norm.impl_254).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 268 (odml.rms_norm.impl_255).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 269 (odml.rms_norm.impl_256).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 270 (odml.rms_norm.impl_257).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 271 (odml.rms_norm.impl_258).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 272 (odml.rms_norm.impl_259).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 273 (odml.rms_norm.impl_260).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 274 (odml.rms_norm.impl_261).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 275 (odml.rms_norm.impl_262).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 276 (odml.rms_norm.impl_263).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 277 (odml.rms_norm.impl_264).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 278 (odml.rms_norm.impl_265).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 279 (odml.rms_norm.impl_266).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 280 (odml.rms_norm.impl_267).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 281 (odml.rms_norm.impl_268).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 282 (odml.rms_norm.impl_269).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 283 (odml.rms_norm.impl_270).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 284 (odml.rms_norm.impl_271).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 285 (odml.rms_norm.impl_272).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 286 (odml.rms_norm.impl_273).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 287 (odml.rms_norm.impl_274).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 288 (odml.rms_norm.impl_275).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 289 (odml.rms_norm.impl_276).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 290 (odml.rms_norm.impl_277).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 291 (odml.rms_norm.impl_278).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 292 (odml.rms_norm.impl_279).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 293 (odml.rms_norm.impl_280).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 294 (odml.rms_norm.impl_281).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 295 (odml.rms_norm.impl_282).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 296 (odml.rms_norm.impl_283).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 297 (odml.rms_norm.impl_284).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 298 (odml.rms_norm.impl_285).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 299 (odml.rms_norm.impl_286).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 300 (odml.rms_norm.impl_287).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 301 (odml.rms_norm.impl_288).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 302 (odml.rms_norm.impl_289).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 303 (odml.rms_norm.impl_290).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 304 (odml.rms_norm.impl_291).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 305 (odml.rms_norm.impl_292).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 306 (odml.rms_norm.impl_293).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 307 (odml.rms_norm.impl_294).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 308 (odml.rms_norm.impl_295).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 309 (odml.rms_norm.impl_296).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 310 (odml.rms_norm.impl_297).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 311 (odml.rms_norm.impl_298).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 312 (odml.rms_norm.impl_299).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 313 (odml.rms_norm.impl_300).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 314 (odml.rms_norm.impl_301).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 315 (odml.rms_norm.impl_302).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 316 (odml.rms_norm.impl_303).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 317 (odml.rms_norm.impl_304).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 318 (odml.rms_norm.impl_305).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 319 (odml.rms_norm.impl_306).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 320 (odml.rms_norm.impl_307).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 321 (odml.rms_norm.impl_308).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 322 (odml.rms_norm.impl_309).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 323 (odml.rms_norm.impl_310).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 324 (odml.rms_norm.impl_311).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 325 (odml.rms_norm.impl_312).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 326 (odml.rms_norm.impl_313).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 327 (odml.rms_norm.impl_314).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 328 (odml.rms_norm.impl_315).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 329 (odml.rms_norm.impl_316).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 330 (odml.rms_norm.impl_317).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 331 (odml.rms_norm.impl_318).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 332 (odml.rms_norm.impl_319).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 333 (odml.rms_norm.impl_320).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 334 (odml.rms_norm.impl_321).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 335 (odml.rms_norm.impl_322).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 336 (odml.rms_norm.impl_323).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 337 (odml.rms_norm.impl_324).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 338 (odml.rms_norm.impl_325).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 339 (odml.rms_norm.impl_326).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 340 (odml.rms_norm.impl_327).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 341 (odml.rms_norm.impl_328).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 342 (odml.rms_norm.impl_329).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 343 (odml.rms_norm.impl_330).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 344 (odml.rms_norm.impl_331).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 345 (odml.rms_norm.impl_332).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 346 (odml.rms_norm.impl_333).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 347 (odml.rms_norm.impl_334).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 348 (odml.rms_norm.impl_335).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 349 (odml.rms_norm.impl_336).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 350 (odml.rms_norm.impl_337).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 351 (odml.rms_norm.impl_338).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 352 (odml.rms_norm.impl_339).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 353 (odml.rms_norm.impl_340).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 354 (odml.rms_norm.impl_341).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 355 (odml.rms_norm.impl_342).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 356 (odml.rms_norm.impl_343).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 357 (odml.rms_norm.impl_344).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 358 (odml.rms_norm.impl_345).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 359 (odml.rms_norm.impl_346).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 360 (odml.rms_norm.impl_347).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 361 (odml.rms_norm.impl_348).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 362 (odml.rms_norm.impl_349).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 363 (odml.rms_norm.impl_350).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 364 (odml.rms_norm.impl_351).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 365 (odml.rms_norm.impl_352).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 366 (odml.rms_norm.impl_353).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 367 (odml.rms_norm.impl_354).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 368 (odml.rms_norm.impl_355).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 369 (odml.rms_norm.impl_356).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 370 (odml.rms_norm.impl_357).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 371 (odml.rms_norm.impl_358).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 372 (odml.rms_norm.impl_359).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 373 (odml.rms_norm.impl_360).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 374 (odml.rms_norm.impl_361).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 375 (odml.rms_norm.impl_362).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 376 (odml.rms_norm.impl_363).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 377 (odml.rms_norm.impl_364).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 378 (odml.rms_norm.impl_365).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 379 (odml.rms_norm.impl_366).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 380 (odml.rms_norm.impl_367).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 381 (odml.rms_norm.impl_368).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 382 (odml.rms_norm.impl_369).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 383 (odml.rms_norm.impl_370).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 384 (odml.rms_norm.impl_371).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 385 (odml.rms_norm.impl_372).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 386 (odml.rms_norm.impl_373).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 387 (odml.rms_norm.impl_374).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 388 (odml.rms_norm.impl_375).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 389 (odml.rms_norm.impl_376).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 390 (odml.rms_norm.impl_377).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 391 (odml.rms_norm.impl_378).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 392 (odml.rms_norm.impl_379).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 393 (odml.rms_norm.impl_380).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 394 (odml.rms_norm.impl_381).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 395 (odml.rms_norm.impl_382).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 396 (odml.rms_norm.impl_383).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 397 (odml.rms_norm.impl_384).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 398 (odml.rms_norm.impl_385).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 399 (odml.rms_norm.impl_386).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 400 (odml.rms_norm.impl_387).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 401 (odml.rms_norm.impl_388).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 402 (odml.rms_norm.impl_389).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 403 (odml.rms_norm.impl_390).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 404 (odml.rms_norm.impl_391).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 405 (odml.rms_norm.impl_392).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 406 (odml.rms_norm.impl_393).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 407 (odml.rms_norm.impl_394).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 408 (odml.rms_norm.impl_395).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 409 (odml.rms_norm.impl_396).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 410 (odml.rms_norm.impl_397).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 411 (odml.rms_norm.impl_398).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 412 (odml.rms_norm.impl_399).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 413 (odml.rms_norm.impl_400).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 414 (odml.rms_norm.impl_401).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 415 (odml.rms_norm.impl_402).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 416 (odml.rms_norm.impl_403).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 417 (odml.rms_norm.impl_404).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 418 (odml.rms_norm.impl_405).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 419 (odml.rms_norm.impl_406).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 420 (odml.rms_norm.impl_407).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 421 (odml.rms_norm.impl_408).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 422 (odml.rms_norm.impl_409).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 423 (odml.rms_norm.impl_410).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 424 (odml.rms_norm.impl_411).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 425 (odml.rms_norm.impl_412).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 426 (odml.rms_norm.impl_413).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 427 (odml.rms_norm.impl_414).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 428 (odml.rms_norm.impl_415).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 429 (odml.rms_norm.impl_416).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 430 (odml.rms_norm.impl_417).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 431 (odml.rms_norm.impl_418).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 432 (odml.rms_norm.impl_419).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 433 (odml.rms_norm.impl_420).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 434 (odml.rms_norm.impl_421).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 435 (odml.rms_norm.impl_422).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 436 (odml.rms_norm.impl_423).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 437 (odml.rms_norm.impl_424).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 438 (odml.rms_norm.impl_425).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 439 (odml.rms_norm.impl_426).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 440 (odml.rms_norm.impl_427).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 441 (odml.rms_norm.impl_428).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 442 (odml.rms_norm.impl_429).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 443 (odml.rms_norm.impl_430).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 444 (odml.rms_norm.impl_431).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 445 (odml.rms_norm.impl_432).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 446 (odml.rms_norm.impl_433).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 447 (odml.rms_norm.impl_434).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 448 (odml.rms_norm.impl_435).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 449 (odml.rms_norm.impl_436).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 450 (odml.rms_norm.impl_437).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 451 (odml.rms_norm.impl_438).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 452 (odml.rms_norm.impl_439).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 453 (odml.rms_norm.impl_440).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 454 (odml.rms_norm.impl_441).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 455 (odml.rms_norm.impl_442).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 456 (odml.rms_norm.impl_443).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 457 (odml.rms_norm.impl_444).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 458 (odml.rms_norm.impl_445).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 459 (odml.rms_norm.impl_446).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 460 (odml.rms_norm.impl_447).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 461 (odml.rms_norm.impl_448).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 462 (odml.rms_norm.impl_449).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 463 (odml.rms_norm.impl_450).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 464 (odml.rms_norm.impl_451).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 465 (odml.rms_norm.impl_452).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 466 (odml.rms_norm.impl_453).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 467 (odml.rms_norm.impl_454).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 468 (odml.rms_norm.impl_455).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 469 (odml.rms_norm.impl_456).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 470 (odml.rms_norm.impl_457).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 471 (odml.rms_norm.impl_458).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 472 (odml.rms_norm.impl_459).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 473 (odml.rms_norm.impl_460).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 474 (odml.rms_norm.impl_461).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 475 (odml.rms_norm.impl_462).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 476 (odml.rms_norm.impl_463).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 477 (odml.rms_norm.impl_464).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 478 (odml.rms_norm.impl_465).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 479 (odml.rms_norm.impl_466).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 480 (odml.rms_norm.impl_467).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 481 (odml.rms_norm.impl_468).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 482 (odml.rms_norm.impl_469).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 483 (odml.rms_norm.impl_470).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 484 (odml.rms_norm.impl_471).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 485 (odml.rms_norm.impl_472).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 486 (odml.rms_norm.impl_473).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 487 (odml.rms_norm.impl_474).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 488 (odml.rms_norm.impl_475).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 489 (odml.rms_norm.impl_476).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 490 (odml.rms_norm.impl_477).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 491 (odml.rms_norm.impl_478).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 492 (odml.rms_norm.impl_479).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 493 (odml.rms_norm.impl_480).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 494 (odml.rms_norm.impl_481).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 495 (odml.rms_norm.impl_482).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 496 (odml.rms_norm.impl_483).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 497 (odml.rms_norm.impl_484).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 498 (odml.rms_norm.impl_485).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 499 (odml.rms_norm.impl_486).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 500 (odml.rms_norm.impl_487).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 501 (odml.rms_norm.impl_488).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 502 (odml.rms_norm.impl_489).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 503 (odml.rms_norm.impl_490).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 504 (odml.rms_norm.impl_491).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 505 (odml.rms_norm.impl_492).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 506 (odml.rms_norm.impl_493).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 507 (odml.rms_norm.impl_494).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 508 (odml.rms_norm.impl_495).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 509 (odml.rms_norm.impl_496).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 510 (odml.rms_norm.impl_497).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 511 (odml.rms_norm.impl_498).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 512 (odml.rms_norm.impl_499).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 513 (odml.rms_norm.impl_500).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 514 (odml.rms_norm.impl_501).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 515 (odml.rms_norm.impl_502).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 516 (odml.rms_norm.impl_503).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 517 (odml.rms_norm.impl_504).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 518 (odml.rms_norm.impl_505).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 519 (odml.rms_norm.impl_506).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 520 (odml.rms_norm.impl_507).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 521 (odml.rms_norm.impl_508).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 522 (odml.rms_norm.impl_509).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 523 (odml.rms_norm.impl_510).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 524 (odml.rms_norm.impl_511).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 525 (odml.rms_norm.impl_512).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 526 (odml.rms_norm.impl_513).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 527 (odml.rms_norm.impl_514).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 528 (odml.rms_norm.impl_515).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 529 (odml.rms_norm.impl_516).
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f1420ad30, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400006f1420b690, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Explain what on-device AI means in simple terms.
+VERBOSE: Replacing 781 out of 837 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 19 partitions for subgraph 6 (prefill_16).
+VERBOSE: Replacing 781 out of 837 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 19 partitions for subgraph 8 (prefill_4).
+VERBOSE: Replacing 709 out of 728 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 14 partitions for subgraph 10 (prefill_1).
+VERBOSE: Replacing 737 out of 756 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 14 partitions for subgraph 11 (decode).
+On-device AI means using artificial intelligence (AI) technology that runs directly on your device, like your phone or computer, instead of relying on a separate server or cloud.  
+
+In simple terms, it’s like having a smart assistant built right into your device, so you can get help or make decisions without needing to send your data to the internet.  
+
+For example, you might use on-device AI to recognize your voice, identify photos, or make quick decisions about what to do based on your past behavior—all without needing to connect to the internet.  
+
+Would you like me to give you a few everyday examples of on-device AI?
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.01 ms
+    - Init Executor: 2595.68 ms
+    - Init LLM metadata: 0.02 ms
+    - Init Model assets: 0.08 ms
+    - Init Tokenizer: 112.26 ms
+    - Init Total: 2595.96 ms
+--------------------------------------------------
+  Time to first token: 0.67 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 21 tokens in 652.141719ms duration.
+      Prefill Speed: 32.20 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 135 tokens in 2.601588541s duration.
+      Decode Speed: 51.89 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 81.614us, 1 tokens
+    Turn 2: 92.604us, 20 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400006f14208150, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400006f142068f0, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400006f1420b690, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400006f1420ad30, name=LiteRT GPU
+EXIT_CODE=0

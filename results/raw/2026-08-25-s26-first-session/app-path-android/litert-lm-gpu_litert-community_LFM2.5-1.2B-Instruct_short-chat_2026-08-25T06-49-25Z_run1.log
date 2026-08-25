@@ -1,0 +1,157 @@
+VmRSS:	  269276 kB
+VmRSS:	  303428 kB
+VmRSS:	  340688 kB
+VmRSS:	  375120 kB
+VmRSS:	  488896 kB
+VmRSS:	  374644 kB
+VmRSS:	  388348 kB
+VmRSS:	  532124 kB
+VmRSS:	  593756 kB
+VmRSS:	  593884 kB
+VmRSS:	  593812 kB
+VmRSS:	  593728 kB
+VmRSS:	  593728 kB
+===ENGINE_OUTPUT===
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000771260d1d0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000771260d2f0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000771260d590, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000771260e610, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=4096, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_512 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_256 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_128 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_64 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_32 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_16 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_8 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_4 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_2 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 4096
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 4096
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1787640557.885551   29342 delegate_opencl.cc:603] options->hint_waiting_for_completion: true
+I0000 00:00:1787640557.885980   29342 delegate_opencl.cc:605] options->kernel_batch_size: 4
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: Loaded OpenCL library with dlopen.
+INFO: [gpu_environment.cc:220] Created OpenCL device from provided device id and platform id.
+INFO: [gpu_environment.cc:283] Reusing provided EGL environment.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (prefill_1024).
+I0000 00:00:1787640561.622429   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.622546   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.713640   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (prefill_512).
+I0000 00:00:1787640561.763829   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.763872   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.791162   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 2 (prefill_256).
+I0000 00:00:1787640561.797704   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.797732   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.832242   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 3 (prefill_128).
+I0000 00:00:1787640561.839194   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.839222   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.868052   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 4 (prefill_64).
+I0000 00:00:1787640561.874461   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.874488   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.910868   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 5 (prefill_32).
+I0000 00:00:1787640561.917855   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.917884   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.946402   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 6 (prefill_16).
+I0000 00:00:1787640561.952769   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.952794   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640561.981256   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 7 (prefill_8).
+I0000 00:00:1787640561.988493   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640561.988521   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640562.017192   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 8 (prefill_4).
+I0000 00:00:1787640562.023817   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640562.023844   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640562.047070   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 542 out of 542 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 9 (prefill_2).
+I0000 00:00:1787640562.053592   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640562.053641   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640562.088282   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 501 out of 501 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 10 (prefill_1).
+I0000 00:00:1787640562.113007   29342 delegate_kernel.cc:325] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640562.113071   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640562.136345   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 519 out of 519 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 11 (decode).
+I0000 00:00:1787640562.346801   29342 delegate_kernel.cc:325] Total 45 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787640562.346866   29342 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1787640562.382196   29342 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000771311d650, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000771311d470, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Explain what on-device AI means in simple terms.
+On-device AI means using artificial intelligence (AI) technology that runs directly on your device, like your phone or computer, instead of relying on a separate server or cloud. 
+
+So, imagine you have a smart assistant on your phone that can understand your voice and help you with tasks. With on-device AI, that assistant is built into your device, so it can process information and make decisions without needing to send your data to the internet. 
+
+This is useful because it keeps your personal information private, reduces the need for constant internet connection, and can be faster since it works locally.
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.19 ms
+    - Init Executor: 4669.35 ms
+    - Init LLM metadata: 0.11 ms
+    - Init Model assets: 0.83 ms
+    - Init Tokenizer: 168.68 ms
+    - Init Total: 4670.65 ms
+--------------------------------------------------
+  Time to first token: 0.13 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 21 tokens in 109.20875ms duration.
+      Prefill Speed: 192.29 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 122 tokens in 2.431325051s duration.
+      Decode Speed: 50.18 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 191.042us, 1 tokens
+    Turn 2: 525.782us, 20 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000771260e610, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000771260d590, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000771311d470, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000771311d650, name=LiteRT GPU
+EXIT_CODE=0

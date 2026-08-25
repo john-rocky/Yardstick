@@ -1,0 +1,1 @@
+session start 2026-08-25 14:59:46 cells=matrices/android-first-session.cells cooldown=120s

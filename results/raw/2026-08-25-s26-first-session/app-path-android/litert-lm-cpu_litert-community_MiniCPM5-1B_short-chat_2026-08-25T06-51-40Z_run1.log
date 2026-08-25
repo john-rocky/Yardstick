@@ -1,0 +1,305 @@
+VmRSS:	  249176 kB
+VmRSS:	  546680 kB
+VmRSS:	  508432 kB
+VmRSS:	 1068396 kB
+VmRSS:	 1069116 kB
+VmRSS:	 1069692 kB
+VmRSS:	 1070284 kB
+VmRSS:	 1070848 kB
+VmRSS:	 1071272 kB
+VmRSS:	 1071572 kB
+VmRSS:	 1072140 kB
+VmRSS:	 1072292 kB
+VmRSS:	 1072576 kB
+VmRSS:	 1073004 kB
+VmRSS:	 1073288 kB
+VmRSS:	 1073432 kB
+VmRSS:	 1073988 kB
+VmRSS:	 1074136 kB
+VmRSS:	 1074568 kB
+VmRSS:	 1074720 kB
+VmRSS:	 1074856 kB
+VmRSS:	 1075272 kB
+VmRSS:	 1075416 kB
+VmRSS:	 1075560 kB
+===ENGINE_OUTPUT===
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071ace12b90, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071ace12950, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071ace127d0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071ace13bb0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache build for '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache' started.
+VERBOSE: Replacing 962 out of 1066 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 143 partitions for subgraph 0 (prefill_128).
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: Replacing 870 out of 975 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 148 partitions for subgraph 1 (decode).
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: XNNPack weight cache: written to '/data/local/tmp/llmbench/models/litert-community_MiniCPM5-1B_minicpm_wi4b32_wi8_afp32.litertlm_1787024219_792625152.xnnpack_cache'.
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 2 (odml.rms_norm.impl).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 3 (odml.rms_norm.impl_0).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 4 (odml.rms_norm.impl_1).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 5 (odml.rms_norm.impl_2).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 6 (odml.rms_norm.impl_3).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 7 (odml.rms_norm.impl_4).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 8 (odml.rms_norm.impl_5).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 9 (odml.rms_norm.impl_6).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 10 (odml.rms_norm.impl_7).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 11 (odml.rms_norm.impl_8).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 12 (odml.rms_norm.impl_9).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 13 (odml.rms_norm.impl_10).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 14 (odml.rms_norm.impl_11).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 15 (odml.rms_norm.impl_12).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 16 (odml.rms_norm.impl_13).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 17 (odml.rms_norm.impl_14).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 18 (odml.rms_norm.impl_15).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 19 (odml.rms_norm.impl_16).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 20 (odml.rms_norm.impl_17).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 21 (odml.rms_norm.impl_18).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 22 (odml.rms_norm.impl_19).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 23 (odml.rms_norm.impl_20).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 24 (odml.rms_norm.impl_21).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 25 (odml.rms_norm.impl_22).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 26 (odml.rms_norm.impl_23).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 27 (odml.rms_norm.impl_24).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 28 (odml.rms_norm.impl_25).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 29 (odml.rms_norm.impl_26).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 30 (odml.rms_norm.impl_27).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 31 (odml.rms_norm.impl_28).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 32 (odml.rms_norm.impl_29).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 33 (odml.rms_norm.impl_30).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 34 (odml.rms_norm.impl_31).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 35 (odml.rms_norm.impl_32).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 36 (odml.rms_norm.impl_33).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 37 (odml.rms_norm.impl_34).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 38 (odml.rms_norm.impl_35).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 39 (odml.rms_norm.impl_36).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 40 (odml.rms_norm.impl_37).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 41 (odml.rms_norm.impl_38).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 42 (odml.rms_norm.impl_39).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 43 (odml.rms_norm.impl_40).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 44 (odml.rms_norm.impl_41).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 45 (odml.rms_norm.impl_42).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 46 (odml.rms_norm.impl_43).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 47 (odml.rms_norm.impl_44).
+VERBOSE: Replacing 7 out of 7 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 48 (odml.rms_norm.impl_45).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 49 (odml.rms_norm.impl_46).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 50 (odml.rms_norm.impl_47).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 51 (odml.rms_norm.impl_48).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 52 (odml.rms_norm.impl_49).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 53 (odml.rms_norm.impl_50).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 54 (odml.rms_norm.impl_51).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 55 (odml.rms_norm.impl_52).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 56 (odml.rms_norm.impl_53).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 57 (odml.rms_norm.impl_54).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 58 (odml.rms_norm.impl_55).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 59 (odml.rms_norm.impl_56).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 60 (odml.rms_norm.impl_57).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 61 (odml.rms_norm.impl_58).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 62 (odml.rms_norm.impl_59).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 63 (odml.rms_norm.impl_60).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 64 (odml.rms_norm.impl_61).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 65 (odml.rms_norm.impl_62).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 66 (odml.rms_norm.impl_63).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 67 (odml.rms_norm.impl_64).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 68 (odml.rms_norm.impl_65).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 69 (odml.rms_norm.impl_66).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 70 (odml.rms_norm.impl_67).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 71 (odml.rms_norm.impl_68).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 72 (odml.rms_norm.impl_69).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 73 (odml.rms_norm.impl_70).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 74 (odml.rms_norm.impl_71).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 75 (odml.rms_norm.impl_72).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 76 (odml.rms_norm.impl_73).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 77 (odml.rms_norm.impl_74).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 78 (odml.rms_norm.impl_75).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 79 (odml.rms_norm.impl_76).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 80 (odml.rms_norm.impl_77).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 81 (odml.rms_norm.impl_78).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 82 (odml.rms_norm.impl_79).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 83 (odml.rms_norm.impl_80).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 84 (odml.rms_norm.impl_81).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 85 (odml.rms_norm.impl_82).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 86 (odml.rms_norm.impl_83).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 87 (odml.rms_norm.impl_84).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 88 (odml.rms_norm.impl_85).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 89 (odml.rms_norm.impl_86).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 90 (odml.rms_norm.impl_87).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 91 (odml.rms_norm.impl_88).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 92 (odml.rms_norm.impl_89).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 93 (odml.rms_norm.impl_90).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 94 (odml.rms_norm.impl_91).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 95 (odml.rms_norm.impl_92).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 96 (odml.rms_norm.impl_93).
+VERBOSE: Replacing 6 out of 6 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 1 partitions for subgraph 97 (odml.rms_norm.impl_94).
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071ace14570, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071ace16130, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Explain what on-device AI means in simple terms.
+VERBOSE: Replacing 1291 out of 1348 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 49 partitions for subgraph 0 (prefill_128).
+VERBOSE: Replacing 1164 out of 1220 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 50 partitions for subgraph 1 (decode).
+
+
+Of course! Let's break down **on-device AI** in simple terms.
+
+### **Simple Definition**
+**On-device AI** is a type of artificial intelligence that runs and learns on your **own computer** (your phone, laptop, or smart TV) instead of on a remote cloud server (like Google Cloud or AWS). It's like having a personal assistant inside your own device.
+
+---
+
+### **The Core Idea**
+Think of it like this:
+*   **Cloud AI:** Your computer sends a request to a remote server (like a company's data center) to run a complex AI model. That server then sends the results back to your computer.
+*   **On-device AI:** Your computer **instantly** runs the AI model **inside** your own hardware. It does all the heavy lifting, learning, and processing on your phone or laptop.
+
+---
+
+### **Key Components**
+
+1.  **The Model:** This is the "brain" of the AI. It's a small program that can recognize patterns, understand language, or make decisions.
+2.  **The Hardware:** Your phone or laptop has a processor (like a CPU) and memory (RAM). These are the tools that run the model.
+3.  **The Software:** The instructions that tell the hardware what to do. This is what makes the AI "smart."
+
+---
+
+### **Common Examples**
+
+*   **Smart Speakers & Smart TVs:** They use on-device AI to recognize your voice commands and play music or news instantly.
+*   **Your Phone's Camera:** It uses on-device AI to identify faces, detect objects, and even recognize photos from your phone's memory.
+*   **Your Laptop:** It can run a simple app like a password manager or a calendar, all without needing to connect to the internet.
+*   **Your Smartwatch:** It can detect your heart rate, steps, or even detect a hidden message.
+
+---
+
+### **Why It's Important**
+
+*   **Privacy:** It means your personal data and AI decisions are processed **on your own device**, not sent to a third party.
+*   **Cost:** It's cheaper to run AI on your own phone than on a remote cloud server.
+*   **Performance:** It's faster and more reliable for simple tasks, but it can be slower for complex tasks that require a cloud server.
+*   **Control:** You have full control over what happens on your device.
+
+### **The Trade-off**
+
+While on-device AI is powerful for **simple tasks**, it has some limitations:
+*   **Performance:** It can be slower than cloud AI for very complex tasks.
+*   **Battery Life:** It consumes more battery power because it runs the AI model itself.
+*   **Security:** It's more vulnerable to malware or attacks that target the device itself.
+
+**In a nutshell:** **On-device AI** is your personal AI, running and learning inside your own device, giving you a private, powerful assistant without needing to rely on a remote cloud service
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.03 ms
+    - Init Executor: 1648.18 ms
+    - Init LLM metadata: 0.11 ms
+    - Init Model assets: 6.55 ms
+    - Init Tokenizer: 251.02 ms
+    - Init Total: 1655.24 ms
+--------------------------------------------------
+  Time to first token: 0.59 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 20 tokens in 575.108541ms duration.
+      Prefill Speed: 34.78 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 815 tokens in 10.787514111s duration.
+      Decode Speed: 75.55 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 3.802us, 1 tokens
+    Turn 2: 97.708us, 19 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000071ace13bb0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000071ace127d0, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000071ace16130, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000071ace14570, name=LiteRT GPU
+EXIT_CODE=0

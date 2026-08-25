@@ -21,4 +21,12 @@
   this repo's pinned artifact, and the LiteRT NPU path is Early Access
   Program only, so LiteRT rows here are cpu/gpu and the NPU row stays n/a
   with that reason.
+- ⚠ llama.cpp arm, first-session caveat (2026-08-25): do not quote this
+  device's llama.cpp numbers until diagnosed. Qwen3-0.6B declined
+  16.7→15.7→12.8 tok/s across three back-to-back nominal runs (Pixel 8a:
+  30.1 — a flagship losing to a mid-range on the same official b8999 arm64
+  binary), and DeepSeek-R1-1.5B landed at Pixel parity (9.1 vs 9.2) while
+  every litert-lm cell on this device gains 2-4x. Suspects: scheduler /
+  taskset interaction on this core layout, or ggml CPU-variant dispatch.
+  The rows stay (stored-report-rule) with their conditions recorded.
 - Build/run: `android/README.md` (engine acquisition, driver, campaign runner).

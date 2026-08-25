@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "8a28a94b-3d31-4d94-8155-b935845eadd3",
+  "runtime": "litert-lm-cpu",
+  "engineVersion": "v0.16.0",
+  "engineArtifact": "37d6b9d65fbbb11331873fabf097bf2488324f96797ab4d08f09b336d5b1898d",
+  "model": {
+    "id": "litert-community/Qwen3-0.6B",
+    "quantization": "INT4 (mixed, blockwise gs32)",
+    "file": "litert-community_Qwen3-0.6B_qwen3_0_6b_mixed_int4.litertlm",
+    "sha256": "b1baab462f6be49d70eada79d715c2c52cd9ece0cad00bddf6a2c097d23498e9"
+  },
+  "task": "short-chat",
+  "timestamp": "2026-08-25T06:05:04Z",
+  "device": {
+    "modelIdentifier": "SM-S942Q",
+    "systemName": "Android",
+    "systemVersion": "16",
+    "securityPatch": "2026-06-05",
+    "soc": "SM8850",
+    "product": "m1q",
+    "batteryLevel": 0.96,
+    "batteryState": "charging"
+  },
+  "conditions": {
+    "sampler": "engine-default",
+    "cpuAffinity": "taskset f0",
+    "contextTokens": "bundle-default",
+    "thermalRawStatus": 0,
+    "thermalRawStatusFinal": 0,
+    "screen": "on-usb",
+    "elapsedSeconds": 20.0,
+    "exitCode": 0
+  },
+  "metrics": {
+    "firstTokenLatencyMS": 680.0,
+    "promptTokensPerSecond": 30.73,
+    "decodeTokensPerSecond": 30.21,
+    "promptTokenCount": 20,
+    "generatedTokenCount": 556,
+    "coldRun": true,
+    "harnessStamp": "2026-08-android-cli-v1",
+    "initialThermalState": "nominal",
+    "finalThermalState": "nominal",
+    "memoryMedianResidentMB": 2103.9765625
+  },
+  "provenance": {
+    "rawLog": "litert-lm-cpu_litert-community_Qwen3-0.6B_short-chat_2026-08-25T06-05-04Z_run1.log",
+    "harness": "android/bench/run_cell.py"
+  }
+}

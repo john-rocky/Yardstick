@@ -8,7 +8,7 @@ Regenerate: `python3 scripts/build_summary.py && python3 scripts/render_leaderbo
 
 <!-- BEGIN GENERATED: scripts/render_leaderboard.py -->
 
-Generated from `results/summary/*.csv` (latest capture 2026-08-24) by `scripts/render_leaderboard.py` — do not edit inside the markers.
+Generated from `results/summary/*.csv` (latest capture 2026-08-25) by `scripts/render_leaderboard.py` — do not edit inside the markers.
 
 Headline task: **short-chat**, warm = median of same-session warm runs (cold-warm-split); other tasks and full history: RESULTS.md. Rows sort by warm decode; the recipe (quantization, engine build) is part of every row — a faster number under a different recipe is a different deployment profile, not a win.
 
@@ -255,6 +255,46 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | model | runtime | artifact | quant | engine | warm tok/s | cold tok/s | captured |
 |---|---|---|---|---|---|---|---|
 | Gemma 4 E2B | litert-lm-gpu | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | — | 8.4 | 2026-08-17 |
+
+</details>
+
+### Galaxy S26
+
+**Qwen 3 0.6B**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| llama.cpp | `unsloth/Qwen3-0.6B-GGUF` | Q4_K_M | b8999 | — | 12.8 | 242.4 | — | 1252.5 | — | 2026-08-25 |
+| litert-lm-gpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | — | 54.4 | 153.1 | 150.0 | 550.6 | — | 2026-08-25 |
+| litert-lm-cpu | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | — | 27.7 | 23.8 | 870.0 | 2022.6 | — | 2026-08-25 |
+
+**litert-community/DeepSeek-R1-Distill-Qwen-1.5B**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| litert-lm-gpu | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | — | 22.9 | 101.5 | 200.0 | 558.2 | — | 2026-08-25 |
+| litert-lm-cpu | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | — | 26.0 | 25.5 | 670.0 | 1950.3 | — | 2026-08-25 |
+
+**litert-community/LFM2.5-1.2B-Instruct**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| litert-lm-gpu | `litert-community/LFM2.5-1.2B-Instruct` | int4_gpu (litert-community descriptor) | v0.16.0 | — | 45.6 | 184.9 | 140.0 | 477.4 | — | 2026-08-25 |
+| litert-lm-cpu | `litert-community/LFM2.5-1.2B-Instruct` | int4 (litert-community descriptor) | v0.16.0 | — | 51.2 | 23.4 | 920.0 | 284.3 | — | 2026-08-25 |
+
+**litert-community/MiniCPM5-1B**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| litert-lm-gpu | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | — | 54.5 | 218.8 | 110.0 | 364.2 | — | 2026-08-25 |
+| litert-lm-cpu | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 | v0.16.0 | — | 30.4 | 34.8 | 590.0 | 1047.3 | — | 2026-08-25 |
+
+<details><summary>single-arm cells (no cross-runtime comparison)</summary>
+
+| model | runtime | artifact | quant | engine | warm tok/s | cold tok/s | captured |
+|---|---|---|---|---|---|---|---|
+| Gemma 4 E2B | litert-lm-gpu | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | — | 27.8 | 2026-08-25 |
+| bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF | llama.cpp | `bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF` | Q4_K_M | b8999 | — | 9.1 | 2026-08-25 |
 
 </details>
 

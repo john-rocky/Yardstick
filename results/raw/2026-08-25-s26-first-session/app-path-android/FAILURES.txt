@@ -1,0 +1,1 @@
+litert-lm litert-community/Qwen3-0.6B short-chat rc=2

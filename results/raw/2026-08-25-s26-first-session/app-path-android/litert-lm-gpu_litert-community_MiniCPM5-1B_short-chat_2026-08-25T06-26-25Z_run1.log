@@ -1,0 +1,128 @@
+VmRSS:	  292276 kB
+VmRSS:	  328248 kB
+VmRSS:	  644516 kB
+VmRSS:	  295676 kB
+VmRSS:	  315024 kB
+VmRSS:	  335872 kB
+VmRSS:	  335576 kB
+VmRSS:	  380248 kB
+VmRSS:	  379652 kB
+VmRSS:	  380164 kB
+VmRSS:	  380164 kB
+VmRSS:	  380164 kB
+VmRSS:	  379656 kB
+VmRSS:	  379656 kB
+VmRSS:	  380168 kB
+VmRSS:	  379656 kB
+VmRSS:	  379656 kB
+VmRSS:	  380168 kB
+VmRSS:	  380168 kB
+VmRSS:	  380168 kB
+VmRSS:	  379668 kB
+VmRSS:	  380180 kB
+VmRSS:	  380180 kB
+VmRSS:	  379668 kB
+VmRSS:	  379668 kB
+VmRSS:	  380180 kB
+VmRSS:	  380180 kB
+VmRSS:	  380180 kB
+VmRSS:	  380180 kB
+VmRSS:	  380180 kB
+VmRSS:	  319620 kB
+===ENGINE_OUTPUT===
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000749080ec50, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000749080e8f0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000749080df90, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000749080f190, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1787639168.637156   24163 delegate_opencl.cc:603] options->hint_waiting_for_completion: true
+I0000 00:00:1787639168.637225   24163 delegate_opencl.cc:605] options->kernel_batch_size: 4
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: Loaded OpenCL library with dlopen.
+INFO: [gpu_environment.cc:220] Created OpenCL device from provided device id and platform id.
+INFO: [gpu_environment.cc:283] Reusing provided EGL environment.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+VERBOSE: Replacing 1044 out of 1044 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (prefill_128).
+I0000 00:00:1787639170.981714   24163 delegate_kernel.cc:325] Total 49 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787639170.981916   24163 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 953 out of 953 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (decode).
+I0000 00:00:1787639172.219660   24163 delegate_kernel.cc:325] Total 50 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787639172.219848   24163 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000074908145f0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007490b74770, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Explain what on-device AI means in simple terms.
+
+
+Of course! Let's break down **on-device AI** in simple terms.
+
+### **Simple Definition**
+**On-device AI** is a type of artificial intelligence that runs and learns on your **own device** (like a phone, computer, or smart speaker) instead of on a remote, powerful server.
+
+### **The Core Idea**
+Think of it like this:
+*   **Remote AI** = A computer in a big data center that runs complex algorithms and learns from millions of data points. It's powerful but expensive and slow.
+*   **On-device AI** = A computer on your phone or laptop that runs simple, fast, and local AI. It's cheaper, faster, and doesn't need to do all the heavy lifting.
+
+### **Key Benefits**
+1.  **Privacy & Security**: Your data stays on your device. No one else can see it.
+2.  **Cost**: You pay for the service (like a feature) without paying for a massive server.
+3.  **Speed & Performance**: It runs at the speed of your phone or laptop, not a supercomputer.
+4.  **Responsiveness**: It can react to your phone or laptop immediately.
+
+### **Real-World Examples**
+*   **Smart Home Devices**: Your phone or smart speaker can "understand" your voice commands and make simple decisions (like playing music or turning on lights) without needing a cloud connection.
+*   **Self-Driving Cars**: The car's "brain" runs on its own device (the onboard computer) to process data and make driving decisions. It doesn't need to talk to a cloud server.
+*   **Your Phone**: When you ask a question, your phone's AI (like Siri or Alexa) runs on its own device to respond.
+
+### **A Important Note**
+While **on-device AI** is powerful, it's not always perfect. Some complex tasks still require a cloud connection (like advanced image recognition or real-time translation). The trend is moving toward **hybrid systems** where your device does most of the work, but you still have access to cloud services for advanced features.
+
+**In a nutshell: On-device AI is AI that runs on your phone, computer, or smart speaker, giving you privacy, speed, and cost savings.**
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.03 ms
+    - Init Executor: 4101.32 ms
+    - Init LLM metadata: 0.03 ms
+    - Init Model assets: 0.02 ms
+    - Init Tokenizer: 308.52 ms
+    - Init Total: 4101.82 ms
+--------------------------------------------------
+  Time to first token: 0.10 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 20 tokens in 82.540156ms duration.
+      Prefill Speed: 242.31 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 654 tokens in 12.064780673s duration.
+      Decode Speed: 54.21 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 4.792us, 1 tokens
+    Turn 2: 92.291us, 19 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000749080f190, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000749080df90, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007490b74770, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000074908145f0, name=LiteRT GPU
+EXIT_CODE=0

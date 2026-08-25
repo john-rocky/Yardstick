@@ -1,0 +1,179 @@
+VmRSS:	  305664 kB
+VmRSS:	  146700 kB
+VmRSS:	  105848 kB
+VmRSS:	  105980 kB
+VmRSS:	  131056 kB
+VmRSS:	  158732 kB
+VmRSS:	  182772 kB
+VmRSS:	  224476 kB
+VmRSS:	  266776 kB
+VmRSS:	  440376 kB
+VmRSS:	  490208 kB
+VmRSS:	  490348 kB
+VmRSS:	  489692 kB
+VmRSS:	  489840 kB
+VmRSS:	  489880 kB
+VmRSS:	  489868 kB
+VmRSS:	  489840 kB
+VmRSS:	  489876 kB
+VmRSS:	  490352 kB
+VmRSS:	  490352 kB
+VmRSS:	  490352 kB
+VmRSS:	  490348 kB
+VmRSS:	  490480 kB
+VmRSS:	  489840 kB
+VmRSS:	  490352 kB
+VmRSS:	  490352 kB
+VmRSS:	  490392 kB
+VmRSS:	  490480 kB
+VmRSS:	  490480 kB
+VmRSS:	  489840 kB
+VmRSS:	  489840 kB
+VmRSS:	  490520 kB
+VmRSS:	  489840 kB
+VmRSS:	  490140 kB
+VmRSS:	  490520 kB
+VmRSS:	  489840 kB
+VmRSS:	  489840 kB
+VmRSS:	  489840 kB
+VmRSS:	  489840 kB
+VmRSS:	  489840 kB
+VmRSS:	  490352 kB
+VmRSS:	  490460 kB
+VmRSS:	  490480 kB
+VmRSS:	  490352 kB
+VmRSS:	  490440 kB
+VmRSS:	  489840 kB
+VmRSS:	  490464 kB
+VmRSS:	  490352 kB
+VmRSS:	  489840 kB
+VmRSS:	  489840 kB
+VmRSS:	  489832 kB
+VmRSS:	  490480 kB
+VmRSS:	  490484 kB
+VmRSS:	  489844 kB
+VmRSS:	  489844 kB
+VmRSS:	  489932 kB
+VmRSS:	  490352 kB
+VmRSS:	  490356 kB
+VmRSS:	  489836 kB
+VmRSS:	  489844 kB
+VmRSS:	  489844 kB
+VmRSS:	  490356 kB
+VmRSS:	  490356 kB
+VmRSS:	  489844 kB
+VmRSS:	  490484 kB
+VmRSS:	  490484 kB
+VmRSS:	  489844 kB
+VmRSS:	  489844 kB
+VmRSS:	  490356 kB
+VmRSS:	  490356 kB
+VmRSS:	  490356 kB
+VmRSS:	  490356 kB
+VmRSS:	  490484 kB
+VmRSS:	  490356 kB
+VmRSS:	  489912 kB
+VmRSS:	  489844 kB
+VmRSS:	  490356 kB
+VmRSS:	  490356 kB
+===ENGINE_OUTPUT===
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007e94813e50, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007e948134f0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007e94814030, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007e94812a70, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1787638361.358916   22079 delegate_opencl.cc:603] options->hint_waiting_for_completion: true
+I0000 00:00:1787638361.358997   22079 delegate_opencl.cc:605] options->kernel_batch_size: 4
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: Loaded OpenCL library with dlopen.
+INFO: [gpu_environment.cc:220] Created OpenCL device from provided device id and platform id.
+INFO: [gpu_environment.cc:283] Reusing provided EGL environment.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+VERBOSE: Replacing 1359 out of 1359 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (decode).
+I0000 00:00:1787638363.635483   22079 delegate_kernel.cc:325] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787638363.635843   22079 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (prefill_128).
+I0000 00:00:1787638364.331104   22079 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787638364.331148   22079 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 2 (prefill_1280).
+I0000 00:00:1787638365.102187   22079 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787638365.102240   22079 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 3 (prefill_32).
+I0000 00:00:1787638365.676450   22079 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787638365.676507   22079 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 4 (prefill_512).
+I0000 00:00:1787638366.046876   22079 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787638366.046918   22079 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007e95489150, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007e95488fd0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Explain what on-device AI means in simple terms.
+Okay, so I'm trying to understand what on-device AI is in simple terms. I've heard the word before, maybe in tech discussions, but I'm not entirely sure what it means. Let me start by breaking down the word "on-device." 
+
+"On" usually means something related to the inside, so on-device could mean within something. "AI" stands for Artificial Intelligence. So putting it together, on-device AI would be AI happening on something, probably inside a computer system or device. 
+
+Hmm, but AI is about machines learning and making decisions on their own, right? So if it's on a device, does that mean the device is learning and acting on its own? I've heard of something called machine learning, which is a part of AI where systems improve with experience. Maybe on-device AI is like machine learning happening right in the device itself.
+
+Wait, there's also something called embedded AI. I think that's related to devices plugged into the internet, like smartphones or IoT devices. So maybe on-device AI isn't just about the device's own learning but also involves integrating AI into other parts of the system, like servers or servers connected to the network. So it's about using AI not just within a computer but also across devices connected through the internet.
+
+I think it's also about security. Since devices are on a network, there might be risks involved in exposing data on the device. So companies use on-device AI to protect their data by implementing measures within the device itself, maybe with encryption or access control.
+
+Wait, how does on-device AI actually work? So the device has some sort of AI model that can learn. Maybe when you use a smart speaker, it learns from your voice patterns, even though it's on the device. That's a bit magical because it's processing data locally. But doesn't that make it susceptible to various attacks, like data leaks or abuse? So to protect against that, companies would need to ensure that the AI models on the device aren't trained on data from other devices or connected via the internet.
+
+Also, considering the complexity, integrating AI at the edge could reduce latency and bandwidth usage compared to data flowing through the network. It makes sense because it's processing data locally and only forwarding relevant information to the end-user. But there's also the challenge of managing and ensuring security as the number of connected devices increases.
+
+So in summary, on-device AI refers to the application of AI techniques on devices, possibly within networks, for tasks like voice recognition, image classification, etc. It's integrated into the hardware or software of a device and relies on local data processing. To protect against attacks and ensure security, security measures are in place within the device itself, maybe using encryption or secure protocols.
+
+I think I'm getting a clearer picture now. On-device AI doesn't necessarily involve the entire network; it's about AI on individual devices or parts of the network connected to them. It's a way to leverage AI without relying on the cloud, which can offer better performance but also higher costs. So on-device solutions aim for a balance between functionality and security.
+</think>
+
+On-device AI, often referred to as embedded AI, is the application of AI techniques within individual devices or connected to networks, such as smartphones or IoT devices. It involves machines learning and making decisions locally on the device itself, often using machine learning. On-device AI allows devices like smartphones to perform tasks such as voice recognition and image classification using their own data. This contrasts with AI integrated into the cloud, which connects across networks.
+
+To protect against attacks and ensure security, on-device AI typically employs measures like encryption and secure protocols, ensuring that data remains safe even on devices connected through networks. Companies aim to leverage the edge, processing data locally to reduce latency and bandwidth usage, but must also manage security carefully to prevent potential vulnerabilities. In essence, on-device AI enables AI to function seamlessly within devices while maintaining robust security measures.
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.26 ms
+    - Init Executor: 5277.59 ms
+    - Init LLM metadata: 0.02 ms
+    - Init Model assets: 3.52 ms
+    - Init Tokenizer: 289.43 ms
+    - Init Total: 5570.65 ms
+--------------------------------------------------
+  Time to first token: 0.20 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 16 tokens in 158.506198ms duration.
+      Prefill Speed: 100.94 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 797 tokens in 35.065188216s duration.
+      Decode Speed: 22.73 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 341.406us, 1 tokens
+    Turn 2: 1.039323ms, 15 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007e94812a70, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007e94814030, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007e95488fd0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007e95489150, name=LiteRT GPU
+EXIT_CODE=0
