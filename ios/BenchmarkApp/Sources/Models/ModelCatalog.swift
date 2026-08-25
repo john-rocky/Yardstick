@@ -547,6 +547,19 @@ public enum ModelCatalog {
         // 2026-07-29: LFM2.5 GPU candidates (litert-torch 0.9.2 export, odml.softmax
         // composite stripped). First hybrid ShortConv graphs expected to run on the
         // Metal GPU delegate — device gate for the GPU-enabled re-ship.
+        // 2026-08-25: the published litert-community GPU variant (0.9.3 + converter
+        // 0.3.1 re-export, sha256 36f7f022...) — the file that passed S26 Adreno
+        // 542/542 and whose iPhone Metal verdict the --max-num-tokens re-gate decides.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int4-gpu-pub",
+            displayName: "LFM2.5-1.2B (.litertlm, int4 GPU published)",
+            quantization: "INT4 (OCTAV blockwise-32, convs float, int8 embed)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int4-gpu-pub",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         ModelInfo(
             id: "litert-local/lfm25-1.2b-int4-gpu",
             displayName: "LFM2.5-1.2B (.litertlm, int4 GPU 0.9.2)",

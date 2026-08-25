@@ -75,11 +75,25 @@ public actor MediaPipeRuntime: LLMRuntime {
             let wantsVision = ProcessInfo.processInfo.arguments.contains("--litert-vision")
             let backend: Backend =
                 ProcessInfo.processInfo.arguments.contains("--litert-cpu") ? .cpu() : .gpu
+            // `--litert-max-tokens N` pins maxNumTokens regardless of the task-derived
+            // contextBudget. The Metal delegate compiles shaders against the KV that
+            // maxNumTokens pre-allocates; a value that disagrees with the model's
+            // exported cache produces DUS shape rejections + partial delegation
+            // (S26 2026-08-23: explicit 1024 turned 104/542 half4x float4 aborts into
+            // 542/542 PASS on the same file), so the gate must control it explicitly.
+            let launchArgs = ProcessInfo.processInfo.arguments
+            var effectiveMaxTokens = contextBudget
+            if let flagIdx = launchArgs.firstIndex(of: "--litert-max-tokens"),
+               flagIdx + 1 < launchArgs.count,
+               let forced = Int(launchArgs[flagIdx + 1]) {
+                effectiveMaxTokens = forced
+                print("[MediaPipeRuntime] maxNumTokens forced to \(forced) via --litert-max-tokens")
+            }
             let config = try EngineConfig(
                 modelPath: modelFile.path,
                 backend: backend,
                 visionBackend: wantsVision ? backend : nil,
-                maxNumTokens: contextBudget,
+                maxNumTokens: effectiveMaxTokens,
                 cacheDir: NSTemporaryDirectory()
             )
             let engine = Engine(engineConfig: config)
