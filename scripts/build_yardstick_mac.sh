@@ -5,12 +5,20 @@
 # the xcodebuild target also carries project.yml's pinned mlx-swift-lm revision.
 # Prints the binary path on success.
 #
-# Env: DD_MAC (derivedData, default ~/bench-dd-mac)
+# Env: DD_MAC (derivedData, default <repo>/.build/dd-mac — repo-local so two
+# checkouts never share a binary; the old ~/bench-dd-mac default let a fresh
+# clone run another checkout's stale yardstick).
 set -euo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
-DD_MAC="${DD_MAC:-$HOME/bench-dd-mac}"
+DD_MAC="${DD_MAC:-$REPO/.build/dd-mac}"
 YS="$DD_MAC/Build/Products/Release/yardstick"
 
+command -v xcodegen >/dev/null || {
+  echo "xcodegen not found — brew install xcodegen" >&2; exit 1; }
+for d in llama.xcframework Anemll LiteRT-LM CoreML-LLM coreai-models; do
+  [ -e "$REPO/ios/BenchmarkApp/Vendored/$d" ] || {
+    echo "Vendored/$d missing — run ios/BenchmarkApp/scripts/bootstrap.sh first" >&2; exit 1; }
+done
 ( cd "$REPO/ios/BenchmarkApp" && xcodegen generate >/dev/null )
 # ARCHS=arm64: Release otherwise also builds the x86_64 slice of every package,
 # and CoreML-LLM uses Float16, which does not exist on x86_64 macOS.

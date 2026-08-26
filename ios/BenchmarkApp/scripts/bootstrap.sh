@@ -21,7 +21,11 @@ LLAMA_FRAMEWORK="${VENDORED_DIR}/llama.xcframework"
 ANEMLL_DIR="${VENDORED_DIR}/Anemll"
 ANEMLL_PKG="${ANEMLL_DIR}/anemll-swift-cli/Package.swift"
 LITERTLM_DIR="${VENDORED_DIR}/LiteRT-LM"
-LITERTLM_TAG="${LITERTLM_TAG:-v0.13.1}"
+# Default = the newest capture pin in environment.lock.json, so a fresh clone
+# vendors the engine behind the published rows (the old v0.13.1 default handed
+# fresh users an engine three releases behind the leaderboard; 2026-08-26
+# rehearsal). Bump this WITH the lock, per release, never casually.
+LITERTLM_TAG="${LITERTLM_TAG:-v0.16.0}"
 
 mkdir -p "${VENDORED_DIR}"
 

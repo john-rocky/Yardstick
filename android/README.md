@@ -14,11 +14,23 @@ Measurement semantics and every disclosed difference from the Apple lane:
 - `python3 -m pip install huggingface_hub` (model downloads; gated repos need
   `huggingface-cli login`)
 
-## Engine acquisition (per release)
+## Engine acquisition
+
+Fast path — no build, no bazel/NDK (prebuilt at the pinned tag, hashes match
+the lockfile):
+
+```bash
+mkdir -p android/bin
+curl -L https://github.com/john-rocky/edge-llm-bench/releases/download/android-litert-lm-v0.16.0/litert-lm-v0.16.0-android-arm64.tar.gz \
+  | tar xz -C android/bin && mv android/bin/litert-lm-v0.16.0-android-arm64 android/bin/v0.16.0
+android/scripts/fetch_llama_android.sh                         # official b8999 android tar
+```
+
+Per-release source build (what produced that archive; needed for tags with no
+release asset):
 
 ```bash
 LITERTLM_TAG=v0.16.0 android/scripts/build_litert_lm_main.sh   # bazel source build, 10-20 min first time
-android/scripts/fetch_llama_android.sh                         # official b8999 android tar
 ```
 
 - LiteRT-LM releases ship **no Android binary** (verified v0.14–v0.16), so this

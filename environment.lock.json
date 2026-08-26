@@ -6,7 +6,7 @@
     "litert-lm": {
       "source": "https://github.com/google-ai-edge/LiteRT-LM",
       "vendored_via": "ios/BenchmarkApp/scripts/bootstrap.sh (LITERTLM_TAG; local SwiftPM package, engine = release binaryTarget)",
-      "default_tag": "v0.13.1",
+      "default_tag": "v0.16.0",
       "captures": {
         "2026-07 campaign rows": {
           "tag": "v0.13.1"

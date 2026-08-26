@@ -18,7 +18,10 @@ set -uo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 . "$REPO/scripts/lib/matrix_common.sh"
 
-DD_MAC="${DD_MAC:-$HOME/bench-dd-mac}"
+# Repo-local build dir: an out-of-repo default (~/bench-dd-mac) let a fresh
+# clone silently run whatever stale yardstick another checkout had built —
+# an unpinned harness under this clone's protocol (2026-08-26 rehearsal).
+DD_MAC="${DD_MAC:-$REPO/.build/dd-mac}"
 YS="${YS_BIN:-$DD_MAC/Build/Products/Release/yardstick}"
 DEFAULT_RUNS="${RUNS:-4}"
 BASE_COOLDOWN="${BASE_COOLDOWN:-30}"
@@ -26,6 +29,13 @@ CAMPAIGN="${CAMPAIGN:-$(date +%F)-mac-matrix}"
 OUT="$REPO/results/raw/$CAMPAIGN"
 
 log(){ printf '\n=== %s ===\n' "$*"; }
+
+run_ys_cell(){
+  # One capture attempt for the current loop cell (bash dynamic scope: rt/mid/
+  # task_arg/runs/extra/slug are cmd_run locals).
+  "$YS" run --runtime "$rt" --model-id "$mid" --task "$task_arg" --runs "$runs" \
+    ${extra[@]+"${extra[@]}"} --output "$OUT/${slug}.jsonl" 2>&1 | tail -4
+}
 
 guard(){
   # Unified memory: a heavy CPU/GPU pipeline moves these numbers (spread-rule).
@@ -99,9 +109,26 @@ cmd_run(){
     esac
 
     log "CELL $rt / $mid / $task runs=$runs ($(date +%H:%M:%S))"
-    if ! "$YS" run --runtime "$rt" --model-id "$mid" --task "$task_arg" --runs "$runs" \
-        ${extra[@]+"${extra[@]}"} --output "$OUT/${slug}.jsonl" 2>&1 | tail -4; then
+    if ! run_ys_cell; then
       echo "FAIL $rt $mid $task" >> "$OUT/FAILURES.txt"
+    fi
+    # Post-capture gate (scripts/cell_gate.py): a HOT or wide-spread capture is
+    # quarantined (.jsonl.attempt1 — kept in raw, outside build_summary's
+    # *.jsonl glob) and the cell re-runs ONCE after a real cooldown. SHORT is
+    # never retried here — that is a failure, and failed runs stay.
+    if [ -f "$OUT/${slug}.jsonl" ] && [ "${GATE_RETRY:-1}" = "1" ]; then
+      gate="$(python3 "$REPO/scripts/cell_gate.py" --runs "$runs" --jsonl "$OUT/${slug}.jsonl")" || true
+      case "$gate" in HOT*|SPREAD*)
+        log "gate: $gate — quarantine + cooldown ${GATE_COOLDOWN:-180}s, re-run once"
+        mv "$OUT/${slug}.jsonl" "$OUT/${slug}.jsonl.attempt1"
+        sleep "${GATE_COOLDOWN:-180}"
+        run_ys_cell || echo "FAIL $rt $mid $task (gate retry)" >> "$OUT/FAILURES.txt"
+        gate2="$(python3 "$REPO/scripts/cell_gate.py" --runs "$runs" --jsonl "$OUT/${slug}.jsonl" 2>/dev/null)" || true
+        case "$gate2" in HOT*|SPREAD*)
+          echo "GATE_FAIL $rt $mid $task first='$gate' retry='$gate2' (retry kept; ⚠ downstream)" \
+            | tee -a "$OUT/FLAGGED.txt" ;;
+        esac ;;
+      esac
     fi
   done < <(cells_for mac "$cells_file" 2> >(tee -a "$OUT/SKIPPED.txt" >&2))
 

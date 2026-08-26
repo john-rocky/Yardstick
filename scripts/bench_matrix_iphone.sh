@@ -20,8 +20,11 @@
 #     are already persisted on-device, so killing the console is lossless.
 #   - </dev/null: devicectl --console forwards stdin, which would otherwise
 #     swallow the rest of the cell list feeding the while-read loop.
-#   - thermal gate: every run of a cell must report initialThermalState==nominal
-#     (fairness cold-warm-split); a hot cell cools THERMAL_COOLDOWN and re-runs once.
+#   - capture gate (scripts/cell_gate.py): every run must start nominal AND the
+#     warm spread must stay under 5% (spread-rule). A flagged capture is moved
+#     to device-jsonl-flagged/ (kept for audit, out of build_summary's glob),
+#     the cell cools THERMAL_COOLDOWN and re-runs once; a flagged retry stands
+#     with a FLAGGED.txt note.
 set -euo pipefail
 
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
@@ -53,17 +56,33 @@ pull_new(){
   echo "$n"
 }
 
-cell_verdict(){ # <runtime> <model-id> <task> <runs>
-  RT="$1" MID="$2" TASK="$3" RUNS="$4" OUT="$OUT" python3 - <<'PY'
-import json, os, glob
-rt, mid, runs = os.environ["RT"], os.environ["MID"], int(os.environ["RUNS"])
-pat = rt + "_" + mid.replace("/", "_") + "_" + os.environ["TASK"] + "_*.json"
-files = sorted(glob.glob(os.path.join(os.environ["OUT"], "device-jsonl", pat)))[-runs:]
-if len(files) < runs:
-    print(f"SHORT {len(files)}"); raise SystemExit
-states = [json.load(open(f))["metrics"].get("initialThermalState", "?") for f in files]
-print("OK" if all(s == "nominal" for s in states) else "HOT " + ",".join(states))
+cell_files(){ # <runtime> <model-id> <task> -> matching device-jsonl paths, sorted
+  RT="$1" MID="$2" TASK="$3" OUT="$OUT" python3 - <<'PY'
+import glob, os
+pat = (os.environ["RT"] + "_" + os.environ["MID"].replace("/", "_")
+       + "_" + os.environ["TASK"] + "_*.json")
+for f in sorted(glob.glob(os.path.join(os.environ["OUT"], "device-jsonl", pat))):
+    print(f)
 PY
+}
+
+cell_verdict(){ # <runtime> <model-id> <task> <runs> -> OK / SHORT n / HOT ... / SPREAD pct
+  local files
+  files="$(cell_files "$1" "$2" "$3")"
+  [ -z "$files" ] && { echo "SHORT 0"; return 0; }
+  # word-splitting is safe: device-jsonl names carry no spaces
+  # shellcheck disable=SC2086
+  python3 "$REPO/scripts/cell_gate.py" --runs "$4" $files 2>/dev/null || true
+}
+
+quarantine_cell(){ # <runtime> <model-id> <task> <runs> — move the judged capture aside.
+  # The flagged runs must leave device-jsonl/: build_summary ingests that whole
+  # dir, so a kept-in-place flagged capture would pool into the same session
+  # median the re-run was meant to clean (the pre-2026-08-26 behavior).
+  mkdir -p "$OUT/device-jsonl-flagged"
+  cell_files "$1" "$2" "$3" | tail -n "$4" | while IFS= read -r f; do
+    mv "$f" "$OUT/device-jsonl-flagged/"
+  done
 }
 
 run_cell(){ # <runtime> <model-id> <task> <runs> [extra launch args...]
@@ -116,14 +135,16 @@ cmd_run(){
     local pulled verdict
     pulled="$(pull_new)"; verdict="$(cell_verdict "$rt" "$mid" "$task" "$runs")"
     echo "pulled=$pulled verdict=$verdict"
-    if [[ "$verdict" == HOT* ]]; then
-      log "thermal gate: $verdict — cooldown ${THERMAL_COOLDOWN}s, re-run once"
+    if [[ "$verdict" == HOT* || "$verdict" == SPREAD* ]]; then
+      log "gate: $verdict — quarantine flagged capture, cooldown ${THERMAL_COOLDOWN}s, re-run once"
+      quarantine_cell "$rt" "$mid" "$task" "$runs"
       sleep "$THERMAL_COOLDOWN"
       run_cell "$rt" "$mid" "$task" "$runs" ${extra[@]+"${extra[@]}"}
       pulled="$(pull_new)"; verdict="$(cell_verdict "$rt" "$mid" "$task" "$runs")"
       echo "pulled=$pulled verdict=$verdict"
-      [[ "$verdict" == HOT* ]] && echo "THERMAL_FAIL $rt $mid $task (kept both captures; exclude from warm table)" \
-        | tee -a "$OUT/THERMAL_FAIL.txt"
+      [[ "$verdict" == HOT* || "$verdict" == SPREAD* ]] \
+        && echo "GATE_FAIL $rt $mid $task retry='$verdict' (retry kept; flagged capture in device-jsonl-flagged/)" \
+        | tee -a "$OUT/FLAGGED.txt"
     fi
   done < <(cells_for ios "$cells_file" 2> >(tee -a "$OUT/SKIPPED.txt" >&2))
   cmd_report

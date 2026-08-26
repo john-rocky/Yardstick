@@ -64,6 +64,7 @@ def do_matrix(args):
     present = cells_platforms(args.cells)
     campaign = args.campaign or f"{datetime.date.today().isoformat()}-matrix"
     rc = 0
+    ran = []
     for runner_name in (args.platform or ["mac", "iphone", "android"]):
         token = PLATFORM_TOKEN[runner_name]
         if token not in present:
@@ -71,6 +72,16 @@ def do_matrix(args):
         # serialized on purpose: one queue per session; never overlap device work
         rc |= run(RUNNERS[runner_name](args.cells),
                   env={"CAMPAIGN": f"{campaign}-{token}"})
+        ran.append(runner_name)
+    if not ran:
+        # Without this, a platform/cells mismatch still rebuilt the summary and
+        # LEADERBOARD from existing raw and exited 0 — looking exactly like a
+        # successful capture (2026-08-26 fresh-clone rehearsal, stumble #1).
+        want = ", ".join(args.platform or sorted(RUNNERS))
+        print(f"error: no cells for platform(s) [{want}] in {args.cells} — "
+              f"nothing was measured (file has: {', '.join(sorted(present))})",
+              file=sys.stderr)
+        return 2
     rc |= postprocess()
     return rc
 
@@ -111,11 +122,19 @@ def main():
 
     sub.add_parser("release-watch", help="compare upstream releases vs environment.lock.json pins")
 
+    d = sub.add_parser("doctor", help="preflight: what is missing, with the fix command")
+    d.add_argument("--platform", action="append", choices=list(RUNNERS))
+
     args = ap.parse_args()
     if args.cmd == "matrix":
         return do_matrix(args)
     if args.cmd == "regress":
         return do_regress(args)
+    if args.cmd == "doctor":
+        cmd = [PY, os.path.join(ROOT, "scripts", "doctor.py")]
+        for p in args.platform or []:
+            cmd += ["--platform", p]
+        return run(cmd)
     return run([PY, os.path.join(ROOT, "scripts", "release_watch.py")])
 
 
