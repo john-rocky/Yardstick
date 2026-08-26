@@ -1,0 +1,21 @@
+diff --git a/swift/Benchmark.swift b/swift/Benchmark.swift
+index a08eeca..f100981 100644
+--- a/swift/Benchmark.swift
++++ b/swift/Benchmark.swift
+@@ -62,6 +62,7 @@ public func benchmark(
+   audioBackend: Backend? = nil,
+   prefillTokens: Int = 256,
+   decodeTokens: Int = 256,
++  maxNumTokens: Int? = nil,
+   cacheDir: String? = nil,
+   prompt: String = "How are you"
+ ) async throws -> BenchmarkInfo {
+@@ -79,7 +80,7 @@ public func benchmark(
+     backend: backend,
+     visionBackend: visionBackend,
+     audioBackend: audioBackend,
+-    maxNumTokens: prefillTokens + decodeTokens + 32,
++    maxNumTokens: maxNumTokens ?? (prefillTokens + decodeTokens + 32),
+     cacheDir: cacheDir
+   )
+   let engine = Engine(engineConfig: engineConfig)

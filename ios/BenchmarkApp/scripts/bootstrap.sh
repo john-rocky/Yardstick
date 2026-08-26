@@ -83,6 +83,17 @@ if [ ! -d "${LITERTLM_DIR}" ]; then
 else
     echo "${LITERTLM_DIR} already present."
 fi
+# Local API patch (committed: patches/litert-lm-swift-benchmark-maxnumtokens.patch):
+# upstream benchmark() computes maxNumTokens internally (prefill+decode+32 = ctx
+# 1056 at the defaults) and cannot express e.g. ctx 2048; the harness passes it
+# explicitly (MediaPipeRuntime native-benchmark cells). This used to live ONLY
+# inside a working Vendored/ dir — a clean clone could not compile the yardstick
+# (found 2026-08-26, fresh-clone rehearsal stumble #9). Guarded = idempotent; if
+# a future tag ships the parameter upstream, the grep sees it and skips.
+if ! grep -q "maxNumTokens: Int? = nil" "${LITERTLM_DIR}/swift/Benchmark.swift"; then
+    echo "Applying litert-lm-swift-benchmark-maxnumtokens.patch …"
+    git -C "${LITERTLM_DIR}" apply "$(pwd)/patches/litert-lm-swift-benchmark-maxnumtokens.patch"
+fi
 
 # 4. CoreML-LLM (john-rocky). Local SwiftPM package (CoreMLLLM product) for the CoreML/ANE
 #    runtime. Tracks the latest default branch; pin a commit if you need exact reproduction.
