@@ -31,3 +31,17 @@ open BenchmarkApp.xcodeproj
 ## Results
 
 See the runtime/model rows in [`../RESULTS.md`](../RESULTS.md) filtered to `iPhone 17 Pro`.
+
+## Thermal admission for charts (2026-08-26)
+
+Plugged + warm ambient pins this device's reported thermal state at "fair"
+regardless of load — on 2026-08-26 it would not report nominal even powered
+off, so the state label cannot discriminate throttling there. The chart
+filter therefore admits, besides nominal starts, fair-start sessions whose
+in-session mlx anchor (Qwen3-0.6B warm) matches the newest all-nominal
+anchor within 5% (`ios_admissible_campaigns` in scripts/generate_charts.py).
+Evidence, same day: fair-at-full-speed (anchor 177 vs nominal-era 171.6;
+litert 122 and LFM 68.3 reproducing their nominal-session values exactly)
+and fair-with-throttling (anchor runs at 127-159 — rejected by the gate).
+Sessions without an anchor stay nominal-only. The LEADERBOARD is unfiltered
+as before (its rows carry thermal states per run).
