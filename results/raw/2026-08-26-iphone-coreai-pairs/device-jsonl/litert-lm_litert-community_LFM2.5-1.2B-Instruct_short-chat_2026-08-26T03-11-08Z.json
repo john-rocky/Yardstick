@@ -1,0 +1,73 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineArtifact" : "CLiteRTLM.xcframework.zip@v0.16.0 sha256:4e0f683da07566ee79c143d2d58d387f77052b0e6a41562c969e5d2728fc9f4b",
+  "engineVersion" : "v0.16.0",
+  "id" : "DF5DA054-4BD9-4A69-8976-3CCCF74CAA39",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 1024,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 69.23316243116608,
+    "decodeTokensPerSecondWallClock" : 68.6923536456228,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 86,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 14.51098918914795,
+    "interTokenLatencyP95MS" : 15.028953552246094,
+    "interTokenLatencyP99MS" : 15.524029731750488,
+    "memoryAfterGenerationMB" : 365.26824951171875,
+    "memoryAfterLoadMB" : 365.14324951171875,
+    "memoryBaselineMB" : 365.14324951171875,
+    "memoryFinalResidentMB" : 524.65625,
+    "memoryMedianMB" : 373.56514739990234,
+    "memoryMedianResidentMB" : 532.921875,
+    "memoryPeakDuringDecodeMB" : 373.58077239990234,
+    "memoryPeakResidentMB" : 532.9375,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 490.02212286544034,
+    "promptTokensPerSecondWallClock" : 245.14099163663184,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.1102529764175415
+  },
+  "model" : {
+    "displayName" : "LFM2.5-1.2B-Instruct (.litertlm)",
+    "hfFilePatterns" : [
+      "LFM2.5-1.2B-Instruct_int4_gpu.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/LFM2.5-1.2B-Instruct",
+    "id" : "litert-community\/LFM2.5-1.2B-Instruct",
+    "onDiskSizeMB" : 736,
+    "parameterCountB" : 1.2,
+    "primaryFile" : "LFM2.5-1.2B-Instruct_int4_gpu.litertlm",
+    "quantization" : "int4_gpu (litert-community descriptor)"
+  },
+  "modelRevision" : "5b68102f4462dbfbcbcac8bf991ef8a1e75087cd",
+  "outputSample" : "On-device AI means using artificial intelligence (AI) technology that runs directly on your device, like your phone or computer, instead of relying on a separate server or cloud. \n\nSo, imagine you hav",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-26T03:11:08Z"
+}

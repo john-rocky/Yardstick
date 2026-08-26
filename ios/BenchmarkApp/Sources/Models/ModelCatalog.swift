@@ -919,7 +919,10 @@ public enum ModelCatalog {
         ModelInfo(
             id: "core-ai/qwen3-0.6b-gpu",
             displayName: "Qwen3-0.6B (Core AI, GPU)",
-            quantization: "INT4 (dynamic)",
+            // macOS-26-era official export (native quantized-Linear lowering) — the
+            // 27-beta re-export of the same recipe is ~2.2x slower per the card;
+            // the era is part of the recipe here.
+            quantization: "INT4 (dynamic, macOS-26-era export)",
             parameterCountB: 0.6,
             onDiskSizeMB: 327,
             hfRepoId: ""
@@ -951,6 +954,20 @@ public enum ModelCatalog {
             displayName: "DeepSeek-R1-1.5B (Core AI, GPU)",
             quantization: "INT4 (dynamic)",
             parameterCountB: 1.5, onDiskSizeMB: 900, hfRepoId: ""
+        ),
+        // 2026-08-26: b2-refreshed canonical bundles (mlboydaisuke, 08-25) compiled
+        // h18p/GPU for the cross-runtime demo pairs — staging: ~/bench-coreai-staging.
+        ModelInfo(
+            id: "core-ai/lfm2.5-1.2b-gpu",
+            displayName: "LFM2.5-1.2B (Core AI, GPU)",
+            quantization: "int8hu block32 sym (untied head)",
+            parameterCountB: 1.2, onDiskSizeMB: 1624, hfRepoId: ""
+        ),
+        ModelInfo(
+            id: "core-ai/minicpm5-1b-gpu",
+            displayName: "MiniCPM5-1B (Core AI, GPU)",
+            quantization: "INT8 (sym, dynamic)",
+            parameterCountB: 1.0, onDiskSizeMB: 1042, hfRepoId: ""
         ),
         ModelInfo(
             id: "core-ai/tinyswallow-1.5b-ane",

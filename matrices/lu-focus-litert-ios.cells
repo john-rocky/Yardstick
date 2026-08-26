@@ -14,6 +14,16 @@
 # below therefore runs at context-tokens=1024 — a disclosed budget deviation
 # from the ctx=672 short-chat protocol (also stamped per run in
 # contextTokensConfigured); the model card documents the same requirement.
+# Cross-runtime pairs (2026-08-26): each model's litert cell is paired with a
+# Core AI pipelined-GPU cell (b2 bundles, side-loaded — provenance:
+# ~/bench-coreai-staging/ready/REPORT.md). LFM2.5's Core AI cell is OUR
+# adapter's limitation, not the runtime's: CoreAIRuntime's NDArray binding
+# crashes on the ShortConv-hybrid signature ("Shape at dimension 1 of 8 is
+# not a valid substitution for source shape 1" — raw:
+# results/raw/2026-08-26-iphone-coreai-pairs/). The zoo runner handles the
+# same bundle, so the fix is porting its binding logic.
 ios litert-lm litert-community/DeepSeek-R1-Distill-Qwen-1.5B short-chat runs=3
 ios litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat runs=4 context-tokens=1024
+ios core-ai core-ai/lfm2.5-1.2b-gpu short-chat runs=4 local=1 exclude=app-adapter-ndarray-shape-substitution-hybrid
 ios litert-lm litert-community/MiniCPM5-1B short-chat runs=3
+ios core-ai core-ai/minicpm5-1b-gpu short-chat runs=4 local=1

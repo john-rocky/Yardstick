@@ -1,0 +1,26 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/minicpm5-1b-gpu task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=61.91 decode_tok_s_wall=61.43 ttft_ms=474 prefill_tok_s=43.1 prefill_tok_s_wall=42.2 prompt_tokens=20 peak_mb=416 median_mb=401 median_resident_mb=1269 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=71.90 decode_tok_s_wall=71.34 ttft_ms=92 prefill_tok_s=234.1 prefill_tok_s_wall=218.6 prompt_tokens=20 peak_mb=561 median_mb=561 median_resident_mb=1251 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=71.78 decode_tok_s_wall=71.22 ttft_ms=98 prefill_tok_s=217.7 prefill_tok_s_wall=203.3 prompt_tokens=20 peak_mb=757 median_mb=757 median_resident_mb=1252 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=71.73 decode_tok_s_wall=71.17 ttft_ms=55 prefill_tok_s=410.3 prefill_tok_s_wall=361.0 prompt_tokens=20 peak_mb=755 median_mb=755 median_resident_mb=1252 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/minicpm5-1b-gpu task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=72.23 decode_tok_s_wall=71.67 ttft_ms=32 prefill_tok_s=877.2 prefill_tok_s_wall=630.4 prompt_tokens=20 peak_mb=403 median_mb=389 median_resident_mb=1272 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=72.74 decode_tok_s_wall=72.17 ttft_ms=59 prefill_tok_s=382.6 prefill_tok_s_wall=340.8 prompt_tokens=20 peak_mb=562 median_mb=562 median_resident_mb=1256 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=72.21 decode_tok_s_wall=71.64 ttft_ms=48 prefill_tok_s=474.4 prefill_tok_s_wall=412.6 prompt_tokens=20 peak_mb=563 median_mb=563 median_resident_mb=1257 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=72.69 decode_tok_s_wall=72.12 ttft_ms=53 prefill_tok_s=432.3 prefill_tok_s_wall=380.4 prompt_tokens=20 peak_mb=562 median_mb=560 median_resident_mb=1257 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

@@ -1,0 +1,73 @@
+{
+  "device" : {
+    "batteryLevel" : 0.7,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineArtifact" : "CLiteRTLM.xcframework.zip@v0.16.0 sha256:4e0f683da07566ee79c143d2d58d387f77052b0e6a41562c969e5d2728fc9f4b",
+  "engineVersion" : "v0.16.0",
+  "id" : "74404DBB-EF3F-4DC1-9D81-EF1B1498C5B3",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 672,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 122.95963595196504,
+    "decodeTokensPerSecondWallClock" : 121.99948880267142,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 143,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 8.159995079040527,
+    "interTokenLatencyP95MS" : 8.439064025878906,
+    "interTokenLatencyP99MS" : 9.443044662475586,
+    "memoryAfterGenerationMB" : 458.79952239990234,
+    "memoryAfterLoadMB" : 516.5964660644531,
+    "memoryBaselineMB" : 516.5964660644531,
+    "memoryFinalResidentMB" : 401.015625,
+    "memoryMedianMB" : 458.78389739990234,
+    "memoryMedianResidentMB" : 401,
+    "memoryPeakDuringDecodeMB" : 516.7058410644531,
+    "memoryPeakResidentMB" : 456.875,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 187.23560226559573,
+    "promptTokensPerSecondWallClock" : 139.9090023616689,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.2496180534362793
+  },
+  "model" : {
+    "displayName" : "Qwen3 0.6B (.litertlm)",
+    "hfFilePatterns" : [
+      "qwen3_0_6b_mixed_int4.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/Qwen3-0.6B",
+    "id" : "litert-community\/Qwen3-0.6B",
+    "onDiskSizeMB" : 498,
+    "parameterCountB" : 0.6,
+    "primaryFile" : "qwen3_0_6b_mixed_int4.litertlm",
+    "quantization" : "INT4 (mixed, blockwise gs32)"
+  },
+  "modelRevision" : "8414150f2e9dcc82449bcc9c5abc404b399a4d06",
+  "outputSample" : "<think>\nOkay, the user wants a simple explanation of on-device AI. Let me start by recalling what I know. On-device AI refers to AI models that run locally on a device, not on a cloud. So, they're not",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-26T02:54:42Z"
+}

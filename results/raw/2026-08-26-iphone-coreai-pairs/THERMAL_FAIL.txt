@@ -1,0 +1,6 @@
+THERMAL_FAIL mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/Qwen3-0.6B short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL core-ai core-ai/qwen3-0.6b-gpu short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/LFM2.5-1.2B-Instruct short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL litert-lm litert-community/MiniCPM5-1B short-chat (kept both captures; exclude from warm table)
+THERMAL_FAIL core-ai core-ai/minicpm5-1b-gpu short-chat (kept both captures; exclude from warm table)

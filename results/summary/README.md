@@ -6,7 +6,7 @@ for querying, regression tracking, and leaderboard export — regenerate any
 time with `python3 scripts/build_summary.py`.
 
 - `quality.csv` — 31 GSM8K report rows (all historical schema variants normalized)
-- `device-runs.csv` — 1306 per-run device records (speed / memory / energy cells)
+- `device-runs.csv` — 1352 per-run device records (speed / memory / energy cells)
 - `history.csv` — 32 regression verdicts flattened from `results/regression-reports/*/verdicts.json`
 
 Engine version is absent from pre-v1 rows (see the gap audit). Builds from

@@ -83,6 +83,8 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
         case "core-ai/qwen3-8b-gpu":   return ("qwen3_8b_gpu", "coreai-pipelined")
         case "core-ai/deepseek-r1-1.5b-ane": return ("deepseek_r1_1_5b_ane", "static-shape")
         case "core-ai/deepseek-r1-1.5b-gpu": return ("deepseek_r1_1_5b_gpu", "coreai-pipelined")
+        case "core-ai/lfm2.5-1.2b-gpu":  return ("lfm25_1_2b_gpu", "coreai-pipelined")
+        case "core-ai/minicpm5-1b-gpu":  return ("minicpm5_1b_gpu", "coreai-pipelined")
         case "core-ai/tinyswallow-1.5b-ane": return ("tinyswallow_1_5b_ane", "static-shape")
         case "core-ai/tinyswallow-1.5b-gpu": return ("tinyswallow_1_5b_gpu", "coreai-pipelined")
         case "core-ai/vibethinker-1.5b-ane": return ("vibethinker_1_5b_ane", "static-shape")

@@ -1,0 +1,5 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/lfm2.5-1.2b-gpu task=short-chat runs=4
+CoreAIRuntime/NDArrayDescriptor.swift:136: Fatal error: Shape at dimension 1 of 8 is not a valid substitution for source shape 1
+App terminated due to signal 5.

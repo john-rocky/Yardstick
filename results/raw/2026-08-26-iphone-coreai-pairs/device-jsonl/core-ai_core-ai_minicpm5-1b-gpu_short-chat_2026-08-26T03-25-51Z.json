@@ -1,0 +1,71 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineVersion" : "0.2.0+static-inputs-patch",
+  "id" : "8CF7AC71-69A2-4435-8439-FB2729C03A6C",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 672,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 72.20567291088821,
+    "decodeTokensPerSecondWallClock" : 71.64135893231261,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 48,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 13.926982879638672,
+    "interTokenLatencyP95MS" : 14.307975769042969,
+    "interTokenLatencyP99MS" : 14.583945274353027,
+    "memoryAfterGenerationMB" : 174.3621597290039,
+    "memoryAfterLoadMB" : 173.1121597290039,
+    "memoryBaselineMB" : 173.1121597290039,
+    "memoryFinalResidentMB" : 1256.90625,
+    "memoryMedianMB" : 562.6980972290039,
+    "memoryMedianResidentMB" : 1256.9140625,
+    "memoryPeakDuringDecodeMB" : 562.7527847290039,
+    "memoryPeakResidentMB" : 1256.953125,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 20,
+    "promptTokensPerSecond" : 474.39364806478613,
+    "promptTokensPerSecondWallClock" : 412.6008248467246,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 1.8212049007415771
+  },
+  "model" : {
+    "displayName" : "MiniCPM5-1B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/minicpm5-1b-gpu",
+    "onDiskSizeMB" : 1042,
+    "parameterCountB" : 1,
+    "primaryFile" : "",
+    "quantization" : "INT8 (sym, dynamic)"
+  },
+  "outputSample" : "<think>\nHmm, the user is asking for a simple explanation of \"on-device AI.\" This is a common but important concept in modern technology. I should break it down into clear, everyday language without te",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-26T03:25:51Z"
+}

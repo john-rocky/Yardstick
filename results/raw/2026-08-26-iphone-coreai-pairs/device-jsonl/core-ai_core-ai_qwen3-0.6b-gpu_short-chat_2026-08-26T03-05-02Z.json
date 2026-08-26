@@ -1,0 +1,71 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineVersion" : "0.2.0+static-inputs-patch",
+  "id" : "2E3AAEDB-22D0-4CF9-A9B9-CDD22F6A8A6E",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 672,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 148.23669455953728,
+    "decodeTokensPerSecondWallClock" : 147.0790827075226,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 17,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 6.758928298950195,
+    "interTokenLatencyP95MS" : 7.139921188354492,
+    "interTokenLatencyP99MS" : 7.764935493469238,
+    "memoryAfterGenerationMB" : 161.84596252441406,
+    "memoryAfterLoadMB" : 180.90846252441406,
+    "memoryBaselineMB" : 180.90846252441406,
+    "memoryFinalResidentMB" : 514.9375,
+    "memoryMedianMB" : 184.36158752441406,
+    "memoryMedianResidentMB" : 526.4375,
+    "memoryPeakDuringDecodeMB" : 184.37721252441406,
+    "memoryPeakResidentMB" : 526.453125,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 19,
+    "promptTokensPerSecond" : 1256.442906356176,
+    "promptTokensPerSecondWallClock" : 1102.794301410809,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 0.8807259798049927
+  },
+  "model" : {
+    "displayName" : "Qwen3-0.6B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/qwen3-0.6b-gpu",
+    "onDiskSizeMB" : 327,
+    "parameterCountB" : 0.6,
+    "primaryFile" : "",
+    "quantization" : "INT4 (dynamic, macOS-26-era export)"
+  },
+  "outputSample" : "[nodeelehandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandlinghandling",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-26T03:05:02Z"
+}

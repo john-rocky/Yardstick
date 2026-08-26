@@ -1,0 +1,4 @@
+    • OS Build Update: 24A5418b
+    • OS Version: 27.0
+session start 2026-08-26 11:48:41
+cells: /private/tmp/claude-501/-Users-majimadaisuke-Downloads-ios-llm-benchmark/ed76902f-477a-46b6-99ae-38e771d86c2f/scratchpad/coreai-pairs.cells

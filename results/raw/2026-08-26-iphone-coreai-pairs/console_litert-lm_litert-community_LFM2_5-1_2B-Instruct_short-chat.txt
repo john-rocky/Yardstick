@@ -1,0 +1,318 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=litert-lm model=litert-community/LFM2.5-1.2B-Instruct task=short-chat runs=4 context_tokens=1024
+W0000 00:00:1787713605.700326 3546295 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713605.700324 3546245 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787713605.700452 3546245 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787713605.700456 3546245 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787713605.700458 3546245 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1135b9590, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1135b9540, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x113500500, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x113500460, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=1024, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_512 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_256 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_128 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_64 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_32 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_16 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_8 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_4 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_2 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 1024
+INFO: [compiled_model.cc:833] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1787713605.769034 3546245 delegate_metal.mm:89] Created a Metal device.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+I0000 00:00:1787713605.769236 3546245 gpu_backend_metal.mm:105] Metal Residency Set successfully enabled and added to Command Queue.
+I0000 00:00:1787713606.511263 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.511274 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.562334 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.565851 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.565857 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.595139 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.597818 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.597823 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.628188 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.630784 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.630793 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.662771 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.665303 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.665308 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.691918 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.694509 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.694514 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.720850 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.723394 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.723398 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.752923 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.755462 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.755470 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.784334 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.786901 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.786908 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.813265 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.815833 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.815837 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.840284 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.843132 3546245 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.843137 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.864812 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713606.910001 3546245 delegate_kernel.cc:330] Total 45 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713606.910009 3546245 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713606.931298 3546245 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x14dcf7f70, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x14dcf7d40, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+W0000 00:00:1787713607.487227 3546245 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713607.487239 3546245 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+W0000 00:00:1787713607.487250 3546245 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713607.487251 3546245 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+W0000 00:00:1787713607.487252 3546245 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713607.487253 3546245 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+W0000 00:00:1787713607.487254 3546245 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713607.487255 3546245 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+W0000 00:00:1787713607.487279 3546245 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787713607.487281 3546245 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787713607.487363 3546245 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787713607.487365 3546245 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787713607.528328 3546409 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713607.549040 3546409 sampler_factory.cc:565] Metal sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:319]
+└ Could not load shared library libLiteRtTopKMetalSampler.dylib: dlopen(libLiteRtTopKMetalSampler.dylib, 0x0005): tried: 'libLiteRtTopKMetalSampler.dylib' (no such file), '/private/preboot/Cryptexes/OSlibLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), '/private/preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/B36E4B9C-4A5D-4EF3-9136-A1C3D6263808/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/B36E4B9C-4A5D-4EF3-9136-A1C3D6263808/BenchmarkApp.app/Frameworks/CLiteRTLM.framework/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/B36E4B9C-4A5D-4EF3-9136-A1C3D6263808/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKMetalSampler.dylib' (no such file).
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1787713607.555140 3546409 llm_litert_compiled_model_executor.cc:1527] Sampler will handle decode input tensors.
+W0000 00:00:1787713609.309486 3546409 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=68.50 decode_tok_s_wall=69.60 ttft_ms=83 prefill_tok_s=571.8 prefill_tok_s_wall=252.7 prompt_tokens=21 peak_mb=407 median_mb=397 median_resident_mb=535 ctx=1024 tokens=122 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+W0000 00:00:1787713609.580497 3546409 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713611.336421 3546409 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=68.34 decode_tok_s_wall=69.30 ttft_ms=83 prefill_tok_s=492.8 prefill_tok_s_wall=253.4 prompt_tokens=21 peak_mb=383 median_mb=368 median_resident_mb=527 ctx=1024 tokens=120 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+W0000 00:00:1787713611.596006 3546409 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713613.385883 3546409 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=67.60 decode_tok_s_wall=68.59 ttft_ms=85 prefill_tok_s=494.5 prefill_tok_s_wall=246.2 prompt_tokens=21 peak_mb=369 median_mb=369 median_resident_mb=532 ctx=1024 tokens=121 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+W0000 00:00:1787713613.656609 3546409 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713615.709875 3546409 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=69.56 decode_tok_s_wall=69.01 ttft_ms=85 prefill_tok_s=479.2 prefill_tok_s_wall=245.9 prompt_tokens=21 peak_mb=370 median_mb=370 median_resident_mb=532 ctx=1024 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x14dcf7d40, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x14dcf7f70, name=GPU Metal
+The app terminated with the exit code 0.
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=litert-lm model=litert-community/LFM2.5-1.2B-Instruct task=short-chat runs=4 context_tokens=1024
+W0000 00:00:1787713858.361338 3548936 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787713858.361324 3548977 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713858.361478 3548936 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787713858.361483 3548936 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787713858.361486 3548936 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x112215130, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1122150e0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1121a5b30, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x1121a5ae0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [magic_number_utils.cc:101] Loaded: num_subgraphs=530, num_signatures=12
+INFO: [magic_number_utils.cc:109]   signature=prefill_1024, subgraph_index=0, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_512, subgraph_index=1, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_256, subgraph_index=2, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_128, subgraph_index=3, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_64, subgraph_index=4, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_32, subgraph_index=5, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_16, subgraph_index=6, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_8, subgraph_index=7, num_tensors=825, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_4, subgraph_index=8, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_2, subgraph_index=9, num_tensors=826, num_inputs=25, num_outputs=22, num_ops=542
+INFO: [magic_number_utils.cc:109]   signature=prefill_1, subgraph_index=10, num_tensors=783, num_inputs=25, num_outputs=22, num_ops=501
+INFO: [magic_number_utils.cc:109]   signature=decode, subgraph_index=11, num_tensors=812, num_inputs=25, num_outputs=23, num_ops=519
+INFO: [magic_number_utils.cc:113] Magic number configs: num_configs=1
+INFO: [magic_number_utils.cc:120]   config[0]: magic_number=4099, target_number=1024, signature_prefix=null
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1024 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_512 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_256 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_128 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_64 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_32 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_16 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_8 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_4 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_2 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature prefill_1 have been updated for magic number  4099 to target number 1024
+INFO: [magic_number_utils.cc:536] 44 tensors of signature decode have been updated for magic number  4099 to target number 1024
+INFO: [compiled_model.cc:833] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1787713858.443180 3548936 delegate_metal.mm:89] Created a Metal device.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:374] Created Metal device from provided device id
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+I0000 00:00:1787713858.443387 3548936 gpu_backend_metal.mm:105] Metal Residency Set successfully enabled and added to Command Queue.
+I0000 00:00:1787713859.260434 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.260446 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.308822 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.312945 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.312953 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.344805 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.347850 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.347859 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.378745 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.382034 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.382043 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.415424 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.418407 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.418415 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.451861 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.454688 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.454699 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.483543 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.486200 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.486210 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.518327 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.520936 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.520941 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.550552 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.553221 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.553231 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.580481 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.583064 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.583069 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.611691 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.614288 3548936 delegate_kernel.cc:330] Total 44 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.614295 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.637259 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+I0000 00:00:1787713859.682969 3548936 delegate_kernel.cc:330] Total 45 external tensors are used for delegate inputs and outputs
+I0000 00:00:1787713859.682978 3548936 delegate_kernel.cc:906] Initializing Metal-based API from serialized data.
+I0000 00:00:1787713859.706754 3548936 delegate_kernel.cc:804] Initialized InferenceContext from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7019f92170, name=GPU Metal
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7019f921c0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+W0000 00:00:1787713859.844415 3548936 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713859.844424 3548936 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+W0000 00:00:1787713859.844580 3548936 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713859.844584 3548936 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+W0000 00:00:1787713859.844585 3548936 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713859.844586 3548936 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+W0000 00:00:1787713859.844587 3548936 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1787713859.844588 3548936 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+W0000 00:00:1787713859.844731 3548936 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1787713859.844735 3548936 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1787713859.844736 3548936 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787713859.844737 3548936 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1787713859.894714 3549093 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713859.916633 3549093 sampler_factory.cc:565] Metal sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:319]
+└ Could not load shared library libLiteRtTopKMetalSampler.dylib: dlopen(libLiteRtTopKMetalSampler.dylib, 0x0005): tried: 'libLiteRtTopKMetalSampler.dylib' (no such file), '/private/preboot/Cryptexes/OSlibLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), '/private/preboot/Cryptexes/OS/usr/lib/swift/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/B36E4B9C-4A5D-4EF3-9136-A1C3D6263808/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/B36E4B9C-4A5D-4EF3-9136-A1C3D6263808/BenchmarkApp.app/Frameworks/CLiteRTLM.framework/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/private/var/containers/Bundle/Application/B36E4B9C-4A5D-4EF3-9136-A1C3D6263808/BenchmarkApp.app/Frameworks/libLiteRtTopKMetalSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKMetalSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKMetalSampler.dylib' (no such file).
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1787713859.923976 3549093 llm_litert_compiled_model_executor.cc:1527] Sampler will handle decode input tensors.
+W0000 00:00:1787713861.674009 3549093 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=68.57 decode_tok_s_wall=69.75 ttft_ms=93 prefill_tok_s=531.6 prefill_tok_s_wall=224.8 prompt_tokens=21 peak_mb=393 median_mb=384 median_resident_mb=528 ctx=1024 tokens=122 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+W0000 00:00:1787713861.939073 3549093 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713863.701653 3549093 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=68.08 decode_tok_s_wall=69.05 ttft_ms=83 prefill_tok_s=498.3 prefill_tok_s_wall=252.7 prompt_tokens=21 peak_mb=373 median_mb=373 median_resident_mb=532 ctx=1024 tokens=120 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+W0000 00:00:1787713863.962094 3549093 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713865.734981 3549093 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=68.25 decode_tok_s_wall=69.25 ttft_ms=84 prefill_tok_s=497.2 prefill_tok_s_wall=249.2 prompt_tokens=21 peak_mb=373 median_mb=373 median_resident_mb=532 ctx=1024 tokens=121 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+W0000 00:00:1787713866.005124 3549093 tasks.cc:490] Failed to get prefill profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+W0000 00:00:1787713868.070240 3549093 tasks.cc:672] Failed to get decode profile summary: INVALID_ARGUMENT: ERROR: [third_party/odml/litert_lm/runtime/executor/llm_litert_compiled_model_executor.cc:1763]
+└ ERROR: [./third_party/odml/litert/litert/cc/litert_profiler.h:91]
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:547
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=69.23 decode_tok_s_wall=68.69 ttft_ms=86 prefill_tok_s=490.0 prefill_tok_s_wall=245.1 prompt_tokens=21 peak_mb=374 median_mb=374 median_resident_mb=533 ctx=1024 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=charging battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7019f921c0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7019f92170, name=GPU Metal
+The app terminated with the exit code 0.
