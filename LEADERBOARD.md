@@ -8,7 +8,7 @@ Regenerate: `python3 scripts/build_summary.py && python3 scripts/render_leaderbo
 
 <!-- BEGIN GENERATED: scripts/render_leaderboard.py -->
 
-Generated from `results/summary/*.csv` (latest capture 2026-08-25) by `scripts/render_leaderboard.py` — do not edit inside the markers.
+Generated from `results/summary/*.csv` (latest capture 2026-08-26) by `scripts/render_leaderboard.py` — do not edit inside the markers.
 
 Headline task: **short-chat**, warm = median of same-session warm runs (cold-warm-split); other tasks and full history: RESULTS.md. Rows sort by warm decode; the recipe (quantization, engine build) is part of every row — a faster number under a different recipe is a different deployment profile, not a win.
 
@@ -156,9 +156,9 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
-| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 60bd0d7880c82980f9481f8be78862e9b63c58a3 | 171.6 | 172.6 | 453.9 | 46.0 | 478.9 | — | 2026-08-19 |
+| mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 60bd0d7880c82980f9481f8be78862e9b63c58a3 | 176.8 | 177.3 | 516.1 | 38.0 | 475.1 | — | 2026-08-26 |
 | core-ai | `core-ai/qwen3-0.6b-ane-june` | mixed 4/8-bit (June static export) | pre-stamp | 122.4 | 124.9 | 675.6 | 29.0 | — | — | 2026-07-13 |
-| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 121.5 | 122.5 | 185.5 | 151.5 | 458.7 | — | 2026-08-19 |
+| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 122.1 | 123.8 | 182.5 | 149.0 | 470.8 | — | 2026-08-26 |
 | core-ai | `core-ai/qwen3-0.6b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 116.9 | 118.7 | 697.3 | 28.5 | — | — | 2026-07-13 |
 | coreml-llm | `coreml-llm/qwen3-0.6b` | INT8 palettized | pre-stamp | — | 37.8 | 33.2 | 572.0 | — | — | 2026-06-17 |
 | core-ai | `core-ai/qwen3-0.6b-gpu` | INT4 (dynamic) | pre-stamp | — | 193.3 | 1699.9 | 16.0 | — | — | 2026-06-18 |
@@ -237,6 +237,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 **Structural exclusions** (failed-runs-stay — the row exists, the reason is the datum):
 
 - `core-ai core-ai/phi-4-mini-gpu short-chat` — partial-rotary-unsupported
+- `core-ai core-ai/qwen3-0.6b-ane short-chat` — invoke-fail-staticshape-logitsinference
 - `core-ai core-ai/qwen3-1.7b-ane short-chat` — invoke-fail-bd71203
 
 ## android

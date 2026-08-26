@@ -7,7 +7,11 @@
 # --- Qwen3 ladder ---
 ios mlx-swift mlx-community/Qwen3-0.6B-4bit short-chat anchor=1
 ios litert-lm litert-community/Qwen3-0.6B short-chat
-ios core-ai core-ai/qwen3-0.6b-ane short-chat local=1
+# 0.6b ANE (static c1024 bundle, compiled 08-18): loads, then the first
+# LogitsInference invoke fails (Foundation._GenericObjCError 0; StaticShape
+# engine, step 0) — raw: results/raw/2026-08-26-iphone-qwen-3runtime-pair/.
+# Same failure class as the 1.7b-ane row below.
+ios core-ai core-ai/qwen3-0.6b-ane short-chat local=1 exclude=invoke-fail-staticshape-logitsinference
 ios core-ai core-ai/qwen3-0.6b-gpu short-chat local=1
 ios mlx-swift mlx-community/Qwen3-1.7B-4bit short-chat
 ios litert-lm litert-local/qwen3-1.7b-int4 short-chat local=1

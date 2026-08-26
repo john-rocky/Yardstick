@@ -1,0 +1,50 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/Qwen3-0.6B-4bit task=short-chat runs=4
+[MLX] load starting: mlx-community/Qwen3-0.6B-4bit
+[HubBridge] download id=mlx-community/Qwen3-0.6B-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 100% (349711765/349711765 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/ACE8AA61-FA98-40D7-992F-B1B4120130F8/Library/Caches/huggingface/hub/models--mlx-community--Qwen3-0.6B-4bit/snapshots/73e3e38d981303bc594367cd910ea6eb48349da8
+[HubBridge] download id=mlx-community/Qwen3-0.6B-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 100% (349711765/349711765 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/ACE8AA61-FA98-40D7-992F-B1B4120130F8/Library/Caches/huggingface/hub/models--mlx-community--Qwen3-0.6B-4bit/snapshots/73e3e38d981303bc594367cd910ea6eb48349da8
+[MLX] load complete in 0.83s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=176.19 decode_tok_s_wall=174.83 ttft_ms=57 prefill_tok_s=373.4 prefill_tok_s_wall=332.9 prompt_tokens=19 peak_mb=479 median_mb=479 median_resident_mb=516 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=176.85 decode_tok_s_wall=175.49 ttft_ms=37 prefill_tok_s=522.0 prefill_tok_s_wall=507.2 prompt_tokens=19 peak_mb=480 median_mb=480 median_resident_mb=517 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=176.76 decode_tok_s_wall=175.40 ttft_ms=37 prefill_tok_s=523.5 prefill_tok_s_wall=506.7 prompt_tokens=19 peak_mb=469 median_mb=469 median_resident_mb=518 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=176.05 decode_tok_s_wall=174.70 ttft_ms=38 prefill_tok_s=520.8 prefill_tok_s_wall=504.7 prompt_tokens=19 peak_mb=454 median_mb=454 median_resident_mb=515 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/Qwen3-0.6B-4bit task=short-chat runs=4
+[MLX] load starting: mlx-community/Qwen3-0.6B-4bit
+[HubBridge] download id=mlx-community/Qwen3-0.6B-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 100% (349711765/349711765 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/ACE8AA61-FA98-40D7-992F-B1B4120130F8/Library/Caches/huggingface/hub/models--mlx-community--Qwen3-0.6B-4bit/snapshots/73e3e38d981303bc594367cd910ea6eb48349da8
+[HubBridge] download id=mlx-community/Qwen3-0.6B-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 100% (349711765/349711765 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/ACE8AA61-FA98-40D7-992F-B1B4120130F8/Library/Caches/huggingface/hub/models--mlx-community--Qwen3-0.6B-4bit/snapshots/73e3e38d981303bc594367cd910ea6eb48349da8
+[MLX] load complete in 0.76s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=177.28 decode_tok_s_wall=175.91 ttft_ms=44 prefill_tok_s=468.6 prefill_tok_s_wall=428.9 prompt_tokens=19 peak_mb=479 median_mb=479 median_resident_mb=516 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=177.28 decode_tok_s_wall=175.94 ttft_ms=39 prefill_tok_s=509.1 prefill_tok_s_wall=492.8 prompt_tokens=19 peak_mb=480 median_mb=480 median_resident_mb=517 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=177.07 decode_tok_s_wall=175.71 ttft_ms=37 prefill_tok_s=522.0 prefill_tok_s_wall=507.1 prompt_tokens=19 peak_mb=471 median_mb=471 median_resident_mb=518 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=174.22 decode_tok_s_wall=172.89 ttft_ms=38 prefill_tok_s=511.3 prefill_tok_s_wall=497.0 prompt_tokens=19 peak_mb=459 median_mb=458 median_resident_mb=519 ctx=672 tokens=128 thermal_initial=fair thermal_final=fair harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

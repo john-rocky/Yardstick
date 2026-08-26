@@ -1,0 +1,21 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/qwen3-0.6b-ane task=short-chat runs=4
+⚠️ PROFILING ERROR: ProfileSpan[LogitsInference] was not explicitly ended!
+   This indicates a programming error. Always call span.end()
+   Metadata: ["engine": "StaticShape", "step": "0", "tokens": "19"]
+YARDSTICK_RUN_FAIL run=1 error=The operation couldn’t be completed. (Foundation._GenericObjCError error 0.)
+⚠️ PROFILING ERROR: ProfileSpan[LogitsInference] was not explicitly ended!
+   This indicates a programming error. Always call span.end()
+   Metadata: ["step": "0", "tokens": "19", "engine": "StaticShape"]
+YARDSTICK_RUN_FAIL run=2 error=The operation couldn’t be completed. (Foundation._GenericObjCError error 0.)
+⚠️ PROFILING ERROR: ProfileSpan[LogitsInference] was not explicitly ended!
+   This indicates a programming error. Always call span.end()
+   Metadata: ["step": "0", "engine": "StaticShape", "tokens": "19"]
+YARDSTICK_RUN_FAIL run=3 error=The operation couldn’t be completed. (Foundation._GenericObjCError error 0.)
+⚠️ PROFILING ERROR: ProfileSpan[LogitsInference] was not explicitly ended!
+   This indicates a programming error. Always call span.end()
+   Metadata: ["tokens": "19", "step": "0", "engine": "StaticShape"]
+YARDSTICK_RUN_FAIL run=4 error=The operation couldn’t be completed. (Foundation._GenericObjCError error 0.)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
