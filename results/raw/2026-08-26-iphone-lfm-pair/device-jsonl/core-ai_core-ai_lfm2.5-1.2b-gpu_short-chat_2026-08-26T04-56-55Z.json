@@ -1,0 +1,71 @@
+{
+  "device" : {
+    "batteryLevel" : 0.75,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11722,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "engineVersion" : "0.2.0+static-inputs-patch",
+  "id" : "11FBF671-DB2C-4C74-A3A8-2B3FC37134CE",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : false,
+    "contextTokensConfigured" : 672,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 45.54853769733855,
+    "decodeTokensPerSecondWallClock" : 45.19299648324167,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 480,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-30-agreed-protocol-r4",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 22.135019302368164,
+    "interTokenLatencyP95MS" : 22.848963737487793,
+    "interTokenLatencyP99MS" : 23.00107479095459,
+    "memoryAfterGenerationMB" : 97.44076538085938,
+    "memoryAfterLoadMB" : 96.90951538085938,
+    "memoryBaselineMB" : 96.90951538085938,
+    "memoryFinalResidentMB" : 1842.375,
+    "memoryMedianMB" : 102.39389038085938,
+    "memoryMedianResidentMB" : 1842.375,
+    "memoryPeakDuringDecodeMB" : 118.73764038085938,
+    "memoryPeakResidentMB" : 1842.421875,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 21,
+    "promptTokensPerSecond" : 44.48012265310049,
+    "promptTokensPerSecondWallClock" : 43.7346942271498,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.2903589010238647
+  },
+  "model" : {
+    "displayName" : "LFM2.5-1.2B (Core AI, GPU)",
+    "hfFilePatterns" : [
+      "*"
+    ],
+    "hfRepoId" : "",
+    "id" : "core-ai\/lfm2.5-1.2b-gpu",
+    "onDiskSizeMB" : 1624,
+    "parameterCountB" : 1.2,
+    "primaryFile" : "",
+    "quantization" : "int8hu block32 sym (untied head)"
+  },
+  "outputSample" : "On-device AI means using artificial intelligence (AI) to work directly on your phone, computer, or other device, instead of sending data to a remote server.  \n\nIn simple terms:  \nIt’s like having a sm",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "core-ai",
+  "schemaVersion" : 1,
+  "task" : "short-chat",
+  "timestamp" : "2026-08-26T04:56:55Z"
+}

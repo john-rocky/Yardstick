@@ -1,0 +1,13 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=core-ai model=core-ai/lfm2.5-1.2b-gpu task=short-chat runs=4
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=45.72 decode_tok_s_wall=45.39 ttft_ms=1377 prefill_tok_s=15.3 prefill_tok_s_wall=15.2 prompt_tokens=21 peak_mb=153 median_mb=120 median_resident_mb=1859 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=45.74 decode_tok_s_wall=45.38 ttft_ms=473 prefill_tok_s=45.2 prefill_tok_s_wall=44.4 prompt_tokens=21 peak_mb=128 median_mb=104 median_resident_mb=1842 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=45.55 decode_tok_s_wall=45.19 ttft_ms=480 prefill_tok_s=44.5 prefill_tok_s_wall=43.7 prompt_tokens=21 peak_mb=119 median_mb=102 median_resident_mb=1842 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=4 cold=0 decode_tok_s=45.31 decode_tok_s_wall=44.95 ttft_ms=479 prefill_tok_s=44.6 prefill_tok_s_wall=43.8 prompt_tokens=21 peak_mb=119 median_mb=101 median_resident_mb=1843 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=4 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.

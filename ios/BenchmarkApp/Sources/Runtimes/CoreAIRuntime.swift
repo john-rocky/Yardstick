@@ -255,11 +255,20 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             // A stock clone therefore builds every arm except this path, and PLE models (Gemma-4
             // E2B/E4B) are unavailable rather than the whole app failing to compile. See
             // methodology/core-ai-arm-provenance.md.
+            // S=1 decode-only graphs need single-step prefill set BEFORE engine
+            // creation, in the stock path too: Gemma-4 E-series, and the LFM2.5
+            // ShortConv-hybrid export (its graph is `..._decode_...`; the zoo
+            // runner prefill-steps it token-by-token — card: "prompt tok/s ≈
+            // decode tok/s"). Chunked prefill fatals in NDArrayDescriptor
+            // ("dimension 1 of 8 is not a valid substitution for source shape 1",
+            // reproduced 2026-08-26 in results/raw/2026-08-26-iphone-coreai-pairs).
+            let isSingleStep = spec.folder.hasPrefix("gemma4_") || spec.folder == "lfm25_1_2b_gpu"
+            if isSingleStep {
+                setenv("COREAI_CHUNK_THRESHOLD", "1", 1)
+            }
             #if COREAI_STATIC_INPUTS
             let pleBuffers = Self.staticPLEBuffers(bundleURL: bundleURL)
-            // Gemma-4 E-series decode graphs are S=1 (single-step prefill) even when the PLE
-            // table is baked in-graph and no ple/ side-load is present (E2B mixedbit ffn-fused).
-            if !pleBuffers.isEmpty || spec.folder.hasPrefix("gemma4_") {
+            if !pleBuffers.isEmpty {
                 setenv("COREAI_CHUNK_THRESHOLD", "1", 1)
             }
             step = "EngineFactory(variant=\(spec.variant ?? "auto"), model=\(modelURL.lastPathComponent), ple=\(pleBuffers.count))"
@@ -297,7 +306,7 @@ public final class CoreAIRuntime: LLMRuntime, @unchecked Sendable {
             // never call engine.warmup on these). Root-caused in the other checkout 2026-07-18;
             // reproduced here 2026-07-27 and ported.
             step = "warmup"
-            if !spec.folder.hasPrefix("gemma4_") {
+            if !isSingleStep {
                 try? await engine.warmup(queryLength: 8, sampling: SamplingConfiguration(temperature: 0))
             }
 

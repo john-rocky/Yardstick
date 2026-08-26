@@ -1,0 +1,23 @@
+Launched application with com.daisukemajima.llmbench bundle identifier.
+Waiting for the application to terminate…
+YARDSTICK_BEGIN runtime=mlx-swift model=mlx-community/Qwen3-0.6B-4bit task=short-chat runs=3
+[MLX] load starting: mlx-community/Qwen3-0.6B-4bit
+[HubBridge] download id=mlx-community/Qwen3-0.6B-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 100% (349711765/349711765 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/2AD9FBE1-A385-419A-B9D7-7F37C72CF5A3/Library/Caches/huggingface/hub/models--mlx-community--Qwen3-0.6B-4bit/snapshots/73e3e38d981303bc594367cd910ea6eb48349da8
+[HubBridge] download id=mlx-community/Qwen3-0.6B-4bit rev=main patterns=["*.safetensors", "*.json", "*.jinja"]
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 0% (0/349711765 bytes)
+[MLX] download progress: 100% (349711765/349711765 bytes)
+[HubBridge] downloaded to /var/mobile/Containers/Data/Application/2AD9FBE1-A385-419A-B9D7-7F37C72CF5A3/Library/Caches/huggingface/hub/models--mlx-community--Qwen3-0.6B-4bit/snapshots/73e3e38d981303bc594367cd910ea6eb48349da8
+[MLX] load complete in 0.79s
+YARDSTICK_RUN_OK run=1 cold=1 decode_tok_s=178.69 decode_tok_s_wall=177.31 ttft_ms=48 prefill_tok_s=437.2 prefill_tok_s_wall=393.3 prompt_tokens=19 peak_mb=488 median_mb=488 median_resident_mb=527 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=1 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=2 cold=0 decode_tok_s=179.17 decode_tok_s_wall=177.79 ttft_ms=37 prefill_tok_s=533.6 prefill_tok_s_wall=519.7 prompt_tokens=19 peak_mb=489 median_mb=489 median_resident_mb=528 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=2 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_RUN_OK run=3 cold=0 decode_tok_s=178.52 decode_tok_s_wall=177.13 ttft_ms=36 prefill_tok_s=539.7 prefill_tok_s_wall=525.7 prompt_tokens=19 peak_mb=466 median_mb=466 median_resident_mb=525 ctx=672 tokens=128 thermal_initial=nominal thermal_final=nominal harness=2026-07-30-agreed-protocol-r4
+YARDSTICK_ENERGY run=3 state=unplugged battery_delta_pct=0.0 joules=nil (run too short, or plugged in/charging)
+YARDSTICK_ALL_DONE
+The app terminated with the exit code 0.
