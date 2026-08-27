@@ -777,6 +777,29 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-27: Qwen3.5-4B Mixed INT4 (LiteRT-LM #1658 named request), same v4
+        // rail + post-hoc wi4-blockwise on linears, int8 embedder/lm_head, fp32act.
+        // Two block sizes device-gated head-to-head (GSM8K n=100: b32 93 / b128 90).
+        ModelInfo(
+            id: "litert-local/qwen35-4b-mixed-int4-b32",
+            displayName: "Qwen3.5-4B (.litertlm, mixed int4 b32 fp32act)",
+            quantization: "INT4 blockwise-32 linears, INT8 embed/lm_head, fp32act",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 2754,
+            hfRepoId: "litert-local/Qwen3.5-4B-mixed-int4-b32",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-4b-mixed-int4-b128",
+            displayName: "Qwen3.5-4B (.litertlm, mixed int4 b128 fp32act)",
+            quantization: "INT4 blockwise-128 linears, INT8 embed/lm_head, fp32act",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 2587,
+            hfRepoId: "litert-local/Qwen3.5-4B-mixed-int4-b128",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-14: Qwen3.5-2B, same gated-delta v4 rail; ratio-1 heads (no interleave
         // rewrite traced) and the full prefill ladder (int8 ~2.1 GB fits the RAM budget).
         ModelInfo(
