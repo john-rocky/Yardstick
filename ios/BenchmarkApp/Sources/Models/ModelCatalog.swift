@@ -786,7 +786,7 @@ public enum ModelCatalog {
             quantization: "INT4 blockwise-32 linears, INT8 embed/lm_head, fp32act",
             parameterCountB: 4.0,
             onDiskSizeMB: 2754,
-            hfRepoId: "litert-local/Qwen3.5-4B-mixed-int4-b32",
+            hfRepoId: "litert-local/qwen35-4b-mixed-int4-b32",
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
@@ -796,7 +796,7 @@ public enum ModelCatalog {
             quantization: "INT4 blockwise-128 linears, INT8 embed/lm_head, fp32act",
             parameterCountB: 4.0,
             onDiskSizeMB: 2587,
-            hfRepoId: "litert-local/Qwen3.5-4B-mixed-int4-b128",
+            hfRepoId: "litert-local/qwen35-4b-mixed-int4-b128",
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
