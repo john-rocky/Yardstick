@@ -66,13 +66,16 @@ for f in sorted(glob.glob(os.path.join(os.environ["OUT"], "device-jsonl", pat)))
 PY
 }
 
-cell_verdict(){ # <runtime> <model-id> <task> <runs> -> OK / SHORT n / HOT ... / SPREAD pct
-  local files
+cell_verdict(){ # <runtime> <model-id> <task> <runs> -> OK / SHORT n / HOT ... / SPREAD pct / DEAD n / COLLAPSE pct / GATE_ERROR
+  local files v
   files="$(cell_files "$1" "$2" "$3")"
   [ -z "$files" ] && { echo "SHORT 0"; return 0; }
   # word-splitting is safe: device-jsonl names carry no spaces
   # shellcheck disable=SC2086
-  python3 "$REPO/scripts/cell_gate.py" --runs "$4" $files 2>/dev/null || true
+  v="$(python3 "$REPO/scripts/cell_gate.py" --runs "$4" $files 2>/dev/null)" || true
+  # a crashed gate must not read as a pass (empty matched no flag pattern and
+  # the capture sailed through — the guard's own failure mode, audited 2026-08-27)
+  echo "${v:-GATE_ERROR}"
 }
 
 quarantine_cell(){ # <runtime> <model-id> <task> <runs> — move the judged capture aside.
@@ -135,14 +138,14 @@ cmd_run(){
     local pulled verdict
     pulled="$(pull_new)"; verdict="$(cell_verdict "$rt" "$mid" "$task" "$runs")"
     echo "pulled=$pulled verdict=$verdict"
-    if [[ "$verdict" == HOT* || "$verdict" == SPREAD* ]]; then
+    if [[ "$verdict" == HOT* || "$verdict" == SPREAD* || "$verdict" == DEAD* || "$verdict" == COLLAPSE* || "$verdict" == GATE_ERROR* ]]; then
       log "gate: $verdict — quarantine flagged capture, cooldown ${THERMAL_COOLDOWN}s, re-run once"
       quarantine_cell "$rt" "$mid" "$task" "$runs"
       sleep "$THERMAL_COOLDOWN"
       run_cell "$rt" "$mid" "$task" "$runs" ${extra[@]+"${extra[@]}"}
       pulled="$(pull_new)"; verdict="$(cell_verdict "$rt" "$mid" "$task" "$runs")"
       echo "pulled=$pulled verdict=$verdict"
-      [[ "$verdict" == HOT* || "$verdict" == SPREAD* ]] \
+      [[ "$verdict" == HOT* || "$verdict" == SPREAD* || "$verdict" == DEAD* || "$verdict" == COLLAPSE* || "$verdict" == GATE_ERROR* ]] \
         && echo "GATE_FAIL $rt $mid $task retry='$verdict' (retry kept; flagged capture in device-jsonl-flagged/)" \
         | tee -a "$OUT/FLAGGED.txt"
     fi

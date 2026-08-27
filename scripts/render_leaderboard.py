@@ -200,6 +200,17 @@ def generate():
             continue
         lines.append(f"## {plat}")
         lines.append("")
+        if plat == "android":
+            lines.append(
+                "Android decode spans are not budget-matched across arms: llama-cli "
+                "caps at the 128-token task budget, while `litert_lm_main` runs to "
+                "the model's own stop (441–1037 generated tokens per run in the raw "
+                "records) — v0.16.0 has no working output cap on that binary. LiteRT "
+                "decode rates reproduce within ~1% across sessions, so the longer "
+                "span is not visibly depressing them, but the asymmetry is real and "
+                "per-run token counts are in `results/raw/` "
+                "(budget-mode-rule; methodology/android.md).")
+            lines.append("")
         for key in keys:
             _, dev = key
             models = tree[key]
@@ -242,8 +253,14 @@ def generate():
                 for model in sorted(single):
                     for (rt, mid), rows in single[model].items():
                         a = arm_row(rows)
+                        # same ⚠ as the comparison branch — a wide cell is no
+                        # less wide for lacking a rival (audited 2026-08-27:
+                        # three >5% cells published unmarked through this gap)
+                        warm_txt = fmt(a["warm"])
+                        if a["warm"] and a["spread"] > SPREAD_FLAG:
+                            warm_txt += f" ⚠spread {a['spread']:.0f}%"
                         lines.append(f"| {model} | {rt} | `{mid}` | {a['quant']} | {a['engine']} | "
-                                     f"{fmt(a['warm'])} | {fmt(a['cold'])} | {a['date']} |")
+                                     f"{warm_txt} | {fmt(a['cold'])} | {a['date']} |")
                 lines.append("")
                 lines.append("</details>")
                 lines.append("")

@@ -7,8 +7,19 @@ spread-rule, same 5% bar as render_leaderboard and regression_diff):
 
   SHORT <n>        fewer records than --runs (crash/timeout — do NOT retry
                    here; failed-runs-stay owns that path)
+  DEAD <n>         a judged record has no decode number (missing key or 0) —
+                   the run completed as a record but not as a measurement
+                   (audited 2026-08-27: zero-decode runs silently passed and
+                   vanished from the spread list)
   HOT <states>     an initialThermalState outside --ok-thermal
   SPREAD <pct>     warm decode (max-min)/median exceeded --spread-flag
+  COLLAPSE <pct>   cold-only capture (Android regime has no warm runs, so
+                   SPREAD can never fire) whose slowest cold decode fell
+                   under half the cold median — the contended-device
+                   signature (measured 2026-08-27 Pixel: 0.3-1.4 tok/s junk
+                   beside 22-26 clean in one session). The bar is 50%, not
+                   --spread-flag: Android cold trials legitimately spread
+                   15-30% and a 5% bar would flag every capture.
   OK
 
 Input: schema-v1 records — --jsonl <cell.jsonl> (mac runner) or positional
@@ -55,6 +66,12 @@ def main():
         print(f"SHORT {len(recs)}")
         return 1
 
+    dead = sum(1 for r in recs
+               if not r.get("metrics", {}).get("decodeTokensPerSecond"))
+    if dead:
+        print(f"DEAD {dead}")
+        return 1
+
     ok = set(a.ok_thermal.split(",")) | {"", None}
     states = [r.get("metrics", {}).get("initialThermalState") for r in recs]
     if any(s not in ok for s in states):
@@ -63,13 +80,20 @@ def main():
 
     warm = [m["decodeTokensPerSecond"] for r in recs
             for m in [r.get("metrics", {})]
-            if not m.get("coldRun") and m.get("decodeTokensPerSecond")]
+            if not m.get("coldRun")]
     if len(warm) > 1:
         med = statistics.median(warm)
         spread = (max(warm) - min(warm)) / med * 100 if med else 0.0
         if spread > a.spread_flag:
             print(f"SPREAD {spread:.1f}")
             return 1
+    if not warm:
+        cold = [r["metrics"]["decodeTokensPerSecond"] for r in recs]
+        if len(cold) > 1:
+            med = statistics.median(cold)
+            if med and min(cold) < med / 2:
+                print(f"COLLAPSE {min(cold) / med * 100:.0f}")
+                return 1
     print("OK")
     return 0
 

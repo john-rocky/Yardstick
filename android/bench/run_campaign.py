@@ -95,11 +95,21 @@ def main():
     # tok/s against a clean 22-26, and a payload cell 5.0 against 25.9) — and
     # the round-robin runner outlives its last log line, so "looks finished"
     # is not finished. The lock makes the mistake impossible instead of rare.
-    lock = open(f"/tmp/edge-llm-bench-android-{SERIAL or 'default'}.lock", "w")
+    # Key the lock on the EFFECTIVE serial, not the raw env: with one device
+    # attached, a driver with BENCH_ANDROID_SERIAL set and one without would
+    # take different lock files and both drive the same phone. adb resolves
+    # the default for us; if it can't (0 or 2+ devices, no env), the run was
+    # doomed anyway and the shared 'default' key is the safe fallback.
+    lock_key = SERIAL
+    if not lock_key:
+        r = subprocess.run(["adb", "get-serialno"], capture_output=True, text=True)
+        got = r.stdout.strip()
+        lock_key = got if r.returncode == 0 and got and got != "unknown" else "default"
+    lock = open(f"/tmp/edge-llm-bench-android-{lock_key}.lock", "w")
     try:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
     except OSError:
-        print(f"another campaign is already driving device {SERIAL or '(default)'} — "
+        print(f"another campaign is already driving device {lock_key} — "
               "refusing to start (two drivers corrupt both campaigns)", file=sys.stderr)
         return 3
     campaign = os.environ.get("CAMPAIGN", time.strftime("%Y-%m-%d") + "-android-matrix")

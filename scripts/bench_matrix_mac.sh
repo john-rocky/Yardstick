@@ -44,7 +44,12 @@ run_ys_cell(){
 guard(){
   # Unified memory: a heavy CPU/GPU pipeline moves these numbers (spread-rule).
   # NB: pattern must not match the repo name "ios-llm-benchmark" in task paths.
-  if ps aux | grep -E "coreai\.llm\.export|release/llm-benchmark |export_simple_template\.py" | grep -v grep >/dev/null; then
+  # The named-script list kept going stale (2026-08-27: export_gemma4_pf_pipelined
+  # ran at 100% CPU/7 GB straight past it, and that morning's mac session came
+  # out ~11% low) — so also match the coreai export venv and any scratchpad
+  # export_*.py wholesale; refusing too eagerly costs a cooldown, missing costs
+  # a session.
+  if ps aux | grep -E "coreai\.llm\.export|release/llm-benchmark |export_simple_template\.py|scratchpad/export_[A-Za-z0-9_]*\.py|coreai-models/\.venv/bin/python|coreai-build compile" | grep -v grep >/dev/null; then
     echo "refusing to start: heavy pipeline running (unified-memory contention)" >&2; exit 1
   fi
 }
@@ -122,13 +127,13 @@ cmd_run(){
     # never retried here — that is a failure, and failed runs stay.
     if [ -f "$OUT/${slug}.jsonl" ] && [ "${GATE_RETRY:-1}" = "1" ]; then
       gate="$(python3 "$REPO/scripts/cell_gate.py" --runs "$runs" --jsonl "$OUT/${slug}.jsonl")" || true
-      case "$gate" in HOT*|SPREAD*)
+      case "$gate" in HOT*|SPREAD*|DEAD*|COLLAPSE*)
         log "gate: $gate — quarantine + cooldown ${GATE_COOLDOWN:-180}s, re-run once"
         mv "$OUT/${slug}.jsonl" "$OUT/${slug}.jsonl.attempt1"
         sleep "${GATE_COOLDOWN:-180}"
         run_ys_cell || echo "FAIL $rt $mid $task (gate retry)" >> "$OUT/FAILURES.txt"
         gate2="$(python3 "$REPO/scripts/cell_gate.py" --runs "$runs" --jsonl "$OUT/${slug}.jsonl" 2>/dev/null)" || true
-        case "$gate2" in HOT*|SPREAD*)
+        case "$gate2" in HOT*|SPREAD*|DEAD*|COLLAPSE*)
           echo "GATE_FAIL $rt $mid $task first='$gate' retry='$gate2' (retry kept; ⚠ downstream)" \
             | tee -a "$OUT/FLAGGED.txt" ;;
         esac ;;

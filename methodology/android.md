@@ -58,6 +58,18 @@ v1 measures the same engine through `litert_lm_main`.
 - Sampler: litert_lm_main exposes **no temperature/top-p flags** →
   `conditions.sampler: "engine-default"`. This is a disclosed same-budget-rule
   deviation; llama-cli runs `--temp 0 --top-p 1` (greedy) like the Apple arms.
+- Decode span: **litert_lm_main v0.16.0 ignores `--max_output_tokens`** — the
+  driver passes the 128-token task budget and the engine still runs to the
+  model's own stop (probe 2026-08-27, Pixel 8a: `--max_output_tokens=128` →
+  441 generated tokens; raw in
+  `results/raw/2026-08-27-audit-probes-android/probe-litert-cap/`). llama-cli
+  honors `-n 128`, so Android llama↔litert rows compare a 128-token decode
+  against a 441–1037-token one (per-run counts in every litert record). The
+  asymmetry is disclosed rather than corrected because (a) no working cap
+  exists on that binary and (b) the litert decode rates it produces reproduce
+  within ~1% across sessions — the longer span is not visibly moving them.
+  The engine-default generations are deterministic per (model, backend), so
+  the span is stable run to run.
 - Prompts: byte-identical to the Swift tasks via committed `prompts/text/*.txt`
   (`scripts/gen_task_prompts.py`).
 
