@@ -105,8 +105,9 @@ public enum ModelCatalog {
             onDiskSizeMB: 7000,
             hfRepoId: "mlx-community/gemma-4-12b-it-4bit"
         ),
-        // Comparators for Lu's models. mlx LFM2-350M is v2.0 (no 2.5 on mlx-community yet) —
-        // slight version skew vs our LFM2.5 litert; disclosed.
+        // Comparators for Lu's models. LFM2-350M is v2.0, kept for its published
+        // rows; mlx-community has since published LFM2.5-1.2B (entry below,
+        // 2026-08-27) — the size-matched mlx arm for the LFM2.5 litert cell.
         ModelInfo(
             id: "mlx-community/LFM2-350M-4bit",
             displayName: "LFM2-350M (4-bit)",
@@ -114,6 +115,14 @@ public enum ModelCatalog {
             parameterCountB: 0.35,
             onDiskSizeMB: 200,
             hfRepoId: "mlx-community/LFM2-350M-4bit"
+        ),
+        ModelInfo(
+            id: "mlx-community/LFM2.5-1.2B-Instruct-4bit",
+            displayName: "LFM2.5-1.2B (4-bit)",
+            quantization: "Q4",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 700,
+            hfRepoId: "mlx-community/LFM2.5-1.2B-Instruct-4bit"
         ),
         ModelInfo(
             id: "mlx-community/MiniCPM5-1B-4bit",

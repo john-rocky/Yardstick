@@ -12,6 +12,7 @@ Order and discipline (fairness rules as code):
     up to THERMAL_WAIT s and records the state either way.
   - exclude=/manual= cells are skipped with the reason logged (SKIPPED.txt).
 """
+import fcntl
 import os
 import subprocess
 import sys
@@ -89,6 +90,18 @@ def main():
         print(__doc__)
         return 2
     cells_file = sys.argv[1]
+    # One driver per device. Two campaigns interleaving on one phone poison
+    # BOTH sets of numbers (measured 2026-08-27: a contended anchor read 0.4
+    # tok/s against a clean 22-26, and a payload cell 5.0 against 25.9) — and
+    # the round-robin runner outlives its last log line, so "looks finished"
+    # is not finished. The lock makes the mistake impossible instead of rare.
+    lock = open(f"/tmp/edge-llm-bench-android-{SERIAL or 'default'}.lock", "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        print(f"another campaign is already driving device {SERIAL or '(default)'} — "
+              "refusing to start (two drivers corrupt both campaigns)", file=sys.stderr)
+        return 3
     campaign = os.environ.get("CAMPAIGN", time.strftime("%Y-%m-%d") + "-android-matrix")
     out_dir = os.path.join(ROOT, "results", "raw", campaign, "app-path-android")
     os.makedirs(out_dir, exist_ok=True)

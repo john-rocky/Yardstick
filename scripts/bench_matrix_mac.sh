@@ -23,6 +23,10 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 # an unpinned harness under this clone's protocol (2026-08-26 rehearsal).
 DD_MAC="${DD_MAC:-$REPO/.build/dd-mac}"
 YS="${YS_BIN:-$DD_MAC/Build/Products/Release/yardstick}"
+# Engine-pin witness: without this the CLI stamps nothing and rows read
+# "pre-stamp" (found 2026-08-27 — the convention lived in the lockfile but
+# no runner wired it). stamp_engine_pins.sh regenerates the file at build.
+export BENCH_ENGINE_PINS_FILE="${BENCH_ENGINE_PINS_FILE:-$REPO/ios/BenchmarkApp/Vendored/engine-pins.json}"
 DEFAULT_RUNS="${RUNS:-4}"
 BASE_COOLDOWN="${BASE_COOLDOWN:-30}"
 CAMPAIGN="${CAMPAIGN:-$(date +%F)-mac-matrix}"
