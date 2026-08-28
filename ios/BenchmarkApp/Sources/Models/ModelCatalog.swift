@@ -723,6 +723,19 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-28: the same rail at the smallest family size. Its ViT is 12-layer/768,
+        // not the 2B's 24/1024, so the fp16-safe LN table was re-calibrated rather than
+        // inherited; its int8 vision encoder is the less damaged of the two.
+        ModelInfo(
+            id: "litert-local/qwen35vl-0.8b-wi8",
+            displayName: "Qwen3.5-0.8B-VL (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1302,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-VL-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-19: North-Micro-Vision-Instruct (CohereLabs 2.48B VLM) fast_vlm build —
         // Cohere2-rehosted wi8 decoder + fp16 vision (deepstack folded into the single
         // image embedding). Run with --litert-vision for the vision tasks (fast_vlm
