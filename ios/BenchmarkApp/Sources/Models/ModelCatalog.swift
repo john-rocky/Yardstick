@@ -723,6 +723,20 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-31: the PUBLISHED text-only bundle, added as the control for the VL entry
+        // below. The VL build scores 3/8 on this phone's CPU while scoring 8/8 on both Mac
+        // backends; this file answers whether that is the vision build or the family on this
+        // path, and it has been public since August either way.
+        ModelInfo(
+            id: "litert-local/qwen35-0.8b-text-wi8",
+            displayName: "Qwen3.5-0.8B text (published .litertlm, wi8 fp32act)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations), text only, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 963,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-text-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-28: the same rail at the smallest family size. Its ViT is 12-layer/768,
         // not the 2B's 24/1024, so the fp16-safe LN table was re-calibrated rather than
         // inherited; its int8 vision encoder is the less damaged of the two.
