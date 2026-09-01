@@ -192,6 +192,9 @@ enum HeadlessAutoRun {
         /// runtimes (MLX) stay near their burst rate instead of being dragged into
         /// their long-context regime — a fairer comparison vs SWA runtimes (CoreML).
         var maxTokens: Int?
+        /// Base64-encoded UTF-8 prompt for the `prompt-probe` task (base64 so the
+        /// devicectl arg vector cannot mangle quoting/newlines).
+        var promptB64: String?
     }
 
     static func specFromLaunchArgs(_ args: [String] = CommandLine.arguments) -> Spec? {
@@ -207,8 +210,10 @@ enum HeadlessAutoRun {
         let runs = max(1, Int(value("--runs") ?? "1") ?? 1)
         let sustainSeconds = value("--sustain-seconds").flatMap(Double.init)
         let maxTokens = value("--max-tokens").flatMap(Int.init)
+        let promptB64 = value("--prompt-b64")
         return Spec(runtime: runtime, modelId: modelId, taskId: taskId, runs: runs,
-                    sustainSeconds: sustainSeconds, maxTokens: maxTokens)
+                    sustainSeconds: sustainSeconds, maxTokens: maxTokens,
+                    promptB64: promptB64)
     }
 }
 
@@ -266,7 +271,20 @@ struct HeadlessRunnerView: View {
             await finish(3)
             return
         }
-        guard var task = BenchmarkTaskCatalog.task(for: spec.taskId) else {
+        // prompt-probe is headless-only (no catalog row): built directly from
+        // --prompt-b64 so quality-triage can replay one question at a time.
+        var probeTask: (any BenchmarkTask)?
+        if spec.taskId == "prompt-probe" {
+            guard let b64 = spec.promptB64,
+                  let data = Data(base64Encoded: b64),
+                  let prompt = String(data: data, encoding: .utf8), !prompt.isEmpty else {
+                await log("YARDSTICK_FATAL task=prompt-probe requires --prompt-b64 <base64 utf-8>")
+                await finish(4)
+                return
+            }
+            probeTask = PromptProbeTask(prompt: prompt, maxTokens: spec.maxTokens ?? 256)
+        }
+        guard var task = probeTask ?? BenchmarkTaskCatalog.task(for: spec.taskId) else {
             await log("YARDSTICK_FATAL task=\(spec.taskId) unknown")
             await finish(4)
             return

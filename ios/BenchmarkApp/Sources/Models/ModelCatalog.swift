@@ -795,6 +795,20 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-09-01: OvisOCR2 (ATH-MaaS, Qwen3.5-0.8B OCR/document-parsing finetune) on
+        // the same 0.8B VL rail — configs are byte-identical to base, weights post-trained.
+        // Vision LN table re-calibrated for this checkpoint; quant A/B done on document
+        // fixtures. Run OCR legs with --litert-vision.
+        ModelInfo(
+            id: "litert-local/ovisocr2-wi8",
+            displayName: "OvisOCR2 (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1302,
+            hfRepoId: "litert-local/OvisOCR2-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-19: North-Micro-Vision-Instruct (CohereLabs 2.48B VLM) fast_vlm build —
         // Cohere2-rehosted wi8 decoder + fp16 vision (deepstack folded into the single
         // image embedding). Run with --litert-vision for the vision tasks (fast_vlm

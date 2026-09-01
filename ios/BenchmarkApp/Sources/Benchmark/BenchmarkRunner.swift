@@ -334,9 +334,10 @@ public actor BenchmarkRunner {
             task: configuration.task.id,
             parameters: configuration.task.parameters,
             metrics: metrics,
-            // Keep the full output for the quality task (it's scored for correctness +
-            // degeneracy); other tasks keep a short sample to stay lean.
-            outputSample: configuration.task.id == "quality"
+            // Keep the full output for tasks scored post-hoc on their text (quality:
+            // correctness + degeneracy; prompt-probe: single-question replay); other
+            // tasks keep a short sample to stay lean.
+            outputSample: ["quality", "prompt-probe"].contains(configuration.task.id)
                 ? collectedOutput : String(collectedOutput.prefix(200))
         )
     }

@@ -41,6 +41,8 @@
 		52F23D827122805FEDBBDA29 /* DeviceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6978D6BB9139052EA83F5605 /* DeviceSnapshot.swift */; };
 		531015CDC40AD8F9995AE7F7 /* AnemllRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46BF89FC5DAB913F5DC74C99 /* AnemllRuntime.swift */; };
 		54A24EF1C659F98597A290C6 /* QualityTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CCE863246D4DF67FA309E1 /* QualityTask.swift */; };
+		E4A7C21D90AB34F1B2C3D411 /* PromptProbeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7C21D90AB34F1B2C3D410 /* PromptProbeTask.swift */; };
+		E4A7C21D90AB34F1B2C3D412 /* PromptProbeTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A7C21D90AB34F1B2C3D410 /* PromptProbeTask.swift */; };
 		555DC5405A8A5E1DACBFA8A1 /* cactus-ios.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06727DEFF0FFE8E16E2F37A3 /* cactus-ios.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		584FCFB61598A0F55B3649E2 /* ExecuTorchRuntime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1FDA1BD8CFFB6E92798B22 /* ExecuTorchRuntime.swift */; };
 		59BA60639CE894516CE31D7A /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = 41522D438C797371055C13FC /* Transformers */; };
@@ -171,6 +173,7 @@
 		F2BCF3DFC5D9FF13D75934A9 /* probe_notext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = probe_notext.png; sourceTree = "<group>"; };
 		F5235B8E78B06C2870291FF5 /* HFDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HFDownloader.swift; sourceTree = "<group>"; };
 		F5A53FFB38F5191EA948C20E /* LiteRT-LM */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "LiteRT-LM"; path = "Vendored/LiteRT-LM"; sourceTree = SOURCE_ROOT; };
+		E4A7C21D90AB34F1B2C3D410 /* PromptProbeTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptProbeTask.swift; sourceTree = "<group>"; };
 		F6CCE863246D4DF67FA309E1 /* QualityTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QualityTask.swift; sourceTree = "<group>"; };
 		FC7B6B97C8F1331B7F122CF4 /* ResultStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultStore.swift; sourceTree = "<group>"; };
 		FCADC364D9871831E17D1318 /* LongContextTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongContextTask.swift; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 			children = (
 				1124C321F63E5E0AEEF8902E /* AppLifecycleTask.swift */,
 				FCADC364D9871831E17D1318 /* LongContextTask.swift */,
+				E4A7C21D90AB34F1B2C3D410 /* PromptProbeTask.swift */,
 				F6CCE863246D4DF67FA309E1 /* QualityTask.swift */,
 				D08EC78F33B91A776F1CF195 /* SafetyClassifyTask.swift */,
 				3B472A5B7142B5A088948C3E /* ShortChatTask.swift */,
@@ -536,6 +540,7 @@
 				4BAC573F8F4D1928A686469F /* MediaPipeRuntime.swift in Sources */,
 				67AE241DA38F53CE78E20C86 /* MemoryMonitor.swift in Sources */,
 				60D67ADC917C3CD389CDF184 /* ModelCatalog.swift in Sources */,
+				E4A7C21D90AB34F1B2C3D412 /* PromptProbeTask.swift in Sources */,
 				54A24EF1C659F98597A290C6 /* QualityTask.swift in Sources */,
 				9FB0903D22C954FDEB555847 /* ResultStore.swift in Sources */,
 				38D2EEF177543768A564B297 /* RuntimeKind.swift in Sources */,
@@ -583,6 +588,7 @@
 				4766D15ABA21C6FF5EBBCDB8 /* MediaPipeRuntime.swift in Sources */,
 				7EDA3E9184B29B3565D7AA0A /* MemoryMonitor.swift in Sources */,
 				FA911A2CDFA67C2099693800 /* ModelCatalog.swift in Sources */,
+				E4A7C21D90AB34F1B2C3D411 /* PromptProbeTask.swift in Sources */,
 				B482BE617FA81E5C364D906D /* QualityTask.swift in Sources */,
 				89711B8F253C16743029F7CC /* ResultDetailView.swift in Sources */,
 				735A14E6E09D3E68F1C50E4F /* ResultStore.swift in Sources */,
