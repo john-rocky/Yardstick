@@ -96,6 +96,14 @@ public actor MediaPipeRuntime: LLMRuntime {
                 ExperimentalFlags.enableSpeculativeDecoding = true
                 print("[MediaPipeRuntime] speculative decoding enabled via --litert-speculative")
             }
+            // Diagnostic knob for the MTP leg: the iOS default activation type is
+            // fp16; the drafter/verify contract wants fp32 activations, and fp16
+            // rounding of the hidden handoff is a candidate cause for acceptance
+            // collapse on iOS. Forces fp32 like the desktop CLI default.
+            if launchArgs.contains("--litert-fp32-act") {
+                ExperimentalFlags.forceFloat32Activations = true
+                print("[MediaPipeRuntime] fp32 activations forced via --litert-fp32-act")
+            }
             let config = try EngineConfig(
                 modelPath: modelFile.path,
                 backend: backend,
