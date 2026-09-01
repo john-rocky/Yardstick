@@ -907,6 +907,18 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-09-01: FalconH1 Tiny-R 0.6B (reasoning, self-emit <think>; wi8f decoder
+        // + externalized FLOAT embedder — int8 embedding damages this checkpoint).
+        ModelInfo(
+            id: "litert-local/falconh1-tinyr-int8",
+            displayName: "Falcon-H1-Tiny-R-0.6B (.litertlm, int8 wi8f ext-embedder fp32act)",
+            quantization: "INT8 FC-only (embedder externalized float, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 0.62,
+            onDiskSizeMB: 873,
+            hfRepoId: "litert-local/Falcon-H1-Tiny-R-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-14: FalconH1 3B sibling (same driver/patch as the 0.5B/1.5B).
         ModelInfo(
             id: "litert-local/falconh1-3b-int8",
