@@ -933,6 +933,31 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-09-01: LFM2.5-230M ship gates (lfm230_work). int8 = post-hoc wi8fc
+        // (convs float — conv-int8 costs IFEval on this tune), int4 = OCTAV b32 +
+        // int8 embedding. Both: ladder prefill + cache 4096 (4099 kills the WebGPU/
+        // Metal-class shader compile with the 1024 signature), repaired template
+        // (minijinja: generation stmts + map .get), ExecutorMetadata retrofitted.
+        ModelInfo(
+            id: "litert-local/lfm25-230m-int8",
+            displayName: "LFM2.5-230M (.litertlm, int8 wi8fc)",
+            quantization: "INT8 linears+embedding post-hoc (convs float, +exec metadata)",
+            parameterCountB: 0.23,
+            onDiskSizeMB: 254,
+            hfRepoId: "litert-local/LFM2.5-230M-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-230m-int4",
+            displayName: "LFM2.5-230M (.litertlm, int4 OCTAV b32)",
+            quantization: "INT4 blockwise-32 OCTAV + int8 embedding (+exec metadata)",
+            parameterCountB: 0.23,
+            onDiskSizeMB: 169,
+            hfRepoId: "litert-local/LFM2.5-230M-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-14: FalconH1 3B sibling (same driver/patch as the 0.5B/1.5B).
         ModelInfo(
             id: "litert-local/falconh1-3b-int8",
