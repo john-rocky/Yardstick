@@ -737,6 +737,51 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-09-01: MTP speculative-decoding bundles (verify signature + ring-addressed
+        // gated-delta state + MTP_DRAFTER section; litertlm-convert mtp_work P1/P2).
+        // Bench flag-off vs `--litert-speculative` on the SAME entry for the A/B row.
+        // "topk" = top-32k sliced drafter head (phone lever; verify keeps the full head,
+        // greedy-exactness unaffected). Side-loaded only.
+        ModelInfo(
+            id: "litert-local/qwen35-08b-mtp",
+            displayName: "Qwen3.5-0.8B MTP (.litertlm, wi8 + drafter)",
+            quantization: "INT8 (wi8fc) + int8 MTP drafter, G=3, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1471,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-MTP",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-0.8B_mtp_drafter_int8.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-08b-mtp-topk",
+            displayName: "Qwen3.5-0.8B MTP top-32k (.litertlm, wi8 + sliced drafter)",
+            quantization: "INT8 (wi8fc) + int8 top-32k drafter, G=3, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1250,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-MTP-topk",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-0.8B_mtp_drafter_topk32k_int8.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-2b-mtp",
+            displayName: "Qwen3.5-2B MTP (.litertlm, wi8 + drafter)",
+            quantization: "INT8 (wi8fc) + int8 MTP drafter, G=3, ekv4096",
+            parameterCountB: 2.27,
+            onDiskSizeMB: 3180,
+            hfRepoId: "litert-local/Qwen3.5-2B-MTP",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-2B_mtp_drafter_int8.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-2b-mtp-topk",
+            displayName: "Qwen3.5-2B MTP top-32k (.litertlm, wi8 + sliced drafter)",
+            quantization: "INT8 (wi8fc) + int8 top-32k drafter, G=3, ekv4096",
+            parameterCountB: 2.27,
+            onDiskSizeMB: 2750,
+            hfRepoId: "litert-local/Qwen3.5-2B-MTP-topk",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-2B_mtp_drafter_topk32k_int8.litertlm"
+        ),
         // 2026-08-28: the same rail at the smallest family size. Its ViT is 12-layer/768,
         // not the 2B's 24/1024, so the fp16-safe LN table was re-calibrated rather than
         // inherited; its int8 vision encoder is the less damaged of the two.

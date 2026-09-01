@@ -89,6 +89,13 @@ public actor MediaPipeRuntime: LLMRuntime {
                 effectiveMaxTokens = forced
                 print("[MediaPipeRuntime] maxNumTokens forced to \(forced) via --litert-max-tokens")
             }
+            // `--litert-speculative` opts a bundle with an MTP drafter section into
+            // speculative decoding. Engine init throws on bundles without one, so it
+            // stays a launch-arg opt-in rather than a default.
+            if launchArgs.contains("--litert-speculative") {
+                ExperimentalFlags.enableSpeculativeDecoding = true
+                print("[MediaPipeRuntime] speculative decoding enabled via --litert-speculative")
+            }
             let config = try EngineConfig(
                 modelPath: modelFile.path,
                 backend: backend,
