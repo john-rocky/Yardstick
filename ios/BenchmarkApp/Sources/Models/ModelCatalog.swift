@@ -958,6 +958,49 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-09-02: sarashina2.2 instruct (SB Intuitions, Japanese, plain Llama arch,
+        // vocab 102400 untied) ship-gate rows: dense driver, HF tokenizer.json, no
+        // start_token, ladder prefill + cache 4096.
+        ModelInfo(
+            id: "litert-local/sarashina22-05b-int8",
+            displayName: "sarashina2.2-0.5b-instruct (.litertlm, int8)",
+            quantization: "INT8 dynamic linears + embedding",
+            parameterCountB: 0.5,
+            onDiskSizeMB: 831,
+            hfRepoId: "litert-local/sarashina2.2-0.5b-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/sarashina22-05b-int4",
+            displayName: "sarashina2.2-0.5b-instruct (.litertlm, int4 OCTAV b32)",
+            quantization: "INT4 blockwise-32 OCTAV + int8 embedding",
+            parameterCountB: 0.5,
+            onDiskSizeMB: 510,
+            hfRepoId: "litert-local/sarashina2.2-0.5b-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/sarashina22-1b-int8",
+            displayName: "sarashina2.2-1b-instruct (.litertlm, int8)",
+            quantization: "INT8 dynamic linears + embedding",
+            parameterCountB: 1.0,
+            onDiskSizeMB: 1435,
+            hfRepoId: "litert-local/sarashina2.2-1b-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/sarashina22-1b-int4",
+            displayName: "sarashina2.2-1b-instruct (.litertlm, int4 OCTAV b32)",
+            quantization: "INT4 blockwise-32 OCTAV + int8 embedding",
+            parameterCountB: 1.0,
+            onDiskSizeMB: 862,
+            hfRepoId: "litert-local/sarashina2.2-1b-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-08-14: FalconH1 3B sibling (same driver/patch as the 0.5B/1.5B).
         ModelInfo(
             id: "litert-local/falconh1-3b-int8",
