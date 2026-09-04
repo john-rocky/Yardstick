@@ -1,0 +1,151 @@
+{
+  "title": "Nemotron-3 Nano on Apple Silicon: llama.cpp vs MLX, batch 1, greedy, 4-bit",
+  "date": "2026-09-04",
+  "hardware": {
+    "cpu": "Apple M4 Max",
+    "hw_memsize_bytes": 137438953472,
+    "memory_gib": 128,
+    "os": "macOS 27.0 (26A5416b)",
+    "xcode": "Xcode 27.0 (27A5237l), /Applications/Xcode-27.0.0-Beta.5.app",
+    "power": "mains, lid open, no other GPU workload during measurements"
+  },
+  "software": {
+    "llama_cpp": {
+      "source": "Homebrew package llama.cpp",
+      "build": 8680,
+      "commit": "15f786e65",
+      "backends_reported": "BLAS,MTL",
+      "threads_reported": 12,
+      "note": "Homebrew binary loaded both nemotron_h (4B) and nemotron_h_moe (30B-A3B) GGUFs, so no source build was made. ggml_metal_device_init printed 'tensor API disabled for pre-M5 and pre-A19 devices'."
+    },
+    "mlx": "0.32.2",
+    "mlx_lm": "0.31.3",
+    "python": "3.12.13 (venv)",
+    "huggingface_hub": "1.30.0"
+  },
+  "protocol": {
+    "batch_size": 1,
+    "sampling": "greedy (llama-bench has no sampling; llama-completion --temp 0; mlx_lm generate --temp 0)",
+    "llama_bench_args": "-p 512 -n 256 -ngl 99 -fa 1 -r 3",
+    "llama_bench_metric": "pp512 / tg256 tokens per second, mean +/- std over 3 repetitions as printed",
+    "mlx_metric": "mlx_lm 'Prompt:' and 'Generation:' tokens-per-sec and 'Peak memory' as printed; median of 3 separate processes; prompt = 133 tokens after chat template (~100-word user prompt), 256 generated tokens",
+    "prompt_tps_caveat": "llama-bench pp512 processes a synthetic 512-token batch; mlx-lm prompt tok/s is measured on a 133-token chat prompt. The two prompt columns are not the same measurement.",
+    "peak_memory_caveat": "llama.cpp: maximum resident set size from /usr/bin/time -l around an identical llama-bench run (includes mmapped weights). MLX: 'Peak memory' printed by mlx-lm (Metal allocations). Different metrics; do not compare across stacks at face value.",
+    "weight_size_caveat": "The unsloth Q4_K_M GGUF for 30B-A3B is 24.57 GB (~6.2 bits/weight average for 31.58B params), whereas the mlx-community 4-bit is 17.78 GB. Bytes per token differ between the two 30B-A3B rows.",
+    "downloads": "HF_HOME=/private/tmp/odp-bench/hf HF_HUB_DISABLE_XET=1; all models deleted after the run"
+  },
+  "results": [
+    {
+      "model": "NVIDIA Nemotron-3 Nano 30B-A3B",
+      "architecture": "nemotron_h_moe (hybrid Mamba-2 / Transformer MoE, 31.58B total, ~3.5B active)",
+      "stack": "llama.cpp (Metal)",
+      "stack_version": "Homebrew build 8680, commit 15f786e65",
+      "repo": "unsloth/Nemotron-3-Nano-30B-A3B-GGUF",
+      "revision": "9ad8b366c308f931b2a96b9306f0b41aef9cd405",
+      "file": "Nemotron-3-Nano-30B-A3B-Q4_K_M.gguf",
+      "file_bytes": 24574373664,
+      "quant": "Q4_K_M",
+      "model_buffer_gib_reported": 22.88,
+      "prompt_tps": {"test": "pp512", "mean": 1212.81, "std": 3.02},
+      "decode_tps": {"test": "tg256", "mean": 86.19, "std": 0.47},
+      "fa0_run": {"pp512": {"mean": 1207.08, "std": 3.25}, "tg256": {"mean": 85.73, "std": 0.34}},
+      "repeat_run_with_rss": {"pp512": {"mean": 1214.61, "std": 3.01}, "tg256": {"mean": 86.84, "std": 0.57}},
+      "peak_memory": {"metric": "max RSS (/usr/bin/time -l)", "bytes": 24380833792, "gb": 24.38},
+      "llama_completion_check": {"prompt_eval_tps": 116.10, "eval_tps": 86.59, "n_predict": 160, "note": "single-turn chat, 34 prompt tokens, 127 generated; default n_ctx was 1048576 so its memory breakdown is not representative"},
+      "notes": "-fa 1 and -fa 0 within noise."
+    },
+    {
+      "model": "NVIDIA Nemotron-3 Nano 30B-A3B",
+      "architecture": "nemotron_h_moe",
+      "stack": "MLX (mlx-lm)",
+      "stack_version": "mlx 0.32.2, mlx-lm 0.31.3",
+      "repo": "mlx-community/NVIDIA-Nemotron-3-Nano-30B-A3B-4bit",
+      "revision": "832f602eba5d22436c258c1462bdedc5afddb42b",
+      "file": "model-0000{1..4}-of-00004.safetensors",
+      "file_bytes_total": 17780000000,
+      "quant": "4-bit (mlx-community)",
+      "prompt_tps": {"test": "133-token chat prompt", "median": 642.55, "runs": [154.212, 642.680, 642.547], "note": "first process was slower on prompt (cold start); decode unaffected"},
+      "decode_tps": {"test": "256 tokens", "median": 159.714, "runs": [159.714, 159.600, 159.775]},
+      "peak_memory": {"metric": "mlx-lm 'Peak memory'", "gb_median": 18.349, "runs_gb": [18.248, 18.349, 18.349]},
+      "notes": "Chat template enables reasoning by default; most of the 256 generated tokens are the reasoning trace."
+    },
+    {
+      "model": "NVIDIA Nemotron-3 Nano 4B",
+      "architecture": "nemotron_h (dense hybrid Mamba-2 / Transformer, 3.97B)",
+      "stack": "llama.cpp (Metal)",
+      "stack_version": "Homebrew build 8680, commit 15f786e65",
+      "repo": "nvidia/NVIDIA-Nemotron-3-Nano-4B-GGUF",
+      "revision": "ba223d14e45525f7fae81db77ea8cabeb2fc6c25",
+      "file": "NVIDIA-Nemotron3-Nano-4B-Q4_K_M.gguf",
+      "file_bytes": 2837072864,
+      "quant": "Q4_K_M",
+      "model_buffer_gib_reported": 2.63,
+      "prompt_tps": {"test": "pp512", "mean": 1308.83, "std": 1.05},
+      "decode_tps": {"test": "tg256", "mean": 88.38, "std": 0.22},
+      "repeat_run_with_rss": {"pp512": {"mean": 1309.95, "std": 1.69}, "tg256": {"mean": 88.03, "std": 0.13}},
+      "peak_memory": {"metric": "max RSS (/usr/bin/time -l)", "bytes": 3020849152, "gb": 3.02},
+      "llama_completion_check": {"prompt_eval_tps": 201.14, "eval_tps": 88.48, "n_predict": 160, "note": "single-turn chat, 34 prompt tokens, 84 generated"},
+      "notes": "Decode tok/s is nearly identical to the 30B-A3B row despite a 9x smaller weight file; not investigated further here."
+    },
+    {
+      "model": "NVIDIA Nemotron-3 Nano 4B",
+      "architecture": "nemotron_h",
+      "stack": "MLX (mlx-lm)",
+      "stack_version": "mlx 0.32.2, mlx-lm 0.31.3",
+      "repo": "mlx-community/NVIDIA-Nemotron-3-Nano-4B-4bit",
+      "revision": "c4d79ba1901d99806ef757642a552acebb851a35",
+      "file": "model.safetensors",
+      "file_bytes_total": 2240000000,
+      "quant": "4-bit (mlx-community)",
+      "prompt_tps": {"test": "133-token chat prompt", "median": 1058.729, "runs": [970.518, 1058.729, 1260.560]},
+      "decode_tps": {"test": "256 tokens", "median": 176.757, "runs": [176.981, 175.799, 176.757]},
+      "peak_memory": {"metric": "mlx-lm 'Peak memory'", "gb_median": 3.213, "runs_gb": [3.213, 3.213, 3.213]},
+      "notes": "Chat template enables reasoning by default; output has a reasoning trace, then </think>, then the answer."
+    }
+  ],
+  "coherence_samples": {
+    "prompt_llama_completion": "In two or three sentences, what is unified memory on Apple Silicon and why does it matter for running LLMs locally?",
+    "prompt_mlx": "You are a helpful assistant. In about 150 words, explain to a software engineer who has never used Apple Silicon why unified memory matters for running large language models locally. Cover three points: how the GPU and CPU share the same physical memory pool, why this lets a laptop load a model that would not fit in a discrete GPU's VRAM, and what the practical trade-off is compared with a desktop GPU in terms of memory bandwidth. Keep the tone neutral and technical, avoid marketing language, and end with one sentence about when a discrete GPU is still the better choice.",
+    "nemotron_30b_a3b_llama_cpp": "**Unified memory** on Apple Silicon is a single, coherent pool of RAM that the CPU, GPU, and Neural Engine can all access directly without copying data between separate memory spaces. Because the same physical memory serves all cores, data (like model weights or activations)",
+    "nemotron_30b_a3b_mlx": "We need to produce about 150 words, neutral technical tone, covering three points: unified memory sharing, why it lets laptop load model that wouldn't fit in discrete GPU VRAM, and practical trade-off compared with desktop GPU in terms of memory bandwidth. [...] Draft: \"Unified memory on Apple Silicon is a single address space that both the CPU and GPU can access without copying data across separate pools. Because the memory is physically shared, a model's tensors reside in RAM that the GPU can read directly",
+    "nemotron_4b_llama_cpp": "**Unified memory on Apple Silicon means that the CPU, GPU, and memory controller share a single pool of memory, allowing them to communicate and access data seamlessly.** This eliminates the need for data to be copied between systems, making it faster and more efficient.",
+    "nemotron_4b_mlx": "We need to produce about 150 words, neutral technical tone, covering three points: unified memory, GPU/CPU share same physical memory pool, allows laptop to load model that wouldn't fit in discrete GPU VRAM [...] </think> Unified memory means the CPU and GPU access a single, shared physical memory pool rather than separate VRAM and system RAM. Because the model's tensors reside in this pool, a laptop can load a large language model that would otherwise exceed the discrete GPU's limited VRAM"
+  },
+  "granite_4_0_h_tiny": [
+    {
+      "model": "IBM Granite-4.0-H-Tiny",
+      "architecture": "granitehybrid (hybrid Mamba-2 / Transformer MoE, 6.94B total, 64 experts / 6 used, llama.cpp size class 7B.A1B)",
+      "stack": "llama.cpp (Metal)",
+      "stack_version": "Homebrew build 8680, commit 15f786e65",
+      "repo": "unsloth/granite-4.0-h-tiny-GGUF",
+      "revision": "56b37fdc52891304726c4a0a8b140dd1fc1582d5",
+      "file": "granite-4.0-h-tiny-Q4_K_M.gguf",
+      "file_bytes": 4254815392,
+      "quant": "Q4_K_M",
+      "model_buffer_gib_reported": 3.96,
+      "prompt_tps": {"test": "pp512", "mean": 2227.99, "std": 6.47},
+      "decode_tps": {"test": "tg256", "mean": 117.31, "std": 0.92},
+      "repeat_run_with_rss": {"pp512": {"mean": 2222.74, "std": 9.35}, "tg256": {"mean": 116.40, "std": 0.16}},
+      "peak_memory": {"metric": "max RSS (/usr/bin/time -l)", "bytes": 4426891264, "gb": 4.43},
+      "llama_completion_check": {"prompt_eval_tps": 230.17, "eval_tps": 116.79, "n_predict": 160, "note": "single-turn chat, 33 prompt tokens, 66 generated"},
+      "coherence_sample": "Unified memory on Apple Silicon refers to the architecture where the CPU and GPU share a single pool of memory, allowing for seamless data transfer between the two components. This is important for running large language models (LLMs) locally because it enables efficient memory management",
+      "notes": "Measured with no concurrent download."
+    },
+    {
+      "model": "IBM Granite-4.0-H-Tiny",
+      "architecture": "granitehybrid",
+      "stack": "MLX (mlx-lm)",
+      "stack_version": "mlx 0.32.2, mlx-lm 0.31.3",
+      "repo": "lmstudio-community/granite-4.0-h-tiny-MLX-4bit",
+      "revision": "a0f1fb8fdb387c4bd90e23e5e3f7ba9f7438b921",
+      "file": "model.safetensors",
+      "file_bytes_total": 3906536789,
+      "quant": "4-bit affine, group_size 64, MoE router layers 8-bit (from config.json)",
+      "prompt_tps": {"test": "123-token chat prompt", "median": 1525.079, "runs": [280.065, 1564.625, 1525.079], "note": "first process slower on prompt (cold start)"},
+      "decode_tps": {"test": "244 tokens (EOS before 256)", "median": 202.181, "runs": [201.491, 202.181, 202.827]},
+      "peak_memory": {"metric": "mlx-lm 'Peak memory'", "gb_median": 4.436, "runs_gb": [4.436, 4.436, 4.436]},
+      "coherence_sample": "Unified memory is a key feature of Apple Silicon that significantly impacts how large language models are run locally on laptops. Firstly, in Apple Silicon, the GPU and CPU share the same physical memory pool, which means there's no discrete VRAM.",
+      "notes": "mlx-community/granite-4.0-h-tiny-4bit was attempted first but its download stayed under 5 MB/s (0-1 MB/s on resume) for over ten minutes and was abandoned; the lmstudio-community conversion downloaded at 11 MB/s. No reasoning trace in the output."
+    }
+  ]
+}

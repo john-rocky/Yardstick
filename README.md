@@ -1,5 +1,20 @@
 # Apple Silicon LLM Benchmark
 
+**Decode tok/s, batch 1, greedy, warm — same model, same harness (details and raw JSONL below):**
+
+| Model | Device | Apple Core AI | MLX | llama.cpp | Core ML |
+|---|---|---:|---:|---:|---:|
+| Qwen3-0.6B 4-bit | iPhone 17 Pro | **181** (GPU pipelined) / 49 (ANE) | 112 | — | 39 (ANE, 184 MB) |
+| Qwen3-0.6B 4-bit | M4 Max | 1,121 (macOS-26 export) / ~500 (27β export) | 455 | — | — |
+| Qwen3-8B 4-bit | M4 Max | 94 | 90 | — | — |
+| Nemotron-3 Nano 4B (hybrid Mamba-2) | M4 Max | 85.2 (int8 head) | 176.8 | 88.4 | — |
+| Nemotron-3 Nano 4B (hybrid Mamba-2) | iPhone 17 Pro | 16.0 (AOT) | — | — | — |
+| Nemotron-3 Nano 30B-A3B (hybrid MoE) | M4 Max | — | 159.7 | 86.2 | — |
+| Granite-4.0-H 1B (hybrid Mamba-2) | iPhone 17 Pro / M4 Max | 35 / 136 | — | — | — |
+| Granite-4.0-H Tiny (hybrid MoE) | M4 Max | — | 202.2 | 117.3 | — |
+
+Hybrid-model llama.cpp / MLX rows: [`results/hybrid/nemotron3-nano-apple-silicon-bench.md`](results/hybrid/nemotron3-nano-apple-silicon-bench.md) (M4 Max, 2026-09-04; quantization is not equal across columns — unsloth Q4_K_M ≈ 6.2 bpw, Core AI 4B is int8-head — see the caveats there). Nemotron-3 Nano 4B and Granite-4.0-H Core AI rows: [`mlboydaisuke/Nemotron-3-Nano-4B-CoreAI`](https://huggingface.co/mlboydaisuke/Nemotron-3-Nano-4B-CoreAI), [`coreai-community/granite-4.0-h-CoreAI`](https://huggingface.co/coreai-community/granite-4.0-h-CoreAI).
+
 **On-device LLM benchmark for Apple Silicon — iPhone · iPad · Mac.**
 
 A neutral, reproducible benchmark for running local LLMs (and, in time, ASR / TTS) on Apple Silicon. Compares **MLX Swift, llama.cpp, CoreML (swift-transformers), LiteRT-LM, ExecuTorch, ANEMLL, Apple Core AI** — and Apple's own Foundation Models — under real device constraints, not just `tok/s` on a server.
