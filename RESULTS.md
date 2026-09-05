@@ -417,17 +417,17 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 1 | 0.5 | 395 | 7050.1 | 390.1 | — | 2384 |
 
+### Qwen 3 8B  (Mac M4 Max, long-context)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 1 | 1.0 | 3075 | 876.0 | 88.3 | — | 6856 |
+
 ### mlx-community/Qwen3-4B-4bit  (Mac M4 Max, long-context)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 1 | 0.7 | 1735 | 1558.5 | 137.9 | — | 4793 |
-
-### mlx-community/Qwen3-8B-4bit  (Mac M4 Max, long-context)
-
-| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 1 | 1.0 | 3075 | 876.0 | 88.3 | — | 6856 |
 
 ### Qwen 3 0.6B  (Mac M4 Max, long-context-32k)
 
@@ -441,17 +441,17 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 1 | 0.6 | 1909 | 5750.6 | 218.9 | — | 15578 |
 
+### Qwen 3 8B  (Mac M4 Max, long-context-8k)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 1 | 0.6 | 14158 | 759.6 | 72.0 | — | 23751 |
+
 ### mlx-community/Qwen3-4B-4bit  (Mac M4 Max, long-context-8k)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 1 | 0.7 | 8799 | 1224.7 | 100.7 | — | 21652 |
-
-### mlx-community/Qwen3-8B-4bit  (Mac M4 Max, long-context-8k)
-
-| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 1 | 0.6 | 14158 | 759.6 | 72.0 | — | 23751 |
 
 ### Gemma 4 E2B  (Mac M4 Max, quality)
 
@@ -553,6 +553,13 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | litert-lm | `litert-local/qwen3-1.7b-int4` | INT4 (mixed, int8 embed) | 5 | 3.9 | 351 | — | 94.9 | 171.1 | 1778 |
 | mlx-swift | `mlx-community/Qwen3-1.7B-4bit` | Q4 | 5 | 32.7 | 65 | 309.6 | 324.2 | 325.0 | 1267 |
 
+### Qwen 3 8B  (Mac M4 Max, short-chat)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | 3 | 3.5 | 467 | — | 65.2 | — | 3451 |
+| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 3 | 0.7 | 82 | 242.5 | 98.3 | — | 4757 |
+
 ### Qwen 3.5 0.8B  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
@@ -612,12 +619,6 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | 5 | 6.0 | 228 | — | 111.2 | 110.9 | 2479 |
-
-### litert-community/Qwen3-8B  (Mac M4 Max, short-chat)
-
-| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | 3 | 3.5 | 467 | — | 65.2 | — | 3451 |
 
 ### litert-community/TinySwallow-1.5B-Instruct  (Mac M4 Max, short-chat)
 
@@ -691,12 +692,6 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 5 | 67.5 | 56 | 370.3 | 163.1 | 162.2 | 2527 |
 
-### mlx-community/Qwen3-8B-4bit  (Mac M4 Max, short-chat)
-
-| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 3 | 0.7 | 82 | 242.5 | 98.3 | — | 4757 |
-
 ### mlx-community/TinySwallow-1.5B-Instruct-4bit  (Mac M4 Max, short-chat)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
@@ -755,6 +750,13 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | 1 | 0.6 | 54 | — | 265.8 | — | 793 |
 | mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 1 | 0.6 | 745 | 31.0 | 474.4 | — | 816 |
 
+### Qwen 3 8B  (Mac M4 Max, sustained-generation)
+
+| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | 1 | 2.3 | 347 | — | 67.2 | — | 2104 |
+| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 1 | 0.6 | 73 | 331.0 | 93.2 | — | 4977 |
+
 ### apple-fm/default  (Mac M4 Max, sustained-generation)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
@@ -767,23 +769,11 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | 1 | 1.4 | 202 | — | 109.8 | — | 1560 |
 
-### litert-community/Qwen3-8B  (Mac M4 Max, sustained-generation)
-
-| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | 1 | 2.3 | 347 | — | 67.2 | — | 2104 |
-
 ### mlx-community/Qwen3-4B-4bit  (Mac M4 Max, sustained-generation)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | 1 | 0.6 | 49 | 507.8 | 151.1 | — | 2738 |
-
-### mlx-community/Qwen3-8B-4bit  (Mac M4 Max, sustained-generation)
-
-| Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
-|---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | 1 | 0.6 | 73 | 331.0 | 93.2 | — | 4977 |
 
 ## Pivot 2 — by runtime
 
