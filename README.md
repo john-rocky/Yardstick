@@ -127,6 +127,12 @@ A neutral, reproducible benchmark for running local LLMs (and, in time, ASR / TT
 > 152.3 cold / 147.4 warm, engine 0.2.0+static-inputs-patch), but every cell of that session
 > started thermal-fair, so it fails the §2 guard and is not in the tables.
 > ‡ CoreML-LLM stateful-chunks bundle needs re-conversion before it can be re-measured.
+> The **184 MB** Core ML cell has no per-run record in this repo: the three Core ML short-chat
+> records (`results/raw/iphone17pro-coreml-llm-qwen3-0.6b-short-chat-run{1,2,3}.jsonl`) carry
+> `memoryPeakDuringDecodeMB` 983–987, a different instrument from the figure quoted here — treat
+> 184 MB as unverified until it is re-captured with the harness (stored-report-rule). The ANE 143.7
+> row's record is `results/raw/superseded/2026-07-14-iphone-final/` (run 3 of the June session),
+> superseded by the 2026-07-13 re-capture (118.7 cold / 116.9 warm, LEADERBOARD.md).
 
 - **Core AI's GPU "pipelined" engine was the fastest path in the June session** — cold 193.3
   after a one-time first-ever cost (76.5 on the very first generation while the shader/pipeline
