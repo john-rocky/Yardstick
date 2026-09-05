@@ -1,5 +1,7 @@
 # Apple Silicon LLM Benchmark
 
+Core AI is Apple's on-device ML runtime in iOS 27 / macOS 27 and the successor to Core ML: PyTorch models are exported with Apple's `coreai-torch` (LLMs: `coreai.llm.export`) into `.aimodel` bundles that run on the GPU or the Neural Engine, e.g. Qwen3-8B 4-bit decodes at 94 tok/s on an M4 Max GPU, MLX 90 under the same protocol ([apple-silicon-llm-bench](https://github.com/john-rocky/apple-silicon-llm-bench), macOS 27 beta, 2026-06).
+
 <!-- BEGIN GENERATED: scripts/render_headline.py -->
 
 **Decode tok/s, batch 1, greedy.** Generated from stored records by `scripts/render_headline.py` (newest record 2026-09-05) — do not edit inside the markers. Full standings with prefill, TTFT, memory and GSM8K: [LEADERBOARD.md](LEADERBOARD.md); every capture: [RESULTS.md](RESULTS.md) and `results/`. No cross-cell ratios are printed here on purpose: cells are compared only within one session, and the session is part of every cell.
