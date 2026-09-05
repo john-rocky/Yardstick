@@ -1,0 +1,8 @@
+==========
+Unified memory allows Apple Silicon laptops to leverage the same physical memory pool as the GPU, enabling efficient data sharing and processing. This pool is shared between discrete GPUs and Apple Silicon CPU, optimizing performance for GPUs by reducing overhead from context switches. However, unlike a laptop with a discrete GPU, this setup often constrains CPU access to significantly lower bandwidth memory, as the Apple Silicon CPU typically offers limited memory bandwidth. For a laptop, sacrificing this discrete GPU memory can be beneficial when running large-memory models locally, as it requires direct context sharing between the laptop's LP memory and discrete GPU's bandwidth. In contrast, an Apple Silicon discrete GPU can maintain local unified memory processing, offering a practical trade-off where GPUs handle much of the unified memory bandwidth, ensuring scalable performance gains.
+
+When unified by the practical limitations of the shared memory, a software engineer might find that the practical trade-off is less critical than the scalable nature of GPU memory, which often results in a practical compromise with desktop CPU-bound GPUs. This compromise allows for running large models efficiently on GPU cores, but a discrete GPU is not inherently the better choice for scalable performance
+==========
+Prompt: 132 tokens, 1015.814 tokens-per-sec
+Generation: 256 tokens, 204.893 tokens-per-sec
+Peak memory: 2.204 GB

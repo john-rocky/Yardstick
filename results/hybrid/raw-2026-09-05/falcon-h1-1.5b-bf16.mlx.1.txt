@@ -1,0 +1,6 @@
+==========
+Running large language models locally involves leveraging shared physical memory pools between GPUs and CPUs, enabling seamless data access for both components. This unified pool allows a laptop to efficiently utilize a discrete GPU's VRAM for memory-intensive workloads, even when the GPU is sized to match the system's own CPU's memory requirements. For laptops, this setup can stretch those limitations, allowing models that would require significant GPU memory to be executed on discrete CPUs as well. However, the trade-off is that a discrete GPU with sufficient VRAM can outperform a discrete CPU by fitting models entirely within its VRAM, offering full memory bandwidth advantages. Unified memory access lets a laptop manage memory effectively, but a discrete GPU often dictates the performance envelope for CPU-based systems, making it crucial for models that require ample VRAM. When a discrete GPU is the only option, a large memory model on CPU Silicon can be impractical unless the system has VRAM constraints, where unified memory matters for efficiency.
+==========
+Prompt: 132 tokens, 1788.310 tokens-per-sec
+Generation: 219 tokens, 128.079 tokens-per-sec
+Peak memory: 3.632 GB

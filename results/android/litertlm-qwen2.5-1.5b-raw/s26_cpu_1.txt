@@ -1,0 +1,14 @@
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+VERBOSE: Replacing 1731 out of 1794 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 57 partitions for subgraph 3 (prefill_32).
+VERBOSE: Replacing 1638 out of 1701 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 58 partitions for subgraph 0 (decode).
+    - Init Tokenizer: 205.28 ms
+  Time to first token: 0.27 s
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 39 tokens in 230.229323ms duration.
+      Prefill Speed: 169.40 tokens/sec.
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 51 tokens in 1.856418853s duration.
+      Decode Speed: 27.47 tokens/sec.
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 70.104us, 1 tokens
+    Turn 2: 169.896us, 38 tokens

@@ -1,0 +1,117 @@
+{
+  "device": {
+    "model": "SM-S942Q",
+    "soc": "SM8850",
+    "android": "16",
+    "sdk": 36,
+    "cores": 8,
+    "abi": "arm64-v8a"
+  },
+  "results": [
+    {
+      "runtime": "ExecuTorch 1.4.0",
+      "backend": "XNNPACK (default threads)",
+      "median_ms": 10.587655999999999,
+      "min_ms": 10.35125,
+      "p90_ms": 14.101823,
+      "max_abs_diff": 4.824250936508179E-7,
+      "argmax_ok": true,
+      "note": "numThreads=0; registered=[XnnpackBackend]",
+      "runs": 30
+    },
+    {
+      "runtime": "ExecuTorch 1.4.0",
+      "backend": "XNNPACK (4 threads)",
+      "median_ms": 12.2417445,
+      "min_ms": 10.293541,
+      "p90_ms": 12.885156,
+      "max_abs_diff": 4.824250936508179E-7,
+      "argmax_ok": true,
+      "note": "numThreads=4; registered=[XnnpackBackend]",
+      "runs": 30
+    },
+    {
+      "runtime": "ExecuTorch 1.4.0",
+      "backend": "portable kernels, no delegate",
+      "median_ms": 242.80656199999999,
+      "min_ms": 241.967292,
+      "p90_ms": 245.254323,
+      "max_abs_diff": 3.650784492492676E-7,
+      "argmax_ok": true,
+      "note": "numThreads=0; registered=[XnnpackBackend]",
+      "runs": 30
+    },
+    {
+      "runtime": "LiteRT 2.2.0",
+      "backend": "CPU \/ XNNPACK (default threads)",
+      "median_ms": 8.7665365,
+      "min_ms": 6.655833,
+      "p90_ms": 9.350417,
+      "max_abs_diff": 3.948807716369629E-7,
+      "argmax_ok": true,
+      "note": "CompiledModel, Accelerator.CPU",
+      "runs": 30
+    },
+    {
+      "runtime": "LiteRT 2.2.0",
+      "backend": "CPU \/ XNNPACK (4 threads)",
+      "median_ms": 5.4167705,
+      "min_ms": 5.314948,
+      "p90_ms": 5.478177,
+      "max_abs_diff": 3.948807716369629E-7,
+      "argmax_ok": true,
+      "note": "CompiledModel, CpuOptions(numThreads=4)",
+      "runs": 30
+    },
+    {
+      "runtime": "LiteRT 2.2.0",
+      "backend": "GPU",
+      "error": "com.google.ai.edge.litert.LiteRtException: Failed to compile model",
+      "note": "CompiledModel, Accelerator.GPU"
+    },
+    {
+      "runtime": "ONNX Runtime 1.24.3",
+      "backend": "CPU EP (default threads)",
+      "median_ms": 7.460989,
+      "min_ms": 7.067292,
+      "p90_ms": 7.59474,
+      "max_abs_diff": 4.209578037261963E-7,
+      "argmax_ok": true,
+      "note": "SessionOptions default",
+      "runs": 30
+    },
+    {
+      "runtime": "ONNX Runtime 1.24.3",
+      "backend": "XNNPACK EP (default)",
+      "median_ms": 12.57987,
+      "min_ms": 12.506406,
+      "p90_ms": 12.675781,
+      "max_abs_diff": 5.140900611877441E-7,
+      "argmax_ok": true,
+      "note": "addXnnpack(emptyMap())",
+      "runs": 30
+    },
+    {
+      "runtime": "ONNX Runtime 1.24.3",
+      "backend": "XNNPACK EP (4 threads)",
+      "median_ms": 8.945052,
+      "min_ms": 8.799636,
+      "p90_ms": 9.554688,
+      "max_abs_diff": 5.140900611877441E-7,
+      "argmax_ok": true,
+      "note": "addXnnpack(intra_op_num_threads=4)",
+      "runs": 30
+    },
+    {
+      "runtime": "ONNX Runtime 1.24.3",
+      "backend": "NNAPI EP",
+      "median_ms": 85.59713550000001,
+      "min_ms": 84.804896,
+      "p90_ms": 87.181093,
+      "max_abs_diff": 4.172325134277344E-7,
+      "argmax_ok": true,
+      "note": "addNnapi()",
+      "runs": 30
+    }
+  ]
+}

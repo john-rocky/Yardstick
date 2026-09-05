@@ -1,0 +1,10 @@
+==========
+For a software engineer new to GPU usage, understanding the implications of unified memory on Apple Silicon is crucial when running large language models (LLMs) locally. First, Apple's M1 uses a unified memory architecture, where both the GPU and CPU access a shared pool of memory. This setup allows efficient data exchange but can limit the performance boost seen on systems with separate CPU and GPU cores. When using models on a laptop with a discrete GPU, memory bandwidth sharing between the GPU and CPU becomes a key factor. LLMs often require large datasets to be processed, and unified memory management lets a laptop leverage a shared VRAM pool, enabling it to handle memory-intensive tasks more smoothly than a smaller discrete GPU's limitations would allow.
+
+In this context, unified memory is essential for practical local LLM execution, as it facilitates data transfer between the M.2 memory and the processor without relying solely on CPU-side VRAM. On Apple Silicon, this shared memory pool allows LLMs to run models that would otherwise exceed the CPU's processing capabilities, but it also means that memory bottlenecks can significantly impact performance when handling discrete tasks.
+
+Compared to desktop GPUs, laptops with Apple
+==========
+Prompt: 132 tokens, 944.844 tokens-per-sec
+Generation: 256 tokens, 65.143 tokens-per-sec
+Peak memory: 6.903 GB

@@ -1,0 +1,10 @@
+==========
+Unified memory is significant for software engineers working with large language models (LLMs) when running on a MacBook with Apple Silicon because it abstractly integrates all available memory, both CPUs and GPUs, into a shared pool. This design is beneficial for handling large language models as it allows the CPU to access data stored in GPU memory, treating both CPUs and GPUs as part of a homogeneous memory architecture. 
+
+This sharing of a physical memory pool by CPUs and CPUs together is advantageous for software engineers as it enables efficient local loading of LLMs on Apple Silicon GPUs. Even though CPUs and CPUs use shared memory, GPUs access large language model memory differently—via CPUs—than CPUs would on a traditional GPU. However, CPUs treat all data as part of a unified memory space, which can lead to suboptimal performance for tasks like CPUs reading from this shared pool. CPUs, on the other hand, can leverage this unified memory structure to run localized models on laptops where the model size is still too large to fit in the available GPU memory bandwidth. 
+
+In contrast, when running LLMs on Apple Silicon, the engineer faces CPUs' limited memory
+==========
+Prompt: 132 tokens, 1169.133 tokens-per-sec
+Generation: 256 tokens, 165.907 tokens-per-sec
+Peak memory: 2.444 GB

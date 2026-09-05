@@ -1,0 +1,16 @@
+Benchmarking model: Qwen2.5-1.5B-Instruct_multi-prefill-seq_q8_ekv4096.litertlm (/private/tmp/odp-bench/hf/hub/models--litert-community--Qwen2.5-1.5B-Instruct/snapshots/19edb84c69a0212f29a6ef17ba0d6f278b6a1614/Qwen2.5-1.5B-Instruct_multi-prefill-seq_q8_ekv4096.litertlm)
+Backend                    : cpu
+Number of tokens in prefill: 512
+Number of tokens in decode : 256
+Max number of tokens       : 4096
+Cache                      : disk
+Speculative decoding       : auto
+Running warmup..
+Running iteration 1 of 3..
+Running iteration 2 of 3..
+Running iteration 3 of 3..
+----- Results -----
+Prefill speed:        839.52 tokens/s
+Decode speed:         48.70 tokens/s
+Init time:            0.2894 s
+Time to first token:  0.6914 s

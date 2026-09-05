@@ -1,0 +1,4 @@
+userIn two or three sentences, what is unified memory on Apple Silicon and why does it matter for running LLMs locally?
+assistantUnified memory on Apple Silicon is a system architecture that allows the CPU, GPU, and system memory to share a single pool of memory, eliminating the need for separate memory spaces. This matters for running large language models (LLMs) locally because it enables efficient memory management, reduces latency, and allows for better utilization of the available hardware resources, ultimately improving the performance and speed of LLM inference. [end of text]
+
+

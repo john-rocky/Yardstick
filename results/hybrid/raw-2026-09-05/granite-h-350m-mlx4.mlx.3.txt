@@ -1,0 +1,6 @@
+==========
+Unified memory, also known as shared memory, is a critical component for running large language models locally. It allows multiple processors to access the same physical memory, which is essential for the performance of these models. This shared memory pool enables the processing of multiple models simultaneously, making it possible to run them on a single physical machine. The trade-off is that while this can be beneficial for overall system efficiency, it may also introduce potential risks, such as increased risk of data leakage or other vulnerabilities. Therefore, for the sake of system performance and security, a discrete GPU is still the better choice.
+==========
+Prompt: 145 tokens, 3871.618 tokens-per-sec
+Generation: 119 tokens, 530.337 tokens-per-sec
+Peak memory: 0.572 GB

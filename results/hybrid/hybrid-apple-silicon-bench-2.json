@@ -1,0 +1,394 @@
+{
+ "measured": "2026-09-05",
+ "machine": "Apple M4 Max 128 GiB, macOS 27.0 (26A5416b)",
+ "llama_cpp": {
+  "build": "8680",
+  "commit": "15f786e65",
+  "source": "Homebrew",
+  "cmd": "llama-bench -p 512 -n 256 -ngl 99 -fa 1 -r 3",
+  "note": "Three identical llama-bench invocations per model: (1) -o json (values under llama_cpp.pp512/tg256), (2) text (values under text_run, quoted in the markdown tables), (3) under /usr/bin/time -l (max_rss_bytes, rss_run)."
+ },
+ "mlx": {
+  "mlx": "0.32.2",
+  "mlx_lm": "0.31.3",
+  "python": "3.12.13",
+  "cmd": "python -m mlx_lm generate --prompt <prompt.txt> --max-tokens 256 --temp 0 (x3 processes)"
+ },
+ "rows": [
+  {
+   "model": "Granite-4.0-H 350M",
+   "llama_cpp": {
+    "weights": "ibm-granite/granite-4.0-h-350m-GGUF Q4_K_M rev a864f823",
+    "pp512": {
+     "avg_ts": 8470.38629,
+     "stddev_ts": 91.887773
+    },
+    "tg256": {
+     "avg_ts": 282.459008,
+     "stddev_ts": 1.376164
+    },
+    "max_rss_bytes": 346685440,
+    "text_run": {
+     "pp512": {
+      "avg_ts": 8496.05,
+      "stddev_ts": 16.92
+     },
+     "tg256": {
+      "avg_ts": 282.07,
+      "stddev_ts": 1.03
+     }
+    },
+    "rss_run": {
+     "pp512": {
+      "avg_ts": 8504.67,
+      "stddev_ts": 11.13
+     },
+     "tg256": {
+      "avg_ts": 278.79,
+      "stddev_ts": 3.4
+     }
+    }
+   },
+   "mlx": {
+    "weights": "mlx-community/granite-4.0-h-350m-4bit rev 2b96c1f6",
+    "runs": [
+     {
+      "prompt_tokens": 145,
+      "prompt_tps": 638.339,
+      "gen_tokens": 119,
+      "gen_tps": 513.605,
+      "peak_gb": 0.545
+     },
+     {
+      "prompt_tokens": 145,
+      "prompt_tps": 4231.229,
+      "gen_tokens": 119,
+      "gen_tps": 521.717,
+      "peak_gb": 0.571
+     },
+     {
+      "prompt_tokens": 145,
+      "prompt_tps": 3871.618,
+      "gen_tokens": 119,
+      "gen_tps": 530.337,
+      "peak_gb": 0.572
+     }
+    ],
+    "median_gen_tps": 521.717
+   }
+  },
+  {
+   "model": "Granite-4.0-H 1B",
+   "llama_cpp": {
+    "weights": "ibm-granite/granite-4.0-h-1b-GGUF Q4_K_M rev c2cb1972",
+    "pp512": {
+     "avg_ts": 2656.440968,
+     "stddev_ts": 5.382321
+    },
+    "tg256": {
+     "avg_ts": 141.855767,
+     "stddev_ts": 1.690267
+    },
+    "max_rss_bytes": 1069187072,
+    "text_run": {
+     "pp512": {
+      "avg_ts": 2659.35,
+      "stddev_ts": 2.31
+     },
+     "tg256": {
+      "avg_ts": 143.95,
+      "stddev_ts": 1.97
+     }
+    },
+    "rss_run": {
+     "pp512": {
+      "avg_ts": 2641.06,
+      "stddev_ts": 5.44
+     },
+     "tg256": {
+      "avg_ts": 146.92,
+      "stddev_ts": 1.86
+     }
+    }
+   },
+   "mlx": {
+    "weights": "mlx-community/granite-4.0-h-1b-4bit rev a5a21e23",
+    "runs": [
+     {
+      "prompt_tokens": 145,
+      "prompt_tps": 724.059,
+      "gen_tokens": 179,
+      "gen_tps": 279.973,
+      "peak_gb": 1.364
+     },
+     {
+      "prompt_tokens": 145,
+      "prompt_tps": 2086.46,
+      "gen_tokens": 179,
+      "gen_tps": 275.771,
+      "peak_gb": 1.458
+     },
+     {
+      "prompt_tokens": 145,
+      "prompt_tps": 2047.254,
+      "gen_tokens": 179,
+      "gen_tps": 273.871,
+      "peak_gb": 1.435
+     }
+    ],
+    "median_gen_tps": 275.771
+   }
+  },
+  {
+   "model": "Falcon-H1 1.5B-Instruct",
+   "llama_cpp": {
+    "weights": "tiiuae/Falcon-H1-1.5B-Instruct-GGUF Q4_K_M rev 0d3a6cfe",
+    "pp512": {
+     "avg_ts": 2535.20394,
+     "stddev_ts": 4.882498
+    },
+    "tg256": {
+     "avg_ts": 147.525027,
+     "stddev_ts": 0.873067
+    },
+    "max_rss_bytes": 1130528768,
+    "text_run": {
+     "pp512": {
+      "avg_ts": 2550.53,
+      "stddev_ts": 4.11
+     },
+     "tg256": {
+      "avg_ts": 148.58,
+      "stddev_ts": 0.33
+     }
+    },
+    "rss_run": {
+     "pp512": {
+      "avg_ts": 2554.44,
+      "stddev_ts": 3.18
+     },
+     "tg256": {
+      "avg_ts": 147.97,
+      "stddev_ts": 0.17
+     }
+    }
+   },
+   "mlx": {
+    "weights": "mlx-community/Falcon-H1-1.5B-Instruct-4bit rev 6f5e4f68",
+    "coherence": "degenerates into repetition after ~2 sentences on the long prompt",
+    "runs": [
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 788.005,
+      "gen_tokens": 256,
+      "gen_tps": 301.457,
+      "peak_gb": 1.427
+     },
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 1980.196,
+      "gen_tokens": 256,
+      "gen_tps": 300.024,
+      "peak_gb": 1.427
+     },
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 2017.936,
+      "gen_tokens": 256,
+      "gen_tps": 299.816,
+      "peak_gb": 1.427
+     }
+    ],
+    "median_gen_tps": 300.024
+   },
+   "mlx_self_converted": {
+    "weights": "own 4-bit gs64 affine from tiiuae bf16 rev 80ebc50d with mlx-lm 0.31.3 (4.505 bpw)",
+    "coherence": "identical text to the mlx-community 4-bit row (repetition; 'Bubble Track Algorithm')",
+    "runs": [
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 1765.484,
+      "gen_tokens": 256,
+      "gen_tps": 300.64,
+      "peak_gb": 1.427
+     },
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 2248.344,
+      "gen_tokens": 256,
+      "gen_tps": 300.275,
+      "peak_gb": 1.427
+     },
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 2171.763,
+      "gen_tokens": 256,
+      "gen_tps": 299.96,
+      "peak_gb": 1.427
+     }
+    ],
+    "median_gen_tps": 300.275
+   },
+   "mlx_controls": {
+    "8bit_gs64": {
+     "runs": [
+      {
+       "prompt_tokens": 132,
+       "prompt_tps": 1015.814,
+       "gen_tokens": 256,
+       "gen_tps": 204.893,
+       "peak_gb": 2.204
+      }
+     ],
+     "median_gen_tps": 204.893,
+     "coherence": "not repetitive, muddled"
+    },
+    "bf16": {
+     "runs": [
+      {
+       "prompt_tokens": 132,
+       "prompt_tps": 1788.31,
+       "gen_tokens": 219,
+       "gen_tps": 128.079,
+       "peak_gb": 3.632
+      }
+     ],
+     "median_gen_tps": 128.079,
+     "coherence": "not repetitive, muddled"
+    }
+   }
+  },
+  {
+   "model": "Falcon-H1 3B-Instruct",
+   "llama_cpp": {
+    "weights": "own Q4_K_M from tiiuae/Falcon-H1-3B-Instruct bf16 rev 01087ec4 via convert_hf_to_gguf.py (llama.cpp 8680) + llama-quantize, 4.79 BPW",
+    "pp512": {
+     "avg_ts": 1297.664754,
+     "stddev_ts": 4.914553
+    },
+    "tg256": {
+     "avg_ts": 86.354246,
+     "stddev_ts": 0.010372
+    },
+    "max_rss_bytes": 2147205120,
+    "text_run": {
+     "pp512": {
+      "avg_ts": 1300.65,
+      "stddev_ts": 5.63
+     },
+     "tg256": {
+      "avg_ts": 86.11,
+      "stddev_ts": 0.4
+     }
+    },
+    "rss_run": {
+     "pp512": {
+      "avg_ts": 1297.7,
+      "stddev_ts": 5.3
+     },
+     "tg256": {
+      "avg_ts": 86.45,
+      "stddev_ts": 0.04
+     }
+    }
+   },
+   "mlx": {
+    "weights": "own 4-bit gs64 affine from tiiuae bf16 rev 01087ec4 with mlx-lm 0.31.3 (4.504 bpw)",
+    "coherence": "fluent but muddled",
+    "runs": [
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 780.4,
+      "gen_tokens": 256,
+      "gen_tps": 167.904,
+      "peak_gb": 2.456
+     },
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 1168.864,
+      "gen_tokens": 256,
+      "gen_tps": 168.162,
+      "peak_gb": 2.442
+     },
+     {
+      "prompt_tokens": 132,
+      "prompt_tps": 1169.133,
+      "gen_tokens": 256,
+      "gen_tps": 165.907,
+      "peak_gb": 2.444
+     }
+    ],
+    "median_gen_tps": 167.904
+   },
+   "mlx_controls": {
+    "8bit_gs64": {
+     "runs": [
+      {
+       "prompt_tokens": 132,
+       "prompt_tps": 1133.065,
+       "gen_tokens": 256,
+       "gen_tps": 109.424,
+       "peak_gb": 4.013
+      }
+     ],
+     "median_gen_tps": 109.424,
+     "coherence": "coherent"
+    },
+    "bf16": {
+     "runs": [
+      {
+       "prompt_tokens": 132,
+       "prompt_tps": 944.844,
+       "gen_tokens": 256,
+       "gen_tps": 65.143,
+       "peak_gb": 6.903
+      }
+     ],
+     "median_gen_tps": 65.143,
+     "coherence": "coherent"
+    }
+   }
+  },
+  {
+   "model": "Falcon-H1 7B-Instruct",
+   "llama_cpp": {
+    "weights": "tiiuae/Falcon-H1-7B-Instruct-GGUF Q4_K_M rev 058c8c8f",
+    "pp512": {
+     "avg_ts": 682.958202,
+     "stddev_ts": 4.356899
+    },
+    "tg256": {
+     "avg_ts": 52.696786,
+     "stddev_ts": 0.186655
+    },
+    "max_rss_bytes": 4889559040,
+    "text_run": {
+     "pp512": {
+      "avg_ts": 686.96,
+      "stddev_ts": 1.16
+     },
+     "tg256": {
+      "avg_ts": 52.91,
+      "stddev_ts": 0.4
+     }
+    },
+    "rss_run": {
+     "pp512": {
+      "avg_ts": 683.65,
+      "stddev_ts": 2.1
+     },
+     "tg256": {
+      "avg_ts": 53.03,
+      "stddev_ts": 0.93
+     }
+    }
+   },
+   "mlx": null
+  }
+ ],
+ "notes": [
+  "llama.cpp prompt = pp512 batch; MLX prompt = 132-145 token chat prompt",
+  "peak memory: max RSS (llama.cpp) vs Metal peak (MLX)",
+  "Q4_K_M ~4.8 bpw vs mlx 4-bit gs64 4.5 bpw"
+ ]
+}

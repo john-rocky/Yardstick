@@ -1,0 +1,83 @@
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007145407ef0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007145406ed0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007145407ad0, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb4000071454085b0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [compiled_model.cc:815] Flatbuffer model initialized directly from incoming litert model.
+INFO: Initialized TensorFlow Lite runtime.
+I0000 00:00:1788557852.733938   14607 delegate_opencl.cc:603] options->hint_waiting_for_completion: false
+I0000 00:00:1788557852.734511   14607 delegate_opencl.cc:605] options->kernel_batch_size: -1
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: Loaded OpenCL library with dlopen.
+INFO: [gpu_environment.cc:220] Created OpenCL device from provided device id and platform id.
+INFO: [gpu_environment.cc:283] Reusing provided EGL environment.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+VERBOSE: Replacing 1359 out of 1359 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 0 (decode).
+I0000 00:00:1788557855.742235   14607 delegate_kernel.cc:325] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788557855.742427   14607 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1788557855.833295   14607 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 1 (prefill_128).
+I0000 00:00:1788557855.929330   14607 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788557855.929421   14607 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1788557856.036613   14607 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 2 (prefill_1280).
+I0000 00:00:1788557856.133019   14607 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788557856.133110   14607 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1788557856.278293   14607 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 3 (prefill_32).
+I0000 00:00:1788557856.339687   14607 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788557856.339780   14607 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1788557856.447948   14607 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 4 (prefill_512).
+I0000 00:00:1788557856.516897   14607 delegate_kernel.cc:325] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788557856.517041   14607 delegate_kernel.cc:877] Initializing OpenCL-based API from serialized data.
+I0000 00:00:1788557856.633814   14607 delegate_kernel.cc:775] Initialized InferenceContext from serialized data.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [gpu_registry.cc:101] Attempting to load GPU accelerator(libLiteRtGpuAccelerator.so).
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb400007145691f90, name=LiteRT GPU
+INFO: [gpu_registry.cc:109] Dynamically loaded GPU accelerator(libLiteRtGpuAccelerator.so) registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0xb40000714569c910, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+input_prompt: Unified memory on Apple Silicon means the CPU and GPU share one physical pool of memory, so a model's weights do not have to be copied into a separate video memory before the GPU can read them. On a phone, the same idea applies to the system-on-chip: the CPU, GPU and any neural accelerator address the same DRAM, and the practical limit for a local language model is how much of that DRAM the operating system will let one process keep resident, together with the memory bandwidth the chip can sustain while it decodes one token at a time. Unified memory on Apple Silicon means the CPU and GPU share one physical pool of memory, so a model's weights do not have to be copied into a separate video memory before the GPU can read them. On a phone, the same idea applies to the system-on-chip: the CPU, GPU and any neural accelerator address the same DRAM, and the practical limit for a local language model is how much of that DRAM the operating system will let one process keep resident, together with the memory bandwidth the chip can sustain while it decodes one token at a time. Unified memory on Apple Silicon means the CPU and GPU share one physical pool of memory, so a model's weights do not have to be copied into a separate video memory before the GPU can read them. On a phone, the same idea applies to the system-on-chip: the CPU, GPU and any neural accelerator address the same DRAM, and the practical limit for a local language model is how much of that DRAM the operating system will let one process keep resident, together with the memory bandwidth the chip can sustain while it decodes one token at a time. Unified memory on Apple Silicon means the CPU and GPU share one physical pool of memory, so a model's weights do not have to be copied into a separate video memory before the GPU can read them. On a phone, the same idea applies to the system-on-chip: the CPU, GPU and any neural accelerator address the same DRAM, and the practical limit for a local language model is how much of that DRAM the operating system will let one process keep resident, together with the memory bandwidth the chip can sustain while it decodes one token at a time. Summarize the paragraph above in one sentence, then explain in about 150 words why memory bandwidth, not compute, usually limits decode speed for a 1.5B parameter model on a phone.
+Unified memory on Apple Silicon allows for efficient resource management by combining the CPU and GPU memory into a single pool. For local language models on phones, limiting factors are typically the operating system's memory residency policies, combined with the chip's memory bandwidth, rather than purely compute limits, as a 1.5B parameter model can achieve high speed with optimal memory bandwidth allocation.
+
+BenchmarkInfo:
+  Init Phases (7):
+    - Init Conversation: 0.02 ms
+    - Init Executor: 4200.21 ms
+    - Init LLM metadata: 0.02 ms
+    - Init Model assets: 0.79 ms
+    - Init Tokenizer: 263.17 ms
+    - Init Total: 4201.15 ms
+--------------------------------------------------
+  Time to first token: 0.61 s
+--------------------------------------------------
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 529 tokens in 559.862083ms duration.
+      Prefill Speed: 944.88 tokens/sec.
+--------------------------------------------------
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 75 tokens in 3.408557603s duration.
+      Decode Speed: 22.00 tokens/sec.
+--------------------------------------------------
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 118.802us, 1 tokens
+    Turn 2: 1.567083ms, 528 tokens
+--------------------------------------------------
+--------------------------------------------------
+
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb4000071454085b0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007145407ad0, name=LiteRT GPU
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb40000714569c910, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0xb400007145691f90, name=LiteRT GPU

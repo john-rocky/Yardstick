@@ -1,0 +1,6 @@
+| model                          |       size |     params | backend    | threads | fa |            test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | -: | --------------: | -------------------: |
+| falcon-h1 7B Q4_K - Medium     |   4.28 GiB |     7.59 B | BLAS,MTL   |      12 |  1 |           pp512 |        686.96 ± 1.16 |
+| falcon-h1 7B Q4_K - Medium     |   4.28 GiB |     7.59 B | BLAS,MTL   |      12 |  1 |           tg256 |         52.91 ± 0.40 |
+
+build: 15f786e65 (8680)

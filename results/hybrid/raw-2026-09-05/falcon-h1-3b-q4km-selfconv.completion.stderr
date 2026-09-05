@@ -1,0 +1,227 @@
+load_backend: loaded BLAS backend from /opt/homebrew/Cellar/ggml/0.9.11/libexec/libggml-blas.so
+ggml_metal_device_init: tensor API disabled for pre-M5 and pre-A19 devices
+ggml_metal_library_init: using embedded metal library
+ggml_metal_library_init: loaded in 0.007 sec
+ggml_metal_rsets_init: creating a residency set collection (keep_alive = 180 s)
+ggml_metal_device_init: GPU name:   MTL0
+ggml_metal_device_init: GPU family: MTLGPUFamilyApple9  (1009)
+ggml_metal_device_init: GPU family: MTLGPUFamilyCommon3 (3003)
+ggml_metal_device_init: GPU family: MTLGPUFamilyMetal4  (5002)
+ggml_metal_device_init: simdgroup reduction   = true
+ggml_metal_device_init: simdgroup matrix mul. = true
+ggml_metal_device_init: has unified memory    = true
+ggml_metal_device_init: has bfloat            = true
+ggml_metal_device_init: has tensor            = false
+ggml_metal_device_init: use residency sets    = true
+ggml_metal_device_init: use shared buffers    = true
+ggml_metal_device_init: recommendedMaxWorkingSetSize  = 115448.73 MB
+load_backend: loaded MTL backend from /opt/homebrew/Cellar/ggml/0.9.11/libexec/libggml-metal.so
+load_backend: loaded CPU backend from /opt/homebrew/Cellar/ggml/0.9.11/libexec/libggml-cpu-apple_m4.so
+main: llama backend init
+main: load the model and apply lora adapter, if any
+common_init_result: fitting params to device memory, for bugs during this step try to reproduce them with -fit off, or provide --verbose logs if the bug only occurs with -fit on
+llama_params_fit_impl: projected to use 6328 MiB of device memory vs. 109970 MiB of free device memory
+llama_params_fit_impl: will leave 103642 >= 1024 MiB of free device memory, no changes needed
+llama_params_fit: successfully fit params to free device memory
+llama_params_fit: fitting params to free memory took 0.08 seconds
+llama_model_load_from_file_impl: using device MTL0 (Apple M4 Max) (unknown id) - 110100 MiB free
+llama_model_loader: loaded meta data with 41 key-value pairs and 547 tensors from models/Falcon-H1-3B-Instruct-Q4_K_M.gguf (version GGUF V3 (latest))
+llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+llama_model_loader: - kv   0:                       general.architecture str              = falcon-h1
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = 01087ec4c132d7f186908716b3530ea187f062a1
+llama_model_loader: - kv   3:                           general.finetune str              = 01087ec4c132d7f186908716b3530ea187f062a1
+llama_model_loader: - kv   4:                         general.size_label str              = 3.1B
+llama_model_loader: - kv   5:                            general.license str              = other
+llama_model_loader: - kv   6:                       general.license.name str              = falcon-llm-license
+llama_model_loader: - kv   7:                       general.license.link str              = https://falconllm.tii.ae/falcon-terms...
+llama_model_loader: - kv   8:                   general.base_model.count u32              = 1
+llama_model_loader: - kv   9:                  general.base_model.0.name str              = Falcon H1 3B Base
+llama_model_loader: - kv  10:          general.base_model.0.organization str              = Tiiuae
+llama_model_loader: - kv  11:              general.base_model.0.repo_url str              = https://huggingface.co/tiiuae/Falcon-...
+llama_model_loader: - kv  12:                               general.tags arr[str,1]       = ["falcon-h1"]
+llama_model_loader: - kv  13:                          general.languages arr[str,18]      = ["ar", "cs", "de", "en", "es", "fr", ...
+llama_model_loader: - kv  14:                   falcon-h1.context_length u32              = 131072
+llama_model_loader: - kv  15:                 falcon-h1.embedding_length u32              = 2560
+llama_model_loader: - kv  16:              falcon-h1.feed_forward_length u32              = 6144
+llama_model_loader: - kv  17:             falcon-h1.attention.head_count u32              = 10
+llama_model_loader: - kv  18:                      falcon-h1.block_count u32              = 32
+llama_model_loader: - kv  19:                  falcon-h1.ssm.conv_kernel u32              = 4
+llama_model_loader: - kv  20:                   falcon-h1.ssm.inner_size u32              = 4096
+llama_model_loader: - kv  21:                   falcon-h1.ssm.state_size u32              = 256
+llama_model_loader: - kv  22:               falcon-h1.ssm.time_step_rank u32              = 32
+llama_model_loader: - kv  23:                  falcon-h1.ssm.group_count u32              = 1
+llama_model_loader: - kv  24: falcon-h1.attention.layer_norm_rms_epsilon f32              = 0.000010
+llama_model_loader: - kv  25:                       falcon-h1.vocab_size u32              = 65537
+llama_model_loader: - kv  26:          falcon-h1.attention.head_count_kv u32              = 2
+llama_model_loader: - kv  27:             falcon-h1.attention.key_length u32              = 128
+llama_model_loader: - kv  28:           falcon-h1.attention.value_length u32              = 128
+llama_model_loader: - kv  29:                   falcon-h1.rope.freq_base f32              = 99999997952.000000
+llama_model_loader: - kv  30:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  31:                         tokenizer.ggml.pre str              = falcon-h1
+llama_model_loader: - kv  32:                      tokenizer.ggml.tokens arr[str,65537]   = ["<|pad|>", ">>ABSTRACT<<", ">>INTROD...
+llama_model_loader: - kv  33:                  tokenizer.ggml.token_type arr[i32,65537]   = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, ...
+llama_model_loader: - kv  34:                      tokenizer.ggml.merges arr[str,64769]   = ["Ġ Ġ", "ĠĠ ĠĠ", "Ġ t", "i n",...
+llama_model_loader: - kv  35:                tokenizer.ggml.bos_token_id u32              = 17
+llama_model_loader: - kv  36:                tokenizer.ggml.eos_token_id u32              = 11
+llama_model_loader: - kv  37:            tokenizer.ggml.padding_token_id u32              = 65536
+llama_model_loader: - kv  38:                    tokenizer.chat_template str              = {{bos_token}}\n{%- if tools %}\n    {{-...
+llama_model_loader: - kv  39:               general.quantization_version u32              = 2
+llama_model_loader: - kv  40:                          general.file_type u32              = 15
+llama_model_loader: - type  f32:  257 tensors
+llama_model_loader: - type q4_K:  257 tensors
+llama_model_loader: - type q6_K:   33 tensors
+print_info: file format = GGUF V3 (latest)
+print_info: file type   = Q4_K - Medium
+print_info: file size   = 1.76 GiB (4.79 BPW) 
+load: 0 unused tokens
+load: printing all EOG tokens:
+load:   - 11 ('<|end_of_text|>')
+load:   - 15 ('<|eom_id|>')
+load:   - 16 ('<|eot_id|>')
+load:   - 228 ('<|im_end|>')
+load: special tokens cache size = 525
+load: token to piece cache size = 0.3907 MB
+print_info: arch                  = falcon-h1
+print_info: vocab_only            = 0
+print_info: no_alloc              = 0
+print_info: n_ctx_train           = 131072
+print_info: n_embd                = 2560
+print_info: n_embd_inp            = 2560
+print_info: n_layer               = 32
+print_info: n_head                = 10
+print_info: n_head_kv             = 2
+print_info: n_rot                 = 128
+print_info: n_swa                 = 0
+print_info: is_swa_any            = 0
+print_info: n_embd_head_k         = 128
+print_info: n_embd_head_v         = 128
+print_info: n_gqa                 = 5
+print_info: n_embd_k_gqa          = 256
+print_info: n_embd_v_gqa          = 256
+print_info: f_norm_eps            = 0.0e+00
+print_info: f_norm_rms_eps        = 1.0e-05
+print_info: f_clamp_kqv           = 0.0e+00
+print_info: f_max_alibi_bias      = 0.0e+00
+print_info: f_logit_scale         = 0.0e+00
+print_info: f_attn_scale          = 0.0e+00
+print_info: n_ff                  = 6144
+print_info: n_expert              = 0
+print_info: n_expert_used         = 0
+print_info: n_expert_groups       = 0
+print_info: n_group_used          = 0
+print_info: causal attn           = 1
+print_info: pooling type          = -1
+print_info: rope type             = 2
+print_info: rope scaling          = linear
+print_info: freq_base_train       = 99999997952.0
+print_info: freq_scale_train      = 1
+print_info: n_ctx_orig_yarn       = 131072
+print_info: rope_yarn_log_mul     = 0.0000
+print_info: rope_finetuned        = unknown
+print_info: ssm_d_conv            = 4
+print_info: ssm_d_inner           = 4096
+print_info: ssm_d_state           = 256
+print_info: ssm_dt_rank           = 32
+print_info: ssm_n_group           = 1
+print_info: ssm_dt_b_c_rms        = 0
+print_info: model type            = 3B
+print_info: model params          = 3.15 B
+print_info: general.name          = 01087ec4c132d7f186908716b3530ea187f062a1
+print_info: vocab type            = BPE
+print_info: n_vocab               = 65537
+print_info: n_merges              = 64769
+print_info: BOS token             = 17 '<|begin_of_text|>'
+print_info: EOS token             = 11 '<|end_of_text|>'
+print_info: EOT token             = 11 '<|end_of_text|>'
+print_info: EOM token             = 15 '<|eom_id|>'
+print_info: PAD token             = 65536 '<pad>'
+print_info: LF token              = 709 'Ċ'
+print_info: EOG token             = 11 '<|end_of_text|>'
+print_info: EOG token             = 15 '<|eom_id|>'
+print_info: EOG token             = 16 '<|eot_id|>'
+print_info: EOG token             = 228 '<|im_end|>'
+print_info: max token length      = 512
+load_tensors: loading model tensors, this can take a while... (mmap = true, direct_io = false)
+load_tensors: offloading output layer to GPU
+load_tensors: offloading 31 repeating layers to GPU
+load_tensors: offloaded 33/33 layers to GPU
+load_tensors:   CPU_Mapped model buffer size =    90.00 MiB
+load_tensors:  MTL0_Mapped model buffer size =  1798.57 MiB
+..........................................................................................
+common_init_result: added <|end_of_text|> logit bias = -inf
+common_init_result: added <|eom_id|> logit bias = -inf
+common_init_result: added <|eot_id|> logit bias = -inf
+common_init_result: added <|im_end|> logit bias = -inf
+llama_context: constructing llama_context
+llama_context: n_seq_max     = 1
+llama_context: n_ctx         = 131072
+llama_context: n_ctx_seq     = 131072
+llama_context: n_batch       = 2048
+llama_context: n_ubatch      = 512
+llama_context: causal_attn   = 1
+llama_context: flash_attn    = enabled
+llama_context: kv_unified    = false
+llama_context: freq_base     = 99999997952.0
+llama_context: freq_scale    = 1
+ggml_metal_init: allocating
+ggml_metal_init: found device: Apple M4 Max
+ggml_metal_init: picking default device: Apple M4 Max
+ggml_metal_init: use fusion         = true
+ggml_metal_init: use concurrency    = true
+ggml_metal_init: use graph optimize = true
+llama_context:        CPU  output buffer size =     0.25 MiB
+llama_kv_cache:       MTL0 KV buffer size =  4096.00 MiB
+llama_kv_cache: size = 4096.00 MiB (131072 cells,  32 layers,  1/1 seqs), K (f16): 2048.00 MiB, V (f16): 2048.00 MiB
+llama_kv_cache: attn_rot_k = 0
+llama_kv_cache: attn_rot_v = 0
+llama_memory_recurrent:       MTL0 RS buffer size =   129.69 MiB
+llama_memory_recurrent: size =  129.69 MiB (     1 cells,  32 layers,  1 seqs), R (f32):    1.69 MiB, S (f32):  128.00 MiB
+sched_reserve: reserving ...
+sched_reserve: resolving fused Gated Delta Net support:
+sched_reserve: fused Gated Delta Net (autoregressive) enabled
+sched_reserve: fused Gated Delta Net (chunked) enabled
+sched_reserve:       MTL0 compute buffer size =   394.01 MiB
+sched_reserve:        CPU compute buffer size =   266.01 MiB
+sched_reserve: graph nodes  = 2632
+sched_reserve: graph splits = 2
+sched_reserve: reserve took 18.30 ms, sched copies = 1
+common_init_from_params: warming up the model with an empty run - please wait ... (--no-warmup to disable)
+main: llama threadpool init, n_threads = 12
+main: chat template is available, enabling conversation mode (disable it with -no-cnv)
+*** User-specified prompt will pre-start conversation, did you mean to set --system-prompt (-sys) instead?
+main: chat template example:
+<|im_start|>system
+You are a helpful assistant<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+Hi there<|im_end|>
+<|im_start|>user
+How are you?<|im_end|>
+<|im_start|>assistant
+
+
+system_info: n_threads = 12 (n_threads_batch = 12) / 16 | MTL : EMBED_LIBRARY = 1 | CPU : NEON = 1 | ARM_FMA = 1 | FP16_VA = 1 | MATMUL_INT8 = 1 | DOTPROD = 1 | SME = 1 | ACCELERATE = 1 | OPENMP = 1 | REPACK = 1 | 
+
+sampler seed: 3425030684
+sampler params: 
+	repeat_last_n = 64, repeat_penalty = 1.000, frequency_penalty = 0.000, presence_penalty = 0.000
+	dry_multiplier = 0.000, dry_base = 1.750, dry_allowed_length = 2, dry_penalty_last_n = -1
+	top_k = 40, top_p = 0.950, min_p = 0.050, xtc_probability = 0.000, xtc_threshold = 0.100, typical_p = 1.000, top_n_sigma = -1.000, temp = 0.000
+	mirostat = 0, mirostat_lr = 0.100, mirostat_ent = 5.000, adaptive_target = -1.000, adaptive_decay = 0.900
+sampler chain: logits -> ?penalties -> ?dry -> ?top-n-sigma -> top-k -> ?typical -> top-p -> min-p -> ?xtc -> temp-ext -> dist 
+generate: n_ctx = 131072, n_batch = 2048, n_predict = 160, n_keep = 1
+
+common_perf_print:    sampling time =       5.06 ms
+common_perf_print:    samplers time =       3.06 ms /   105 tokens
+common_perf_print:        load time =     377.75 ms
+common_perf_print: prompt eval time =      60.60 ms /    36 tokens (    1.68 ms per token,   594.08 tokens per second)
+common_perf_print:        eval time =     783.71 ms /    68 runs   (   11.53 ms per token,    86.77 tokens per second)
+common_perf_print:       total time =     850.50 ms /   104 tokens
+common_perf_print: unaccounted time =       1.13 ms /   0.1 %      (total - sampling - prompt eval - eval) / (total)
+common_perf_print:    graphs reused =         67
+llama_memory_breakdown_print: | memory breakdown [MiB]  |  total     free    self   model   context   compute    unaccounted |
+llama_memory_breakdown_print: |   - MTL0 (Apple M4 Max) | 110100 = 103681 + (6418 =  1798 +    4225 +     394) +           0 |
+llama_memory_breakdown_print: |   - Host                |                     356 =    90 +       0 +     266                |
+ggml_metal_free: deallocating

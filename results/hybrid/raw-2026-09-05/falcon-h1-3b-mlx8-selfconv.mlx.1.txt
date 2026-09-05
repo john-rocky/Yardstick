@@ -1,0 +1,10 @@
+==========
+Unified memory is crucial for understanding the dynamics of running large language models (LLMs) locally, especially when considering hardware limitations. On Apple Silicon, the GPU and CPU share a single physical memory pool, which is a significant departure from traditional architectures. This design allows for more efficient data handling by leveraging both the CPU and GPU within the same memory space, yet it presents a unique challenge: the ability to load a model that exceeds the discrete GPU's memory capacity is not directly impacted by the CPU's limited access to separate memory.
+
+Firstly, unified memory on CPUs and GPUs in Apple Silicon means these devices can work together seamlessly, with the CPU efficiently accessing both data and instructions from the same memory used for GPU and LLM data. Secondly, this shared memory pool lets a software application using a discrete amount of VRAM (e.g., within the CPU's integrated memory) handle LLMs that are too large to fit in a single GPU's unified memory, as the model weights and tokens can be processed directly from VRAM without transferring to system RAM.
+
+However, compared to a dedicated discrete GPU, a unified memory setup on a CPU-shared pool (like Apple Sil
+==========
+Prompt: 132 tokens, 1133.065 tokens-per-sec
+Generation: 256 tokens, 109.424 tokens-per-sec
+Peak memory: 4.013 GB

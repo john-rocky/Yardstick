@@ -1,0 +1,14 @@
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 3 (prefill_32).
+VERBOSE: Replacing 1409 out of 1409 node(s) with delegate (LITERT_CL) node, yielding 1 partitions for subgraph 4 (prefill_512).
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+    - Init Tokenizer: 238.27 ms
+  Time to first token: 0.26 s
+  Prefill Turns (Total 1 turns):
+    Prefill Turn 1: Processed 39 tokens in 208.558646ms duration.
+      Prefill Speed: 187.00 tokens/sec.
+  Decode Turns (Total 1 turns):
+    Decode Turn 1: Processed 97 tokens in 4.949377707s duration.
+      Decode Speed: 19.60 tokens/sec.
+  TextToTokenIds Turns (Total 2 turns):
+    Turn 1: 168.593us, 1 tokens
+    Turn 2: 561.198us, 38 tokens

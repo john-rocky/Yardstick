@@ -1,0 +1,6 @@
+==========
+Unified memory architecture in Apple Silicon is a critical feature for running large language models locally. It allows the GPU and CPU to share the same physical memory pool, which means that the model can be loaded entirely into the available memory without needing to transfer data between the CPU and GPU. This is particularly important for local execution, as it enables the model to fit into the laptop's memory, which is often much larger than a discrete GPU's VRAM. However, this shared memory pool also means that the memory bandwidth between the CPU and GPU is shared, which can lead to performance trade-offs. In contrast, a desktop GPU has dedicated VRAM with higher bandwidth, allowing for faster data transfer. Therefore, while unified memory is beneficial for local model execution, it's important to consider the trade-offs in terms of memory bandwidth when choosing between local execution on a laptop and running models on a desktop GPU.
+==========
+Prompt: 145 tokens, 2047.254 tokens-per-sec
+Generation: 179 tokens, 273.871 tokens-per-sec
+Peak memory: 1.435 GB
