@@ -56,6 +56,13 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | mlx-swift | `mlx-community/Qwen3-1.7B-4bit` | Q4 | pre-stamp | 325.0 | 324.2 | 1009.3 | 20.0 | — | — | 2026-07-13 |
 | litert-lm | `litert-local/qwen3-1.7b-int4` | INT4 (mixed, int8 embed) | pre-stamp | 171.1 | 94.9 | — | 350.0 | — | — | 2026-07-13 |
 
+**Qwen 3 8B**
+
+| runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
+|---|---|---|---|---|---|---|---|---|---|---|
+| mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | pre-stamp | — | 98.3 | 242.5 | 82.0 | — | — | 2026-06-17 |
+| litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | pre-stamp | — | 62.4 | — | 467.0 | — | — | 2026-06-17 |
+
 **Qwen 3.5 0.8B**
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
@@ -96,9 +103,8 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | apple-fm/default | apple-fm | `apple-fm/default` | Apple-quant (~2-4 bit, adapters) | pre-stamp | — | 84.3 | 2026-05-16 |
 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | pre-stamp | 119.0 | 119.3 | 2026-07-13 |
 | litert-community/Gemma3-1B-IT | litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | pre-stamp | 181.3 | 182.0 | 2026-07-13 |
-| litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 64.9 | 42.0 | 2026-07-13 |
+| litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 64.9 ⚠spread 44% | 42.0 | 2026-07-13 |
 | litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | pre-stamp | 110.9 | 111.2 | 2026-07-13 |
-| litert-community/Qwen3-8B | litert-lm | `litert-community/Qwen3-8B` | INT4 (mixed, blockwise gs32) | pre-stamp | — | 62.4 | 2026-06-17 |
 | litert-community/TinySwallow-1.5B-Instruct | litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | pre-stamp | 120.6 | 120.4 | 2026-07-13 |
 | litert-community/VibeThinker-1.5B | litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | pre-stamp | 120.4 | 120.3 | 2026-07-13 |
 | litert-local/llama32-3b | litert-lm | `litert-local/llama32-3b` | INT4 | pre-stamp | 93.3 | 92.9 | 2026-07-13 |
@@ -111,7 +117,6 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | mlx-community/MiniCPM5-1B-4bit | mlx-swift | `mlx-community/MiniCPM5-1B-4bit` | Q4 | pre-stamp | — | 526.2 | 2026-06-17 |
 | mlx-community/Phi-4-mini-instruct-4bit | mlx-swift | `mlx-community/Phi-4-mini-instruct-4bit` | Q4 | pre-stamp | 169.1 | 169.0 | 2026-07-13 |
 | mlx-community/Qwen3-4B-4bit | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | pre-stamp | 162.2 | 163.1 | 2026-07-13 |
-| mlx-community/Qwen3-8B-4bit | mlx-swift | `mlx-community/Qwen3-8B-4bit` | Q4 | pre-stamp | — | 98.3 | 2026-06-17 |
 | mlx-community/TinySwallow-1.5B-Instruct-4bit | mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | pre-stamp | 328.0 | 328.8 | 2026-07-13 |
 | own/DeepSeek-R1-1.5B-int4-BOCTAV4 | litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 136.7 | 136.6 | 2026-07-14 |
 | own/Phi-4-mini-int4-BOCTAV4-128 | litert-lm | `own/Phi-4-mini-int4-BOCTAV4-128` | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | pre-stamp | 85.4 | 83.5 | 2026-07-14 |
@@ -135,7 +140,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | model | runtime | artifact | quant | engine | warm tok/s | cold tok/s | captured |
 |---|---|---|---|---|---|---|---|
 | Gemma 4 E2B (QAT OptiQ) | mlx-swift | `mlx-community/gemma-4-e2b-it-qat-OptiQ-4bit` | INT4 (QAT, OptiQ) | pre-stamp | 164.7 | 165.7 | 2026-07-27 |
-| SmolLM 3B | litert-lm | `litert-local/smollm3-3b` | INT4 | pre-stamp | 67.3 | — | 2026-07-13 |
+| SmolLM 3B | litert-lm | `litert-local/smollm3-3b` | INT4 | pre-stamp | 67.3 ⚠spread 57% | — | 2026-07-13 |
 
 </details>
 
@@ -207,32 +212,32 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | core-ai/ministral-3b-gpu | core-ai | `core-ai/ministral-3b-gpu` | INT4 (dynamic) | pre-stamp | — | 29.3 | 2026-07-14 |
 | core-ai/olmo2-1b-ane | core-ai | `core-ai/olmo2-1b-ane` | 4-bit palettized (uniform g32) | pre-stamp | — | 96.3 | 2026-07-14 |
 | core-ai/olmo2-1b-gpu | core-ai | `core-ai/olmo2-1b-gpu` | INT4 (dynamic) | pre-stamp | — | 92.5 | 2026-07-14 |
-| core-ai/qwen3-4b-ane | core-ai | `core-ai/qwen3-4b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 30.0 | 27.0 | 2026-07-13 |
+| core-ai/qwen3-4b-ane | core-ai | `core-ai/qwen3-4b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 30.0 ⚠spread 9% | 27.0 | 2026-07-13 |
 | core-ai/qwen3-4b-gpu | core-ai | `core-ai/qwen3-4b-gpu` | INT4 (dynamic) | pre-stamp | 26.4 | 27.0 | 2026-07-13 |
 | core-ai/tinyswallow-1.5b-ane | core-ai | `core-ai/tinyswallow-1.5b-ane` | 4-bit palettized (uniform g32) | pre-stamp | — | 72.9 | 2026-07-14 |
 | core-ai/tinyswallow-1.5b-gpu | core-ai | `core-ai/tinyswallow-1.5b-gpu` | INT4 (dynamic) | pre-stamp | — | 69.7 | 2026-07-14 |
 | core-ai/vibethinker-1.5b-ane | core-ai | `core-ai/vibethinker-1.5b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 73.8 | 73.4 | 2026-07-13 |
 | core-ai/vibethinker-1.5b-gpu | core-ai | `core-ai/vibethinker-1.5b-gpu` | INT4 (dynamic) | pre-stamp | — | 71.0 | 2026-07-14 |
-| litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | 26.7 | 31.2 | 2026-08-24 |
+| litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | 26.7 ⚠spread 19% | 31.2 | 2026-08-24 |
 | litert-community/Gemma3-1B-IT | litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | pre-stamp | 72.1 | 72.7 | 2026-07-13 |
 | litert-community/LFM2.5-1.2B-Instruct | litert-lm | `litert-community/LFM2.5-1.2B-Instruct` | int4_gpu (litert-community descriptor) | v0.16.0 | 69.5 | 69.9 | 2026-08-26 |
-| litert-community/MiniCPM5-1B | litert-lm | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | 34.2 | 36.2 | 2026-08-26 |
-| litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 11.6 | 11.4 | 2026-07-24 |
-| litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 16.1 | 23.1 | 2026-08-19 |
-| litert-community/TinySwallow-1.5B-Instruct | litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | pre-stamp | 29.4 | 29.2 | 2026-07-23 |
-| litert-community/VibeThinker-1.5B | litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | pre-stamp | 29.3 | 30.6 | 2026-07-23 |
-| litert-local/llama32-3b | litert-lm | `litert-local/llama32-3b` | INT4 | pre-stamp | 18.2 | 19.2 | 2026-07-13 |
-| litert-local/ministral3-3b | litert-lm | `litert-local/ministral3-3b` | INT4 | pre-stamp | 18.4 | 19.0 | 2026-07-14 |
-| litert-local/olmo2-1b | litert-lm | `litert-local/olmo2-1b` | INT4 | pre-stamp | 20.6 | 26.4 | 2026-07-13 |
+| litert-community/MiniCPM5-1B | litert-lm | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | 34.2 ⚠spread 14% | 36.2 | 2026-08-26 |
+| litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 11.6 ⚠spread 7% | 11.4 | 2026-07-24 |
+| litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 16.1 ⚠spread 60% | 23.1 | 2026-08-19 |
+| litert-community/TinySwallow-1.5B-Instruct | litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | pre-stamp | 29.4 ⚠spread 10% | 29.2 | 2026-07-23 |
+| litert-community/VibeThinker-1.5B | litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | pre-stamp | 29.3 ⚠spread 22% | 30.6 | 2026-07-23 |
+| litert-local/llama32-3b | litert-lm | `litert-local/llama32-3b` | INT4 | pre-stamp | 18.2 ⚠spread 9% | 19.2 | 2026-07-13 |
+| litert-local/ministral3-3b | litert-lm | `litert-local/ministral3-3b` | INT4 | pre-stamp | 18.4 ⚠spread 14% | 19.0 | 2026-07-14 |
+| litert-local/olmo2-1b | litert-lm | `litert-local/olmo2-1b` | INT4 | pre-stamp | 20.6 ⚠spread 25% | 26.4 | 2026-07-13 |
 | mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit | mlx-swift | `mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit` | Q4 | pre-stamp | 73.2 | 74.5 | 2026-07-13 |
 | mlx-community/Llama-3.2-3B-Instruct-4bit | mlx-swift | `mlx-community/Llama-3.2-3B-Instruct-4bit` | Q4 | pre-stamp | 33.8 | 34.4 | 2026-07-13 |
 | mlx-community/Phi-4-mini-instruct-4bit | mlx-swift | `mlx-community/Phi-4-mini-instruct-4bit` | Q4 | pre-stamp | 29.3 | 29.5 | 2026-07-13 |
 | mlx-community/Qwen3-4B-4bit | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | pre-stamp | 28.0 | 28.4 | 2026-07-13 |
 | mlx-community/TinySwallow-1.5B-Instruct-4bit | mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | pre-stamp | 72.9 | 72.6 | 2026-07-13 |
-| own/DeepSeek-R1-1.5B-int4-BOCTAV4 | litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 44.5 | 45.8 | 2026-07-24 |
+| own/DeepSeek-R1-1.5B-int4-BOCTAV4 | litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 44.5 ⚠spread 8% | 45.8 | 2026-07-24 |
 | own/Phi-4-mini-int4-BOCTAV4-128 | litert-lm | `own/Phi-4-mini-int4-BOCTAV4-128` | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | pre-stamp | 17.5 | 17.6 | 2026-07-24 |
-| own/TinySwallow-1.5B-int4-BOCTAV4 | litert-lm | `own/TinySwallow-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.6 | 46.8 | 2026-07-23 |
-| own/VibeThinker-1.5B-int4-BOCTAV4 | litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.7 | 46.8 | 2026-07-23 |
+| own/TinySwallow-1.5B-int4-BOCTAV4 | litert-lm | `own/TinySwallow-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.6 ⚠spread 7% | 46.8 | 2026-07-23 |
+| own/VibeThinker-1.5B-int4-BOCTAV4 | litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.7 ⚠spread 8% | 46.8 | 2026-07-23 |
 
 </details>
 
@@ -243,6 +248,8 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 - `core-ai core-ai/qwen3-1.7b-ane short-chat` — invoke-fail-bd71203
 
 ## android
+
+Android decode spans are not budget-matched across arms: llama-cli caps at the 128-token task budget, while `litert_lm_main` runs to the model's own stop (441–1037 generated tokens per run in the raw records) — v0.16.0 has no working output cap on that binary. LiteRT decode rates reproduce within ~1% across sessions, so the longer span is not visibly depressing them, but the asymmetry is real and per-run token counts are in `results/raw/` (budget-mode-rule; methodology/android.md).
 
 ### Pixel 8a
 

@@ -57,6 +57,7 @@ LOGICAL_MODELS: list[tuple[str, str]] = [
     ("qwen3.5-2b",      "Qwen 3.5 2B"),
     ("qwen3.5-0.8b",    "Qwen 3.5 0.8B"),
     # Qwen 3
+    ("qwen3-8b",        "Qwen 3 8B"),
     ("qwen3-1.7b",      "Qwen 3 1.7B"),
     ("qwen3-0.6b",      "Qwen 3 0.6B"),
     # Qwen 2.5
