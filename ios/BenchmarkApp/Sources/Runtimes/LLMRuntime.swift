@@ -32,6 +32,19 @@ public protocol LLMRuntime: AnyObject, Sendable {
         parameters: GenerationParameters
     ) -> AsyncThrowingStream<GenerationEvent, Error>
 
+    /// Same, with one image attached — the vision-language path. The image is passed
+    /// as an absolute file path because that is what the LiteRT-LM Swift API takes
+    /// (`Content.imageFile`), and it avoids copying decoded pixels through the harness.
+    ///
+    /// Default: ignore the image and fall back to text-only, so runtimes without a
+    /// vision path stay compilable. A runtime that *claims* vision must override this
+    /// — a silent text-only fallback would score a vision task as if it had run.
+    func generate(
+        prompt: String,
+        imagePath: String,
+        parameters: GenerationParameters
+    ) -> AsyncThrowingStream<GenerationEvent, Error>
+
     /// Optional hint, called just before `loadModel`: size the runtime's working context
     /// (e.g. KV pre-allocation) to roughly this many tokens (≈ prompt + output budget), so it
     /// neither rejects a long prompt nor over-reserves for a short one. Runtimes that allocate
@@ -42,6 +55,15 @@ public protocol LLMRuntime: AnyObject, Sendable {
 }
 
 public extension LLMRuntime {
+    /// Text-only fallback. Runtimes with a vision path override this.
+    func generate(
+        prompt: String,
+        imagePath: String,
+        parameters: GenerationParameters
+    ) -> AsyncThrowingStream<GenerationEvent, Error> {
+        generate(prompt: prompt, parameters: parameters)
+    }
+
     func prepareContext(maxContextTokens: Int) async {}
 }
 

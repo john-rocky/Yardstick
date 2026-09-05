@@ -1,0 +1,68 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "A2212E46-F4F5-4F08-90FF-CF27B6DF5B39",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 59.80811039243665,
+    "decodeTokensPerSecondWallClock" : 59.8082503094735,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 58,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 16.806960105895996,
+    "interTokenLatencyP95MS" : 17.232060432434082,
+    "interTokenLatencyP99MS" : 17.961978912353516,
+    "loadTimeSeconds" : 1.2389930486679077,
+    "memoryAfterGenerationMB" : 457.3477249145508,
+    "memoryAfterLoadMB" : 432.5195541381836,
+    "memoryBaselineMB" : 14.642333984375,
+    "memoryFinalResidentMB" : 684.9375,
+    "memoryMedianMB" : 486.9570999145508,
+    "memoryMedianResidentMB" : 673.4921875,
+    "memoryPeakDuringDecodeMB" : 489.3789749145508,
+    "memoryPeakResidentMB" : 684.9375,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.4084960222244263
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "wNa8o8 (int2\/int4\/int8 + int8 activations, QAT)"
+  },
+  "outputSample" : "Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-26T18:53:44Z"
+}

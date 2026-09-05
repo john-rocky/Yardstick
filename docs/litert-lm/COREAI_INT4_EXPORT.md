@@ -1,5 +1,16 @@
 # Core AI — matched-INT4 export (decoupling compute unit from quant)
 
+> **2026-08-27 recheck (upstream asked "resolved on latest beta?"):** the SIGSEGV is gone —
+> on macOS 26A5416b / coreai-build 3600.82.1 (MetalToolchain v27.1.5237.12) with coreai-torch
+> 0.4.2 + coreai-core 1.0.0b2, three compiles of the regenerated H1-b artifact (June-era
+> checkout and apple/main f43b6da both) exit 0 in ~5 min. But the ANE pre-compile now fails
+> (`ANECCompileOffline() failed: aneCompileStatus=1`, empty ErrorList) and coreai-build emits a
+> **GPU-only `.aimodelc` (0 ANE regions) with exit 0** — a silent fallback. Palettized control
+> same day: still 31/31 ANE regions. **The negative result below stands** (ANE + linear-INT4
+> remains unexpressible); only the failure mode changed (segfault → silent GPU fallback).
+> Reported on apple/coreai-models#55 (issuecomment-5434952602); compile logs pinned in
+> `~/code/coreai/coreai-models/exports/qwen3_0_6b_ios_int4linear/`.
+>
 > **Status: RESOLVED (2026-06-18) — negative result.** A matched **INT4-*linear***
 > export that runs on the ANE is **not achievable** on this toolchain: the ANE
 > pre-compiler **SIGSEGVs** on a static-shape program carrying linear blockwise-INT4

@@ -1275,13 +1275,13 @@ Decode tok/s is an average. The percentiles below are the gap between consecutiv
 | Mac M4 Max | litert-lm | Qwen3 0.6B (.litertlm) | 1 | 54 | 3.7 | 4.0 | 4.1 |
 | Mac M4 Max | litert-lm | Qwen3 4B (.litertlm) | 1 | 202 | 9.1 | 9.4 | 9.6 |
 | Mac M4 Max | litert-lm | Qwen3 8B (.litertlm) | 1 | 347 | 14.9 | 15.2 | 15.3 |
-| Mac M4 Max | litert-lm | Gemma 4 E2B (.litertlm) | 1 | 43 | 6.5 | 6.6 | 6.7 |
+| Mac M4 Max | litert-lm | Gemma 4 E2B (.litertlm) | 1 | 46 | 6.7 | 7.0 | 7.2 |
 | Mac M4 Max | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 5 | 42 | 8.0 | 9.2 | 9.8 |
 | Mac M4 Max | mlx-swift | Qwen3-0.6B (4-bit) | 1 | 745 | 2.1 | 2.4 | 2.4 |
 | Mac M4 Max | mlx-swift | Qwen3-4B (4-bit) | 1 | 49 | 6.6 | 6.9 | 7.0 |
 | Mac M4 Max | mlx-swift | Qwen3-8B (4-bit) | 1 | 73 | 10.7 | 11.1 | 11.2 |
 | Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 4 | 68 | 6.0 | 6.4 | 6.6 |
-| Mac M4 Max | mlx-swift | Gemma 4 E2B (QAT 4-bit) | 1 | 77 | 6.7 | 6.9 | 7.0 |
+| Mac M4 Max | mlx-swift | Gemma 4 E2B (QAT 4-bit) | 1 | 78 | 6.7 | 7.0 | 7.1 |
 
 ## Energy profile (joules per token)
 
@@ -1301,10 +1301,10 @@ Populated for runs wrapped in `scripts/measure_energy.py` on Mac (`powermetrics`
 | Mac M4 Max | core-ai | core-ai/gemma4-e2b-gpu | 1 | powermetrics | 18.9 | 0.3562 | 10106 | — |
 | Mac M4 Max | apple-fm | Apple Foundation Model (default, on-device) | 1 | powermetrics | 7.6 | 0.1092 | 32974 | — |
 | Mac M4 Max | coreml-llm | Gemma 4 E2B (CoreML, ANE) | 1 | powermetrics | 12.7 | 0.4784 | 7525 | — |
-| Mac M4 Max | litert-lm | Gemma 4 E2B (.litertlm) | 1 | powermetrics | 20.8 | 0.1737 | 20729 | — |
-| Mac M4 Max | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 2 | powermetrics | 22.5 | 0.2202 | 16587 | — |
-| Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 1 | powermetrics | 13.3 | 0.1156 | 31140 | — |
-| Mac M4 Max | mlx-swift | Gemma 4 E2B (QAT 4-bit) | 1 | powermetrics | 14.2 | 0.1388 | 25942 | — |
+| Mac M4 Max | litert-lm | Gemma 4 E2B (.litertlm) | 1 | powermetrics | 19.7 | 0.1785 | 20169 | — |
+| Mac M4 Max | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | 2 | powermetrics | 20.2 | 0.2195 | 16655 | — |
+| Mac M4 Max | mlx-swift | Gemma 4 E2B (4-bit) | 1 | powermetrics | 13.1 | 0.1188 | 30316 | — |
+| Mac M4 Max | mlx-swift | Gemma 4 E2B (QAT 4-bit) | 1 | powermetrics | 14.1 | 0.1409 | 25556 | — |
 
 ### Pivot 3 — full row dump (audit trail)
 
@@ -1773,20 +1773,20 @@ Every raw measurement. Use Pivots 1 and 2 above for analysis; this table is the 
 | litert-lm | Qwen3 0.6B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 0.6 | 54 | — | 265.8 | 793 | `m4max-litert-lm-qwen3-0.6b-sustained-generation-run1.jsonl` |
 | litert-lm | Qwen3 4B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 1.4 | 202 | — | 109.8 | 1560 | `m4max-litert-lm-qwen3-4b-sustained-generation-run1.jsonl` |
 | litert-lm | Qwen3 8B (.litertlm) | INT4 (mixed, blockwise gs32) | 1 | 2.3 | 347 | — | 67.2 | 2104 | `m4max-litert-lm-qwen3-8b-sustained-generation-run1.jsonl` |
-| litert-lm | Gemma 4 E2B (.litertlm) | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | 1 | 0.7 | 43 | — | 155.0 | 689 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-sustained-energy.jsonl` |
+| litert-lm | Gemma 4 E2B (.litertlm) | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | 1 | 1.0 | 46 | — | 149.8 | 691 | `m4max-litert-lm-gemma-4-e2b-it-litert-lm-sustained-energy.jsonl` |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 1 | 0.7 | 42 | 3118.9 | 120.1 | 3213 | `m4max-llama-cpp-gemma-4-e2b-sustained-run1.jsonl` |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 1 | 0.6 | 44 | 2828.9 | 117.3 | 3214 | `m4max-llama-cpp-q4_k_m-sustained-energy.jsonl` |
-| llama.cpp | Gemma 4 E2B Q4_K_M (GGUF, PTQ) | Q4_K_M (PTQ) | 1 | 0.6 | 42 | 2995.7 | 127.1 | 395 | `m4max-llama.cpp-q4_k_m-sustained-energy.jsonl` |
+| llama.cpp | Gemma 4 E2B Q4_K_M (GGUF, PTQ) | Q4_K_M (PTQ) | 1 | 1.8 | 46 | 3054.6 | 122.5 | 395 | `m4max-llama.cpp-q4_k_m-sustained-energy.jsonl` |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 2 | 0.6 | 42 | 3000.2 | 121.5 | 3217 | `m4max-llama-cpp-gemma-4-e2b-sustained-run2.jsonl` |
 | llama.cpp | Gemma 4 E2B Q4_K_M (GGUF) | Q4_K_M | 3 | 0.6 | 42 | 2714.2 | 121.0 | 3213 | `m4max-llama-cpp-gemma-4-e2b-sustained-run3.jsonl` |
 | mlx-swift | Qwen3-0.6B (4-bit) | Q4 | 1 | 0.6 | 745 | 31.0 | 474.4 | 816 | `m4max-mlx-qwen3-0.6b-sustained-generation-run1.jsonl` |
 | mlx-swift | Qwen3-4B (4-bit) | Q4 | 1 | 0.6 | 49 | 507.8 | 151.1 | 2738 | `m4max-mlx-qwen3-4b-sustained-generation-run1.jsonl` |
 | mlx-swift | Qwen3-8B (4-bit) | Q4 | 1 | 0.6 | 73 | 331.0 | 93.2 | 4977 | `m4max-mlx-qwen3-8b-sustained-generation-run1.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 1 | 1.3 | 676 | 38.2 | 158.0 | 2835 | `m4max-mlx-gemma-4-e2b-sustained-run1.jsonl` |
-| mlx-swift | Gemma 4 E2B (PTQ 4-bit) | INT4 (PTQ) | 1 | 1.2 | 67 | 538.6 | 177.8 | 2936 | `m4max-mlx-swift-gemma-4-e2b-it-4bit-sustained-energy.jsonl` |
+| mlx-swift | Gemma 4 E2B (PTQ 4-bit) | INT4 (PTQ) | 1 | 1.3 | 68 | 536.6 | 176.1 | 2921 | `m4max-mlx-swift-gemma-4-e2b-it-4bit-sustained-energy.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 2 | 1.2 | 69 | 525.4 | 166.0 | 2816 | `m4max-mlx-gemma-4-e2b-sustained-run2.jsonl` |
 | mlx-swift | Gemma 4 E2B (4-bit) | Q4 | 3 | 1.4 | 67 | 546.0 | 166.3 | 2832 | `m4max-mlx-gemma-4-e2b-sustained-run3.jsonl` |
-| mlx-swift | Gemma 4 E2B (QAT 4-bit) | INT4 (QAT, OptiQ) | 1 | 1.2 | 77 | 436.7 | 149.5 | 4526 | `m4max-mlx-swift-gemma-4-e2b-it-qat-optiq-4bit-sustained-energy.jsonl` |
+| mlx-swift | Gemma 4 E2B (QAT 4-bit) | INT4 (QAT, OptiQ) | 1 | 1.3 | 78 | 429.8 | 149.1 | 4512 | `m4max-mlx-swift-gemma-4-e2b-it-qat-optiq-4bit-sustained-energy.jsonl` |
 
 <!-- END: generated by scripts/render_results.py -->
 

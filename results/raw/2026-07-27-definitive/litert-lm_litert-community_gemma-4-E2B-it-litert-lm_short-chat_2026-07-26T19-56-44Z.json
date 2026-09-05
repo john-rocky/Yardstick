@@ -1,0 +1,68 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "CFDADCED-12A4-4DA8-93BD-EF74A5415A8F",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 52.122058630930105,
+    "decodeTokensPerSecondWallClock" : 52.12256719250789,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 699,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 17.59791374206543,
+    "interTokenLatencyP95MS" : 27.4350643157959,
+    "interTokenLatencyP99MS" : 36.849021911621094,
+    "loadTimeSeconds" : 1.303157925605774,
+    "memoryAfterGenerationMB" : 446.3163375854492,
+    "memoryAfterLoadMB" : 433.76941680908203,
+    "memoryBaselineMB" : 14.517379760742188,
+    "memoryFinalResidentMB" : 663.265625,
+    "memoryMedianMB" : 481.9725875854492,
+    "memoryMedianResidentMB" : 665.265625,
+    "memoryPeakDuringDecodeMB" : 490.6132125854492,
+    "memoryPeakResidentMB" : 676.078125,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 3.3553290367126465
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "wNa8o8 (int2\/int4\/int8 + int8 activations, QAT)"
+  },
+  "outputSample" : "Imagine you have a super-smart computer or a phone that can learn and make decisions **right on the device itself**, without needing to constantly send all the information to a big, faraway cloud serv",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-07-26T19:56:44Z"
+}

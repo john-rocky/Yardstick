@@ -66,10 +66,49 @@ public actor MediaPipeRuntime: LLMRuntime {
             // maxNumTokens caps the working context (and the KV LiteRT-LM pre-allocates);
             // sized to the task via `prepareContext` so short tasks don't reserve a huge KV.
             // The per-run output budget is enforced separately in `runGenerate`.
+            // The vision executor is NOT loaded unless a backend is named for it.
+            // Omitting it still gives a working Engine and a working Conversation —
+            // the failure only appears on the first message carrying an image
+            // ("Vision executor should not be null, please TryLoadingVisionExecutor()
+            // first"), so a load-time smoke test does not catch it. Opt in explicitly
+            // for VLM bundles; leaving it nil for text bundles keeps them unchanged.
+            let wantsVision = ProcessInfo.processInfo.arguments.contains("--litert-vision")
+            let backend: Backend =
+                ProcessInfo.processInfo.arguments.contains("--litert-cpu") ? .cpu() : .gpu
+            // `--litert-max-tokens N` pins maxNumTokens regardless of the task-derived
+            // contextBudget. The Metal delegate compiles shaders against the KV that
+            // maxNumTokens pre-allocates; a value that disagrees with the model's
+            // exported cache produces DUS shape rejections + partial delegation
+            // (S26 2026-08-23: explicit 1024 turned 104/542 half4x float4 aborts into
+            // 542/542 PASS on the same file), so the gate must control it explicitly.
+            let launchArgs = ProcessInfo.processInfo.arguments
+            var effectiveMaxTokens = contextBudget
+            if let flagIdx = launchArgs.firstIndex(of: "--litert-max-tokens"),
+               flagIdx + 1 < launchArgs.count,
+               let forced = Int(launchArgs[flagIdx + 1]) {
+                effectiveMaxTokens = forced
+                print("[MediaPipeRuntime] maxNumTokens forced to \(forced) via --litert-max-tokens")
+            }
+            // `--litert-speculative` opts a bundle with an MTP drafter section into
+            // speculative decoding. Engine init throws on bundles without one, so it
+            // stays a launch-arg opt-in rather than a default.
+            if launchArgs.contains("--litert-speculative") {
+                ExperimentalFlags.enableSpeculativeDecoding = true
+                print("[MediaPipeRuntime] speculative decoding enabled via --litert-speculative")
+            }
+            // Diagnostic knob for the MTP leg: the iOS default activation type is
+            // fp16; the drafter/verify contract wants fp32 activations, and fp16
+            // rounding of the hidden handoff is a candidate cause for acceptance
+            // collapse on iOS. Forces fp32 like the desktop CLI default.
+            if launchArgs.contains("--litert-fp32-act") {
+                ExperimentalFlags.forceFloat32Activations = true
+                print("[MediaPipeRuntime] fp32 activations forced via --litert-fp32-act")
+            }
             let config = try EngineConfig(
                 modelPath: modelFile.path,
-                backend: .gpu,
-                maxNumTokens: contextBudget,
+                backend: backend,
+                visionBackend: wantsVision ? backend : nil,
+                maxNumTokens: effectiveMaxTokens,
                 cacheDir: NSTemporaryDirectory()
             )
             let engine = Engine(engineConfig: config)
@@ -144,6 +183,24 @@ public actor MediaPipeRuntime: LLMRuntime {
 
     public nonisolated func generate(
         prompt: String,
+        imagePath: String,
+        parameters: GenerationParameters
+    ) -> AsyncThrowingStream<GenerationEvent, Error> {
+        AsyncThrowingStream { continuation in
+            let task = Task {
+                do {
+                    try await self.runGenerate(prompt: prompt, imagePath: imagePath,
+                                               parameters: parameters, continuation: continuation)
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+            continuation.onTermination = { _ in task.cancel() }
+        }
+    }
+
+    public nonisolated func generate(
+        prompt: String,
         parameters: GenerationParameters
     ) -> AsyncThrowingStream<GenerationEvent, Error> {
         AsyncThrowingStream { continuation in
@@ -160,6 +217,7 @@ public actor MediaPipeRuntime: LLMRuntime {
 
     private func runGenerate(
         prompt: String,
+        imagePath: String? = nil,
         parameters: GenerationParameters,
         continuation: AsyncThrowingStream<GenerationEvent, Error>.Continuation
     ) async throws {
@@ -168,16 +226,37 @@ public actor MediaPipeRuntime: LLMRuntime {
         // Fresh conversation per run so each measurement is independent (no
         // KV reuse across runs). No system message is injected, to keep the
         // prompt identical to the other runtimes' single-prompt path.
+        // --litert-temp / --litert-topk override the task's sampler for models
+        // whose greedy decode collapses (RL tunes, e.g. Nanbeige4.2: official
+        // recipe temp 0.6 / top-k 20).
+        let launchArgs = ProcessInfo.processInfo.arguments
+        func flagValue(_ flag: String) -> String? {
+            guard let i = launchArgs.firstIndex(of: flag), i + 1 < launchArgs.count else { return nil }
+            return launchArgs[i + 1]
+        }
+        let temp = flagValue("--litert-temp").flatMap(Float.init) ?? parameters.temperature
+        let topK = flagValue("--litert-topk").flatMap(Int.init) ?? 40
         let sampler = try SamplerConfig(
-            topK: 40,
+            topK: topK,
             topP: parameters.topP,
-            temperature: parameters.temperature
+            temperature: temp
         )
+        // --litert-thinking turns on ThinkingConfig (v0.15.0+ API; the bundle's
+        // template carries the enable_thinking branch, so no model change).
+        // Thinking chunks stream on a separate channel; the per-turn decode
+        // counters cover thinking + answer tokens, which is what the
+        // decode-under-thinking cell measures.
+        let thinking = launchArgs.contains("--litert-thinking")
         // v0.12.0 is an early-preview API: `ConversationConfig`'s `systemMessage`
         // is optional here; if a future release makes it required, pass
         // `Message("")` or fall back to `engine.createConversation()`.
         let conversation = try await engine.createConversation(
-            with: ConversationConfig(samplerConfig: sampler)
+            with: ConversationConfig(
+                samplerConfig: sampler,
+                thinkingConfig: thinking
+                    ? ThinkingConfig(enableThinking: true, thinkingTokenBudget: -1)
+                    : nil
+            )
         )
 
         let prefillStart = CFAbsoluteTimeGetCurrent()
@@ -186,7 +265,13 @@ public actor MediaPipeRuntime: LLMRuntime {
         var capped = false
         var cappedAt: CFAbsoluteTime? = nil
 
-        for try await chunk in conversation.sendMessageStream(Message(prompt)) {
+        // Text goes FIRST and the image last: on prompts with named fields the image
+        // is the value of the field it follows, and putting it ahead of the
+        // instructions measurably degrades the answer.
+        let message = imagePath.map { Message(of: .text(prompt), .imageFile($0)) }
+            ?? Message(prompt)
+
+        for try await chunk in conversation.sendMessageStream(message) {
             try Task.checkCancellation()
             if capped {
                 // Cap reached: DRAIN the stream silently instead of breaking out.

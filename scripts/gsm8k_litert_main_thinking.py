@@ -9,7 +9,7 @@ a main-build controlled OFF/ON pair, reported as such.
 """
 import importlib.util, json, os, re, statistics, subprocess, sys, time
 
-YARD = os.path.expanduser("~/Downloads/ios-llm-benchmark")
+YARD = os.path.expanduser("~/code/apple-silicon-llm-bench")
 spec = importlib.util.spec_from_file_location(
     "parity_gsm8k", os.path.join(YARD, "scripts", "parity_gsm8k.py"))
 pg = importlib.util.module_from_spec(spec)

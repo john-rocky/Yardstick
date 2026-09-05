@@ -1,0 +1,45 @@
+diff --git a/swift/Engine.swift b/swift/Engine.swift
+index 55bc2fe..1375758 100644
+--- a/swift/Engine.swift
++++ b/swift/Engine.swift
+@@ -120,6 +120,11 @@ public actor Engine {
+     if let enableSpeculativeDecoding = ExperimentalFlags.enableSpeculativeDecoding {
+       litert_lm_engine_settings_set_enable_speculative_decoding(settings, enableSpeculativeDecoding)
+     }
++    // LOCAL PATCH (Vendored-patches/0002-experimental-flags-force-fp32-activations.patch)
++    if ExperimentalFlags.forceFloat32Activations {
++      litert_lm_engine_settings_set_activation_data_type(
++        settings, kLiteRtLmActivationDataTypeFloat32)
++    }
+ 
+     guard let engine = litert_lm_engine_create(settings) else {
+       throw LiteRTLMError.engine(.failedToCreateEngine)
+diff --git a/swift/ExperimentalFlags.swift b/swift/ExperimentalFlags.swift
+index d1576b3..333e662 100644
+--- a/swift/ExperimentalFlags.swift
++++ b/swift/ExperimentalFlags.swift
+@@ -144,6 +144,24 @@ public struct ExperimentalFlags {
+     }
+   }
+ 
++  // LOCAL PATCH (yardstick; Vendored-patches/0002-experimental-flags-force-fp32-activations.patch):
++  // the iOS engine defaults to fp16 activations; the speculative-decoding leg needs
++  // the fp32 default of the desktop CLI, and the stock wrapper has no flag for it.
++  private static var _forceFloat32Activations: Bool = false
++
++  /// Force fp32 activation data type on the engine (the platform default for
++  /// the text decoder is fp16). Read only at Engine creation.
++  public static var forceFloat32Activations: Bool {
++    get { return _forceFloat32Activations }
++    set {
++      guard optedIn else {
++        logger.error("LiteRTLM: Must opt into experimental APIs before setting this flag.")
++        return
++      }
++      _forceFloat32Activations = newValue
++    }
++  }
++
+   private static var _visualTokenBudget: Int32? = nil
+ 
+   /// The visual token budget.

@@ -214,7 +214,23 @@ public actor BenchmarkRunner {
             var callFirstTokenAt: CFAbsoluteTime?
             var callLastTokenAt: CFAbsoluteTime?
             var callChunks = 0
-            let stream = configuration.runtime.generate(
+            // A task carrying an image drives the vision path. Resolve the bundled
+            // resource to an absolute path (the LiteRT-LM Swift API takes a path);
+            // if it is missing, fail loudly rather than silently running text-only —
+            // a vision task that quietly degrades to text would still post a result.
+            let imagePath: String? = configuration.task.imageResource.map { name in
+                guard let url = Bundle.main.url(forResource: name, withExtension: "png") else {
+                    fatalError("vision task \(configuration.task.id): missing bundled image \(name).png")
+                }
+                return url.path
+            }
+            let stream = imagePath.map { path in
+                configuration.runtime.generate(
+                    prompt: configuration.task.prompt,
+                    imagePath: path,
+                    parameters: configuration.task.parameters
+                )
+            } ?? configuration.runtime.generate(
                 prompt: configuration.task.prompt,
                 parameters: configuration.task.parameters
             )
@@ -365,7 +381,11 @@ public actor BenchmarkRunner {
             memoryMedianResidentMB: memoryMedianResident > 0 ? memoryMedianResident : nil,
             memoryFinalResidentMB: memoryFinalResident > 0 ? memoryFinalResident : nil,
             contextTokensConfigured: contextTokens,
-            harnessStamp: Self.harnessStamp,
+            // Decode-under-thinking is a different measurement contract for the cell;
+            // record it in the stamp so the raw JSON says which mode produced it.
+            harnessStamp: Self.harnessStamp
+                + (ProcessInfo.processInfo.arguments.contains("--litert-thinking")
+                    ? "+litert-thinking" : ""),
             initialThermalState: ThermalMonitor.describe(await thermalSampler.initialState),
             peakThermalState: ThermalMonitor.describe(await thermalSampler.peakState),
             finalThermalState: ThermalMonitor.describe(await thermalSampler.finalState),
@@ -398,9 +418,10 @@ public actor BenchmarkRunner {
             task: configuration.task.id,
             parameters: configuration.task.parameters,
             metrics: metrics,
-            // Keep the full output for the quality task (it's scored for correctness +
-            // degeneracy); other tasks keep a short sample to stay lean.
-            outputSample: configuration.task.id == "quality"
+            // Keep the full output for tasks scored post-hoc on their text (quality:
+            // correctness + degeneracy; prompt-probe: single-question replay); other
+            // tasks keep a short sample to stay lean.
+            outputSample: ["quality", "prompt-probe"].contains(configuration.task.id)
                 ? collectedOutput : String(collectedOutput.prefix(200))
         )
     }

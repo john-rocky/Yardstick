@@ -6,7 +6,7 @@ them after any re-vendor:
 
 ```bash
 cd ios/BenchmarkApp/Vendored/LiteRT-LM
-patch -p1 < ../../Vendored-patches/0001-benchmark-maxNumTokens.patch
+for p in ../../Vendored-patches/*.patch; do patch -p1 < "$p"; done
 ```
 
 Baseline: LiteRT-LM **v0.16.0** (regenerated 2026-08-17 from the v0.16.0 re-vendor; the
@@ -41,3 +41,22 @@ configuration the LiteRT team benchmarks Gemma-4 at.
 `MediaPipeRuntime.nativeBenchmark` passes `maxNumTokens:` explicitly and never relies on the
 default, so a stock package **fails to compile** instead of silently reverting the context to
 1056. That is deliberate: a build error is a signal, an off-protocol number is not.
+
+## 0002 — `ExperimentalFlags.forceFloat32Activations`
+
+`MediaPipeRuntime` sets `ExperimentalFlags.forceFloat32Activations = true` when the app is
+launched with `--litert-fp32-act` (the diagnostic knob for the speculative-decoding leg: the
+iOS engine defaults to fp16 activations, the desktop CLI to fp32, and fp16 rounding of the
+drafter/verifier handoff is a candidate cause for the acceptance collapse seen on iOS).
+
+The stock wrapper has no such flag (checked against upstream `main` on 2026-09-06), and the
+activation data type is applied inside `Engine.init`, which is where the C setting
+`litert_lm_engine_settings_set_activation_data_type` is available — so, like 0001, this cannot
+be written from outside the package. The patch adds the flag (opt-in gated like the other
+experimental flags, default `false`) and the one call in `Engine.init`. Unpatched call sites
+keep upstream behaviour exactly.
+
+Until 2026-09-06 this edit lived only in one working clone's `Vendored/` and was invisible to
+git; the `catalog-2026-09-04` merge added the tracked copy. The compile error without it
+(`type 'ExperimentalFlags' has no member 'forceFloat32Activations'`) is the same kind of signal
+as 0001's: a stock package fails to build rather than silently measuring fp16.
