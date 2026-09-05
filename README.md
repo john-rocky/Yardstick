@@ -12,7 +12,7 @@
 | Qwen 3 0.6B | Mac Studio (M4 Max) | — | **555.9** (2026-08-17) | **309.9** (2026-08-17) | — |
 | Qwen 3 8B | Mac Studio (M4 Max) | — | 98.3 cold (2026-06-17) | 62.4 cold (2026-06-17) | — |
 
-¹ Qwen 3 0.6B · iPhone 17 Pro: the cells come from 5 capture sessions (Apple Core AI 2026-06-18 and 2026-07-13 (`2026-07-14-iphone-final`); MLX 2026-08-26 (`2026-08-26-iphone-lfm-pair`); LiteRT-LM 2026-08-26 (`2026-08-26-iphone-qwen-3runtime-pair`); Core ML 2026-06-17). Same device, different sittings — device state moved between sessions on this phone (`results/raw/2026-07-13-mlx-variance/`), so a ratio between two cells of this row is not a measurement; compare within one session (the Core AI section below carries the per-session tables).
+¹ Qwen 3 0.6B · iPhone 17 Pro: the cells come from 5 capture sessions (Apple Core AI 2026-06-18 and 2026-07-13 (`2026-07-14-iphone-final`); MLX 2026-08-26 (`2026-08-26-iphone-lfm-pair`); LiteRT-LM 2026-08-26 (`2026-08-26-iphone-qwen-3runtime-pair`); Core ML 2026-06-17). Same device, different sittings — device state moves between sessions (measured on the phone: `results/raw/2026-07-13-mlx-variance/`), so a ratio between two cells of this row is not a measurement; compare within one session (the dated tables below are per-session).
 
 <details><summary>Recipes behind the harness cells (quant-per-arm-rule)</summary>
 
@@ -26,6 +26,24 @@
 - Mac Studio (M4 Max) · Qwen 3 0.6B · LiteRT-LM: `litert-community/Qwen3-0.6B` — INT4 (mixed, blockwise gs32), engine v0.16.0, warm median of 3 in-process runs, session 2026-08-17 (`2026-08-17-mac-litert-v0160`)
 - Mac Studio (M4 Max) · Qwen 3 8B · MLX: `mlx-community/Qwen3-8B-4bit` — Q4, engine pre-stamp, cold, 3 fresh-process launches in that session (no warm runs), last one shown, session 2026-06-17
 - Mac Studio (M4 Max) · Qwen 3 8B · LiteRT-LM: `litert-community/Qwen3-8B` — INT4 (mixed, blockwise gs32), engine pre-stamp, cold, 3 fresh-process launches in that session (no warm runs), last one shown, session 2026-06-17
+
+</details>
+
+**Apple `llm-benchmark` protocol, Mac** — 512-token prompt, 1024 generated, 5 trials, greedy; Apple Core AI = Apple's `llm-benchmark` release build, MLX = `mlx_lm benchmark` with the same arguments. A different budget from the harness rows above (budget-mode-rule): never compare a number here with one there. Each cell is its newest campaign — the date in parentheses.
+
+| Model | Device | Apple Core AI | MLX |
+|---|---|---:|---:|
+| Qwen 3 0.6B ¹ | Mac Studio (M4 Max) | 503.1 (2026-07-13) | 432.3 (2026-06-11) |
+| Qwen 3 8B | Mac Studio (M4 Max) | 94.1 (2026-06-11) | 90.0 (2026-06-11) |
+
+¹ Qwen 3 0.6B · Mac Studio (M4 Max): the cells come from 2 capture sessions (Apple Core AI 2026-07-13 (`2026-07-13-mac-warm/coreai-ct041`); MLX 2026-06-11 (`2026-06-11-m4max-coreai-matrix`)). Same device, different sittings — device state moves between sessions (measured on the phone: `results/raw/2026-07-13-mlx-variance/`), so a ratio between two cells of this row is not a measurement; compare within one session (the dated tables below are per-session).
+
+<details><summary>Recipes behind the llm-benchmark cells</summary>
+
+- Mac Studio (M4 Max) · Qwen 3 0.6B · Apple Core AI: `qwen3_0_6b_dynamic_ct041` — Apple `llm-benchmark`, 512p/1024g, mean of 5 trials (trial spread 0.1%), `results/raw/2026-07-13-mac-warm/coreai-ct041/`
+- Mac Studio (M4 Max) · Qwen 3 0.6B · MLX: `mlx-community/Qwen3-0.6B-4bit` — `mlx_lm benchmark` (mlx-lm 0.31.3), same 512p/1024g/5 arguments, mean of the trials, `results/raw/2026-06-11-m4max-coreai-matrix/mlx_sweep_0.31.3.log`
+- Mac Studio (M4 Max) · Qwen 3 8B · Apple Core AI: `qwen3_8b_4bit_dynamic` — Apple `llm-benchmark`, 512p/1024g, mean of 5 trials (trial spread 0.3%), `results/raw/2026-06-11-m4max-coreai-matrix/`
+- Mac Studio (M4 Max) · Qwen 3 8B · MLX: `mlx-community/Qwen3-8B-4bit` — `mlx_lm benchmark` (mlx-lm 0.31.3), same 512p/1024g/5 arguments, mean of the trials, `results/raw/2026-06-11-m4max-coreai-matrix/mlx_sweep_0.31.3.log`
 
 </details>
 
@@ -64,7 +82,7 @@
 
 <!-- END GENERATED: scripts/render_headline.py -->
 
-Not in the generated table yet, because this repo holds no record for them: the Apple Core AI numbers for the hybrid models live on the model cards ([`mlboydaisuke/Nemotron-3-Nano-4B-CoreAI`](https://huggingface.co/mlboydaisuke/Nemotron-3-Nano-4B-CoreAI), [`coreai-community/granite-4.0-h-CoreAI`](https://huggingface.co/coreai-community/granite-4.0-h-CoreAI)), and the M4 Max Core AI `llm-benchmark` runs are quoted in the Core AI section below with their raw logs.
+Not in the generated tables, because this repo holds no record for them: the Apple Core AI numbers for the hybrid models live on the model cards ([`mlboydaisuke/Nemotron-3-Nano-4B-CoreAI`](https://huggingface.co/mlboydaisuke/Nemotron-3-Nano-4B-CoreAI), [`coreai-community/granite-4.0-h-CoreAI`](https://huggingface.co/coreai-community/granite-4.0-h-CoreAI)), and the macOS-26-era Qwen3-0.6B Core AI artifact (the 1,121 tok/s figure in the Core AI section) left only an archived hash, not a benchmark record.
 
 **On-device LLM benchmark for Apple Silicon — iPhone · iPad · Mac.**
 
@@ -88,7 +106,7 @@ A neutral, reproducible benchmark for running local LLMs (and, in time, ASR / TT
 | MLX | GPU | 167.2 | **158.8** | 489 MB | 2026-07-13 |
 | **Core AI** (static-shape) | ANE | 143.7 | blocked† | 1,158 MB | 2026-06-18 |
 | LiteRT-LM | GPU | 121.0 | 120.4 | 1,384 MB | 2026-07-13 |
-| **CoreML-LLM** | ANE | 39 | pending‡ | **184** 🏆 | 2026-06 |
+| **CoreML-LLM** | ANE | 37.7 | pending‡ | **184** 🏆 | 2026-06-17 |
 
 > **Read the Session column before comparing rows.** Cross-session ratios are invalid on this
 > device: the same MLX binary + pins measured 126–133 tok/s in mid-June and 159–180 today
@@ -98,10 +116,14 @@ A neutral, reproducible benchmark for running local LLMs (and, in time, ASR / TT
 > same-session Release warm gives **LiteRT-LM ≈ 0.76× MLX**. This replaces the earlier
 > Debug-contaminated MLX 112 row and the "~1.6× once warm" framing.
 >
-> † **Core AI warm re-capture is blocked**: `coreai-build` aborts on the current macOS 27
-> beta (both toolchain generations) so the 0.6B bundles can't be re-assembled —
-> [`methodology/coreai-build-regression-2026-07.md`](methodology/coreai-build-regression-2026-07.md).
-> Core AI cold/warm behaviour is instead re-verified at 4B (bundles survive on-device).
+> † **Core AI warm re-capture was blocked in July**: `coreai-build` aborted on the macOS 27
+> beta of the time (both toolchain generations), so the 0.6B bundles could not be re-assembled —
+> [`methodology/coreai-build-regression-2026-07.md`](methodology/coreai-build-regression-2026-07.md);
+> cold/warm behaviour was re-verified at 4B instead (bundles survive on-device). A warm capture
+> of the macOS-26-era GPU bundle exists from 2026-08-26
+> ([`results/raw/2026-08-26-iphone-coreai-pairs/`](results/raw/2026-08-26-iphone-coreai-pairs/summary.md):
+> 152.3 cold / 147.4 warm, engine 0.2.0+static-inputs-patch), but every cell of that session
+> started thermal-fair, so it fails the §2 guard and is not in the tables.
 > ‡ CoreML-LLM stateful-chunks bundle needs re-conversion before it can be re-measured.
 
 - **Core AI's GPU "pipelined" engine was the fastest path in the June session** — cold 193.3

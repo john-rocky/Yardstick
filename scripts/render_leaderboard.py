@@ -15,6 +15,12 @@ Neutrality invariants (why cells look the way they do):
     the headline is the SHORT-CHAT task; other tasks live in RESULTS.md.
   - a warm median whose trial spread exceeds SPREAD_FLAG carries ⚠
     (spread-rule).
+  - only runs that started thermal-nominal count (fairness-rules §2, the
+    same guard regression_diff applies); a cell whose every capture started
+    hot stays in the table flagged ⚠hot instead of vanishing
+    (failed-runs-stay). Audited 2026-09-05: the 2026-08-26 iphone-coreai-pairs
+    session, THERMAL_FAIL on every cell by its own gate file, had become the
+    latest-session row for three cells.
   - GSM8K joins on (model_id, runtime); pre-v1 quality rows have no
     model_id and deliberately do not join (tag prose is not decoded).
 """
@@ -27,7 +33,7 @@ import statistics
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from bench_common import DEVICE_DISPLAY, corrected_quant, logical_model  # noqa: E402
+from bench_common import DEVICE_DISPLAY, corrected_quant, logical_model, started_nominal  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SUMMARY = os.path.join(ROOT, "results", "summary")
@@ -88,8 +94,12 @@ def latest_session(rows):
 
 
 def arm_row(rows):
-    """One leaderboard line from one cell's latest-session rows."""
-    sess, date = latest_session(rows)
+    """One leaderboard line from one cell's latest-session rows. The thermal
+    guard runs first: the newest session among nominal-start runs wins; a cell
+    with no nominal-start run at all is rendered from its hot runs and flagged."""
+    ok = started_nominal(rows)
+    hot = not ok
+    sess, date = latest_session(ok or rows)
     warm = [fnum(r["decode_tps"]) for r in sess if r["cold_run"] == "False"]
     warm = [v for v in warm if v]
     cold = [fnum(r["decode_tps"]) for r in sess if r["cold_run"] == "True"]
@@ -122,7 +132,7 @@ def arm_row(rows):
         "mem": statistics.median(mem) if mem else None,
         "quant": (" / ".join(quants) or "unrecorded") + ("†" if qcorr else ""),
         "engine": " / ".join(engines) or "pre-stamp",
-        "date": date, "n": len(sess),
+        "date": date, "n": len(sess), "hot": hot,
     }
 
 
@@ -191,7 +201,10 @@ def generate():
         "† = quantization label carries the audited in-place correction "
         "(Gemma-4 `.litertlm` is the wNa8o8 mobile schema; early rows recorded "
         "\"INT4 (QAT)\" — quant-label-rule). mem MB = phys_footprint on Apple rows, "
-        "RSS on Android rows (no footprint equivalent; methodology/android.md).",
+        "RSS on Android rows (no footprint equivalent; methodology/android.md). "
+        "Only runs that started thermal-nominal count (fairness-rules §2): each cell "
+        "is its newest nominal-start session; ⚠hot marks a cell whose every capture "
+        "started hot, kept in the table with its numbers (failed-runs-stay).",
         "",
     ]
     for plat in ("mac", "ios", "android"):
@@ -243,7 +256,7 @@ def generate():
                     lines.append(
                         f"| {rt} | `{mid}` | {a['quant']} | {a['engine']} | {warm_txt} | "
                         f"{fmt(a['cold'])} | {fmt(a['prefill'])} | {fmt(a['ttft'])} | "
-                        f"{fmt(a['mem'])} | {qtxt} | {a['date']} |")
+                        f"{fmt(a['mem'])} | {qtxt} | {a['date']}{' ⚠hot' if a['hot'] else ''} |")
                 lines.append("")
             if single:
                 lines.append("<details><summary>single-arm cells (no cross-runtime comparison)</summary>")
@@ -260,7 +273,7 @@ def generate():
                         if a["warm"] and a["spread"] > SPREAD_FLAG:
                             warm_txt += f" ⚠spread {a['spread']:.0f}%"
                         lines.append(f"| {model} | {rt} | `{mid}` | {a['quant']} | {a['engine']} | "
-                                     f"{warm_txt} | {fmt(a['cold'])} | {a['date']} |")
+                                     f"{warm_txt} | {fmt(a['cold'])} | {a['date']}{' ⚠hot' if a['hot'] else ''} |")
                 lines.append("")
                 lines.append("</details>")
                 lines.append("")

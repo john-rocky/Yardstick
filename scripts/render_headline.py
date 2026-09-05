@@ -16,16 +16,22 @@ Sources (read-only):
                                     from render_leaderboard's latest_session / arm_row,
                                     so a number shown in both places is the same number.
   results/hybrid/*.json             the CLI hybrid-model reports (llama-bench / mlx_lm).
+  results/raw/**/*.json             Apple `llm-benchmark --output-json` records (detected by
+                                    shape, not path) + the `mlx_lm benchmark` sweep logs
+                                    beside them (mlx_sweep_<ver>.log): the Mac 512p/1024g
+                                    protocol, its own table (budget-mode-rule).
 
 Rules applied as code (slugs: methodology/fairness-rules.md):
   cold-warm-split      warm median where the session has warm runs, else the cold
                        number tagged "cold"; never pooled.
-  thermal guard (§2)   only runs that STARTED thermal-nominal count — the same filter
-                       regression_diff.py applies. A session whose runs all started
-                       hot is skipped and the cell falls back to its newest nominal
-                       session (results/raw/2026-08-26-iphone-coreai-pairs is
-                       THERMAL_FAIL on every cell by its own gate file; it must not
-                       become the headline).
+  thermal guard (§2)   only runs that STARTED thermal-nominal count — the filter
+                       bench_common.started_nominal, shared with render_leaderboard
+                       and regression_diff. A session whose runs all started hot is
+                       skipped and the cell falls back to its newest nominal session
+                       (results/raw/2026-08-26-iphone-coreai-pairs is THERMAL_FAIL on
+                       every cell by its own gate file; it must not be the headline).
+                       An arm with no nominal capture at all is listed under the
+                       table, not in it (the leaderboard shows it flagged ⚠hot).
   iphone-session-variance
                        every cell carries its capture date; a row whose cells come
                        from different sessions gets an automatic note, and no ratio
@@ -33,8 +39,8 @@ Rules applied as code (slugs: methodology/fairness-rules.md):
   quant-per-arm-rule   the recipe (artifact, quantization, engine, n) of every cell
                        is listed right under the table.
   stored-report-rule   a number with no record under results/ does not appear. Known
-                       gaps: the M4 Max Core AI `llm-benchmark` runs (no parser yet)
-                       and the hybrid-model Core AI cells (HF cards only).
+                       gaps: the hybrid-model Core AI cells (HF cards only) and the
+                       macOS-26-era Qwen3-0.6B artifact (archived hash, no record).
   no-cherry-pick       every artifact of a runtime is shown, fastest first; spread
                        over SPREAD_FLAG carries the same ⚠ as LEADERBOARD.md.
 
@@ -49,11 +55,12 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from bench_common import DEVICE_DISPLAY, logical_model  # noqa: E402
+from bench_common import DEVICE_ALIASES, DEVICE_DISPLAY, logical_model, started_nominal  # noqa: E402
 from render_leaderboard import SPREAD_FLAG, arm_row, fmt, latest_session, load  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HYBRID = os.path.join(ROOT, "results", "hybrid")
+RAW = os.path.join(ROOT, "results", "raw")
 TARGET = os.path.join(ROOT, "README.md")
 BEGIN = "<!-- BEGIN GENERATED: scripts/render_headline.py -->"
 END = "<!-- END GENERATED: scripts/render_headline.py -->"
@@ -70,10 +77,11 @@ RUNTIME_LABEL = {
     "coreml-llm": "Core ML",
 }
 RUNTIME_ORDER = list(RUNTIME_LABEL)
-# fairness-rules §2 thermal guard, same states as regression_diff.NOMINAL_STATES:
-# rows with no thermal field (pre-thermal writers, Mac CLI) pass through.
-NOMINAL_STATES = ("nominal", "")
 SUPERSCRIPTS = "¹²³⁴⁵⁶⁷⁸⁹"
+LLM_BENCHMARK_KEYS = {"averages", "generation_tokens", "model", "num_trials", "prompt_tokens", "trials"}
+# llm-benchmark campaign dirs whose name carries no device label. Factual basis,
+# not guesswork: the ct041 README states "Mac Studio M4 Max, macOS 27.0 26A5378j".
+CAMPAIGN_DEVICE = {"2026-07-13-mac-warm/coreai-ct041": "Mac16,9"}
 
 
 def device_name(model_identifier):
@@ -106,7 +114,7 @@ def harness_rows():
             continue
         cells.setdefault((r["platform"], r["device"], model, r["runtime"], r["model_id"]), []).append(r)
     for (plat, dev, model, rt, mid), rows in cells.items():
-        ok = [r for r in rows if (r.get("thermal_initial") or "") in NOMINAL_STATES]
+        ok = started_nominal(rows)  # fairness §2 guard, shared with render_leaderboard
         if not ok:
             hot_only.append((plat, dev, model, rt, mid, arm_row(rows)["date"]))
             continue
@@ -156,6 +164,15 @@ def recipe_line(dev, model, rt, a, mid, sess, skipped):
     return line
 
 
+def session_note(model, dev_name, by_rt, n_sessions, marker):
+    by = "; ".join(f"{label} {' and '.join(dates)}" for label, dates in by_rt.items())
+    return (f"{marker} {model} · {dev_name}: the cells come from {n_sessions} capture "
+            f"sessions ({by}). Same device, different sittings — device state moves between "
+            "sessions (measured on the phone: `results/raw/2026-07-13-mlx-variance/`), so a "
+            "ratio between two cells of this row is not a measurement; compare within one "
+            "session (the dated tables below are per-session).")
+
+
 def render_harness(lines):
     tree, hot_only = harness_rows()
     runtimes = [rt for rt in RUNTIME_ORDER
@@ -195,14 +212,7 @@ def render_harness(lines):
         marker = ""
         if len(sessions) > 1:
             marker = " " + SUPERSCRIPTS[len(notes) % len(SUPERSCRIPTS)]
-            by = "; ".join(f"{label} {' and '.join(dates)}" for label, dates in by_rt.items())
-            notes.append(
-                f"{marker.strip()} {model} · {device_name(dev)}: the cells come from "
-                f"{len(sessions)} capture sessions ({by}). Same device, different sittings — "
-                "device state moved between sessions on this phone "
-                "(`results/raw/2026-07-13-mlx-variance/`), so a ratio between two cells of "
-                "this row is not a measurement; compare within one session (the Core AI "
-                "section below carries the per-session tables).")
+            notes.append(session_note(model, device_name(dev), by_rt, len(sessions), marker.strip()))
         cells = [cell_text(arms[rt]) if rt in arms else "—" for rt in runtimes]
         lines.append(f"| {model}{marker} | {device_name(dev)} | " + " | ".join(cells) + " |")
     lines.append("")
@@ -218,6 +228,116 @@ def render_harness(lines):
                          f"`{mid}` — newest capture {date} started hot")
         lines.append("")
     lines.append("<details><summary>Recipes behind the harness cells (quant-per-arm-rule)</summary>")
+    lines.append("")
+    lines.extend(recipes)
+    lines.append("")
+    lines.append("</details>")
+    lines.append("")
+    return latest
+
+
+# ----------------------------------------------------------------------------
+# Apple llm-benchmark protocol (Mac): llm-benchmark JSON + mlx_lm benchmark sweep logs
+# ----------------------------------------------------------------------------
+
+def _campaign(path):
+    """results/raw/<campaign...>/file -> (campaign rel dir, date, device identifier)."""
+    rel = os.path.relpath(os.path.dirname(path), RAW)
+    top = rel.split(os.sep)[0]
+    date = top[:10] if re.match(r"\d{4}-\d{2}-\d{2}", top) else ""
+    device = CAMPAIGN_DEVICE.get(rel)
+    if device is None:
+        for tok in top.split("-"):
+            if tok in DEVICE_DISPLAY:
+                device = DEVICE_ALIASES.get(tok, tok)  # label-space -> identifier, as build_summary does
+                break
+    return rel, date, device or rel
+
+
+def llm_benchmark_cells():
+    """(device, model) -> runtime -> [(value, date, campaign, recipe)], one entry per
+    campaign; the caller keeps the newest campaign per runtime."""
+    cells = {}
+    for path in sorted(glob.glob(os.path.join(RAW, "**", "*.json"), recursive=True)):
+        try:
+            d = json.load(open(path))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(d, dict) or set(d) != LLM_BENCHMARK_KEYS:
+            continue
+        rel, date, device = _campaign(path)
+        stem = os.path.basename(path)[:-5].split("_")[0]
+        model = logical_model(stem)
+        if model not in HEADLINE_MODELS:
+            continue
+        vals = [t["gen_tps"] for t in d["trials"] if t.get("gen_tps")]
+        spread = (max(vals) - min(vals)) / d["averages"]["generation_tps"] * 100 if len(vals) > 1 else 0.0
+        recipe = (f"`{d['model']}` — Apple `llm-benchmark`, {d['prompt_tokens']}p/"
+                  f"{d['generation_tokens']}g, mean of {d['num_trials']} trials "
+                  f"(trial spread {spread:.1f}%), `results/raw/{rel}/`")
+        cells.setdefault((device, model), {}).setdefault("core-ai", []).append(
+            (d["averages"]["generation_tps"], date, rel, recipe))
+    for path in sorted(glob.glob(os.path.join(RAW, "**", "mlx_sweep_*.log"), recursive=True)):
+        rel, date, device = _campaign(path)
+        ver = re.search(r"mlx_sweep_([\d.]+)\.log$", path)
+        ver = ver.group(1) if ver else "?"
+        repo = None
+        for line in open(path):
+            m = re.match(r"=== (\S+) ", line)
+            if m:
+                repo = m.group(1)
+                continue
+            m = re.match(r"Averages: .*generation_tps=([\d.]+)", line)
+            if m and repo:
+                model = logical_model(repo)
+                if model in HEADLINE_MODELS:
+                    recipe = (f"`{repo}` — `mlx_lm benchmark` (mlx-lm {ver}), same 512p/1024g/5 "
+                              f"arguments, mean of the trials, `results/raw/{rel}/{os.path.basename(path)}`")
+                    cells.setdefault((device, model), {}).setdefault("mlx-swift", []).append(
+                        (float(m.group(1)), date, rel, recipe))
+                repo = None
+    return cells
+
+
+def render_llm_benchmark(lines):
+    cells = llm_benchmark_cells()
+    if not cells:
+        return ""
+    runtimes = [rt for rt in RUNTIME_ORDER if any(rt in arms for arms in cells.values())]
+    lines.append(
+        "**Apple `llm-benchmark` protocol, Mac** — 512-token prompt, 1024 generated, 5 trials, "
+        "greedy; Apple Core AI = Apple's `llm-benchmark` release build, MLX = `mlx_lm benchmark` "
+        "with the same arguments. A different budget from the harness rows above "
+        "(budget-mode-rule): never compare a number here with one there. Each cell is its newest "
+        "campaign — the date in parentheses.")
+    lines.append("")
+    lines.append("| Model | Device | " + " | ".join(RUNTIME_LABEL.get(rt, rt) for rt in runtimes) + " |")
+    lines.append("|---|---|" + "|".join("---:" for _ in runtimes) + "|")
+    notes, recipes = [], []
+    latest = ""
+    for (device, model) in sorted(cells, key=lambda k: (k[0], HEADLINE_MODELS.index(k[1]))):
+        arms = cells[(device, model)]
+        row, sessions, by_rt = [], set(), {}
+        for rt in runtimes:
+            if rt not in arms:
+                row.append("—")
+                continue
+            val, date, rel, recipe = max(arms[rt], key=lambda t: t[1])
+            sessions.add(rel)
+            by_rt.setdefault(RUNTIME_LABEL.get(rt, rt), []).append(f"{date} (`{rel}`)")
+            latest = max(latest, date)
+            row.append(f"{val:.1f} ({date})")
+            recipes.append(f"- {device_name(device)} · {model} · {RUNTIME_LABEL.get(rt, rt)}: {recipe}")
+        marker = ""
+        if len(sessions) > 1:
+            marker = " " + SUPERSCRIPTS[len(notes) % len(SUPERSCRIPTS)]
+            notes.append(session_note(model, device_name(device), by_rt, len(sessions), marker.strip()))
+        lines.append(f"| {model}{marker} | {device_name(device)} | " + " | ".join(row) + " |")
+    lines.append("")
+    for n in notes:
+        lines.append(n)
+        lines.append("")
+    lines.append("<details><summary>Recipes behind the llm-benchmark cells</summary>")
     lines.append("")
     lines.extend(recipes)
     lines.append("")
@@ -329,9 +449,7 @@ def render_hybrid(lines):
 
 def generate():
     body = []
-    latest_h = render_harness(body)
-    latest_x = render_hybrid(body)
-    latest = max(latest_h, latest_x)
+    latest = max(render_harness(body), render_llm_benchmark(body), render_hybrid(body))
     head = [
         BEGIN,
         "",

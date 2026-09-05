@@ -46,6 +46,9 @@ import os
 import statistics
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from bench_common import NOMINAL_STATES  # noqa: E402 — one definition for differ + renderers
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SUMMARY = os.path.join(ROOT, "results", "summary")
 
@@ -195,12 +198,11 @@ GROUP = ("device", "runtime", "model_id", "task", "cold_run")
 
 
 # fairness-rules §2 thermal guard, applied as code: only runs that STARTED at
-# nominal are comparable. The runners record hot runs (failed-runs-stay) and
-# mark the cell THERMAL_FAIL, but a differ that pooled them anyway turned a
-# clean nominal warm set into "spread 21%, UNRELIABLE" (measured 2026-08-19:
-# 4 nominal + 5 fair runs of the same cell). Rows with no thermal field
-# (pre-thermal writers, Mac CLI) pass through unchanged.
-NOMINAL_STATES = ("nominal", "")
+# nominal are comparable (bench_common.NOMINAL_STATES). The runners record hot
+# runs (failed-runs-stay) and mark the cell THERMAL_FAIL, but a differ that
+# pooled them anyway turned a clean nominal warm set into "spread 21%,
+# UNRELIABLE" (measured 2026-08-19: 4 nominal + 5 fair runs of the same cell).
+# Rows with no thermal field (pre-thermal writers, Mac CLI) pass through.
 
 
 def cells(rows, metric):

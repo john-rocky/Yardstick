@@ -75,6 +75,27 @@ LOGICAL_MODELS: list[tuple[str, str]] = [
 ]
 
 
+# Historical flat-file device labels -> hardware identifiers, so label-space
+# rows and identifier-space rows of the SAME machine join. Factual basis, not
+# guesswork: the author's "m4max" machine was chassis-verified as a Mac Studio
+# Mac16,9 via system_profiler on 2026-08-15
+# (results/raw/2026-08-15-muse-glimmer-30b-3way/ENV.md). m3air (a MacBook Air,
+# different machine) is deliberately NOT aliased.
+DEVICE_ALIASES = {"m4max": "Mac16,9"}
+
+
+# fairness-rules §2 thermal guard (cold-warm-split), applied as code by
+# regression_diff.py, render_leaderboard.py and render_headline.py: only runs
+# that STARTED thermal-nominal are comparable. Rows with no thermal field
+# (pre-thermal writers, Mac CLI) pass through unchanged.
+NOMINAL_STATES = ("nominal", "")
+
+
+def started_nominal(rows):
+    """The rows of a cell whose run started thermal-nominal (or has no thermal field)."""
+    return [r for r in rows if (r.get("thermal_initial") or "") in NOMINAL_STATES]
+
+
 def logical_model(model_id: str) -> str:
     """Canonical display name for a model, collapsing per-runtime HF IDs."""
     needle = model_id.lower()

@@ -12,7 +12,7 @@ Generated from `results/summary/*.csv` (latest capture 2026-08-26) by `scripts/r
 
 Headline task: **short-chat**, warm = median of same-session warm runs (cold-warm-split); other tasks and full history: RESULTS.md. Rows sort by warm decode; the recipe (quantization, engine build) is part of every row — a faster number under a different recipe is a different deployment profile, not a win.
 
-† = quantization label carries the audited in-place correction (Gemma-4 `.litertlm` is the wNa8o8 mobile schema; early rows recorded "INT4 (QAT)" — quant-label-rule). mem MB = phys_footprint on Apple rows, RSS on Android rows (no footprint equivalent; methodology/android.md).
+† = quantization label carries the audited in-place correction (Gemma-4 `.litertlm` is the wNa8o8 mobile schema; early rows recorded "INT4 (QAT)" — quant-label-rule). mem MB = phys_footprint on Apple rows, RSS on Android rows (no footprint equivalent; methodology/android.md). Only runs that started thermal-nominal count (fairness-rules §2): each cell is its newest nominal-start session; ⚠hot marks a cell whose every capture started hot, kept in the table with its numbers (failed-runs-stay).
 
 ## mac
 
@@ -152,7 +152,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
-| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | 51.0 ⚠spread 21% | 55.4 | 408.7 | 80.5 | 479.7 | — | 2026-08-19 |
+| litert-lm | `litert-community/gemma-4-E2B-it-litert-lm` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | v0.16.0 | 50.7 ⚠spread 19% | 55.4 | 382.1 | 81.0 | 477.0 | — | 2026-08-19 |
 | mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | pre-stamp | 47.8 | 44.1 | 183.6 | 218.5 | 2999.8 | — | 2026-07-30 |
 | llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | pre-stamp | 38.9 | 38.5 | 1710.5 | 108.0 | 198.6 | — | 2026-07-30 |
 | core-ai | `core-ai/gemma4-e2b-gpu` | int4 q4_0 (QAT transplant) | pre-stamp | — | 46.9 | 23.5 | 3133.0 | 455.3 | — | 2026-07-30 |
@@ -162,11 +162,11 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
 | mlx-swift | `mlx-community/Qwen3-0.6B-4bit` | Q4 | 60bd0d7880c82980f9481f8be78862e9b63c58a3 | 178.8 | 178.7 | 533.6 | 37.0 | 488.2 | — | 2026-08-26 |
-| core-ai | `core-ai/qwen3-0.6b-gpu` | INT4 (dynamic, macOS-26-era export) | 0.2.0+static-inputs-patch | 147.4 | 152.3 | 954.1 | 23.0 | 180.2 | — | 2026-08-26 |
 | core-ai | `core-ai/qwen3-0.6b-ane-june` | mixed 4/8-bit (June static export) | pre-stamp | 122.4 | 124.9 | 675.6 | 29.0 | — | — | 2026-07-13 |
-| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 121.6 | 120.6 | 183.9 | 151.5 | 465.4 | — | 2026-08-26 |
+| litert-lm | `litert-community/Qwen3-0.6B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 122.1 | 123.8 | 182.5 | 149.0 | 470.8 | — | 2026-08-26 |
 | core-ai | `core-ai/qwen3-0.6b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 116.9 | 118.7 | 697.3 | 28.5 | — | — | 2026-07-13 |
-| coreml-llm | `coreml-llm/qwen3-0.6b` | INT8 palettized | pre-stamp | — | 37.8 | 33.2 | 572.0 | — | — | 2026-06-17 |
+| coreml-llm | `coreml-llm/qwen3-0.6b` | INT8 palettized | pre-stamp | — | 37.7 | 33.2 | 572.0 | — | — | 2026-06-17 |
+| core-ai | `core-ai/qwen3-0.6b-gpu` | INT4 (dynamic) | pre-stamp | — | 193.3 | 1699.9 | 16.0 | — | — | 2026-06-18 |
 
 **Qwen 3 1.7B**
 
@@ -175,7 +175,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | core-ai | `core-ai/qwen3-1.7b-gpu-june` | INT4 (dynamic, June export) | pre-stamp | 67.6 | 67.9 | 457.6 | 45.0 | — | — | 2026-07-13 |
 | mlx-swift | `mlx-community/Qwen3-1.7B-4bit` | Q4 | pre-stamp | 65.1 | 63.9 | 248.6 | 77.5 | — | — | 2026-07-13 |
 | litert-lm | `litert-local/qwen3-1.7b-int4` | INT4 (mixed, int8 embed) | pre-stamp | 49.3 | 46.8 | — | 855.5 | — | — | 2026-07-13 |
-| litert-lm | `litert-local/qwen3-1.7b` | INT8 (dynamic, ekv1024) | pre-stamp | — | 30.2 | — | 453.0 | — | — | 2026-06-19 |
+| litert-lm | `litert-local/qwen3-1.7b` | INT8 (dynamic, ekv1024) | pre-stamp | — | 30.2 | — | 453.0 | — | — | 2026-06-19 ⚠hot |
 | core-ai | `core-ai/qwen3-1.7b-gpu` | INT4 (dynamic) | pre-stamp | — | 64.7 | 763.6 | 31.0 | — | — | 2026-07-14 |
 
 **Qwen 3.5 2B**
@@ -184,7 +184,7 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 |---|---|---|---|---|---|---|---|---|---|---|
 | mlx-swift | `mlx-community/Qwen3.5-2B-MLX-4bit` | Q4 | pre-stamp | — | 61.2 | 249.3 | 103.0 | — | — | 2026-05-27 |
 | llama.cpp | `unsloth/Qwen3.5-2B-GGUF/Q4_K_M` | Q4_K_M | pre-stamp | — | 38.7 | 2503.9 | 96.0 | — | — | 2026-05-27 |
-| coreml-llm | `coreml-llm/qwen3.5-2b` | INT8 | pre-stamp | — | 28.1 | 27.3 | 844.0 | — | — | 2026-05-28 |
+| coreml-llm | `coreml-llm/qwen3.5-2b` | INT8 | pre-stamp | — | 28.1 | 27.3 | 844.0 | — | — | 2026-05-28 ⚠hot |
 
 **SmolLM 3B**
 
@@ -207,25 +207,25 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | core-ai/gemma3-1b-gpu | core-ai | `core-ai/gemma3-1b-gpu` | INT4 (dynamic) | pre-stamp | — | 94.3 | 2026-07-14 |
 | core-ai/lfm2.5-1.2b-gpu | core-ai | `core-ai/lfm2.5-1.2b-gpu` | int8hu block32 sym (untied head) | 0.2.0+static-inputs-patch | 45.5 | 45.7 | 2026-08-26 |
 | core-ai/llama-3.2-3b-ane | core-ai | `core-ai/llama-3.2-3b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 38.0 | — | 2026-07-13 |
-| core-ai/llama-3.2-3b-gpu | core-ai | `core-ai/llama-3.2-3b-gpu` | INT4 (dynamic) | pre-stamp | — | 35.5 | 2026-07-14 |
-| core-ai/minicpm5-1b-gpu | core-ai | `core-ai/minicpm5-1b-gpu` | INT8 (sym, dynamic) | 0.2.0+static-inputs-patch | 72.1 | 72.2 | 2026-08-26 |
+| core-ai/llama-3.2-3b-gpu | core-ai | `core-ai/llama-3.2-3b-gpu` | INT4 (dynamic) | pre-stamp | 34.8 | — | 2026-07-13 |
+| core-ai/minicpm5-1b-gpu | core-ai | `core-ai/minicpm5-1b-gpu` | INT8 (sym, dynamic) | 0.2.0+static-inputs-patch | 72.1 | 72.2 | 2026-08-26 ⚠hot |
 | core-ai/ministral-3b-gpu | core-ai | `core-ai/ministral-3b-gpu` | INT4 (dynamic) | pre-stamp | — | 29.3 | 2026-07-14 |
 | core-ai/olmo2-1b-ane | core-ai | `core-ai/olmo2-1b-ane` | 4-bit palettized (uniform g32) | pre-stamp | — | 96.3 | 2026-07-14 |
 | core-ai/olmo2-1b-gpu | core-ai | `core-ai/olmo2-1b-gpu` | INT4 (dynamic) | pre-stamp | — | 92.5 | 2026-07-14 |
-| core-ai/qwen3-4b-ane | core-ai | `core-ai/qwen3-4b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 30.0 ⚠spread 9% | 27.0 | 2026-07-13 |
+| core-ai/qwen3-4b-ane | core-ai | `core-ai/qwen3-4b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 30.0 ⚠spread 9% | 27.0 | 2026-07-13 ⚠hot |
 | core-ai/qwen3-4b-gpu | core-ai | `core-ai/qwen3-4b-gpu` | INT4 (dynamic) | pre-stamp | 26.4 | 27.0 | 2026-07-13 |
 | core-ai/tinyswallow-1.5b-ane | core-ai | `core-ai/tinyswallow-1.5b-ane` | 4-bit palettized (uniform g32) | pre-stamp | — | 72.9 | 2026-07-14 |
 | core-ai/tinyswallow-1.5b-gpu | core-ai | `core-ai/tinyswallow-1.5b-gpu` | INT4 (dynamic) | pre-stamp | — | 69.7 | 2026-07-14 |
 | core-ai/vibethinker-1.5b-ane | core-ai | `core-ai/vibethinker-1.5b-ane` | 4-bit palettized (uniform g32) | pre-stamp | 73.8 | 73.4 | 2026-07-13 |
 | core-ai/vibethinker-1.5b-gpu | core-ai | `core-ai/vibethinker-1.5b-gpu` | INT4 (dynamic) | pre-stamp | — | 71.0 | 2026-07-14 |
-| litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | 26.7 ⚠spread 19% | 31.2 | 2026-08-24 |
+| litert-community/DeepSeek-R1-Distill-Qwen-1.5B | litert-lm | `litert-community/DeepSeek-R1-Distill-Qwen-1.5B` | INT8 | v0.16.0 | 29.2 | 31.2 | 2026-08-24 |
 | litert-community/Gemma3-1B-IT | litert-lm | `litert-community/Gemma3-1B-IT` | INT4 | pre-stamp | 72.1 | 72.7 | 2026-07-13 |
 | litert-community/LFM2.5-1.2B-Instruct | litert-lm | `litert-community/LFM2.5-1.2B-Instruct` | int4_gpu (litert-community descriptor) | v0.16.0 | 69.5 | 69.9 | 2026-08-26 |
-| litert-community/MiniCPM5-1B | litert-lm | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | 34.2 ⚠spread 14% | 36.2 | 2026-08-26 |
-| litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 11.6 ⚠spread 7% | 11.4 | 2026-07-24 |
-| litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 16.1 ⚠spread 60% | 23.1 | 2026-08-19 |
+| litert-community/MiniCPM5-1B | litert-lm | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | 35.5 | 34.9 | 2026-08-24 |
+| litert-community/Phi-4-mini-instruct | litert-lm | `litert-community/Phi-4-mini-instruct` | INT8 | pre-stamp | 11.0 | 11.1 | 2026-07-13 |
+| litert-community/Qwen3-4B | litert-lm | `litert-community/Qwen3-4B` | INT4 (mixed, blockwise gs32) | v0.16.0 | 18.5 | 23.1 | 2026-08-19 |
 | litert-community/TinySwallow-1.5B-Instruct | litert-lm | `litert-community/TinySwallow-1.5B-Instruct` | INT8 | pre-stamp | 29.4 ⚠spread 10% | 29.2 | 2026-07-23 |
-| litert-community/VibeThinker-1.5B | litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | pre-stamp | 29.3 ⚠spread 22% | 30.6 | 2026-07-23 |
+| litert-community/VibeThinker-1.5B | litert-lm | `litert-community/VibeThinker-1.5B` | INT8 | pre-stamp | 30.0 | 30.6 | 2026-07-23 |
 | litert-local/llama32-3b | litert-lm | `litert-local/llama32-3b` | INT4 | pre-stamp | 18.2 ⚠spread 9% | 19.2 | 2026-07-13 |
 | litert-local/ministral3-3b | litert-lm | `litert-local/ministral3-3b` | INT4 | pre-stamp | 18.4 ⚠spread 14% | 19.0 | 2026-07-14 |
 | litert-local/olmo2-1b | litert-lm | `litert-local/olmo2-1b` | INT4 | pre-stamp | 20.6 ⚠spread 25% | 26.4 | 2026-07-13 |
@@ -234,10 +234,10 @@ Headline task: **short-chat**, warm = median of same-session warm runs (cold-war
 | mlx-community/Phi-4-mini-instruct-4bit | mlx-swift | `mlx-community/Phi-4-mini-instruct-4bit` | Q4 | pre-stamp | 29.3 | 29.5 | 2026-07-13 |
 | mlx-community/Qwen3-4B-4bit | mlx-swift | `mlx-community/Qwen3-4B-4bit` | Q4 | pre-stamp | 28.0 | 28.4 | 2026-07-13 |
 | mlx-community/TinySwallow-1.5B-Instruct-4bit | mlx-swift | `mlx-community/TinySwallow-1.5B-Instruct-4bit` | Q4 | pre-stamp | 72.9 | 72.6 | 2026-07-13 |
-| own/DeepSeek-R1-1.5B-int4-BOCTAV4 | litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 44.5 ⚠spread 8% | 45.8 | 2026-07-24 |
-| own/Phi-4-mini-int4-BOCTAV4-128 | litert-lm | `own/Phi-4-mini-int4-BOCTAV4-128` | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | pre-stamp | 17.5 | 17.6 | 2026-07-24 |
+| own/DeepSeek-R1-1.5B-int4-BOCTAV4 | litert-lm | `own/DeepSeek-R1-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.5 ⚠spread 10% | 47.6 | 2026-07-20 |
+| own/Phi-4-mini-int4-BOCTAV4-128 | litert-lm | `own/Phi-4-mini-int4-BOCTAV4-128` | INT4 (BOCTAV4 blockwise-128 OCTAV, int8 embed, static-rope) | pre-stamp | 17.4 | 17.0 | 2026-07-20 |
 | own/TinySwallow-1.5B-int4-BOCTAV4 | litert-lm | `own/TinySwallow-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.6 ⚠spread 7% | 46.8 | 2026-07-23 |
-| own/VibeThinker-1.5B-int4-BOCTAV4 | litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 45.7 ⚠spread 8% | 46.8 | 2026-07-23 |
+| own/VibeThinker-1.5B-int4-BOCTAV4 | litert-lm | `own/VibeThinker-1.5B-int4-BOCTAV4` | INT4 (BOCTAV4 blockwise-32 OCTAV, int8 embed) | pre-stamp | 46.1 | 46.8 | 2026-07-23 |
 
 </details>
 
@@ -297,8 +297,8 @@ Android decode spans are not budget-matched across arms: llama-cli caps at the 1
 
 | runtime | artifact | quant | engine | warm tok/s | cold tok/s | prefill tok/s | TTFT ms | mem MB | GSM8K | captured |
 |---|---|---|---|---|---|---|---|---|---|---|
-| litert-lm-gpu | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | — | 54.5 | 218.8 | 110.0 | 364.2 | — | 2026-08-25 |
-| litert-lm-cpu | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 | v0.16.0 | — | 30.4 | 34.8 | 590.0 | 1047.3 | — | 2026-08-25 |
+| litert-lm-gpu | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 (gpu-opt) | v0.16.0 | — | 54.6 | 224.4 | 110.0 | 367.2 | — | 2026-08-25 |
+| litert-lm-cpu | `litert-community/MiniCPM5-1B` | wi4b32_wi8_afp32 | v0.16.0 | — | 75.5 | 40.7 | 515.0 | 1053.5 | — | 2026-08-25 |
 
 <details><summary>single-arm cells (no cross-runtime comparison)</summary>
 
