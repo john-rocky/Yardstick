@@ -733,15 +733,15 @@ Each sub-table fixes the *logical* model (Gemma 4 E2B, Qwen 3.5 2B, …) and var
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
 | coreml-llm | `coreml-llm/gemma4-e2b` | INT4 palettized | 4 | 2.8 | 524 | — | 32.8 | — | 1037 |
-| litert-lm | `?` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | 1 | 0.7 | 43 | — | 155.0 | — | 689 |
-| llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | 5 | 0.6 | 42 | 2995.7 | 121.0 | — | 3213 |
-| mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | 4 | 1.2 | 68 | 532.0 | 166.2 | — | 2833 |
+| litert-lm | `?` | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | 1 | 1.0 | 46 | — | 149.8 | — | 691 |
+| llama.cpp | `unsloth/gemma-4-E2B-it-GGUF/Q4_K_M` | Q4_K_M | 5 | 0.6 | 42 | 3000.2 | 121.0 | — | 3213 |
+| mlx-swift | `mlx-community/gemma-4-e2b-it-4bit` | Q4 | 4 | 1.3 | 68 | 531.0 | 166.2 | — | 2833 |
 
 ### Gemma 4 E2B (QAT OptiQ)  (Mac M4 Max, sustained-generation)
 
 | Runtime | Model ID | Quant | n | Load (s, median) | TTFT (ms, median) | Prefill tok/s (median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---|---|---:|---:|---:|---:|---:|---:|---:|
-| mlx-swift | `?` | INT4 (QAT, OptiQ) | 1 | 1.2 | 77 | 436.7 | 149.5 | — | 4526 |
+| mlx-swift | `?` | INT4 (QAT, OptiQ) | 1 | 1.3 | 78 | 429.8 | 149.1 | — | 4512 |
 
 ### Qwen 3 0.6B  (Mac M4 Max, sustained-generation)
 
@@ -1099,7 +1099,7 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 | Model | Params (B) | Quant | n | TTFT (ms, median) | Decode cold (median) | Decode warm (r2-4 med) | Peak Mem (MB, median) |
 |---|---:|---|---:|---:|---:|---:|---:|
 | Qwen3 0.6B (.litertlm) | 0.6 | INT4 (mixed, blockwise gs32) | 1 | 54 | 265.8 | — | 793 |
-| Gemma 4 E2B (.litertlm) | 2 | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | 1 | 43 | 155.0 | — | 689 |
+| Gemma 4 E2B (.litertlm) | 2 | wNa8o8 (int2/int4/int8 + int8 activations, QAT) | 1 | 46 | 149.8 | — | 691 |
 | Qwen3 4B (.litertlm) | 4 | INT4 (mixed, blockwise gs32) | 1 | 202 | 109.8 | — | 1560 |
 | Qwen3 8B (.litertlm) | 8 | INT4 (mixed, blockwise gs32) | 1 | 347 | 67.2 | — | 2104 |
 
@@ -1115,7 +1115,7 @@ Each sub-table fixes the runtime and varies the model, so you can see how a sing
 |---|---:|---|---:|---:|---:|---:|---:|
 | Qwen3-0.6B (4-bit) | 0.6 | Q4 | 1 | 745 | 474.4 | — | 816 |
 | Gemma 4 E2B (4-bit) | 2 | Q4 | 4 | 68 | 166.2 | — | 2833 |
-| Gemma 4 E2B (QAT 4-bit) | 2 | INT4 (QAT, OptiQ) | 1 | 77 | 149.5 | — | 4526 |
+| Gemma 4 E2B (QAT 4-bit) | 2 | INT4 (QAT, OptiQ) | 1 | 78 | 149.1 | — | 4512 |
 | Qwen3-4B (4-bit) | 4 | Q4 | 1 | 49 | 151.1 | — | 2738 |
 | Qwen3-8B (4-bit) | 8 | Q4 | 1 | 73 | 93.2 | — | 4977 |
 
@@ -1298,7 +1298,7 @@ Populated for runs wrapped in `scripts/measure_energy.py` on Mac (`powermetrics`
 | iPhone 17 Pro | mlx-swift | Gemma 4 E2B (PTQ 4-bit) | 1 | battery-1pct | 4.5 | 0.1512 | 23806 | 3928 |
 | iPhone 17 Pro | mlx-swift | Gemma 4 E2B (QAT 4-bit) | 1 | battery-1pct | 4.8 | 0.2072 | 17377 | 2867 |
 | iPhone 17 Pro | litert-lm | DeepSeek-R1-1.5B (.litertlm, own int4 BOCTAV4) | 1 | battery-1pct | 194.4 | 23.2031 | 155 | 26 |
-| Mac M4 Max | core-ai | core-ai/gemma4-e2b-gpu | 1 | powermetrics | 18.9 | 0.3562 | 10106 | — |
+| Mac M4 Max | core-ai | core-ai/gemma4-e2b-gpu | 1 | powermetrics | 21.0 | 0.3647 | 9872 | — |
 | Mac M4 Max | apple-fm | Apple Foundation Model (default, on-device) | 1 | powermetrics | 7.6 | 0.1092 | 32974 | — |
 | Mac M4 Max | coreml-llm | Gemma 4 E2B (CoreML, ANE) | 1 | powermetrics | 12.7 | 0.4784 | 7525 | — |
 | Mac M4 Max | litert-lm | Gemma 4 E2B (.litertlm) | 1 | powermetrics | 19.7 | 0.1785 | 20169 | — |
