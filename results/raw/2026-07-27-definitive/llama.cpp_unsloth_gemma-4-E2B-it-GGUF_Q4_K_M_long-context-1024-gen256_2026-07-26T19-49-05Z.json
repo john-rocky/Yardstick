@@ -1,0 +1,70 @@
+{
+  "device" : {
+    "batteryLevel" : 0.95,
+    "batteryState" : "unplugged",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "nominal",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F796E06D-99B9-4D8C-A8DD-45857797ADA2",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+      38.403211022879056,
+      38.27097334305302
+    ],
+    "decodeTokensPerSecond" : 37.99587153797914,
+    "decodeTokensPerSecondWallClock" : 38.6985728182038,
+    "finalThermalState" : "nominal",
+    "firstTokenLatencyMS" : 1146,
+    "generatedTokenCount" : 256,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "nominal",
+    "interTokenLatencyP50MS" : 25.449037551879883,
+    "interTokenLatencyP95MS" : 29.1440486907959,
+    "interTokenLatencyP99MS" : 30.28702735900879,
+    "loadTimeSeconds" : 0.734207034111023,
+    "memoryAfterGenerationMB" : 273.9886245727539,
+    "memoryAfterLoadMB" : 225.59790802001953,
+    "memoryBaselineMB" : 14.595458984375,
+    "memoryFinalResidentMB" : 3291.796875,
+    "memoryMedianMB" : 274.0354995727539,
+    "memoryMedianResidentMB" : 3291.921875,
+    "memoryPeakDuringDecodeMB" : 299.2542495727539,
+    "memoryPeakResidentMB" : 3311.984375,
+    "peakThermalState" : "nominal",
+    "promptTokenCount" : 1106,
+    "promptTokensPerSecond" : 1084.437063952656,
+    "promptTokensPerSecondWallClock" : 965.387486652539,
+    "stopReason" : "length",
+    "streamedChunkCount" : 256,
+    "totalGenerationTimeSeconds" : 7.974448084831238
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B Q4_K_M (GGUF, PTQ)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it-Q4_K_M.gguf"
+    ],
+    "hfRepoId" : "unsloth\/gemma-4-E2B-it-GGUF",
+    "id" : "unsloth\/gemma-4-E2B-it-GGUF\/Q4_K_M",
+    "onDiskSizeMB" : 1700,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it-Q4_K_M.gguf",
+    "quantization" : "Q4_K_M (PTQ)"
+  },
+  "outputSample" : "The provided text is entirely placeholder \"Lorem ipsum\" text and contains no actual information about an on-device AI versus a cloud model. Therefore, I cannot use the passage as context to generate a",
+  "parameters" : {
+    "maxTokens" : 256,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "llama.cpp",
+  "task" : "long-context-1024-gen256",
+  "timestamp" : "2026-07-26T19:49:05Z"
+}

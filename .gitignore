@@ -56,3 +56,6 @@ results/raw/**/pulled/
 # (rule 5 in CLAUDE.md). Does not re-include pulled/ (an ignored dir stays ignored whole).
 !results/raw/**/*.log
 android/bin/
+
+# Xcode DerivedData relocated into the project dir (build artifacts, ~3.7 GB)
+.dd/

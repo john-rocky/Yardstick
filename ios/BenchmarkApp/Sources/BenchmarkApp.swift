@@ -204,6 +204,9 @@ enum HeadlessAutoRun {
         /// task/runner path and calls LiteRT-LM's own `benchmark` entry point, the
         /// analogue of Cactus's `cactus_benchmark_tokens`. litert-lm only.
         var nativeBenchmark: (prefill: Int, decode: Int)?
+        /// Base64-encoded UTF-8 prompt for the `prompt-probe` task (base64 so the
+        /// devicectl arg vector cannot mangle quoting/newlines).
+        var promptB64: String?
     }
 
     static func specFromLaunchArgs(_ args: [String] = CommandLine.arguments) -> Spec? {
@@ -242,9 +245,10 @@ enum HeadlessAutoRun {
             guard parts.count == 2, let p = Int(parts[0]), let d = Int(parts[1]) else { return nil }
             return (p, d)
         }
+        let promptB64 = value("--prompt-b64")
         return Spec(runtime: runtime, modelId: modelId, taskId: taskId, runs: runs,
                     sustainSeconds: sustainSeconds, maxTokens: maxTokens,
-                    contextTokens: contextTokens, nativeBenchmark: native)
+                    contextTokens: contextTokens, nativeBenchmark: native, promptB64: promptB64)
     }
 }
 
@@ -307,7 +311,20 @@ struct HeadlessRunnerView: View {
                                      contextTokensValue: spec.contextTokens)
             return
         }
-        guard var task = BenchmarkTaskCatalog.task(for: spec.taskId) else {
+        // prompt-probe is headless-only (no catalog row): built directly from
+        // --prompt-b64 so quality-triage can replay one question at a time.
+        var probeTask: (any BenchmarkTask)?
+        if spec.taskId == "prompt-probe" {
+            guard let b64 = spec.promptB64,
+                  let data = Data(base64Encoded: b64),
+                  let prompt = String(data: data, encoding: .utf8), !prompt.isEmpty else {
+                await log("YARDSTICK_FATAL task=prompt-probe requires --prompt-b64 <base64 utf-8>")
+                await finish(4)
+                return
+            }
+            probeTask = PromptProbeTask(prompt: prompt, maxTokens: spec.maxTokens ?? 256)
+        }
+        guard var task = probeTask ?? BenchmarkTaskCatalog.task(for: spec.taskId) else {
             await log("YARDSTICK_FATAL task=\(spec.taskId) unknown")
             await finish(4)
             return
@@ -338,6 +355,11 @@ struct HeadlessRunnerView: View {
                 await finish(7)
                 return
             }
+        }
+        // short-chat honors --max-tokens too: the decode-under-thinking cell needs
+        // a thinking-length budget (~500+ tok), not the default 128 cap.
+        if spec.taskId == "short-chat", let maxTokens = spec.maxTokens {
+            task = ShortChatTask(maxTokens: maxTokens)
         }
 
         let sustainNote = task.sustainSeconds.map { " sustain_s=\(Int($0))" } ?? ""

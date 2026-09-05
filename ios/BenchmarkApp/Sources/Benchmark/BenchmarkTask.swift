@@ -16,6 +16,11 @@ public protocol BenchmarkTask: Sendable {
     /// Generation parameters specific to this task.
     var parameters: GenerationParameters { get }
 
+    /// Name of an image resource bundled with the app (without extension). When
+    /// non-nil the runner drives the vision path, passing the image alongside the
+    /// prompt. `nil` (the default) = text-only task.
+    var imageResource: String? { get }
+
     /// When non-nil, the runner repeats generation until this many seconds of
     /// active decode have elapsed, instead of running the prompt once. Used by
     /// the energy task so a measurable battery delta builds up (a single short
@@ -25,6 +30,7 @@ public protocol BenchmarkTask: Sendable {
 
 public extension BenchmarkTask {
     var sustainSeconds: TimeInterval? { nil }
+    var imageResource: String? { nil }
 }
 
 public enum BenchmarkTaskCatalog {
@@ -46,6 +52,12 @@ public enum BenchmarkTaskCatalog {
         SustainedGenerationTask(),
         EnergyTask(),
         QualityTask(),
+        // Single-token safety classifiers (Shieldstral-class): the verdict IS the
+        // output, so these two replace the prose-quality task for that model family.
+        SafetyClassifyTask.unsafeCase(),
+        SafetyClassifyTask.safeCase(),
+        SafetyClassifyTask.visionText(),
+        SafetyClassifyTask.visionPlain(),
         AppLifecycleTask(),
     ]
 

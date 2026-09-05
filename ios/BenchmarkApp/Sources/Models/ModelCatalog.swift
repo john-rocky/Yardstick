@@ -557,6 +557,535 @@ public enum ModelCatalog {
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),
+        // 2026-08-01: Nanbeige4.2-3B — looped transformer (num_loops=2, 44 KV slots),
+        // converted for litert-lm issue #3021. CPU backend only (--litert-cpu) and
+        // sampled decode only (--litert-temp 0.6 --litert-topk 20): greedy collapses.
+        ModelInfo(
+            id: "litert-local/nanbeige4.2-3b",
+            displayName: "Nanbeige4.2-3B (.litertlm, local int4)",
+            quantization: "INT4 (OCTAV blockwise-32, int8 embed, ekv4096)",
+            parameterCountB: 4.2,
+            onDiskSizeMB: 2460,
+            hfRepoId: "litert-local/Nanbeige4.2-3B",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-07-29: LFM2.5 GPU candidates (litert-torch 0.9.2 export, odml.softmax
+        // composite stripped). First hybrid ShortConv graphs expected to run on the
+        // Metal GPU delegate — device gate for the GPU-enabled re-ship.
+        // 2026-08-25: the published litert-community GPU variant (0.9.3 + converter
+        // 0.3.1 re-export, sha256 36f7f022...) — the file that passed S26 Adreno
+        // 542/542 and whose iPhone Metal verdict the --max-num-tokens re-gate decides.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int4-gpu-pub",
+            displayName: "LFM2.5-1.2B (.litertlm, int4 GPU published)",
+            quantization: "INT4 (OCTAV blockwise-32, convs float, int8 embed)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int4-gpu-pub",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int4-gpu",
+            displayName: "LFM2.5-1.2B (.litertlm, int4 GPU 0.9.2)",
+            quantization: "INT4 (OCTAV blockwise-32, convs float, int8 embed)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int4-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int8-gpu",
+            displayName: "LFM2.5-1.2B (.litertlm, int8 GPU 0.9.2)",
+            quantization: "INT8 (export-time dynamic, convs included)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int8-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-05: LFM2.5 0.15-repaired ships (published litert-community files,
+        // ExecutorMetadataProto appended) + a litert-torch-main re-export carrying the
+        // DUS-folder fix (1ed2caaaf) — Metal delegate re-gate on the v0.15.0 xcframework.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int4-0150fix",
+            displayName: "LFM2.5-1.2B (.litertlm, int4 0150fix published)",
+            quantization: "INT4 (OCTAV blockwise-32, convs float, int8 embed, +exec metadata)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 736,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int4-0150fix",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-int8-0150fix",
+            displayName: "LFM2.5-1.2B (.litertlm, int8 0150fix published)",
+            quantization: "INT8 (export-time dynamic, convs included, +exec metadata)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-int8-0150fix",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-wi8-main",
+            displayName: "LFM2.5-1.2B (.litertlm, wi8 litert-torch-main re-export)",
+            quantization: "INT8 (export-time dynamic, DUS-fold fix, composite stripped)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-wi8-main",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-12: converter-0.3.1 re-export (odml.softmax composite kept) —
+        // reference arm for the v0.16.0 Metal delegate re-gate.
+        ModelInfo(
+            id: "litert-local/lfm25-1.2b-wi8-conv031",
+            displayName: "LFM2.5-1.2B (.litertlm, wi8 converter-0.3.1 re-export)",
+            quantization: "INT8 (export-time dynamic, composite kept, +exec metadata)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1247,
+            hfRepoId: "litert-local/LFM2.5-1.2B-wi8-conv031",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-05: Granite-4.0-h (Mamba2 hybrid) device gate — CPU backend only
+        // (--litert-cpu): the GPU delegate rejects the scan graph (SLICE rank > 4).
+        // Requires the v0.15.0 runtime (ExecutorMetadataProto state wiring).
+        ModelInfo(
+            id: "litert-local/granite4h-350m-int8",
+            displayName: "Granite-4.0-h-350m (.litertlm, int8 wi8fc)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata)",
+            parameterCountB: 0.35,
+            onDiskSizeMB: 436,
+            hfRepoId: "litert-local/Granite-4.0-h-350m-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/granite4h-350m-fp16",
+            displayName: "Granite-4.0-h-350m (.litertlm, fp16 no-BOS)",
+            quantization: "FP16 (float-casting linears+embed, convs/SSM fp32, no start_token)",
+            parameterCountB: 0.35,
+            onDiskSizeMB: 723,
+            hfRepoId: "litert-local/Granite-4.0-h-350m-fp16",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/granite4h-1b-int8",
+            displayName: "granite-4.0-h-1b (.litertlm, int8 wi8fc shipped)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1629,
+            hfRepoId: "litert-local/granite-4.0-h-1b-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-10: LFM2.5-2.6B (ShortConv hybrid, thinking) device gate — CPU backend
+        // (--litert-cpu; family iOS Metal NO-GO). v0.15.0 runtime required (exec metadata).
+        // int8 is the >2GiB single-section mmap wall test; int4-b32 is the iPhone candidate.
+        ModelInfo(
+            id: "litert-local/lfm26-int8-v2",
+            displayName: "LFM2.5-2.6B (.litertlm, int8 v2 think-prefill)",
+            quantization: "INT8 (export-time dynamic, convs included, +exec metadata)",
+            parameterCountB: 2.6,
+            onDiskSizeMB: 2736,
+            hfRepoId: "litert-local/LFM2.5-2.6B-int8-v2",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm26-int4-v2",
+            displayName: "LFM2.5-2.6B (.litertlm, int4-b32 v2 think-prefill)",
+            quantization: "INT4 (OCTAV blockwise-32 + zero-scale fix, convs float, int8 embed, +exec metadata)",
+            parameterCountB: 2.6,
+            onDiskSizeMB: 1588,
+            hfRepoId: "litert-local/LFM2.5-2.6B-int4-v2",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-10: Shieldstral-1.0-3B (Ministral3 dense text lane) device gate.
+        // Not a chat model — a single-token yes/no safety classifier, so the useful
+        // tasks are `safety-unsafe` / `safety-safe`, whose prompts are complete
+        // <Instruct>/<Query>/<Document> bodies; the bundle's own template supplies the
+        // fixed system prompt. int4-b32 (1.82 GiB main section) is the phone candidate;
+        // int8 (3.33 GiB) is a section-size wall test, expected to fail to map.
+        ModelInfo(
+            id: "litert-local/shieldstral-3b-int4",
+            displayName: "Shieldstral-1.0-3B (.litertlm, int4-b32 text)",
+            quantization: "INT4 (OCTAV blockwise-32, int8 embed, externalised embedder, ekv4096)",
+            parameterCountB: 3.4,
+            onDiskSizeMB: 2249,
+            hfRepoId: "litert-local/Shieldstral-1.0-3B-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/shieldstral-3b-int8",
+            displayName: "Shieldstral-1.0-3B (.litertlm, int8 text)",
+            quantization: "INT8 (export-time dynamic, externalised embedder, ekv4096)",
+            parameterCountB: 3.4,
+            onDiskSizeMB: 3794,
+            hfRepoId: "litert-local/Shieldstral-1.0-3B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-25: Qwen3.5-2B VISION leg — the shipped litert-community/Qwen3.5-2B is
+        // the TEXT half of an official VLM checkpoint; this is the same gated-delta hybrid
+        // decoder plus its own 24-layer ViT (no deepstack), wired to fast_vlm at static 512.
+        // Run with --litert-vision (fast_vlm builds the vision executor only when a backend
+        // is named for it). fp16 vision is the desktop/iPhone build; an int8-vision variant
+        // exists for Mali, which reboots on fp16 vision.
+        ModelInfo(
+            id: "litert-local/qwen35vl-2b-wi8",
+            displayName: "Qwen3.5-2B-VL (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 2.27,
+            onDiskSizeMB: 3239,
+            hfRepoId: "litert-local/Qwen3.5-2B-VL-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-31: the PUBLISHED text-only bundle, added as the control for the VL entry
+        // below. The VL build scores 3/8 on this phone's CPU while scoring 8/8 on both Mac
+        // backends; this file answers whether that is the vision build or the family on this
+        // path, and it has been public since August either way.
+        ModelInfo(
+            id: "litert-local/qwen35-0.8b-text-wi8",
+            displayName: "Qwen3.5-0.8B text (published .litertlm, wi8 fp32act)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations), text only, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 963,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-text-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-09-01: MTP speculative-decoding bundles (verify signature + ring-addressed
+        // gated-delta state + MTP_DRAFTER section; litertlm-convert mtp_work P1/P2).
+        // Bench flag-off vs `--litert-speculative` on the SAME entry for the A/B row.
+        // "topk" = top-32k sliced drafter head (phone lever; verify keeps the full head,
+        // greedy-exactness unaffected). Side-loaded only.
+        ModelInfo(
+            id: "litert-local/qwen35-08b-mtp",
+            displayName: "Qwen3.5-0.8B MTP (.litertlm, wi8 + drafter)",
+            quantization: "INT8 (wi8fc) + int8 MTP drafter, G=3, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1471,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-MTP",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-0.8B_mtp_drafter_int8.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-08b-mtp-topk",
+            displayName: "Qwen3.5-0.8B MTP top-32k (.litertlm, wi8 + sliced drafter)",
+            quantization: "INT8 (wi8fc) + int8 top-32k drafter, G=3, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1250,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-MTP-topk",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-0.8B_mtp_drafter_topk32k_int8.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-2b-mtp",
+            displayName: "Qwen3.5-2B MTP (.litertlm, wi8 + drafter)",
+            quantization: "INT8 (wi8fc) + int8 MTP drafter, G=3, ekv4096",
+            parameterCountB: 2.27,
+            onDiskSizeMB: 3180,
+            hfRepoId: "litert-local/Qwen3.5-2B-MTP",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-2B_mtp_drafter_int8.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-2b-mtp-topk",
+            displayName: "Qwen3.5-2B MTP top-32k (.litertlm, wi8 + sliced drafter)",
+            quantization: "INT8 (wi8fc) + int8 top-32k drafter, G=3, ekv4096",
+            parameterCountB: 2.27,
+            onDiskSizeMB: 2750,
+            hfRepoId: "litert-local/Qwen3.5-2B-MTP-topk",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "Qwen3.5-2B_mtp_drafter_topk32k_int8.litertlm"
+        ),
+        // 2026-08-28: the same rail at the smallest family size. Its ViT is 12-layer/768,
+        // not the 2B's 24/1024, so the fp16-safe LN table was re-calibrated rather than
+        // inherited; its int8 vision encoder is the less damaged of the two.
+        ModelInfo(
+            id: "litert-local/qwen35vl-0.8b-wi8",
+            displayName: "Qwen3.5-0.8B-VL (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1302,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-VL-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-09-01: OvisOCR2 (ATH-MaaS, Qwen3.5-0.8B OCR/document-parsing finetune) on
+        // the same 0.8B VL rail — configs are byte-identical to base, weights post-trained.
+        // Vision LN table re-calibrated for this checkpoint; quant A/B done on document
+        // fixtures. Run OCR legs with --litert-vision.
+        ModelInfo(
+            id: "litert-local/ovisocr2-wi8",
+            displayName: "OvisOCR2 (.litertlm, wi8 fp32act + fp16 vision)",
+            quantization: "INT8 decoder (wi8fc, fp32 activations) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 0.873,
+            onDiskSizeMB: 1302,
+            hfRepoId: "litert-local/OvisOCR2-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-19: North-Micro-Vision-Instruct (CohereLabs 2.48B VLM) fast_vlm build —
+        // Cohere2-rehosted wi8 decoder + fp16 vision (deepstack folded into the single
+        // image embedding). Run with --litert-vision for the vision tasks (fast_vlm
+        // creates the vision executor only when a backend is named for it).
+        ModelInfo(
+            id: "litert-local/northmv-wi8",
+            displayName: "North-Micro-Vision-Instruct (.litertlm, wi8 + fp16 vision)",
+            quantization: "INT8 decoder (dynamic wi8) + fp16 vision encoder / int8 adapter, static 512, ekv4096",
+            parameterCountB: 2.48,
+            onDiskSizeMB: 3480,
+            hfRepoId: "litert-local/North-Micro-Vision-Instruct-wi8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-11: Shieldstral multimodal build (pixtral tower, static 560x560,
+        // marker embeddings folded into the adapter). Run with --litert-vision so the
+        // vision executor is actually loaded — without it Engine and Conversation both
+        // succeed and only the first image message fails.
+        ModelInfo(
+            id: "litert-local/shieldstral-3b-vision-int4",
+            displayName: "Shieldstral-1.0-3B (.litertlm, int4 text+image)",
+            quantization: "INT4 decoder (OCTAV b32) + INT8 pixtral tower, static 560, ekv4096",
+            parameterCountB: 3.8,
+            onDiskSizeMB: 2783,
+            hfRepoId: "litert-local/Shieldstral-1.0-3B-vision-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-07: Qwen3.5-0.8B (GatedDeltaNet hybrid) device gate — CPU backend only
+        // (--litert-cpu): the GPU delegate rejects the graph. v0.15.0 runtime required
+        // (ExecutorMetadataProto state wiring). File == the shipped litert-community
+        // bundle after the <|im_end|> stop-token fix.
+        ModelInfo(
+            id: "litert-local/qwen35-08b-int8",
+            displayName: "Qwen3.5-0.8B (.litertlm, int8 wi8fc shipped)",
+            quantization: "INT8 (post-hoc weight-only, convs/delta-rule float, +exec metadata)",
+            parameterCountB: 0.8,
+            onDiskSizeMB: 978,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-13: Qwen3.5-4B, same gated-delta v4 rail as the 0.8B (rank<=4 chunk
+        // kernel, concat pads, fp32act declared). Needs the increased-memory entitlement.
+        ModelInfo(
+            id: "litert-local/qwen35-4b-int8",
+            displayName: "Qwen3.5-4B (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/delta-rule float, +exec metadata, fp32act)",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 4561,
+            hfRepoId: "litert-local/Qwen3.5-4B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-27: Qwen3.5-4B Mixed INT4 (LiteRT-LM #1658 named request), same v4
+        // rail + post-hoc wi4-blockwise on linears, int8 embedder/lm_head, fp32act.
+        // Two block sizes device-gated head-to-head (GSM8K n=100: b32 93 / b128 90).
+        ModelInfo(
+            id: "litert-local/qwen35-4b-mixed-int4-b32",
+            displayName: "Qwen3.5-4B (.litertlm, mixed int4 b32 fp32act)",
+            quantization: "INT4 blockwise-32 linears, INT8 embed/lm_head, fp32act",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 2754,
+            hfRepoId: "litert-local/qwen35-4b-mixed-int4-b32",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/qwen35-4b-mixed-int4-b128",
+            displayName: "Qwen3.5-4B (.litertlm, mixed int4 b128 fp32act)",
+            quantization: "INT4 blockwise-128 linears, INT8 embed/lm_head, fp32act",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 2587,
+            hfRepoId: "litert-local/qwen35-4b-mixed-int4-b128",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-14: Qwen3.5-2B, same gated-delta v4 rail; ratio-1 heads (no interleave
+        // rewrite traced) and the full prefill ladder (int8 ~2.1 GB fits the RAM budget).
+        ModelInfo(
+            id: "litert-local/qwen35-2b-int8",
+            displayName: "Qwen3.5-2B (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/delta-rule float, +exec metadata, fp32act)",
+            parameterCountB: 2.0,
+            onDiskSizeMB: 2117,
+            hfRepoId: "litert-local/Qwen3.5-2B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-13: FalconH1 all-hybrid (parallel attn+SSM every layer) - first of its
+        // arch; fp32act declared in the bundle for GPU.
+        ModelInfo(
+            id: "litert-local/falconh1-05b-int8",
+            displayName: "Falcon-H1-0.5B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 0.5,
+            onDiskSizeMB: 650,
+            hfRepoId: "litert-local/Falcon-H1-0.5B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-13: FalconH1 1.5B sibling (same driver/patch as the 0.5B).
+        ModelInfo(
+            id: "litert-local/falconh1-15b-int8",
+            displayName: "Falcon-H1-1.5B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1646,
+            hfRepoId: "litert-local/Falcon-H1-1.5B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-09-01: FalconH1 Tiny-R 0.6B (reasoning, self-emit <think>; wi8f decoder
+        // + externalized FLOAT embedder — int8 embedding damages this checkpoint).
+        ModelInfo(
+            id: "litert-local/falconh1-tinyr-int8",
+            displayName: "Falcon-H1-Tiny-R-0.6B (.litertlm, int8 wi8f ext-embedder fp32act)",
+            quantization: "INT8 FC-only (embedder externalized float, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 0.62,
+            onDiskSizeMB: 873,
+            hfRepoId: "litert-local/Falcon-H1-Tiny-R-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-09-01: LFM2.5-230M ship gates (lfm230_work). int8 = post-hoc wi8fc
+        // (convs float — conv-int8 costs IFEval on this tune), int4 = OCTAV b32 +
+        // int8 embedding. Both: ladder prefill + cache 4096 (4099 kills the WebGPU/
+        // Metal-class shader compile with the 1024 signature), repaired template
+        // (minijinja: generation stmts + map .get), ExecutorMetadata retrofitted.
+        ModelInfo(
+            id: "litert-local/lfm25-230m-int8",
+            displayName: "LFM2.5-230M (.litertlm, int8 wi8fc)",
+            quantization: "INT8 linears+embedding post-hoc (convs float, +exec metadata)",
+            parameterCountB: 0.23,
+            onDiskSizeMB: 254,
+            hfRepoId: "litert-local/LFM2.5-230M-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/lfm25-230m-int4",
+            displayName: "LFM2.5-230M (.litertlm, int4 OCTAV b32)",
+            quantization: "INT4 blockwise-32 OCTAV + int8 embedding (+exec metadata)",
+            parameterCountB: 0.23,
+            onDiskSizeMB: 169,
+            hfRepoId: "litert-local/LFM2.5-230M-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-09-02: sarashina2.2 instruct (SB Intuitions, Japanese, plain Llama arch,
+        // vocab 102400 untied) ship-gate rows: dense driver, HF tokenizer.json, no
+        // start_token, ladder prefill + cache 4096.
+        ModelInfo(
+            id: "litert-local/sarashina22-05b-int8",
+            displayName: "sarashina2.2-0.5b-instruct (.litertlm, int8)",
+            quantization: "INT8 dynamic linears + embedding",
+            parameterCountB: 0.5,
+            onDiskSizeMB: 831,
+            hfRepoId: "litert-local/sarashina2.2-0.5b-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/sarashina22-05b-int4",
+            displayName: "sarashina2.2-0.5b-instruct (.litertlm, int4 OCTAV b32)",
+            quantization: "INT4 blockwise-32 OCTAV + int8 embedding",
+            parameterCountB: 0.5,
+            onDiskSizeMB: 510,
+            hfRepoId: "litert-local/sarashina2.2-0.5b-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/sarashina22-1b-int8",
+            displayName: "sarashina2.2-1b-instruct (.litertlm, int8)",
+            quantization: "INT8 dynamic linears + embedding",
+            parameterCountB: 1.0,
+            onDiskSizeMB: 1435,
+            hfRepoId: "litert-local/sarashina2.2-1b-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/sarashina22-1b-int4",
+            displayName: "sarashina2.2-1b-instruct (.litertlm, int4 OCTAV b32)",
+            quantization: "INT4 blockwise-32 OCTAV + int8 embedding",
+            parameterCountB: 1.0,
+            onDiskSizeMB: 862,
+            hfRepoId: "litert-local/sarashina2.2-1b-int4",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-14: FalconH1 3B sibling (same driver/patch as the 0.5B/1.5B).
+        ModelInfo(
+            id: "litert-local/falconh1-3b-int8",
+            displayName: "Falcon-H1-3B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 3.0,
+            onDiskSizeMB: 3229,
+            hfRepoId: "litert-local/Falcon-H1-3B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-15: FalconH1 1.5B-Deep - same driver/patch, deepest shape in the
+        // family (66 all-hybrid layers -> 264 state buffers).
+        ModelInfo(
+            id: "litert-local/falcon-deep-int8",
+            displayName: "Falcon-H1-1.5B-Deep-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 1.5,
+            onDiskSizeMB: 1748,
+            hfRepoId: "litert-local/Falcon-H1-1.5B-Deep-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-14: Zamba2 shared-attention hybrid (32 mamba + 6 tied-transformer
+        // positions with per-position LoRA) - first of its arch; fp32act declared for GPU.
+        ModelInfo(
+            id: "litert-local/zamba2-12b-int8",
+            displayName: "Zamba2-1.2B-instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 1.2,
+            onDiskSizeMB: 1364,
+            hfRepoId: "litert-local/Zamba2-1.2B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-14: Zamba2 hybrid at 2.7B (45 mamba + 9 shared-attn positions,
+        // TWO tied blocks alternating by hybrid order) - fp32act declared for GPU.
+        ModelInfo(
+            id: "litert-local/zamba2-27b-int8",
+            displayName: "Zamba2-2.7B-instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 2.7,
+            onDiskSizeMB: 2771,
+            hfRepoId: "litert-local/Zamba2-2.7B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // 2026-08-13: NemotronH hybrid (24 mamba + 24 mlp + 4 attn) - first of its arch;
+        // fp32act declared for GPU.
+        ModelInfo(
+            id: "litert-local/nemotronh-4b-int8",
+            displayName: "Nemotron-H-4B-Instruct (.litertlm, int8 wi8fc fp32act)",
+            quantization: "INT8 (post-hoc weight-only, convs/scan float, +exec metadata, fp32act)",
+            parameterCountB: 4.0,
+            onDiskSizeMB: 4672,
+            hfRepoId: "litert-local/Nemotron-H-4B-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         // 2026-06-26 supplementary: byte-matched int4 of the litert-community q8 DeepSeek, to measure the
         // int8-vs-delegate split (keep the official q8 row; this is the "LiteRT-could-do-int4" companion).
         ModelInfo(
@@ -719,6 +1248,20 @@ public enum ModelCatalog {
         ),
         // litert-local SIDE-LOAD entries (placed on device at
         // Documents/models/litert-lm/<hfRepoId "/"→"__">/model.litertlm).
+        // S1-mini (superwhisper Qwen3-0.6B finetune, ASR-transcript normalizer) —
+        // our int8 conversion; template bakes the required system prompt, greedy by
+        // design. Gate = exact-match vs the Mac bundle on the same prompt, not the
+        // 8-question score (it normalizes questions instead of answering them).
+        ModelInfo(
+            id: "litert-local/s1-mini-int8",
+            displayName: "S1-mini (.litertlm, local int8)",
+            quantization: "INT8 (dynamic_wi8_afp32)",
+            parameterCountB: 0.6,
+            onDiskSizeMB: 656,
+            hfRepoId: "litert-local/S1-mini-int8",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
         ModelInfo(
             id: "litert-local/olmo2-1b",
             displayName: "OLMo-2-1B (.litertlm, local int4)",
@@ -746,6 +1289,32 @@ public enum ModelCatalog {
             parameterCountB: 3.0,
             onDiskSizeMB: 1900,
             hfRepoId: "litert-local/SmolLM3-3B",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        // Mamba2 hybrid — the GPU-enabled export (rank<=4 SSD scan, keepdim pad
+        // guard, prefer_activation_type=fp32). Metal is the point of this entry:
+        // the shipped granite is CPU-only because the delegate refused 97% of
+        // the graph.
+        // gated-delta hybrid — the GPU-enabled v4 export (rank<=4 chunk kernel,
+        // PADs replaced by concat, prefer_activation_type=fp32).
+        ModelInfo(
+            id: "litert-local/qwen35-08b-gpu",
+            displayName: "Qwen3.5-0.8B (.litertlm, gated-delta hybrid, local int8)",
+            quantization: "INT8",
+            parameterCountB: 0.8,
+            onDiskSizeMB: 919,
+            hfRepoId: "litert-local/Qwen3.5-0.8B-gpu",
+            hfFilePatterns: ["*.litertlm"],
+            primaryFile: "model.litertlm"
+        ),
+        ModelInfo(
+            id: "litert-local/granite4h-1b-gpu",
+            displayName: "Granite-4.0-h-1B (.litertlm, Mamba2 hybrid, local int8)",
+            quantization: "INT8",
+            parameterCountB: 1.6,
+            onDiskSizeMB: 1606,
+            hfRepoId: "litert-local/Granite-4.0-h-1B-gpu",
             hfFilePatterns: ["*.litertlm"],
             primaryFile: "model.litertlm"
         ),

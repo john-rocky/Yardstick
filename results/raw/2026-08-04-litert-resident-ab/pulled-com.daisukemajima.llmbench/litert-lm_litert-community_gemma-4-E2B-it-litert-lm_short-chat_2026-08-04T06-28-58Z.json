@@ -1,0 +1,68 @@
+{
+  "device" : {
+    "batteryLevel" : 0.8,
+    "batteryState" : "charging",
+    "buildConfiguration" : "Release",
+    "initialThermalState" : "fair",
+    "isLowPowerModeEnabled" : false,
+    "modelIdentifier" : "iPhone18,1",
+    "physicalMemoryMB" : 11719,
+    "processorCount" : 6,
+    "systemName" : "iOS",
+    "systemVersion" : "27.0"
+  },
+  "id" : "F1D1591F-ACB5-4CCE-92D5-495822C67926",
+  "metrics" : {
+    "batteryDeltaPercent" : 0,
+    "coldRun" : true,
+    "decodeRateRollingWindow" : [
+
+    ],
+    "decodeTokensPerSecond" : 56.293083817068705,
+    "decodeTokensPerSecondWallClock" : 56.29323138138639,
+    "finalThermalState" : "fair",
+    "firstTokenLatencyMS" : 322,
+    "generatedTokenCount" : 128,
+    "harnessStamp" : "2026-07-26-comparability",
+    "initialThermalState" : "fair",
+    "interTokenLatencyP50MS" : 16.68703556060791,
+    "interTokenLatencyP95MS" : 23.470044136047363,
+    "interTokenLatencyP99MS" : 28.660893440246582,
+    "loadTimeSeconds" : 138.94359493255615,
+    "memoryAfterGenerationMB" : 483.6444854736328,
+    "memoryAfterLoadMB" : 404.4413146972656,
+    "memoryBaselineMB" : 14.642356872558594,
+    "memoryFinalResidentMB" : 1387.59375,
+    "memoryMedianMB" : 496.7069854736328,
+    "memoryMedianResidentMB" : 1385.28125,
+    "memoryPeakDuringDecodeMB" : 503.6601104736328,
+    "memoryPeakResidentMB" : 1396.015625,
+    "peakThermalState" : "fair",
+    "promptTokenCount" : 0,
+    "promptTokensPerSecond" : 0,
+    "stopReason" : "length",
+    "streamedChunkCount" : 128,
+    "totalGenerationTimeSeconds" : 2.803839087486267
+  },
+  "model" : {
+    "displayName" : "Gemma 4 E2B (.litertlm)",
+    "hfFilePatterns" : [
+      "gemma-4-E2B-it.litertlm"
+    ],
+    "hfRepoId" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "id" : "litert-community\/gemma-4-E2B-it-litert-lm",
+    "onDiskSizeMB" : 2650,
+    "parameterCountB" : 2,
+    "primaryFile" : "gemma-4-E2B-it.litertlm",
+    "quantization" : "wNa8o8 (int2\/int4\/int8 + int8 activations, QAT)"
+  },
+  "outputSample" : "Imagine you have a super-smart computer brain that lives **right on your own device**, like your smartphone, tablet, or even a smart watch, instead of needing to send everything to a giant, faraway se",
+  "parameters" : {
+    "maxTokens" : 128,
+    "temperature" : 0,
+    "topP" : 1
+  },
+  "runtime" : "litert-lm",
+  "task" : "short-chat",
+  "timestamp" : "2026-08-04T06:28:58Z"
+}
