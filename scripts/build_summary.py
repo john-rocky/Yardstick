@@ -20,7 +20,10 @@ Outputs (overwritten each run — derived data, raw stays canonical):
 Stdlib only. Idempotent. New writers should emit schema/result.v1.json natively;
 this script is the bridge for pre-v1 records.
 """
-import csv, glob, json, os
+import csv, glob, json, os, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from bench_common import DEVICE_ALIASES  # noqa: E402 — shared with render_headline
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "results", "summary")
@@ -88,15 +91,6 @@ def build_quality():
         w = csv.DictWriter(fh, fieldnames=fields)
         w.writeheader(); w.writerows(rows)
     return path, len(rows)
-
-
-# Historical flat-file device labels -> hardware identifiers, so label-space
-# rows and identifier-space rows of the SAME machine join. Factual basis, not
-# guesswork: the author's "m4max" machine was chassis-verified as a Mac Studio
-# Mac16,9 via system_profiler on 2026-08-15
-# (results/raw/2026-08-15-muse-glimmer-30b-3way/ENV.md). m3air (a MacBook Air,
-# different machine) is deliberately NOT aliased.
-DEVICE_ALIASES = {"m4max": "Mac16,9"}
 
 
 def platform_of(d):
