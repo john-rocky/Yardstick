@@ -1,0 +1,43 @@
+libs 113  psos 113  dispatches logged 37686
+ lib  disp  bytes  geometry (top)                                     tags
+  33  2408   4337  tg 1,1,1 tpg 1,1,1 x2408                           tg-mem
+  34  2408   6960  tg 512,1,32 tpg 8,4,1 x1204 | tg 16,1,1024 tpg 8,4,1 x1204 half,tg-mem
+  63  2337   5485  tg 1,1,1 tpg 1,1,512 x2337                         half,tg-mem,rsqrt
+  66  2296   8624  tg 64,1,1 tpg 1,64,1 x2296                         half,tg-mem
+  83  2296   8959  tg 96,1,1 tpg 4,64,1 x2296                         half,tg-mem
+  64  1148   8628  tg 96,1,1 tpg 4,64,1 x1148                         half,tg-mem
+  65  1148   3293  tg 1,2,8 tpg 1,8,4 x1148                           half,tg-mem
+  67  1148   3292  tg 1,1,4 tpg 1,4,8 x1148                           half,tg-mem
+  68  1148   3166  tg 1,2,8 tpg 1,8,4 x1148                           half,tg-mem
+  69  1148   3120  tg 1,2,4 tpg 1,8,4 x1148                           half,tg-mem
+  70  1148   3478  tg 1,2,4 tpg 1,8,4 x1148                           half,tg-mem
+  71  1148   5356  tg 1,2,8 tpg 1,8,4 x1148                           half,tg-mem
+  72  1148   3166  tg 1,1,4 tpg 1,4,8 x1148                           half,tg-mem
+  73  1148   3120  tg 1,1,2 tpg 1,4,8 x1148                           half,tg-mem
+  74  1148   3478  tg 1,1,2 tpg 1,4,8 x1148                           half,tg-mem
+  75  1148   4989  tg 1,1,4 tpg 1,4,8 x1148                           half,tg-mem
+  76  1148   4161  tg 16,1,1 tpg 8,4,1 x1148                          half,tg-mem
+  77  1148   3292  tg 1,1,32 tpg 8,4,1 x1148                          half,tg-mem
+  80  1148  11788  tg 4,6,2 tpg 256,1,1 x1148                         half,tg-mem,exp
+  81  1148  14719  tg 32,1,2 tpg 1,64,1 x1148                         half,tg-mem
+  82  1148   3293  tg 1,1,12 tpg 1,1,32 x1148                         half,tg-mem
+  84  1148   8472  tg 140,1,1 tpg 16,16,1 x1148                       half,tg-mem,exp
+  85  1148   8959  tg 140,1,1 tpg 16,16,1 x1148                       half,tg-mem
+  86  1107  21322  tg 32,1,2 tpg 32,8,1 x1107                         half,tg-mem
+  79   205   2639  tg 1,1,32 tpg 1,1,32 x205                          half,tg-mem
+  15   162  10125  tg 1152,1,1 tpg 128,1,1 x108 | tg 6720,1,1 tpg 128,1,1 x54 half,tg-mem
+   3   125   8722  tg 192,1,1 tpg 128,1,1 x56 | tg 1152,1,1 tpg 128,1,1 x54 4bit-unpack,tg-mem
+  18   112   7308  tg 192,1,1 tpg 128,1,1 x112                        half,tg-mem
+  19   112   7357  tg 4,64,1 tpg 32,1,1 x112                          half,tg-mem
+  14   110   5893  tg 64,1,1 tpg 2,1,32 x110                          half,tg-mem,rsqrt
+  36   108   3342  tg 16,1,1024 tpg 8,4,1 x54 | tg 512,1,32 tpg 8,4,1 x54 half,tg-mem
+  46   108  14669  tg 4,1,48 tpg 128,1,1 x108                         half,tg-mem
+  47   108  10125  tg 6720,1,1 tpg 128,1,1 x108                       half,tg-mem
+  32    86   5235  tg 1,1,1 tpg 8,1,1 x86                             tg-mem
+  88    82   3508  tg 1,1,1 tpg 1,1,1 x82                             tg-mem
+  96    80   4133  tg 1,1,1 tpg 1,1,1 x80                             tg-mem
+ 100    80   3116  tg 1,1,1 tpg 1,1,1 x80                             tg-mem
+  20    56   3387  tg 16,1,32 tpg 8,4,1 x56                           half,tg-mem
+  21    56   3294  tg 1,16,32 tpg 4,8,1 x56                           half,tg-mem
+  26    56   3168  tg 16,1,32 tpg 8,4,1 x56                           half,tg-mem
+no clean repeating period found in the logged dispatches

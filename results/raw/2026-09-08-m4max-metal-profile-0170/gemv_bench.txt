@@ -1,0 +1,31 @@
+===== run 1: shared storage
+device Apple M4 Max  iters 40  storage shared  (GPU-side ms per matrix, median; GB/s = int4 payload bytes incl. scales/zeros ÷ time)
+matrix                A dequant B fp16gemv        A+B    C fused |  A+B GB/s    C GB/s fp16 GB/s   (ms)
+gate/up 2560x9728         0.091      0.090      0.181      0.052 |        86       298       550
+  correctness (gate/up 2560x9728): fused vs two-pass  max|diff| 0.0625  max rel 0.0006317  (y[0] -102.3125 vs -102.3125)
+down 9728x2560            0.064      0.077      0.140      0.043 |       111       360       649
+q 2560x4096               0.025      0.027      0.051      0.014 |       128       481       784
+o 4096x2560               0.025      0.027      0.052      0.014 |       126       467       766
+k/v 2560x1024             0.008      0.009      0.016      0.006 |       100       266       605
+lm_head 2560x151936       2.539      1.524      4.063      0.478 |        60       508       510
+per-token model from per-dispatch timings (36 layers x 7 matrices + lm_head): A dequant 13.67 ms + B fp16 GEMV 13.38 ms = two-pass 27.05 ms   vs   fused C 7.24 ms   (27% of two-pass)
+whole-token command buffer (36 layers x 7 + lm_head, 2.51 GB int4 payload), fp16 scratch shared per shape:
+  two-pass 38.62 ms (65 GB/s of int4 payload)   fused 5.98 ms (420 GB/s)   -> fused = 15% of two-pass
+  layers only (no lm_head): two-pass 30.88 ms   fused 5.55 ms;   lm_head alone: two-pass 7.74 ms   fused 0.43 ms
+  two-pass with a fresh fp16 scratch per matrix (no cache reuse possible): 33.76 ms
+
+===== run 2: private (GPU-only) storage
+device Apple M4 Max  iters 40  storage private (GPU-only)  (GPU-side ms per matrix, median; GB/s = int4 payload bytes incl. scales/zeros ÷ time)
+matrix                A dequant B fp16gemv        A+B    C fused |  A+B GB/s    C GB/s fp16 GB/s   (ms)
+gate/up 2560x9728         0.063      0.085      0.148      0.037 |       105       419       583
+  correctness (gate/up 2560x9728): fused vs two-pass  max|diff| 0.0625  max rel 0.0006317  (y[0] -102.3125 vs -102.3125)
+down 9728x2560            0.060      0.075      0.135      0.047 |       115       334       665
+q 2560x4096               0.025      0.027      0.051      0.014 |       128       481       788
+o 4096x2560               0.039      0.040      0.080      0.027 |        82       246       518
+k/v 2560x1024             0.014      0.013      0.027      0.011 |        61       148       402
+lm_head 2560x151936       2.533      1.509      4.042      0.476 |        60       511       515
+per-token model from per-dispatch timings (36 layers x 7 matrices + lm_head): A dequant 12.51 ms + B fp16 GEMV 13.71 ms = two-pass 26.22 ms   vs   fused C 7.07 ms   (27% of two-pass)
+whole-token command buffer (36 layers x 7 + lm_head, 2.51 GB int4 payload), fp16 scratch shared per shape:
+  two-pass 38.41 ms (65 GB/s of int4 payload)   fused 6.08 ms (414 GB/s)   -> fused = 16% of two-pass
+  layers only (no lm_head): two-pass 30.86 ms   fused 5.63 ms;   lm_head alone: two-pass 7.55 ms   fused 0.45 ms
+  two-pass with a fresh fp16 scratch per matrix (no cache reuse possible): 33.96 ms

@@ -19,7 +19,11 @@ byproc = Counter(r.get('process') for r in rows)
 if proc is None:
     # dominant non-system process
     cand = [p for p, _ in byproc.most_common() if p and 'WindowServer' not in p and 'cmux' not in p]
+    if not cand:
+        sys.exit(f'no non-system process in the capture; processes seen: {dict(byproc)}')
     proc = cand[0]
+else:
+    proc = next((p for p in byproc if p and proc in p), proc)
 R = [r for r in rows if r.get('process') == proc]
 R.sort(key=lambda r: int(r['start']))
 iv = [(int(r['start']), int(r['start']) + int(r['duration'])) for r in R]

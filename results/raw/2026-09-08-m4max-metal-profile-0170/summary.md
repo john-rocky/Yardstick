@@ -1,0 +1,19 @@
+| cell | n | median tok/s | min | max | spread % | tokens/run | runtime | artifact | size |
+|---|---|---|---|---|---|---|---|---|---|
+| litert_ds_int4 | 3 | 129.8 | 129.1 | 130.8 | 1.3 | 1131 | litert-lm-api 0.17.0 | mlboydaisuke/DeepSeek-R1-Distill-Qwen-1.5B-LiteRT@3c8f42f9 | 1.111 GB |
+| litert_ds_int4_v0131 | 2 | 137.5 | 135.8 | 139.3 | 2.6 | 1288 | litert-lm-api 0.13.1 | mlboydaisuke/DeepSeek-R1-Distill-Qwen-1.5B-LiteRT@3c8f42f9 | 1.111 GB |
+| litert_ds_int4_v0140 | 2 | 120.7 | 120.1 | 121.3 | 1.0 | 1131 | litert-lm-api 0.14.0 | mlboydaisuke/DeepSeek-R1-Distill-Qwen-1.5B-LiteRT@3c8f42f9 | 1.111 GB |
+| litert_ds_int4_v0150 | 2 | 132.0 | 131.9 | 132.1 | 0.2 | 1131 | litert-lm-api 0.15.0 | mlboydaisuke/DeepSeek-R1-Distill-Qwen-1.5B-LiteRT@3c8f42f9 | 1.111 GB |
+| litert_ds_int4_v0161 | 2 | 132.3 | 132.3 | 132.4 | 0.1 | 1131 | litert-lm-api 0.16.1 | mlboydaisuke/DeepSeek-R1-Distill-Qwen-1.5B-LiteRT@3c8f42f9 | 1.111 GB |
+| litert_ds_q8 | 3 | 125.2 | 124.6 | 125.8 | 1.0 | 1500 | litert-lm-api 0.17.0 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B@2f8b8ee9 | 1.833 GB |
+| litert_ds_q8_v0131 | 2 | 116.4 | 113.5 | 119.3 | 4.9 | 1500 | litert-lm-api 0.13.1 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B@2f8b8ee9 | 1.833 GB |
+| litert_ds_q8_v0140 | 2 | 118.7 | 118.0 | 119.4 | 1.2 | 1500 | litert-lm-api 0.14.0 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B@2f8b8ee9 | 1.833 GB |
+| litert_ds_q8_v0150 | 2 | 126.3 | 126.2 | 126.3 | 0.0 | 1500 | litert-lm-api 0.15.0 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B@2f8b8ee9 | 1.833 GB |
+| litert_ds_q8_v0161 | 2 | 126.8 | 126.5 | 127.1 | 0.5 | 1500 | litert-lm-api 0.16.1 | litert-community/DeepSeek-R1-Distill-Qwen-1.5B@2f8b8ee9 | 1.833 GB |
+| litert_qwen3_4b_int4 | 3 | 113.6 | 113.5 | 113.8 | 0.3 | 1200 | litert-lm-api 0.17.0 | litert-community/Qwen3-4B@84cc5a35 | 2.659 GB |
+| litert_qwen3_4b_int4_v0131 | 2 | 106.6 | 105.8 | 107.3 | 1.4 | 1200 | litert-lm-api 0.13.1 | litert-community/Qwen3-4B@84cc5a35 | 2.659 GB |
+| litert_qwen3_4b_int4_v0140 | 2 | 108.4 | 107.5 | 109.4 | 1.8 | 1200 | litert-lm-api 0.14.0 | litert-community/Qwen3-4B@84cc5a35 | 2.659 GB |
+| litert_qwen3_4b_int4_v0150 | 2 | 115.7 | 114.7 | 116.8 | 1.8 | 1200 | litert-lm-api 0.15.0 | litert-community/Qwen3-4B@84cc5a35 | 2.659 GB |
+| litert_qwen3_4b_int4_v0161 | 2 | 116.1 | 115.2 | 116.9 | 1.4 | 1200 | litert-lm-api 0.16.1 | litert-community/Qwen3-4B@84cc5a35 | 2.659 GB |
+| mlx_ds_4bit | 3 | 309.6 | 308.5 | 309.6 | 0.4 | 1632 | mlx-lm 0.31.3 / mlx 0.32.2 | mlx-community/DeepSeek-R1-Distill-Qwen-1.5B-4bit@933185be |  |
+| mlx_qwen3_4b_4bit | 3 | 154.3 | 154.2 | 155.1 | 0.5 | 1200 | mlx-lm 0.31.3 / mlx 0.32.2 | mlx-community/Qwen3-4B-4bit@4dcb3d10 |  |

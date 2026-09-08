@@ -1,0 +1,22 @@
+# mlx_qwen3_4b_4bit_r1  traced-run tok/s 155.08  streamed weight GB 2.26  (2026-09-08)
+process                Python (74102)
+span                   2.947 s  (~457 tokens)
+GPU busy               2.936 s  = 99.6%
+idle                   0.03 ms/token  (0.4%)
+encoders/token         15.9   (blits/token 0.0)
+cmdbufs/token          15.9
+busy/token             6.42 ms
+in-kernel GB/s (>=)    352  (weights 2.26 GB / busy-per-token)
+end-to-end GB/s        350  = 64% of 546 ceiling
+big encoders (>100us)  13.9/token, sum 6.38 ms/token
+   big dur us: p10 373 p50 463 p90 512 max 903
+gaps: n/token 15.9  sum 0.03 ms/token  p50 0.8us p99 4us
+
+## gap structure
+process Python (74102)   span 2.947s  ~457 tokens   rows 7260
+gaps >= 50 us: total 0.011 ms/token over 0.03 gaps/token
+  after 'Command Buffer 0:Compute Command 0  (Python (741'   n/tok 0.03  sum 0.011 ms/tok  p50    155 us  p90   1159 us
+encoder families (by GPU time):
+  'Command Buffer 0:Compute Command 0  (Python (741'   n/tok 15.88   6.423 ms/tok  p50   453.9 us  p90   507.7 us
+  'GPU Execution  (Python (74102)) 0x4155ceb1'         n/tok  0.00   0.000 ms/tok  p50    43.0 us  p90    43.0 us
+channels: {'Compute': 7259, 'Fragment': 1}

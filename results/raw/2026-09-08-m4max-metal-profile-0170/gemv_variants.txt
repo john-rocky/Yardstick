@@ -1,0 +1,31 @@
+===== Qwen3-4B shapes
+device Apple M4 Max  iters 20  model Qwen3-4B (36 layers)  layer weights int4 1.817 GB + scales 0.227 GB + zeros 0.227 GB per token
+L(LiteRT)     6.97 ms/token (36 layers x 7 GEMVs)    326 GB/s int4+scale+zero    261 GB/s int4 only
+L_int         7.97 ms/token (36 layers x 7 GEMVs)    285 GB/s int4+scale+zero    228 GB/s int4 only
+L_nozp        6.83 ms/token (36 layers x 7 GEMVs)    333 GB/s int4+scale+zero    266 GB/s int4 only
+L_u4          7.11 ms/token (36 layers x 7 GEMVs)    319 GB/s int4+scale+zero    255 GB/s int4 only
+L_int_u4      7.83 ms/token (36 layers x 7 GEMVs)    290 GB/s int4+scale+zero    232 GB/s int4 only
+L_ks8         9.28 ms/token (36 layers x 7 GEMVs)    245 GB/s int4+scale+zero    196 GB/s int4 only
+L_ks4        15.25 ms/token (36 layers x 7 GEMVs)    149 GB/s int4+scale+zero    119 GB/s int4 only
+L_int_ks8    10.01 ms/token (36 layers x 7 GEMVs)    227 GB/s int4+scale+zero    181 GB/s int4 only
+L_ks32        6.29 ms/token (36 layers x 7 GEMVs)    361 GB/s int4+scale+zero    289 GB/s int4 only
+L_ks64        6.05 ms/token (36 layers x 7 GEMVs)    375 GB/s int4+scale+zero    300 GB/s int4 only
+C(simd)       5.52 ms/token (36 layers x 7 GEMVs)    411 GB/s int4+scale+zero    329 GB/s int4 only
+C_ftrick      5.51 ms/token (36 layers x 7 GEMVs)    412 GB/s int4+scale+zero    329 GB/s int4 only
+L(again)      7.19 ms/token (36 layers x 7 GEMVs)    316 GB/s int4+scale+zero    253 GB/s int4 only
+
+===== DeepSeek-R1-1.5B shapes
+device Apple M4 Max  iters 20  model DeepSeek-R1-Distill-Qwen-1.5B (28 layers)  layer weights int4 0.655 GB + scales 0.082 GB + zeros 0.082 GB per token
+L(LiteRT)     3.07 ms/token (28 layers x 7 GEMVs)    267 GB/s int4+scale+zero    213 GB/s int4 only
+L_int         3.22 ms/token (28 layers x 7 GEMVs)    254 GB/s int4+scale+zero    203 GB/s int4 only
+L_nozp        2.85 ms/token (28 layers x 7 GEMVs)    287 GB/s int4+scale+zero    230 GB/s int4 only
+L_u4          3.10 ms/token (28 layers x 7 GEMVs)    264 GB/s int4+scale+zero    211 GB/s int4 only
+L_int_u4      3.29 ms/token (28 layers x 7 GEMVs)    249 GB/s int4+scale+zero    199 GB/s int4 only
+L_ks8         5.06 ms/token (28 layers x 7 GEMVs)    162 GB/s int4+scale+zero    130 GB/s int4 only
+L_ks4         8.22 ms/token (28 layers x 7 GEMVs)    100 GB/s int4+scale+zero     80 GB/s int4 only
+L_int_ks8     5.42 ms/token (28 layers x 7 GEMVs)    151 GB/s int4+scale+zero    121 GB/s int4 only
+L_ks32        2.93 ms/token (28 layers x 7 GEMVs)    279 GB/s int4+scale+zero    223 GB/s int4 only
+L_ks64        2.66 ms/token (28 layers x 7 GEMVs)    308 GB/s int4+scale+zero    246 GB/s int4 only
+C(simd)       2.26 ms/token (28 layers x 7 GEMVs)    363 GB/s int4+scale+zero    290 GB/s int4 only
+C_ftrick      2.20 ms/token (28 layers x 7 GEMVs)    372 GB/s int4+scale+zero    297 GB/s int4 only
+L(again)      3.16 ms/token (28 layers x 7 GEMVs)    259 GB/s int4+scale+zero    207 GB/s int4 only

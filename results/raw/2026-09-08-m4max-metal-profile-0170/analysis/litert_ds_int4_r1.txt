@@ -1,0 +1,25 @@
+# litert_ds_int4_r1  traced-run tok/s 130.8  streamed weight GB 0.869 (flatbuffer: all constants minus the gather-only embedding)  (2026-09-08)
+process                Python (87339)
+span                   4.084 s  (~534 tokens)
+GPU busy               4.078 s  = 99.9%
+idle                   0.01 ms/token  (0.1%)
+encoders/token         12.5   (blits/token 2.3)
+cmdbufs/token          11.4
+busy/token             7.63 ms
+in-kernel GB/s (>=)    114  (weights 0.869 GB / busy-per-token)
+end-to-end GB/s        114  = 21% of 546 ceiling
+big encoders (>100us)  4.5/token, sum 7.55 ms/token
+   big dur us: p10 828 p50 1889 p90 2037 max 2142
+gaps: n/token 8.0  sum 0.01 ms/token  p50 0.7us p99 4us
+
+## gap structure
+process Python (87339)   span 4.084s  ~534 tokens   rows 6680
+gaps >= 50 us: total 0.006 ms/token over 0.01 gaps/token
+  after 'Command Buffer 0:Compute Command 1  (Python (873'   n/tok 0.00  sum 0.005 ms/tok  p50   2702 us  p90   2702 us
+  after 'Command Buffer 0:Compute Command 0  (Python (873'   n/tok 0.01  sum 0.001 ms/tok  p50    143 us  p90    150 us
+encoder families (by GPU time):
+  'Command Buffer 0:Compute Command 0  (Python (873'   n/tok  9.09   7.637 ms/tok  p50   511.7 us  p90  1988.7 us
+  'Command Buffer 0:Blit Command 0  (Python (87339)'   n/tok  2.27   0.006 ms/tok  p50     2.5 us  p90     2.9 us
+  'Command Buffer 0:Compute Command 1  (Python (873'   n/tok  1.14   0.003 ms/tok  p50     2.2 us  p90     2.5 us
+  'GPU Execution  (Python (87339)) 0x846dac5e'         n/tok  0.00   0.000 ms/tok  p50     2.4 us  p90     2.4 us
+channels: {'Compute': 6680}

@@ -1,0 +1,22 @@
+# mlx_ds_4bit_r1  traced-run tok/s 308.54  streamed weight GB 1.00  (2026-09-08)
+process                Python (88110)
+span                   0.568 s  (~175 tokens)
+GPU busy               0.566 s  = 99.6%
+idle                   0.01 ms/token  (0.4%)
+encoders/token         11.7   (blits/token 0.0)
+cmdbufs/token          11.7
+busy/token             3.23 ms
+in-kernel GB/s (>=)    310  (weights 1.0 GB / busy-per-token)
+end-to-end GB/s        309  = 57% of 546 ceiling
+big encoders (>100us)  11.7/token, sum 3.23 ms/token
+   big dur us: p10 224 p50 249 p90 307 max 568
+gaps: n/token 11.7  sum 0.01 ms/token  p50 0.8us p99 4us
+
+## gap structure
+process Python (88110)   span 0.568s  ~175 tokens   rows 2056
+gaps >= 50 us: total 0.002 ms/token over 0.01 gaps/token
+  after 'Command Buffer 0:Compute Command 0  (Python (881'   n/tok 0.01  sum 0.002 ms/tok  p50    321 us  p90    321 us
+encoder families (by GPU time):
+  'Command Buffer 0:Compute Command 0  (Python (881'   n/tok 11.72   3.227 ms/tok  p50   249.2 us  p90   307.3 us
+  'GPU Execution  (Python (88110)) 0x856f3108'         n/tok  0.01   0.001 ms/tok  p50   229.0 us  p90   229.0 us
+channels: {'Compute': 2056}

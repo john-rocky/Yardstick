@@ -1,0 +1,26 @@
+# litert_ds_q8_v0131_r1  traced-run tok/s 113.51  streamed weight GB 1.544 (flatbuffer: all constants minus the gather-only embedding)  (2026-09-08)
+process                Python (91933)
+span                   6.268 s  (~712 tokens)
+GPU busy               5.777 s  = 92.2%
+idle                   0.69 ms/token  (7.8%)
+encoders/token         12.2   (blits/token 3.0)
+cmdbufs/token          10.1
+busy/token             8.12 ms
+in-kernel GB/s (>=)    190  (weights 1.544 GB / busy-per-token)
+end-to-end GB/s        175  = 32% of 546 ceiling
+big encoders (>100us)  5.1/token, sum 8.04 ms/token
+   big dur us: p10 1428 p50 1593 p90 1695 max 1971
+gaps: n/token 12.1  sum 0.69 ms/token  p50 0.7us p99 512us
+
+## gap structure
+process Python (91933)   span 6.268s  ~712 tokens   rows 8660
+gaps >= 50 us: total 0.683 ms/token over 2.08 gaps/token
+  after 'Command Buffer 0:Blit Command 0  (Python (91933)'   n/tok 1.01  sum 0.446 ms/tok  p50    435 us  p90    521 us
+  after 'Command Buffer 0:Compute Command 1  (Python (919'   n/tok 1.01  sum 0.231 ms/tok  p50    226 us  p90    262 us
+  after 'Command Buffer 0:Compute Command 0  (Python (919'   n/tok 0.06  sum 0.006 ms/tok  p50    104 us  p90    128 us
+encoder families (by GPU time):
+  'Command Buffer 0:Compute Command 0  (Python (919'   n/tok  7.12   8.099 ms/tok  p50  1567.3 us  p90  1677.7 us
+  'Command Buffer 0:Blit Command 0  (Python (91933)'   n/tok  3.03   0.011 ms/tok  p50     2.8 us  p90     5.0 us
+  'Command Buffer 0:Compute Command 1  (Python (919'   n/tok  2.02   0.008 ms/tok  p50     4.9 us  p90     5.5 us
+  'GPU Execution  (Python (91933)) 0x8e78010b'         n/tok  0.00   0.002 ms/tok  p50  1654.6 us  p90  1654.6 us
+channels: {'Compute': 8657, 'Fragment': 2, 'Vertex': 1}
