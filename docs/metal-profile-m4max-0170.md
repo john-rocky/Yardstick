@@ -3,7 +3,7 @@
 **Re-capture of the [2026-07-07 Metal decomposition](metal-profile-m4max.md) on LiteRT-LM
 0.17.0, same cells, same protocol, same machine — plus the version ladder in between, a
 per-kernel-family cost split obtained by skipping dispatches inside the running engine, and a
-kernel replica that shows which change to the int4 decode GEMV pays.**
+kernel experiment that shows which change to an int4 decode GEMV pays.**
 
 **Hardware:** Mac Studio · Apple M4 Max · 40-core GPU (**546 GB/s**) · 128 GB · macOS 27.0 (26A5416b;
 07-07 ran 26A5353q).
@@ -89,13 +89,12 @@ below is runtime-only (same OS, same instrument, same hour):
    `3cb830ad9` — the "Update Dawn to v20260720 and use modern WebGPU cache callbacks" commit
    itself (07-28), one commit after "external WebGPU instance and flush callback" (07-27). Which
    of them removed the bubbles is **not established here**; only the version is.
-3. **DeepSeek int4 regressed in 0.14.0 and never recovered.** Its steady-state GEMV kernels were
-   rewritten between 0.13.1 and 0.14.0 from texture-sampled weights (8 `texture2d` kernels in
-   the 0.13.1 dump, for both int4 artifacts) to buffer-based ones (0 in 0.17.0); on the
-   third-party gs32 artifact the kernel time rose 6.73 → 7.63 ms/token, and greedy output
-   diverges from 0.13.1 after ~1100 tokens (numerics changed). The official Qwen3-4B artifact
-   kept its kernel time. The v0.14.0 notes say nothing about it; LiteRT-side candidates in the
-   pin window (`a412f505` → `622f1f3c`) are the FullyConnected-generator commits of 06-12/06-17.
+3. **DeepSeek int4 regressed in 0.14.0 and never recovered.** On the third-party gs32 artifact
+   the kernel time rose 6.73 → 7.63 ms/token between 0.13.1 and 0.14.0 while the q8 build's did
+   not move, and greedy output diverges from 0.13.1 after ~1100 tokens (numerics changed). The
+   official Qwen3-4B artifact kept its kernel time. The v0.14.0 notes say nothing about it;
+   LiteRT-side candidates in the pin window (`a412f505` → `622f1f3c`) are the
+   FullyConnected-generator commits of 06-12/06-17.
 4. The 0.17.0 tail (0.16.1 → 0.17.0: −2%) is within the day's drift band; the 07-07 follow-up-2
    observation that int4-blockwise artifacts fail on v0.14.0-alpha.0 does not apply to any release.
 
@@ -127,7 +126,7 @@ runs, hence the faster baselines; only differences are used):
 
 The layer GEMVs stream 1.769 GB of int4 + 0.221 GB of fp16 scales per token ⇒ **311 GB/s, 57% of
 the roof, inside the GEMV family** (the whole-token 257 GB/s dilutes it with the 2.35 ms of
-non-GEMV kernels — 29 dispatches per layer, most on grids of 1–32 threadgroups).
+non-GEMV kernels — 22 small dispatches per layer).
 
 **DeepSeek-R1-1.5B GEMV family (layer weights only, output head excluded):**
 
@@ -142,60 +141,54 @@ bytes** — a 2.2× per-byte penalty at the kernel level on 0.17.0 (1.6× on 0.1
 entirely inside the weight GEMV kernels: the non-GEMV remainder is 3.8 ms (int4) vs 4.6 ms (q8),
 the q8 graph having 41 dispatches per layer to int4's ~30.
 
-## What the int4 decode GEMV actually does (from the shader dump)
+## What the dispatch dump adds, at results level
 
 Two things the dump corrects in the 07-07 text:
 
-- **The first token is not the steady state.** Prefill and decode token 1 run a two-pass path —
-  a per-matrix int4 → fp16 *dequantize* kernel (grid = matrix size, fp16-trick nibble unpack) then
-  a `simdgroup_half8x8` matmul on the fp16 copy, 40 dispatches per layer. After the first decode
-  step the engine compiles a second pipeline set and steady decode runs **fused int4 GEMVs**,
-  29 dispatches per layer. 07-07 finding 3 ("the dequant is fused — encoder counts do not grow")
-  was right about steady state for the wrong reason; a 3000-dispatch dump would have shown the
-  two-pass path and been wrong.
-- **The steady int4 GEMV** (Qwen: 5 kernel sources, 3 of them shared with the DeepSeek int4
-  build): weights laid out as `[K/4][N/4]` `uint2` — one 8-byte word holds 4 K-values × 4 output
-  channels of nibbles — with a `half4` scale and a `half4` zero per 32-K group per 4 channels;
-  a 256-thread threadgroup covers 16 channel-groups × 16 K-slices; each thread unpacks nibbles
-  with `half(byte) × 0.0625 → floor / frac × 16`, applies `fma(w, s, −s·(8+z))`, accumulates a
-  `half4` over its K-slice, and the 16 slices are reduced through threadgroup memory in 4
-  barrier rounds. Grids: 152 / 160 / 64 threadgroups for the 9728- / 2560- / 1024-wide matrices.
+- **The first token is not the steady state.** Prefill and decode token 1 run one pipeline set
+  (40 dispatches per layer); after the first decode step the engine compiles a second set, and
+  steady decode runs 29 dispatches per layer, 7 of them the weight GEMVs. A dump that stops after
+  ~3000 dispatches describes the wrong kernels — 07-07 finding 3 ("the dequant is fused — encoder
+  counts do not grow") happened to describe steady state without having seen it.
+- **The steady-state weight GEMVs are 5 kernel sources** (3 of them shared between the Qwen3-4B
+  and the DeepSeek int4 builds), one dispatch per matrix per token. Their source hashes are in the
+  records (that is what the ablation keys on); the sources are the vendor's and stay offline.
 
-## The fix-direction experiment: replicate the kernel, change one thing at a time
+## The fix-direction experiment: a baseline that matches the engine, one change at a time
 
 [`experiments/int4-dequant-fusion/gemv_variants.swift`](../experiments/int4-dequant-fusion/gemv_variants.swift)
-re-implements that kernel (`L`) in MSL and times the whole per-token weight set (36 layers × 7
-matrices, distinct buffers) in one command buffer, GPU-side. `L` lands at 6.6–7.2 ms/token
-against the 6.39 ms the ablation measured inside LiteRT — the replica reproduces the engine's
-GEMV cost. Variants (Qwen3-4B shapes, two runs, drift ±5%):
+times an int4 GEMV written in the K-sliced, threadgroup-reduction style common to WGSL delegates
+(`L`: 16 channel-groups × 16 K-slices per 256-thread threadgroup, fp16-arithmetic nibble unpack,
+per-32-K scale and zero) over the whole per-token weight set (36 layers × 7 matrices, distinct
+buffers) in one command buffer, GPU-side. `L` lands at 6.6–7.2 ms/token against the 6.39 ms the
+ablation measured inside LiteRT-LM, close enough to serve as the baseline. Variants change one
+thing each (Qwen3-4B shapes, two runs, drift ±5%):
 
 | variant | change | ms/token | GB/s (int4+scale+zero) |
 |---|---|--:|--:|
-| `L` | LiteRT decode GEMV replica | 6.6–7.2 | 316–343 |
-| `L_int` | integer nibble extraction instead of the fp16 trick | 7.3–7.9 | 286–313 (slower) |
+| `L` | K-sliced threadgroup-reduction baseline (matches the engine's GEMV family within 4–12%) | 6.6–7.2 | 316–343 |
+| `L_int` | integer nibble extraction instead of fp16 arithmetic | 7.3–7.9 | 286–313 (slower) |
 | `L_nozp` | scale only, no zero-point | 6.3–6.8 | 335–362 |
 | `L_u4` | 16-byte loads (2 K-steps per load) | 6.5–7.0 | 325–349 |
 | `L_ks8` / `L_ks4` | 8 / 4 K-slices per threadgroup | 8.7 / 14.7 | 245 / 149 |
 | `L_ks32` / `L_ks64` | 32 / 64 K-slices (8 / 4 channel-groups) | 6.3 / 6.05 | 361 / 375 |
 | **`C`** | **row-major `[N][K]`, one simdgroup per output row, lanes stride along K, `simd_sum` reduction** | **5.2–5.5** | **409–438** |
-| `C_ftrick` | `C` with the fp16-trick unpack | 5.5 | 412 |
+| `C_ftrick` | `C` with the fp16-arithmetic unpack | 5.5 | 412 |
 
 DeepSeek-R1-1.5B shapes: `L` 3.0–3.3 ms vs `C` 2.2–2.3 ms (−28%); `L_ks64` 2.66.
 
-Reading: the nibble arithmetic is not the lever (the fp16 trick is the *faster* unpack on this
+Reading: the nibble arithmetic is not the lever (fp16 arithmetic is the *faster* unpack on this
 GPU), loads and zero-points are worth a few percent, and the K-slicing depth matters only when it
 starves occupancy. **The decomposition is the lever:** a one-simdgroup-per-row layout with a
 simdgroup reduction and no threadgroup memory streams the same bytes 22–28% faster than the
-delegate's 16×16 threadgroup decomposition. On Qwen3-4B that is ~1.2 ms/token out of the 6.39 ms
-GEMV family (token 8.8 → ~7.6 ms, +16% tok/s); the remaining ~1.2 ms of the gap to MLX sits in
-the 22 non-GEMV dispatches per layer. For the DeepSeek int4 build the same rewrite plus whatever
-0.14.0 changed in its kernels (the replica already beats the engine's 4.17 ms at 3.0 ms with the
-delegate's own decomposition) is worth ~1.9 ms/token — the whole int4-vs-int8 anomaly.
+K-sliced threadgroup decomposition. On Qwen3-4B that is ~1.2 ms/token out of the 6.39 ms GEMV
+family (token 8.8 → ~7.6 ms, +16% tok/s); the remaining ~1.2 ms of the gap to MLX sits in the 22
+non-GEMV dispatches per layer. For the DeepSeek int4 build the baseline design already runs those
+shapes in 3.0 ms against the engine's 4.17, so the reachable saving there is ~1.9 ms/token — the
+whole int4-vs-int8 anomaly.
 
-Caveats: the replica matches the engine within 4–12% but is not its code; `L_ks64` is faster than
-`L` in the replica while the engine chooses 4×64 only for narrow matrices, so the engine's
-threadgroup-shape choice was not the regression. No DRAM counters were available; every GB/s here
-is weights-over-time.
+Caveats: `L` matches the engine's GEMV time but is not its code, so the variant deltas transfer as
+directions, not as numbers. No DRAM counters were available; every GB/s here is weights-over-time.
 
 ## Reproduce
 
@@ -208,7 +201,7 @@ scripts/metal-profile/profile_cell.sh litert_qwen3_4b_int4 out/ traces/ 3 6 -- \
   --prompt "<essay prompt>" --backend gpu --max-num-tokens 1536 --max-output-tokens 1200 --out out/cell.json
 python3 scripts/metal-profile/analyze_cell.py traces/litert_qwen3_4b_int4.gpu.xml <tok_per_s> 2.263
 python3 scripts/metal-profile/gap_structure.py traces/litert_qwen3_4b_int4.gpu.xml <tok_per_s>
-# streamed GB from the artifact; kernel dump + ablation; kernel replica
+# streamed GB from the artifact; kernel dump + ablation; GEMV baseline and variants
 scripts/metal-profile/litertlm_weight_bytes.py model.litertlm
 clang -fobjc-arc -dynamiclib -framework Metal -framework Foundation scripts/metal-profile/mtl_dump.m -o libmtl_dump.dylib
 MTL_DUMP_DIR=dump MTL_DUMP_SKIP_AFTER=1750 MTL_DUMP_SKIP_HASHES=<hashes> DYLD_INSERT_LIBRARIES=$PWD/libmtl_dump.dylib \
@@ -218,6 +211,6 @@ cd experiments/int4-dequant-fusion && swiftc -O gemv_variants.swift -o gemv_vari
 
 Method and tooling traps (first-token-only dumps, short-run tok/s, the fp16-intermediate
 microbenchmark that measures the wrong path): [`methodology/metal-profiling.md`](../methodology/metal-profiling.md).
-`.trace` bundles, XML exports and the extracted vendor shader sources are kept offline; the
-results directory holds the run records, trace analyses, dump summaries, kernel hashes and the
-ablation table.
+`.trace` bundles, XML exports, dispatch-geometry summaries and the extracted vendor shader
+sources are kept offline; the results directory holds the run records, trace analyses, kernel
+hashes and the ablation table.

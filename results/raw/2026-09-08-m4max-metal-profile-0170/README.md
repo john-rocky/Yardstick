@@ -35,12 +35,13 @@ on LiteRT-LM **0.17.0**.
   head-64MB sha), sampler, context/budget, per-token latency series, steady/overall tok/s.
 - `<cell>_r<N>.log` / `.env.txt` — driver stdout+stderr / machine state around the run.
 - `analysis/*.txt` — `analyze_cell.py` + `gap_structure.py` output for every traced cell.
-- `mtl-dump/` — Metal shader-dump summaries (which kernels run per layer, dispatch geometry) from the
-  `DYLD_INSERT_LIBRARIES` shim in `experiments/int4-dequant-fusion/`.
+- `mtl-dump/` — per-pipeline sizes and kernel-source hashes from the `DYLD_INSERT_LIBRARIES`
+  shim (`scripts/metal-profile/mtl_dump.m`), the inputs of the hash-keyed ablation. Dispatch
+  geometry and the extracted sources stay offline.
 - `ablation/runs.{json,md}` — dispatch-skip ablation runs (300 tokens, 512 context; use
   differences only): `gemv_kernel_hashes.txt` lists the kernel-source hashes skipped per
   model/version.
-- `gemv_variants.txt` — the decode-GEMV replica and one-variable variants (two runs, both models);
+- `gemv_variants.txt` — the K-sliced decode-GEMV baseline and one-variable variants (two runs, both models);
   `gemv_bench.txt` — the earlier two-pass (dequant → fp16 GEMV) vs fused benchmark, which turned
   out to model the prefill/first-token path, kept for the record.
 - `summary.{txt,md}` — `summarize_runs.py` over every cell.

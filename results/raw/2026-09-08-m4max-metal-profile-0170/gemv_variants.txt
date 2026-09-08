@@ -1,6 +1,6 @@
 ===== Qwen3-4B shapes
 device Apple M4 Max  iters 20  model Qwen3-4B (36 layers)  layer weights int4 1.817 GB + scales 0.227 GB + zeros 0.227 GB per token
-L(LiteRT)     6.97 ms/token (36 layers x 7 GEMVs)    326 GB/s int4+scale+zero    261 GB/s int4 only
+L(base)     6.97 ms/token (36 layers x 7 GEMVs)    326 GB/s int4+scale+zero    261 GB/s int4 only
 L_int         7.97 ms/token (36 layers x 7 GEMVs)    285 GB/s int4+scale+zero    228 GB/s int4 only
 L_nozp        6.83 ms/token (36 layers x 7 GEMVs)    333 GB/s int4+scale+zero    266 GB/s int4 only
 L_u4          7.11 ms/token (36 layers x 7 GEMVs)    319 GB/s int4+scale+zero    255 GB/s int4 only
@@ -16,7 +16,7 @@ L(again)      7.19 ms/token (36 layers x 7 GEMVs)    316 GB/s int4+scale+zero   
 
 ===== DeepSeek-R1-1.5B shapes
 device Apple M4 Max  iters 20  model DeepSeek-R1-Distill-Qwen-1.5B (28 layers)  layer weights int4 0.655 GB + scales 0.082 GB + zeros 0.082 GB per token
-L(LiteRT)     3.07 ms/token (28 layers x 7 GEMVs)    267 GB/s int4+scale+zero    213 GB/s int4 only
+L(base)     3.07 ms/token (28 layers x 7 GEMVs)    267 GB/s int4+scale+zero    213 GB/s int4 only
 L_int         3.22 ms/token (28 layers x 7 GEMVs)    254 GB/s int4+scale+zero    203 GB/s int4 only
 L_nozp        2.85 ms/token (28 layers x 7 GEMVs)    287 GB/s int4+scale+zero    230 GB/s int4 only
 L_u4          3.10 ms/token (28 layers x 7 GEMVs)    264 GB/s int4+scale+zero    211 GB/s int4 only

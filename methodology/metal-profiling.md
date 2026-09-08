@@ -121,20 +121,21 @@ everything below is headless.
   MTL_DUMP_DIR=out MTL_DUMP_DISPATCH_LIMIT=40000 DYLD_INSERT_LIBRARIES=$PWD/libmtl_dump.dylib \
     python scripts/metal-profile/litert_decode_driver.py model.litertlm --prompt ... --max-output-tokens 40 --out x.json
   ```
-  Do not commit the extracted MSL (it is the vendor's shader code); commit the summaries and
-  hashes, which is what `results/raw/2026-09-08-m4max-metal-profile-0170/mtl-dump/` holds.
+  Do not commit the extracted MSL (it is the vendor's shader code) nor per-kernel geometry
+  tables; commit only the per-pipeline sizes and hashes needed to reproduce the ablation, which
+  is what `results/raw/2026-09-08-m4max-metal-profile-0170/mtl-dump/` holds.
 - **Trap — the first token is not the steady state.** LiteRT-LM compiles a second set of
-  pipelines after the first decode step: prefill and decode token 1 run a two-pass path
-  (a per-matrix int4→fp16 dequantize kernel followed by a `simdgroup_half8x8` matmul), while
-  steady-state decode runs fused int4 GEMV kernels created later. A dump limited to ~3000
-  dispatches captures only the first path and describes the wrong kernels. Capture ≥ 20 000
-  dispatches (≥ 10 tokens for a 30-layer model) and detect the period on the tail.
+  pipelines after the first decode step: prefill and decode token 1 run a longer path (40
+  dispatches per layer) than steady decode (29 per layer, different kernels). A dump limited to
+  ~3000 dispatches captures only the first path and describes the wrong kernels. Capture
+  ≥ 20 000 dispatches (≥ 10 tokens for a 30-layer model) and detect the period on the tail.
 - **Trap — short-run tok/s is not the table's tok/s.** 300-token runs at a 512-token context
   decode 5–10% faster than the 1200–1500-token protocol runs (smaller KV cache); use short runs
   only for within-run differences (ablation deltas), never as cell values.
-- **Trap — the fp16-intermediate microbenchmark.** A naive replica of the two-pass prefill path
-  (`experiments/int4-dequant-fusion/gemv_bench.swift`) costs 30+ ms/token on M4 Max because the
-  fp16 round trip goes to DRAM; that path is not what decode runs, so it says nothing about the
-  decode number. The decode replica is `gemv_variants.swift`, validated against the ablation.
+- **Trap — the fp16-intermediate microbenchmark.** A two-pass model (dequantize to an fp16
+  buffer, then fp16 GEMV; `experiments/int4-dequant-fusion/gemv_bench.swift`) costs 30+ ms/token
+  on M4 Max because the fp16 round trip goes to DRAM; steady decode does not run that path, so
+  it says nothing about the decode number. The decode baseline is `gemv_variants.swift`,
+  validated against the ablation.
 - `sudo powermetrics` needs a TTY password in an unattended session; the frequency axis was not
   re-captured on 2026-09-08 (the 07-07 result — top DVFS state in every cell — was not re-tested).

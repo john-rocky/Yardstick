@@ -1,9 +1,10 @@
 // gemv_bench.swift — does fusing int4 dequant into the GEMV pay on Apple GPUs?
 //
-// Replicates the two-pass structure observed in LiteRT-LM's WebGPU/Dawn delegate on macOS
-// (every layer, every token: [A] dequantize the int4 blockwise (gs32) weight matrix into an
+// Models a two-pass weight path ([A] dequantize the int4 blockwise (gs32) weight matrix into an
 // fp16 device buffer, then [B] an fp16 GEMV consumes it) and compares it with [C] a single
-// fused int4 GEMV that dequantizes in registers. Same matrices as Qwen3-4B decode
+// fused int4 GEMV that dequantizes in registers. NOTE: steady-state decode in LiteRT-LM does not
+// run a two-pass path (see the doc); this file only shows what such a path would cost. Same
+// matrices as Qwen3-4B decode
 // (K x N: 2560x9728 gate/up, 9728x2560 down, 2560x4096 q, 4096x2560 o, 2560x1024 k/v).
 // All timings are GPU-side (command buffer GPUStartTime..GPUEndTime), median of N runs.
 //
@@ -15,7 +16,7 @@ let src = """
 #include <metal_stdlib>
 using namespace metal;
 
-// ---- [A] two-pass step 1: int4 (16 nibbles per uint2) -> fp16, LiteRT-style unpack via
+// ---- [A] two-pass step 1: int4 (16 nibbles per uint2) -> fp16, fp16-arithmetic unpack via
 //      half(byte)*0.0625 / floor / frac*16, scale + zero applied per group of 32 along K.
 //      Layout: packed[K/16 * N] uint2, row-major over K for each output column n
 //      (weights stored as N rows of K nibbles). One thread = 16 consecutive K values.

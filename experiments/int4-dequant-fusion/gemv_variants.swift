@@ -1,12 +1,13 @@
-// gemv_variants.swift — what limits LiteRT-LM's steady-state int4 decode GEMV on Apple GPUs?
+// gemv_variants.swift — what limits a K-sliced int4 decode GEMV on Apple GPUs?
 //
-// Kernel L replicates the decode GEMV the WebGPU/Dawn delegate runs on macOS (MSL captured
-// from litert-lm-api 0.17.0, Qwen3-4B up_proj, `lib_0080`): weights stored as [K/4][N/4] uint2
-// (one uint2 = 4 K-values x 4 output channels of 4-bit nibbles), per-group (32 K) half4 scale
-// and half4 zero, threadgroup 16 channel-groups x 16 K-slices (256 threads), nibbles unpacked
-// with the fp16 trick (half(byte)*0.0625 -> floor / frac*16), 16 partial sums reduced through
-// threadgroup memory with 4 barrier rounds. Variants change ONE thing each:
-//   L_int  : integer nibble extraction (& 15, >> 4) instead of the fp16 trick
+// Kernel L is an int4 GEMV in the K-sliced, threadgroup-reduction style common to WGSL
+// delegates: weights stored as [K/4][N/4] uint2 (one uint2 = 4 K-values x 4 output channels of
+// 4-bit nibbles), per-group (32 K) half4 scale and half4 zero, threadgroup 16 channel-groups x
+// 16 K-slices (256 threads), nibbles unpacked with fp16 arithmetic (half(byte)*0.0625 -> floor /
+// frac*16), 16 partial sums reduced through threadgroup memory with 4 barrier rounds. Its
+// whole-token time matches the weight-GEMV family measured inside LiteRT-LM 0.17.0 by dispatch
+// ablation within 4-12%, which is what makes it a usable baseline. Variants change ONE thing each:
+//   L_int  : integer nibble extraction (& 15, >> 4) instead of fp16 arithmetic
 //   L_u4   : two K-steps per 16-byte uint4 load instead of one uint2 (8 B) per step
 //   L_ks8  : 8 K-slices x 32 channel-groups per threadgroup (wider coalesced rows, fewer partials)
 //   L_nozp : no zero-point term (symmetric quant: only a scale per group)
@@ -20,7 +21,7 @@ let src = """
 #include <metal_stdlib>
 using namespace metal;
 
-// LiteRT-style layout: W[k4 * N4 + n4] (uint2 = 4 K-values x 4 channels of nibbles),
+// K-sliced layout: W[k4 * N4 + n4] (uint2 = 4 K-values x 4 channels of nibbles),
 // scales/zeros [g * N4 + n4] (half4 per 32-K group per 4 channels).
 inline void unpack_ftrick(uint2 w, thread half4 &v0, thread half4 &v1, thread half4 &v2, thread half4 &v3) {
   half4 lo = half4(half(w.x & 255u), half((w.x >> 8u) & 255u), half((w.x >> 16u) & 255u), half((w.x >> 24u) & 255u)) * 0.0625h;
@@ -37,7 +38,7 @@ inline void unpack_int(uint2 w, thread half4 &v0, thread half4 &v1, thread half4
   v3 = half4(half((w.y >> 16u) & 15u), half((w.y >> 20u) & 15u), half((w.y >> 24u) & 15u), half(w.y >> 28u));
 }
 constant int KS [[function_constant(0)]];      // K-slices per threadgroup (threads.y)
-constant int MODE [[function_constant(1)]];    // 0 = fp16-trick unpack (LiteRT), 1 = integer unpack
+constant int MODE [[function_constant(1)]];    // 0 = fp16-arithmetic unpack, 1 = integer unpack
 constant int ZP [[function_constant(2)]];      // 1 = scale + zero-point, 0 = scale only
 constant int U4 [[function_constant(3)]];      // 1 = 16-byte loads (2 K-steps), W in [K/8][N/4] uint4 layout
 
@@ -88,7 +89,7 @@ kernel void gemv_lrt(device const uint2* W [[buffer(0)]], device const half4* sc
   if (tid.y == 0 && n4 < N4) y[n4] = acc;
 }
 
-// row-major [N][K] simdgroup GEMV with the fp16-trick unpack
+// row-major [N][K] simdgroup GEMV with the fp16-arithmetic unpack
 kernel void gemv_C_ftrick(device const uint2* packed [[buffer(0)]], device const half* scales [[buffer(1)]],
                    device const half* zeros [[buffer(2)]], device const half4* x [[buffer(3)]],
                    device half* y [[buffer(4)]], constant uint& K [[buffer(5)]], constant uint& N [[buffer(6)]],
@@ -191,7 +192,7 @@ func runToken(_ name: String, _ p: MTLComputePipelineState, tpg: MTLSize, groups
 let wGB = String(format: "%.3f", weightBytes / 1e9), sGB = String(format: "%.3f", scaleBytes / 1e9)
 print("device \(dev.name)  iters \(iters)  model \(modelName)  layer weights int4 \(wGB) GB + scales \(sGB) GB + zeros \(sGB) GB per token")
 let tpg16 = MTLSize(width: 16, height: 16, depth: 1)
-runToken("L(LiteRT)", psoL(ks: 16, mode: 0, zp: 1, u4: 0), tpg: tpg16, groups: { _, n in (n / 4 + 15) / 16 })
+runToken("L(base)", psoL(ks: 16, mode: 0, zp: 1, u4: 0), tpg: tpg16, groups: { _, n in (n / 4 + 15) / 16 })
 runToken("L_int", psoL(ks: 16, mode: 1, zp: 1, u4: 0), tpg: tpg16, groups: { _, n in (n / 4 + 15) / 16 })
 runToken("L_nozp", psoL(ks: 16, mode: 0, zp: 0, u4: 0), tpg: tpg16, groups: { _, n in (n / 4 + 15) / 16 })
 runToken("L_u4", psoL(ks: 16, mode: 0, zp: 1, u4: 1), tpg: tpg16, groups: { _, n in (n / 4 + 15) / 16 })
