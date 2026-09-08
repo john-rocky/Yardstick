@@ -1,0 +1,208 @@
+PID 94289
+I0000 00:00:1788872367.157811 125923267 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1788872367.161061 125923267 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1788872367.161080 125923267 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1788872367.161086 125923267 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1788872367.161091 125923267 litert_lm_loader.cc:227] minor_version: 3
+I0000 00:00:1788872367.161094 125923267 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1788872367.161098 125923267 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1788872367.161102 125923267 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1788872367.161106 125923267 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1788872367.161109 125923267 litert_lm_loader.cc:265] section_end_offset: 16509
+I0000 00:00:1788872367.161112 125923267 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1788872367.161115 125923267 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1788872367.161117 125923267 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1788872367.161119 125923267 litert_lm_loader.cc:265] section_end_offset: 2000870
+I0000 00:00:1788872367.161128 125923267 litert_lm_loader.cc:105] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1788872367.161132 125923267 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1788872367.161134 125923267 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1788872367.161136 125923267 litert_lm_loader.cc:264] section_begin_offset: 2015232
+I0000 00:00:1788872367.161139 125923267 litert_lm_loader.cc:265] section_end_offset: 1833444800
+I0000 00:00:1788872367.161192 125923267 litert_lm_loader.cc:197] LitertLmLoader::Initialize
+I0000 00:00:1788872367.162080 125923267 litert_lm_loader.cc:220] mmap_status is ok
+I0000 00:00:1788872367.162087 125923267 litert_lm_loader.cc:225] status: OK
+I0000 00:00:1788872367.162092 125923267 litert_lm_loader.cc:226] major_version: 1
+I0000 00:00:1788872367.162095 125923267 litert_lm_loader.cc:227] minor_version: 3
+I0000 00:00:1788872367.162098 125923267 litert_lm_loader.cc:228] patch_version: 0
+I0000 00:00:1788872367.162102 125923267 litert_lm_loader.cc:261] section_index: 0
+I0000 00:00:1788872367.162105 125923267 litert_lm_loader.cc:262] section_data_type: LlmMetadataProto
+I0000 00:00:1788872367.162107 125923267 litert_lm_loader.cc:264] section_begin_offset: 16384
+I0000 00:00:1788872367.162110 125923267 litert_lm_loader.cc:265] section_end_offset: 16509
+I0000 00:00:1788872367.162112 125923267 litert_lm_loader.cc:261] section_index: 1
+I0000 00:00:1788872367.162115 125923267 litert_lm_loader.cc:262] section_data_type: HF_Tokenizer_Zlib
+I0000 00:00:1788872367.162117 125923267 litert_lm_loader.cc:264] section_begin_offset: 32768
+I0000 00:00:1788872367.162119 125923267 litert_lm_loader.cc:265] section_end_offset: 2000870
+I0000 00:00:1788872367.162122 125923267 litert_lm_loader.cc:105] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1788872367.162128 125923267 litert_lm_loader.cc:261] section_index: 2
+I0000 00:00:1788872367.162131 125923267 litert_lm_loader.cc:262] section_data_type: TFLiteModel
+I0000 00:00:1788872367.162133 125923267 litert_lm_loader.cc:264] section_begin_offset: 2015232
+I0000 00:00:1788872367.162135 125923267 litert_lm_loader.cc:265] section_end_offset: 1833444800
+I0000 00:00:1788872367.162963 125923267 engine_advanced_impl.cc:238] Legacy model files don't have LlmModelType, loading tokenizer now
+W0000 00:00:1788872367.162969 125923267 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1788872367.229720 125923267 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1788872367.229759 125923267 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1788872367.229765 125923267 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1788872367.229776 125923267 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+I0000 00:00:1788872367.229816 125923267 engine_settings.cc:101] The Main backend constraint is not set.
+I0000 00:00:1788872367.229824 125923267 engine_settings.cc:448] The validated engine settings: EngineSettings: 
+  MainExecutorSettings: backend: GPU
+backend_config:
+max_top_k: 1
+
+max_tokens: 2048
+activation_data_type: Not set
+max_num_images: 0
+lora_rank: 0
+cache_dir: 
+cache_file: Not set
+litert_dispatch_lib_dir: Not set
+model_assets: model_path: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--DeepSeek-R1-Distill-Qwen-1.5B/snapshots/2f8b8ee90d8f93b15305b699e8772b277d074a9a/DeepSeek-R1-Distill-Qwen-1.5B_multi-prefill-seq_q8_ekv4096.litertlm
+fake_weights_mode: FAKE_WEIGHTS_NONE
+
+advanced_settings: prefill_batch_sizes: []
+num_output_candidates: 1
+configure_magic_numbers: true
+verify_magic_numbers: false
+clear_kv_cache_before_prefill: true
+num_logits_to_print_after_decode: 0
+gpu_madvise_original_shared_tensors: true
+is_benchmark: false
+preferred_device_substr: 
+num_threads_to_upload: -1
+num_threads_to_compile: -1
+convert_weights_on_gpu: true
+wait_for_weights_conversion_complete_in_benchmark: true
+optimize_shader_compilation: true
+cache_compiled_shaders_only: false
+share_constant_tensors: true
+sampler_handles_input: true
+allow_src_quantized_fc_conv_ops: false
+hint_waiting_for_completion: true
+gpu_context_low_priority: Not set
+enable_speculative_decoding: false
+disable_delegate_clustering: false
+hint_kernel_batch_size: 4
+
+diffusion_config: Not set
+  LlmMetadata: start_token {
+  token_ids {
+    ids: 151646
+  }
+}
+stop_tokens {
+  token_ids {
+    ids: 151643
+  }
+}
+prompt_templates {
+  user {
+    prefix: "<\357\275\234User\357\275\234>"
+  }
+  model {
+    prefix: "<\357\275\234Assistant\357\275\234><think>\n"
+  }
+}
+sampler_params {
+  type: TOP_P
+  k: 64
+  p: 0.95
+  temperature: 1
+}
+llm_model_type {
+  generic_model {
+  }
+}
+jinja_prompt_template: "{%- for message in messages -%}{%- if message.content is string -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{{ message.content }}{% endif -%}{%- if message.role == \'model\' %}<\357\275\234Assistant\357\275\234><think>\n{{ message.content }}{% endif -%}{%- if message.role == \'system\' %}{{ message.content }}{% endif -%}{%- else -%}{%- if message.role == \'user\' %}<\357\275\234User\357\275\234>{% elif message.role == \'model\' %}<\357\275\234Assistant\357\275\234><think>\n{% elif message.role == \'system\' %}{% endif -%}{%- for item in message.content %}{%- if item.type == \'text\' %}{{ item.text }}{% elif item.type == \'image\' -%}{{ \'<start_of_image>\' }}{%- elif item.type == \'audio\' -%}{{ \'<start_of_audio>\' }}{%- endif -%}{%- endfor -%}{%- if message.role == \'user\' %}{% elif message.role == \'model\' %}{% elif message.role == \'system\' %}{% endif -%}{%- endif -%}{%- endfor -%}{%- if add_generation_prompt %}<\357\275\234Assistant\357\275\234><think>\n{% endif -%}"
+  BenchmarkParams: Not set
+  VisionExecutorSettings: Not set
+  AudioExecutorSettings: Not set
+  ParallelFileSectionLoading: true
+  SingleThreadedExecution: false
+I0000 00:00:1788872367.237829 125923267 model_resources_litert_lm.cc:113] model_type: TF_LITE_PREFILL_DECODE
+I0000 00:00:1788872367.237853 125923267 model_resources_litert_lm.cc:114] litert model size: 1831429568
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794aa183c0, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794aa18410, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794aa18460, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794aa184b0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+I0000 00:00:1788872367.315694 125923267 executor_settings_base.cc:376] Deleted 1 stale cache files.
+I0000 00:00:1788872367.315718 125923267 litert_compiled_model_executor_utils.cc:524] Setting serialization dir: /Users/majimadaisuke/.cache/huggingface/hub/models--litert-community--DeepSeek-R1-Distill-Qwen-1.5B/snapshots/2f8b8ee90d8f93b15305b699e8772b277d074a9a
+INFO: [compiled_model.cc:805] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1788872367.324847 125923267 delegate_webgpu.cc:214] Create WebGPU environment (use_low_power=false, enable_host_mapped_pointer=true)
+I0000 00:00:1788872367.335684 125923267 environment.cc:522] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1788872367.336290 125923267 delegate_webgpu.cc:243] Created a WebGPU environment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:384] Created default Metal device.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:41] Adding options to the existing LiteRT environment
+I0000 00:00:1788872367.356113 125923267 delegate_webgpu.cc:666] # of threads to upload weights = 2
+I0000 00:00:1788872367.356142 125923267 delegate_webgpu.cc:674] # of threads to compile kernels = 1
+I0000 00:00:1788872368.117771 125923267 delegate_kernel.cc:313] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872368.117785 125923267 delegate_kernel.cc:840] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1788872368.131819 125923267 delegate_kernel.cc:738] Initialized InferenceContext from serialized data.
+I0000 00:00:1788872368.152493 125923267 delegate_kernel.cc:313] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872368.152510 125923267 delegate_kernel.cc:840] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1788872368.167540 125923267 delegate_kernel.cc:738] Initialized InferenceContext from serialized data.
+I0000 00:00:1788872368.187357 125923267 delegate_kernel.cc:313] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872368.187370 125923267 delegate_kernel.cc:840] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1788872368.203370 125923267 delegate_kernel.cc:738] Initialized InferenceContext from serialized data.
+I0000 00:00:1788872368.223304 125923267 delegate_kernel.cc:313] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872368.223318 125923267 delegate_kernel.cc:840] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1788872368.238206 125923267 delegate_kernel.cc:738] Initialized InferenceContext from serialized data.
+I0000 00:00:1788872368.256954 125923267 delegate_kernel.cc:313] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872368.256964 125923267 delegate_kernel.cc:840] Initializing WebGPU-based API from serialized data.
+I0000 00:00:1788872368.271463 125923267 delegate_kernel.cc:738] Initialized InferenceContext from serialized data.
+INFO: [environment.cc:30] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x79481cbe80, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x79481cbed0, name=CpuAccelerator
+INFO: [cpu_registry.cc:42] CPU accelerator registered.
+W0000 00:00:1788872368.277333 125923267 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1788872368.277353 125923267 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+I0000 00:00:1788872368.277357 125923267 model_resources_litert_lm.cc:113] model_type: TF_LITE_END_OF_AUDIO
+I0000 00:00:1788872368.277360 125923267 model_resources_litert_lm.cc:114] litert model size: 0
+W0000 00:00:1788872368.277364 125923267 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1788872368.277368 125923267 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+I0000 00:00:1788872368.277370 125923267 model_resources_litert_lm.cc:113] model_type: TF_LITE_END_OF_VISION
+I0000 00:00:1788872368.277373 125923267 model_resources_litert_lm.cc:114] litert model size: 0
+W0000 00:00:1788872368.277376 125923267 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1788872368.277378 125923267 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+I0000 00:00:1788872368.277380 125923267 model_resources_litert_lm.cc:113] model_type: TF_LITE_EMBEDDER
+I0000 00:00:1788872368.277383 125923267 model_resources_litert_lm.cc:114] litert model size: 0
+W0000 00:00:1788872368.277385 125923267 litert_lm_loader.cc:289] Section not found: 
+W0000 00:00:1788872368.277387 125923267 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+I0000 00:00:1788872368.277389 125923267 model_resources_litert_lm.cc:113] model_type: TF_LITE_PER_LAYER_EMBEDDER
+I0000 00:00:1788872368.277391 125923267 model_resources_litert_lm.cc:114] litert model size: 0
+I0000 00:00:1788872368.277412 125923267 threadpool.cc:41] ThreadPool 'execution_thread_pool': Running up to 1 threads.
+I0000 00:00:1788872368.277416 125923267 threadpool.cc:41] ThreadPool 'callback_thread_pool': Running up to 1 threads.
+I0000 00:00:1788872368.278365 125923267 threadpool.cc:96] ThreadPool 'execution_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+I0000 00:00:1788872368.298034 125923370 threadpool.cc:96] ThreadPool 'callback_thread_pool': Created a worker thread since all 0 worker threads are (supposed to be) busy.
+W0000 00:00:1788872368.301951 125923370 sampler_factory.cc:450] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:294]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.dylib: dlopen(libLiteRtTopKWebGpuSampler.dylib, 0x0005): tried: 'libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibLiteRtTopKWebGpuSampler.dylib' (no such file), '/opt/homebrew/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKWebGpuSampler.dylib' (no such file).
+=== Source Location Trace: === 
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1788872368.301981 125923370 sampler_factory.cc:458] Statically linked LiteRtTopKWebGpuSampler C API.
+DECODE_START
+
+DECODE_END
+I0000 00:00:1788872381.077392 125923267 threadpool.cc:46] ThreadPool 'execution_thread_pool': Shutting down...
+I0000 00:00:1788872381.077410 125923370 threadpool.cc:171] ThreadPool 'execution_thread_pool': Worker thread stopped.
+I0000 00:00:1788872381.077451 125923267 threadpool.cc:75] ThreadPool 'execution_thread_pool': Shutdown complete.
+I0000 00:00:1788872381.077467 125923267 threadpool.cc:46] ThreadPool 'callback_thread_pool': Shutting down...
+I0000 00:00:1788872381.077479 125923372 threadpool.cc:171] ThreadPool 'callback_thread_pool': Worker thread stopped.
+I0000 00:00:1788872381.077502 125923267 threadpool.cc:75] ThreadPool 'callback_thread_pool': Shutdown complete.
+I0000 00:00:1788872381.099626 125923267 delegate_webgpu.cc:273] Destroyed the WebGPU environment.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x794aa184b0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x794aa18460, name=GPU WebGPU
+RESULT steady_tps=117.99 overall_tps=117.95 tokens=1500 engine_decode_tps=None out=/Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-09-08-m4max-metal-profile-0170/litert_ds_q8_v0140_r1.json
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x79481cbed0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x79481cbe80, name=GPU WebGPU

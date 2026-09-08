@@ -1,0 +1,6 @@
+PID 74102
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 3527.92it/s]
+DECODE_START
+
+DECODE_END
+RESULT steady_tps=155.08 overall_tps=155.28 tokens=1200 mlx_generation_tps=155.41265947854697 out=/Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-09-08-m4max-metal-profile-0170/mlx_qwen3_4b_4bit_r1.json

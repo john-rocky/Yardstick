@@ -1,0 +1,6 @@
+PID 90641
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 2645.69it/s]
+DECODE_START
+
+DECODE_END
+RESULT steady_tps=309.63 overall_tps=310.1 tokens=1632 mlx_generation_tps=310.28466764493726 out=/Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-09-08-m4max-metal-profile-0170/mlx_ds_4bit_r3.json

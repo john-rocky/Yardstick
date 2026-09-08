@@ -1,0 +1,72 @@
+PID 95725
+W0000 00:00:1788872450.139007 125933049 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1788872450.206776 125933049 litert_lm_loader.h:158] TFLite model type: TF_LITE_VISION_ENCODER not found for backend constraints. Skipping.
+W0000 00:00:1788872450.206819 125933049 litert_lm_loader.h:158] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for backend constraints. Skipping.
+W0000 00:00:1788872450.206826 125933049 litert_lm_loader.h:174] TFLite model type: TF_LITE_VISION_ENCODER not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+W0000 00:00:1788872450.206833 125933049 litert_lm_loader.h:174] TFLite model type: TF_LITE_AUDIO_ENCODER_HW not found for prefer activation type. Use system's default backend activation type. System's default activation type for Text decoder is fp16. Vision encoder and audio encoder default is fp32.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794893c000, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794893c640, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794893c5f0, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x794893c5a0, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+W0000 00:00:1788872450.265794 125933049 litert_lm_loader.cc:291] Section not found: 	
+W0000 00:00:1788872450.265822 125933049 litert_lm_loader.cc:291] Section not found: 	
+INFO: [compiled_model.cc:813] Flatbuffer model initialized directly from incoming litert model.
+I0000 00:00:1788872450.275038 125933049 delegate_webgpu.cc:262] Create WebGPU environment (use_low_power=false, enable_host_mapped_pointer=true)
+I0000 00:00:1788872450.286502 125933049 environment.cc:525] Selected adapter: Apple M4 Max, arch=metal-3, vendor=apple, backend=Metal, adapterType=Integrated GPU
+I0000 00:00:1788872450.287046 125933049 delegate_webgpu.cc:290] Created a WebGPU environment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+INFO: [gpu_environment.cc:367] Failed to create OpenCL context.
+INFO: [gpu_environment.cc:384] Created default Metal device.
+INFO: [gpu_environment.h:155] Created LiteRT GpuEnvironment.
+INFO: [environment.cc:47] Adding options to the existing LiteRT environment
+I0000 00:00:1788872450.306342 125933049 delegate_webgpu.cc:680] # of threads to upload weights = 2
+I0000 00:00:1788872450.306367 125933049 delegate_webgpu.cc:688] # of threads to compile kernels = 1
+I0000 00:00:1788872450.703777 125933049 delegate_kernel.cc:310] Total 113 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872450.703820 125933049 delegate_kernel.cc:867] Initializing WebGPU-based API from graph.
+I0000 00:00:1788872450.768178 125933049 delegate_kernel.cc:310] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872450.768212 125933049 delegate_kernel.cc:867] Initializing WebGPU-based API from graph.
+I0000 00:00:1788872450.859815 125933049 delegate_kernel.cc:310] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872450.859853 125933049 delegate_kernel.cc:867] Initializing WebGPU-based API from graph.
+I0000 00:00:1788872450.967155 125933049 delegate_kernel.cc:310] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872450.967187 125933049 delegate_kernel.cc:867] Initializing WebGPU-based API from graph.
+I0000 00:00:1788872451.047151 125933049 delegate_kernel.cc:310] Total 112 external tensors are used for delegate inputs and outputs
+I0000 00:00:1788872451.047184 125933049 delegate_kernel.cc:867] Initializing WebGPU-based API from graph.
+INFO: [environment.cc:36] Creating LiteRT environment with options
+WARNING: [npu_registry.cc:34] NPU accelerator could not be loaded and registered: kLiteRtStatusErrorInvalidArgument.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x79489380f0, name=GPU WebGPU
+INFO: [gpu_registry.cc:87] Statically linked GPU accelerator registered.
+INFO: [accelerator_registry.cc:54] RegisterAccelerator: ptr=0x7948938000, name=CpuAccelerator
+INFO: [cpu_registry.cc:75] XNNPACK CPU accelerator registered.
+W0000 00:00:1788872451.135835 125933049 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1788872451.135874 125933049 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_AUDIO not found. Skipping.
+W0000 00:00:1788872451.135881 125933049 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1788872451.135885 125933049 litert_lm_loader.h:129] TFLite model for type: TF_LITE_END_OF_VISION not found. Skipping.
+W0000 00:00:1788872451.135888 125933049 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1788872451.135890 125933049 litert_lm_loader.h:129] TFLite model for type: TF_LITE_EMBEDDER not found. Skipping.
+W0000 00:00:1788872451.135893 125933049 litert_lm_loader.cc:291] Section not found: 
+W0000 00:00:1788872451.135896 125933049 litert_lm_loader.h:129] TFLite model for type: TF_LITE_PER_LAYER_EMBEDDER not found. Skipping.
+W0000 00:00:1788872451.163720 125933154 sampler_factory.cc:486] WebGPU sampler not available, falling back to statically linked C API: UNAVAILABLE: ERROR: [third_party/odml/litert_lm/runtime/components/sampler_factory.cc:319]
+└ Could not load shared library libLiteRtTopKWebGpuSampler.dylib: dlopen(libLiteRtTopKWebGpuSampler.dylib, 0x0005): tried: 'libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OSlibLiteRtTopKWebGpuSampler.dylib' (no such file), '/opt/homebrew/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/System/Volumes/Preboot/Cryptexes/OS/opt/homebrew/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file), '/usr/lib/libLiteRtTopKWebGpuSampler.dylib' (no such file, not in dyld cache), 'libLiteRtTopKWebGpuSampler.dylib' (no such file).
+=== Source Location Trace: ===
+./third_party/odml/litert/litert/cc/litert_macros.h:573
+I0000 00:00:1788872451.173636 125933154 llm_litert_compiled_model_executor.cc:1468] Sampler will handle decode input tensors.
+DECODE_START
+
+DECODE_END
+E0000 00:00:1788872463.083109 125933049 engine.cc:1361] Failed to get benchmark info: INTERNAL: Benchmark is not enabled. Please make sure the BenchmarkParams is set in the EngineSettings.
+=== Source Location Trace: ===
+third_party/odml/litert_lm/runtime/core/session_advanced.cc:409
+I0000 00:00:1788872463.101402 125933049 delegate_webgpu.cc:320] Destroyed the WebGPU environment.
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x794893c5a0, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x794893c5f0, name=GPU WebGPU
+RESULT steady_tps=126.24 overall_tps=126.23 tokens=1500 engine_decode_tps=None out=/Users/majimadaisuke/code/apple-silicon-llm-bench/results/raw/2026-09-08-m4max-metal-profile-0170/litert_ds_q8_v0150_r1.json
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x7948938000, name=CpuAccelerator
+INFO: [accelerator_registry.cc:43] DestroyAccelerator: ptr=0x79489380f0, name=GPU WebGPU
